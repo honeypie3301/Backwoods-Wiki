@@ -66,7 +66,7 @@ When deployed, the Rot does not simply walk into battle. It is synthesized high 
 <h4 style="color: #d7ccc8; margin-top: 15px;">Exits</h4>
 <p>You can either make a portal back since the igniters success rates vary by dimension or wait for the dimension to kick you out since you have a timer of 20 minutes.</p>
 <h4 style="color: #d7ccc8; margin-top: 15px;">Entrance</h4>
-<p>You can only enter this dimension involuntarily by being on the last stage of [[Sanity|mental degradation]] with a chance of <strong>0.2666% per second</strong>.</p>
+<p>You can only enter this dimension by being on the last stage of [[Sanity|mental degradation]] with a chance of 0.01333%</p>
 
 <!-- ==========================================
      THE ROTTING

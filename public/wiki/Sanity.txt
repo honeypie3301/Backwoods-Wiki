@@ -8,16 +8,16 @@ __FORCETOC__
 The degradation progresses through four distinct stages, each more severe than the last.
 </div>
 <div style="background: rgba(30, 25, 45, 0.5); border-left: 5px solid #7e57c2; padding: 12px 15px; margin: 15px 0; border-radius: 4px; font-size: 0.95em;">
-    <strong>Reality Adaptation:</strong> Overworld explorers are not entirely static. Spending a full, continuous Minecraft Day (20 minutes) inside the Backwoods causes the player's mind to permanently harden. Each point of adaptation is permanently earned upon <strong>safely leaving the Backwoods dimension</strong> if the player remained inside for at least <strong>20 continuous minutes (24,000 ticks)</strong> during that visit. Each point extends the duration of all stage milestones by <strong>15%</strong>, delaying the onset of madness during subsequent visits.
+    <strong>Reality Adaptation:</strong> Overworld explorers are not entirely static. Spending a full, continuous Minecraft Day (20 minutes) inside the Backwoods causes the player's mind to permanently harden. Each point of adaptation extends the duration of all stage milestones by <strong>15%</strong>, delaying the onset of madness during subsequent visits.
 </div>
 
 <!-- ==========================================
      STAGE ONE
      ========================================== -->
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 30px;">Stage One</h2>
-<p>Begins after exactly '''6 minutes and 30 seconds''' (7,800 ticks) in the dimension.</p>
+<p>Begins after approximately '''6 minutes and 30 seconds''' in the dimension.</p>
 <ul style="list-style-type: disc; padding-left: 20px;">
-    <li>The player begins hearing faint whispers from no discernible source (0.53% overall chance per second).</li>
+    <li>The player begins hearing faint whispers from no discernible source.</li>
     <li>They are quiet and infrequent, making them easy to miss if the player is not paying attention.</li>
 </ul>
 
@@ -25,35 +25,34 @@ The degradation progresses through four distinct stages, each more severe than t
      STAGE TWO
      ========================================== -->
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 40px;">Stage Two</h2>
-<p>Begins after exactly '''10 minutes and 24 seconds''' (12,480 ticks) in the dimension.</p>
+<p>Begins after approximately '''10 minutes'''.</p>
 <ul style="list-style-type: disc; padding-left: 20px;">
     <li>The dimension's music stops entirely and does not return.</li>
-    <li>There is a <strong>1.38% chance per second</strong> to get afflicted with the <strong>Darkness effect</strong> for 3 seconds (60 ticks), accompanied by distant, unsettling cave sounds.</li>
-    <li>If the Darkness pulse doesn't trigger, whispers (`whisper1`, `whisper2`, `whisper3`, or `whisper4`) play with elevated volume and frequency (~3.6% combined chance per second).</li>
-    <li>Nothing visible has changed in the blocks yet, but the atmosphere shifts heavily.</li>
+    <li>Occasional bursts of darkness pulse at the edges of the player's vision, accompanied by distant, unsettling cave sounds.</li>
+    <li>Nothing visible has changed in the environment yet, but the atmosphere shifts heavily.</li>
 </ul>
 
 <!-- ==========================================
      STAGE THREE
      ========================================== -->
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 40px;">Stage Three</h2>
-<p>Begins after exactly '''18 minutes and 12 seconds''' (21,840 ticks) in the dimension. The dimension ceases to be passive and actively assaults the player's senses.</p>
+<p>Begins after approximately '''18 minutes'''. The dimension ceases to be passive and actively assaults the player's senses.</p>
 <ul style="list-style-type: disc; padding-left: 20px;">
-    <li>There is a <strong>4% chance per second</strong> to hear a deep, heavily distorted sound (`degradation_o1`) at irregular intervals.</li>
-    <li>The player's camera view will occasionally jolt in a random direction without warning (<strong>1.38% chance per second</strong>), simulating disorientation.</li>
-    <li>There is a <strong>1.332% chance per second</strong> to experience auditory hallucinations where ambient sound stops and a fake sound (low-pitched wood place, chest open/close, or bell resonate/use) plays right next to the player.</li>
-    <li>Sensory darkness pulses still linger but become extremely rare (0.094% chance per second for a 3.5-second pulse).</li>
+    <li>Sensory darkness pulses return much more aggressively.</li>
+    <li>A deep, heavily distorted sound plays at irregular intervals.</li>
+    <li>The player's camera view will occasionally jolt in a random direction without warning.</li>
+    <li>At rare moments, the world closes in entirely as the player's render distance drops to almost nothing before suddenly snapping back to normal.</li>
 </ul>
 
 <!-- ==========================================
      STAGE FOUR
      ========================================== -->
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 40px;">Stage Four</h2>
-<p>Begins after exactly '''26 minutes''' (31,200 ticks) in the dimension and represents total mental collapse.</p>
+<p>Begins after approximately '''26 minutes''' and represents total mental collapse.</p>
 <ul style="list-style-type: disc; padding-left: 20px;">
-    <li>All ambient, master, and block sound stops completely.</li>
-    <li>Shortly after the silence hits, the world begins to physically fracture: standard Oak Planks in a Y/Z/X box around you begin to spontaneously transform into spreading patches of [[Blocks#Rotten Oak Blocks|Rotten Oak Planks]] once every second (133.2% occurrence chance).</li>
-    <li>Finally, the player is forcefully pulled into either '''The Loss''' (0.2666% chance per second) or '''The Grain''' (0.32% chance per second) dimension, totaling a ~0.5866% involuntary rift chance per second.</li>
+    <li>All ambient sound stops completely.</li>
+    <li>Shortly after the silence hits, the world begins to physically fracture as standard Oak Planks spontaneously transform into spreading patches of [[Blocks#Rotten Oak Blocks|Rotten Oak Planks]] across the floor.</li>
+    <li>Finally, the player is forcefully pulled into either '''The Loss''' or '''The Grain''' dimension.</li>
 </ul>
 
 <div style="background: rgba(40, 25, 20, 0.6); border-left: 4px solid #ff7043; padding: 12px; margin: 20px 0; border-radius: 4px;">
@@ -92,23 +91,23 @@ Stage Four cannot be recovered from in-dimension. Once the pull triggers, the pl
     </tr>
     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
         <td style="padding: 8px; font-weight: bold;">One</td>
-        <td style="padding: 8px;">6 min 30 sec<br/><span style="color: #829285; font-size: 0.9em; font-family: monospace;">7,800 ticks</span></td>
-        <td style="padding: 8px;">Faint, infrequent whispering hallucinations (0.53% chance per second)</td>
+        <td style="padding: 8px;">~6 min 30 sec</td>
+        <td style="padding: 8px;">Faint, sourceless whispers</td>
     </tr>
     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
         <td style="padding: 8px; font-weight: bold;">Two</td>
-        <td style="padding: 8px;">10 min 24 sec<br/><span style="color: #829285; font-size: 0.9em; font-family: monospace;">12,480 ticks</span></td>
-        <td style="padding: 8px;">Music stops. Recurring Darkness status effect pulses (1.38% chance/s, 3s duration) with cave sounds and louder whispers</td>
+        <td style="padding: 8px;">~10 min</td>
+        <td style="padding: 8px;">Music stops, vignette darkness pulses begin</td>
     </tr>
     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
         <td style="padding: 8px; font-weight: bold;">Three</td>
-        <td style="padding: 8px;">18 min 12 sec<br/><span style="color: #829285; font-size: 0.9em; font-family: monospace;">21,840 ticks</span></td>
-        <td style="padding: 8px;">Deep distorted audio (4% chance/s), camera disorientation jolts (1.38% chance/s), fake nearby wood/chest/bell auditory hallucinations (1.33% chance/s), rare darkness pulses</td>
+        <td style="padding: 8px;">~18 min</td>
+        <td style="padding: 8px;">Aggressive darkness pulses, distorted audio, camera jolts, render distance drops</td>
     </tr>
     <tr>
         <td style="padding: 8px; font-weight: bold; color: #e57373;">Four</td>
-        <td style="padding: 8px; color: #e57373;">26 min 00 sec<br/><span style="color: #e57373; font-size: 0.9em; font-family: monospace;">31,200 ticks</span></td>
-        <td style="padding: 8px; color: #e57373;">Master silence. Spontaneous local Oak Planks decay/rotting (133.2% chance/s). Forced portal pulls to The Grain (0.32% chance/s) or The Loss (0.2666% chance/s)</td>
+        <td style="padding: 8px; color: #e57373;">~26 min</td>
+        <td style="padding: 8px; color: #e57373;">World fractures, forced dimensional pull</td>
     </tr>
 </table>
 </div>
