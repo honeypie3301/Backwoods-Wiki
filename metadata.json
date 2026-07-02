@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "The Backwoods Wiki",
+  "description": "An interactive companion database and wiki for The Backwoods Minecraft mod.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
