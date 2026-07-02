@@ -8,7 +8,7 @@ The Backwoods adds a small set of developer and debug commands. These commands r
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 30px;">Commands</h2>
 
 <h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/backwoodstime on</h3>
-<p>Enables debug mode for the player. While active, the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">backwoods_time</code> value is displayed above the hotbar in real time while inside the Backwoods dimension, and the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">void_time</code> value is displayed while inside the Loss dimension.</p>
+<p>Enables debug mode for the player. While active, the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">backwoods_time</code> value is displayed above the hotbar in real time while inside [[dimensions|The Backwoods dimension]], and the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">void_time</code> value is displayed while inside [[dimensions|The Loss dimension]].</p>
 
 <h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/backwoodstime off</h3>
 <p>Disables debug mode and hides the debug display.</p>
@@ -24,7 +24,7 @@ The Backwoods adds a small set of developer and debug commands. These commands r
 </table>
 
 <h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/setvoidtime [value]</h3>
-<p>Sets the player's <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">void_time</code> directly to the specified value. Used for testing behavior inside the Loss dimension. At a value of '''12,000 or above''', Plaque blocks begin spreading faster following the bell resonate sound.</p>
+<p>Sets the player's <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">void_time</code> directly to the specified value. Used for testing behavior inside [[dimensions|The Loss dimension]]. At a value of '''12,000 or above''', Plaque blocks begin spreading faster following the bell resonate sound.</p>
 
 <h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/rotstate [target] totem [on | off | infinity on | infinity off]</h3>
 <p>Directly toggles the active state of the Rot sentinel's totem mode. While active, the Rot gains amplified shockwaves, larger blast radii, increased damage, and more relentless combat behaviors. Setting it to <code style="color: #e06c75;">infinity on</code> unlocks its absolute limit state, complete with massive passive health regeneration.</p>

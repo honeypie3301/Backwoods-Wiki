@@ -98,6 +98,7 @@ interface EntityProfile {
   speed: string;
   dim: string;
   desc: string;
+  aka?: string;
 }
 
 export default function EntitiesView() {
@@ -128,6 +129,7 @@ export default function EntitiesView() {
       armor: "15 Points",
       speed: "0.3 (Scales dynamically in combat cycle)",
       dim: "The Backwoods / Dynamic Sentry deployment",
+      aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
       desc: "An advanced multi-dimensional biological sentinel designed to neutralize high-tier players carrying powerful gear modifiers. It starts combat in a dormant state, demonstrating no magical powers, but dynamically studies, adapts, and mimics your combat behaviors as the battle progresses."
     },
     {
@@ -457,6 +459,11 @@ export default function EntitiesView() {
             <div>
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#5a6b5e]">Entity Profile</span>
               <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e0e7e0] mt-1">{currentEntity.name}</h3>
+              {currentEntity.aka && (
+                <div className="text-[10px] font-mono text-red-400 mt-0.5">
+                  <span className="text-[#5a6b5e]">AKA: </span>{currentEntity.aka}
+                </div>
+              )}
               <p className="text-xs text-[#709978] font-mono mt-0.5">{currentEntity.title}</p>
             </div>
             <div className="shrink-0">

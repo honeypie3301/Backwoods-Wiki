@@ -1,22 +1,22 @@
 
 === Backwoods ===
 
-* Enter the Backwoods dimension.
+* Enter [[dimensions|The Backwoods dimension]].
 
 === Inner Circle ===
 
 * Description: Reach the core of the Backwoods infection.
-* Enter the Rotting dimension.
+* Enter [[dimensions|The Rotting dimension]].
 
 === Total Stasis ===
 
 * Description: Enter the dimension where time forgot to move.
-* Enter the Still dimension
+* Enter [[dimensions|The Still dimension]]
 
 === Home sweet? ===
 
 * Description: Discover the dimension that mirrors your memories.
-* Enter the Familiar dimension.
+* Enter [[dimensions|The Familiar dimension]].
 
 === The Hive Walls ===
 
@@ -40,7 +40,7 @@
 
 === Pumping Heart ===
 
-* Description: Infuse your blade with the core of the Rotting dimension.
+* Description: Infuse your blade with the core of [[dimensions|The Rotting dimension]].
 * Craft the Heartwood Rotten Sword.
 
 === Sentinel ===
@@ -51,11 +51,11 @@
 === The source ===
 
 * Description: Get dragged into The Grain for looking where you shouldn't.
-* Get teleported into the Grain dimension.
+* Get teleported into [[dimensions|The Grain dimension]].
 
 === A Memory Misplaced ===
 
-* Description: Enter the Loss dimension.
+* Description: Enter [[dimensions|The Loss dimension]].
 
 === First Splinter of Memory ===
 
@@ -79,7 +79,7 @@
 
 === The Forest That Outlived Time ===
 
-* Description: Enter the Weald dimension.
+* Description: Enter the [[dimensions|Weald dimension]].
 
 === What Was Lost ===
 

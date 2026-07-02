@@ -233,9 +233,6 @@ export default function ArticleView({
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-[#e0e7e0] tracking-tight leading-tight">
             {article.title}
           </h1>
-          <p className="text-xs font-mono text-[#5a6b5e] mt-2 select-none">
-            SOURCE FILE: <span className="text-[#a3ada3]">Wiki pages/{article.filename}</span>
-          </p>
         </div>
 
         {/* Article Body */}
