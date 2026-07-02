@@ -11,13 +11,14 @@ Custom structures generate across the various dimensions of the mod, providing e
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods</h2>
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">A Staircase</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">An unsettling architectural feature that ascends upward into nothingness, its top leading nowhere. It represents the futility of human endeavor - the act of striving toward something unattainable.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An unsettling architectural feature that ascends upward into nothingness, its top leading nowhere. It represents the futility of human endeavor — the act of striving toward something unattainable.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Variants:</strong> A secondary variation generates with a loot chest waiting at the very top.</li>
 </ul>
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Farlands</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">It is a reproduction of the legendary, classic Minecraft generation glitch from older versions. Traveling here will lead you into a sprawling, infinite landscape of wooden walls, columns, and massive floating structures stretching far.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">It is a reproduction of the legendary, classic Minecraft generation glitch from older versions. Unlike the original Minecraft glitch which generated stone and dirt walls, the Far Lands in the Backwoods mod are generated entirely out of Oak Planks. Traveling here will lead you into a sprawling, infinite landscape of wooden walls, columns, and massive floating structures stretching far.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+<<<<<<< HEAD
     <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Material Composition:</strong> Unlike the original Minecraft glitch which generated stone and dirt walls, the Far Lands in the Backwoods mod are generated entirely out of <code style="color: #eaeaea;">Oak Planks</code>.</li>
     <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Location & Access:</strong> Begins generating at extreme coordinates starting at '''836,721 blocks away''' from the world origin across standard Backwoods dimensions.</li>
     <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Anti-Gravity & Physics Decay:</strong> Past the coordinate threshold, standard physics begin to decay progressively. The further you travel, the weaker gravity becomes, turning the environment into a near-weightless zero-g field.</li>
@@ -33,6 +34,10 @@ Custom structures generate across the various dimensions of the mod, providing e
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Ceiling Anchoring:</strong> Requires a solid block ceiling above to spawn, embedding itself up to 6 blocks deep for seamless structural blending.</li>
 </ul>
 
+=======
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Location:</strong> Can be found at 836721 blocks away.</li>
+</ul>
+>>>>>>> parent of f60407f (Update)
 
 <hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
 
@@ -42,10 +47,10 @@ Custom structures generate across the various dimensions of the mod, providing e
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">The Grain</h2>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Void Basement</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The deepest structural layer of [[dimensions|The Grain dimension]] - a sprawling, claustrophobic expanse that mimics an endless, repeating basement network. Tight corridors and monolithic concrete and plank walls divide the space into suffocating sections blanketed in absolute darkness. Vanilla caves at the lowest bedrock altitudes are wiped entirely to enforce its clean, artificial grid.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The deepest structural layer of the Grain dimension — a sprawling, claustrophobic expanse that mimics an endless, repeating basement network. Tight corridors and monolithic concrete and plank walls divide the space into suffocating sections blanketed in absolute darkness. Vanilla caves at the lowest bedrock altitudes are wiped entirely to enforce its clean, artificial grid.</p>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cavern Grid</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">An industrial-style geometric matrix that cuts through the lower-middle cave intervals of the dimension. Intersecting tunnels form massive, hollow block chambers stretching endlessly in all four cardinal directions - a highly structured stone cage.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An industrial-style geometric matrix that cuts through the lower-middle cave intervals of the dimension. Intersecting tunnels form massive, hollow block chambers stretching endlessly in all four cardinal directions — a highly structured stone cage.</p>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Sky Grid</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">A massive geometric lattice that dominates the open upper atmosphere of the dimension, serving as an infinite, hollow ceiling suspended over the wilderness below.</p>
@@ -53,31 +58,24 @@ Custom structures generate across the various dimensions of the mod, providing e
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">The Nest Grids</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">Primarily constructed from oak planks and organized into a repeating 3x3 tube pattern, the Nest Grids are the defining architectural feature of the '''Splinter Nest''' biome. These massive, multi-layered honeycombs are shaped like diamonds and generate so densely that they form artificial wooden canyons.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Hazard:</strong> Climbing them is possible but dangerous - the inhabitants do not take kindly to intruders in their nesting grounds.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Hazard:</strong> Climbing them is possible but dangerous — the inhabitants do not take kindly to intruders in their nesting grounds.</li>
 </ul>
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em; line-height: 1.6;">
 Due to the immense architectural density and high entity activity within this structure, players may notice a decrease in performance and frame stability when exploring the Nest.
 </div>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Wood Buildings</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Highly repetitive, completely hollow structures composed purely of oak planks. They frequently clip into each other due to unstable generation and can only be found within [[dimensions|The Grain dimension]].</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Highly repetitive, completely hollow structures composed purely of oak planks. They frequently clip into each other due to unstable generation and can only be found within The Grain dimension.</p>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Buried Rooms</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Hidden rooms that generate underground within the **Grain** dimension, distributed across specific altitudes (Y=0 to Y=50) and biomes.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Hidden rooms that generate underground within the Grain dimension, distributed across specific biomes.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Room Templates:</strong> There are 8 distinct underground rooms (<code style="color: #eaeaea;">underground_1</code> through <code style="color: #eaeaea;">underground_8</code>) that bury themselves in the stone layers.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Biome Distribution:</strong>
-        <ul style="margin: 5px 0 0 15px; padding-left: 10px; list-style-type: circle;">
-            <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">Uniform Grain Biome:</strong> Spawns rooms 1 through 7 underground. Room 8 acts as a specific variation and also can spawn here.</li>
-            <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">Stillwood Biome:</strong> Specifically spawns room 8 underground (at Y=0 to Y=40).</li>
-            <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Other Biomes:</strong> Rooms 1-7 can also be found beneath the Splinter Nest, Pillar Thicket, and Fractured Barrens biomes.</li>
-        </ul>
-    </li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Loot:</strong> One of the room variants contains hidden loot chests filled with useful resources, tools, and items to assist players in dimension progression.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Uniform Grain Biome:</strong> 7 rooms generate here. One contains loot chests filled with useful items to aid your journey.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Stillwood Biome:</strong> 1 room generates here.</li>
 </ul>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Sub-Grain Atria</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Located at '''Y=8''' exclusively within the '''Uniform Grain''' biome, this multi-layered subterranean complex is defined by a phenomenon called Vertical Synchronization - hallways and structural pillars align perfectly across multiple floors, creating deep, dizzying vertical shafts that vanish into darkness both above and below.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Located at '''Y=8''' exclusively within the '''Uniform Grain''' biome, this multi-layered subterranean complex is defined by a phenomenon called Vertical Synchronization — hallways and structural pillars align perfectly across multiple floors, creating deep, dizzying vertical shafts that vanish into darkness both above and below.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
     <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Architecture:</strong> Endless 3-meter-wide hallways built entirely from oak planks, separated by 7-meter-thick solid walls.</li></ul>
 
@@ -116,62 +114,14 @@ These wooden clusters punch clean holes straight through the bedrock, offering h
 </ul>
 
 <h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Menger Sponge</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A massive, looping labyrinth that fills the world generation of '''The Dead Grain''' biome. Rather than a pre-built schematic, this structure is a three-dimensional mathematical fractal - an infinite pattern of repeating grids and square hollow cutouts - calculated in real-time as chunks load. The result is a sprawling network of floating oak walkways and hollow tunnels that slice cleanly through the terrain.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A massive, looping labyrinth that fills the world generation of '''The Dead Grain''' biome. Rather than a pre-built schematic, this structure is a three-dimensional mathematical fractal — an infinite pattern of repeating grids and square hollow cutouts — calculated in real-time as chunks load. The result is a sprawling network of floating oak walkways and hollow tunnels that slice cleanly through the terrain.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
     <li style="margin-bottom: 8px;">Each complete fractal section measures exactly <strong style="color: #c4bfa5;">81 x 81</strong> blocks wide and spans <strong style="color: #c4bfa5;">80 blocks</strong> tall.</li>
     <li style="margin-bottom: 8px;">Always generates at the bottom of the world, stretching from <strong style="color: #c4bfa5;">Y=-62 up to Y=18</strong>.</li>
-    <li style="margin-bottom: 0;">Hollow sections automatically vaporize any existing blocks - dirt, stone, and otherwise - replacing them with air to form smooth interior caverns.</li>
+    <li style="margin-bottom: 0;">Hollow sections automatically vaporize any existing blocks — dirt, stone, and otherwise — replacing them with air to form smooth interior caverns.</li>
 </ul>
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em; line-height: 1.6;">
 Near the very bottom of the world ('''Y=-64 to Y=-59'''), the structure will refuse to delete pre-existing bedrock or custom floor structures, ensuring players cannot fall through into the void below.
 </div>
-
-<h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Catwalk Sub-Cavern</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A complex, floating wooden maze network situated deep within the cavernous depths of '''The Dead Grain''' biome. Rather than flat tunnels, the paths here are narrow wooden scaffolding bridges suspended in pitch-black subterranean chambers.</p>
-<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Altitude Layout:</strong> Generates within a strict altitude interval: solid floor at '''Y=45''', absolute cavern ceiling at '''Y=60''', and the floating catwalk bridge deck positioned exactly at '''Y=53'''.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Grid Architecture:</strong> Features a symmetric grid cell size of 6x6 blocks and walkways exactly 2 blocks wide, guarded by oak fences to prevent players from tumbling into the void-like lower floor.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Structural Density:</strong> Generates with a 55% path density, ensuring a balanced labyrinthine pattern that encourages exploration while maintaining high traversal difficulty.</li>
-</ul>
-
-<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
-
-<!-- ==========================================
-     THE PETRIFIED WEALD
-     ========================================== -->
-<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">The Petrified Weald</h2>
-
-<h3 style="color: #b0bec5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Calcified Spikes</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Towering, mineralized monoliths that break through the surface of the '''Calcified Plains''' biome. Constructed from ancient, calcified wood tissues, these structures stand as eerie monuments of a prehistoric forest long lost to time.</p>
-<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Material Composition:</strong> Composed entirely of <code style="color: #eaeaea;">Petrified Rotten Oak Wood</code>.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Physical Scale:</strong> Spikes stand between 60 and 110 blocks tall, featuring a wide base radius of 4 to 7 blocks that tapers off towards the top.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Lean & Roughness:</strong> Features a rugged organic surface with a roughness intensity of 0.8. Each spike leans between 4 and 10 blocks in a randomized direction.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Foundation:</strong> Anchors deeply beneath the surface layer, embedding themselves up to 20 blocks deep for complete terrain integration.</li>
-</ul>
-
-<h3 style="color: #b0bec5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Large Calcified Spikes</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Gargantuan, mountain-sized variants of the calcified spikes, generating within the '''Weald Outskirts''', '''Petrified Thickwoods''', and '''Fossilized Core''' biomes. These massive wooden columns act as giant pillars stretching from deep waterbodies up into the sky.</p>
-<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Water-Logging Safe:</strong> Specifically engineered to spawn across ocean and deep river beds, utilizing the ocean floor heightmap anchor to safely generate under water without causing fluid errors.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Gargantuan Scale:</strong> Reaches heights of 100 to 185 blocks, starting with a massive base radius of 10 to 14 blocks.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Enhanced Details:</strong> Displays a highly weathered and fractured profile with a roughness intensity of 1.1, leaning 2 to 7 blocks at their peak.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Subterranean Base:</strong> Embeds up to 25 blocks deep below the ocean floor to resist regional water currents and erosion.</li>
-</ul>
-
-<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
-
-<!-- ==========================================
-     THE FAMILIAR
-     ========================================== -->
-<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">The Familiar</h2>
-
-<h3 style="color: #66bb6a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Familiar Farlands</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A nostalgic reproduction of classic Minecraft's edge-of-the-world terrain glitch, generating exclusively within the peaceful biomes of '''The Familiar''' dimension.</p>
-<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Material Composition:</strong> Unlike the plank-built Farlands of the Backwoods, the Familiar Farlands generate organically out of <code style="color: #eaeaea;">Grass Blocks</code>, <code style="color: #eaeaea;">Dirt</code>, and <code style="color: #eaeaea;">Stone</code>.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Location:</strong> Generates at extreme, astronomical coordinates starting at '''6,275,412 blocks away''' from the world origin.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Physics:</strong> Just like standard Farlands, traveling past this boundary causes gravity to progressively decay into near-weightlessness.</li>
-</ul>
 
 </div>

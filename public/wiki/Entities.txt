@@ -24,7 +24,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
      THE SPLINTER
      ========================================== -->
 <h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">The Splinter</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The primary threat of the Backwoods. A gaunt wooden figure that hunts the player through extreme patience and persistence. Every Splinter is assigned a dynamic personality profile upon spawning - half behave as stealthy stalkers, while the other half act as pure pursuers that advance directly toward the player whenever unwatched.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The primary threat of the Backwoods. A gaunt wooden figure that hunts the player through extreme patience and persistence. Every Splinter is assigned a dynamic personality profile upon spawning—half behave as stealthy stalkers, while the other half act as pure pursuers that advance directly toward the player whenever unwatched.</p>
 
 <div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
     <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Assets &amp; Resources</strong>
@@ -42,7 +42,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
 </ul>
 
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em;">
-<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">The Rage Mechanic:</strong> Both personality types freeze under direct sight. However, staring at a Splinter for too long causes it to enter a state of rage - overriding its freeze condition and chasing the player regardless of eye contact. Striking a Splinter lowers this visual threshold, making it enrage faster with each consecutive hit.
+<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">The Rage Mechanic:</strong> Both personality types freeze under direct sight. However, staring at a Splinter for too long causes it to enter a state of rage—overriding its freeze condition and chasing the player regardless of eye contact. Striking a Splinter lowers this visual threshold, making it enrage faster with each consecutive hit.
 </div>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Global Alert Radii (On Death)</h4>
@@ -58,11 +58,11 @@ To maintain focus on active threats, Backwoods entities check targets before eng
 <p style="margin-bottom: 15px; font-size: 0.95em;">Carrying an '''Ash-Rose''' causes a Splinter to halt entirely, and planting one nearby freezes all Splinters within its active range. The item wilts over time when held in an inventory slot.</p>
 
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em;">
-<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Dimensional Pull:</strong> A rare subset of Splinters (10% spawn rate) possess the capability to pull players directly into [[dimensions|The Grain dimension]] upon inflicting damage, carrying a 10% trigger chance per hit.
+<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Dimensional Pull:</strong> A rare subset of Splinters (10% spawn rate) possess the capability to pull players directly into The Grain dimension upon inflicting damage, carrying a 10% trigger chance per hit.
 </div>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Spawning Brackets &amp; Exclusion Zones</h4>
-<p style="margin-bottom: 15px; font-size: 0.95em;">To prevent global entity over-congestion, Splinters utilize dynamic '''Exclusion Zones''' - safety cuboids around their spawn coordinates where other Splinters cannot generate. These zones compress as world progression time increases, causing threats to feel denser as time passes.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">To prevent global entity over-congestion, Splinters utilize dynamic '''Exclusion Zones'''—safety cuboids around their spawn coordinates where other Splinters cannot generate. These zones compress as world progression time increases, causing threats to feel denser as time passes.</p>
 
 <table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
@@ -151,7 +151,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
     <li style="margin-bottom: 8px;">'''Labyrinthine Grids Biome:''' Spawns with a rigid, high-clearance exclusion zone radius of '''192 Blocks'''.</li>
     <li style="margin-bottom: 8px;">'''Pillar Thicket Biome:''' Spawns with a rigid, high-clearance exclusion zone radius of '''192 Blocks'''.</li>
     <li style="margin-bottom: 8px;">'''Uniform Grain Biome:''' Generates highly spread out, requiring a massive exclusion zone radius of '''1000 Blocks'''.</li>
-    <li style="margin-bottom: 0;">'''The Dead Grain Biome ([[dimensions|Sub-Strata dimension]]):''' Spawns strictly inside an altitude window between Y-levels '''162 and 318'''. Its active population profile compresses dynamically based on total ticks spent by the player inside the dimension (<code>sub_strata_time</code>), forcing severe compaction over time:
+    <li style="margin-bottom: 0;">'''The Dead Grain Biome (Sub-Strata Dimension):''' Spawns strictly inside an altitude window between Y-levels '''162 and 318'''. Its active population profile compresses dynamically based on total ticks spent by the player inside the dimension (<code>sub_strata_time</code>), forcing severe compaction over time:
         <ul style="margin: 8px 0 0 0; padding-left: 18px; list-style-type: circle; line-height: 1.6; color: #8c8779;">
             <li style="margin-bottom: 4px;">'''0 – 1,000 Ticks:''' Exclusion zone radius of '''120 Blocks''' (120×120×120 clear space).</li>
             <li style="margin-bottom: 4px;">'''1,001 – 3,750 Ticks:''' Exclusion zone radius compresses to '''77 Blocks'''.</li>
@@ -268,7 +268,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
      FRACTUS
      ========================================== -->
 <h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Fractus</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A specialized, hostile mechanical drone entity found strictly guarding Menger Sponge architectural arrays situated deep within the [[dimensions|Sub-Strata dimension]]. It floats freely, ignores global gravity, never settles onto ground blocks, and emits a persistent light source from its glowing core. It targets survival mode players within a <strong>28-block</strong> detection radius and ignores creative and spectator mode players entirely. When multiple Fractus are targeting different players in the same area, each unit actively avoids converging on an already-occupied target - spreading threat across the group rather than dogpiling a single player.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A specialized, hostile mechanical drone entity found strictly guarding Menger Sponge architectural arrays situated deep within the Sub-Strata dimension. It floats freely, ignores global gravity, never settles onto ground blocks, and emits a persistent light source from its glowing core. It targets survival mode players within a <strong>28-block</strong> detection radius and ignores creative and spectator mode players entirely. When multiple Fractus are targeting different players in the same area, each unit actively avoids converging on an already-occupied target — spreading threat across the group rather than dogpiling a single player.</p>
 
 <div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
     <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Assets &amp; Resources</strong>
@@ -375,11 +375,11 @@ To maintain focus on active threats, Backwoods entities check targets before eng
     </ul>
   </li>
   <li style="margin-bottom: 8px;"><strong>Laser Sphere Burst (Elite AoE Nova) &amp; Vulnerability Phase:</strong>
-    Every <strong>16 seconds</strong> (320 ticks) - or twice as frequently (every <strong>8 seconds</strong> / 160 ticks) against boss-level threats - the Prime launches its ultimate area-denial attack:
+    Every <strong>16 seconds</strong> (320 ticks)—or twice as frequently (every <strong>8 seconds</strong> / 160 ticks) against boss-level threats—the Prime launches its ultimate area-denial attack:
     <ul style="margin: 5px 0 0 0; padding-left: 18px; list-style-type: circle; color: #8c8779;">
       <li style="margin-bottom: 4px;"><strong>Buildup Phase (135 ticks / 6.75 seconds):</strong> An energy singularity expands from a radius of 1.5 blocks up to 4.5 blocks, creating a glowing hollow sphere of particles.</li>
       <li style="margin-bottom: 4px;"><strong>Vaporization Phase (5 ticks / 0.25 seconds):</strong> The singularity violently detonates, expanding immediately to a <strong>17.0-block radius shell</strong>.</li>
-      <li style="margin-bottom: 4px;"><strong>Destruction Profile:</strong> This blast vaporizes all surrounding weak blocks (block hardness values up to <strong>100.0</strong>) and coordinates a massive shockwave dealing <strong>175.0 damage</strong> (87.5 hearts) - rising to <strong>225.0 damage</strong> (112.5 hearts) if angry - to all non-woodbound entities inside the exploding sphere shell.</li>
+      <li style="margin-bottom: 4px;"><strong>Destruction Profile:</strong> This blast vaporizes all surrounding weak blocks (block hardness values up to <strong>100.0</strong>) and coordinates a massive shockwave dealing <strong>175.0 damage</strong> (87.5 hearts)—rising to <strong>225.0 damage</strong> (112.5 hearts) if angry—to all non-woodbound entities inside the exploding sphere shell.</li>
       <li style="margin-bottom: 0;"><strong>Post-Burst Vulnerability Window:</strong> Immediately following both a Helix Ray and a Sphere Burst detonation, the Prime has a brief <strong>2.5-second (50 ticks) vulnerability window</strong>. While vulnerable, the drone is incapable of dodging projectile attacks, letting all projectiles bypass its defensive screen directly.</li>
     </ul>
   </li>
@@ -440,7 +440,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
      LIGNUM PALUS
      ========================================== -->
 <h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Lignum Palus</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A towering, grid-bound entity standing approximately <strong>5.8 blocks tall</strong> that stalks its prey through architecture, mimicry, and psychic coercion. It navigates exclusively along the cardinal axis of block grids, moving in perfectly straight lines and turning only at right angles - designed to blend seamlessly into the pillar-heavy structures of the [[dimensions|Sub-Strata Dimension]]. Up close, it deals structural impact damage on direct collision. Its primary threat, however, is not physical.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A towering, grid-bound entity standing approximately <strong>5.8 blocks tall</strong> that stalks its prey through architecture, mimicry, and psychic coercion. It navigates exclusively along the cardinal axis of block grids, moving in perfectly straight lines and turning only at right angles — designed to blend seamlessly into the pillar-heavy structures of the Sub-Strata dimension. Up close, it deals structural impact damage on direct collision. Its primary threat, however, is not physical.</p>
 
 <div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
     <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Assets &amp; Resources</strong>
@@ -452,17 +452,17 @@ To maintain focus on active threats, Backwoods entities check targets before eng
 </div>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Grid Navigation</h4>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Lignum Palus does not pathfind in the conventional sense. It travels at an extremely slow, eerie pace (<strong>0.05 speed</strong>) along block grid corridors, turning 90 degrees at intersections. At each intersection it has a <strong>50% chance</strong> to stop entirely, lock its rotation to a cardinal direction, and stand motionless - indistinguishable from a structural column to an unaware player. These pillar disguise pauses last between 3 and 9 seconds before it resumes movement.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Lignum Palus does not pathfind in the conventional sense. It travels at an extremely slow, eerie pace (<strong>0.05 speed</strong>) along block grid corridors, turning 90 degrees at intersections. At each intersection it has a <strong>50% chance</strong> to stop entirely, lock its rotation to a cardinal direction, and stand motionless — indistinguishable from a structural column to an unaware player. These pillar disguise pauses last between 3 and 9 seconds before it resumes movement.</p>
 <p style="margin-bottom: 15px; font-size: 0.95em;">When a player has remained stationary for more than <strong>5 seconds</strong>, Lignum Palus shifts into a closing-in state, accelerating to <strong>0.12 speed</strong> and navigating directly toward the player along the shortest Manhattan path. If blocked, it reroutes around obstacles automatically.</p>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Freeze Mechanic</h4>
-<p style="margin-bottom: 15px; font-size: 0.95em;">While a moving player maintains direct line of sight toward Lignum Palus, it freezes completely - locking to the nearest block center and holding its cardinal rotation rigidly. The moment the player looks away or line of sight breaks, it resumes movement. It does not freeze against stationary players, closing in on them regardless of whether they are watching.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">While a moving player maintains direct line of sight toward Lignum Palus, it freezes completely — locking to the nearest block center and holding its cardinal rotation rigidly. The moment the player looks away or line of sight breaks, it resumes movement. It does not freeze against stationary players, closing in on them regardless of whether they are watching.</p>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Projectile Dodge</h4>
 <p style="margin-bottom: 15px; font-size: 0.95em;">Any incoming projectile triggers an Enderman-style teleport. Lignum Palus attempts up to 64 times to find a safe grid-aligned landing point within a 16-block horizontal and 8-block vertical radius, requiring 6 blocks of vertical clearance at the destination to accommodate its height. On a successful dodge the damage is fully cancelled. It briefly pauses in pillar disguise mode on landing and plays teleport sounds at both the origin and destination.</p>
 
 <h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Hypnosis</h4>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The defining ability of Lignum Palus. If a survival mode player stares directly into its eye region - within <strong>20 blocks</strong>, with an unobstructed line of sight, at a gaze accuracy threshold of <strong>0.82 dot product</strong> - a stare counter begins accumulating. After <strong>70 consecutive ticks</strong> of sustained staring, a state activates, accompanied by a deep portal trigger sound and an End Portal activation effect.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The defining ability of Lignum Palus. If a survival mode player stares directly into its eye region — within <strong>20 blocks</strong>, with an unobstructed line of sight, at a gaze accuracy threshold of <strong>0.82 dot product</strong> — a stare counter begins accumulating. After <strong>70 consecutive ticks</strong> of sustained staring, a state activates, accompanied by a deep portal trigger sound and an End Portal activation effect.</p>
 
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 15px; margin: 15px 0; font-size: 0.9em; line-height: 1.6; color: #9c9788;">
 Once active, Lignum Palus locks in place and telekinetically pulls the player to a suspended position <strong>2 blocks in front of its face</strong>, held slightly below eye level for a forced direct stare angle. The player's camera is locked toward the entity and cannot be moved. Lignum Palus faces the player perfectly throughout the duration. The player is held in the air with their fall distance continuously reset, preventing fall damage on release.
@@ -516,7 +516,6 @@ Once active, Lignum Palus locks in place and telekinetically pulls the player to
                 <li style="margin-bottom: 6px;"><strong>Thermal Beams:</strong> Fires specialized lasers that bore holes directly through the terrain based on block hardness. <strong>Solar beams</strong> melt physical armor with unmitigable heat penetration. <strong>Cryo beams</strong> rapidly freeze and shatter living targets with massive cold-damage multipliers.</li>
                 <li style="margin-bottom: 6px;"><strong>Evasive Blinks:</strong> Exploits space to dodge incoming hand-to-hand blows (18t cooldown) or flank reposition directly behind the target's visual blind spots.</li>
                 <li style="margin-bottom: 6px;"><strong>Anti-Flight Intercept:</strong> Airborne targets are immediately intercepted, reset to zero upward momentum, and spiked directly down into the ground with catastrophic kinetic force.</li>
-                <li style="margin-bottom: 6px;"><strong>Acoustic Crush Impact (Screen Shake):</strong> Heavy ground smash, stomp, and shockwave landing events emit an acoustic shock. Any players situated within a <strong>20-block radius</strong> of the impact epicenter will experience dynamic, visual camera shake, with intensity scaling directly with physical proximity.</li>
                 <li style="margin-bottom: 0;"><strong>Adaptive Armor Plating:</strong> Tracks sudden DPS spikes, applying rising temporary resistance buffs when sustained damage exceeds standard thresholds.</li>
             </ul>
 
@@ -546,7 +545,7 @@ Once active, Lignum Palus locks in place and telekinetically pulls the player to
             </ul>
 
             <p style="margin-bottom: 10px;"><strong style="color: #ff5252;">Infinity Totem (Absolute Limit State):</strong></p>
-            <p style="margin-bottom: 10px;">Crushing the legendary Infinity Totem - supported via compatibility with the <span style="font-weight: 500;">[https://www.curseforge.com/minecraft/mc-mods/re-avaritia Avaritia]</span> mod - elevates the sentinel to its ultimate ceiling of power, triggering <strong>Infinity Mode</strong>:</p>
+            <p style="margin-bottom: 10px;">Crushing the legendary Infinity Totem—supported via compatibility with the <span style="font-weight: 500;">[https://www.curseforge.com/minecraft/mc-mods/re-avaritia Avaritia]</span> mod—elevates the sentinel to its ultimate ceiling of power, triggering <strong>Infinity Mode</strong>:</p>
             <ul style="margin: 0 0 12px 0; padding-left: 16px; list-style-type: square; color: #9c9788;">
                 <li style="margin-bottom: 6px;">Inherits all benefits and speed adjustments of the standard Empowered state.</li>
                 <li style="margin-bottom: 6px;">Grants immense, continuous <strong>passive health regeneration</strong> that heals its wounds in real time.</li>

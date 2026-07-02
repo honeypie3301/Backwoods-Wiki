@@ -197,38 +197,9 @@ export default function Sidebar({
           )}
         </nav>
 
-        {/* Footer info - Survival Credits & Links */}
-        <div className="p-4 border-t border-[#1a221c] bg-[#090b0a] text-[10px] font-mono flex flex-col gap-2">
-          <div className="flex flex-col gap-1.5 border-b border-[#141b16] pb-2 mb-2">
-            <a 
-              href="https://modrinth.com/mod/backwoods" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#709978] hover:text-[#a9d1b0] flex items-center gap-1.5 transition-colors"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-              Modrinth Page
-            </a>
-            <a 
-              href="https://www.curseforge.com/minecraft/mc-mods/backwoods" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#709978] hover:text-[#a9d1b0] flex items-center gap-1.5 transition-colors"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-              CurseForge Page
-            </a>
-            <a 
-              href="https://discord.com/invite/NtRJqPCUQA" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-[#709978] hover:text-[#a9d1b0] flex items-center gap-1.5 transition-colors"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-              Official Discord
-            </a>
-          </div>
-          <div className="select-none text-[9px] uppercase tracking-wider text-[#353d36]">ESTABLISHED FOR ESTEEMED SURVIVORS</div>
+        {/* Footer info - Survival Credits */}
+        <div className="p-4 border-t border-[#1a221c] bg-[#090b0a] text-[10px] text-[#445046] font-mono flex flex-col gap-1 select-none">
+          <div>ESTABLISHED FOR ESTEEMED SURVIVORS</div>
         </div>
       </aside>
     </>

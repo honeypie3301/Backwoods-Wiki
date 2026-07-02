@@ -39,7 +39,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Growth (Ascendance):</strong> The Scandere Lignum Log does not spread; instead, it grows upwards reaching massive heights of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top.</li>
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Spreading Roots:</strong> Scandere Lignum (all-sided bark root-wood) spreads underground tick by tick, replacing solid blocks in its path. Spread speed is accelerated by the fertilizing presence of nearby adult passive animals.</li>
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Vein-Shape Control:</strong> To prevent chunky, square blocky structures, Scandere Lignum roots will not spread to blocks adjacent to 2 or more existing Scandere Lignum blocks, keeping root networks naturally thin and serpentine.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Symbiosis:</strong> The Scandere Lignum Log emits a passive aura that influences the surrounding environment. Nearby passive mobs are drawn toward the log, idling in a ring around it. Animals within range have an increased chance to enter love mode and breed. The log is the heart of the organism - the Lignum roots spread, but the Log sustains.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Symbiosis:</strong> The Scandere Lignum Log emits a passive aura that influences the surrounding environment. Nearby passive mobs are drawn toward the log, idling in a ring around it. Animals within range have an increased chance to enter love mode and breed. The log is the heart of the organism — the Lignum roots spread, but the Log sustains.</li>
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Infestation:</strong> Deep within the root-wood, Lignum Vermis parasites often lay dormant. Disturbed blocks carry a <strong style="color: #9e2a2a;">10% (0.1) chance</strong> to release a Lignum Vermis when completely destroyed by a player or an explosion. While actively being mined, there is an additional, rare <strong style="color: #9e2a2a;">1% (0.01) chance per tick</strong> for the creature to violently splinter the block early and erupt outward.</li>
 </ul>
 
@@ -88,7 +88,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Anomalous Weight:</strong> Keeping it anywhere in your inventory dynamically modifies your physics based on the total item count. Each core in your possession reduces movement speed by <strong style="color: #9e2a2a;">4%</strong> and increases falling gravity by <strong style="color: #9e2a2a;">+0.017</strong> value points.</li>
     <li style="margin-bottom: 8px;">Radiates a constant light level of 13, cleanly pushing back shadows without generating any heat.</li>
     <li style="margin-bottom: 8px;">Possesses incredible fuel stability, providing exactly 13 hours of continuous smelting power inside a furnace.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #9e2a2a;">Fractus Invasion:</strong> Simply existing near a core - whether it is inside a player's inventory, dropped on the ground, stored inside a nearby container, or placed as a block within a <strong style="color: #c4bfa5;">120-block horizontal radius</strong> - draws unwanted cosmic attention in the Overworld and Nether dimensions.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #9e2a2a;">Fractus Invasion:</strong> Simply existing near a core—whether it is inside a player's inventory, dropped on the ground, stored inside a nearby container, or placed as a block within a <strong style="color: #c4bfa5;">120-block horizontal radius</strong>—draws unwanted cosmic attention in the Overworld and Nether dimensions.</li>
 </ul>
 
 <div style="border-top: 1px solid #1c1c21; padding-top: 15px; margin-top: 15px;">
@@ -101,73 +101,10 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 </div>
 </div>
 
-<h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Lignum Caro</h3>
-<div style="font-style: italic; color: #70685c; margin-bottom: 20px; font-size: 0.9em; letter-spacing: 0.02em;">
-    <span style="color: #9e2a2a;">"Lignum"</span> - Latin for ''"wood."'' &nbsp;|&nbsp; <span style="color: #9e2a2a;">"Caro"</span> - Latin for ''"flesh."''
-</div>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A pristine, living wood tissue block that belongs in [[dimensions|The Backwoods dimension]] and can also be found in the Dead Grain biome. It behaves as an active immune defender against spore-based infections. However, if overwhelmed, it can become corrupted, spreading the very infection it was meant to fight.</p>
-
-<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
-    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
-        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
-        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Hardness</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">1.5</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Blast Resistance</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">1.5</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Tool Tier</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Axe (Any)</td>
-    </tr>
-</table>
-
-<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Active Defense & Propagation Mechanics</h4>
-<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Pristine Active Defense (Sneeze Burst):</strong> When uninfected, it has a <strong style="color: #c4bfa5;">40% chance</strong> per random tick to "sneeze" against nearby Spore entities within 4 blocks. Deals 1.0 to 2.0 magic damage, applies knockback, and inflicts Poison I for 6 seconds. Emits organic wood breakdown and llama spit sound events.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Block Defense & Reclamation:</strong> Pristine blocks actively convert adjacent Spore blocks back into pristine Lignum Caro blocks (<strong style="color: #c4bfa5;">35% chance</strong>) and cleanse nearby corrupted Lignum Caro blocks back to pristine (<strong style="color: #c4bfa5;">25% chance</strong>) on random ticks.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Corruption & Spreading:</strong> Possesses a custom logic state property called <code style="color: #e0d0b0; background: #1a1a1a; padding: 1px 4px; border-radius: 2px;">infected</code>. If it becomes compromised, its defenses shut down and it starts spreading the spore infection, converting adjacent blocks into infected Lignum Caro at a <strong style="color: #9e2a2a;">35% chance</strong> with rapid chain propagation and a delay of 7 ticks.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Infection Delay:</strong> All active defense, spread, and cleansing mechanics remain completely dormant until the world age is at least <strong style="color: #c4bfa5;">1,200 ticks old (1 minute)</strong>, preventing instant early-game disasters.</li>
-</ul>
-
-<h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">False Oak Planks</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A highly deceptive decoy block that looks visually indistinguishable from standard Oak Planks but physically behaves as a leaf block. It can only be found in [[dimensions|The Backwoods dimension]], acting as leaves for the trees in the Thicket biome. It is designed for hidden traps, secret pathways, or deceptive building.</p>
-
-<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
-    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
-        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
-        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Hardness</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">0.2</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Blast Resistance</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">0.2</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Base Block Type</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Leaves (No Occlusion)</td>
-    </tr>
-</table>
-
-<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Mimicry & Fragile Physical Properties</h4>
-<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Flawless Mimicry:</strong> Uses the exact textures of vanilla Oak Planks on all sides, making them visually impossible to differentiate from solid construction blocks with the naked eye.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">No Occlusion & Transparency:</strong> Built on a leaf block base, players and entities can pass completely through the block. It does not block line-of-sight (though it still blocks light with a value of 15).</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">High Flammability:</strong> Extremely vulnerable to fire (flammability of 30, spread speed of 60) and gets ignited easily by lava.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Stick Drops:</strong> Breaking the block without Shears or a Silk Touch tool drops 1 to 2 Sticks instead of the block itself.</li>
-</ul>
-
 <!-- ==========================================
-     [[dimensions|Loss dimension]] SECTION
+     LOSS DIMENSION SECTION
      ========================================== -->
-<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">[[dimensions|Loss dimension]]</h2>
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Loss Dimension</h2>
 
 <h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Terrain & Surface</h3>
 <table class="article-table" style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
@@ -177,7 +114,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Faded Block</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">The primary surface block of [[dimensions|The Loss dimension]]. A pale, drained version of dirt entirely leached of life and energy. <strong style="color: #9e2a2a; font-style: italic;">Produces no audio</strong> when walked upon or broken.</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">The primary surface block of the Loss dimension. A pale, drained version of dirt entirely leached of life and energy. <strong style="color: #9e2a2a; font-style: italic;">Produces no audio</strong> when walked upon or broken.</td>
     </tr>
     <tr>
         <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Sinking Ash</td>
@@ -186,7 +123,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 </table>
 
 <h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone & Variants</h3>
-<p style="margin-bottom: 20px; font-size: 0.95em;">The primary stone of [[dimensions|The Loss dimension]], formed from a degraded and memory-eroded variant of stone. Its texture appears washed out and low in detail, reflecting the instability of the environment. Produces <strong style="color: #9e2a2a; font-style: italic;">no sound</strong> when interacted with.</p>
+<p style="margin-bottom: 20px; font-size: 0.95em;">The primary stone of the Loss dimension, formed from a degraded and memory-eroded variant of stone. Its texture appears washed out and low in detail, reflecting the instability of the environment. Produces <strong style="color: #9e2a2a; font-style: italic;">no sound</strong> when interacted with.</p>
 
 <table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
@@ -648,9 +585,9 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 </table>
 
 <!-- ==========================================
-     [[dimensions|Rotting dimension]] SECTION
+     ROTTING DIMENSION SECTION
      ========================================== -->
-<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods & [[dimensions|Rotting dimension]]</h2>
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods & Rotting Dimension</h2>
 
 <h3 style="color: #9275a1; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Blocks</h3>
 <p style="margin-bottom: 20px; font-size: 0.95em;">As a player's time in the Backwoods exceeds <strong style="color: #c4bfa5;">31,200 ticks (Stage Four)</strong>, standard Oak Planks begin to spontaneously transform into Rotten Oak Planks. Once a single block takes root, it persistently infects adjacent Oak Planks, spreading the decay further. This serves as a physical manifestation of your mental degradation.</p>
@@ -665,16 +602,16 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
         <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 35%;">Block Variant</th>
         <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Notes / Special Behavior</th>
     </tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Log</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">Core structure block of giant trees in [[dimensions|The Rotting dimension]]. Has a small chance to drop a <strong style="color: #eaeaea;">Heartwood Shard</strong> when broken. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 240 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Log</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">Core structure block of giant trees in the Rotting dimension. Has a small chance to drop a <strong style="color: #eaeaea;">Heartwood Shard</strong> when broken. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 240 ticks.</span></td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Wood</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">Standard variant properties. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 240 ticks.</span></td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Planks</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">The processed base form used in all rotten wood-tier crafting recipes. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Slab</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Stair</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Trapdoor</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence Gate</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Button</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;"> - <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></td></tr>
-    <tr><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Pressure Plate</td><td style="padding: 10px 14px; color: #70685c;"> - </td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Slab</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Stair</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Trapdoor</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence Gate</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Button</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></td></tr>
+    <tr><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Pressure Plate</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
 </table>
 
 <div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
@@ -1281,36 +1218,6 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
   </div>
   
 </div>
-
-<h3 style="color: #9275a1; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Fractus Prime Core</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">An advanced anomaly core containing the compressed, high-energy matrix of the elite Fractus Prime drone. It radiates pure cold luminance and powerful magnetic resonance.</p>
-
-<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
-    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
-        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
-        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Hardness</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">5.0</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Blast Resistance</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">12.0</td>
-    </tr>
-    <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Luminance</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Level 13 (Steady light level)</td>
-    </tr>
-</table>
-
-<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Resonance & Structural Behaviors</h4>
-<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Emissive Matrix:</strong> Displays beautiful emissive and post-processed rendering in dark areas, making its glowing energy patterns visible even through dense smoke.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Beacon Sound Dampeners:</strong> Employs specialized beacon audio buffers. Plays <code style="color: #e0d0b0; background: #1a1a1a; padding: 1px 4px; border-radius: 2px;">block.beacon.activate</code> upon placement and <code style="color: #e0d0b0; background: #1a1a1a; padding: 1px 4px; border-radius: 2px;">block.beacon.deactivate</code> when successfully broken.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Compact Dimensions:</strong> Unlike full voxel blocks, it has a custom compact shape corresponding to <code style="color: #e0d0b0; background: #1a1a1a; padding: 1px 4px; border-radius: 2px;">box(3, 0, 3, 13, 10, 13)</code>, allowing players to partially stand in its boundaries.</li>
-    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Unique Portability Constraints:</strong> Carries a maximum stack size of 1 and has <strong style="color: #cfbfa8;">RARE</strong> item rarity, denoting its extreme energy density.</li>
-</ul>
 
 
 <!-- ==========================================
@@ -1319,7 +1226,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Petrified Weald</h2>
 
 <h3 style="color: #969ba0; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Blocks</h3>
-<p style="margin-bottom: 20px; font-size: 0.95em;">The foundation of the Petrified Weald - the ancient, calcified remains of prehistoric flora that have successfully withstood eons of environmental decay.</p>
+<p style="margin-bottom: 20px; font-size: 0.95em;">The foundation of the Petrified Weald—the ancient, calcified remains of prehistoric flora that have successfully withstood eons of environmental decay.</p>
 
 <!-- DEBUFF WARNING BOX -->
 <div style="background: #090b09; border: 1px solid #163016; border-left: 2px solid #2a9e2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
@@ -1339,11 +1246,11 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Petrified Rotten Oak Planks</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Primary layout and base construction material.</td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Stairs</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Retains the exact same durability values as standard planks.</td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Slab</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">6.75</td><td style="padding: 10px 14px; color: #9c9788;">Lower blast resistance rating due to reduced block mass.</td></tr>
-    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Fence & Gate</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">7.6</td><td style="padding: 10px 14px; color: #70685c;"> - </td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Fence & Gate</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">7.6</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5;">Petrified Weald Leaves</td><td style="text-align: center; color: #9c9788;">6</td><td style="text-align: center; color: #9c9788;">1.3</td><td style="padding: 10px 14px; color: #9c9788;">Brittle ashen foliage; structurally much tougher than vanilla leaves.</td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Amber Grit</td><td style="text-align: center; color: #9c9788;">3</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Similar in function to Deepslate variations.</td></tr>
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Cobbled Amber Grit</td><td style="text-align: center; color: #9c9788;">3</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Similar in mining function to Cobbled Deepslate variations.</td></tr>
-    <tr><td style="padding: 10px 14px; color: #8e8375;">Fossilized Silt</td><td style="text-align: center; color: #9c9788;">3.5</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c;"> - </td></tr>
+    <tr><td style="padding: 10px 14px; color: #8e8375;">Fossilized Silt</td><td style="text-align: center; color: #9c9788;">3.5</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
 </table>
 
 <div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">

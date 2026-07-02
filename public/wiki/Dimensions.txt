@@ -25,7 +25,7 @@ The '''Backwoods''' mod features an intricate web of alternate dimensions and su
      THE BACKWOODS - IMMUNE SYSTEM
      ========================================== -->
 <h4 style="color: #ffccbc; margin-top: 25px; margin-bottom: 10px; font-size: 1.25em;">Dimension Immune System & Spore Threat</h4>
-<p style="margin-bottom: 15px; font-size: 0.95em;">[[dimensions|The Backwoods dimension]] is a living, hyper-defensive ecosystem. It possesses a highly coordinated, autonomous defense system, the <strong>Immune System</strong>, specifically engineered to seek out, contain, and purge external biological contamination, such as the parasitic fungal outbreaks from the <strong>Spore</strong> mod. When Spore infestations cross critical thresholds inside the Backwoods, the dimension's defense network responds by summoning its ultimate eradication sentry: <strong>The Rot</strong>.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The Backwoods dimension is a living, hyper-defensive ecosystem. It possesses a highly coordinated, autonomous defense system, the <strong>Immune System</strong>, specifically engineered to seek out, contain, and purge external biological contamination, such as the parasitic fungal outbreaks from the <strong>Spore</strong> mod. When Spore infestations cross critical thresholds inside the Backwoods, the dimension's defense network responds by summoning its ultimate eradication sentry: <strong>The Rot</strong>.</p>
 
 <div style="background: rgba(30, 20, 20, 0.4); border: 1px solid #3e2723; border-left: 4px solid #d84315; padding: 16px; margin: 20px 0; color: #e0dcd3; font-size: 0.9em; border-radius: 4px;">
 <strong style="color: #ff7043; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Universal Spore Target Alignment:</strong> The Backwoods immune system triggers defenses exclusively in response to entities belonging to the <code>spore</code> namespace. Normal mod entities (including other hostile vanilla/modded monsters and peaceful residents) do not raise the dimension's threat level.
@@ -75,7 +75,7 @@ When deployed, the Rot does not simply walk into battle. It is synthesized high 
 <p>The Rotting sub-dimension is a dark, atmospheric realm characterized by its dense, towering forests and a perpetual, suffocating fog. The dimension is a flat, expansive plateau heavily forested with rotten wood variants. The atmosphere is oppressive; the fog reduces visibility significantly, forcing players to rely on artificial light sources to navigate the dense pillars of wood. Unlike the Overworld, the terrain is largely uniform at sea level, though localized mountains can occasionally break through the canopy.</p>
 
 <div style="background: rgba(35, 25, 35, 0.5); border: 1px solid #7b1fa2; border-radius: 6px; padding: 15px; margin-top: 15px;">
-* '''Entry Requirement:''' This dimension can only be accessed by finding and entering a geode in [[dimensions|The Backwoods dimension]].
+* '''Entry Requirement:''' This dimension can only be accessed by finding and entering a geode in the Backwoods dimension.
 * '''Environmental Rules:''' There is no day/night cycle, and the entire dimension consists of a single biome. Vines harvested in the Rotting carry a chance to drop string.
 </div>
 
