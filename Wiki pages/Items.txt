@@ -202,6 +202,22 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
   </div>
   
 
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Faded Foods</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Decaying, dimensionally eroded variants of standard Overworld foods found across [[dimensions|The Loss dimension]]. Over time, standard foodstuffs left in this dimension undergo a deep temporal decay that strips away almost all of their nutritive value, turning them into pale, hollow shadows of their former selves. Eating them will restore very little hunger/saturation and inflicts volatile neurological side effects and status anomalies.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Nutritional Decay:</strong> Faded food values are severely diminished. For example, a <strong style="color: #c4bfa5;">Faded Potato</strong> restores only 3 hunger, a <strong style="color: #c4bfa5;">Faded Carrot</strong> restores 1 hunger, and a <strong style="color: #c4bfa5;">Faded Steak</strong> restores only 2 hunger.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Side Effects:</strong> Eating faded foods is dangerous:
+        <ul style="margin-top: 5px; padding-left: 15px; list-style-type: circle;">
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Carrots</strong> inflicts <strong style="color: #c4bfa5;">Blindness I</strong> (3 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Steak</strong> has a 50% chance to cause <strong style="color: #c4bfa5;">Nausea I</strong> (3 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Golden Carrots</strong> grants <strong style="color: #c4bfa5;">Night Vision I</strong> but also inflicts crippling <strong style="color: #c4bfa5;">Slowness I</strong> (15 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Golden Apples</strong> grants <strong style="color: #c4bfa5;">Resistance I</strong> (10 seconds) but inflicts <strong style="color: #c4bfa5;">Weakness I</strong> (30 seconds).</li>
+            <li style="margin-bottom: 0;">Eating <strong style="color: #c4bfa5;">Faded Enchanted Golden Apples</strong> grants temporary <strong style="color: #c4bfa5;">Absorption I</strong> (4 seconds) and <strong style="color: #c4bfa5;">Regeneration I</strong> (3 seconds), but shortly after triggers a massive 60-second <strong style="color: #c4bfa5;">Weakness I</strong> and 45-second <strong style="color: #c4bfa5;">Hunger I</strong> debuff.</li>
+        </ul>
+    </li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Purification:</strong> Faded foods can be restored to their standard wholesome forms. Holding a <strong style="color: #c4bfa5;">Memory Fragment</strong> or <strong style="color: #c4bfa5;">Recovered Memory Fragment</strong> in your main hand and the faded food in your offhand, then right-clicking will cleanse and purify the food item.</li>
+</ul>
+
 <hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
 
 <!-- ==========================================

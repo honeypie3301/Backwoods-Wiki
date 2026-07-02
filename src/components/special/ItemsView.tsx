@@ -107,6 +107,24 @@ export default function ItemsView() {
       ]
     },
     {
+      id: "faded_foods",
+      name: "Faded Foods",
+      category: "keys",
+      desc: "Decaying, dimensionally eroded variants of standard Overworld foodstuffs found across the Loss dimension. Over time, standard foods undergo deep temporal decay here, stripping away their nutritive value and infusing them with volatile neurological anomalies.",
+      stats: [
+        { label: "Primary Source", value: "Overworld food decay inside the Loss dimension" },
+        { label: "Nutrition Level", value: "Severely degraded (e.g., Faded Steak restores only 2 hunger)" },
+        { label: "Anomalous Effects", value: "Blindness, Nausea, Slowness, or Weakness when consumed" },
+        { label: "Cleanse Agent", value: "Memory Fragment / Recovered Memory Fragment" }
+      ],
+      notes: [
+        "Faded foods are shadows of their original forms. For example: Faded Carrots restore only 1 hunger and 0.1 saturation; Faded Cooked Porkchops restore 8 hunger and 0.8 saturation.",
+        "Consuming faded items introduces severe side effects: Faded Carrot inflicts Blindness I (3s), Faded Steak has a 50% chance to inflict Nausea I (3s), Faded Golden Carrot inflicts Night Vision paired with Slowness I (15s), and Faded Golden Apple inflicts Resistance I (10s) but also Weakness I (30s).",
+        "The most volatile is the Faded Enchanted Golden Apple: it briefly grants Absorption I (4s) and Regeneration I (3s), but then triggers a massive, crippling 60-second Weakness and 45-second Hunger debuff.",
+        "Purification: To restore faded foods to their clean Overworld counterparts, place a standard Memory Fragment (or Recovered Memory Fragment) in your main hand, the faded food in your offhand, and right-click to cleanse it."
+      ]
+    },
+    {
       id: "petrified_bark",
       name: "Petrified Bark",
       category: "materials",

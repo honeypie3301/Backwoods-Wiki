@@ -33,13 +33,6 @@ Custom structures generate across the various dimensions of the mod, providing e
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Ceiling Anchoring:</strong> Requires a solid block ceiling above to spawn, embedding itself up to 6 blocks deep for seamless structural blending.</li>
 </ul>
 
-<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pillar Thicket Buildings</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A series of creepy, vacant wooden building structures that generate randomly on the forest floor of the **Pillar Thicket** biome inside the Backwoods dimension. Built entirely of oak planks and log columns, they resemble forgotten outposts or ancient wooden monoliths.</p>
-<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Templates:</strong> There are exactly 13 unique template variants (<code style="color: #eaeaea;">pillar_thicket_building_1</code> through <code style="color: #eaeaea;">pillar_thicket_building_13</code>) designed to blend into the surrounding pillar trees.</li>
-    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Generation Type:</strong> Jigsaw-based structure generation that adapts dynamically to the surface heightmap.</li>
-</ul>
-
 <hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
 
 <!-- ==========================================
