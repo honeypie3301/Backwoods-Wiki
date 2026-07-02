@@ -8,7 +8,7 @@ __FORCETOC__
 The degradation progresses through four distinct stages, each more severe than the last.
 </div>
 <div style="background: rgba(30, 25, 45, 0.5); border-left: 5px solid #7e57c2; padding: 12px 15px; margin: 15px 0; border-radius: 4px; font-size: 0.95em;">
-    <strong>Reality Adaptation:</strong> Overworld explorers are not entirely static. Spending a full, continuous Minecraft Day (20 minutes) inside the Backwoods causes the player's mind to permanently harden. Each point of adaptation is permanently earned upon <strong>safely leaving the Backwoods dimension</strong> if the player remained inside for at least <strong>20 continuous minutes (24,000 ticks)</strong> during that visit. Each point extends the duration of all stage milestones by <strong>15%</strong>, delaying the onset of madness during subsequent visits.
+    <strong>Reality Adaptation:</strong> Overworld explorers are not entirely static. Spending a full, continuous Minecraft Day (20 minutes) inside the Backwoods causes the player's mind to permanently harden. Each point of adaptation is permanently earned upon <strong>safely leaving [[dimensions|The Backwoods dimension]]</strong> if the player remained inside for at least <strong>20 continuous minutes (24,000 ticks)</strong> during that visit. Each point extends the duration of all stage milestones by <strong>15%</strong>, delaying the onset of madness during subsequent visits.
 </div>
 
 <!-- ==========================================

@@ -12,7 +12,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Keys &amp; Consumables</h2>
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Steel and Charcoal</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The key to entering and exiting the Backwoods dimension. Using it in the overworld transports the player into the dimension. There is a chance upon use that the item fails and the durability is consumed, playing a sound and producing smoke particles before disappearing.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The key to entering and exiting [[dimensions|The Backwoods dimension]]. Using it in the overworld transports the player into the dimension. There is a chance upon use that the item fails and the durability is consumed, playing a sound and producing smoke particles before disappearing.</p>
 <table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
         <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Location</th>
@@ -64,7 +64,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
         <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Success Rate</th>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
-        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Weald dimension</td>
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">[[dimensions|Weald dimension]]</td>
         <td style="text-align: right; padding: 10px 14px; color: #9c9788;">90%</td>
     </tr>
     <tr>
@@ -102,7 +102,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
   
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Draught</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Crafted with a glass bottle and Seep. Drinking it will send the player to the Familiar. Use with caution — there is no return.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Crafted with a glass bottle and Seep. Drinking it will send the player to the Familiar. Use with caution - there is no return.</p>
 
   <!-- Crafting Box for Pale Draught -->
   <div style="margin-top: 15px; margin-bottom: 25px;">
@@ -210,16 +210,16 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Materials</h2>
 
 <h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Bark</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Obtained by stripping petrified logs in the Weald dimension and will significantly damage your axe each strip. Used for crafting the Petrified Rotten Sword and Petrified Rotten Axe.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Obtained by stripping petrified logs in the [[dimensions|Weald dimension]] and will significantly damage your axe each strip. Used for crafting the Petrified Rotten Sword and Petrified Rotten Axe.</p>
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em; line-height: 1.6;">
 <strong style="color: #c4bfa5;">Drop chance:</strong> 1 in 23 (approximately 4.35%)
 </div>
 
 <h3 style="color: #8c9cb3; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Shard</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Found by mining Memory Quartz in the Loss dimension. Can be used to craft the [[Items#Resonant Rot Effigy|Resonant Rot Effigy]]</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Found by mining Memory Quartz in [[dimensions|The Loss dimension]]. Can be used to craft the [[Items#Resonant Rot Effigy|Resonant Rot Effigy]]</p>
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Seep</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A rare crafting material that drops from oak planks broken inside the Backwoods dimension. It appears as a small pale droplet — something that has seeped out of wood that should not be alive. The drop chance is low. Breaking many planks is often necessary to find one.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A rare crafting material that drops from oak planks broken inside [[dimensions|The Backwoods dimension]]. It appears as a small pale droplet - something that has seeped out of wood that should not be alive. The drop chance is low. Breaking many planks is often necessary to find one.</p>
 
 <h3 style="color: #9275a1; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Stick</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">A basic crafting material crafted from two Rotten Oak Planks. Used as the handle material for all rotten wood tools and weapons. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></p>
@@ -253,7 +253,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
   
 
 <h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Stick</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">An ancient, calcified stick found within the Petrified Weald dimension. Used as the core handle material for robust petrified tools and weapons. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 300 ticks.</span></p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An ancient, calcified stick found within the [[dimensions|Petrified Weald dimension]]. Used as the core handle material for robust petrified tools and weapons. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 300 ticks.</span></p>
 
   <!-- Crafting Box for Petrified Rotten Stick -->
   <div style="margin-top: 15px; margin-bottom: 25px;">
@@ -337,7 +337,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
   
 
 <h3 style="color: #9275a1; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Heartwood Shard</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A deep crimson-black chunk of compressed wood harvested rarely from Rotten Oak Logs broken inside the Rotting dimension. Used to upgrade the Splinter Sword into the Heartwood Splinter Sword at a smithing table with a smithing template.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A deep crimson-black chunk of compressed wood harvested rarely from Rotten Oak Logs broken inside [[dimensions|The Rotting dimension]]. Used to upgrade the Splinter Sword into the Heartwood Splinter Sword at a smithing table with a smithing template.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Drop chance:</strong> ~3%</li>
 </ul>
@@ -394,7 +394,7 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Memory Items</h2>
 
 <h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Fragment</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A faint, unstable shard of fragmented memory harvested from Plaque Hearts in the Loss dimension. The lowest memory tier and the base material for refinement.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A faint, unstable shard of fragmented memory harvested from Plaque Hearts in [[dimensions|The Loss dimension]]. The lowest memory tier and the base material for refinement.</p>
 <ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
     <li style="margin-bottom: 8px;">Can convert faded food back into its normal form</li>
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">One use per fragment</strong></li>
@@ -589,15 +589,15 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #9c9788;">Effect 1 (1 in 4)</td>
-        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Wither I — 7.5s</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Wither I - 7.5s</td>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #9c9788;">Effect 2 (2 in 4)</td>
-        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Blindness I — 8.5s</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Blindness I - 8.5s</td>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #9c9788;">Effect 3 (3 in 4)</td>
-        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Slowness II — 12.5s</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Slowness II - 12.5s</td>
     </tr>
     <tr>
         <td style="padding: 10px 14px; color: #9c9788;">Effect 4 (4 in 4)</td>
@@ -806,19 +806,19 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Axe</td>
-        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;">—</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Pickaxe</td>
-        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;">—</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Shovel</td>
-        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;">—</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr>
         <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Hoe</td>
-        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;">—</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
     </tr>
 </table>
 
@@ -989,7 +989,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
   
 
 <h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Faded Tools</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The result of item corruption — not crafted intentionally. Standard tools are transformed into these decaying variants when a Faded block enters the player's inventory or when the player is inside the Loss dimension.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The result of item corruption - not crafted intentionally. Standard tools are transformed into these decaying variants when a Faded block enters the player's inventory or when the player is inside the [[dimensions|Loss dimension]].</p>
 <div style="overflow-x: auto; margin-top: 15px; margin-bottom: 25px;">
 <table class="article-table" style="width: 100%; border-collapse: collapse; background: #0c0c0c; border: 1px solid #1c1414; font-size: 0.85em;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
@@ -1009,7 +1009,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Pickaxe</td>
         <td style="text-align: center; color: #9c9788;">3</td>
-        <td style="text-align: center; color: #70685c; font-style: italic;">—</td>
+        <td style="text-align: center; color: #70685c; font-style: italic;"> - </td>
         <td style="text-align: center; color: #9c9788;">25</td>
         <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">Iron tier, Efficiency IV</td>
     </tr>
@@ -1018,7 +1018,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
         <td style="text-align: center; color: #9c9788;">3</td>
         <td style="text-align: center; color: #9c9788;">1.0</td>
         <td style="text-align: center; color: #9c9788;">25</td>
-        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">—</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr>
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Hoe</td>
@@ -1042,7 +1042,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Axe</td>
         <td style="text-align: center; color: #9c9788;">60</td>
-        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">—</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Pickaxe</td>
@@ -1052,7 +1052,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     <tr style="border-bottom: 1px solid #1c1414;">
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Shovel</td>
         <td style="text-align: center; color: #9c9788;">45</td>
-        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">—</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
     </tr>
     <tr>
         <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Hoe</td>
@@ -1203,7 +1203,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
     </tr>
     <tr>
         <td style="padding: 12px; font-weight: 500; color: #c4bfa5; vertical-align: top;">Shift + Right-click</td>
-        <td style="padding: 12px; color: #9c9788; line-height: 1.6;">Attempts dimensional transport — when used in the Rotting dimension, transfers the player to The Still after a brief darkness effect. Fails outside valid conditions and displays a warning</td>
+        <td style="padding: 12px; color: #9c9788; line-height: 1.6;">Attempts dimensional transport - when used in [[dimensions|The Rotting dimension]], transfers the player to The Still after a brief darkness effect. Fails outside valid conditions and displays a warning</td>
     </tr>
 </table>
 <p style="margin-bottom: 35px; font-size: 0.95em;">The Effigy is a high-risk utility tool: strong information gain and emergency mobility, balanced by cooldown and use cost.</p>
@@ -1353,7 +1353,7 @@ Hold in main hand, hold a faded food item in offhand, right-click to convert. On
 <ul style="margin: 0; padding-left: 18px; list-style-type: square; line-height: 1.7;">
     <li style="margin-bottom: 8px;"><strong style="color: #eaeaea;">Obtaining:</strong> Crafted directly by breaking down a single <strong>Fractus Core</strong> block, which yields exactly <strong>9 Fractus Core Nuggets</strong>.</li>
     <li style="margin-bottom: 8px;"><strong style="color: #eaeaea;">Fractional Mass:</strong> Carrying these fragments scales your physics independently from full cores. Each individual nugget residing in your inventory reduces movement speed by <strong>0.4%</strong> and increases falling gravity by <strong>+0.0018</strong> value points. <em>(Note: This weight effect stacks completely alongside full Fractus Cores!)</em></li>
-    <li style="margin-bottom: 0;"><strong style="color: #eaeaea;">Hyper-Dense Fuel:</strong> Despite its size, the nugget exhibits terrifyingly compressed fuel stability. When placed inside a furnace, a single nugget provides exactly <strong>111,111 ticks</strong> of smelting power—allowing it to continuously cook items for just over <strong>1.5 hours</strong> (92.59 minutes).</li>
+    <li style="margin-bottom: 0;"><strong style="color: #eaeaea;">Hyper-Dense Fuel:</strong> Despite its size, the nugget exhibits terrifyingly compressed fuel stability. When placed inside a furnace, a single nugget provides exactly <strong>111,111 ticks</strong> of smelting power - allowing it to continuously cook items for just over <strong>1.5 hours</strong> (92.59 minutes).</li>
 </ul>
 
   <!-- Crafting Box for Fractus Core Nugget -->
