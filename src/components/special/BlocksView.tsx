@@ -28,7 +28,7 @@ function getBlockRecipeIds(name: string): string[] {
       'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs'
     ];
   }
-  if (name === "Fractus Core") {
+  if (name === "Fractus Core" || name === "Fractus Prime Core") {
     return ['fractus_core_nugget'];
   }
   return [];
@@ -209,6 +209,53 @@ export default function BlocksView() {
       hardness: "3",
       blastRes: "9.0",
       description: "Dense deepslate-like ground block generating naturally in the Petrified Weald."
+    },
+    {
+      name: "Lignum Caro",
+      dimension: "backwoods_rotting",
+      hardness: "1.5",
+      blastRes: "1.5",
+      latin: [
+        { term: "Lignum", translation: "wood" },
+        { term: "Caro", translation: "flesh" }
+      ],
+      description: "A pristine, living wood tissue block that belongs in the Backwoods dimension and can also be found in the Dead Grain biome. Behaves as an active immune defender against spore-based infections. However, if overwhelmed, it can become corrupted, spreading the very infection it was meant to fight.",
+      mechanics: [
+        "Pristine Active Defense: When uninfected, it has a 40% chance per random tick to 'sneeze' against nearby Spore entities within 4 blocks. Deals 1.0 to 2.0 magic damage, applies knockback, and inflicts Poison I for 6 seconds.",
+        "Block Defense & Reclamation: Pristine blocks actively convert adjacent Spore blocks back into pristine Lignum Caro blocks (35% chance) and cleanse nearby corrupted Lignum Caro blocks back to pristine (25% chance) on random ticks.",
+        "Corruption Vulnerability: Has an 'infected' state property. If it becomes compromised, its defenses shut down and it starts spreading the spore infection, converting adjacent blocks into infected Lignum Caro at a 35% chance with rapid chain propagation.",
+        "Infection Delay: All active defense, spread, and cleansing mechanics remain completely dormant until the world is at least 1,200 ticks old (1 minute)."
+      ]
+    },
+    {
+      name: "Fractus Prime Core",
+      dimension: "backwoods_rotting",
+      hardness: "5.0",
+      blastRes: "12.0",
+      description: "An advanced anomalies core containing the compressed, high-energy matrix of the elite Fractus Prime drone. Radiates pure cold luminance and powerful magnetic resonance.",
+      mechanics: [
+        "Luminance Level 13: Emits a steady light level of 13.0 with emissive, post-processed rendering.",
+        "Resonant Sound: Employs specialized beacon sound dampeners. Plays 'block.beacon.activate' when placed and 'block.beacon.deactivate' when broken.",
+        "Compact Geometry: Possesses a custom compact voxel bounding box of box(3, 0, 3, 13, 10, 13) instead of a full block shape.",
+        "Compact Stack: Unlike normal blocks, it has a max stack size of 1 and RARE item rarity, making it extremely valuable."
+      ]
+    },
+    {
+      name: "False Oak Planks",
+      dimension: "backwoods_rotting",
+      hardness: "0.2",
+      blastRes: "0.2",
+      description: "A highly deceptive decoy block that looks visually indistinguishable from standard Oak Planks but physically behaves as a leaf block. It can only be found in the Backwoods dimension, acting as leaves for the trees in the Thicket biome. Designed for hidden traps and secret pathways.",
+      mechanics: [
+        "Flawless Mimicry: Uses the exact textures of vanilla Oak Planks on all sides, making them impossible to spot with the naked eye.",
+        "No Occlusion: Built on a leaf block base. Players and entities can pass completely through the block, and it does not block line-of-sight (though it still blocks light with a value of 15).",
+        "High Flammability: Extremely vulnerable to fire (flammability of 30, spread speed of 60) and gets ignited by lava.",
+        "Stick Drops: Breaking the block without Shears or a Silk Touch tool drops 1-2 Sticks instead of the block itself."
+      ],
+      lootTable: [
+        { item: "False Oak Planks", weight: 100, condition: "Silk Touch / Shears" },
+        { item: "Stick", weight: 100, condition: "No Silk Touch (drops 1-2)" }
+      ]
     }
   ];
 
