@@ -17,6 +17,25 @@ interface ModelViewerProps {
 
 export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName }: ModelViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Resolve base paths for subfolder deployment (e.g., GitHub Pages)
+  const resolvedModelUrl = React.useMemo(() => {
+    if (modelUrl && modelUrl.startsWith('/')) {
+      const base = import.meta.env.BASE_URL || '/';
+      const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+      return `${cleanBase}${modelUrl}`;
+    }
+    return modelUrl;
+  }, [modelUrl]);
+
+  const resolvedTextureUrl = React.useMemo(() => {
+    if (textureUrl && textureUrl.startsWith('/')) {
+      const base = import.meta.env.BASE_URL || '/';
+      const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+      return `${cleanBase}${textureUrl}`;
+    }
+    return textureUrl;
+  }, [textureUrl]);
   
   // UI and loading states
   const [loading, setLoading] = useState<boolean>(true);
@@ -153,10 +172,10 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     // Build Particles
     buildParticles(entityId, scene);
 
-    // Resolve paths dynamically based on modelUrl
-    const lastSlash = modelUrl.lastIndexOf('/');
-    const basePath = lastSlash !== -1 ? modelUrl.substring(0, lastSlash + 1) : '/';
-    const modelFile = lastSlash !== -1 ? modelUrl.substring(lastSlash + 1) : modelUrl;
+    // Resolve paths dynamically based on resolvedModelUrl
+    const lastSlash = resolvedModelUrl.lastIndexOf('/');
+    const basePath = lastSlash !== -1 ? resolvedModelUrl.substring(0, lastSlash + 1) : '/';
+    const modelFile = lastSlash !== -1 ? resolvedModelUrl.substring(lastSlash + 1) : resolvedModelUrl;
     const mtlFile = modelFile.replace(/\.obj$/i, '.mtl');
 
     const loadModel = (materials: any) => {
@@ -225,11 +244,11 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
             modelGroup.position.y = 0; // base sits on pedestal
           }
 
-          // Load custom texture override if textureUrl is specified
-          if (textureUrl) {
+          // Load custom texture override if resolvedTextureUrl is specified
+          if (resolvedTextureUrl) {
             const textureLoader = new THREE.TextureLoader();
             textureLoader.load(
-              textureUrl,
+              resolvedTextureUrl,
               (texture) => {
                 texture.magFilter = THREE.NearestFilter;
                 texture.minFilter = THREE.NearestFilter;
@@ -277,7 +296,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
       );
     };
 
-    if (modelUrl) {
+    if (resolvedModelUrl) {
       setLoadProgress(30);
       const mtlLoader = new MTLLoader();
       mtlLoader.setPath(basePath);
@@ -366,7 +385,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
       window.removeEventListener('resize', handleResize);
       renderer.dispose();
     };
-  }, [modelUrl, textureUrl, entityId]);
+  }, [resolvedModelUrl, resolvedTextureUrl, entityId]);
 
   // 2. React to renderMode changes without reloading the whole file
   useEffect(() => {

@@ -143,6 +143,412 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <tr><td style="padding: 10px 14px; color: #eaeaea; font-weight: 500;">Cracked Nullstone</td><td style="text-align: center; color: #9c9788;">1.8</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c; font-style: italic;">Smelt Nullstone (Takes 6s, grants 0.2 XP)</td></tr>
 </table>
 
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone &amp; Variants Recipes</h3>
+  
+  <!-- Crafting Box for Nullstone Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Nullstone Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Nullstone Wall -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Wall Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_wall_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Wall -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Wall Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_wall_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cracked Nullstone -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cracked Nullstone Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 120px; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto; gap: 8px;">
+      <div style="padding: 6px; border: 1px solid #2d1814; background: #080808; font-size: 0.85em; text-align: center; color: #cfbfa8; width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="nullstone">nullstone</div>
+      <div style="color: #9e2a2a; font-weight: bold; font-size: 1.2em;">🔥</div>
+      <div style="font-size: 0.8em; color: #8e8375;">SMELTING</div>
+    </div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">SMELTING &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">Input: <strong style="color: #c4bfa5;">nullstone</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">Cooking Time: 120</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cracked_nullstone_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone &amp; Variants Recipes</h3>
+  
+  <!-- Crafting Box for Nullstone Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Nullstone Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Nullstone Wall -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone Wall Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: nullstone_wall_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cobbled Nullstone Wall -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cobbled Nullstone Wall Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:cobbled_nullstone"><span style="font-size: 0.85em; color: #cfbfa8;">cobbled_nullstone</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">cobbled_nullstone</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cobbled_nullstone_wall_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Cracked Nullstone -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cracked Nullstone Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 120px; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto; gap: 8px;">
+      <div style="padding: 6px; border: 1px solid #2d1814; background: #080808; font-size: 0.85em; text-align: center; color: #cfbfa8; width: 80%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="nullstone">nullstone</div>
+      <div style="color: #9e2a2a; font-weight: bold; font-size: 1.2em;">🔥</div>
+      <div style="font-size: 0.8em; color: #8e8375;">SMELTING</div>
+    </div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">SMELTING &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">Input: <strong style="color: #c4bfa5;">nullstone</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">Cooking Time: 120</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: cracked_nullstone_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
 <h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Plaque</h3>
 <!-- DEBUFF WARNING BOX -->
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
@@ -184,7 +590,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods & Rotting Dimension</h2>
 
 <h3 style="color: #9275a1; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Blocks</h3>
-<p style="margin-bottom: 20px; font-size: 0.95em;">As a player's time in the Backwoods exceeds <strong style="color: #c4bfa5;">24,000 ticks</strong>, standard Oak Planks begin to spontaneously transform into Rotten Oak Planks. Once a single block takes root, it persistently infects adjacent Oak Planks, spreading the decay further. This serves as a physical manifestation of your mental degradation.</p>
+<p style="margin-bottom: 20px; font-size: 0.95em;">As a player's time in the Backwoods exceeds <strong style="color: #c4bfa5;">31,200 ticks (Stage Four)</strong>, standard Oak Planks begin to spontaneously transform into Rotten Oak Planks. Once a single block takes root, it persistently infects adjacent Oak Planks, spreading the decay further. This serves as a physical manifestation of your mental degradation.</p>
 
 <!-- DEBUFF WARNING BOX -->
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
@@ -207,6 +613,612 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Button</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></td></tr>
     <tr><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Pressure Plate</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
 </table>
+
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Blocks Recipes</h3>
+  
+  <!-- Crafting Box for Rotten Oak Wood -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Wood Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_wood.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Planks (from Rotten Oak Log) -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Planks (from Rotten Oak Log) Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_plank.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_wood</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_wood</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_plank_2.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_slab_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Fence -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Fence Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_oak_fence_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Trapdoor -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Trapdoor Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x2</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_trapdoor.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Gate -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Gate Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_stick</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_oak_gate_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Button -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Button Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_planks</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_button_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Pressure Plate -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Pressure Plate Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_pressure_plate.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Blocks Recipes</h3>
+  
+  <!-- Crafting Box for Rotten Oak Wood -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Wood Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_wood.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Planks (from Rotten Oak Log) -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Planks (from Rotten Oak Log) Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_plank.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_wood</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_wood</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_plank_2.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Slab -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Slab Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_slab_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x6</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_slab_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Stair -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Stair Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Fence -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Fence Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_oak_fence_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Trapdoor -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Trapdoor Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x2</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_trapdoor.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Gate -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Gate Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_stick</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_oak_gate_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Button -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Button Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">rotten_oak_planks</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_button_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Oak Pressure Plate -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Pressure Plate Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_pressure_plate.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
 
 <!-- ==========================================
      PETRIFIED WEALD SECTION
@@ -240,5 +1252,293 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Cobbled Amber Grit</td><td style="text-align: center; color: #9c9788;">3</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Similar in mining function to Cobbled Deepslate variations.</td></tr>
     <tr><td style="padding: 10px 14px; color: #8e8375;">Fossilized Silt</td><td style="text-align: center; color: #9c9788;">3.5</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
 </table>
+
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Blocks Recipes</h3>
+  <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 12px; margin-bottom: 15px; color: #cfbfa8; font-size: 0.85em;">
+    <strong style="color: #9e2a2a; text-transform: uppercase;">Aesthetic Typo Note:</strong> In the mod registry, crafting a <strong style="color: #eaeaea;">Petrified Rotten Oak Slab</strong> yields standard <strong style="color: #eaeaea;">Rotten Oak Slab</strong> instead. This is preserved exactly from the mod's configuration source file (<code style="color: #eaeaea;">petrified_rotten_slab_recipe.json</code>).
+  </div>
+  
+  <!-- Crafting Box for Petrified Rotten Oak Wood -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Wood Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_wood_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Planks -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Planks Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_plank_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_wood</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_wood</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_plank_recipe_2.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Stairs -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Stairs Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Fence -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Fence Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">petrified_rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_oak_fence_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<div class="crafting-section" style="margin-top: 25px; margin-bottom: 30px; border: 1px solid #201414; padding: 20px; background: #080808;">
+  <h3 style="color: #c4bfa5; margin-top: 0; margin-bottom: 15px; font-size: 1.1em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Blocks Recipes</h3>
+  <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 12px; margin-bottom: 15px; color: #cfbfa8; font-size: 0.85em;">
+    <strong style="color: #9e2a2a; text-transform: uppercase;">Aesthetic Typo Note:</strong> In the mod registry, crafting a <strong style="color: #eaeaea;">Petrified Rotten Oak Slab</strong> yields standard <strong style="color: #eaeaea;">Rotten Oak Slab</strong> instead. This is preserved exactly from the mod's configuration source file (<code style="color: #eaeaea;">petrified_rotten_slab_recipe.json</code>).
+  </div>
+  
+  <!-- Crafting Box for Petrified Rotten Oak Wood -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Wood Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_wood_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Planks -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Planks Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_log</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_log</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_plank_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_rotten_oak_wood</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_rotten_oak_wood</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_plank_recipe_2.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Stairs -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Stairs Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_stair_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Petrified Rotten Oak Fence -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Oak Fence Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x3</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">petrified_rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_oak_fence_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
 
 </div>
