@@ -22,11 +22,9 @@ function WikiContainer() {
     async function loadWikiData() {
       try {
         setLoading(true);
-        const baseUrl = import.meta.env.BASE_URL || '/';
-        const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 
         // Fetch manifest
-        const manifestRes = await fetch(`${cleanBase}wiki/manifest.json`);
+        const manifestRes = await fetch('wiki/manifest.json');
         if (!manifestRes.ok) {
           throw new Error('Failed to load wiki manifest.json');
         }
@@ -38,7 +36,7 @@ function WikiContainer() {
         await Promise.all(
           manifestData.map(async (article) => {
             try {
-              const res = await fetch(`${cleanBase}wiki/${article.filename}`);
+              const res = await fetch(`wiki/${article.filename}`);
               if (res.ok) {
                 const text = await res.text();
                 contentMap[article.slug] = text;

@@ -21,18 +21,14 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
   // Resolve base paths for subfolder deployment (e.g., GitHub Pages)
   const resolvedModelUrl = React.useMemo(() => {
     if (modelUrl && modelUrl.startsWith('/')) {
-      const base = import.meta.env.BASE_URL || '/';
-      const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
-      return `${cleanBase}${modelUrl}`;
+      return modelUrl.slice(1);
     }
     return modelUrl;
   }, [modelUrl]);
 
   const resolvedTextureUrl = React.useMemo(() => {
     if (textureUrl && textureUrl.startsWith('/')) {
-      const base = import.meta.env.BASE_URL || '/';
-      const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
-      return `${cleanBase}${textureUrl}`;
+      return textureUrl.slice(1);
     }
     return textureUrl;
   }, [textureUrl]);
