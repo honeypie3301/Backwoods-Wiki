@@ -107,24 +107,6 @@ export default function ItemsView() {
       ]
     },
     {
-      id: "faded_foods",
-      name: "Faded Foods",
-      category: "keys",
-      desc: "Decaying, corrupted variants of standard food items. Standard foods carried in the player's inventory are corrupted during events, or when visiting the Loss dimension. They restore only 1 hunger point (0.5 drumsticks) and 0.1 saturation, taste like ash and regret, and inflict severe side effects.",
-      stats: [
-        { label: "Hunger Restored", value: "1 Point (0.5 Drumsticks)" },
-        { label: "Saturation Restored", value: "0.1" }
-      ],
-      notes: [
-        "Standard Faded Foods (Apple, Carrot, Bread, Potato, etc.) inflict Blindness for 3 seconds upon consumption.",
-        "Faded Steak (Cooked Beef) has a 50% chance of inflicting Nausea for 3 seconds.",
-        "Faded Golden Carrot grants Night Vision (15s) and inflicts Slowness (15s).",
-        "Faded Golden Apple inflicts Weakness (30s) and grants Resistance (10s).",
-        "Faded Enchanted Golden Apple grants Absorption (4s) and Regeneration (3s), then inflicts Weakness (60s) and Hunger (45s) after a 4-second delay.",
-        "Purification: Hold a Recovered Memory Fragment in your main hand, place faded food in offhand, and right-click to convert 1 item (costs 1 fragment durability)."
-      ]
-    },
-    {
       id: "petrified_bark",
       name: "Petrified Bark",
       category: "materials",
