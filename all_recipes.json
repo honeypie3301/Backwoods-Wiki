@@ -1,0 +1,1385 @@
+[
+  {
+    "name": "cobbled_nullstone_slab_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:cobbled_nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:cobbled_nullstone_slab",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "cobbled_nullstone_stair_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "a  ",
+        "aa ",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:cobbled_nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:cobbled_nullstone_stair",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "cobbled_nullstone_wall_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:cobbled_nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:cobbled_nullstone_wall",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "compact_resin_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:petrified_resin"
+        },
+        {
+          "item": "the_backwoods:petrified_resin"
+        },
+        {
+          "item": "the_backwoods:petrified_resin"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:compact_petrified_resin",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "cracked_nullstone_recipe.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "blocks",
+      "experience": 0.2,
+      "cookingtime": 120,
+      "ingredient": {
+        "item": "the_backwoods:nullstone"
+      },
+      "result": {
+        "id": "the_backwoods:cracked_nullstone"
+      }
+    }
+  },
+  {
+    "name": "distorted_fragment_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:memory_fragment"
+        },
+        {
+          "item": "the_backwoods:memory_fragment"
+        },
+        {
+          "item": "the_backwoods:memory_fragment"
+        },
+        {
+          "item": "the_backwoods:memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:distorted_memory_fragment",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "faded_baked_potato_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.35,
+      "cookingtime": 120,
+      "ingredient": {
+        "item": "the_backwoods:faded_potato"
+      },
+      "result": {
+        "id": "the_backwoods:faded_baked_potato"
+      }
+    }
+  },
+  {
+    "name": "faded_bread_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:faded_wheat"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:faded_bread",
+        "count": 3
+      }
+    }
+  },
+  {
+    "name": "faded_cooked_chicken_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.67,
+      "cookingtime": 210,
+      "ingredient": {
+        "item": "the_backwoods:faded_raw_chicken"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_chicken"
+      }
+    }
+  },
+  {
+    "name": "faded_cooked_cod_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.25,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_cod"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_cod"
+      }
+    }
+  },
+  {
+    "name": "faded_cooked_mutton_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.35,
+      "cookingtime": 190,
+      "ingredient": {
+        "item": "the_backwoods:faded_mutton"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_mutton"
+      }
+    }
+  },
+  {
+    "name": "faded_cooked_porkchop_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.35,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_porkchop"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_porkchop"
+      }
+    }
+  },
+  {
+    "name": "faded_cooked_rabbit_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.35,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_rabbit"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_rabbit"
+      }
+    }
+  },
+  {
+    "name": "faded_copper_ingot_smelt.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 0.1,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_copper_ingot"
+      },
+      "result": {
+        "id": "minecraft:copper_ingot"
+      }
+    }
+  },
+  {
+    "name": "faded_gold_ingot_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        {
+          "item": "the_backwoods:faded_gold_nugget"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:faded_gold_ingot",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "faded_gold_ingot_smelt.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 0.1,
+      "cookingtime": 170,
+      "ingredient": {
+        "item": "the_backwoods:faded_gold_ingot"
+      },
+      "result": {
+        "id": "minecraft:gold_ingot"
+      }
+    }
+  },
+  {
+    "name": "faded_gold_nugget_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_gold_ingot"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:faded_gold_nugget",
+        "count": 9
+      }
+    }
+  },
+  {
+    "name": "faded_golden_carrot_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        "aaa",
+        "aba",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:faded_gold_nugget"
+        },
+        "b": {
+          "item": "the_backwoods:faded_carrot"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:faded_golden_carrot",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "faded_iron_ingot_smelt.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 0.1,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_iron_ingot"
+      },
+      "result": {
+        "id": "minecraft:iron_ingot"
+      }
+    }
+  },
+  {
+    "name": "faded_netherite_ingot_blasting.json",
+    "content": {
+      "type": "minecraft:blasting",
+      "category": "misc",
+      "experience": 0.67,
+      "cookingtime": 250,
+      "ingredient": {
+        "item": "the_backwoods:faded_netherite_ingot"
+      },
+      "result": {
+        "id": "minecraft:netherite_ingot"
+      }
+    }
+  },
+  {
+    "name": "faded_netherite_ingot_smelt.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 0.5,
+      "cookingtime": 700,
+      "ingredient": {
+        "item": "the_backwoods:faded_netherite_ingot"
+      },
+      "result": {
+        "id": "minecraft:netherite_ingot"
+      }
+    }
+  },
+  {
+    "name": "faded_steak_recipe.json",
+    "content": {
+      "type": "minecraft:smoking",
+      "category": "food",
+      "experience": 0.6,
+      "cookingtime": 200,
+      "ingredient": {
+        "item": "the_backwoods:faded_raw_beef"
+      },
+      "result": {
+        "id": "the_backwoods:faded_cooked_beef"
+      }
+    }
+  },
+  {
+    "name": "flint_and_shard_igniter.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a ",
+        " b"
+      ],
+      "key": {
+        "a": {
+          "item": "minecraft:iron_ingot"
+        },
+        "b": {
+          "item": "the_backwoods:splinter_shard"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:the_petrified_weald",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "flint_charcoal_igniter.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a ",
+        " b"
+      ],
+      "key": {
+        "a": {
+          "item": "minecraft:iron_ingot"
+        },
+        "b": {
+          "item": "minecraft:charcoal"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:backwoods",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "fractus_core_nugget_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:fractus_core"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:fractus_core_nugget",
+        "count": 9
+      }
+    }
+  },
+  {
+    "name": "fractus_prime_core_nugget_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:fractus_prime_core"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:fractus_core_nugget",
+        "count": 18
+      }
+    }
+  },
+  {
+    "name": "heartwood_rotten_sword_recipe.json",
+    "content": {
+      "type": "minecraft:smithing_transform",
+      "template": {
+        "item": "the_backwoods:rotten_sword"
+      },
+      "base": {
+        "item": "the_backwoods:heartwood_shard"
+      },
+      "addition": {
+        "item": "minecraft:netherite_upgrade_smithing_template"
+      },
+      "result": {
+        "id": "the_backwoods:heartwood_rotten_sword"
+      }
+    }
+  },
+  {
+    "name": "nullstone_slab_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:nullstone_slab",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "nullstone_stair_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "a  ",
+        "aa ",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:nullstone_stair",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "nullstone_wall_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        "aaa",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:nullstone"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:nullstone_wall",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "pale_draught_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "minecraft:glass_bottle"
+        },
+        {
+          "item": "the_backwoods:seep"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:pale_draught_bottle",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "petrified_axe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "abb",
+        "acb",
+        " ca"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_bark"
+        },
+        "b": {
+          "item": "the_backwoods:sharpened_splinter_shard"
+        },
+        "c": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:petrified_rotten_axe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_oak_fence_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aba",
+        "aba"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:petrified_rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:petrified_rotten_oak_fence",
+        "count": 3
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_plank_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "building",
+      "ingredients": [
+        {
+          "item": "the_backwoods:petrified_rotten_oak_log"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:petrified_rotten_oak_planks",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_plank_recipe_2.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "building",
+      "ingredients": [
+        {
+          "item": "the_backwoods:petrified_rotten_oak_wood"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:petrified_rotten_oak_planks",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_slab_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_slab",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_stair_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "a  ",
+        "aa ",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:petrified_rotten_oak_stairs",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_stick_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a",
+        "a"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:petrified_rotten_stick",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "petrified_rotten_wood_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "building",
+      "ingredients": [
+        {
+          "item": "the_backwoods:petrified_rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:petrified_rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:petrified_rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:petrified_rotten_oak_log"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:petrified_rotten_oak_wood",
+        "count": 3
+      }
+    }
+  },
+  {
+    "name": "petrified_sword_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "aba",
+        "aba",
+        " c "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:petrified_bark"
+        },
+        "b": {
+          "item": "the_backwoods:sharpened_splinter_shard"
+        },
+        "c": {
+          "item": "the_backwoods:petrified_rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:petrified_rotten_sword",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_faded_axe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "equipment",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_axe"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_faded_axe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_faded_hoe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "equipment",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_hoe"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_faded_hoe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_faded_pickaxe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "equipment",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_pickaxe"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_faded_pickaxe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_faded_shovel_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "equipment",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_shovel"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_faded_shovel",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_faded_sword_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "equipment",
+      "ingredients": [
+        {
+          "item": "the_backwoods:faded_sword"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_faded_sword",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_fragment_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:distorted_memory_fragment"
+        },
+        {
+          "item": "the_backwoods:pale_remedy"
+        },
+        {
+          "item": "the_backwoods:distorted_memory_fragment"
+        },
+        {
+          "item": "the_backwoods:heartwood_shard"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_memory_fragment",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_fragment_recipe_2.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:memory_fragment"
+        },
+        {
+          "item": "minecraft:golden_apple"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_memory_fragment",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "recovered_fragment_recipe_3.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:memory_fragment"
+        },
+        {
+          "item": "minecraft:glistering_melon_slice"
+        },
+        {
+          "item": "the_backwoods:seep"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:recovered_memory_fragment",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "remedy_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:seep"
+        },
+        {
+          "item": "the_backwoods:ash_rose"
+        },
+        {
+          "item": "minecraft:bowl"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:pale_remedy",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "resonant_rot_effigy_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        " a ",
+        "aba",
+        " a "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:memory_shard"
+        },
+        "b": {
+          "item": "the_backwoods:rot_effigy"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:resonant_rot_effigy",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rot_effigy_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "aba",
+        "cdc",
+        " a "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_stick"
+        },
+        "b": {
+          "item": "the_backwoods:heartwood_shard"
+        },
+        "c": {
+          "item": "minecraft:string"
+        },
+        "d": {
+          "item": "the_backwoods:splinter_shard"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rot_effigy",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_axe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "aa",
+        "ba",
+        "b "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_axe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_button_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "redstone",
+      "ingredients": [
+        {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:rotten_oak_button",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_hoe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "aa",
+        "b ",
+        "b "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_hoe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_oak_fence_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aba",
+        "aba"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_fence",
+        "count": 3
+      }
+    }
+  },
+  {
+    "name": "rotten_oak_gate_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aba",
+        "aba"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_stick"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_gate",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_pickaxe_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "aaa",
+        " b ",
+        " b "
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_pickaxe",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_plank.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:rotten_oak_log"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:rotten_oak_planks",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "rotten_plank_2.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:rotten_oak_wood"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:rotten_oak_planks",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "rotten_pressure_plate.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "redstone",
+      "pattern": [
+        "aa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_pressure_plate",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_shovel_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a",
+        "b",
+        "b"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_shovel",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_slab_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_slab",
+        "count": 6
+      }
+    }
+  },
+  {
+    "name": "rotten_stair_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "a  ",
+        "aa ",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_stair",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "rotten_stick_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a",
+        "a"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_stick",
+        "count": 4
+      }
+    }
+  },
+  {
+    "name": "rotten_sword_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a",
+        "a",
+        "b"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:splinter_shard"
+        },
+        "b": {
+          "item": "the_backwoods:rotten_stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_sword",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "rotten_trapdoor.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "building",
+      "pattern": [
+        "aaa",
+        "aaa"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:rotten_oak_planks"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:rotten_oak_trapdoor",
+        "count": 2
+      }
+    }
+  },
+  {
+    "name": "rotten_wood.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "building",
+      "ingredients": [
+        {
+          "item": "the_backwoods:rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:rotten_oak_log"
+        },
+        {
+          "item": "the_backwoods:rotten_oak_log"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:rotten_oak_wood",
+        "count": 3
+      }
+    }
+  },
+  {
+    "name": "sharpened_shard_recipe.json",
+    "content": {
+      "type": "minecraft:stonecutting",
+      "ingredient": {
+        "item": "the_backwoods:splinter_shard"
+      },
+      "result": {
+        "id": "the_backwoods:sharpened_splinter_shard",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "stabilized_remedy_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shapeless",
+      "category": "misc",
+      "ingredients": [
+        {
+          "item": "the_backwoods:seep"
+        },
+        {
+          "item": "the_backwoods:ash_rose"
+        },
+        {
+          "item": "minecraft:bowl"
+        },
+        {
+          "item": "the_backwoods:recovered_memory_fragment"
+        }
+      ],
+      "result": {
+        "id": "the_backwoods:stabilized_pale_remedy",
+        "count": 1
+      }
+    }
+  }
+]
