@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+/* Universal scrollbar styling for a consistent dark backwoods theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1d251e #060806;
+}
+
+/* Custom scrollbars for WebKit browsers (Chrome, Safari, Edge, etc.) */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #060806;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #1d251e;
+  border-radius: 4px;
+  border: 2px solid #060806;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #36453b;
+}
+
+/* Slim scrollbar variation */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #1d251e;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #36453b;
+}

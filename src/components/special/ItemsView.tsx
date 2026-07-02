@@ -481,7 +481,7 @@ export default function ItemsView() {
           />
         </div>
         
-        <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 no-scrollbar">
+        <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 scrollbar-thin">
           <span className="text-[10px] font-mono text-[#5a6b5e] uppercase tracking-wider mr-2 hidden lg:inline">Filters:</span>
           {categories.map(cat => {
             const Icon = cat.icon;
