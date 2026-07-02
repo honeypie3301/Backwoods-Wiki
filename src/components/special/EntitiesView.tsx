@@ -61,6 +61,22 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   }
 };
 
+const ENTITY_IMMUNITIES: Record<string, string[]> = {
+  rot: ["Fall Damage", "Cactus", "Drowning"],
+  splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
+  log_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
+  blindspot_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
+  petrified_splinter: ["In Fire", "Arrows & Bows", "Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath", "Wither"],
+  hollow: ["Drowning", "Explosions"],
+  stilt_walker: ["Cactus", "Drowning", "Dragon's Breath", "Wither"],
+  ash_weaver: ["Cactus", "Drowning"],
+  lignum_gigas: ["Fall Damage", "Cactus", "Drowning", "Falling Anvils"],
+  fractus: ["Poison", "Splash Potions", "Fall Damage", "Cactus", "Drowning", "Lightning", "Dragon's Breath", "Wither"],
+  fractus_prime: ["Fire", "Poison", "Splash Potions", "Fall Damage", "Cactus", "Drowning", "Lightning", "Dragon's Breath", "Wither"],
+  lignum_vermis: ["Cactus", "Drowning"],
+  lignum_palus: ["Poison", "Splash Potions", "Cactus", "Drowning", "Falling Anvils", "Wither"]
+};
+
 interface Ability {
   title: string;
   trigger: string;
@@ -496,6 +512,24 @@ export default function EntitiesView() {
               </div>
             </div>
           </div>
+
+          {/* Passive Attributes & Damage Immunities */}
+          {ENTITY_IMMUNITIES[currentEntity.id] && (
+            <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
+              <h5 className="font-serif text-sm font-bold text-[#709978] mb-2 flex items-center gap-1.5">
+                <ShieldAlert className="w-4 h-4 text-emerald-500" />
+                Passive Attributes & Damage Immunities
+              </h5>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-center">
+                {ENTITY_IMMUNITIES[currentEntity.id].map((immunity, idx) => (
+                  <div key={idx} className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
+                    <div className="text-[9px] text-[#5a6b5e] uppercase tracking-wider font-mono">{immunity}</div>
+                    <div className="text-xs font-bold text-emerald-400 font-mono mt-0.5">IMMUNE</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* DYNAMIC SECTIONS BASED ON SELECTED ENTITY */}
           
@@ -1033,36 +1067,6 @@ export default function EntitiesView() {
                 </div>
                 <div className="mt-2 p-3 bg-red-950/10 border border-red-900/10 rounded text-xs text-[#8c8779] leading-relaxed">
                   <strong className="text-red-400">Trance Breaks & Cooldown:</strong> Hypnosis ends immediately if the player moves beyond 24 blocks, enters creative/spectator, dies, or if Lignum Palus takes damage. On cancellation, a <strong className="text-white">5-second (100 ticks) cooldown</strong> applies, resetting its hypnosis tags and preventing immediate re-initiation.
-                </div>
-              </div>
-
-              <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                <h5 className="font-serif text-sm font-bold text-orange-400 mb-2">Passive Attributes & Damage Immunities</h5>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Poison</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Splash Potions</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Cactus</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Drowning</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Falling Anvils</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
-                  <div className="p-2 bg-[#0c0f0d] border border-[#1b231c] rounded">
-                    <div className="text-[10px] text-[#5a6b5e] uppercase">Wither</div>
-                    <div className="text-xs font-bold text-emerald-400">IMMUNE</div>
-                  </div>
                 </div>
               </div>
             </div>
