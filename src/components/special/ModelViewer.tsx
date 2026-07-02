@@ -15,31 +15,38 @@ interface ModelViewerProps {
   entityName: string;
 }
 
+// Resolve base paths for subfolder deployment (e.g., GitHub Pages)
+function getAbsoluteAssetUrl(url: string) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  
+  const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+  const pathname = window.location.pathname;
+  const segments = pathname.split('/').filter(Boolean);
+  const isGitHubPages = window.location.hostname.endsWith('github.io');
+  
+  let base = '';
+  if (isGitHubPages && segments.length > 0) {
+    base = `/${segments[0]}/`;
+  } else {
+    const viteBase = import.meta.env.BASE_URL || '/';
+    if (viteBase === './' || viteBase === '.') {
+      base = '/';
+    } else {
+      base = viteBase.endsWith('/') ? viteBase : `${viteBase}/`;
+    }
+  }
+  
+  return `${window.location.origin}${base}${cleanUrl}`;
+}
+
 export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName }: ModelViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Resolve base paths for subfolder deployment (e.g., GitHub Pages)
-  const resolvedModelUrl = React.useMemo(() => {
-    if (modelUrl && modelUrl.startsWith('/')) {
-      const base = import.meta.env.BASE_URL || '/';
-      if (base === './' || base === '.') {
-        return modelUrl.slice(1);
-      }
-      return base.endsWith('/') ? `${base}${modelUrl.slice(1)}` : `${base}${modelUrl}`;
-    }
-    return modelUrl;
-  }, [modelUrl]);
-
-  const resolvedTextureUrl = React.useMemo(() => {
-    if (textureUrl && textureUrl.startsWith('/')) {
-      const base = import.meta.env.BASE_URL || '/';
-      if (base === './' || base === '.') {
-        return textureUrl.slice(1);
-      }
-      return base.endsWith('/') ? `${base}${textureUrl.slice(1)}` : `${base}${textureUrl}`;
-    }
-    return textureUrl;
-  }, [textureUrl]);
+  const resolvedModelUrl = React.useMemo(() => getAbsoluteAssetUrl(modelUrl), [modelUrl]);
+  const resolvedTextureUrl = React.useMemo(() => getAbsoluteAssetUrl(textureUrl), [textureUrl]);
   
   // UI and loading states
   const [loading, setLoading] = useState<boolean>(true);
