@@ -1,0 +1,244 @@
+__FORCETOC__
+<div class="backwoods-wiki-container" style="max-width: 1000px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #a4a090; background-color: #080808; padding: 40px 30px; box-sizing: border-box; border: 1px solid #1a1414; line-height: 1.7;">
+
+<!-- INTRODUCTION HEADER -->
+<div style="border-left: 2px solid #5c1414; padding-left: 20px; margin-bottom: 40px; color: #c4bfa5; font-style: italic; font-size: 1.05em; line-height: 1.8;">
+The '''Backwoods''' mod introduces a vast array of custom blocks across all of its unique dimensions. Most of these blocks can be found naturally generating throughout the world, while others are meticulously produced or placed by the world's eerie inhabitants.
+</div>
+
+<!-- ==========================================
+     OVERWORLD SECTION
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Overworld</h2>
+
+<h3 style="color: #c4bfa5; margin-bottom: 8px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Scandere Lignum</h3>
+<div style="font-style: italic; color: #70685c; margin-bottom: 20px; font-size: 0.9em; letter-spacing: 0.02em;">
+    <span style="color: #9e2a2a;">"Scandere"</span> - Latin for ''"to climb."'' &nbsp;|&nbsp; <span style="color: #9e2a2a;">"Lignum"</span> - Latin for ''"wood."''
+</div>
+
+<p>The Scandere is a unique tree that generates naturally in the Overworld forest biome. Unlike ordinary trees, it is alive in a way that goes beyond biology; its wood spreads slowly underground, threading through soil and stone in search of nutrients. What appears on the surface as a modest trunk conceals a vast, growing network beneath.</p>
+
+<!-- SCANDERE TABLE -->
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Block</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Description</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Scandere Lignum Log</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">The trunk of the Scandere tree. Generates above ground as a regular dark oak-shaped tree upon generation and grows naturally over time. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 270 ticks.</span></td>
+    </tr>
+    <tr>
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Scandere Lignum</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">The spreading root-wood of the Scandere. This all-sided bark block acts as the roots of the tree, growing primarily underground to replace stone or dirt. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 270 ticks.</span></td>
+    </tr>
+</table>
+
+<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Behavioral Mechanics</h4>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Growth (Ascendance):</strong> The Scandere Lignum Log does not spread; instead, it grows upwards reaching massive heights of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Spreading Roots:</strong> Scandere Lignum (all-sided bark root-wood) spreads underground tick by tick, replacing solid blocks in its path. Spread speed is accelerated by the fertilizing presence of nearby adult passive animals.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Vein-Shape Control:</strong> To prevent chunky, square blocky structures, Scandere Lignum roots will not spread to blocks adjacent to 2 or more existing Scandere Lignum blocks, keeping root networks naturally thin and serpentine.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Symbiosis:</strong> The Scandere Lignum Log emits a passive aura that influences the surrounding environment. Nearby passive mobs are drawn toward the log, idling in a ring around it. Animals within range have an increased chance to enter love mode and breed. The log is the heart of the organism — the Lignum roots spread, but the Log sustains.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Infestation:</strong> Deep within the root-wood, Lignum Vermis parasites often lay dormant. Disturbed blocks carry a <strong style="color: #9e2a2a;">10% (0.1) chance</strong> to release a Lignum Vermis when completely destroyed by a player or an explosion. While actively being mined, there is an additional, rare <strong style="color: #9e2a2a;">1% (0.01) chance per tick</strong> for the creature to violently splinter the block early and erupt outward.</li>
+</ul>
+
+<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Loot Table</h4>
+<table class="article-table" style="width: 100%; max-width: 450px; font-size: 0.9em; border-collapse: collapse; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 12px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Drop</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 20%;">Weight</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 35%;">Condition</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Scandere Lignum</td>
+        <td style="text-align: center; padding: 10px 14px; color: #9c9788;">80</td>
+        <td style="text-align: right; padding: 10px 14px; color: #6a6254; font-style: italic;">Always</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Bone Meal</td>
+        <td style="text-align: center; padding: 10px 14px; color: #9c9788;">20</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">No Silk Touch</td>
+    </tr>
+</table>
+<p style="font-size: 0.85em; color: #70685c; margin-top: 8px; font-style: italic; margin-bottom: 30px;">Using Silk Touch on Scandere Lignum suppresses the Bone Meal drop entirely, yielding only the block itself.</p>
+
+<!-- ==========================================
+     BACKWOODS SECTION
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods</h2>
+
+<h3 style="color: #c4bfa5; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Ash-Rose</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A specialized flower placed exclusively by the Ash-Weaver. It serves as the primary tool for managing dangerous Splinters.</p>
+
+<div style="background: #0c0b0a; border: 1px solid #2d1814; border-left: 2px solid #9e2a2a; padding: 20px; margin-top: 15px; margin-bottom: 30px;">
+<ul style="margin: 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Holding one in either hand causes all nearby Splinters to <strong style="color: #c4bfa5;">stop moving entirely</strong>.</li>
+    <li style="margin-bottom: 8px;">Placing one on the ground has the same freezing effect on any Splinter within range.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #9e2a2a;">Wilts over time</strong> when held, eventually crumbling into nothing.</li>
+    <li style="margin-bottom: 0;">Can be replanted on grass, dirt, deepslate, and any type of log or plank.</li>
+</ul>
+</div>
+
+<h3 style="color: #c4bfa5; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Fractus Core</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A stark block of pure, plain white geometry that defies the natural visual laws of the world. Obtained exclusively from the anomalous Fractus entity.</p>
+
+<div style="background: #09090a; border: 1px solid #1c1c21; border-left: 2px solid #5d5d6a; padding: 20px; margin-top: 15px; margin-bottom: 30px; color: #9c9788;">
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Anomalous Weight:</strong> Keeping it anywhere in your inventory dynamically modifies your physics based on the total item count. Each core in your possession reduces movement speed by <strong style="color: #9e2a2a;">4%</strong> and increases falling gravity by <strong style="color: #9e2a2a;">+0.017</strong> value points.</li>
+    <li style="margin-bottom: 8px;">Radiates a constant light level of 13, cleanly pushing back shadows without generating any heat.</li>
+    <li style="margin-bottom: 8px;">Possesses incredible fuel stability, providing exactly 13 hours of continuous smelting power inside a furnace.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #9e2a2a;">Fractus Invasion:</strong> Simply existing near a core—whether it is inside a player's inventory, dropped on the ground, stored inside a nearby container, or placed as a block within a <strong style="color: #c4bfa5;">120-block horizontal radius</strong>—draws unwanted cosmic attention in the Overworld and Nether dimensions.</li>
+</ul>
+
+<div style="border-top: 1px solid #1c1c21; padding-top: 15px; margin-top: 15px;">
+<h4 style="color: #eaeaea; font-weight: 500; margin-top: 0; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase;">Invasion Event Phases</h4>
+<ol style="margin: 0; padding-left: 18px; line-height: 1.7; font-size: 0.9em; color: #8c8779;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Escalation (Stage 1):</strong> The longer a core remains tracked nearby, the faster breaches occur. The base interval between invasions starts at 2 minutes, but scales down to a aggressive 45 seconds under max escalation. Discarding or destroying the core decays this tracking speed factor.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Breach Forming (Stage 2):</strong> After 10 seconds of nearby exposure, a thunderous crack sounds as a massive, 2.8-meter swirling volumetric cyan and blue cosmic vortex begins expanding nearby over a 7-second charging period.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Arrival (Stage 3):</strong> The gateway stabilizes for 6 seconds, emitting high-energy electric arcs. It swiftly summons a staggered horde of <strong style="color: #c4bfa5;">3 to 7 Fractus entities</strong> (plus escalation bonuses) that instantly lock hostility onto the player before collapsing with an explosive shockwave.</li>
+</ol>
+</div>
+</div>
+
+<!-- ==========================================
+     LOSS DIMENSION SECTION
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Loss Dimension</h2>
+
+<h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Terrain & Surface</h3>
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Block</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Description</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Faded Block</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">The primary surface block of the Loss dimension. A pale, drained version of dirt entirely leached of life and energy. <strong style="color: #9e2a2a; font-style: italic;">Produces no audio</strong> when walked upon or broken.</td>
+    </tr>
+    <tr>
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Sinking Ash</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">A terrain hazard generated naturally in Loss. Slows player movement while inside. Functions as a mobility control hazard rather than a source of direct damage. <strong style="color: #c4bfa5; font-style: italic;">Cancels fall damage</strong>.</td>
+    </tr>
+</table>
+
+<h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone & Variants</h3>
+<p style="margin-bottom: 20px; font-size: 0.95em;">The primary stone of the Loss dimension, formed from a degraded and memory-eroded variant of stone. Its texture appears washed out and low in detail, reflecting the instability of the environment. Produces <strong style="color: #9e2a2a; font-style: italic;">no sound</strong> when interacted with.</p>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Block</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 15%;">Hardness</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 20%;">Blast Res.</th>
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">How to Obtain</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Nullstone</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #9c9788;">Generated naturally</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Nullstone Slab</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Nullstone Stair</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Nullstone Wall</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Cobbled Nullstone</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #9c9788;">Mine Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Cobbled Nullstone Slab</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Cobbled Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Cobbled Nullstone Stair</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Cobbled Nullstone</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #90caf9;">Cobbled Nullstone Wall</td><td style="text-align: center; color: #9c9788;">2.2</td><td style="text-align: center; color: #9c9788;">7.5</td><td style="padding: 10px 14px; color: #6a6254;">Crafted from Cobbled Nullstone</td></tr>
+    <tr><td style="padding: 10px 14px; color: #eaeaea; font-weight: 500;">Cracked Nullstone</td><td style="text-align: center; color: #9c9788;">1.8</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c; font-style: italic;">Smelt Nullstone (Takes 6s, grants 0.2 XP)</td></tr>
+</table>
+
+<h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Plaque</h3>
+<!-- DEBUFF WARNING BOX -->
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
+<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Infection Threat:</strong> Carrying Plaque items inflicts escalating <em style="color: #c4bfa5; font-style: normal; font-weight: 500;">Slowness, Hunger, and Mining Fatigue</em> over time.
+</div>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Block</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Description</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #9e2a2a; font-size: 0.95em;">Plaque Block</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">A highly aggressive, infectious corruption that slowly converts any adjacent solid block into more Plaque in all six directions. Generated throughout Loss similarly to coal ore.</td>
+    </tr>
+    <tr>
+        <td style="padding: 14px 16px; font-weight: 500; color: #9e2a2a; font-size: 0.95em;">Plaque Heart</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Found nestled deep inside underground Plaque spheres. Appears as a Plaque block variants with a faint red tint. Breaking one reduces your Loss world-timer by <strong style="color: #c4bfa5;">50 seconds</strong> and drops valuable Memory Fragments.</td>
+    </tr>
+</table>
+
+<h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Ores</h3>
+<table class="article-table" style="width: 100%; border-collapse: collapse; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 40px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Ore Block</th>
+        <th style="padding: 12px 16px; width: 25%; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Generation Height</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Primary Use</th>
+    </tr>
+    <tr>
+        <td style="padding: 14px 16px; font-weight: 500; color: #eaeaea; font-size: 0.95em;">Memory Quartz</td>
+        <td style="padding: 14px 16px; text-align: center; color: #9c9788; font-size: 0.9em;">Y −7 to Y 92</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788;">Mining this node will yield <strong style="color: #c4bfa5;">1–2 memory shards</strong>.</td>
+    </tr>
+</table>
+
+<!-- ==========================================
+     ROTTING DIMENSION SECTION
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Backwoods & Rotting Dimension</h2>
+
+<h3 style="color: #9275a1; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Oak Blocks</h3>
+<p style="margin-bottom: 20px; font-size: 0.95em;">As a player's time in the Backwoods exceeds <strong style="color: #c4bfa5;">24,000 ticks</strong>, standard Oak Planks begin to spontaneously transform into Rotten Oak Planks. Once a single block takes root, it persistently infects adjacent Oak Planks, spreading the decay further. This serves as a physical manifestation of your mental degradation.</p>
+
+<!-- DEBUFF WARNING BOX -->
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
+<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Rot Hazard:</strong> Carrying any Rotten Oak variant deals <strong style="color: #c4bfa5;">0.1 damage</strong> periodically to the player.
+</div>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 40px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 35%;">Block Variant</th>
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Notes / Special Behavior</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Log</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">Core structure block of giant trees in the Rotting dimension. Has a small chance to drop a <strong style="color: #eaeaea;">Heartwood Shard</strong> when broken. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 240 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Wood</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">Standard variant properties. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 240 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Oak Planks</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">The processed base form used in all rotten wood-tier crafting recipes. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Slab</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Stair</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Trapdoor</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Fence Gate</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 200 ticks.</span></td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Button</td><td style="padding: 10px 14px; color: #9c9788; line-height: 1.6;">— <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></td></tr>
+    <tr><td style="padding: 10px 14px; color: #8e8375;">Rotten Oak Pressure Plate</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
+</table>
+
+<!-- ==========================================
+     PETRIFIED WEALD SECTION
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Petrified Weald</h2>
+
+<h3 style="color: #969ba0; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Blocks</h3>
+<p style="margin-bottom: 20px; font-size: 0.95em;">The foundation of the Petrified Weald—the ancient, calcified remains of prehistoric flora that have successfully withstood eons of environmental decay.</p>
+
+<!-- DEBUFF WARNING BOX -->
+<div style="background: #090b09; border: 1px solid #163016; border-left: 2px solid #2a9e2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
+<strong style="color: #2a9e2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Material Properties:</strong> These structures are exceptionally dense, feature remarkably high blast resistance values, are completely safe to handle, and <em style="color: #c4bfa5; font-style: normal; font-weight: 500;">cannot be ignited by lava or fire.</em>
+</div>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Block</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 12%;">Hardness</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 18%;">Blast Res.</th>
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Notes</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Petrified Rotten Oak Wood</td><td style="text-align: center; color: #9c9788;">21</td><td style="text-align: center; color: #9c9788;">23.04</td><td style="padding: 10px 14px; color: #9c9788;">Features four-sided bark textures; sturdiest block in the set.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Petrified Rotten Oak Log</td><td style="text-align: center; color: #9c9788;">20</td><td style="text-align: center; color: #9c9788;">22.5</td><td style="padding: 10px 14px; color: #9c9788;">The primary structural pillar of the Weald's ancient trees.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Stripped Petrified Rotten Oak Log</td><td style="text-align: center; color: #9c9788;">17</td><td style="text-align: center; color: #9c9788;">22.05</td><td style="padding: 10px 14px; color: #9c9788;">Smoother, bark-stripped utility variant.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Petrified Rotten Oak Planks</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Primary layout and base construction material.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Stairs</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Retains the exact same durability values as standard planks.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Slab</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">6.75</td><td style="padding: 10px 14px; color: #9c9788;">Lower blast resistance rating due to reduced block mass.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Petrified Rotten Oak Fence & Gate</td><td style="text-align: center; color: #9c9788;">10</td><td style="text-align: center; color: #9c9788;">7.6</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5;">Petrified Weald Leaves</td><td style="text-align: center; color: #9c9788;">6</td><td style="text-align: center; color: #9c9788;">1.3</td><td style="padding: 10px 14px; color: #9c9788;">Brittle ashen foliage; structurally much tougher than vanilla leaves.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Amber Grit</td><td style="text-align: center; color: #9c9788;">3</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Similar in function to Deepslate variations.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #8e8375;">Cobbled Amber Grit</td><td style="text-align: center; color: #9c9788;">3</td><td style="text-align: center; color: #9c9788;">9.0</td><td style="padding: 10px 14px; color: #9c9788;">Similar in mining function to Cobbled Deepslate variations.</td></tr>
+    <tr><td style="padding: 10px 14px; color: #8e8375;">Fossilized Silt</td><td style="text-align: center; color: #9c9788;">3.5</td><td style="text-align: center; color: #9c9788;">6.0</td><td style="padding: 10px 14px; color: #70685c;">—</td></tr>
+</table>
+
+</div>
