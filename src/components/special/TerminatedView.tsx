@@ -651,7 +651,7 @@ export default function TerminatedView() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
 
-  // Auto-cycling idle loop (cycles every 1.0 second: switch > 0.5s > terminated > 0.5s > switch)
+  // Auto-cycling idle loop (cycles every 1.6 seconds as requested, 20% faster than 2s)
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
@@ -665,7 +665,7 @@ export default function TerminatedView() {
     return () => clearInterval(interval);
   }, [selectedOpponentId, filteredOpponents, isPaused]);
 
-  // Transition & glitch triggers on selected specimen change, plus 0.5-second TERMINATED stamp delay
+  // Transition & glitch triggers on selected specimen change, plus 0.8-second TERMINATED stamp delay (20% faster than 1s)
   useEffect(() => {
     setIsTransitioning(true);
     setGlitchActive(true);
@@ -673,7 +673,7 @@ export default function TerminatedView() {
 
     const bannerTimeout = setTimeout(() => {
       setShowTerminatedBanner(true);
-    }, 628); // put the terminated stamp 0.5 seconds later (switch > 0.5s > terminated)
+    }, 628); // put the terminated stamp 0.8 seconds later (20% faster than 1 second)
 
     const fadeTimeout = setTimeout(() => {
       setIsTransitioning(false);
@@ -1043,12 +1043,12 @@ export default function TerminatedView() {
                         }}
                       >
                         <span 
-                          className="text-white font-bold uppercase leading-none select-none text-center block w-full"
+                          className="text-white font-bold uppercase leading-none select-none text-center"
                           style={{ 
                             fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
                             fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
-                            letterSpacing: `${0.55 * scale}em`,
-                            paddingLeft: `${0.55 * scale}em`
+                            letterSpacing: `${0.22 * scale}em`,
+                            marginRight: `-${0.22 * scale}em`
                           }}
                         >
                           TERMINATED
