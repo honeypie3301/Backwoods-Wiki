@@ -651,6 +651,12 @@ export default function TerminatedView() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
 
+  // Helper function to update state synchronously, preventing banner flashing out of sync
+  const selectOpponent = (id: string) => {
+    setSelectedOpponentId(id);
+    setShowTerminatedBanner(false);
+  };
+
   // Auto-cycling idle loop (cycles every 1.6 seconds as requested, 20% faster than 2s)
   useEffect(() => {
     if (isPaused) return;
@@ -658,7 +664,7 @@ export default function TerminatedView() {
       if (filteredOpponents.length > 0) {
         const currentIndex = filteredOpponents.findIndex(op => op.id === selectedOpponentId);
         const nextIndex = (currentIndex + 1) % filteredOpponents.length;
-        setSelectedOpponentId(filteredOpponents[nextIndex].id);
+        selectOpponent(filteredOpponents[nextIndex].id);
       }
     }, 900);
 
@@ -692,7 +698,7 @@ export default function TerminatedView() {
 
   useEffect(() => {
     if (filteredOpponents.length > 0 && !filteredOpponents.some(op => op.id === selectedOpponentId)) {
-      setSelectedOpponentId(filteredOpponents[0].id);
+      selectOpponent(filteredOpponents[0].id);
     }
   }, [activeTab, activeModFilter, searchQuery]);
 
@@ -845,7 +851,7 @@ export default function TerminatedView() {
               {filteredOpponents.map(op => (
                 <button
                   key={op.id}
-                  onClick={() => setSelectedOpponentId(op.id)}
+                  onClick={() => selectOpponent(op.id)}
                   className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all cursor-pointer flex items-center justify-between ${
                     selectedOpponentId === op.id
                       ? 'bg-[#cf1124]/10 border-[#cf1124]/40 text-[#cf1124] font-black shadow-[0_4px_12px_rgba(207,17,36,0.15)]'
