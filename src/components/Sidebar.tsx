@@ -66,6 +66,8 @@ export default function Sidebar({
         return <Activity className="w-4 h-4 text-emerald-400" />;
       case 'items':
         return <Sparkles className="w-4 h-4 text-amber-400" />;
+      case 'terminated':
+        return <Skull className="w-4 h-4 text-red-500 animate-pulse" />;
       default:
         return <FileText className="w-4 h-4 text-[#5a6b5e]" />;
     }

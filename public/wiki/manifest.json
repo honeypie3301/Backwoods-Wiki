@@ -68,5 +68,12 @@
     "title": "Commands",
     "category": "Flora & Fauna",
     "order": 10
+  },
+  {
+    "slug": "terminated",
+    "filename": "Terminated.txt",
+    "title": "Terminated Dossier",
+    "category": "Flora & Fauna",
+    "order": 11
   }
 ]

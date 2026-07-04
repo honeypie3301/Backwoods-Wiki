@@ -16,6 +16,7 @@ import BlocksView from './special/BlocksView';
 import CommandsView from './special/CommandsView';
 import EntitiesView from './special/EntitiesView';
 import ItemsView from './special/ItemsView';
+import TerminatedView from './special/TerminatedView';
 
 interface ArticleViewProps {
   article: WikiArticle;
@@ -44,7 +45,7 @@ export default function ArticleView({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const isSpecialPage = ['dimensions', 'blocks', 'entities', 'items', 'commands', 'versions'].includes(article.slug);
+  const isSpecialPage = ['dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated'].includes(article.slug);
 
   // Parse headers and content
   useEffect(() => {
@@ -250,6 +251,8 @@ export default function ArticleView({
               <EntitiesView />
             ) : article.slug === 'items' ? (
               <ItemsView />
+            ) : article.slug === 'terminated' ? (
+              <TerminatedView />
             ) : null
           ) : (
             /* HTML Rendered view */

@@ -21,6 +21,7 @@ const articleMeta = {
   'Entities.txt': { title: 'Hostile & Neutral Entities', category: 'Flora & Fauna', order: 8 },
   'Items.txt': { title: 'Items & Gear', category: 'Flora & Fauna', order: 9 },
   'Commands.txt': { title: 'Commands', category: 'Flora & Fauna', order: 10 },
+  'Terminated.txt': { title: 'Terminated Dossier', category: 'Flora & Fauna', order: 11 },
 };
 
 try {
@@ -97,6 +98,35 @@ try {
   } else {
     console.warn(`Source models directory not found at: ${modelsSrcDir}`);
   }
+
+  // Copy TerminatedEntities to public directory recursively
+  const termSrcDir = path.join(process.cwd(), 'TerminatedEntities');
+  const termDestDir = path.join(process.cwd(), 'public', 'TerminatedEntities');
+
+  function copyDirRecursive(src, dest) {
+    if (!fs.existsSync(src)) return;
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
+    }
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(src, entry.name);
+      const destPath = path.join(dest, entry.name);
+      if (entry.isDirectory()) {
+        copyDirRecursive(srcPath, destPath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  }
+
+  if (fs.existsSync(termSrcDir)) {
+    copyDirRecursive(termSrcDir, termDestDir);
+    console.log(`Successfully copied TerminatedEntities to ${termDestDir}`);
+  } else {
+    console.warn(`Source TerminatedEntities directory not found at: ${termSrcDir}`);
+  }
+
 } catch (err) {
   console.error('Error generating wiki data:', err);
 }

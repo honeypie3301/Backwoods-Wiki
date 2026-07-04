@@ -102,10 +102,10 @@ interface EntityProfile {
 }
 
 export default function EntitiesView() {
-  const [selectedEntity, setSelectedEntity] = useState<string>('rot');
+  const [selectedEntity, setSelectedEntity] = useState<string>('hollow');
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
-  const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('default');
+  const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
 
   const THREAT_VALUES: Record<string, number> = {
     "Low": 1,
