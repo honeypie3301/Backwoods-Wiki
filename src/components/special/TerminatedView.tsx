@@ -729,12 +729,12 @@ export default function TerminatedView() {
   useEffect(() => {
     initialOpponents.forEach((op) => {
       const img = new Image();
-      img.src = `${baseUrl}${op.image}`;
+      img.src = getAbsoluteAssetUrl(op.image);
     });
     // Also preload the Rot sentinel image
     const rotImg = new Image();
-    rotImg.src = `${baseUrl}TerminatedEntities/Rot.png`;
-  }, [baseUrl]);
+    rotImg.src = getAbsoluteAssetUrl('TerminatedEntities/Rot.png');
+  }, []);
 
   const selectedOpponent = initialOpponents.find(op => op.id === selectedOpponentId) || initialOpponents[0];
 
@@ -1145,10 +1145,19 @@ export default function TerminatedView() {
                     
                     {/* Render standard image styled with high-contrast grayscale freely on background without container cards */}
                     <img
-                      src={`${baseUrl}${selectedOpponent.image}`}
+                      src={getAbsoluteAssetUrl(selectedOpponent.image)}
                       alt={selectedOpponent.name}
                       referrerPolicy="no-referrer"
                       className="max-h-[88%] max-w-[88%] object-contain select-none filter grayscale contrast-[1.45] brightness-[0.88] mix-blend-multiply"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.dataset.triedFallback) {
+                          img.dataset.triedFallback = 'true';
+                          if (img.src.includes('/TerminatedEntities/')) {
+                            img.src = img.src.replace('/TerminatedEntities/', '/public/TerminatedEntities/');
+                          }
+                        }
+                      }}
                     />
 
                   </div>
@@ -1183,10 +1192,19 @@ export default function TerminatedView() {
                 <div className="relative flex flex-col items-center justify-center h-full w-full overflow-hidden bg-neutral-900/5">
                   <div className="w-full h-full flex items-center justify-center relative">
                     <img
-                      src={`${baseUrl}TerminatedEntities/Rot.png`}
+                      src={getAbsoluteAssetUrl('TerminatedEntities/Rot.png')}
                       alt="The Rot"
                       referrerPolicy="no-referrer"
                       className="max-h-[88%] max-w-[88%] object-contain select-none filter grayscale contrast-[1.45] brightness-[0.88] mix-blend-multiply"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.dataset.triedFallback) {
+                          img.dataset.triedFallback = 'true';
+                          if (img.src.includes('/TerminatedEntities/')) {
+                            img.src = img.src.replace('/TerminatedEntities/', '/public/TerminatedEntities/');
+                          }
+                        }
+                      }}
                     />
                   </div>
                 </div>

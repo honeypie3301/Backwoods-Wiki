@@ -238,21 +238,21 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
           obj.position.y = -box.min.y; // bottom of model sits at 0
           obj.position.z = -center.z;
 
-          // Scale to fit nicely
-          const maxDim = Math.max(size.x, size.y, size.z);
-          let desiredScale = maxDim > 0 ? 3.0 / maxDim : 1.0;
+          // Scale based on Minecraft block measurements (Fractus is exactly 1 block big, which is raw size 1.0)
+          const blockScale = 1.35; // 1 block = 1.35 Three.js units
+          let finalScale = blockScale;
+
           if (entityId === 'fractus_prime') {
-            desiredScale *= 2.0;
-          } else if (entityId === 'rot') {
-            desiredScale *= 1.25;
+            finalScale = blockScale * 1.25; // prime variant is slightly larger (1.25 blocks)
           } else if (entityId === 'lignum_gigas') {
-            desiredScale *= 40.0;
+            finalScale = blockScale * 8.0; // stands 16 blocks tall (massive, but fits perfectly in view)
           }
-          modelGroup.scale.set(desiredScale, desiredScale, desiredScale);
+
+          modelGroup.scale.set(finalScale, finalScale, finalScale);
           if (entityId === 'fractus' || entityId === 'fractus_prime') {
-            modelGroup.position.y = 0.25; // lift up
+            modelGroup.position.y = 0.25 * blockScale; // hover height of 0.25 blocks above pedestal
           } else {
-            modelGroup.position.y = 0; // base sits on pedestal
+            modelGroup.position.y = 0; // base sits directly on pedestal
           }
 
           // Load custom texture override if resolvedTextureUrl is specified
