@@ -1063,12 +1063,12 @@ export default function TerminatedView() {
                         }}
                       >
                         <span 
-                          className="text-white font-bold uppercase leading-none select-none text-center block w-full"
+                          className="text-white font-bold uppercase leading-none select-none"
                           style={{ 
                             fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
                             fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
                             letterSpacing: `${0.55 * scale}em`,
-                            paddingLeft: `${0.55 * scale}em`
+                            marginRight: `-${0.55 * scale}em`
                           }}
                         >
                           TERMINATED
