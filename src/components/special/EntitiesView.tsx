@@ -106,6 +106,7 @@ export default function EntitiesView() {
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
+  const [activeRotLog, setActiveRotLog] = useState<number>(0);
 
   const THREAT_VALUES: Record<string, number> = {
     "Low": 1,
@@ -667,14 +668,60 @@ export default function EntitiesView() {
               </div>
 
               {/* Survivor lore intercept */}
-              <div className="pt-4 border-t border-red-950/20 space-y-2">
-                <h4 className="text-[10px] font-mono uppercase tracking-widest text-red-500 font-bold flex items-center gap-1">
-                  <BookOpen className="w-3.5 h-3.5 text-red-400" />
-                  Survivor Log Intercept
-                </h4>
-                <p className="text-xs text-[#8c8779] leading-relaxed italic p-3 bg-[#0d0707] border-l-2 border-red-600 rounded-r-md">
-                  "I critical-struck it with maxed Netherite gear, but the horror adapted right before my eyes. Its skin hardened, my sword bounced off. It shredded through my obsidian walls like paper. Then, it grabbed the Totem of Undying directly out of my hand, crushed it, and absorbed the particles to empower itself. I survived only by crawling into a rock fissure..."
-                </p>
+              <div className="pt-4 border-t border-red-950/20 space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-red-500 font-bold flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5 text-red-400" />
+                    Survivor Log Intercepts
+                  </h4>
+                  <span className="text-[10px] text-red-400/70 font-mono">
+                    LOG {activeRotLog + 1} OF 4
+                  </span>
+                </div>
+
+                {/* Log Selection Tabs */}
+                <div className="flex flex-wrap gap-1 bg-[#060404] p-1 rounded-lg border border-red-950/30">
+                  {[
+                    "AP-04 TOTEM OVERLOAD",
+                    "AP-09 GEAR STRIPPING",
+                    "AP-12 THERMAL SHOCK",
+                    "AP-15 LEGEND TRAP"
+                  ].map((logTitle, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveRotLog(idx)}
+                      className={`px-2 py-1 text-[9px] font-mono font-bold rounded transition-all cursor-pointer uppercase ${
+                        activeRotLog === idx
+                          ? 'bg-red-950/60 text-red-300 border border-red-900/40'
+                          : 'text-[#5a6b5e] hover:text-[#829285]'
+                      }`}
+                    >
+                      {logTitle.split(" ")[0]}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="p-4 bg-[#0d0707] border border-red-950/20 rounded-lg space-y-2">
+                  <div className="flex items-center justify-between text-[10px] font-mono border-b border-red-950/10 pb-1.5">
+                    <span className="text-amber-500 font-bold">
+                      {[
+                        "AP-04 TOTEM OVERLOAD",
+                        "AP-09 GEAR STRIPPING",
+                        "AP-12 THERMAL SHOCK",
+                        "AP-15 LEGEND TRAP"
+                      ][activeRotLog]}
+                    </span>
+                    <span className="text-[#5a6b5e]">SOURCE: DECRYPTED TRANSMISSION</span>
+                  </div>
+                  <p className="text-xs text-[#8c8779] leading-relaxed italic">
+                    {[
+                      `"I critical-struck it with maxed Netherite gear, but the horror adapted right before my eyes. Its skin hardened, my sword bounced off. It shredded through my obsidian walls like paper. Then, it grabbed the Totem of Undying directly out of my hand, crushed it, and absorbed the particles to empower itself. I survived only by crawling into a rock fissure..."`,
+                      `"Do not trust your armor. It doesn't just hit you—it strips away your safety. I was backed into a ravine wall, completely immobilized by a sudden, heavy pressure in the air that made it feel like gravity had tripled. It reached out, and with a horrifying, metallic screech, it tore my iron chestplate clean off my body like it was wet paper. I didn't even feel a blade; it just dismantled my protection in a second. I had to ditch the rest of my gear and squeeze into a one-block crawlspace just to escape."`,
+                      `"My skin is still blistering. It manipulates the air around you to torture your senses. First, a wave of absolute, biting frost hit me, freezing the breath in my throat and locking up my joints so I couldn't run. The moment the ice took hold, the atmosphere instantly flipped to a blinding, searing heat. The sudden shock of going from sub-zero to boiling cracked my shield right down the middle. If I hadn't dug frantically into the dirt to bury myself, I would have been ash."`,
+                      `"I tried to play dirty. I brought three Wither skulls down into the thick of the trees, thinking I could let two monsters destroy each other. It was an insult to the thing. It didn't even flinch at the decay. It met the beast head-on, shattering its skulls with consecutive, deafening strikes that sounded like thunderclaps. Then, it let out a localized scream so violent it shook the valley and blew out my eardrums—a terrifying echo of the deep dark, weaponized in the open air. The woods don't belong to the old legends anymore."`
+                    ][activeRotLog]}
+                  </p>
+                </div>
               </div>
             </div>
           )}

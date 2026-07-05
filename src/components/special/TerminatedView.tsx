@@ -84,7 +84,7 @@ export default function TerminatedView() {
       name: 'Blaze Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Blaze.webp',
-      threatLevel: 6.6,
+      threatLevel: 5.8,
       terminationCycle: 'CYCLE 14',
       isTerminated: true,
       notes: 'Nether fortress battery. Rot siphoned local fire damage to fuel Thermal Synthesis, returning high-impact Cryo Beams that instantly shattered the target\'s core.'
@@ -94,7 +94,7 @@ export default function TerminatedView() {
       name: 'Creeper Unit',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Creeper_JE2_BE1.webp',
-      threatLevel: 5.4,
+      threatLevel: 4.8,
       terminationCycle: 'CYCLE 22',
       isTerminated: true,
       notes: 'Stealth ambush intercepted. Target fusion fuse bypassed using 18-tick Dimensional Spacing (Blink) to teleport behind the unit, followed by a launching kick.'
@@ -104,7 +104,7 @@ export default function TerminatedView() {
       name: 'Ghast Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Ghast_JE2_BE2.webp',
-      threatLevel: 7.3,
+      threatLevel: 5.5,
       terminationCycle: 'CYCLE 11',
       isTerminated: true,
       notes: 'Nether airspace. Fireball artillery reflected using Dimensional Spacing (Blink) positioning, combined with Solar Beams to melt target\'s aerial tissues.'
@@ -124,7 +124,7 @@ export default function TerminatedView() {
       name: 'Iron Golem Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Iron_Golem_JE2_BE2.webp',
-      threatLevel: 7.8,
+      threatLevel: 6.8,
       terminationCycle: 'CYCLE 05',
       isTerminated: true,
       notes: 'Heavy alloy autonomous guard. Rot triggered Adaptive Health Regeneration to absorb throw impact, delivering Minos Protocol shield-breakers to dismantle the chassis.'
@@ -148,7 +148,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Hydra.webp',
-      threatLevel: 9.9,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 02',
       isTerminated: true,
       notes: 'Lethal multi-headed beast. Battle of attrition. Cooldown cycles compressed dynamically from 160 to 20 ticks. Multi-heads launched skyward and spiked with Minos combos.'
@@ -622,6 +622,106 @@ export default function TerminatedView() {
       terminationCycle: 'CYCLE 57',
       isTerminated: true,
       notes: 'Reborn celestial titan, absolute final sovereign of Armageddon. Generates cascading black hole gravity wells and supernova bursts. Evaded screen-clearing galaxy pulses with 18-tick Dimensional Spacing, delivering the ultimate Minos Protocol.'
+    },
+    // --- MODDED: Fungal Infection: Spore ---
+    {
+      id: 'spore_sieger',
+      name: 'Sieger',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/sieger.png',
+      threatLevel: 9.1,
+      terminationCycle: 'CYCLE 60',
+      isTerminated: true,
+      notes: 'The baseline commander. Strong melee, ranged tumors, block destruction, Spore Bursts, buffs allies, and has a removable tail weak point. A formidable all-round threat. Rot severed tail weak point via Dimensional Spacing, then executed Minos Protocol combat loops.'
+    },
+    {
+      id: 'spore_howitzer',
+      name: 'Howitzer',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/howitzer.png',
+      threatLevel: 9.4,
+      terminationCycle: 'CYCLE 61',
+      isTerminated: true,
+      notes: 'Long-range artillery platform. Bombarded from 64 blocks with homing Flesh Bombs, ignited terrain, and spread corrosion. Rot bypassed the battlefield-denial zone using overcharged 18-tick Blinks, destroying the platform core with Cryo-Thermal Beams.'
+    },
+    {
+      id: 'spore_stahlmorder',
+      name: 'Stahlmorder',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/stalhmorder.png',
+      threatLevel: 9.2,
+      terminationCycle: 'CYCLE 62',
+      isTerminated: true,
+      notes: 'Extremely dangerous close-range hunter. Features corrosive attacks, powerful leaps, climbing, armor scaling, and block breaking. Rot predicted its lethal crowd-control leaps with active scanning, delivering a high-velocity shield-breaker kick to shatter its scaled shell.'
+    },
+    {
+      id: 'spore_hohlfresser',
+      name: 'Hohlfresser',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/hohlfresser.png',
+      threatLevel: 9.5,
+      terminationCycle: 'CYCLE 63',
+      isTerminated: true,
+      notes: 'The subterranean Calamity with high underground mobility and ambush potential. Hard to contain. Rot deployed active subsurface seismic radar to detect underground burrowing vectors, intercepting the ambush with Sonic Boom resonance to collapse its tunnel.'
+    },
+    {
+      id: 'spore_gazenbreacher',
+      name: 'Gazenbreacher',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/gazenbreacher.png',
+      threatLevel: 9.2,
+      terminationCycle: 'CYCLE 64',
+      isTerminated: true,
+      notes: 'Extremely fast aquatic predator with melee and ranged bile attacks. Highly dominant in water. Rot dragged the specimen onto land using spatial redirection, neutralizing its high speed and terminating it with consecutive martial strikes.'
+    },
+    {
+      id: 'spore_grakensenker',
+      name: 'Grakensenker',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/grakensenker.png',
+      threatLevel: 9.5,
+      terminationCycle: 'CYCLE 65',
+      isTerminated: true,
+      notes: 'Highly dangerous aquatic predator utilizing independent grappling tentacles to seize and drag targets. Rot resisted the drag forces using Adaptive Health Regeneration, freezing its tentacles with Cryo Beams and shattering the central mantle.'
+    },
+    {
+      id: 'spore_leviathan',
+      name: 'Leviathan',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/leviathan.png',
+      threatLevel: 9.9,
+      terminationCycle: 'CYCLE 66',
+      isTerminated: true,
+      notes: 'The apex Water Calamity. Features 450 HP, 25 armor, segmented body, camouflage, and commander abilities. Rot counteracted acid bombardment and flesh bombs using overcharged Thermal siphons, slicing through its segmented carapace using high-energy Solar Beams.'
+    },
+    {
+      id: 'spore_hindenburg',
+      name: 'Hindenburg',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/hindenburg.png',
+      threatLevel: 9.7,
+      terminationCycle: 'CYCLE 67',
+      isTerminated: true,
+      notes: 'Exceptional aerial siege platform with constant flight, explosive tumor volleys, and blast-strength 16 Tumoroid Nukes. Rot matched flight maneuvers with aerial blinking, detonating its internal nuke payload early using a focused Cryo-Thermal beam.'
+    },
+    {
+      id: 'spore_verfalldrache',
+      name: 'Verfalldrache',
+      category: 'Modded',
+      modName: 'Fungal Infection: Spore',
+      image: 'TerminatedEntities/Modded/Spore/verfalldrache.png',
+      threatLevel: 10.0,
+      terminationCycle: 'CYCLE 68',
+      isTerminated: true,
+      notes: 'The ultimate Air Calamity and pinnacle encounter. Combines aerial superiority with the full Calamity toolkit. Rot engaged in a massive high-altitude battle, overclocking all subsystems to execute an absolute Minos Protocol strike, shattering its wings.'
     }
   ];
 
@@ -789,14 +889,15 @@ export default function TerminatedView() {
         {/* Mod Filter Selector */}
         <div className="col-span-12 md:col-span-6 lg:col-span-3 flex justify-end w-full">
           {activeTab === 'Modded' ? (
-            <div className="flex bg-[#090b0f] p-1 rounded-lg border border-[#202430] w-full gap-0.5">
+            <div className="flex bg-[#090b0f] p-1 rounded-lg border border-[#202430] w-full gap-0.5 overflow-x-auto scrollbar-none">
               {[
                 { id: 'all', label: 'ALL' },
                 { id: 'Twilight Forest', label: 'TWILIGHT' },
                 { id: "L_Ender's Cataclysm", label: 'CATACLYSM' },
                 { id: 'Bosses of Mass Destruction', label: 'BOMD' },
                 { id: "Bosses' Rise", label: "BOSSES' RISE" },
-                { id: 'Armageddon', label: 'ARMAGEDDON' }
+                { id: 'Armageddon', label: 'ARMAGEDDON' },
+                { id: 'Fungal Infection: Spore', label: 'SPORE' }
               ].map(mod => (
                 <button
                   key={mod.id}
