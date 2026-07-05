@@ -1,0 +1,1427 @@
+__FORCETOC__
+<div class="backwoods-wiki-container" style="max-width: 1000px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #a4a090; background-color: #080808; padding: 40px 30px; box-sizing: border-box; border: 1px solid #1a1414; line-height: 1.7;">
+
+<!-- INTRODUCTION -->
+<div style="border-left: 2px solid #5c1414; padding-left: 20px; margin-bottom: 40px; color: #c4bfa5; font-style: italic; font-size: 1.05em; line-height: 1.8;">
+The Backwoods introduces a focused set of items, most tied to survival, traversal, and progression across its dimensions.
+</div>
+
+<!-- ==========================================
+     KEYS & CONSUMABLES
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Keys &amp; Consumables</h2>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Steel and Charcoal</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The key to entering and exiting [[dimensions|The Backwoods dimension]]. Using it in the overworld transports the player into the dimension. There is a chance upon use that the item fails and the durability is consumed, playing a sound and producing smoke particles before disappearing.</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Location</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Success Rate</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Overworld</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">90%</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Other</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">10%</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Steel and Charcoal (Portal Igniter) -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Steel and Charcoal (Portal Igniter) Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:iron_ingot"><span style="font-size: 0.85em; color: #cfbfa8;">iron_ingot</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:charcoal"><span style="font-size: 0.85em; color: #cfbfa8;">charcoal</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">iron_ingot</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">charcoal</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: flint_charcoal_igniter.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Steel and Shard</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The key to entering the Petrified Weald. Functions identically to the Steel and Charcoal but targets a different destination.</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Location</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Success Rate</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">[[dimensions|Weald dimension]]</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">90%</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Overworld</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Lowest</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Steel and Shard (Portal Igniter) -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Steel and Shard (Portal Igniter) Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:iron_ingot"><span style="font-size: 0.85em; color: #cfbfa8;">iron_ingot</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">iron_ingot</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">splinter_shard</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: flint_and_shard_igniter.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Draught</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Crafted with a glass bottle and Seep. Drinking it will send the player to the Familiar. Use with caution - there is no return.</p>
+
+  <!-- Crafting Box for Pale Draught -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Draught Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">glass_bottle</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">seep</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">glass_bottle</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">seep</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: pale_draught_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Remedy</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A consumable crafted from an Ash-Rose, a bowl, and Seep. Drinking it reduces the player's mental degradation, pushing their exposure timer back by a significant amount. Consuming it significantly reduces <code style="color: #eaeaea; background: #120c0c; border: 1px solid #1c1414; padding: 2px 5px; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;">backwoods_time</code> by 3,000.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Does not taste good. The player will feel briefly nauseous after consuming it.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Does not stack.</strong> Each one must be crafted individually and used with intention.</li>
+    <li style="margin-bottom: 0;">Returns an empty bowl when consumed.</li>
+</ul>
+
+  <!-- Crafting Box for Pale Remedy -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Remedy Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">seep</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">ash_rose</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">bowl</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">seep</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">ash_rose</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">bowl</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: remedy_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Pale Remedy</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A stronger variant of the Pale Remedy, refined through memory processing. Consuming it significantly reduces <code style="color: #eaeaea; background: #120c0c; border: 1px solid #1c1414; padding: 2px 5px; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;">backwoods_time</code> by 5,000, making it one of the most effective sanity recovery items currently available.</p>
+
+  <!-- Crafting Box for Recovered Pale Remedy -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Pale Remedy Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">seep</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">ash_rose</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">bowl</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">seep</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">ash_rose</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">bowl</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: stabilized_remedy_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Faded Foods</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Decaying, dimensionally eroded variants of standard Overworld foods found across [[dimensions|The Loss dimension]]. Over time, standard foodstuffs left in this dimension undergo a deep temporal decay that strips away almost all of their nutritive value, turning them into pale, hollow shadows of their former selves. Eating them will restore very little hunger/saturation and inflicts volatile neurological side effects and status anomalies.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Nutritional Decay:</strong> Faded food values are severely diminished. For example, a <strong style="color: #c4bfa5;">Faded Potato</strong> restores only 3 hunger, a <strong style="color: #c4bfa5;">Faded Carrot</strong> restores 1 hunger, and a <strong style="color: #c4bfa5;">Faded Steak</strong> restores only 2 hunger.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Side Effects:</strong> Eating faded foods is dangerous:
+        <ul style="margin-top: 5px; padding-left: 15px; list-style-type: circle;">
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Carrots</strong> inflicts <strong style="color: #c4bfa5;">Blindness I</strong> (3 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Steak</strong> has a 50% chance to cause <strong style="color: #c4bfa5;">Nausea I</strong> (3 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Golden Carrots</strong> grants <strong style="color: #c4bfa5;">Night Vision I</strong> but also inflicts crippling <strong style="color: #c4bfa5;">Slowness I</strong> (15 seconds).</li>
+            <li style="margin-bottom: 4px;">Eating <strong style="color: #c4bfa5;">Faded Golden Apples</strong> grants <strong style="color: #c4bfa5;">Resistance I</strong> (10 seconds) but inflicts <strong style="color: #c4bfa5;">Weakness I</strong> (30 seconds).</li>
+            <li style="margin-bottom: 0;">Eating <strong style="color: #c4bfa5;">Faded Enchanted Golden Apples</strong> grants temporary <strong style="color: #c4bfa5;">Absorption I</strong> (4 seconds) and <strong style="color: #c4bfa5;">Regeneration I</strong> (3 seconds), but shortly after triggers a massive 60-second <strong style="color: #c4bfa5;">Weakness I</strong> and 45-second <strong style="color: #c4bfa5;">Hunger I</strong> debuff.</li>
+        </ul>
+    </li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Purification:</strong> Faded foods can be restored to their standard wholesome forms. Holding a <strong style="color: #c4bfa5;">Memory Fragment</strong> or <strong style="color: #c4bfa5;">Recovered Memory Fragment</strong> in your main hand and the faded food in your offhand, then right-clicking will cleanse and purify the food item.</li>
+</ul>
+
+<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
+
+<!-- ==========================================
+     MATERIALS
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 35px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Materials</h2>
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Bark</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Obtained by stripping petrified logs in the [[dimensions|Weald dimension]] and will significantly damage your axe each strip. Used for crafting the Petrified Rotten Sword and Petrified Rotten Axe.</p>
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em; line-height: 1.6;">
+<strong style="color: #c4bfa5;">Drop chance:</strong> 1 in 23 (approximately 4.35%)
+</div>
+
+<h3 style="color: #8c9cb3; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Shard</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Found by mining Memory Quartz in [[dimensions|The Loss dimension]]. Can be used to craft the [[Items#Resonant Rot Effigy|Resonant Rot Effigy]]</p>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Seep</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A rare crafting material that drops from oak planks broken inside [[dimensions|The Backwoods dimension]]. It appears as a small pale droplet - something that has seeped out of wood that should not be alive. The drop chance is low. Breaking many planks is often necessary to find one.</p>
+
+<h3 style="color: #9275a1; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Stick</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A basic crafting material crafted from two Rotten Oak Planks. Used as the handle material for all rotten wood tools and weapons. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 75 ticks.</span></p>
+
+  <!-- Crafting Box for Rotten Stick -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Stick Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_stick_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Stick</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An ancient, calcified stick found within the [[dimensions|Petrified Weald dimension]]. Used as the core handle material for robust petrified tools and weapons. <span style="color: #cfbfa8; font-weight: 500;">Burn Time: 300 ticks.</span></p>
+
+  <!-- Crafting Box for Petrified Rotten Stick -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Stick Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x4</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_rotten_oak_planks</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_rotten_stick_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Splinter Shard</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A jagged fragment of blackened corrupted wood dropped rarely by Log Splinters. Used to craft the Splinter Sword.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Drop chance:</strong> ~5% per kill</li>
+</ul>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Sharpened Splinter Shard</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A brittle but jagged blade created by processing a Splinter Shard in a Stonecutter. Serves as a desperate, short-lived weapon for those lost in the woods.</p>
+<table class="article-table" style="width: 100%; max-width: 300px; font-size: 0.9em; border-collapse: collapse; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 25px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 40%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">0.8</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">25</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Sharpened Splinter Shard -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Sharpened Splinter Shard Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 120px; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto; gap: 8px;">
+      <div style="padding: 6px; border: 1px solid #2d1814; background: #080808; font-size: 0.85em; text-align: center; color: #cfbfa8;" title="unknown">unknown</div>
+      <div style="color: #8c9cb3; font-weight: bold; font-size: 1.2em;">⛏️</div>
+      <div style="font-size: 0.8em; color: #8e8375;">STONECUTTING</div>
+    </div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">STONECUTTING &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: sharpened_shard_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #9275a1; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Heartwood Shard</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A deep crimson-black chunk of compressed wood harvested rarely from Rotten Oak Logs broken inside [[dimensions|The Rotting dimension]]. Used to upgrade the Splinter Sword into the Heartwood Splinter Sword at a smithing table with a smithing template.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Drop chance:</strong> ~3%</li>
+</ul>
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Resin</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A brittle, mineralized resin found in the Weald, used to maintain Recovered Faded tools. Primarily obtained from sedgebrush harvesting.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Repair amount:</strong> 25 durability per use</li>
+    <li style="margin-bottom: 8px;">Consumed on use (not in Creative mode)</li>
+    <li style="margin-bottom: 0;">Only works on tools tagged as valid recovered/fade-immune targets</li>
+</ul>
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Compact Petrified Resin</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A denser processed form of Petrified Resin used for stronger maintenance.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Repair amount:</strong> 50 durability per use</li>
+    <li style="margin-bottom: 0;">Consumed on use (not in Creative mode)</li>
+</ul>
+
+  <!-- Crafting Box for Compact Petrified Resin -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Compact Petrified Resin Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_resin</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_resin</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">petrified_resin</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_resin</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_resin</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">petrified_resin</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: compact_resin_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
+
+<!-- ==========================================
+     MEMORY ITEMS
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Memory Items</h2>
+
+<h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Fragment</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A faint, unstable shard of fragmented memory harvested from Plaque Hearts in [[dimensions|The Loss dimension]]. The lowest memory tier and the base material for refinement.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Can convert faded food back into its normal form</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">One use per fragment</strong></li>
+</ul>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Distorted Memory Fragment</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A corrupted intermediate memory shard formed from concentrated faded memory. Used in higher-end recipes and represents memory that is still unstable but dense enough to process further.</p>
+
+  <!-- Crafting Box for Distorted Memory Fragment -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Distorted Memory Fragment Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: distorted_fragment_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Memory Fragment</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A stabilized high-tier memory crystal used to upgrade Faded tools into their Recovered variants. There are 3 crafting recipes:</p>
+<ol style="margin: 0 0 20px 0; padding-left: 18px; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">2 Distorted Memory Fragments + 1 Pale Remedy + 1 Heartwood Shard</li>
+    <li style="margin-bottom: 8px;">Memory Fragment + Glistering Melon Slice + Seep</li>
+    <li style="margin-bottom: 0;">Memory Fragment + Golden Apple + Seep</li>
+</ol>
+
+  <!-- Crafting Box for Recovered Memory Fragment -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Memory Fragment Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">distorted_memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">pale_remedy</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">distorted_memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">heartwood_shard</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">distorted_memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">pale_remedy</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">distorted_memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">heartwood_shard</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_fragment_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">golden_apple</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">golden_apple</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_fragment_recipe_2.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 3 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">memory_fragment</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">glistering_melon_slice</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">seep</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">memory_fragment</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">glistering_melon_slice</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">seep</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_fragment_recipe_3.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+<div style="background: #0c0909; border: 1px solid #201414; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; font-size: 0.9em; color: #9c9788; line-height: 1.6;">
+Hold in main hand, hold a faded food item in offhand, right-click to convert. Only 1 food item is converted per use, even if the offhand stack has multiple. Conversion costs 1 durability. <strong>Default uses:</strong> 3 per fragment.
+</div>
+
+<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
+
+<!-- ==========================================
+     WEAPONS
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Weapons</h2>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Sword</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Crafted from two Splinter Shards and a Rotten Stick.</p>
+<table class="article-table" style="width: 100%; max-width: 340px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">5–6</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">~175</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Special</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">1 in 2 chance: Wither I (6s)</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Rotten Sword -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Sword Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">splinter_shard</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_sword_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Heartwood Rotten Sword</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An upgraded form of the Rotten Sword, created by combining it with a Heartwood Shard at a smithing table. Retains the base Wither chance and adds a second random effect on hit.</p>
+<table class="article-table" style="width: 100%; max-width: 360px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">8</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">400</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #9c9788;">Effect 1 (1 in 4)</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Wither I - 7.5s</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #9c9788;">Effect 2 (2 in 4)</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Blindness I - 8.5s</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #9c9788;">Effect 3 (3 in 4)</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">Slowness II - 12.5s</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Effect 4 (4 in 4)</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">None</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Heartwood Rotten Sword -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Heartwood Rotten Sword Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        <div>Custom Recipe Type: minecraft:smithing_transform</div>
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">SMITHING TRANSFORM &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: heartwood_rotten_sword_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Sword</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A heavy blade forged from the ancient wood of the Weald. Its effects differ depending on whether the target is a player or a mob.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Crafted from:</strong> Petrified Rotten Sticks, Petrified Planks, Petrified Bark</li>
+</ul>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">9</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">2000</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Petrified Rotten Sword -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Sword Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:sharpened_splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">sharpened_splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:sharpened_splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">sharpened_splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_bark</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">sharpened_splinter_shard</strong></li><li style="margin-bottom: 4px;">c: <strong style="color: #c4bfa5;">petrified_rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_sword_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">vs. Players</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">3 in 5 chance to apply an effect:</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Effect</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Duration</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Weakness II</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">15 seconds</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Wither II</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">12.5 seconds</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Blindness I</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">4.5 seconds</td>
+    </tr>
+</table>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">vs. Mobs</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">3 in 5 chance to apply an effect:</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Effect</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Duration</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Weakness III</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">30 seconds</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Wither III</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">13.5 seconds</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Slowness II</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">9 seconds</td>
+    </tr>
+</table>
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Faded Sword</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The remains of a blade lost to the fading. A weapon of absolute last resort.</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">7</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Speed</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">2.4</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">48</td>
+    </tr>
+</table>
+
+<h3 style="color: #8c9cb3; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Sword</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Upgraded from the Faded Sword. Retains the same attack profile with improved durability.</p>
+<table class="article-table" style="width: 100%; max-width: 320px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">7</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Speed</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">2.4</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">80</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Recovered Faded Sword -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Sword Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">faded_sword</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">faded_sword</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_faded_sword_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
+
+<!-- ==========================================
+     TOOLS
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Tools</h2>
+
+<h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Tools</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A full set of tools crafted from Rotten Oak Planks and Rotten Sticks. Slightly weaker than iron in durability but functional. All are iron tier.</p>
+<table class="article-table" style="width: 100%; max-width: 340px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Tool</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 45%;">Notes</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Axe</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Pickaxe</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Shovel</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Rotten Hoe</td>
+        <td style="text-align: right; padding: 10px 14px; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+</table>
+
+<div style="border: 1px solid #201414; padding: 15px; background: #080808; margin-top: 15px;">
+  <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 12px; font-size: 0.95em; letter-spacing: 0.05em; text-transform: uppercase;">Rotten Tools Set Recipes</h4>
+  
+  <!-- Crafting Box for Rotten Axe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Axe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_axe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Pickaxe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Pickaxe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_pickaxe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Shovel -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Shovel Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_shovel_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Rotten Hoe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Rotten Hoe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_oak_planks"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_oak_planks</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_oak_planks</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rotten_hoe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<h3 style="color: #bfa87a; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Axe</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A rugged tool for harvesting the dense, calcified logs of the Weald.</p>
+<table class="article-table" style="width: 100%; max-width: 400px; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>
+        <th style="padding: 10px 14px; text-align: right; color: #8e8375; font-size: 0.85em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 55%;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Attack Damage</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">9.5</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">Durability</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788;">2077</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px 14px; color: #9c9788;">Crafted from</td>
+        <td style="text-align: right; padding: 10px 14px; color: #9c9788; font-size: 0.95em;">Petrified Rotten Sticks, Petrified Planks, Petrified Bark</td>
+    </tr>
+</table>
+
+  <!-- Crafting Box for Petrified Rotten Axe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Rotten Axe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:sharpened_splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">sharpened_splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:sharpened_splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">sharpened_splinter_shard</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:sharpened_splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">sharpened_splinter_shard</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:petrified_bark"><span style="font-size: 0.85em; color: #cfbfa8;">petrified_bark</span></td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">petrified_bark</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">sharpened_splinter_shard</strong></li><li style="margin-bottom: 4px;">c: <strong style="color: #c4bfa5;">rotten_stick</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: petrified_axe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #969ba0; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Faded Tools</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The result of item corruption - not crafted intentionally. Standard tools are transformed into these decaying variants when a Faded block enters the player's inventory or when the player is inside the [[dimensions|Loss dimension]].</p>
+<div style="overflow-x: auto; margin-top: 15px; margin-bottom: 25px;">
+<table class="article-table" style="width: 100%; border-collapse: collapse; background: #0c0c0c; border: 1px solid #1c1414; font-size: 0.85em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Tool</th>
+        <th style="padding: 12px; text-align: center; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Damage</th>
+        <th style="padding: 12px; text-align: center; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Speed</th>
+        <th style="padding: 12px; text-align: center; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Durability</th>
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Notes</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Axe</td>
+        <td style="text-align: center; color: #9c9788;">9</td>
+        <td style="text-align: center; color: #9c9788;">1.0</td>
+        <td style="text-align: center; color: #9c9788;">25</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">Sluggish and brittle</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Pickaxe</td>
+        <td style="text-align: center; color: #9c9788;">3</td>
+        <td style="text-align: center; color: #70685c; font-style: italic;"> - </td>
+        <td style="text-align: center; color: #9c9788;">25</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">Iron tier, Efficiency IV</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Shovel</td>
+        <td style="text-align: center; color: #9c9788;">3</td>
+        <td style="text-align: center; color: #9c9788;">1.0</td>
+        <td style="text-align: center; color: #9c9788;">25</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Faded Hoe</td>
+        <td style="text-align: center; color: #9c9788;">1</td>
+        <td style="text-align: center; color: #9c9788;">4.0</td>
+        <td style="text-align: center; color: #9c9788;">50</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;">Most durable of the set</td>
+    </tr>
+</table>
+</div>
+
+<h3 style="color: #4fc3f7; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Tools</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Upgraded forms of Faded tools, crafted by combining a Recovered Memory Fragment with the corresponding base Faded tool. Retain the same attack damage and core behavior but have improved durability and permanent self-repair behavior.</p>
+<div style="overflow-x: auto; margin-top: 15px; margin-bottom: 25px;">
+<table class="article-table" style="width: 100%; border-collapse: collapse; background: #0c0c0c; border: 1px solid #1c1414; font-size: 0.85em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Tool</th>
+        <th style="padding: 12px; text-align: center; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Durability</th>
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Special</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Axe</td>
+        <td style="text-align: center; color: #9c9788;">60</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Pickaxe</td>
+        <td style="text-align: center; color: #9c9788;">50</td>
+        <td style="padding: 12px; text-align: left; color: #9c9788; line-height: 1.5;">Temporary mining speed boost while mining Nullstone</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Shovel</td>
+        <td style="text-align: center; color: #9c9788;">45</td>
+        <td style="padding: 12px; text-align: left; color: #70685c; font-style: italic;"> - </td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; text-align: left; font-weight: 500; color: #c4bfa5;">Recovered Faded Hoe</td>
+        <td style="text-align: center; color: #9c9788;">50</td>
+        <td style="padding: 12px; text-align: left; color: #9c9788; line-height: 1.5;">Right-click Sedgebrush to instantly destroy it; <strong style="color: #c4bfa5;">6% chance</strong> to extract Petrified Resin</td>
+    </tr>
+</table>
+
+<div style="border: 1px solid #201414; padding: 15px; background: #080808; margin-top: 15px;">
+  <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 12px; font-size: 0.95em; letter-spacing: 0.05em; text-transform: uppercase;">Recovered Faded Tools Recipes</h4>
+  
+  <!-- Crafting Box for Recovered Faded Axe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Axe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">faded_axe</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">faded_axe</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_faded_axe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Recovered Faded Pickaxe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Pickaxe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">faded_pickaxe</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">faded_pickaxe</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_faded_pickaxe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Recovered Faded Shovel -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Shovel Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">faded_shovel</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">faded_shovel</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_faded_shovel_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+  
+  <!-- Crafting Box for Recovered Faded Hoe -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Recovered Faded Hoe Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">faded_hoe</div><div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">recovered_memory_fragment</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">faded_hoe</strong></li><li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">recovered_memory_fragment</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: recovered_faded_hoe_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+</div>
+
+<hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
+
+<!-- ==========================================
+     UTILITY
+     ========================================== -->
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 30px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Utility</h2>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Effigy</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A small handmade figure bound from rotting wood and dark roots. A dual-purpose artifact used for detection and traversal.</p>
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 15px 0 25px 0; border: 1px solid #1c1414; background: #0c0c0c; font-size: 0.9em;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; width: 25%;">Use</th>
+        <th style="padding: 12px; text-align: left; color: #8e8375; font-size: 0.85em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Effect</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 12px; font-weight: 500; color: #c4bfa5; vertical-align: top;">Right-click</td>
+        <td style="padding: 12px; color: #9c9788; line-height: 1.6;">Releases a scan pulse that highlights nearby entities in the <code style="color: #eaeaea; background: #120c0c; border: 1px solid #1c1414; padding: 2px 5px; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;">woodbound_entities</code> group (entities native to the mod) for a short duration, then enters cooldown</td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; font-weight: 500; color: #c4bfa5; vertical-align: top;">Shift + Right-click</td>
+        <td style="padding: 12px; color: #9c9788; line-height: 1.6;">Attempts dimensional transport - when used in [[dimensions|The Rotting dimension]], transfers the player to The Still after a brief darkness effect. Fails outside valid conditions and displays a warning</td>
+    </tr>
+</table>
+<p style="margin-bottom: 35px; font-size: 0.95em;">The Effigy is a high-risk utility tool: strong information gain and emergency mobility, balanced by cooldown and use cost.</p>
+
+  <!-- Crafting Box for Effigy -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Effigy Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:heartwood_shard"><span style="font-size: 0.85em; color: #cfbfa8;">heartwood_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:string"><span style="font-size: 0.85em; color: #cfbfa8;">string</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:string"><span style="font-size: 0.85em; color: #cfbfa8;">string</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_stick</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">heartwood_shard</strong></li><li style="margin-bottom: 4px;">c: <strong style="color: #c4bfa5;">string</strong></li><li style="margin-bottom: 4px;">d: <strong style="color: #c4bfa5;">splinter_shard</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rot_effigy_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+  <!-- Crafting Box for Effigy -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Effigy Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:heartwood_shard"><span style="font-size: 0.85em; color: #cfbfa8;">heartwood_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:string"><span style="font-size: 0.85em; color: #cfbfa8;">string</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:splinter_shard"><span style="font-size: 0.85em; color: #cfbfa8;">splinter_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="minecraft:string"><span style="font-size: 0.85em; color: #cfbfa8;">string</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rotten_stick"><span style="font-size: 0.85em; color: #cfbfa8;">rotten_stick</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">rotten_stick</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">heartwood_shard</strong></li><li style="margin-bottom: 4px;">c: <strong style="color: #c4bfa5;">string</strong></li><li style="margin-bottom: 4px;">d: <strong style="color: #c4bfa5;">splinter_shard</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: rot_effigy_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<!-- ==========================================
+     RESONANT ROT EFFIGY
+     ========================================== -->
+<h3 style="color: #bfa87a; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Resonant Rot Effigy</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An upgraded utility artifact focused on scouting and emergency traversal.</p>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Controls</h4>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Right-click (not crouching):</strong> Emits a scan pulse.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Hold crouch:</strong> The action bar shuffles between modes over time.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Right-click while crouching:</strong> Uses the currently displayed mode.</li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Modes</h4>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode: ATTUNED</strong>
+        <ul style="margin: 5px 0 0 0; padding-left: 18px; list-style-type: circle; color: #8c8779;">
+            <li>Teleport route: <strong style="color: #c4bfa5;">Rotting → The Still</strong></li>
+            <li>Works only when used in <strong style="color: #c4bfa5;">Rotting</strong>.</li>
+        </ul>
+    </li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Mode: FRACTURED</strong>
+        <ul style="margin: 5px 0 0 0; padding-left: 18px; list-style-type: circle; color: #8c8779;">
+            <li>Teleport route: <strong style="color: #c4bfa5;">Any non-Overworld dimension → Overworld</strong></li>
+            <li>Does not activate while already in the Overworld.</li>
+        </ul>
+    </li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Scan Pulse</h4>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Highlights nearby entities in <code style="color: #eaeaea; background: #120c0c; border: 1px solid #1c1414; padding: 2px 5px; font-size: 0.9em; font-family: ui-monospace, SFMono-Regular, SF Pro Mono, Menlo, Monaco, Consolas, monospace;">the_backwoods:woodbound_entities</code>.</li>
+    <li style="margin-bottom: 8px;">Stronger range and duration than the base Rot Effigy.</li>
+    <li style="margin-bottom: 0;">Intended as a high-value tracking and routing tool.</li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Cooldowns and Durability</h4>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Uses cooldown-based activation.</li>
+    <li style="margin-bottom: 8px;">Consumes durability on use.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Scan</strong> and <strong style="color: #c4bfa5;">Teleport</strong> consume different durability amounts.</li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Teleport Safety</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">After successful teleportation, the player receives a temporary <strong>Slow Falling</strong> effect to reduce high-altitude landing deaths.</p>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Design Role</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The Resonant Rot Effigy is a mid/late progression tool that improves survivability through:</p>
+<ul style="margin: 0 0 35px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;">Better threat detection</li>
+    <li style="margin-bottom: 8px;">Controlled dimensional repositioning</li>
+    <li style="margin-bottom: 0;">Safer post-teleport recovery</li>
+</ul>
+
+  <!-- Crafting Box for Resonant Rot Effigy -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Resonant Rot Effigy Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+      <tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:memory_shard"><span style="font-size: 0.85em; color: #cfbfa8;">memory_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:memory_shard"><span style="font-size: 0.85em; color: #cfbfa8;">memory_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:rot_effigy"><span style="font-size: 0.85em; color: #cfbfa8;">rot_effigy</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:memory_shard"><span style="font-size: 0.85em; color: #cfbfa8;">memory_shard</span></td></tr><tr style="border: none;"><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:memory_shard"><span style="font-size: 0.85em; color: #cfbfa8;">memory_shard</span></td><td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td></tr>
+    </table>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x1</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">memory_shard</strong></li><li style="margin-bottom: 4px;">b: <strong style="color: #c4bfa5;">rot_effigy</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: resonant_rot_effigy_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+<h3 style="color: #eaeaea; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Fractus Core Nugget</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A fragmented piece of plain white geometry broken down from a full Fractus Core. It retains a fraction of its parent block's anomalous spatial mass and volatile energy properties.</p>
+
+<div style="background: #09090c; border: 1px solid #141420; border-left: 2px solid #5d5d6a; padding: 15px; margin: 20px 0; color: #9c9788; font-size: 0.9em;">
+<ul style="margin: 0; padding-left: 18px; list-style-type: square; line-height: 1.7;">
+    <li style="margin-bottom: 8px;"><strong style="color: #eaeaea;">Obtaining:</strong> Crafted directly by breaking down a single <strong>Fractus Core</strong> block, which yields exactly <strong>9 Fractus Core Nuggets</strong>.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #eaeaea;">Fractional Mass:</strong> Carrying these fragments scales your physics independently from full cores. Each individual nugget residing in your inventory reduces movement speed by <strong>0.4%</strong> and increases falling gravity by <strong>+0.0018</strong> value points. <em>(Note: This weight effect stacks completely alongside full Fractus Cores!)</em></li>
+    <li style="margin-bottom: 0;"><strong style="color: #eaeaea;">Hyper-Dense Fuel:</strong> Despite its size, the nugget exhibits terrifyingly compressed fuel stability. When placed inside a furnace, a single nugget provides exactly <strong>111,111 ticks</strong> of smelting power - allowing it to continuously cook items for just over <strong>1.5 hours</strong> (92.59 minutes).</li>
+</ul>
+
+  <!-- Crafting Box for Fractus Core Nugget -->
+  <div style="margin-top: 15px; margin-bottom: 25px;">
+    <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Fractus Core Nugget Recipe</h4>
+    
+    <!-- Recipe 1 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">fractus_core</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x9</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">fractus_core</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: fractus_core_nugget_recipe.json</div>
+      </div>
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+      <!-- Left: Visual Grid -->
+      <div style="flex: 0 0 150px; text-align: center;">
+        
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 140px; margin: 0 auto; padding: 6px; border: 2px solid #3c1c17; background: #0c0a0a;">
+      <div style="padding: 4px; border: 1px solid #2d1814; background: #080808; border-radius: 2px; font-size: 0.85em; text-align: center; color: #cfbfa8; word-break: break-all;">fractus_prime_core</div>
+    </div>
+    <div style="text-align: center; font-size: 0.75em; color: #70685c; margin-top: 4px; font-style: italic;">Shapeless</div>
+    
+      </div>
+      
+      <!-- Right: Recipe Details -->
+      <div style="flex: 1; min-width: 200px;">
+        <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPELESS &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x18</span></div>
+        <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+          <li style="margin-bottom: 4px;"><strong style="color: #c4bfa5;">fractus_prime_core</strong></li>
+        </ul>
+        <div style="font-size: 0.75em; color: #5a5044; margin-top: 8px; font-family: monospace;">Source file: fractus_prime_core_nugget_recipe.json</div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+</div>

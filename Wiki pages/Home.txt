@@ -1,0 +1,57 @@
+<div class="backwoods-wiki-container" style="max-width: 1000px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #c4bfa5; background-color: #0b0b0b; padding: 30px; box-sizing: border-box; border: 1px solid #1a1515;">
+
+<!-- LOGO SECTION -->
+<div style="text-align: center; margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px solid #1f1a1a;">
+[[File:Backwoods logo.png|center|800px|link=]]
+</div>
+
+<!-- WELCOME INTRO -->
+<div style="background: #111; border: 1px solid #3c1414; padding: 25px; margin-bottom: 35px; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);">
+<p style="font-size: 1.1em; line-height: 1.8; margin: 0; color: #dcd6cd; text-align: justify;">
+'''Backwoods''' is a mod that adds new horror dimensions, hostile entities with unique behaviors, progression items, structures, and atmospheric blocks. It also introduces a mental degradation system that changes how you survive the longer you remain in the unknown.
+</p>
+<p style="font-size: 1.05em; line-height: 1.8; margin: 20px 0 0 0; color: #8e8375; font-style: italic; border-left: 2px solid #5c1414; padding-left: 18px; text-align: justify;">
+The mod aims to diversify and intensify survival through oppressive exploration, limited safety, and enemies that require awareness and timing rather than simple combat. With Backwoods, you will once again feel fear while traveling, looting, and descending into dark places, because danger is no longer just around you, it is watching you.
+</p>
+</div>
+
+<!-- THREE-COLUMN NAVIGATION GRID -->
+<div class="wiki-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 35px;">
+
+    <!-- CARD 1: GETTING STARTED -->
+    <div style="background: #111; border: 1px solid #222; border-top: 2px solid #7c1c1c; padding: 24px; box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #dcd6cd; font-size: 1.25em; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px;">Getting Started</h3>
+    <p style="font-size: 0.95em; line-height: 1.6; margin-bottom: 12px;">The Backwoods is entered by building a portal frame out of '''oak planks''' and activating it with '''Steel and Charcoal'''.</p>
+    <p style="font-size: 0.95em; line-height: 1.6; color: #8a8274; margin-bottom: 0; font-style: italic;">Upon entering, you will find yourself in a vast, yellow foggy land made of oak planks and oak logs.</p>
+    </div>
+
+    <!-- CARD 2: MECHANICS & HORROR -->
+    <div style="background: #111; border: 1px solid #222; border-top: 2px solid #7c1c1c; padding: 24px; box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #dcd6cd; font-size: 1.25em; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px;">Mental Degradation</h3>
+    <p style="font-size: 0.95em; line-height: 1.6; margin-bottom: 15px;">The longer you stay in the dark, the more your sanity slips. Learn how the fear mechanics affect your vision, hearing, and survival rates.</p>
+    <span style="font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase;">'''[[Sanity|Learn More →]]'''</span>
+    </div>
+
+    <!-- CARD 3: THE THREATS -->
+    <div style="background: #111; border: 1px solid #222; border-top: 2px solid #7c1c1c; padding: 24px; box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #dcd6cd; font-size: 1.25em; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px;">Hostile Entities</h3>
+    <p style="font-size: 0.95em; line-height: 1.6; margin-bottom: 15px;">They are watching. Study the unique behaviors, patrol patterns, and combat counters for the things that stalk the Backwoods.</p>
+    <span style="font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase;">'''[[Entities|View Bestiary →]]'''</span>
+    </div>
+
+</div>
+
+<!-- NOTICE ALERT BOX -->
+<div style="background: #111; border: 1px solid #222; border-left: 3px solid #7c1c1c; padding: 18px; margin-bottom: 40px; font-size: 0.95em; line-height: 1.6; color: #b2a89a;">
+'''Wiki Maintenance Note:''' The wiki is always updated before a new version releases.
+
+If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+</div>
+
+<!-- FOOTER -->
+<hr style="border: 0; border-top: 1px solid #222; margin-bottom: 20px;" />
+<div style="text-align: center; font-size: 0.8em; color: #70685c; font-weight: normal; letter-spacing: 0.1em; text-transform: uppercase;">
+Created by honeypie_3301 using MCreator.
+</div>
+
+</div>
