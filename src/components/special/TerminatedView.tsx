@@ -625,6 +625,17 @@ export default function TerminatedView() {
     }
   ];
 
+  // Preload all opponent images on mount to ensure instant seamless switching without network lag
+  useEffect(() => {
+    initialOpponents.forEach((op) => {
+      const img = new Image();
+      img.src = `${baseUrl}${op.image}`;
+    });
+    // Also preload the Rot sentinel image
+    const rotImg = new Image();
+    rotImg.src = `${baseUrl}TerminatedEntities/Rot.png`;
+  }, [baseUrl]);
+
   const selectedOpponent = initialOpponents.find(op => op.id === selectedOpponentId) || initialOpponents[0];
 
   // Filters
@@ -651,27 +662,30 @@ export default function TerminatedView() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [glitchActive, setGlitchActive] = useState(false);
 
-  // Helper function to update state synchronously, preventing banner flashing out of sync
-  const selectOpponent = (id: string) => {
+  // Synchronous batch-updated state-transition trigger to guarantee the banner is immediately hidden
+  // and glitching is started in the exact same render frame as the image/specimen change.
+  const handleSelectOpponent = (id: string) => {
     setSelectedOpponentId(id);
+    setIsTransitioning(true);
+    setGlitchActive(true);
     setShowTerminatedBanner(false);
   };
 
-  // Auto-cycling idle loop (cycles every 1.6 seconds as requested, 20% faster than 2s)
+  // Auto-cycling idle loop (cycles every 1.0 second: switch > 0.5s > terminated > 0.5s > switch)
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
       if (filteredOpponents.length > 0) {
         const currentIndex = filteredOpponents.findIndex(op => op.id === selectedOpponentId);
         const nextIndex = (currentIndex + 1) % filteredOpponents.length;
-        selectOpponent(filteredOpponents[nextIndex].id);
+        handleSelectOpponent(filteredOpponents[nextIndex].id);
       }
     }, 900);
 
     return () => clearInterval(interval);
   }, [selectedOpponentId, filteredOpponents, isPaused]);
 
-  // Transition & glitch triggers on selected specimen change, plus 0.8-second TERMINATED stamp delay (20% faster than 1s)
+  // Transition & glitch triggers on selected specimen change, plus 0.5-second TERMINATED stamp delay
   useEffect(() => {
     setIsTransitioning(true);
     setGlitchActive(true);
@@ -679,7 +693,7 @@ export default function TerminatedView() {
 
     const bannerTimeout = setTimeout(() => {
       setShowTerminatedBanner(true);
-    }, 628); // put the terminated stamp 0.8 seconds later (20% faster than 1 second)
+    }, 628); // put the terminated stamp 0.5 seconds later (switch > 0.5s > terminated)
 
     const fadeTimeout = setTimeout(() => {
       setIsTransitioning(false);
@@ -698,7 +712,7 @@ export default function TerminatedView() {
 
   useEffect(() => {
     if (filteredOpponents.length > 0 && !filteredOpponents.some(op => op.id === selectedOpponentId)) {
-      selectOpponent(filteredOpponents[0].id);
+      handleSelectOpponent(filteredOpponents[0].id);
     }
   }, [activeTab, activeModFilter, searchQuery]);
 
@@ -851,7 +865,7 @@ export default function TerminatedView() {
               {filteredOpponents.map(op => (
                 <button
                   key={op.id}
-                  onClick={() => selectOpponent(op.id)}
+                  onClick={() => handleSelectOpponent(op.id)}
                   className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all cursor-pointer flex items-center justify-between ${
                     selectedOpponentId === op.id
                       ? 'bg-[#cf1124]/10 border-[#cf1124]/40 text-[#cf1124] font-black shadow-[0_4px_12px_rgba(207,17,36,0.15)]'
@@ -1049,12 +1063,12 @@ export default function TerminatedView() {
                         }}
                       >
                         <span 
-                          className="text-white font-bold uppercase leading-none select-none text-center"
+                          className="text-white font-bold uppercase leading-none select-none text-center block w-full"
                           style={{ 
                             fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
                             fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
-                            letterSpacing: `${0.22 * scale}em`,
-                            marginRight: `-${0.22 * scale}em`
+                            letterSpacing: `${0.55 * scale}em`,
+                            paddingLeft: `${0.55 * scale}em`
                           }}
                         >
                           TERMINATED
