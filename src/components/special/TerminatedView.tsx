@@ -780,7 +780,7 @@ export default function TerminatedView() {
         const nextIndex = (currentIndex + 1) % filteredOpponents.length;
         handleSelectOpponent(filteredOpponents[nextIndex].id);
       }
-    }, 900);
+    }, 800);
 
     return () => clearInterval(interval);
   }, [selectedOpponentId, filteredOpponents, isPaused]);
