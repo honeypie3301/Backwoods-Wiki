@@ -78,7 +78,7 @@ export default function BlocksView() {
       burnTime: "270 ticks",
       description: "The spreading root-wood of the Scandere. This all-sided bark block acts as the roots of the tree, growing primarily underground to replace stone or dirt.",
       mechanics: [
-        "Spreading: Spreads tick by tick, replacing solid blocks in its path. Underground growth is favored heavily over surface growth. Spread speed is accelerated by nearby adult animals whose presence fertilizes the network.",
+        "Spreading: Spreads tick by tick, replacing solid blocks in its path. Underground growth is favored heavily over surface growth. Spread speed is accelerated by nearby adult animals whose presence fertilizes the network. The root network is constrained by a generation limit; roots age with each spread and will naturally halt after 10 blocks of outward growth, preventing infinite expansion.",
         "Vein-Shape Control: Employs a strict neighbor check. It will not spread to a block if it is already adjacent to 2 or more Scandere Lignum blocks, preventing blocky blobs and creating natural, thin vein paths.",
         "Infestation: Disturbed blocks carry a 10% chance to release a Lignum Vermis parasite upon destruction.",
         "Mining Threat: There is a rare 1% chance per tick while actively mining for the parasite to violently shatter the block early and erupt."
