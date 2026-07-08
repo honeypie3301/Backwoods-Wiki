@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Skull, Shield, Search, Terminal, Sliders, Crosshair, Cpu, Eye, EyeOff, Play, Pause } from 'lucide-react';
+import { Skull, Shield, Search, Terminal, Sliders, Crosshair, Cpu, Eye, EyeOff, Play, Pause, Info, X } from 'lucide-react';
 
 // Interface for Terminated Opponent
 interface Opponent {
@@ -20,6 +20,7 @@ export default function TerminatedView() {
   const [activeModFilter, setActiveModFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showRegistry, setShowRegistry] = useState<boolean>(false);
+  const [showThreatScale, setShowThreatScale] = useState<boolean>(false);
   const [showTerminatedBanner, setShowTerminatedBanner] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -54,7 +55,7 @@ export default function TerminatedView() {
       name: 'The Warden',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Warden.webp',
-      threatLevel: 9.9,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 09',
       isTerminated: true,
       notes: 'Engaged in deep understory. Target sonic shriek adapted. Rot deployed Sonic Boom Resonance to bypass Warden\'s natural armor, finishing with Minos Protocol floor slams.'
@@ -64,7 +65,7 @@ export default function TerminatedView() {
       name: 'Ender Dragon',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Ender_Dragon.webp',
-      threatLevel: 9.7,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 01',
       isTerminated: true,
       notes: 'Apex End organism. Rot adapted Dimensional Spacing (Blink) to match target flying maneuvers, teleporting behind its blind spot and executing Cryo-Thermal Synthesis.'
@@ -74,7 +75,7 @@ export default function TerminatedView() {
       name: 'Elder Guardian',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Elder_Guardian.webp',
-      threatLevel: 8.5,
+      threatLevel: 6.5,
       terminationCycle: 'CYCLE 03',
       isTerminated: true,
       notes: 'Ocean monument infiltration. Target fatigue field resisted with Adaptive Health Regeneration. Rot broke retractable spikes via Minos Protocol shield-breaking punches.'
@@ -84,7 +85,7 @@ export default function TerminatedView() {
       name: 'Blaze Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Blaze.webp',
-      threatLevel: 5.8,
+      threatLevel: 4.5,
       terminationCycle: 'CYCLE 14',
       isTerminated: true,
       notes: 'Nether fortress battery. Rot siphoned local fire damage to fuel Thermal Synthesis, returning high-impact Cryo Beams that instantly shattered the target\'s core.'
@@ -94,7 +95,7 @@ export default function TerminatedView() {
       name: 'Creeper Unit',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Creeper_JE2_BE1.webp',
-      threatLevel: 4.8,
+      threatLevel: 3.5,
       terminationCycle: 'CYCLE 22',
       isTerminated: true,
       notes: 'Stealth ambush intercepted. Target fusion fuse bypassed using 18-tick Dimensional Spacing (Blink) to teleport behind the unit, followed by a launching kick.'
@@ -104,7 +105,7 @@ export default function TerminatedView() {
       name: 'Ghast Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Ghast_JE2_BE2.webp',
-      threatLevel: 5.5,
+      threatLevel: 4.8,
       terminationCycle: 'CYCLE 11',
       isTerminated: true,
       notes: 'Nether airspace. Fireball artillery reflected using Dimensional Spacing (Blink) positioning, combined with Solar Beams to melt target\'s aerial tissues.'
@@ -114,7 +115,7 @@ export default function TerminatedView() {
       name: 'Husk Vanguard',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Husk_JE2_BE2.webp',
-      threatLevel: 2.8,
+      threatLevel: 2.5,
       terminationCycle: 'CYCLE 31',
       isTerminated: true,
       notes: 'Terrestrial desert variant. Target hunger toxins ignored. Rot executed a series of Minos Protocol martial strikes, culminating in a high-velocity rider kick.'
@@ -124,7 +125,7 @@ export default function TerminatedView() {
       name: 'Iron Golem Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Iron_Golem_JE2_BE2.webp',
-      threatLevel: 6.8,
+      threatLevel: 6.2,
       terminationCycle: 'CYCLE 05',
       isTerminated: true,
       notes: 'Heavy alloy autonomous guard. Rot triggered Adaptive Health Regeneration to absorb throw impact, delivering Minos Protocol shield-breakers to dismantle the chassis.'
@@ -137,7 +138,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Alpha_Yeti.png',
-      threatLevel: 8.0,
+      threatLevel: 7.2,
       terminationCycle: 'CYCLE 08',
       isTerminated: true,
       notes: 'Yeti pack leader. Frost aura neutralized. Rot initiated Thermal Synthesis, deploying continuous Solar Beams to bypass freeze resistance and melt target\'s core.'
@@ -148,7 +149,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Hydra.webp',
-      threatLevel: 9.2,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 02',
       isTerminated: true,
       notes: 'Lethal multi-headed beast. Battle of attrition. Cooldown cycles compressed dynamically from 160 to 20 ticks. Multi-heads launched skyward and spiked with Minos combos.'
@@ -159,7 +160,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Minoshroom.webp',
-      threatLevel: 7.8,
+      threatLevel: 6.8,
       terminationCycle: 'CYCLE 10',
       isTerminated: true,
       notes: 'Labyrinth guardian. Maze traps bypassed via active spatial radar. Rot cornered specimen and executed martial combat combos, breaking its charge defense.'
@@ -170,7 +171,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Naga.webp',
-      threatLevel: 7.0,
+      threatLevel: 6.5,
       terminationCycle: 'CYCLE 06',
       isTerminated: true,
       notes: 'High-speed courtyard serpent. Coiling trajectory predicted. Rot blinked directly to its skull using Dimensional Spacing, shattering links with a diving kick.'
@@ -181,7 +182,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/SnowQueen.webp',
-      threatLevel: 8.8,
+      threatLevel: 7.5,
       terminationCycle: 'CYCLE 12',
       isTerminated: true,
       notes: 'Glacier ruler. Shield orbit bypassed. Thermal Synthesis Solar Beams deployed to melt cryo defenses, followed by a launching floor slam and kinetic spike.'
@@ -192,7 +193,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Twilight Forest',
       image: 'TerminatedEntities/Modded/Twilight Forest/Ur-Ghast.png',
-      threatLevel: 9.5,
+      threatLevel: 8.2,
       terminationCycle: 'CYCLE 07',
       isTerminated: true,
       notes: 'Dark tower sovereign. Rot scaled the tower using Dimensional Spacing (Blink). Adapted sonic energy to trigger devastating Sonic Boom Resonance to overload its core.'
@@ -205,7 +206,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/Ignis.png",
-      threatLevel: 10.0,
+      threatLevel: 9.4,
       terminationCycle: 'CYCLE 01',
       isTerminated: true,
       notes: 'The Nether sovereign, strongest creature in the Burning Arena. Grounded its blazing greatsword sweeps using Adaptive Health Regeneration. Rot siphoned target shields and crushed its inner nether star core using heavy Minos martial combos.'
@@ -216,7 +217,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/leviathan.webp",
-      threatLevel: 9.8,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 03',
       isTerminated: true,
       notes: 'Prehistoric subaquatic terror found in the Sunken City. Swirled water vortex currents and tail sweeps frozen solid using Thermal Synthesis Cryo Beams, followed by a heavy floor slam to spike target onto subaquatic reefs.'
@@ -227,7 +228,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/ancientremnant.webp",
-      threatLevel: 9.6,
+      threatLevel: 9.0,
       terminationCycle: 'CYCLE 17',
       isTerminated: true,
       notes: 'Ancient desert fossil titan guarding the Cursed Pyramid. Severe quicksand hazards and rock debris storm countered with 18-tick Dimensional Spacing (Blink). Rot shattered its mechanical core using Minos shield-breaking combos.'
@@ -238,7 +239,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/harbinger.webp",
-      threatLevel: 9.5,
+      threatLevel: 9.3,
       terminationCycle: 'CYCLE 02',
       isTerminated: true,
       notes: 'Advanced military machine found inside the Ancient Factory. Homing rocket barrages and laser sweeps resisted with Adaptive Regeneration. Rot bypassed laser shield using simulated Sonic Boom Resonance to trigger interior circuit meltdown.'
@@ -249,7 +250,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/enderguardian.webp",
-      threatLevel: 9.3,
+      threatLevel: 9.1,
       terminationCycle: 'CYCLE 04',
       isTerminated: true,
       notes: 'Ancient End titan guarding the Ruined Citadel. Heavy teleport slams and gravity lifts countered with 18-tick Dimensional Spacing (Blink). Target structural purpur armor melted using Thermal Synthesis Solar Beams.'
@@ -260,7 +261,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/netheritemonstrosity.webp",
-      threatLevel: 9.1,
+      threatLevel: 9.3,
       terminationCycle: 'CYCLE 05',
       isTerminated: true,
       notes: 'Heavily forged tank from the Soul Forge. Lava fissure hazards neutralized via Thermal Synthesis heat absorption. Heavy netherite plating shattered using Minos Protocol shield-shattering punches.'
@@ -271,7 +272,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/coralssus.webp",
-      threatLevel: 8.7,
+      threatLevel: 7.8,
       terminationCycle: 'CYCLE 19',
       isTerminated: true,
       notes: 'Giant deep-sea entity. Long battle. Rot compressed cooldown cycles from 160 down to 20 ticks, deploying high-energy Solar Beams to melt its limestone chassis.'
@@ -282,7 +283,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/aptrangr.webp",
-      threatLevel: 8.3,
+      threatLevel: 7.5,
       terminationCycle: 'CYCLE 33',
       isTerminated: true,
       notes: 'Frosted Prison warden. Heavy sweeping axe strikes resisted with Adaptive Health Regeneration. Rot disarmed specimen via Minos Protocol martial combos, shattering its frosted chainmail with a shield-breaking kick.'
@@ -293,7 +294,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/skilla.webp",
-      threatLevel: 8.2,
+      threatLevel: 7.4,
       terminationCycle: 'CYCLE 34',
       isTerminated: true,
       notes: 'Subaquatic coral-beast. Whirlpool vortices and bone-crushing jaws evaded with 18-tick Dimensional Spacing. Frozen in place with Cryo-Thermal Synthesis, followed by a launching slam.'
@@ -304,7 +305,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/coralgolem.png",
-      threatLevel: 8.0,
+      threatLevel: 7.0,
       terminationCycle: 'CYCLE 20',
       isTerminated: true,
       notes: 'Plaza sentinel. Bypassed hydraulic claw smash by deploying the Minos Protocol, shattering its reef armor shield with a shield-breaking punch.'
@@ -315,7 +316,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/theprowler.png",
-      threatLevel: 7.8,
+      threatLevel: 6.8,
       terminationCycle: 'CYCLE 13',
       isTerminated: true,
       notes: 'Stealth ambush predator. Camouflage penetrated via active scanning sensors. Intercepted pounce with Dimensional Spacing, executing an instant floor slam.'
@@ -326,7 +327,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/amethystcrab.webp",
-      threatLevel: 7.5,
+      threatLevel: 5.5,
       terminationCycle: 'CYCLE 35',
       isTerminated: true,
       notes: 'Crystalline reef mini-boss. High-defense shell and crystal spike bursts. Rot shattered shell defense using Minos shield-breaking punches, finishing with a precise Thermal solar beam.'
@@ -337,7 +338,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/clawdian.webp",
-      threatLevel: 7.5,
+      threatLevel: 5.5,
       terminationCycle: 'CYCLE 18',
       isTerminated: true,
       notes: 'Deep sea reef entity. Bypassed locking pincher claws using 18-tick Dimensional Spacing (Blink), followed by Cryo Beams to freeze and fracture its outer shell.'
@@ -348,7 +349,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/wadjet.png",
-      threatLevel: 7.2,
+      threatLevel: 6.5,
       terminationCycle: 'CYCLE 21',
       isTerminated: true,
       notes: 'Arid ruins burrower. Predicted sand burrow trajectory using active scanning. Struck specimen with Minos shield-breaking punches and a continuous Solar Beam.'
@@ -359,7 +360,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/difflybrute.webp",
-      threatLevel: 6.8,
+      threatLevel: 5.0,
       terminationCycle: 'CYCLE 36',
       isTerminated: true,
       notes: 'Sunken City elite vanguard. Heavy coral-club swings. Predicted attack trajectories via active scanning, executing high-velocity martial combos to fracture its armor.'
@@ -370,7 +371,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/deeplingpriest.webp",
-      threatLevel: 6.5,
+      threatLevel: 4.8,
       terminationCycle: 'CYCLE 37',
       isTerminated: true,
       notes: 'Abyssal tide-summoner. Water pulse bombardment countered by blinking behind the caster, disrupting spells with the Minos Protocol.'
@@ -381,7 +382,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/deeplingangler.webp",
-      threatLevel: 5.8,
+      threatLevel: 4.5,
       terminationCycle: 'CYCLE 38',
       isTerminated: true,
       notes: 'Abyssal pack predator. Luminous lure blinds bypassed via active thermal radar. Dispatched instantly using a high-velocity martial punch.'
@@ -392,7 +393,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "L_Ender's Cataclysm",
       image: "TerminatedEntities/Modded/L_Ender's Cataclysm/hippocamtus.webp",
-      threatLevel: 5.2,
+      threatLevel: 4.2,
       terminationCycle: 'CYCLE 39',
       isTerminated: true,
       notes: 'Saddled sea stallion. Intercepted high-speed aquatic charges with precise active radar, putting down specimen via martial sweeps.'
@@ -405,7 +406,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Bosses of Mass Destruction',
       image: 'TerminatedEntities/Modded/Bosses of Mass Destruction/Lich.webp',
-      threatLevel: 7.6,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 41',
       isTerminated: true,
       notes: 'Skeletal necromancer found floating in frozen towers. Shield defense and cold soul-star arrays siphoned using Thermal Synthesis. Bypassed undead minion swarm and shattered core using rapid Minos combos.'
@@ -416,7 +417,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Bosses of Mass Destruction',
       image: 'TerminatedEntities/Modded/Bosses of Mass Destruction/VoidBlossom-956x1024.webp',
-      threatLevel: 8.2,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 42',
       isTerminated: true,
       notes: 'Deep subterranean carnivorous titan guarding Void Caves. Sweeping petal storm and void poison spores dodged with 18-tick Dimensional Spacing. Bypassed rotating death ray via Blink, melting outer stem with Solar Beams.'
@@ -429,7 +430,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "Bosses' Rise",
       image: "TerminatedEntities/Modded/Bosses'Rise/Ashlord.png",
-      threatLevel: 9.8,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 25',
       isTerminated: true,
       notes: 'The Infernal Dragon, final sovereign of Bosses\' Rise. Spawns in volcanic Nether structures. Massive fire breath, bites, and heavy stomps siphoned with Thermal Synthesis. During Phase 2 shedding phase, Rot delivered continuous rapid Minos combos.'
@@ -440,7 +441,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "Bosses' Rise",
       image: "TerminatedEntities/Modded/Bosses'Rise/Helvar.png",
-      threatLevel: 9.5,
+      threatLevel: 9.0,
       terminationCycle: 'CYCLE 26',
       isTerminated: true,
       notes: 'The Underworld Knight, heavily armored boss in the Nether Knight Fortress. Slash combos and aerial slams blocked with defensive shielding. Rot triggered its vulnerable phase with a Sonic Boom shield-break, ending with the Minos Protocol.'
@@ -451,7 +452,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "Bosses' Rise",
       image: "TerminatedEntities/Modded/Bosses'Rise/nerakyss.png",
-      threatLevel: 9.2,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 27',
       isTerminated: true,
       notes: 'Abyssal Lord of the Deep added in update 2.1.0. Launched sweeping trident thrusts and crushing undying tentacle slams. Rot used 18-tick Dimensional Spacing (Blink) to evade whirlpool vortices, releasing continuous Cryo-Thermal beams.'
@@ -462,7 +463,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "Bosses' Rise",
       image: "TerminatedEntities/Modded/Bosses'Rise/Skor.png",
-      threatLevel: 8.9,
+      threatLevel: 7.8,
       terminationCycle: 'CYCLE 24',
       isTerminated: true,
       notes: 'Glacier Yeti from the cold biomes. Enraged fist swings, ground slams, and leap slams withstood via Adaptive Health Regeneration. Rot deployed Thermal Beams to melt frozen shield armor and shattered target with high-velocity shockwaves.'
@@ -473,7 +474,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: "Bosses' Rise",
       image: "TerminatedEntities/Modded/Bosses'Rise/Sirok.png",
-      threatLevel: 8.6,
+      threatLevel: 7.6,
       terminationCycle: 'CYCLE 23',
       isTerminated: true,
       notes: 'Monstrous Sand Worm found in the desert. Ground burst charges and acid spits evaded with active radar tracking. Rot timed 18-tick Dimensional Spacing (Blink) to teleport directly inside target\'s charging trajectory, detonating inner core.'
@@ -486,7 +487,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/goblinlord.png',
-      threatLevel: 6.2,
+      threatLevel: 5.5,
       terminationCycle: 'CYCLE 45',
       isTerminated: true,
       notes: 'Early-stage tribal sovereign. Deployed swarms of goblin skirmishers. Predicted and parried its chaotic blade-dance utilizing active scanning, executing an instant floor slam to shatter its defenses.'
@@ -497,7 +498,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/elvenitepaladin.png',
-      threatLevel: 7.3,
+      threatLevel: 7.0,
       terminationCycle: 'CYCLE 46',
       isTerminated: true,
       notes: 'Holy knight sentinel clad in polished Elvenite. Erected radiant barrier shields while executing sweeping lance combos. Shattered its light-infused defense with a Sonic Boom shield-break, bypassing holy healing spells.'
@@ -508,7 +509,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/ironcolossus.png',
-      threatLevel: 8.0,
+      threatLevel: 7.8,
       terminationCycle: 'CYCLE 47',
       isTerminated: true,
       notes: 'Super-heavy steam-powered construct. Its crushing seismic slams and heavy iron fists were absorbed with Adaptive Health Regeneration. Shattered its thick casing using consecutive Minos shield-breaking punches.'
@@ -519,7 +520,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/thefamine.png',
-      threatLevel: 8.6,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 48',
       isTerminated: true,
       notes: 'Harbinger of Rot and decay. Emanated aura of hunger and wither-spores that degraded kinetic shielding. Countered health-siphoning fields with 18-tick Dimensional Spacing (Blink), executing rapid Minos combos.'
@@ -530,7 +531,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/sanghor.png',
-      threatLevel: 8.8,
+      threatLevel: 8.6,
       terminationCycle: 'CYCLE 49',
       isTerminated: true,
       notes: 'Cursed Crimson Count of the Blood Spires. Regenerated physical damage by siphoning biological fluid. Rot deployed continuous Cryo Beams to freeze its blood-siphoning vents, shattering its form via high-velocity shockwaves.'
@@ -541,7 +542,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/nyxaris.png',
-      threatLevel: 9.0,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 50',
       isTerminated: true,
       notes: 'Abyssal shadow sovereign. Manipulated local gravity and fired concentrated void-energy beams from dark portals. Trailed its teleportation coordinates using active thermal radar, neutralizing core with Solar Beams.'
@@ -552,7 +553,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/arion.png',
-      threatLevel: 9.2,
+      threatLevel: 9.0,
       terminationCycle: 'CYCLE 51',
       isTerminated: true,
       notes: 'God of the Gales, floating within floating sky islands. Unleashed violent localized tornadoes and storm-strike lightning. Evaded rapid wind slices using 18-tick Dimensional Spacing (Blink) and brought down target with Cryo-Thermal Beams.'
@@ -563,7 +564,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/vaedric.png',
-      threatLevel: 9.4,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 52',
       isTerminated: true,
       notes: 'Ancient sovereign of the Undying Kingdom. Wields a colossal runeblade infused with soul-reaping magic. Evaded sweeping sword-waves and dark magic projectiles via active scanning, ending its reign with the Minos Protocol.'
@@ -574,7 +575,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/bringerofdoom.png',
-      threatLevel: 9.5,
+      threatLevel: 9.3,
       terminationCycle: 'CYCLE 53',
       isTerminated: true,
       notes: 'Apocalyptic skeleton titan. Unleashed massive sweeping scythe strikes that shattered active shielding. Anticipated gravity slams and firestorms with 18-tick Dimensional Spacing, delivering rapid Minos combos.'
@@ -585,7 +586,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/thechaos.png',
-      threatLevel: 9.6,
+      threatLevel: 9.4,
       terminationCycle: 'CYCLE 54',
       isTerminated: true,
       notes: 'Reality-bending shadow horror. Distorted physical boundaries, casting swirling reality-breaching fields and chaos projectiles. Bypassed unpredictable trajectory shifts by overclocking active radar, neutralizing core.'
@@ -596,7 +597,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/zoranth.png',
-      threatLevel: 9.7,
+      threatLevel: 9.5,
       terminationCycle: 'CYCLE 55',
       isTerminated: true,
       notes: 'Celestial demigod of the Zenith. Commands solar firestorms and high-intensity shooting star showers. Absorbed direct starfalls using Thermal Synthesis, executing consecutive high-velocity martial sweeps to crack its divine armor.'
@@ -607,7 +608,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/fourthcalamity.png',
-      threatLevel: 9.8,
+      threatLevel: 9.7,
       terminationCycle: 'CYCLE 56',
       isTerminated: true,
       notes: 'Unstoppable apocalyptic colossus. Unleashed barrage of charged plasma beams, high-explosive missiles, and electromagnetic pulses. Penetrated defensive shields using overcharged Thermal Beams to melt its primary shell.'
@@ -618,7 +619,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Armageddon',
       image: 'TerminatedEntities/Modded/Armageddon/zoranthnewbornofthezenith.png',
-      threatLevel: 9.9,
+      threatLevel: 9.8,
       terminationCycle: 'CYCLE 57',
       isTerminated: true,
       notes: 'Reborn celestial titan, absolute final sovereign of Armageddon. Generates cascading black hole gravity wells and supernova bursts. Evaded screen-clearing galaxy pulses with 18-tick Dimensional Spacing, delivering the ultimate Minos Protocol.'
@@ -630,7 +631,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/sieger.png',
-      threatLevel: 9.1,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 60',
       isTerminated: true,
       notes: 'The baseline commander. Strong melee, ranged tumors, block destruction, Spore Bursts, buffs allies, and has a removable tail weak point. A formidable all-round threat. Rot severed tail weak point via Dimensional Spacing, then executed Minos Protocol combat loops.'
@@ -641,7 +642,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/howitzer.png',
-      threatLevel: 9.4,
+      threatLevel: 8.6,
       terminationCycle: 'CYCLE 61',
       isTerminated: true,
       notes: 'Long-range artillery platform. Bombarded from 64 blocks with homing Flesh Bombs, ignited terrain, and spread corrosion. Rot bypassed the battlefield-denial zone using overcharged 18-tick Blinks, destroying the platform core with Cryo-Thermal Beams.'
@@ -652,7 +653,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/stalhmorder.png',
-      threatLevel: 9.2,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 62',
       isTerminated: true,
       notes: 'Extremely dangerous close-range hunter. Features corrosive attacks, powerful leaps, climbing, armor scaling, and block breaking. Rot predicted its lethal crowd-control leaps with active scanning, delivering a high-velocity shield-breaker kick to shatter its scaled shell.'
@@ -663,7 +664,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hohlfresser.png',
-      threatLevel: 9.5,
+      threatLevel: 9.0,
       terminationCycle: 'CYCLE 63',
       isTerminated: true,
       notes: 'The subterranean Calamity with high underground mobility and ambush potential. Hard to contain. Rot deployed active subsurface seismic radar to detect underground burrowing vectors, intercepting the ambush with Sonic Boom resonance to collapse its tunnel.'
@@ -674,7 +675,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/gazenbreacher.png',
-      threatLevel: 9.2,
+      threatLevel: 9.1,
       terminationCycle: 'CYCLE 64',
       isTerminated: true,
       notes: 'Extremely fast aquatic predator with melee and ranged bile attacks. Highly dominant in water. Rot dragged the specimen onto land using spatial redirection, neutralizing its high speed and terminating it with consecutive martial strikes.'
@@ -685,7 +686,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/grakensenker.png',
-      threatLevel: 9.5,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 65',
       isTerminated: true,
       notes: 'Highly dangerous aquatic predator utilizing independent grappling tentacles to seize and drag targets. Rot resisted the drag forces using Adaptive Health Regeneration, freezing its tentacles with Cryo Beams and shattering the central mantle.'
@@ -696,7 +697,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/leviathan.png',
-      threatLevel: 9.9,
+      threatLevel: 9.5,
       terminationCycle: 'CYCLE 66',
       isTerminated: true,
       notes: 'The apex Water Calamity. Features 450 HP, 25 armor, segmented body, camouflage, and commander abilities. Rot counteracted acid bombardment and flesh bombs using overcharged Thermal siphons, slicing through its segmented carapace using high-energy Solar Beams.'
@@ -707,7 +708,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hindenburg.png',
-      threatLevel: 9.7,
+      threatLevel: 9.6,
       terminationCycle: 'CYCLE 67',
       isTerminated: true,
       notes: 'Exceptional aerial siege platform with constant flight, explosive tumor volleys, and blast-strength 16 Tumoroid Nukes. Rot matched flight maneuvers with aerial blinking, detonating its internal nuke payload early using a focused Cryo-Thermal beam.'
@@ -718,7 +719,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/verfalldrache.png',
-      threatLevel: 10.0,
+      threatLevel: 9.8,
       terminationCycle: 'CYCLE 68',
       isTerminated: true,
       notes: 'The ultimate Air Calamity and pinnacle encounter. Combines aerial superiority with the full Calamity toolkit. Rot engaged in a massive high-altitude battle, overclocking all subsystems to execute an absolute Minos Protocol strike, shattering its wings.'
@@ -734,7 +735,54 @@ export default function TerminatedView() {
     // Also preload the Rot sentinel image
     const rotImg = new Image();
     rotImg.src = getAbsoluteAssetUrl('TerminatedEntities/Rot.png');
-  }, []);
+  },
+
+    // --- MODDED: Mowzie's Mobs ---
+    {
+      id: 'mowzies_frostmaw',
+      name: 'Frostmaw',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/frostmaw.webp",
+      threatLevel: 7.8,
+      terminationCycle: 'CYCLE 69',
+      isTerminated: true,
+      notes: 'Massive frozen beast native to icy biomes. Defended against its freezing breath using Thermal Synthesis. Rot broke its defensive guard and crushed its skull with a Minos Protocol overhead slam.'
+    },
+    {
+      id: 'mowzies_wroughtnaut',
+      name: 'Ferrous Wroughtnaut',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/ferrouswroughtnaut.webp",
+      threatLevel: 6.8,
+      terminationCycle: 'CYCLE 70',
+      isTerminated: true,
+      notes: 'Indestructible suit of armor guarding subterranean chambers. Frontal immunity bypassed entirely using Dimensional Spacing (Blink). Rot struck its weak point in the back with a high-velocity shield-breaking kick.'
+    },
+    {
+      id: 'mowzies_umvuthi',
+      name: 'Umvuthi',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/umvuthi.webp",
+      threatLevel: 8.5,
+      terminationCycle: 'CYCLE 71',
+      isTerminated: true,
+      notes: 'The Sun Chief, wielding solar magic. Absorbed its sun strikes utilizing Thermal Synthesis. Rot cleared its followers with a localized Sonic Boom, finishing the chief with its own deflected solar energy.'
+    },
+    {
+      id: 'mowzies_naga',
+      name: 'Naga (Mowzie)',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/naga.webp",
+      threatLevel: 4.8,
+      terminationCycle: 'CYCLE 72',
+      isTerminated: true,
+      notes: 'Swift coastal flying serpent. Acidic poison spits resisted via Adaptive Health Regeneration. Intercepted its diving attack using telekinesis, slamming it onto the rocky coast.'
+    },
+ []);
 
   const selectedOpponent = initialOpponents.find(op => op.id === selectedOpponentId) || initialOpponents[0];
 
@@ -848,6 +896,13 @@ export default function TerminatedView() {
               100% TERMINATED
             </span>
           </div>
+          <button 
+            onClick={() => setShowThreatScale(true)}
+            className="bg-[#12141c] border border-[#546e7a]/30 px-3 py-2 rounded-lg flex items-center gap-2 text-[#546e7a] hover:text-[#cfd8dc] hover:border-[#cfd8dc]/50 transition-all cursor-pointer"
+          >
+            <Info className="w-4 h-4" />
+            <span className="font-bold">THREAT SCALE</span>
+          </button>
         </div>
       </div>
 
@@ -897,7 +952,7 @@ export default function TerminatedView() {
                 { id: 'Bosses of Mass Destruction', label: 'BOMD' },
                 { id: "Bosses' Rise", label: "BOSSES' RISE" },
                 { id: 'Armageddon', label: 'ARMAGEDDON' },
-                { id: 'Fungal Infection: Spore', label: 'SPORE' }
+                { id: 'Fungal Infection: Spore', label: 'SPORE' }, { id: "Mowzie's Mobs", label: "MOWZIE'S" }
               ].map(mod => (
                 <button
                   key={mod.id}
@@ -1321,6 +1376,67 @@ export default function TerminatedView() {
         </div>
 
       </div>
+
+      {/* Threat Scale Modal */}
+      {showThreatScale && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="bg-[#0c0d10] border border-[#ff3b30]/30 shadow-[0_0_40px_rgba(255,59,48,0.2)] rounded-2xl p-6 max-w-2xl w-full relative animate-in fade-in zoom-in duration-200">
+            <button 
+              onClick={() => setShowThreatScale(false)}
+              className="absolute top-4 right-4 text-[#546e7a] hover:text-[#ff3b30] transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="flex items-center gap-3 mb-6 border-b border-[#232730] pb-4">
+              <div className="p-2 bg-[#ff3b30]/10 rounded border border-[#ff3b30]/20">
+                <Shield className="w-6 h-6 text-[#ff4f44]" />
+              </div>
+              <div>
+                <h2 className="text-xl font-black tracking-widest text-[#eceff1] uppercase">THREAT LEVEL CLASSIFICATION</h2>
+                <p className="text-xs text-[#546e7a] uppercase mt-1">BASED ON ROT'S TERMINATION DIFFICULTY</p>
+              </div>
+            </div>
+
+            <div className="space-y-4 text-sm text-[#b0bec5]">
+              <p className="leading-relaxed border-l-2 border-[#546e7a] pl-4">
+                Threat Level is <strong className="text-white">NOT</strong> based on standard combat difficulty for a human survivor. Instead, it represents how difficult it would be for the <strong className="text-red-400">Rot</strong> to terminate the entity. Higher numbers mean the entity requires greater effort, rapid adaptation, or complex maneuvers for the Rot to eliminate.
+              </p>
+
+              <div className="grid grid-cols-1 gap-2 mt-4 bg-[#13161f] p-4 rounded-xl border border-[#1f2330]">
+                <div className="flex gap-4 p-2 hover:bg-[#1a1e29] rounded transition-colors">
+                  <span className="w-16 font-bold text-green-400">0.0–2.0</span>
+                  <span>Easily terminated wildlife and passive creatures.</span>
+                </div>
+                <div className="flex gap-4 p-2 hover:bg-[#1a1e29] rounded transition-colors">
+                  <span className="w-16 font-bold text-green-400">2.1–4.0</span>
+                  <span>Common hostile mobs.</span>
+                </div>
+                <div className="flex gap-4 p-2 hover:bg-[#1a1e29] rounded transition-colors">
+                  <span className="w-16 font-bold text-yellow-400">4.1–6.0</span>
+                  <span>Elite creatures and powerful monsters.</span>
+                </div>
+                <div className="flex gap-4 p-2 hover:bg-[#1a1e29] rounded transition-colors">
+                  <span className="w-16 font-bold text-orange-400">6.1–8.0</span>
+                  <span>Major threats capable of destroying settlements or defeating most creatures.</span>
+                </div>
+                <div className="flex gap-4 p-2 hover:bg-[#1a1e29] rounded transition-colors">
+                  <span className="w-16 font-bold text-red-400">8.1–9.4</span>
+                  <span>Legendary entities that require significant effort from the Rot.</span>
+                </div>
+                <div className="flex gap-4 p-2 bg-red-950/20 border border-red-900/30 rounded transition-colors">
+                  <span className="w-16 font-black text-red-500">9.5–9.9</span>
+                  <span>Exceptional beings that push the Rot to its limits.</span>
+                </div>
+                <div className="flex gap-4 p-2 bg-purple-950/30 border border-purple-900/50 rounded transition-colors">
+                  <span className="w-16 font-black text-purple-400">10.0</span>
+                  <span>Reserved only for entities that are effectively impossible to terminate or transcend the rating system.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
