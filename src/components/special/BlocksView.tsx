@@ -68,7 +68,8 @@ export default function BlocksView() {
       mechanics: [
         "Growth (Ascendance): Grows upwards to reaching heights of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top (Sequoia/Redwood style).",
         "Trunk Optimization: Inner trunk blocks buried under and above other logs skip active growth ticks to prevent tick lag.",
-        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it. Increases their breeding rate."
+        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it. Increases their breeding rate.",
+        "Log Sustenance: The log is the heart. The root-wood (Scandere Lignum) spreads, but the Log sustains the organism."
       ]
     },
     {
@@ -218,10 +219,11 @@ export default function BlocksView() {
         { term: "Lignum", translation: "wood" },
         { term: "Caro", translation: "flesh" }
       ],
-      description: "A pristine, living wood tissue block that belongs in the Backwoods dimension and can also be found in the Dead Grain biome. Behaves as an active immune defender against spore-based infections. However, if overwhelmed, it can become corrupted, spreading the very infection it was meant to fight.",
+      description: "A pristine, living wood tissue block that belongs in the Backwoods dimension and can also be found in the Dead Grain biome. It generates as massive, continuous cellular membrane structures embedded up to 45 blocks deep into the terrain. It behaves as an active immune defender against spore-based infections.",
       mechanics: [
         "Pristine Active Defense: When uninfected, it has a 40% chance per random tick to 'sneeze' against nearby Spore entities within 4 blocks. Deals 1.0 to 2.0 magic damage, applies knockback, and inflicts Poison I for 6 seconds.",
         "Block Defense & Reclamation: Pristine blocks actively convert adjacent Spore blocks back into pristine Lignum Caro blocks (35% chance) and cleanse nearby corrupted Lignum Caro blocks back to pristine (25% chance) on random ticks.",
+        "Colony Restoration: Actively seeks out nearby burnt blocks and restores them to their healthy equivalents, triggering a cascading wave of rapid regeneration through neighboring colony blocks to repair damaged areas.",
         "Corruption Vulnerability: Has an 'infected' state property. If it becomes compromised, its defenses shut down and it starts spreading the spore infection, converting adjacent blocks into infected Lignum Caro at a 35% chance with rapid chain propagation.",
         "Infection Delay: All active defense, spread, and cleansing mechanics remain completely dormant until the world is at least 1,200 ticks old (1 minute)."
       ]
