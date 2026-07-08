@@ -68,8 +68,7 @@ export default function BlocksView() {
       mechanics: [
         "Growth (Ascendance): Grows upwards to reaching heights of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top (Sequoia/Redwood style).",
         "Trunk Optimization: Inner trunk blocks buried under and above other logs skip active growth ticks to prevent tick lag.",
-        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it. Increases their breeding rate.",
-        "Log Sustenance: The log is the heart. The root-wood (Scandere Lignum) spreads, but the Log sustains the organism."
+        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it. Increases their breeding rate."
       ]
     },
     {
