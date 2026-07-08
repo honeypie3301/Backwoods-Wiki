@@ -21,6 +21,25 @@ export default function TerminatedView() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showRegistry, setShowRegistry] = useState<boolean>(false);
   const [showThreatScale, setShowThreatScale] = useState<boolean>(false);
+
+  const [operationProfile, setOperationProfile] = useState<'Baseline' | 'Totem of Undying' | 'Infinity Totem'>('Baseline');
+
+  const getAdjustedThreat = (id: string, base: number, profile: string): number => {
+    if (profile === 'Baseline') return base;
+    if (profile === 'Totem of Undying') {
+      if (base >= 9.0) return Math.max(0, +(base - 0.8).toFixed(1));
+      return Math.max(0, +(base - 1.5).toFixed(1));
+    }
+    if (profile === 'Infinity Totem') {
+      const voidOrExtremeEntities = ['void_blossom', 'harbinger', 'the_chaos', 'zoranth', 'fourth_calamity', 'zoranth_newborn_of_the_zenith', 'spore_verfalldrache'];
+      if (voidOrExtremeEntities.includes(id)) {
+        return +(base * 0.15).toFixed(1);
+      }
+      return 0.0;
+    }
+    return base;
+  };
+
   const [showTerminatedBanner, setShowTerminatedBanner] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -723,8 +742,72 @@ export default function TerminatedView() {
       terminationCycle: 'CYCLE 68',
       isTerminated: true,
       notes: 'The ultimate Air Calamity and pinnacle encounter. Combines aerial superiority with the full Calamity toolkit. Rot engaged in a massive high-altitude battle, overclocking all subsystems to execute an absolute Minos Protocol strike, shattering its wings.'
-    }
+    },
+
+    // --- MODDED: Mowzie's Mobs ---
+    {
+      id: 'mowzies_frostmaw',
+      name: 'Frostmaw',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/frostmaw.webp",
+      threatLevel: 4.0,
+      terminationCycle: 'CYCLE 69',
+      isTerminated: true,
+      notes: 'Massive frozen beast native to icy biomes. Defended against its freezing breath using Thermal Synthesis. Rot broke its defensive guard and crushed its skull with a Minos Protocol overhead slam.'
+    },
+    {
+      id: 'mowzies_wroughtnaut',
+      name: 'Ferrous Wroughtnaut',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/ferrouswroughtnaut.webp",
+      threatLevel: 4.5,
+      terminationCycle: 'CYCLE 70',
+      isTerminated: true,
+      notes: 'Indestructible suit of armor guarding subterranean chambers. Frontal immunity bypassed entirely using Dimensional Spacing (Blink). Rot struck its weak point in the back with a high-velocity shield-breaking kick.'
+    },
+    {
+      id: 'mowzies_umvuthi',
+      name: 'Umvuthi',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/umvuthi.webp",
+      threatLevel: 5.0,
+      terminationCycle: 'CYCLE 71',
+      isTerminated: true,
+      notes: 'The Sun Chief, wielding solar magic. Absorbed its sun strikes utilizing Thermal Synthesis. Rot cleared its followers with a localized Sonic Boom, finishing the chief with its own deflected solar energy.'
+    },
+    {
+      id: 'mowzies_naga',
+      name: 'Naga (Mowzie)',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/naga.webp",
+      threatLevel: 3.5,
+      terminationCycle: 'CYCLE 72',
+      isTerminated: true,
+      notes: 'Swift coastal flying serpent. Acidic poison spits resisted via Adaptive Health Regeneration. Intercepted its diving attack using telekinesis, slamming it onto the rocky coast.'
+    },
+
+    {
+      id: 'mowzies_tongbi',
+      name: 'Tongbi The Sculptor',
+      category: 'Modded',
+      modName: "Mowzie's Mobs",
+      image: "TerminatedEntities/Modded/Mowzie's Mobs/tongbi_the sculptor.webp",
+      threatLevel: 5.5,
+      terminationCycle: 'CYCLE 73',
+      isTerminated: true,
+      notes: 'Monstrous artist utilizing powerful earth-shaping martial arts. Countered its geokinetic strikes with Dimensional Spacing, shattering its core sculpture before delivering a lethal Minos Protocol.'
+    },
   ];
+
+  const adjustedOpponents = initialOpponents.map(op => ({
+    ...op,
+    adjustedThreat: getAdjustedThreat(op.id, op.threatLevel, operationProfile)
+  }));
+
 
   // Preload all opponent images on mount to ensure instant seamless switching without network lag
   useEffect(() => {
@@ -736,58 +819,12 @@ export default function TerminatedView() {
     const rotImg = new Image();
     rotImg.src = getAbsoluteAssetUrl('TerminatedEntities/Rot.png');
   },
-
-    // --- MODDED: Mowzie's Mobs ---
-    {
-      id: 'mowzies_frostmaw',
-      name: 'Frostmaw',
-      category: 'Modded',
-      modName: "Mowzie's Mobs",
-      image: "TerminatedEntities/Modded/Mowzie's Mobs/frostmaw.webp",
-      threatLevel: 7.8,
-      terminationCycle: 'CYCLE 69',
-      isTerminated: true,
-      notes: 'Massive frozen beast native to icy biomes. Defended against its freezing breath using Thermal Synthesis. Rot broke its defensive guard and crushed its skull with a Minos Protocol overhead slam.'
-    },
-    {
-      id: 'mowzies_wroughtnaut',
-      name: 'Ferrous Wroughtnaut',
-      category: 'Modded',
-      modName: "Mowzie's Mobs",
-      image: "TerminatedEntities/Modded/Mowzie's Mobs/ferrouswroughtnaut.webp",
-      threatLevel: 6.8,
-      terminationCycle: 'CYCLE 70',
-      isTerminated: true,
-      notes: 'Indestructible suit of armor guarding subterranean chambers. Frontal immunity bypassed entirely using Dimensional Spacing (Blink). Rot struck its weak point in the back with a high-velocity shield-breaking kick.'
-    },
-    {
-      id: 'mowzies_umvuthi',
-      name: 'Umvuthi',
-      category: 'Modded',
-      modName: "Mowzie's Mobs",
-      image: "TerminatedEntities/Modded/Mowzie's Mobs/umvuthi.webp",
-      threatLevel: 8.5,
-      terminationCycle: 'CYCLE 71',
-      isTerminated: true,
-      notes: 'The Sun Chief, wielding solar magic. Absorbed its sun strikes utilizing Thermal Synthesis. Rot cleared its followers with a localized Sonic Boom, finishing the chief with its own deflected solar energy.'
-    },
-    {
-      id: 'mowzies_naga',
-      name: 'Naga (Mowzie)',
-      category: 'Modded',
-      modName: "Mowzie's Mobs",
-      image: "TerminatedEntities/Modded/Mowzie's Mobs/naga.webp",
-      threatLevel: 4.8,
-      terminationCycle: 'CYCLE 72',
-      isTerminated: true,
-      notes: 'Swift coastal flying serpent. Acidic poison spits resisted via Adaptive Health Regeneration. Intercepted its diving attack using telekinesis, slamming it onto the rocky coast.'
-    },
  []);
 
-  const selectedOpponent = initialOpponents.find(op => op.id === selectedOpponentId) || initialOpponents[0];
+  const selectedOpponent = adjustedOpponents.find(op => op.id === selectedOpponentId) || adjustedOpponents[0];
 
   // Filters
-  const filteredOpponents = initialOpponents.filter(op => {
+  const filteredOpponents = adjustedOpponents.filter(op => {
     // Search query
     if (searchQuery && !op.name.toLowerCase().includes(searchQuery.toLowerCase()) && !op.notes.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false;
@@ -800,8 +837,8 @@ export default function TerminatedView() {
     }
     return true;
   }).sort((a, b) => {
-    if (a.threatLevel !== b.threatLevel) {
-      return a.threatLevel - b.threatLevel;
+    if (a.adjustedThreat !== b.adjustedThreat) {
+      return a.adjustedThreat - b.adjustedThreat;
     }
     return a.name.localeCompare(b.name);
   });
@@ -903,6 +940,20 @@ export default function TerminatedView() {
             <Info className="w-4 h-4" />
             <span className="font-bold">THREAT SCALE</span>
           </button>
+
+          <div className="bg-[#12141c] border border-[#1e2230] px-3 py-1.5 rounded-lg flex items-center gap-2">
+            <span className="text-[#546e7a] uppercase font-bold text-xs">PROFILE:</span>
+            <select
+              value={operationProfile}
+              onChange={(e) => setOperationProfile(e.target.value as any)}
+              className="bg-[#090b10] border border-[#202430] text-[#eceff1] text-xs font-bold py-1 px-2 rounded cursor-pointer outline-none hover:border-[#546e7a]/50 transition-colors"
+            >
+              <option value="Baseline">BASELINE</option>
+              <option value="Totem of Undying">TOTEM OF UNDYING</option>
+              <option value="Infinity Totem">INFINITY TOTEM</option>
+            </select>
+          </div>
+
         </div>
       </div>
 
@@ -1043,7 +1094,7 @@ export default function TerminatedView() {
 
                   <div className="shrink-0 flex items-center gap-2">
                     <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-[#090b10] border border-[#202430]">
-                      {op.threatLevel.toFixed(1)}
+                      {op.adjustedThreat.toFixed(1)}
                     </span>
                     <span className="text-[8px] font-black uppercase text-red-500 bg-red-950/40 border border-red-900/40 px-1.5 py-0.5 rounded tracking-widest">
                       TERM
@@ -1166,7 +1217,7 @@ export default function TerminatedView() {
                         fontSize: `${Math.max(12, Math.min(22, 18 * scale))}px`
                       }}
                     >
-                      {selectedOpponent.threatLevel.toFixed(1)}
+                      {selectedOpponent.adjustedThreat.toFixed(1)}
                     </span>
                   </div>
                 </div>
