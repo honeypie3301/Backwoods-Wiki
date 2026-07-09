@@ -79,7 +79,7 @@ export default function ItemsView() {
       id: "pale_remedy",
       name: "Pale Remedy",
       category: "keys",
-      desc: "A highly specialized anti-degradation tonic that filters toxic spores from the lungs and stabilizes cognitive brain function inside the Backwoods.",
+      desc: "A highly specialized anti-degradation tonic that stabilizes cognitive brain function inside the Backwoods.",
       recipes: [
         "1 Ash-Rose + 1 Bowl + 1 Seep"
       ],
