@@ -907,42 +907,42 @@ export default function TerminatedView() {
       {/* Upper branding section with Syndrome's logo/subheading */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border-b border-[#232730] pb-5">
         <div className="flex items-center gap-3">
-          <div className="relative w-10 h-10 bg-[#e11d48]/10 border border-[#e11d48]/30 rounded flex items-center justify-center text-[#e11d48] animate-pulse">
+          <div className="relative w-10 h-10 shrink-0 bg-[#e11d48]/10 border border-[#e11d48]/30 rounded flex items-center justify-center text-[#e11d48] animate-pulse">
             <Skull className="w-6 h-6" />
             <div className="absolute inset-0 bg-[#e11d48]/5 rounded blur-sm" />
           </div>
           <div>
-            <h1 className="text-lg font-black tracking-[0.25em] text-[#eceff1] uppercase flex items-center gap-2">
+            <h1 className="text-base sm:text-lg font-black tracking-[0.15em] sm:tracking-[0.25em] text-[#eceff1] uppercase flex flex-wrap items-center gap-2">
               KRONOS DATABASE
-              <span className="text-[10px] bg-[#ff3b30]/10 text-[#ff4f44] border border-[#ff3b30]/20 px-2 py-0.5 rounded">SYSTEM_SECURED</span>
+              <span className="text-[10px] bg-[#ff3b30]/10 text-[#ff4f44] border border-[#ff3b30]/20 px-2 py-0.5 rounded whitespace-nowrap">SYSTEM_SECURED</span>
             </h1>
-            <p className="text-xs text-[#546e7a] uppercase tracking-wider mt-0.5">SYNDROME OPERATION TERMINATION REGISTRY</p>
+            <p className="text-[10px] sm:text-xs text-[#546e7a] uppercase tracking-wide sm:tracking-wider mt-0.5 leading-tight break-words">SYNDROME OPERATION TERMINATION REGISTRY</p>
           </div>
         </div>
 
         {/* Global summary badge */}
-        <div className="flex items-center gap-4 text-xs">
-          <div className="bg-[#12141c] border border-[#1e2230] px-3 py-2 rounded-lg flex items-center gap-3">
-            <span className="text-[#546e7a] uppercase">TOTAL RECORDED:</span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs">
+          <div className="bg-[#12141c] border border-[#1e2230] px-3 py-2 rounded-lg flex items-center gap-3 shrink-0">
+            <span className="text-[#546e7a] uppercase whitespace-nowrap">TOTAL RECORDED:</span>
             <span className="text-red-500 font-extrabold">{initialOpponents.length}</span>
           </div>
-          <div className="bg-[#12141c] border border-[#ff3b30]/20 px-3 py-2 rounded-lg flex items-center gap-3">
-            <span className="text-[#546e7a] uppercase">STATUS CODE:</span>
-            <span className="text-red-500 font-extrabold flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-red-600 animate-ping" />
+          <div className="bg-[#12141c] border border-[#ff3b30]/20 px-3 py-2 rounded-lg flex items-center gap-3 shrink-0">
+            <span className="text-[#546e7a] uppercase whitespace-nowrap">STATUS CODE:</span>
+            <span className="text-red-500 font-extrabold flex items-center gap-1 whitespace-nowrap">
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0" />
               100% TERMINATED
             </span>
           </div>
           <button 
             onClick={() => setShowThreatScale(true)}
-            className="bg-[#12141c] border border-[#546e7a]/30 px-3 py-2 rounded-lg flex items-center gap-2 text-[#546e7a] hover:text-[#cfd8dc] hover:border-[#cfd8dc]/50 transition-all cursor-pointer"
+            className="bg-[#12141c] border border-[#546e7a]/30 px-3 py-2 rounded-lg flex items-center gap-2 text-[#546e7a] hover:text-[#cfd8dc] hover:border-[#cfd8dc]/50 transition-all cursor-pointer shrink-0"
           >
-            <Info className="w-4 h-4" />
-            <span className="font-bold">THREAT SCALE</span>
+            <Info className="w-4 h-4 shrink-0" />
+            <span className="font-bold whitespace-nowrap">THREAT SCALE</span>
           </button>
 
-          <div className="bg-[#12141c] border border-[#1e2230] px-3 py-1.5 rounded-lg flex items-center gap-2">
-            <span className="text-[#546e7a] uppercase font-bold text-xs">PROFILE:</span>
+          <div className="bg-[#12141c] border border-[#1e2230] px-3 py-1.5 rounded-lg flex items-center gap-2 shrink-0">
+            <span className="text-[#546e7a] uppercase font-bold text-xs whitespace-nowrap">PROFILE:</span>
             <select
               value={operationProfile}
               onChange={(e) => setOperationProfile(e.target.value as any)}
@@ -953,7 +953,6 @@ export default function TerminatedView() {
               <option value="Infinity Totem">INFINITY TOTEM</option>
             </select>
           </div>
-
         </div>
       </div>
 
@@ -1431,15 +1430,15 @@ export default function TerminatedView() {
       {/* Threat Scale Modal */}
       {showThreatScale && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-          <div className="bg-[#0c0d10] border border-[#ff3b30]/30 shadow-[0_0_40px_rgba(255,59,48,0.2)] rounded-2xl p-6 max-w-2xl w-full relative animate-in fade-in zoom-in duration-200">
+          <div className="bg-[#0c0d10] border border-[#ff3b30]/30 shadow-[0_0_40px_rgba(255,59,48,0.2)] rounded-2xl p-6 max-w-2xl w-full relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
             <button 
               onClick={() => setShowThreatScale(false)}
-              className="absolute top-4 right-4 text-[#546e7a] hover:text-[#ff3b30] transition-colors"
+              className="absolute top-4 right-4 text-[#546e7a] hover:text-[#ff3b30] transition-colors bg-[#0c0d10] rounded-full p-1 z-10"
             >
               <X className="w-6 h-6" />
             </button>
             
-            <div className="flex items-center gap-3 mb-6 border-b border-[#232730] pb-4">
+            <div className="flex items-center gap-3 mb-6 border-b border-[#232730] pb-4 pr-8">
               <div className="p-2 bg-[#ff3b30]/10 rounded border border-[#ff3b30]/20">
                 <Shield className="w-6 h-6 text-[#ff4f44]" />
               </div>
