@@ -94,19 +94,6 @@ export default function ItemsView() {
       ]
     },
     {
-      id: "recovered_pale_remedy",
-      name: "Recovered Pale Remedy",
-      category: "keys",
-      desc: "An advanced, triple-distilled variant of standard Pale Remedy refined with stabilized memories to maximize cognitive recovery.",
-      stats: [
-        { label: "Exposure Reduction", value: "-5,000 backwoods_time (ticks)" },
-        { label: "Sanity Cleansing Rate", value: "Highest in the mod" }
-      ],
-      notes: [
-        "Crucial for high-tier exploration in deep Loss biomes where exposure scales exponentially."
-      ]
-    },
-    {
       id: "faded_foods",
       name: "Faded Foods",
       category: "keys",
@@ -447,6 +434,115 @@ export default function ItemsView() {
       notes: [
         "Crafted by breaking 1 Fractus Core block into 9 nuggets.",
         "The physics penalties stack completely. Carrying multiple stacks can render normal movement impossible, binding you to the ground."
+      ]
+    },
+    {
+      id: "scandere_resin",
+      name: "Scandere Resin",
+      category: "materials",
+      desc: "A raw, sticky organic sap harvested from wood logs. Extremely poisonous if consumed directly, but has major chemical crystallization properties.",
+      stats: [
+        { label: "Nutritional Value", value: "3" },
+        { label: "Saturation modifier", value: "0.2" },
+        { label: "Toxicity Effect", value: "Poison I (2.45 seconds / 49 ticks)" }
+      ],
+      notes: [
+        "Can be cooked in a furnace to obtain Crystallized Scandere Resin.",
+        "Used as a core sticky binder in several advanced crafting recipes, such as composting."
+      ]
+    },
+    {
+      id: "crystallized_scandere_resin",
+      name: "Crystallized Scandere Resin",
+      category: "materials",
+      desc: "A hardened, mineralized version of Scandere Resin obtained by baking raw sap. It is extremely sturdy and serves as a high-tier structural binder.",
+      stats: [
+        { label: "Rarity", value: "Common" },
+        { label: "Smelting Yield", value: "5.0 XP reward per baked item" }
+      ],
+      notes: [
+        "Smelted from raw Scandere Resin in any standard furnace (cooking time: 250 ticks).",
+        "Required to craft Lignum Compost."
+      ]
+    },
+    {
+      id: "lignum_compost",
+      name: "Lignum Compost",
+      category: "utility",
+      desc: "An advanced, high-potency fertilizer enriched with raw tree sap. Functions as an incredibly powerful agricultural booster.",
+      stats: [
+        { label: "Stack Size", value: "64" },
+        { label: "Fertilization Range", value: "11x3x11 Area" }
+      ],
+      notes: [
+        "If applied directly to Moss, Saplings, or Crops, it acts as standard bone meal applied 10 times consecutively.",
+        "If applied elsewhere, it applies bone meal to a massive 11x3x11 area around the block with a 10% chance per block, rapidly growing tall grass and plants.",
+        "Crafted with 1 Crystallized Scandere Resin surrounded by either 4 Bone Meal or 4 Rotten Flesh (yields 8 compost)."
+      ]
+    },
+    {
+      id: "pale_draught_bottle",
+      name: "Pale Draught Bottle",
+      category: "keys",
+      desc: "An uncommon sensory-severing draft stored in a heavy glass container. Used for advanced inter-dimensional transport between minor sub-realms.",
+      stats: [
+        { label: "Rarity", value: "Uncommon" },
+        { label: "Stack Size", value: "1" },
+        { label: "Side Effect", value: "Darkness VII (4.5s / 90 ticks)" }
+      ],
+      notes: [
+        "Consuming this item in 'The Still' inflicts Darkness VII and teleports you to 'The Familiar' at your current horizontal coordinates on the surface.",
+        "Consuming this item in 'The Grain' inflicts Darkness VII and teleports you to 'The Still' at Y=129.",
+        "If consumed inside any other dimension, it displays 'It won't work' and has no effect."
+      ]
+    },
+    {
+      id: "stabilized_pale_remedy",
+      name: "Stabilized Pale Remedy",
+      category: "keys",
+      desc: "A highly stabilized, advanced anti-degradation remedy crafted with Recovered Memory fragments. Maximizes cognitive recovery.",
+      stats: [
+        { label: "Degradation Reduction", value: "-5,000 Exposure (backwoods_time NBT)" },
+        { label: "Nutritional Value", value: "4" },
+        { label: "Saturation modifier", value: "4.0" }
+      ],
+      notes: [
+        "Significantly reduces mental strain and exposure to dimension-decay conditions.",
+        "Always edible. Drinking returns an empty glass Bowl to the player's inventory.",
+        "Crafted shapelessly from 1 Seep, 1 Ash-Rose, 1 Bowl, and 1 Recovered Memory Fragment."
+      ]
+    },
+    {
+      id: "null_pointer_axe",
+      name: "Null Pointer Axe",
+      category: "tools",
+      desc: "A rare, fireproof debugging and testing battleaxe with astronomical attack damage and supernatural attribute modifiers. For testing purposes only.",
+      stats: [
+        { label: "Attack Damage", value: "2,013" },
+        { label: "Attack Speed", value: "6.7" },
+        { label: "Durability / Uses", value: "2,079" },
+        { label: "Health Bonus", value: "+500 Max Health" },
+        { label: "Oxygen Bonus", value: "+10 Oxygen" },
+        { label: "Step Height", value: "+1.0 Block Height" },
+        { label: "Sneaking Speed", value: "+50% Movement Speed" }
+      ],
+      notes: [
+        "Completely immune to fire and lava destruction.",
+        "Creative-only testing tool. Has no crafting recipe.",
+        "Can be repaired using Faded Blocks, Petrified Bark, Sharpened Splinter Shards, or Plaque Hearts."
+      ]
+    },
+    {
+      id: "faded_materials",
+      name: "Faded Materials (Copper, Iron, Gold, Netherite)",
+      category: "materials",
+      desc: "Drained, completely decayed remnants of copper, iron, gold, and netherite metals eroded by temporal decay in the Loss dimension.",
+      stats: [
+        { label: "Degradation Rate", value: "100%" }
+      ],
+      notes: [
+        "Created passively when corresponding metal items warp inside your inventory while staying in the Loss dimension.",
+        "Serves as degraded scrap material in your inventory until removed."
       ]
     }
   ];
