@@ -64,8 +64,7 @@ export default function DimensionsView() {
       desc: "A sub-dimension representing a fading memory of the world. It is composed entirely of oak planks and oak logs, with absolutely no structures in the Loss dimension. An ash-grey sky looms over the vast, empty expanse of wood.",
       access: "Entered involuntarily with a 0.2666% chance per second when experiencing Stage Four mental degradation in the Backwoods.",
       biomes: [
-        "Oak Barrens: Infinite flat landscapes of oak planks.",
-        "Timber Void: Massive columns and blocks of oak logs fading into the fog."
+        "Confusion: A dark, ash-swept biome with a grey-fog sky, with floors of Faded Blocks and trenches filled with Plaque. Passive ash particles drift through the atmosphere."
       ],
       rules: [
         {
@@ -91,7 +90,8 @@ export default function DimensionsView() {
       access: "Discovered by exploring and entering deep underground geodes inside the Backwoods dimension.",
       biomes: [
         "The Flat Plateaus: Uniform sea-level forest floors.",
-        "Rotten Canopy: Dense, layered columns of rotting branches."
+        "Rotten Canopy: Dense, layered columns of rotting branches.",
+        "Rotting Deep: Deep ocean-level valleys covered in Rotten Oak Wood with active falling ash."
       ],
       rules: [
         {
@@ -146,7 +146,7 @@ export default function DimensionsView() {
       desc: "A false, simulated clone of the Overworld spanning seven mirrored biomes. The landscape looks friendly, but everything within is silently watching your every move.",
       access: "No straightforward entry or escape—disclosing portal coordinates is hindered by space warping.",
       biomes: [
-        "Mirrored Plains / Mirrored Forest / Mirrored Birch Forest",
+        "Mirrored Plains / Mirrored Forest / Mirrored Birch Forest / Mirrored Taiga",
         "Mirrored Desert / Mirrored Savannah / Mirrored Jungle",
         "Mirrored Ocean"
       ],
