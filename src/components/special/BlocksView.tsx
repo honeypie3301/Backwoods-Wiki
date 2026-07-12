@@ -94,7 +94,7 @@ export default function BlocksView() {
       mechanics: [
         "Splinter Freeze: Holding one in either hand, or placing it on the ground, causes all nearby Splinters to freeze and stop moving entirely.",
         "Wilt Decay: Slowly wilts over time while held, eventually crumbling into nothingness.",
-        "Placement: Can be safely replanted on grass, dirt, deepslate, and any type of log or planks."
+        "Placement: Can be safely replanted on grass, dirt, deepslate, and any type of log or planks, or placed inside a clay flower pot (retaining its protective freeze aura properties)."
       ]
     },
     {
@@ -189,11 +189,15 @@ export default function BlocksView() {
       specialText: "Stripped Variant: Stripped Petrified Rotten Oak Log has hardness 17 and blast resistance 22.05."
     },
     {
-      name: "Petrified Planks & Slab & Stairs",
+      name: "Petrified Planks, Slab, Stairs & Fence Gate",
       dimension: "petrified_weald",
       hardness: "10",
       blastRes: "9.0",
-      description: "Primary construction and decoration layout blocks crafted from petrified wood."
+      description: "Extremely heavy, calcified structural blocks including planks, slabs, stairs, and fence gates. They are entirely fireproof and offer immense blast resistance compared to normal wood.",
+      mechanics: [
+        "Sound Properties: Produces custom hollow rotting wood step and break sounds.",
+        "Fire Immunity: Since they are fossilized, they cannot be set on fire or destroyed by lava."
+      ]
     },
     {
       name: "Petrified Weald Leaves",
@@ -255,6 +259,28 @@ export default function BlocksView() {
       lootTable: [
         { item: "False Oak Planks", weight: 100, condition: "Silk Touch / Shears" },
         { item: "Stick", weight: 100, condition: "No Silk Touch (drops 1-2)" }
+      ]
+    },
+    {
+      name: "Decaying Leaves",
+      dimension: "backwoods_rotting",
+      hardness: "0.2",
+      blastRes: "0.2",
+      description: "Dead, crumbling oak leaves that are slowly decaying in the damp atmosphere of the Backwoods. Highly flammable.",
+      mechanics: [
+        "Light Blockage: Possesses a high light opacity of 14, creating dark under-canopy environments despite being translucent.",
+        "Flammability: Highly susceptible to catching fire, accelerating flame spreads through canopy crowns."
+      ]
+    },
+    {
+      name: "Fossilized Silt",
+      dimension: "petrified_weald",
+      hardness: "3.5",
+      blastRes: "6.0",
+      description: "A heavy, compacted silt deposit that has mineralized over ages in the Petrified Weald. Harder than regular soil, requiring a shovel to dig efficiently.",
+      mechanics: [
+        "Mineral Density: Steps produce a deep, solid stony tuff sound.",
+        "Excavation: Drops itself as a building block when cleared with a shovel tool."
       ]
     }
   ];
