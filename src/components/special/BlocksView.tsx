@@ -254,7 +254,10 @@ export default function BlocksView() {
         "Flawless Mimicry: Uses the exact textures of vanilla Oak Planks on all sides, making them impossible to spot with the naked eye.",
         "No Occlusion: Built on a leaf block base. Players and entities can pass completely through the block, and it does not block line-of-sight (though it still blocks light with a value of 15).",
         "High Flammability: Extremely vulnerable to fire (flammability of 30, spread speed of 60) and gets ignited by lava.",
-        "Stick Drops: Breaking the block without Shears or a Silk Touch tool drops 1-2 Sticks instead of the block itself."
+        "Stick Drops: Breaking the block without Shears or a Silk Touch tool drops 1-2 Sticks instead of the block itself.",
+        "Fall Breakage (Trap Trigger): Falling onto the block with a fall distance greater than 4 blocks instantly shatters/breaks it silently with no drops, functioning as an automated trap door/pitfall trigger.",
+        "Wood Worm Hideout (Vermis Hide Tag): Explicitly registered under the 'minecraft:vermis_hide' block tag. When a Lignum Vermis (Wood Worm) drops to 4 HP or lower, it triggers an emergency escape procedure, scanning a 32x32x32 area for these blocks, navigating to them, emitting smoke, and burrowing inside to vanish from the field.",
+        "Active Camouflage Platform: The Lignum Vermis entity dynamically reads this block's 'oak' properties, matching its skin camouflage to standard Oak Planks while crawling on it."
       ],
       lootTable: [
         { item: "False Oak Planks", weight: 100, condition: "Silk Touch / Shears" },
