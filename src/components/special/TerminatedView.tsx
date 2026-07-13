@@ -31,7 +31,7 @@ export default function TerminatedView() {
       return Math.max(0, +(base - 1.5).toFixed(1));
     }
     if (profile === 'Infinity Totem') {
-      const voidOrExtremeEntities = ['void_blossom', 'harbinger', 'the_chaos', 'zoranth', 'fourth_calamity', 'zoranth_newborn_of_the_zenith', 'spore_verfalldrache'];
+      const voidOrExtremeEntities = ['void_blossom', 'harbinger', 'the_chaos', 'zoranth', 'fourth_calamity', 'zoranth_newborn_of_the_zenith', 'spore_verfalldrache', 'tormentor'];
       if (voidOrExtremeEntities.includes(id)) {
         return +(base * 0.15).toFixed(1);
       }
@@ -801,6 +801,73 @@ export default function TerminatedView() {
       isTerminated: true,
       notes: 'Monstrous artist utilizing powerful earth-shaping martial arts. Countered its geokinetic strikes with Dimensional Spacing, shattering its core sculpture before delivering a lethal Minos Protocol.'
     },
+    // --- MODDED: ArPhEx ---
+    {
+      id: 'arachnoid_trisector',
+      name: 'Arachnoid Trisector',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/arachnoid_trisector.png',
+      threatLevel: 8.2,
+      terminationCycle: 'CYCLE 74',
+      isTerminated: true,
+      notes: 'Lethal Arachnoid variant with high-defense armored scales. Capable of restricting incoming attack damage to 10hp maximum. Rot adapted rapid, multi-angle strikes via Dimensional Spacing, using heavy Minos martial combos to crack its armored segments.'
+    },
+    {
+      id: 'diabolos_decimator',
+      name: 'Diabolos Decimator',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/diabolos_decimator.png',
+      threatLevel: 8.5,
+      terminationCycle: 'CYCLE 75',
+      isTerminated: true,
+      notes: 'Terrifying Diabolos-class arthropod. Below half health, its body darkens to pitch black as its rage spikes. Restricted damage threshold bypassed by Rot deploying overcharged continuous Cryo Beams, overloading its thermal core while evading heavy claw strikes.'
+    },
+    {
+      id: 'draconic_voidlasher',
+      name: 'Draconic Voidlasher',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/draconic_voidlasher.png',
+      threatLevel: 9.0,
+      terminationCycle: 'CYCLE 76',
+      isTerminated: true,
+      notes: 'Super-speed Draconic flyer. Sweeps and lashes targets with heavy void-energy tail strikes. Rot predicted its high-altitude flight patterns and tail-whips, utilizing Dimensional Spacing to teleport above it and melting its void-infused scales with high-energy Solar Beams.'
+    },
+    {
+      id: 'scorpioid_bloodluster',
+      name: 'Scorpioid Bloodluster',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/scorpioid_bloodluster.png',
+      threatLevel: 8.9,
+      terminationCycle: 'CYCLE 77',
+      isTerminated: true,
+      notes: 'Elite Scorpioid predator. Enters an overcharged secondary state at half health, firing deadly ranged stingers. Rot parried its lightning bolts and heavy stinger punctures using precise active scanning, delivering consecutive Minos shield-breaker punches to its central carapace.'
+    },
+    {
+      id: 'spider_moth',
+      name: 'Spider Moth',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/spider_moth.png',
+      threatLevel: 8.2,
+      terminationCycle: 'CYCLE 78',
+      isTerminated: true,
+      notes: 'Vile flying hybrid. Employs a complex multi-stage combat routine, turning invisible and blood-coated at half health. Rot deployed advanced active scanning sensors to track its invisible flight vectors, bringing down the beast with high-velocity shockwave slams.'
+    },
+    {
+      id: 'tormentor',
+      name: 'TORMENTOR',
+      category: 'Modded',
+      modName: 'ArPhEx',
+      image: 'TerminatedEntities/Modded/ArPhEx/tormentor.png',
+      threatLevel: 10.0,
+      terminationCycle: 'CYCLE 79',
+      isTerminated: true,
+      notes: 'The Transcendental Tormentor, the ultimate enormous godlike super boss of ArPhEx. Relentlessly pursues targets across dimensions, darkening the skies and inducing red eclipses. Highly resistant to standard hits. Rot engaged in an endless interdimensional chase, adapting to its spider-rain and lightning-strike torments, finally overloading its core with Cryo-Thermal Resonance.'
+    },
   ];
 
   const adjustedOpponents = initialOpponents.map(op => ({
@@ -1002,7 +1069,9 @@ export default function TerminatedView() {
                 { id: 'Bosses of Mass Destruction', label: 'BOMD' },
                 { id: "Bosses' Rise", label: "BOSSES' RISE" },
                 { id: 'Armageddon', label: 'ARMAGEDDON' },
-                { id: 'Fungal Infection: Spore', label: 'SPORE' }, { id: "Mowzie's Mobs", label: "MOWZIE'S" }
+                { id: 'Fungal Infection: Spore', label: 'SPORE' },
+                { id: "Mowzie's Mobs", label: "MOWZIE'S" },
+                { id: 'ArPhEx', label: 'ARPHEX' }
               ].map(mod => (
                 <button
                   key={mod.id}
