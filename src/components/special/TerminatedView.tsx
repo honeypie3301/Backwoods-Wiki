@@ -650,7 +650,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/sieger.png',
-      threatLevel: 8.5,
+      threatLevel: 8.1,
       terminationCycle: 'CYCLE 60',
       isTerminated: true,
       notes: 'The baseline commander. Strong melee, ranged tumors, block destruction, Spore Bursts, buffs allies, and has a removable tail weak point. A formidable all-round threat. Rot severed tail weak point via Dimensional Spacing, then executed Minos Protocol combat loops.'
@@ -661,7 +661,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/howitzer.png',
-      threatLevel: 8.6,
+      threatLevel: 8.2,
       terminationCycle: 'CYCLE 61',
       isTerminated: true,
       notes: 'Long-range artillery platform. Bombarded from 64 blocks with homing Flesh Bombs, ignited terrain, and spread corrosion. Rot bypassed the battlefield-denial zone using overcharged 18-tick Blinks, destroying the platform core with Cryo-Thermal Beams.'
@@ -672,7 +672,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/stalhmorder.png',
-      threatLevel: 8.8,
+      threatLevel: 8.4,
       terminationCycle: 'CYCLE 62',
       isTerminated: true,
       notes: 'Extremely dangerous close-range hunter. Features corrosive attacks, powerful leaps, climbing, armor scaling, and block breaking. Rot predicted its lethal crowd-control leaps with active scanning, delivering a high-velocity shield-breaker kick to shatter its scaled shell.'
@@ -683,7 +683,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hohlfresser.png',
-      threatLevel: 9.0,
+      threatLevel: 8.6,
       terminationCycle: 'CYCLE 63',
       isTerminated: true,
       notes: 'The subterranean Calamity with high underground mobility and ambush potential. Hard to contain. Rot deployed active subsurface seismic radar to detect underground burrowing vectors, intercepting the ambush with Sonic Boom resonance to collapse its tunnel.'
@@ -694,7 +694,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/gazenbreacher.png',
-      threatLevel: 9.1,
+      threatLevel: 8.7,
       terminationCycle: 'CYCLE 64',
       isTerminated: true,
       notes: 'Extremely fast aquatic predator with melee and ranged bile attacks. Highly dominant in water. Rot dragged the specimen onto land using spatial redirection, neutralizing its high speed and terminating it with consecutive martial strikes.'
@@ -705,7 +705,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/grakensenker.png',
-      threatLevel: 9.2,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 65',
       isTerminated: true,
       notes: 'Highly dangerous aquatic predator utilizing independent grappling tentacles to seize and drag targets. Rot resisted the drag forces using Adaptive Health Regeneration, freezing its tentacles with Cryo Beams and shattering the central mantle.'
@@ -716,7 +716,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/leviathan.png',
-      threatLevel: 9.5,
+      threatLevel: 9.0,
       terminationCycle: 'CYCLE 66',
       isTerminated: true,
       notes: 'The apex Water Calamity. Features 450 HP, 25 armor, segmented body, camouflage, and commander abilities. Rot counteracted acid bombardment and flesh bombs using overcharged Thermal siphons, slicing through its segmented carapace using high-energy Solar Beams.'
@@ -727,7 +727,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hindenburg.png',
-      threatLevel: 9.6,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 67',
       isTerminated: true,
       notes: 'Exceptional aerial siege platform with constant flight, explosive tumor volleys, and blast-strength 16 Tumoroid Nukes. Rot matched flight maneuvers with aerial blinking, detonating its internal nuke payload early using a focused Cryo-Thermal beam.'
@@ -738,7 +738,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/verfalldrache.png',
-      threatLevel: 9.8,
+      threatLevel: 9.4,
       terminationCycle: 'CYCLE 68',
       isTerminated: true,
       notes: 'The ultimate Air Calamity and pinnacle encounter. Combines aerial superiority with the full Calamity toolkit. Rot engaged in a massive high-altitude battle, overclocking all subsystems to execute an absolute Minos Protocol strike, shattering its wings.'
