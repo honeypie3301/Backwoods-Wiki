@@ -544,6 +544,64 @@ export default function ItemsView() {
         "Created passively when corresponding metal items warp inside your inventory while staying in the Loss dimension.",
         "Serves as degraded scrap material in your inventory until removed."
       ]
+    },
+    {
+      id: "lignum_caro",
+      name: "Lignum Caro",
+      category: "materials",
+      desc: "A highly dense organic meat block harvested from Lignum trees. It beats like flesh but grows like wood, harboring strange immunological resistance.",
+      stats: [
+        { label: "Smelting Temp", value: "High Yield" },
+        { label: "Stack Size", value: "64" }
+      ],
+      notes: [
+        "Can be cooked in a furnace or smoker to produce Lignum Caro Ash.",
+        "Used as a basic structural component and is a required ingredient for crafting the Lignum Caro Sword."
+      ]
+    },
+    {
+      id: "lignum_caro_ash",
+      name: "Lignum Caro Ash",
+      category: "materials",
+      desc: "A fine, high-purity crystalline ash obtained by roasting raw Lignum Caro blocks. Concentrates the immunological defense properties of the wood flesh.",
+      stats: [
+        { label: "Rarity", value: "Common" },
+        { label: "Stack Size", value: "64" }
+      ],
+      notes: [
+        "Obtained by smelting Lignum Caro blocks in any furnace or blast furnace.",
+        "Used in brewing stands to brew the specialized Potion of Inoculation."
+      ]
+    },
+    {
+      id: "potion_of_inoculation",
+      name: "Potion of Inoculation",
+      category: "utility",
+      desc: "A specialized, highly advanced potion designed to bolster the immune system and grant full resistance against decay.",
+      stats: [
+        { label: "Effect", value: "Inoculation I (3:00)" },
+        { label: "Stack Size", value: "1" }
+      ],
+      notes: [
+        "Brewed by combining Lignum Caro Ash with a Water Bottle in a brewing stand.",
+        "Grants the Inoculation effect, protecting players from the mental decay and temporal exposure of the Backwoods dimension."
+      ]
+    },
+    {
+      id: "lignum_caro_sword",
+      name: "Lignum Caro Sword",
+      category: "weapons",
+      desc: "An organic, living blade crafted directly from the pristine tissue of uncorrupted Lignum Caro wood. It is unique among weapons for its parasitic, self-repairing nature.",
+      stats: [
+        { label: "Attack Damage", value: "5" },
+        { label: "Attack Speed", value: "1" },
+        { label: "Durability", value: "225" }
+      ],
+      notes: [
+        "Crafted with 2 Lignum Caro blocks and a stick.",
+        "Sustained Self-Repair (Organic Feeding): When damaged and kept in the inventory, the sword organically regenerates. Every 3 seconds, it will repair itself by 1 durability point in exchange for consuming a small amount of the player's hunger (requires hunger bar above zero).",
+        "Can also be repaired at an anvil using uncorrupted Lignum Caro blocks."
+      ]
     }
   ];
 
