@@ -83,6 +83,19 @@
       ]
     }
   ],
+  "the_backwoods:crystallized_scandere_resin": [
+    {
+      "file": "crystallized_scandere_resin_recipe.json",
+      "type": "minecraft:smelting",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "Input: the_backwoods:scandere_resin",
+        "Cooking Time: 250"
+      ]
+    }
+  ],
   "the_backwoods:distorted_memory_fragment": [
     {
       "file": "distorted_fragment_recipe.json",
@@ -401,7 +414,94 @@
       "outputCount": 1,
       "pattern": null,
       "keyMap": null,
-      "ingredients": []
+      "ingredients": [
+        "the_backwoods:rotten_sword",
+        "the_backwoods:heartwood_shard",
+        "minecraft:netherite_upgrade_smithing_template"
+      ]
+    }
+  ],
+  "the_backwoods:lignum_caro_ash": [
+    {
+      "file": "lignum_caro_cook_recipe.json",
+      "type": "minecraft:smelting",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "Input: the_backwoods:lignum_caro",
+        "Cooking Time: 70"
+      ]
+    }
+  ],
+  "the_backwoods:lignum_caro_sword": [
+    {
+      "file": "lignum_caro_sword_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "a",
+        "a",
+        "b"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:lignum_caro"
+        },
+        "b": {
+          "item": "minecraft:stick"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:lignum_caro",
+        "b = minecraft:stick"
+      ]
+    }
+  ],
+  "the_backwoods:lignum_compost": [
+    {
+      "file": "lignum_compost_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 8,
+      "pattern": [
+        " a ",
+        "aba",
+        " a "
+      ],
+      "keyMap": {
+        "a": {
+          "item": "minecraft:bone_meal"
+        },
+        "b": {
+          "item": "the_backwoods:crystallized_scandere_resin"
+        }
+      },
+      "ingredients": [
+        "a = minecraft:bone_meal",
+        "b = the_backwoods:crystallized_scandere_resin"
+      ]
+    },
+    {
+      "file": "lignum_compost_recipe_2.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 8,
+      "pattern": [
+        " a ",
+        "aba",
+        " a "
+      ],
+      "keyMap": {
+        "a": {
+          "item": "minecraft:rotten_flesh"
+        },
+        "b": {
+          "item": "the_backwoods:crystallized_scandere_resin"
+        }
+      },
+      "ingredients": [
+        "a = minecraft:rotten_flesh",
+        "b = the_backwoods:crystallized_scandere_resin"
+      ]
     }
   ],
   "the_backwoods:nullstone_slab": [
@@ -1149,6 +1249,19 @@
         "the_backwoods:ash_rose",
         "minecraft:bowl",
         "the_backwoods:recovered_memory_fragment"
+      ]
+    }
+  ],
+  "the_backwoods:potion_of_inoculation": [
+    {
+      "file": "Brewing Stand Registration",
+      "type": "minecraft:brewing",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "the_backwoods:lignum_caro_ash",
+        "minecraft:water_bottle"
       ]
     }
   ]

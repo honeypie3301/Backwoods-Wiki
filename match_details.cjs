@@ -55,6 +55,33 @@ try {
         }
       }
       ingredients = [`Input: ${ingStr}`, `Cooking Time: ${content.cookingtime || content.experience || ''}`];
+    } else if (type === 'minecraft:smithing_transform') {
+      const baseItem = content.base?.item || content.base?.tag || '';
+      const templateItem = content.template?.item || content.template?.tag || '';
+      const additionItem = content.addition?.item || content.addition?.tag || '';
+      
+      let base = baseItem;
+      let upgrade = additionItem;
+      let template = templateItem;
+      
+      const isToolOrWeapon = (itemStr) => {
+        if (!itemStr) return false;
+        const lower = itemStr.toLowerCase();
+        return lower.includes('sword') || lower.includes('axe') || lower.includes('tool') || 
+               lower.includes('pickaxe') || lower.includes('shovel') || lower.includes('hoe');
+      };
+      
+      if (isToolOrWeapon(templateItem)) {
+        base = templateItem;
+        upgrade = baseItem;
+        template = additionItem;
+      } else if (isToolOrWeapon(additionItem)) {
+        base = additionItem;
+        upgrade = baseItem;
+        template = templateItem;
+      }
+      
+      ingredients = [base, upgrade, template].filter(Boolean);
     }
     
     if (!results[outputItem]) {

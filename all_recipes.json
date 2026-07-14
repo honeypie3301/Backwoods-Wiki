@@ -97,6 +97,21 @@
     }
   },
   {
+    "name": "crystallized_scandere_resin_recipe.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 5,
+      "cookingtime": 250,
+      "ingredient": {
+        "item": "the_backwoods:scandere_resin"
+      },
+      "result": {
+        "id": "the_backwoods:crystallized_scandere_resin"
+      }
+    }
+  },
+  {
     "name": "distorted_fragment_recipe.json",
     "content": {
       "type": "minecraft:crafting_shapeless",
@@ -493,6 +508,93 @@
       },
       "result": {
         "id": "the_backwoods:heartwood_rotten_sword"
+      }
+    }
+  },
+  {
+    "name": "lignum_caro_cook_recipe.json",
+    "content": {
+      "type": "minecraft:smelting",
+      "category": "misc",
+      "experience": 7,
+      "cookingtime": 70,
+      "ingredient": {
+        "item": "the_backwoods:lignum_caro"
+      },
+      "result": {
+        "id": "the_backwoods:lignum_caro_ash"
+      }
+    }
+  },
+  {
+    "name": "lignum_caro_sword_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "equipment",
+      "pattern": [
+        "a",
+        "a",
+        "b"
+      ],
+      "key": {
+        "a": {
+          "item": "the_backwoods:lignum_caro"
+        },
+        "b": {
+          "item": "minecraft:stick"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:lignum_caro_sword",
+        "count": 1
+      }
+    }
+  },
+  {
+    "name": "lignum_compost_recipe.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        " a ",
+        "aba",
+        " a "
+      ],
+      "key": {
+        "a": {
+          "item": "minecraft:bone_meal"
+        },
+        "b": {
+          "item": "the_backwoods:crystallized_scandere_resin"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:lignum_compost",
+        "count": 8
+      }
+    }
+  },
+  {
+    "name": "lignum_compost_recipe_2.json",
+    "content": {
+      "type": "minecraft:crafting_shaped",
+      "category": "misc",
+      "pattern": [
+        " a ",
+        "aba",
+        " a "
+      ],
+      "key": {
+        "a": {
+          "item": "minecraft:rotten_flesh"
+        },
+        "b": {
+          "item": "the_backwoods:crystallized_scandere_resin"
+        }
+      },
+      "result": {
+        "id": "the_backwoods:lignum_compost",
+        "count": 8
       }
     }
   },
