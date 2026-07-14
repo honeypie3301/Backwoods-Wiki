@@ -167,13 +167,23 @@ function getCleanName(rawId: string): string {
     .join(' ');
 }
 
+// Map the display item IDs from ItemsView.tsx to their real Minecraft registry names
+const itemIdMapping: Record<string, string> = {
+  'steel_charcoal': 'the_backwoods:backwoods',
+  'steel_shard': 'the_backwoods:the_petrified_weald',
+  'effigy': 'the_backwoods:rot_effigy',
+  'pale_draught': 'the_backwoods:pale_draught_bottle',
+};
+
 export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps) {
   const [activeRecipeIndex, setActiveRecipeIndex] = useState<Record<string, number>>({});
 
   // Gather all recipes for the given item IDs
   const itemsWithRecipes = itemIds
     .map(id => {
-      const normalizedId = id.startsWith('the_backwoods:') ? id : `the_backwoods:${id}`;
+      const cleanId = id.startsWith('the_backwoods:') ? id.replace('the_backwoods:', '') : id;
+      const mappedId = itemIdMapping[cleanId] || id;
+      const normalizedId = mappedId.startsWith('the_backwoods:') ? mappedId : `the_backwoods:${mappedId}`;
       const recipes = recipeDetails[normalizedId] || [];
       return { id: normalizedId, name: getCleanName(normalizedId), recipes };
     })

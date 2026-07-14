@@ -71,6 +71,23 @@ try {
     });
   }
   
+  // Inject custom brewing recipes
+  if (!results['the_backwoods:potion_of_inoculation']) {
+    results['the_backwoods:potion_of_inoculation'] = [
+      {
+        file: "Brewing Stand Registration",
+        type: "minecraft:brewing",
+        outputCount: 1,
+        pattern: null,
+        keyMap: null,
+        ingredients: [
+          "the_backwoods:lignum_caro_ash",
+          "minecraft:water_bottle"
+        ]
+      }
+    ];
+  }
+  
   fs.writeFileSync('recipe_details.json', JSON.stringify(results, null, 2));
   console.log("Wrote full details of recipes to recipe_details.json");
   
