@@ -101,6 +101,17 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'memory_shard': { short: 'Ms', bg: 'bg-[#181126]', text: 'text-[#a855f7]/90', border: 'border-[#352055]/80', glow: '' },
 
     // Miscellaneous
+    'lignum_caro': { short: 'Lc', bg: 'bg-[#102d18]', text: 'text-[#4ade80]', border: 'border-[#1b4c26]', glow: 'group-hover:shadow-[0_0_10px_rgba(74,222,128,0.15)]' },
+    'lignum_caro_ash': { short: 'Lca', bg: 'bg-[#1a2e22]', text: 'text-[#86efac]', border: 'border-[#274c35]', glow: '' },
+    'potion_of_inoculation': { short: 'Poi', bg: 'bg-[#123126]', text: 'text-[#a7f3d0]', border: 'border-[#1f5a43]', glow: 'group-hover:shadow-[0_0_12px_rgba(167,243,208,0.2)]' },
+    'lignum_caro_sword': { short: 'Lcs', bg: 'bg-[#0f3a1d]', text: 'text-[#4ade80]', border: 'border-[#1b5e2f]', glow: 'group-hover:shadow-[0_0_12px_rgba(74,222,128,0.25)]' },
+    'lignum_compost': { short: 'Lco', bg: 'bg-[#122e1b]', text: 'text-[#6ee7b7]', border: 'border-[#1e4c2f]', glow: 'group-hover:shadow-[0_0_10px_rgba(110,231,183,0.15)]' },
+    'scandere_resin': { short: 'Sr', bg: 'bg-[#2b1f15]', text: 'text-[#f59e0b]', border: 'border-[#533924]', glow: '' },
+    'crystallized_scandere_resin': { short: 'Csr', bg: 'bg-[#3b2716]', text: 'text-[#fbbf24]', border: 'border-[#734c24]', glow: 'group-hover:shadow-[0_0_10px_rgba(251,191,36,0.15)]' },
+    'bone_meal': { short: 'Bm', bg: 'bg-[#2a2a2a]', text: 'text-[#e2e8f0]', border: 'border-[#475569]', glow: '' },
+    'rotten_flesh': { short: 'Rf', bg: 'bg-[#2e1d1d]', text: 'text-[#fca5a5]', border: 'border-[#6b3535]', glow: '' },
+    'water_bottle': { short: 'Wb', bg: 'bg-[#1e3a5f]', text: 'text-[#60a5fa]', border: 'border-[#2563eb]', glow: '' },
+    'stick': { short: 'Stk', bg: 'bg-[#1c1917]', text: 'text-[#a8a29e]', border: 'border-[#44403c]', glow: '' },
     'iron_ingot': { short: 'Fe', bg: 'bg-[#1a1a1a]', text: 'text-[#d1d5db]', border: 'border-[#374151]', glow: '' },
     'charcoal': { short: 'C', bg: 'bg-[#0f0f0f]', text: 'text-[#6b7280]', border: 'border-[#1f2937]', glow: '' },
     'glass_bottle': { short: 'Gb', bg: 'bg-[#0b131a]', text: 'text-[#38bdf8]', border: 'border-[#1e3a5f]', glow: '' },
@@ -194,6 +205,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
           const isSmelting = recipe.type.includes('smelting') || recipe.type.includes('blasting');
           const isStonecutting = recipe.type.includes('stonecutting');
           const isSmithing = recipe.type.includes('smithing') || (recipe.ingredients.length === 2 && recipe.ingredients.some(i => i.includes('sword') || i.includes('tool')) && recipe.ingredients.some(i => i.includes('shard')));
+          const isBrewing = recipe.type.includes('brewing') || recipe.type.includes('brew');
 
           const outputSpec = getItemVisualSpec(item.id);
 
@@ -384,6 +396,74 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                         </span>
                         {/* Tooltip */}
                         <div className="opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#080a08] border border-[#223024] text-xs font-mono p-2 rounded shadow-2xl z-20 flex flex-col items-center gap-0.5 min-w-[120px]">
+                          <span className="text-[#a9d1b0] font-bold font-serif text-center whitespace-nowrap">{outputSpec.name}</span>
+                          <span className="text-[9px] text-[#5a6b5e] uppercase tracking-wider">{item.id}</span>
+                          <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#223024]" />
+                        </div>
+                      </div>
+                    </div>
+                  ) : isBrewing ? (
+                    <div className="flex items-center gap-3 sm:gap-4 flex-nowrap justify-center w-full">
+                      {/* Ingredient / Brew Agent (Top Center/Left) */}
+                      {(() => {
+                        const rawInput = recipe.ingredients[0] || '';
+                        const spec = getItemVisualSpec(rawInput);
+                        return (
+                          <div className="relative group shrink-0 hover:z-30">
+                            <div className="text-[8px] font-mono text-[#5a6b5e] uppercase tracking-wider mb-1 text-center font-semibold">Agent</div>
+                            <div className={`w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 border rounded-lg flex flex-col items-center justify-center p-1 shadow-inner transition-all duration-200 cursor-help ${spec.bgClass} ${spec.borderClass} ${spec.textClass} ${spec.glowClass} hover:border-[#709978] shrink-0`}>
+                              <span className="text-[9px] sm:text-[10px] font-mono font-bold">{spec.short}</span>
+                            </div>
+                            {/* Tooltip */}
+                            <div className="opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#080a08] border border-[#223024] text-xs font-mono p-2 rounded shadow-2xl z-20 flex flex-col items-center gap-0.5 min-w-[120px]">
+                              <span className="text-[#a9d1b0] font-bold font-serif text-center whitespace-nowrap">{spec.name}</span>
+                              <span className="text-[9px] text-[#5a6b5e] uppercase tracking-wider">{rawInput}</span>
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#223024]" />
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {/* Sparkly / bubble indicator */}
+                      <div className="flex flex-col items-center text-emerald-400 animate-pulse shrink-0 mt-4">
+                        <Sparkles className="w-4.5 h-4.5 sm:w-5 sm:h-5 fill-emerald-500/20" />
+                        <span className="text-[7px] sm:text-[8px] font-mono text-emerald-400/80 mt-0.5 uppercase tracking-wider">BREW</span>
+                      </div>
+
+                      {/* Reagent / Base bottle */}
+                      {(() => {
+                        const rawInput = recipe.ingredients[1] || '';
+                        const spec = getItemVisualSpec(rawInput);
+                        return (
+                          <div className="relative group shrink-0 hover:z-30">
+                            <div className="text-[8px] font-mono text-[#5a6b5e] uppercase tracking-wider mb-1 text-center font-semibold">Base</div>
+                            <div className={`w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 border rounded-lg flex flex-col items-center justify-center p-1 shadow-inner transition-all duration-200 cursor-help ${spec.bgClass} ${spec.borderClass} ${spec.textClass} ${spec.glowClass} hover:border-[#709978] shrink-0`}>
+                              <span className="text-[9px] sm:text-[10px] font-mono font-bold">{spec.short}</span>
+                            </div>
+                            {/* Tooltip */}
+                            <div className="opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#080a08] border border-[#223024] text-xs font-mono p-2 rounded shadow-2xl z-20 flex flex-col items-center gap-0.5 min-w-[120px]">
+                              <span className="text-[#a9d1b0] font-bold font-serif text-center whitespace-nowrap">{spec.name}</span>
+                              <span className="text-[9px] text-[#5a6b5e] uppercase tracking-wider">{rawInput}</span>
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#223024]" />
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {/* Arrow */}
+                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0 mt-4">➔</div>
+
+                      {/* Output Potion Result */}
+                      <div className="relative group shrink-0 hover:z-30">
+                        <div className="text-[8px] font-mono text-[#5a6b5e] uppercase tracking-wider mb-1 text-center font-semibold">Product</div>
+                        <div className={`w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 border-2 rounded-lg flex flex-col items-center justify-center p-1 shadow-inner transition-all duration-200 ${outputSpec.bgClass} ${outputSpec.borderClass} ${outputSpec.textClass} ${outputSpec.glowClass} shrink-0`}>
+                          <span className="text-xs sm:text-sm font-mono font-bold">{outputSpec.short}</span>
+                        </div>
+                        <span className="absolute bottom-0.5 right-0.5 bg-[#121613] border border-[#303d33] px-1 text-[8px] sm:text-[9px] font-mono text-[#a9d1b0] font-bold rounded">
+                          x{recipe.outputCount}
+                        </span>
+                        {/* Tooltip */}
+                        <div className="opacity-0 pointer-events-none group-hover:opacity-100 transition-all duration-200 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-[#080a08] border border-[#223024] text-xs font-mono p-2 rounded shadow-2xl z-25 flex flex-col items-center gap-0.5 min-w-[120px]">
                           <span className="text-[#a9d1b0] font-bold font-serif text-center whitespace-nowrap">{outputSpec.name}</span>
                           <span className="text-[9px] text-[#5a6b5e] uppercase tracking-wider">{item.id}</span>
                           <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#223024]" />
