@@ -997,7 +997,7 @@ export default function TerminatedView() {
             <span className="text-[#546e7a] uppercase whitespace-nowrap">STATUS CODE:</span>
             <span className="text-red-500 font-extrabold flex items-center gap-1 whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0" />
-              100% TERMINATED
+              99% TERMINATED
             </span>
           </div>
           <button 
