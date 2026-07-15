@@ -863,12 +863,18 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/tormentor.png',
-      threatLevel: 10.5,
+      threatLevel: 10.0,
       terminationCycle: 'CYCLE 79',
       isTerminated: false,
       notes: 'The Transcendental Tormentor, the ultimate enormous godlike super boss of ArPhEx. Relentlessly pursues targets across dimensions, darkening the skies and inducing red eclipses. Highly resistant to all adaptive learning algorithms. The Rot engaged in an endless interdimensional chase, but was ultimately overwhelmed, dismantled, and fully terminated by the Tormentor\'s cataclysmic lightning strikes.'
     },
   ];
+
+  const totalCount = initialOpponents.length;
+  const terminatedCount = initialOpponents.filter(op => op.isTerminated).length;
+  const terminatedPercent = totalCount > 0 
+    ? Math.ceil((terminatedCount / totalCount) * 100)
+    : 100;
 
   const adjustedOpponents = initialOpponents.map(op => ({
     ...op,
@@ -997,7 +1003,7 @@ export default function TerminatedView() {
             <span className="text-[#546e7a] uppercase whitespace-nowrap">STATUS CODE:</span>
             <span className="text-red-500 font-extrabold flex items-center gap-1 whitespace-nowrap">
               <span className="w-2 h-2 rounded-full bg-red-600 animate-ping shrink-0" />
-              99% TERMINATED
+              {terminatedPercent}% TERMINATED
             </span>
           </div>
           <button 
