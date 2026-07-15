@@ -124,7 +124,7 @@ export default function TerminatedView() {
       name: 'Ghast Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Ghast_JE2_BE2.webp',
-      threatLevel: 4.8,
+      threatLevel: 2.8,
       terminationCycle: 'CYCLE 11',
       isTerminated: true,
       notes: 'Nether airspace. Fireball artillery reflected using Dimensional Spacing (Blink) positioning, combined with Solar Beams to melt target\'s aerial tissues.'
@@ -144,7 +144,7 @@ export default function TerminatedView() {
       name: 'Iron Golem Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Iron_Golem_JE2_BE2.webp',
-      threatLevel: 6.2,
+      threatLevel: 3.5,
       terminationCycle: 'CYCLE 05',
       isTerminated: true,
       notes: 'Heavy alloy autonomous guard. Rot triggered Adaptive Health Regeneration to absorb throw impact, delivering Minos Protocol shield-breakers to dismantle the chassis.'
@@ -650,7 +650,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/sieger.png',
-      threatLevel: 8.1,
+      threatLevel: 7.8,
       terminationCycle: 'CYCLE 60',
       isTerminated: true,
       notes: 'The baseline commander. Strong melee, ranged tumors, block destruction, Spore Bursts, buffs allies, and has a removable tail weak point. A formidable all-round threat. Rot severed tail weak point via Dimensional Spacing, then executed Minos Protocol combat loops.'
@@ -661,7 +661,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/howitzer.png',
-      threatLevel: 8.2,
+      threatLevel: 7.9,
       terminationCycle: 'CYCLE 61',
       isTerminated: true,
       notes: 'Long-range artillery platform. Bombarded from 64 blocks with homing Flesh Bombs, ignited terrain, and spread corrosion. Rot bypassed the battlefield-denial zone using overcharged 18-tick Blinks, destroying the platform core with Cryo-Thermal Beams.'
@@ -672,7 +672,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/stalhmorder.png',
-      threatLevel: 8.4,
+      threatLevel: 8.1,
       terminationCycle: 'CYCLE 62',
       isTerminated: true,
       notes: 'Extremely dangerous close-range hunter. Features corrosive attacks, powerful leaps, climbing, armor scaling, and block breaking. Rot predicted its lethal crowd-control leaps with active scanning, delivering a high-velocity shield-breaker kick to shatter its scaled shell.'
@@ -683,7 +683,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hohlfresser.png',
-      threatLevel: 8.6,
+      threatLevel: 8.3,
       terminationCycle: 'CYCLE 63',
       isTerminated: true,
       notes: 'The subterranean Calamity with high underground mobility and ambush potential. Hard to contain. Rot deployed active subsurface seismic radar to detect underground burrowing vectors, intercepting the ambush with Sonic Boom resonance to collapse its tunnel.'
@@ -694,7 +694,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/gazenbreacher.png',
-      threatLevel: 8.7,
+      threatLevel: 8.4,
       terminationCycle: 'CYCLE 64',
       isTerminated: true,
       notes: 'Extremely fast aquatic predator with melee and ranged bile attacks. Highly dominant in water. Rot dragged the specimen onto land using spatial redirection, neutralizing its high speed and terminating it with consecutive martial strikes.'
@@ -705,7 +705,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/grakensenker.png',
-      threatLevel: 8.8,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 65',
       isTerminated: true,
       notes: 'Highly dangerous aquatic predator utilizing independent grappling tentacles to seize and drag targets. Rot resisted the drag forces using Adaptive Health Regeneration, freezing its tentacles with Cryo Beams and shattering the central mantle.'
@@ -716,7 +716,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/leviathan.png',
-      threatLevel: 9.0,
+      threatLevel: 8.7,
       terminationCycle: 'CYCLE 66',
       isTerminated: true,
       notes: 'The apex Water Calamity. Features 450 HP, 25 armor, segmented body, camouflage, and commander abilities. Rot counteracted acid bombardment and flesh bombs using overcharged Thermal siphons, slicing through its segmented carapace using high-energy Solar Beams.'
@@ -727,7 +727,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/hindenburg.png',
-      threatLevel: 9.2,
+      threatLevel: 8.9,
       terminationCycle: 'CYCLE 67',
       isTerminated: true,
       notes: 'Exceptional aerial siege platform with constant flight, explosive tumor volleys, and blast-strength 16 Tumoroid Nukes. Rot matched flight maneuvers with aerial blinking, detonating its internal nuke payload early using a focused Cryo-Thermal beam.'
@@ -738,7 +738,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'Fungal Infection: Spore',
       image: 'TerminatedEntities/Modded/Spore/verfalldrache.png',
-      threatLevel: 9.4,
+      threatLevel: 9.1,
       terminationCycle: 'CYCLE 68',
       isTerminated: true,
       notes: 'The ultimate Air Calamity and pinnacle encounter. Combines aerial superiority with the full Calamity toolkit. Rot engaged in a massive high-altitude battle, overclocking all subsystems to execute an absolute Minos Protocol strike, shattering its wings.'
@@ -808,7 +808,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/arachnoid_trisector.png',
-      threatLevel: 8.2,
+      threatLevel: 8.5,
       terminationCycle: 'CYCLE 74',
       isTerminated: true,
       notes: 'Lethal Arachnoid variant with high-defense armored scales. Capable of restricting incoming attack damage to 10hp maximum. Rot adapted rapid, multi-angle strikes via Dimensional Spacing, using heavy Minos martial combos to crack its armored segments.'
@@ -819,7 +819,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/diabolos_decimator.png',
-      threatLevel: 8.5,
+      threatLevel: 8.8,
       terminationCycle: 'CYCLE 75',
       isTerminated: true,
       notes: 'Terrifying Diabolos-class arthropod. Below half health, its body darkens to pitch black as its rage spikes. Restricted damage threshold bypassed by Rot deploying overcharged continuous Cryo Beams, overloading its thermal core while evading heavy claw strikes.'
@@ -830,7 +830,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/draconic_voidlasher.png',
-      threatLevel: 9.0,
+      threatLevel: 9.3,
       terminationCycle: 'CYCLE 76',
       isTerminated: true,
       notes: 'Super-speed Draconic flyer. Sweeps and lashes targets with heavy void-energy tail strikes. Rot predicted its high-altitude flight patterns and tail-whips, utilizing Dimensional Spacing to teleport above it and melting its void-infused scales with high-energy Solar Beams.'
@@ -841,7 +841,7 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/scorpioid_bloodluster.png',
-      threatLevel: 8.9,
+      threatLevel: 9.2,
       terminationCycle: 'CYCLE 77',
       isTerminated: true,
       notes: 'Elite Scorpioid predator. Enters an overcharged secondary state at half health, firing deadly ranged stingers. Rot parried its lightning bolts and heavy stinger punctures using precise active scanning, delivering consecutive Minos shield-breaker punches to its central carapace.'
@@ -863,10 +863,10 @@ export default function TerminatedView() {
       category: 'Modded',
       modName: 'ArPhEx',
       image: 'TerminatedEntities/Modded/ArPhEx/tormentor.png',
-      threatLevel: 10.0,
+      threatLevel: 10.5,
       terminationCycle: 'CYCLE 79',
-      isTerminated: true,
-      notes: 'The Transcendental Tormentor, the ultimate enormous godlike super boss of ArPhEx. Relentlessly pursues targets across dimensions, darkening the skies and inducing red eclipses. Highly resistant to standard hits. Rot engaged in an endless interdimensional chase, adapting to its spider-rain and lightning-strike torments, finally overloading its core with Cryo-Thermal Resonance.'
+      isTerminated: false,
+      notes: 'The Transcendental Tormentor, the ultimate enormous godlike super boss of ArPhEx. Relentlessly pursues targets across dimensions, darkening the skies and inducing red eclipses. Highly resistant to all adaptive learning algorithms. The Rot engaged in an endless interdimensional chase, but was ultimately overwhelmed, dismantled, and fully terminated by the Tormentor\'s cataclysmic lightning strikes.'
     },
   ];
 
@@ -1164,9 +1164,15 @@ export default function TerminatedView() {
                     <span className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-[#090b10] border border-[#202430]">
                       {op.adjustedThreat.toFixed(1)}
                     </span>
-                    <span className="text-[8px] font-black uppercase text-red-500 bg-red-950/40 border border-red-900/40 px-1.5 py-0.5 rounded tracking-widest">
-                      TERM
-                    </span>
+                    {op.id === 'tormentor' ? (
+                      <span className="text-[8px] font-black uppercase text-green-400 bg-green-950/40 border border-green-900/40 px-1.5 py-0.5 rounded tracking-widest">
+                        ACTV
+                      </span>
+                    ) : (
+                      <span className="text-[8px] font-black uppercase text-red-500 bg-red-950/40 border border-red-900/40 px-1.5 py-0.5 rounded tracking-widest">
+                        TERM
+                      </span>
+                    )}
                   </div>
                 </button>
               ))}
@@ -1337,7 +1343,7 @@ export default function TerminatedView() {
                   </div>
 
                   {/* BRIGHT RED BOLD HORIZONTAL "TERMINATED" STRIP ACROSS CHEST - Stretches fully edge-to-edge and fits the whole banner */}
-                  {showTerminatedBanner && (
+                  {showTerminatedBanner && selectedOpponent.id !== 'tormentor' && (
                     <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 pointer-events-none z-20">
                       <div 
                         className="w-full bg-[#cf1124] flex items-center justify-center border-y border-white/10 shadow-[0_6px_20px_rgba(207,17,36,0.45)]"
@@ -1381,6 +1387,31 @@ export default function TerminatedView() {
                       }}
                     />
                   </div>
+
+                  {/* BRIGHT RED BOLD HORIZONTAL "TERMINATED" STRIP ACROSS CHEST FOR THE ROT */}
+                  {showTerminatedBanner && selectedOpponent.id === 'tormentor' && (
+                    <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 pointer-events-none z-20">
+                      <div 
+                        className="w-full bg-[#cf1124] flex items-center justify-center border-y border-white/10 shadow-[0_6px_20px_rgba(207,17,36,0.45)]"
+                        style={{ 
+                          paddingTop: `${Math.max(4, Math.min(18, 14 * scale))}px`,
+                          paddingBottom: `${Math.max(4, Math.min(18, 14 * scale))}px`
+                        }}
+                      >
+                        <span 
+                          className="text-white font-bold uppercase leading-none select-none"
+                          style={{ 
+                            fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
+                            fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
+                            letterSpacing: `${0.55 * scale}em`,
+                            marginRight: `-${0.55 * scale}em`
+                          }}
+                        >
+                          TERMINATED
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
               </div>
