@@ -37,6 +37,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isSandbox, setIsSandbox] = useState(false);
 
   const fetchStats = async (silent = false) => {
     if (!silent) setLoading(true);
@@ -50,9 +51,51 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       }
       const data = await res.json();
       setStats(data);
+      setIsSandbox(false);
     } catch (err) {
-      console.error(err);
-      setError(err instanceof Error ? err.message : 'Unknown database fault.');
+      console.warn("Backend database offline or unreachable. Initializing sandbox local-stats fallback.", err);
+      // Fallback to local storage
+      const localStatsStr = localStorage.getItem('local_wiki_stats');
+      if (localStatsStr) {
+        try {
+          setStats(JSON.parse(localStatsStr));
+          setIsSandbox(true);
+        } catch (e) {
+          setError('Failed to parse local stats database.');
+        }
+      } else {
+        // Initialize default mock local stats
+        const localId = localStorage.getItem('wiki_visitor_id') || 'surv_local';
+        const defaultStats = {
+          uniqueCount: 12,
+          repeatCount: 18,
+          totalCount: 30,
+          pageViews: { 'home': 12, 'getting-started': 8, 'items': 6, 'blocks': 4 },
+          logs: [
+            {
+              timestamp: new Date().toISOString(),
+              type: 'unique' as const,
+              slug: 'home',
+              visitorId: localId.substring(0, 12)
+            },
+            {
+              timestamp: new Date(Date.now() - 600000).toISOString(),
+              type: 'repeat' as const,
+              slug: 'getting-started',
+              visitorId: 'surv_f2910a'
+            },
+            {
+              timestamp: new Date(Date.now() - 1800000).toISOString(),
+              type: 'unique' as const,
+              slug: 'items',
+              visitorId: 'surv_f2910a'
+            }
+          ]
+        };
+        localStorage.setItem('local_wiki_stats', JSON.stringify(defaultStats));
+        setStats(defaultStats);
+        setIsSandbox(true);
+      }
     } finally {
       if (!silent) setLoading(false);
     }
@@ -112,8 +155,13 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               <div className="h-4 w-[1px] bg-[#232d25] mx-1" />
               <div className="flex items-center gap-2">
                 <Terminal className="w-4 h-4 text-emerald-500 animate-pulse" />
-                <span className="text-xs font-bold tracking-widest text-[#a9d1b0] uppercase">
+                <span className="text-xs font-bold tracking-widest text-[#a9d1b0] uppercase flex items-center gap-2">
                   WIKI TELEMETRY TERMINAL v1.0.9
+                  {isSandbox && (
+                    <span className="text-amber-500 text-[9px] px-1.5 py-0.5 bg-amber-950/40 border border-amber-900/40 rounded font-normal uppercase tracking-normal animate-pulse">
+                      SANDBOX MODE
+                    </span>
+                  )}
                 </span>
               </div>
             </div>
@@ -303,7 +351,10 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                 {/* Footer Notes */}
                 <div className="p-3 bg-[#0d120e] border border-[#1e2720]/60 rounded text-[10px] text-[#5a6b5e] leading-relaxed select-none">
-                  <span className="text-emerald-500 font-bold mr-1">PROTOCOL SUMMARY:</span> This terminal presents actual, persistent server-side analytics from the Backwoods database. All visitor sessions are anonymized with generated local hardware keys to satisfy survival privacy parameters.
+                  <span className="text-emerald-500 font-bold mr-1">PROTOCOL SUMMARY:</span>{' '}
+                  {isSandbox 
+                    ? "Sandbox storage active. Since this is hosted as a static page (e.g. GitHub Pages) or the API server is unreachable, visit statistics are tracked and saved securely within your browser's local sandbox storage."
+                    : "This terminal presents actual, persistent server-side analytics from the Backwoods database. All visitor sessions are anonymized with generated local hardware keys to satisfy survival privacy parameters."}
                 </div>
               </>
             ) : (

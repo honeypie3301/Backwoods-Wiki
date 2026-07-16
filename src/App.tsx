@@ -89,6 +89,59 @@ function WikiContainer() {
 
   // Track page visits
   useEffect(() => {
+    const recordLocalVisit = (slug: string, visitorId: string) => {
+      const localStatsStr = localStorage.getItem('local_wiki_stats');
+      let stats = {
+        uniqueCount: 1,
+        repeatCount: 0,
+        totalCount: 1,
+        pageViews: { [slug]: 1 } as Record<string, number>,
+        logs: [
+          {
+            timestamp: new Date().toISOString(),
+            type: 'unique' as 'unique' | 'repeat',
+            slug: slug,
+            visitorId: visitorId.substring(0, 12)
+          }
+        ]
+      };
+
+      if (localStatsStr) {
+        try {
+          stats = JSON.parse(localStatsStr);
+          // Check if this visitor ID has logged a unique connection before in logs
+          const hasVisited = stats.logs?.some((l: any) => l.visitorId === visitorId.substring(0, 12));
+          const isUnique = !hasVisited;
+
+          stats.totalCount = (stats.totalCount || 0) + 1;
+          if (isUnique) {
+            stats.uniqueCount = (stats.uniqueCount || 0) + 1;
+          } else {
+            stats.repeatCount = (stats.repeatCount || 0) + 1;
+          }
+          
+          if (!stats.pageViews) stats.pageViews = {};
+          stats.pageViews[slug] = (stats.pageViews[slug] || 0) + 1;
+
+          if (!stats.logs) stats.logs = [];
+          stats.logs.unshift({
+            timestamp: new Date().toISOString(),
+            type: (isUnique ? 'unique' : 'repeat') as 'unique' | 'repeat',
+            slug: slug,
+            visitorId: visitorId.substring(0, 12)
+          });
+
+          if (stats.logs.length > 50) {
+            stats.logs = stats.logs.slice(0, 50);
+          }
+        } catch (e) {
+          console.error("Failed to update local sandbox stats", e);
+        }
+      }
+
+      localStorage.setItem('local_wiki_stats', JSON.stringify(stats));
+    };
+
     const recordVisit = async () => {
       try {
         const base = import.meta.env.BASE_URL || '/';
@@ -100,16 +153,28 @@ function WikiContainer() {
           localStorage.setItem('wiki_visitor_id', visitorId);
         }
 
-        await fetch(`${baseUrl}api/visit`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            visitorId,
-            slug: activeSlug
-          })
-        });
+        let responseOk = false;
+        try {
+          const res = await fetch(`${baseUrl}api/visit`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              visitorId,
+              slug: activeSlug
+            })
+          });
+          if (res.ok) {
+            responseOk = true;
+          }
+        } catch (err) {
+          console.warn('Network unreachable for API visit tracking. Persisting to local sandbox.', err);
+        }
+
+        if (!responseOk) {
+          recordLocalVisit(activeSlug, visitorId);
+        }
       } catch (err) {
         console.error('Failed to record page visit:', err);
       }

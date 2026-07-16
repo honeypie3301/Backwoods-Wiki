@@ -62,7 +62,7 @@ async function startServer() {
   app.use(express.json());
 
   // API Routes
-  app.get("/api/stats", (req, res) => {
+  app.get(["/api/stats", "*/api/stats"], (req, res) => {
     const stats = loadStats();
     res.json({
       uniqueCount: stats.uniqueCount,
@@ -73,7 +73,7 @@ async function startServer() {
     });
   });
 
-  app.post("/api/visit", (req, res) => {
+  app.post(["/api/visit", "*/api/visit"], (req, res) => {
     const { visitorId, slug } = req.body;
     if (!visitorId || typeof visitorId !== 'string') {
       return res.status(400).json({ error: 'visitorId is required' });
