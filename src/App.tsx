@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route, Navigate, useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { Menu, Search, X, BookOpen, AlertCircle, HelpCircle, FileText, FileSearch } from 'lucide-react';
+import { doc, getDoc, setDoc, addDoc, collection, increment, serverTimestamp } from 'firebase/firestore';
+import { db as firestoreDb } from './lib/firebase';
 import { WikiArticle } from './types';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
@@ -142,39 +144,61 @@ function WikiContainer() {
       localStorage.setItem('local_wiki_stats', JSON.stringify(stats));
     };
 
+    const recordVisitFirebase = async (slug: string, visitorId: string): Promise<boolean> => {
+      try {
+        const visitorDocRef = doc(firestoreDb, 'visitors', visitorId);
+        const visitorSnapshot = await getDoc(visitorDocRef);
+        const isUnique = !visitorSnapshot.exists();
+
+        if (isUnique) {
+          await setDoc(visitorDocRef, {
+            firstVisit: serverTimestamp(),
+            lastVisit: serverTimestamp()
+          });
+        } else {
+          await setDoc(visitorDocRef, {
+            lastVisit: serverTimestamp()
+          }, { merge: true });
+        }
+
+        const statsDocRef = doc(firestoreDb, 'stats', 'global');
+        await setDoc(statsDocRef, {
+          totalCount: increment(1),
+          uniqueCount: isUnique ? increment(1) : increment(0),
+          repeatCount: !isUnique ? increment(1) : increment(0),
+          [`pageViews.${slug}`]: increment(1)
+        }, { merge: true });
+
+        await addDoc(collection(firestoreDb, 'telemetry_logs'), {
+          timestamp: serverTimestamp(),
+          type: isUnique ? 'unique' : 'repeat',
+          slug,
+          visitorId: visitorId.substring(0, 12)
+        });
+
+        return true;
+      } catch (err) {
+        console.warn('Firebase registration failed, falling back to local simulation.', err);
+        return false;
+      }
+    };
+
     const recordVisit = async () => {
       try {
-        const base = import.meta.env.BASE_URL || '/';
-        const baseUrl = base.endsWith('/') ? base : `${base}/`;
-        
         let visitorId = localStorage.getItem('wiki_visitor_id');
         if (!visitorId) {
           visitorId = 'surv_' + Math.random().toString(36).substring(2, 11) + Math.random().toString(36).substring(2, 11);
           localStorage.setItem('wiki_visitor_id', visitorId);
         }
 
-        let responseOk = false;
-        try {
-          const res = await fetch(`${baseUrl}api/visit`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              visitorId,
-              slug: activeSlug
-            })
-          });
-          if (res.ok) {
-            responseOk = true;
-          }
-        } catch (err) {
-          console.warn('Network unreachable for API visit tracking. Persisting to local sandbox.', err);
+        // Try Firebase first for real-time global telemetry
+        const firebaseSuccess = await recordVisitFirebase(activeSlug, visitorId);
+        if (firebaseSuccess) {
+          return;
         }
 
-        if (!responseOk) {
-          recordLocalVisit(activeSlug, visitorId);
-        }
+        // Fallback: update local sandbox so the UI still displays simulated data gracefully
+        recordLocalVisit(activeSlug, visitorId);
       } catch (err) {
         console.error('Failed to record page visit:', err);
       }

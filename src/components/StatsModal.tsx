@@ -10,6 +10,8 @@ import {
   Eye, 
   Database 
 } from 'lucide-react';
+import { doc, collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 interface TelemetryLog {
   timestamp: string;
@@ -38,22 +40,19 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [error, setError] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSandbox, setIsSandbox] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
 
-  const fetchStats = async (silent = false) => {
-    if (!silent) setLoading(true);
+  useEffect(() => {
+    if (!isOpen) return;
+
+    setLoading(true);
     setError(null);
-    try {
-      const base = import.meta.env.BASE_URL || '/';
-      const baseUrl = base.endsWith('/') ? base : `${base}/`;
-      const res = await fetch(`${baseUrl}api/stats`);
-      if (!res.ok) {
-        throw new Error('Terminal failed to respond with statistical records.');
-      }
-      const data = await res.json();
-      setStats(data);
-      setIsSandbox(false);
-    } catch (err) {
-      console.warn("Backend database offline or unreachable. Initializing sandbox local-stats fallback.", err);
+    setIsSandbox(false);
+
+    let statsUnsubscribe: () => void = () => {};
+    let logsUnsubscribe: () => void = () => {};
+
+    const enableSandboxFallback = () => {
       // Fallback to local storage
       const localStatsStr = localStorage.getItem('local_wiki_stats');
       if (localStatsStr) {
@@ -96,20 +95,110 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
         setStats(defaultStats);
         setIsSandbox(true);
       }
-    } finally {
-      if (!silent) setLoading(false);
-    }
-  };
+      setLoading(false);
+    };
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchStats();
-    }
-  }, [isOpen]);
+    try {
+      // 1. Listen to global stats doc
+      statsUnsubscribe = onSnapshot(doc(db, 'stats', 'global'), (statsDoc) => {
+        if (statsDoc.exists()) {
+          const data = statsDoc.data();
+          setStats(prev => ({
+            uniqueCount: data.uniqueCount || 0,
+            repeatCount: data.repeatCount || 0,
+            totalCount: data.totalCount || 0,
+            pageViews: data.pageViews || {},
+            logs: prev?.logs || []
+          }));
+          setIsSandbox(false);
+        } else {
+          // Document does not exist yet (first time initialization)
+          setStats(prev => ({
+            uniqueCount: 0,
+            repeatCount: 0,
+            totalCount: 0,
+            pageViews: {},
+            logs: prev?.logs || []
+          }));
+          setIsSandbox(false);
+        }
+        setLoading(false);
+      }, (err) => {
+        console.warn("Error listening to Firestore global stats, enabling local sandbox fallback.", err);
+        enableSandboxFallback();
+      });
 
-  const handleManualRefresh = async () => {
+      // 2. Listen to logs query
+      const logsQuery = query(
+        collection(db, 'telemetry_logs'),
+        orderBy('timestamp', 'desc'),
+        limit(50)
+      );
+
+      logsUnsubscribe = onSnapshot(logsQuery, (snapshot) => {
+        const logs: TelemetryLog[] = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          let tsStr = new Date().toISOString();
+          if (data.timestamp) {
+            if (typeof data.timestamp.toDate === 'function') {
+              tsStr = data.timestamp.toDate().toISOString();
+            } else if (data.timestamp.seconds) {
+              tsStr = new Date(data.timestamp.seconds * 1000).toISOString();
+            } else {
+              tsStr = new Date(data.timestamp).toISOString();
+            }
+          }
+          logs.push({
+            timestamp: tsStr,
+            type: data.type || 'repeat',
+            slug: data.slug || 'home',
+            visitorId: data.visitorId || 'unknown'
+          });
+        });
+        setStats(prev => {
+          if (!prev) {
+            return {
+              uniqueCount: 0,
+              repeatCount: 0,
+              totalCount: 0,
+              pageViews: {},
+              logs
+            };
+          }
+          return {
+            ...prev,
+            logs
+          };
+        });
+      }, (err) => {
+        console.warn("Error listening to Firestore logs, enabling local sandbox fallback.", err);
+        enableSandboxFallback();
+      });
+
+    } catch (err) {
+      console.warn("Firebase execution error, enabling local sandbox fallback.", err);
+      enableSandboxFallback();
+    }
+
+    return () => {
+      statsUnsubscribe();
+      logsUnsubscribe();
+    };
+  }, [isOpen, retryCount]);
+
+  const handleManualRefresh = () => {
     setIsRefreshing(true);
-    await fetchStats(true);
+    if (isSandbox) {
+      const localStatsStr = localStorage.getItem('local_wiki_stats');
+      if (localStatsStr) {
+        try {
+          setStats(JSON.parse(localStatsStr));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
     setTimeout(() => setIsRefreshing(false), 600);
   };
 
@@ -201,7 +290,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 <h4 className="text-sm font-bold uppercase mb-1">Access Protocol Failed</h4>
                 <p className="text-xs text-red-400 max-w-md leading-relaxed">{error}</p>
                 <button 
-                  onClick={() => fetchStats()}
+                  onClick={() => { setError(null); setRetryCount(prev => prev + 1); }}
                   className="mt-4 px-3 py-1.5 bg-red-950/40 hover:bg-red-950/60 border border-red-800 text-xs rounded transition-all text-red-300"
                 >
                   Retry Connection
