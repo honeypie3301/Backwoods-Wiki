@@ -4,6 +4,7 @@ import { Menu, Search, X, BookOpen, AlertCircle, HelpCircle, FileText, FileSearc
 import { WikiArticle } from './types';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
+import StatsModal from './components/StatsModal';
 
 function WikiContainer() {
   const { slug } = useParams<{ slug: string }>();
@@ -16,6 +17,7 @@ function WikiContainer() {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [statsOpen, setStatsOpen] = useState(false);
 
   // 1. Fetch Manifest and All Articles on mount
   useEffect(() => {
@@ -84,6 +86,39 @@ function WikiContainer() {
   const activeSlug = slug || 'home';
   const activeArticle = articles.find(a => a.slug === activeSlug);
   const activeContent = articlesContent[activeSlug] || '';
+
+  // Track page visits
+  useEffect(() => {
+    const recordVisit = async () => {
+      try {
+        const base = import.meta.env.BASE_URL || '/';
+        const baseUrl = base.endsWith('/') ? base : `${base}/`;
+        
+        let visitorId = localStorage.getItem('wiki_visitor_id');
+        if (!visitorId) {
+          visitorId = 'surv_' + Math.random().toString(36).substring(2, 11) + Math.random().toString(36).substring(2, 11);
+          localStorage.setItem('wiki_visitor_id', visitorId);
+        }
+
+        await fetch(`${baseUrl}api/visit`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            visitorId,
+            slug: activeSlug
+          })
+        });
+      } catch (err) {
+        console.error('Failed to record page visit:', err);
+      }
+    };
+
+    if (!loading && !error) {
+      recordVisit();
+    }
+  }, [activeSlug, loading, error]);
 
   // 2. Perform deep-content relevance search
   const searchResults = React.useMemo(() => {
@@ -202,6 +237,7 @@ function WikiContainer() {
         setSearchQuery={setSearchQuery}
         isOpen={mobileSidebarOpen}
         onClose={() => setMobileSidebarOpen(false)}
+        onBIconClick={() => setStatsOpen(true)}
       />
 
       {/* Main Container */}
@@ -218,9 +254,14 @@ function WikiContainer() {
           <span className="font-serif font-bold text-sm text-[#e0e7e0] tracking-wide uppercase">
             {activeArticle ? activeArticle.title : 'Survival Index'}
           </span>
-          <div className="w-8 h-8 rounded bg-[#1e2720] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-sm">
+          <button 
+            onClick={() => setStatsOpen(true)}
+            className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-sm hover:bg-[#253228] transition-colors cursor-pointer"
+            title="View Terminal Stats"
+            id="header-b-icon"
+          >
             B
-          </div>
+          </button>
         </header>
 
         {/* Dynamic Article Page or Global Deep-Search Results View */}
@@ -292,6 +333,13 @@ function WikiContainer() {
           )}
         </main>
       </div>
+
+      {/* Stats overlay terminal */}
+      <StatsModal 
+        isOpen={statsOpen} 
+        onClose={() => setStatsOpen(false)} 
+        articles={articles}
+      />
     </div>
   );
 }

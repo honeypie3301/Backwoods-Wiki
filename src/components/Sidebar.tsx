@@ -22,6 +22,7 @@ interface SidebarProps {
   setSearchQuery: (query: string) => void;
   isOpen: boolean;
   onClose: () => void;
+  onBIconClick?: () => void;
 }
 
 export default function Sidebar({
@@ -30,7 +31,8 @@ export default function Sidebar({
   searchQuery,
   setSearchQuery,
   isOpen,
-  onClose
+  onClose,
+  onBIconClick
 }: SidebarProps) {
   // Keep track of which categories are collapsed. Default all open.
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
@@ -96,19 +98,28 @@ export default function Sidebar({
       >
         {/* Header Branding */}
         <div className="p-5 border-b border-[#1a221c] flex items-center justify-between bg-[#0e120f]">
-          <a href="#/wiki/home" className="flex items-center gap-3 group" onClick={onClose}>
-            <div className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-lg group-hover:bg-[#253228] transition-colors">
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onBIconClick?.();
+              }}
+              className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-lg hover:bg-[#253228] hover:border-[#425545] cursor-pointer transition-colors shrink-0"
+              title="View Terminal Stats"
+              id="sidebar-b-icon"
+            >
               B
-            </div>
-            <div>
-              <h1 className="font-serif font-bold text-[#e0e7e0] tracking-wide text-sm">
+            </button>
+            <a href="#/wiki/home" className="flex flex-col text-left" onClick={onClose}>
+              <h1 className="font-serif font-bold text-[#e0e7e0] tracking-wide text-sm hover:text-[#a9d1b0] transition-colors">
                 BACKWOODS WIKI
               </h1>
               <p className="text-[10px] font-mono text-[#5a6b5e] uppercase tracking-wider">
                 Survival Index
               </p>
-            </div>
-          </a>
+            </a>
+          </div>
           <button 
             onClick={onClose}
             className="md:hidden p-1.5 rounded text-[#5a6b5e] hover:text-[#e0e7e0] hover:bg-[#151d17] transition-colors"
