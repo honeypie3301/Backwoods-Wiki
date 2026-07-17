@@ -354,92 +354,54 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   </div>
                 </div>
 
-                {/* 2. Top Pages and Live Logs split layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                  {/* Top Pages (Page Views) - 2 cols on lg */}
-                  <div className="lg:col-span-2 bg-[#0e120f] border border-[#1e2720] rounded-lg p-4 flex flex-col h-[320px]">
-                    <div className="flex items-center gap-2 pb-3 border-b border-[#1e2720] mb-3 select-none">
-                      <FileText className="w-3.5 h-3.5 text-emerald-500" />
+                {/* 2. Live Logs layout (Full Width) */}
+                <div className="bg-[#0e120f] border border-[#1e2720] rounded-lg p-4 flex flex-col h-[320px] mt-6">
+                  <div className="flex items-center justify-between pb-3 border-b border-[#1e2720] mb-3 select-none">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                      </span>
                       <span className="text-xs font-bold text-[#a9d1b0] uppercase tracking-wider">
-                        Page View Directory
+                        Telemetry Log Trace
                       </span>
                     </div>
-
-                    <div className="flex-1 overflow-y-auto space-y-2 pr-1">
-                      {Object.keys(stats.pageViews).length === 0 ? (
-                        <div className="text-center py-12 text-[#5a6b5e] text-xs italic">
-                          No page records cataloged yet.
-                        </div>
-                      ) : (
-                        Object.entries(stats.pageViews)
-                          .sort((a, b) => (b[1] as number) - (a[1] as number))
-                          .map(([slug, count]) => (
-                            <div 
-                              key={slug} 
-                              className="flex items-center justify-between text-xs py-1.5 px-2 bg-[#121713] border border-[#1e2520]/60 hover:border-[#2b372d] rounded transition-all"
-                            >
-                              <span className="text-[#a9d1b0] truncate max-w-[70%]" title={slug}>
-                                {getArticleTitle(slug)}
-                              </span>
-                              <div className="flex items-center gap-1.5 font-sans">
-                                <span className="text-[10px] font-mono text-[#5a6b5e]">({count as number})</span>
-                                <span className="text-emerald-400 font-semibold">{Math.round(((count as number) / stats.totalCount) * 100)}%</span>
-                              </div>
-                            </div>
-                          ))
-                      )}
-                    </div>
+                    <span className="text-[9px] text-[#5a6b5e] uppercase">
+                      Real-time feed
+                    </span>
                   </div>
 
-                  {/* Live Telemetry Feed (Recent Logs) - 3 cols on lg */}
-                  <div className="lg:col-span-3 bg-[#0e120f] border border-[#1e2720] rounded-lg p-4 flex flex-col h-[320px]">
-                    <div className="flex items-center justify-between pb-3 border-b border-[#1e2720] mb-3 select-none">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                        </span>
-                        <span className="text-xs font-bold text-[#a9d1b0] uppercase tracking-wider">
-                          Telemetry Log Trace
-                        </span>
+                  <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 text-[11px] font-mono scrollbar-thin">
+                    {stats.logs.length === 0 ? (
+                      <div className="text-center py-12 text-[#5a6b5e] italic">
+                        Telemetry logs are currently empty.
                       </div>
-                      <span className="text-[9px] text-[#5a6b5e] uppercase">
-                        Real-time feed
-                      </span>
-                    </div>
-
-                    <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 text-[11px] font-mono scrollbar-thin">
-                      {stats.logs.length === 0 ? (
-                        <div className="text-center py-12 text-[#5a6b5e] italic">
-                          Telemetry logs are currently empty.
-                        </div>
-                      ) : (
-                        stats.logs.map((log, index) => {
-                          const date = new Date(log.timestamp);
-                          const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-                          const isNew = log.type === 'unique';
-                          return (
-                            <div 
-                              key={index} 
-                              className="border-b border-[#1a221c]/40 pb-1.5 last:border-0 leading-normal"
-                            >
-                              <span className="text-[#5a6b5e] mr-1.5 font-semibold">[{timeStr}]</span>
-                              <span className="text-emerald-500/80 uppercase tracking-tight mr-1.5">CONN_IN</span>
-                              <span className="text-[#829285] mr-1.5 font-bold">{log.visitorId}</span>
-                              <span className="text-[#5a6b5e] mr-1.5">accessed</span>
-                              <span className="text-teal-400 hover:underline mr-2">{getArticleTitle(log.slug)}</span>
-                              <span className={`inline-block px-1 rounded text-[9px] uppercase font-bold leading-none py-0.5 ${
-                                isNew 
-                                  ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800' 
-                                  : 'bg-[#151a16] text-amber-500 border border-amber-900/60'
-                              }`}>
-                                {isNew ? 'NEW' : 'RET'}
-                              </span>
-                            </div>
-                          );
-                        })
-                      )}
-                    </div>
+                    ) : (
+                      stats.logs.map((log, index) => {
+                        const date = new Date(log.timestamp);
+                        const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+                        const isNew = log.type === 'unique';
+                        return (
+                          <div 
+                            key={index} 
+                            className="border-b border-[#1a221c]/40 pb-1.5 last:border-0 leading-normal"
+                          >
+                            <span className="text-[#5a6b5e] mr-1.5 font-semibold">[{timeStr}]</span>
+                            <span className="text-emerald-500/80 uppercase tracking-tight mr-1.5">CONN_IN</span>
+                            <span className="text-[#829285] mr-1.5 font-bold">{log.visitorId}</span>
+                            <span className="text-[#5a6b5e] mr-1.5">accessed</span>
+                            <span className="text-teal-400 hover:underline mr-2">{getArticleTitle(log.slug)}</span>
+                            <span className={`inline-block px-1 rounded text-[9px] uppercase font-bold leading-none py-0.5 ${
+                              isNew 
+                                ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800' 
+                                : 'bg-[#151a16] text-amber-500 border border-amber-900/60'
+                            }`}>
+                              {isNew ? 'NEW' : 'RET'}
+                            </span>
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                 </div>
 
