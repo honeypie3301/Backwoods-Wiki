@@ -11,7 +11,7 @@ import {
   Database 
 } from 'lucide-react';
 import { doc, collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import { db, hasConfig } from '../lib/firebase';
 
 interface TelemetryLog {
   timestamp: string;
@@ -97,6 +97,11 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       }
       setLoading(false);
     };
+
+    if (!hasConfig) {
+      enableSandboxFallback();
+      return;
+    }
 
     try {
       // 1. Listen to global stats doc

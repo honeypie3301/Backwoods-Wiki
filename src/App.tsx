@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route, Navigate, useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { Menu, Search, X, BookOpen, AlertCircle, HelpCircle, FileText, FileSearch } from 'lucide-react';
 import { doc, getDoc, setDoc, addDoc, collection, increment, serverTimestamp } from 'firebase/firestore';
-import { db as firestoreDb } from './lib/firebase';
+import { db as firestoreDb, hasConfig } from './lib/firebase';
 import { WikiArticle } from './types';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
@@ -145,6 +145,9 @@ function WikiContainer() {
     };
 
     const recordVisitFirebase = async (slug: string, visitorId: string): Promise<boolean> => {
+      if (!hasConfig) {
+        return false;
+      }
       try {
         const visitorDocRef = doc(firestoreDb, 'visitors', visitorId);
         const visitorSnapshot = await getDoc(visitorDocRef);
