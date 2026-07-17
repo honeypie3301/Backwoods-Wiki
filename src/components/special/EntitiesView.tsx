@@ -317,39 +317,39 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
-      title: "Adaptive Learning & Cooldown Compression",
-      trigger: "Continuous engagement up to 1 real-world hour (72,000 ticks)",
-      description: "Studies target patterns over time. Cooldowns compress dynamically from a slow 160 ticks down to a frantic, relentless 20 ticks at peak combat cycles, rendering normal wars of attrition impossible.",
+      title: "Adaptive Learning & Action Overdrive",
+      trigger: "Continuous engagement or target holding an active Totem of Undying",
+      description: "Studies combat patterns over time. Cooldowns between major attacks compress dynamically, forcing a frantic, continuous pace of strikes the longer combat lasts. If the player carries an active Totem, the sentinel enters absolute overdrive, locking its abilities to their minimum cooldown states for rapid, relentless combo strings.",
       category: "Escalation"
     },
     {
-      title: "Adaptive Health Regeneration",
-      trigger: "Triggered after absorbing 50 cumulative damage",
-      description: "Healing factor accelerates dramatically the longer the fight lasts, scaling to extreme critical healing rates when its health drops below 50% and 25% thresholds.",
+      title: "Adaptive Health Regeneration & Plating",
+      trigger: "Sustaining significant cumulative damage",
+      description: "Repairs its own physical damage over time. The self-healing rate accelerates the longer the fight rages, scaling to extreme speeds when its health falls below half or critical survival thresholds. Additionally, it temporarily hardens its outer defense plating when subjected to rapid high-DPS bursts, gaining heavy damage resistance layers.",
       category: "Defense"
     },
     {
-      title: "Sonic Boom Resonance",
-      trigger: "Engaging a Warden entity",
-      description: "Instantly mimics the Warden's specialized auditory physiology, gaining a devastating ranged sonic shockwave blast with direct armor bypassing.",
+      title: "Acoustic Resonance & Ultimate Nova",
+      trigger: "Engaging a Warden or high-intensity sound sources",
+      description: "Instantly mimics the biological properties of the Warden, unleashing a devastating, armor-bypassing directional sonic boom at a distance. If cornered or pushed to its absolute limits, it channels a massive radial shockwave blast (Ultimate Nova) that bursts outwards to blow back all targets in a wide circular perimeter.",
       category: "Mimicry"
     },
     {
-      title: "Thermal Synthesis (Beams)",
-      trigger: "Taking fire/cold damage, or entering hot/cold biomes",
-      description: "Fires specialized lasers that bore through terrain. Solar Beam (heat) melts armor with unmitigable fire damage. Cryo Beam (cold) rapidly freezes and shatters targets with high critical multipliers.",
+      title: "Thermal Synthesis (Solar & Cryo Beams)",
+      trigger: "Sustaining fire/cold damage or navigating hot/cold environments",
+      description: "Charges and fires specialized energy beams with custom elemental payloads. Solar Beams scorch targets with persistent heat damage and deal severe bonus damage against frozen or cold opponents, while Cryo Beams flash-freeze and shatter targets, dealing immense bonus damage against Nether or fire-born creatures.",
       category: "Lethal Ranged"
     },
     {
-      title: "Dimensional Spacing (Blink)",
-      trigger: "End stimuli (End dimension, Ender Pearls, or End creatures nearby)",
-      description: "Adapts instant teleporting dodge maneuvers (18-tick cooldown), making it exceptionally evasive and allowing it to reposition behind the player's blind spots.",
+      title: "Dimensional Spacing & Speed Calibration",
+      trigger: "Dodging attacks or closing gaps with targets",
+      description: "Gradually calibrates its physical speed, overcoming its initial movement penalty to speed up as combat ticks accumulate. It can execute ultra-fast spatial blinks to evade incoming weapons and projectile fire, repositioning directly behind the target to strike from visual blind spots.",
       category: "Mobility"
     },
     {
-      title: "Martial Combat Combos (Minos Protocol)",
-      trigger: "Active once physical coordination and tactical pacing synchronize",
-      description: "Unlocks spectacular martial combinations: floor slams, dropkicks, rider kicks, launching the target skyward and spiking them back with kinetic momentum, and shield-breaking punches followed by high-velocity diving kicks.",
+      title: "Martial Combat & Heavy Combos",
+      trigger: "Active once combat coordination and movement styles align",
+      description: "Executes heavy martial sequences, combining physical strikes like heavy ground slams, dropkicks, high-velocity diving kicks (Rider Kicks) that shatter shields, standalone uppercuts that launch targets into the air, alternating punches, and crushing downward double-fisted overhead slams.",
       category: "Melee Combos"
     }
   ];
@@ -639,11 +639,15 @@ export default function EntitiesView() {
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                         Standard Totem (Empowered State)
                       </h5>
-                      <ul className="text-xs text-[#8c8779] space-y-1 pl-3.5 list-disc leading-relaxed">
-                        <li><strong className="text-[#e0e7e0]">+50% Attack Damage</strong> and <strong className="text-[#e0e7e0]">+35% Movement Speed</strong> modifiers.</li>
-                        <li>Global ability cooldowns tick down twice as fast (ultra-fast combo chain pacing).</li>
-                        <li>Melee combos scale to a terrifying <strong>85% activation chance</strong> per physical strike.</li>
-                        <li>Attacks punch tunnels directly through structural blocks behind the impact point.</li>
+                      <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed">
+                        <li>Grants the sentinel <strong className="text-[#e0e7e0]">+50% Attack Damage</strong> and <strong className="text-[#e0e7e0]">+12.5% Movement Speed</strong> boosts.</li>
+                        <li>Paces actions twice as fast, executing attacks and movement at an ultra-rapid cycle.</li>
+                        <li>Melee strikes have a massive <strong className="text-[#e0e7e0]">85% chance</strong> to trigger immediate follow-up combos.</li>
+                        <li>All physical strikes punch tunnels directly through solid blocks and terrain behind the target.</li>
+                        <li>Stomps and ground smashes trigger elevated shockwaves and heavy splash explosions.</li>
+                        <li>Choke holds are heavily reinforced, requiring far more physical strikes from the victim to break free.</li>
+                        <li>Ultimate Nova (Omnidirectional Sonic Boom) damage and kinetic launch forces are severely amplified.</li>
+                        <li>Intensifies ambient camera shaking and pitch shifts for extreme, hostile threat cues.</li>
                       </ul>
                     </div>
                   )}
@@ -655,12 +659,12 @@ export default function EntitiesView() {
                         Infinity Totem (Absolute Limit State)
                       </h5>
                       <p className="text-xs text-[#8c8779] leading-relaxed">
-                        Consuming the legendary Infinity Totem—supported via compatibility with the <a href="https://www.curseforge.com/minecraft/mc-mods/re-avaritia" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline font-medium">Avaritia</a> mod—elevates the sentinel to its ultimate limit state, triggering permanent <strong className="text-red-400">Infinity Mode</strong>:
+                        Consuming the legendary Infinity Totem—supported via cross-mod compatibility with the <a href="https://www.curseforge.com/minecraft/mc-mods/re-avaritia" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline font-medium">Avaritia</a> mod—permanently elevates the sentinel to its absolute limit:
                       </p>
-                      <ul className="text-xs text-[#8c8779] space-y-1 pl-3.5 list-disc leading-relaxed">
-                        <li>Inherits all damage and speed adjustments of the standard Empowered state.</li>
-                        <li>Grants immense, continuous <strong className="text-emerald-400 font-bold">passive health regeneration</strong> that heals wounds in real time.</li>
-                        <li>Significantly enlarges shockwaves, blast radii, and basic attack damage, driving aggression to maximum limits.</li>
+                      <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed">
+                        <li>Inherits full attack damage and speed advantages permanently without any degradation.</li>
+                        <li>Bypasses standard regeneration limits to grant immense, continuous <strong className="text-emerald-400 font-bold">passive health regeneration</strong> that repairs wounds instantly in real time.</li>
+                        <li>Drives aggression and action selection to the absolute limit, completely immune to standard totem removal or stripping mechanics.</li>
                       </ul>
                     </div>
                   )}
