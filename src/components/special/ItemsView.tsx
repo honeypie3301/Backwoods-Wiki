@@ -189,7 +189,7 @@ export default function ItemsView() {
       id: "sharpened_splinter_shard",
       name: "Sharpened Splinter Shard",
       category: "materials",
-      desc: "A brittle, razor-sharp sliver processed through stonecutting techniques. Acts as a desperate weapon of last resort.",
+      desc: "A brittle, razor-sharp material processed through stonecutters. Can be used as a desperate weapon of last resort.",
       stats: [
         { label: "Attack Damage", value: "0.8" },
         { label: "Durability", value: "25" }

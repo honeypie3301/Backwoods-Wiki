@@ -1234,7 +1234,9 @@
       "outputCount": 1,
       "pattern": null,
       "keyMap": null,
-      "ingredients": []
+      "ingredients": [
+        "the_backwoods:splinter_shard"
+      ]
     }
   ],
   "the_backwoods:stabilized_pale_remedy": [
