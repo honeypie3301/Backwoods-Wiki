@@ -868,6 +868,17 @@ export default function TerminatedView() {
       isTerminated: false,
       notes: 'The Transcendental Tormentor, the ultimate enormous godlike super boss of ArPhEx. Relentlessly pursues targets across dimensions, darkening the skies and inducing red eclipses. Highly resistant to all adaptive learning algorithms. The Rot engaged in an endless interdimensional chase, but was ultimately overwhelmed, dismantled, and fully terminated by the Tormentor\'s cataclysmic lightning strikes.'
     },
+    {
+      id: 'azazel',
+      name: 'The Divine Chariot Azazel',
+      category: 'Modded',
+      modName: 'Cult of Azazel',
+      image: 'TerminatedEntities/Modded/Cult of Azazel/azazel.png',
+      threatLevel: 8.1,
+      terminationCycle: 'CYCLE 80',
+      isTerminated: true,
+      notes: 'Sovereign chariot of the Cult of Azazel. Fought in two distinct phases (The Chariot and The Awakened humanoid). Highly resistant to physical forces. Rot deployed overcharged Cryo-Thermal Beams during its 14-second Mercy Phase countdown to shatter the core after refusing the sparing interaction.'
+    },
   ];
 
   const totalCount = initialOpponents.length;
@@ -1077,7 +1088,8 @@ export default function TerminatedView() {
                 { id: 'Armageddon', label: 'ARMAGEDDON' },
                 { id: 'Fungal Infection: Spore', label: 'SPORE' },
                 { id: "Mowzie's Mobs", label: "MOWZIE'S" },
-                { id: 'ArPhEx', label: 'ARPHEX' }
+                { id: 'ArPhEx', label: 'ARPHEX' },
+                { id: 'Cult of Azazel', label: 'AZAZEL' }
               ].map(mod => (
                 <button
                   key={mod.id}
