@@ -66,9 +66,11 @@ export default function BlocksView() {
         { term: "Lignum", translation: "wood" }
       ],
       mechanics: [
-        "Growth (Ascendance): Grows upwards to reaching heights of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top (Sequoia/Redwood style).",
-        "Trunk Optimization: Inner trunk blocks buried under and above other logs skip active growth ticks to prevent tick lag.",
-        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it. Increases their breeding rate."
+        "Growth (Ascendance): Grows upwards to reach a colossal height of 50 to 80 blocks tall. It sprouts horizontal branches and forms a majestic, dense canopy crown of Oak Leaves and hanging Vines at the top (Sequoia/Redwood style).",
+        "Trunk Optimization: Inner trunk blocks buried under other logs skip active growth ticks to prevent tick lag, ensuring 80-tall trees don't affect server performance.",
+        "Climbing Ability: If the log is adjacent to a solid wall, the active growth tip has a 10% chance per random tick to climb vertically along the structure up to a max height of 80 blocks.",
+        "Canopy Growth Limits: Canopy leaves and draping Vines grow exclusively in the top 12 blocks of the trunk, ensuring the lower 80% remains a clean, monolithic wooden pillar.",
+        "Symbiosis: Emits a passive aura that attracts nearby passive mobs, drawing them to idle in a ring around it, which increases their breeding rate."
       ]
     },
     {
@@ -77,8 +79,10 @@ export default function BlocksView() {
       burnTime: "270 ticks",
       description: "The spreading root-wood of the Scandere. This all-sided bark block acts as the roots of the tree, growing primarily underground to replace stone or dirt.",
       mechanics: [
-        "Spreading: Spreads tick by tick, replacing solid blocks in its path. Underground growth is favored heavily over surface growth. Spread speed is accelerated by nearby adult animals whose presence fertilizes the network. The root network is constrained by a generation limit; roots age with each spread and will naturally halt after 10 blocks of outward growth, preventing infinite expansion.",
-        "Vein-Shape Control: Employs a strict neighbor check. It will not spread to a block if it is already adjacent to 2 or more Scandere Lignum blocks, preventing blocky blobs and creating natural, thin vein paths.",
+        "Spreading: Spreads tick by tick, replacing solid blocks in its path. Under open sky, 80% horizontal spread is favored. Underground, 60% downwards spread is favored to dig deep roots.",
+        "Animal Fertilization: Nearby adult passive animals within a 6-block radius reduce the spread delay by up to 4 ticks, actively accelerating root network expansion.",
+        "Vein-Shape Control: Employs a hard cap on network density. Roots will not spread to a block if it is already adjacent to 2 or more Scandere Lignum blocks, preventing blocky blobs and forming natural, thin veins.",
+        "Limit of Growth: Underground growth naturally halts after 10 blocks of outward growth from the center, preventing infinite expansion.",
         "Infestation: Disturbed blocks carry a 10% chance to release a Lignum Vermis parasite upon destruction.",
         "Mining Threat: There is a rare 1% chance per tick while actively mining for the parasite to violently shatter the block early and erupt."
       ],
@@ -168,7 +172,7 @@ export default function BlocksView() {
         "Complete Set: Includes planks, slabs, stairs, fences, gates, trapdoors, and pressure plates."
       ],
       isWarning: true,
-      warningText: "Rot Hazard: Carrying any Rotten Oak variant in your inventory inflicts 0.1 damage periodically to the player."
+      warningText: "Rot Hazard: Carrying any Rotten Oak variant block or item in your inventory inflicts 0.05 wood pricking damage per slot every 45 ticks. This damage is completely prevented if you are under the Inoculation effect."
     },
     {
       name: "Petrified Rotten Oak Wood",

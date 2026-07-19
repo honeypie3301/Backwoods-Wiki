@@ -192,10 +192,12 @@ export default function ItemsView() {
       desc: "A brittle, razor-sharp material processed through stonecutters. Can be used as a desperate weapon of last resort.",
       stats: [
         { label: "Attack Damage", value: "0.8" },
-        { label: "Durability", value: "25" }
+        { label: "Durability", value: "25" },
+        { label: "Inventory Hazard", value: "0.08 damage / 160 ticks" }
       ],
       notes: [
-        "Extremely fragile. Breaks after a few combat encounters but can help clear minor foliage or early threats."
+        "Extremely fragile. Breaks after a few combat encounters but can help clear minor foliage or early threats.",
+        "Pricking Threat: Carrying this item in your inventory pricks you for 0.08 physical damage every 160 ticks. You can completely neutralize this hazard by maintaining the Inoculation effect."
       ]
     },
     {
