@@ -138,7 +138,7 @@ export default function ItemsView() {
       ],
       notes: [
         "Mode 0 (Rewind Mode): Normal right-click instantly rolls back the player's spatial position, health, food level, and kinetic states to a pre-recorded timestamp.",
-        "Mode 1 (Chrono-Stasis Anchor): Shift + Right-click toggles modes. Right-click to drop an anchor at your current position, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 shard.",
+        "Mode 1 (Chrono-Stasis Anchor): "Shaking" toggles modes (swinging arm 2-5 times). Right-click to drop an anchor at your current position, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 shard.",
         "Passive Time-Lock: Simply carrying a Memory Shard anywhere in your active inventory halts the passive decay of Faded tools (which normally face a 1-in-3 chance to lose 1 durability point every 100 ticks).",
         "Crafting utility: Required in quantities to craft highly resonant dimensional artifacts like the Resonant Rot Effigy."
       ]
