@@ -120,6 +120,8 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'fractus_prime_core': { short: 'Fpc', bg: 'bg-[#2f1c0f]', text: 'text-[#f59e0b]', border: 'border-[#7c4314]', glow: 'group-hover:shadow-[0_0_14px_rgba(245,158,11,0.25)]' },
     'rot_effigy': { short: 'Re', bg: 'bg-[#1f1710]', text: 'text-[#b45309]', border: 'border-[#422d1b]', glow: '' },
     'resonant_rot_effigy': { short: 'Rre', bg: 'bg-[#271b10]', text: 'text-[#fbbf24]', border: 'border-[#5c3c16]', glow: '' },
+    'splintered_oak_planks': { short: 'Sop', bg: 'bg-[#211511]', text: 'text-[#f43f5e]', border: 'border-[#5c1c11]', glow: 'group-hover:shadow-[0_0_10px_rgba(244,63,94,0.15)]' },
+    'oak_planks': { short: 'Op', bg: 'bg-[#291b12]', text: 'text-[#fbbf24]', border: 'border-[#543b22]', glow: '' },
   };
 
   if (mapping[cleanId]) {

@@ -1,5 +1,5 @@
 __FORCETOC__
-<div class="backwoods-wiki-container" style="max-width: 1000px; margin: 0 auto; color: #a4a090; background-color: #080808; padding: 40px 30px; box-sizing: border-box; border: 1px solid #1a1414; line-height: 1.7;">
+<div class="backwoods-wiki-container" style="max-width: 1000px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Pro Text', 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #a4a090; background-color: #080808; padding: 40px 30px; box-sizing: border-box; border: 1px solid #1a1414; line-height: 1.7;">
 
 <!-- INTRODUCTION -->
 <div style="border-left: 2px solid #5c1414; padding-left: 20px; margin-bottom: 40px; color: #c4bfa5; font-style: italic; font-size: 1.05em; line-height: 1.8;">
@@ -8,10 +8,78 @@ Welcome to the restricted KRONOS Tactical Database. Displays records of terminat
 
 <p>The KRONOS terminal registers all dimensional specimens captured, engaged, or terminated across the Overworld, Nether, End, and exotic modded sectors. Each record traces the tactical capabilities of the specimen matched alongside the specific iterative OMNIDROID combat prototype deployed to neutralize it.</p>
 
-<h2 style="color: #c4bfa5; border-bottom: 1px solid #1a1414; padding-bottom: 8px; margin-top: 30px;">Security Status</h2>
-<ul>
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 40px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Security Status</h2>
+<ul style="margin: 0 0 30px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.95em; color: #9c9788;">
   <li><strong>All Targets Neutralized:</strong> 100% Termination status achieved.</li>
   <li><strong>Database Access:</strong> Decrypted via Core Authorization overrides.</li>
+</ul>
+
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Dossier Addition: Azazel</h2>
+
+<h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Azazel Boss Reference</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Azazel is the primary boss of the <strong>Cult of Azazel</strong> mod. The boss fight exists in two distinct forms: the Divine Chariot Azazel and Azazel, The Awakened. Fought with multiple state transitions, shields, prisons, and fire rings, Azazel was completely neutralized and cataloged during Cycle 80.</p>
+
+<div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
+    <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Entity IDs</strong>
+    <ul style="margin: 0; padding-left: 14px; list-style-type: circle; color: #9c9788; line-height: 1.5;">
+        <li><strong>Form 1:</strong> <code>AzazelEntity</code> (The Divine Chariot Azazel)</li>
+        <li><strong>Form 2:</strong> <code>AzazelHumanEntity</code> (Azazel, The Awakened)</li>
+    </ul>
+</div>
+
+<h4 style="color: #eaeaea; margin-top: 25px; margin-bottom: 10px; font-size: 1.1em; font-weight: 500;">Form 1 Stats &amp; Attributes</h4>
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9em; text-align: left; color: #9c9788;">
+  <thead>
+    <tr style="border-bottom: 1px solid #301414; color: #c4bfa5;">
+      <th style="padding: 8px;">Attribute</th>
+      <th style="padding: 8px;">Value</th>
+      <th style="padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 8px; font-weight: bold; color: #eaeaea;">Health</td>
+      <td style="padding: 8px; font-family: monospace;">800</td>
+      <td style="padding: 8px;">Configurable via <code>maxHealth</code> options.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 8px; font-weight: bold; color: #eaeaea;">Movement Speed</td>
+      <td style="padding: 8px; font-family: monospace;">0.2</td>
+      <td style="padding: 8px;">Configurable via <code>movementSpeed</code> options.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 8px; font-weight: bold; color: #eaeaea;">Knockback Resistance</td>
+      <td style="padding: 8px; font-family: monospace;">1.0</td>
+      <td style="padding: 8px;">100% immune to knockback.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 8px; font-weight: bold; color: #eaeaea;">Passive Aura</td>
+      <td style="padding: 8px; font-family: monospace;">Anxiety Effect</td>
+      <td style="padding: 8px;">Inflicts Anxiety within 100 blocks, refreshed every second.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 style="color: #eaeaea; margin-top: 25px; margin-bottom: 10px; font-size: 1.1em; font-weight: 500;">Active Attack Profiles</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The combat cycle executes diverse behavioral states:</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong>Aggro Trigger:</strong> Screams, shows a full-screen title <code>Mistake</code>, and triggers Bad Omen detection.</li>
+    <li style="margin-bottom: 8px;"><strong>Wind Attack (State 1):</strong> Deals <code>5.0</code> damage and blows back targets within a 20-block radius.</li>
+    <li style="margin-bottom: 8px;"><strong>Defense Shield (State 2):</strong> Becomes invulnerable for 5 seconds after receiving <code>5-20</code> hits, healing 20.0 HP.</li>
+    <li style="margin-bottom: 8px;"><strong>Wheel Attack (State 3):</strong> Rapid dashing dashes, dealing <code>4.0</code> contact damage per hit.</li>
+    <li style="margin-bottom: 8px;"><strong>Arrow Attack (State 4):</strong> Invokes one of three randomly chosen modes: a 30-arrow rain (Variant 0), a 20 Evoker Fang wave (Variant 1), or a 10 laser beam ring (Variant 2).</li>
+    <li style="margin-bottom: 8px;"><strong>Pray / Buff Minions (State 5):</strong> Buffs nearby <code>BelieverEntity</code> minions with 7.5 seconds of invulnerability.</li>
+    <li style="margin-bottom: 8px;"><strong>Pull &amp; Launch (State 11 &amp; 12):</strong> Siphons players within 20 blocks before launching them vertically or detonating a 5-block explosion dealing <code>8.0</code> damage.</li>
+    <li style="margin-bottom: 8px;"><strong>Midas Ring of Fire (State 13):</strong> Summons Guardians or Midas units, creates an expanding ring of fire dealing <code>8.0</code> tick damage, and turns random inventory items into Raw Gold if targets stand within 6 blocks for 10 seconds.</li>
+    <li style="margin-bottom: 0;"><strong>Blackstone Prison (State 14):</strong> Entombment columns (5 blocks radius, 6 blocks height). Grows 5 blocks taller dynamically using Grand Door Parts if targets fly or leap over the barrier.</li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 25px; margin-bottom: 10px; font-size: 1.1em; font-weight: 500;">The Sparing Phase (Mercy Cycle)</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Upon reaching <strong>5% Health or lower</strong>, Azazel ceases all aggressive behavior and initiates a 14-second clock ticking countdown:</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong>Spare Condition:</strong> Right-clicking Azazel with an Iron, Diamond, or Netherite Sword or Axe consumes the weapon, causing the boss to depart in peace.</li>
+    <li style="margin-bottom: 8px;"><strong>Refusal Cooldown:</strong> If 14 seconds pass without interaction, the boss re-aggroes at full combat effectiveness.</li>
+    <li style="margin-bottom: 0;"><strong>Execution Drops:</strong> Striking Azazel during the countdown prompts a full death explosion, dropping the primary <strong>Loot Barrel</strong>.</li>
 </ul>
 
 </div>

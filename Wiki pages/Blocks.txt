@@ -63,6 +63,38 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 </table>
 <p style="font-size: 0.85em; color: #70685c; margin-top: 8px; font-style: italic; margin-bottom: 30px;">Using Silk Touch on Scandere Lignum suppresses the Bone Meal drop entirely, yielding only the block itself.</p>
 
+<h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 8px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Splintered Oak Planks</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A highly hazardous, defensive spiked building block crafted from standard Oak Planks and Sharpened Splinter Shards. It provides strong defensive utility against players and hostile intruders, but requires careful handling.</p>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Hardness</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">2.2</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Blast Resistance</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">3.5</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Tool Tier</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Axe (Any)</td>
+    </tr>
+</table>
+
+<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Operational Mechanics</h4>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Crouch Placement Only:</strong> Other blocks cannot be placed on top of Splintered Oak Planks unless the player is actively sneaking (crouching), preventing accidental construction over spikes.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Mob Avoidance:</strong> Intelligent entities recognize the danger of the spiked planks and actively avoid pathfinding over them.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Spiked Slowdown:</strong> Friction from the splinters reduces walking velocity significantly (speed factor: 0.6).</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Axe Stripping:</strong> Right-clicking the block with any Axe or Shears strips/disarms the block back into normal Oak Planks. This plays a strip sound, releases 15 wood dust plume particles, consumes tool durability, and drops 0 to 2 Sharpened Splinter Shards. Note: There is a 25% chance of structural collapse, breaking the block entirely instead of stripping it.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Pricking Hazard:</strong> Stepping on the block without boots or while wearing Leather Boots inflicts 0.5 physical damage every 30 ticks. Other boots fully absorb the damage but lose 1 durability point every 60 ticks. Woodbound entities are fully immune.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Impalement Falling:</strong> Falling on Splintered Oak Planks from 3 blocks or higher while wearing no boots or Leather Boots multiplies impact gravity, inflicting severe impalement damage (fall distance plus 1 to 2 bonus physical damage) bypassing normal fall-mitigating blocks.</li>
+</ul>
+
 <!-- ==========================================
      BACKWOODS SECTION
      ========================================== -->
@@ -181,7 +213,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     </tr>
     <tr>
         <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Sinking Ash</td>
-        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">A terrain hazard generated naturally in Loss. Slows player movement while inside. Functions as a mobility control hazard rather than a source of direct damage. <strong style="color: #c4bfa5; font-style: italic;">Cancels fall damage</strong>.</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">A terrain hazard generated naturally in Loss. Slows player movement while inside. Functions as a mobility control hazard rather than a source of direct damage. <strong style="color: #c4bfa5; font-style: italic;">Cancels fall damage</strong>. Right-click with Petrified Resin to purify into Faded Block; right-click with Compact Petrified Resin to purify into Nullstone. Each conversion consumes 1 resin item.</td>
     </tr>
 </table>
 
@@ -656,8 +688,15 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 <p style="margin-bottom: 20px; font-size: 0.95em;">As a player's time in the Backwoods exceeds <strong style="color: #c4bfa5;">31,200 ticks (Stage Four)</strong>, standard Oak Planks begin to spontaneously transform into Rotten Oak Planks. Once a single block takes root, it persistently infects adjacent Oak Planks, spreading the decay further. This serves as a physical manifestation of your mental degradation.</p>
 
 <!-- DEBUFF WARNING BOX -->
-<div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #9e2a2a; padding: 16px; margin-bottom: 20px; color: #cfbfa8;">
-<strong style="color: #9e2a2a; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">Rot Hazard:</strong> Carrying any Rotten Oak variant deals <strong style="color: #c4bfa5;">0.1 damage</strong> periodically to the player.
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 3px solid #ff5252; padding: 16px; margin-bottom: 25px; color: #cfbfa8; border-radius: 4px;">
+    <strong style="color: #ff5252; text-transform: uppercase; font-size: 0.9em; letter-spacing: 0.08em; display: block; margin-bottom: 6px;">Rotting Inventory Hazard (Rotting Blocks Tag)</strong>
+    <p style="margin: 0 0 10px 0; font-size: 0.9em; line-height: 1.5; color: #9c9788;">Carrying physical decay directly in your inventory carries extreme biological risk. The ancient corruption of the woods will slowly seep into the player's physical body.</p>
+    <ul style="margin: 0; padding-left: 18px; font-size: 0.88em; color: #9c9788; list-style-type: square; line-height: 1.5;">
+        <li style="margin-bottom: 4px;"><strong>Tick Interval:</strong> Checks the player inventory every <strong>45 ticks (2.25 seconds)</strong>.</li>
+        <li style="margin-bottom: 4px;"><strong>Damage Mechanics:</strong> Deals <strong>0.05 HP</strong> (sweet berry bush type damage) <em>per matching inventory slot</em> containing any item with the <code style="color: #eaeaea; font-size: 0.9em;">#the_backwoods:rotting_blocks</code> tag.</li>
+        <li style="margin-bottom: 4px;"><strong>Stack Multiplier:</strong> Because damage is evaluated per slot, carrying multiple separate slots of rotting logs, wood, planks, stairs, or slabs will cause the physical decay damage to stack up linearly.</li>
+        <li style="margin-bottom: 0;"><strong>Inoculation Immunity:</strong> Players active in Creative mode are naturally immune. Survival players can entirely nullify this damage by acquiring and maintaining the active <strong style="color: #c4bfa5;">Inoculation Effect</strong>.</li>
+    </ul>
 </div>
 
 <table class="article-table" style="width: 100%; border-collapse: collapse; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 40px;">

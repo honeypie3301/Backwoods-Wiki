@@ -3,6 +3,9 @@ import { Search, Info, Shield, Flame, Hammer, Coins, AlertTriangle, ShieldAlert,
 import FancyRecipeView from './FancyRecipeView';
 
 function getBlockRecipeIds(name: string): string[] {
+  if (name === "Splintered Oak Planks") {
+    return ['splintered_oak_planks'];
+  }
   if (name === "Nullstone & Cobbled Nullstone") {
     return [
       'nullstone_slab', 'nullstone_stair', 'nullstone_wall',
@@ -128,7 +131,8 @@ export default function BlocksView() {
       description: "A dangerous natural hazard generating in Loss. Acts as a mobility control hazard.",
       mechanics: [
         "Movement Restriction: Severely slows player movement when stepped inside.",
-        "Fall Mitigation: Completely cushions and cancels all fall damage."
+        "Fall Mitigation: Completely cushions and cancels all fall damage.",
+        "Purification: Right-clicking with Petrified Resin converts the block into a Faded Block. Right-clicking with Compact Petrified Resin converts it into Nullstone. Each conversion consumes 1 resin item from your hand."
       ]
     },
     {
@@ -173,6 +177,21 @@ export default function BlocksView() {
       ],
       isWarning: true,
       warningText: "Rot Hazard: Carrying any Rotten Oak variant block or item in your inventory inflicts 0.05 wood pricking damage per slot every 45 ticks. This damage is completely prevented if you are under the Inoculation effect."
+    },
+    {
+      name: "Splintered Oak Planks",
+      dimension: "overworld",
+      hardness: "2.2",
+      blastRes: "3.5",
+      description: "A hazardous, defensive spiked building block covered in sharp splinters. Handled with caution to prevent injury.",
+      mechanics: [
+        "Crouch Placement Only: Non-sneak block placement on top is strictly locked and fails to prevent unwanted construction over active hazards. Players must sneak (crouch) to place any block on it.",
+        "Mob Caution: Smart monsters detect the hazardous spiked surface and actively avoid pathfinding over these planks.",
+        "Spiked Friction: Spike friction reduces standard walking velocity across the block surface (speed factor: 0.6).",
+        "Axe Stripping: Right-clicking with any Axe or Shears strips/disarms the block back to standard Oak Planks. This consumes tool durability, triggers 15 wood dust plume particles, and drops 0-2 Sharpened Splinter Shards. There is a 25% chance of structural collapse, breaking the block entirely instead of stripping it.",
+        "Pricking Hazard: Stepping on the block without boots or while wearing Leather Boots inflicts 0.5 physical damage every 30 ticks. Higher-tier boots completely block damage but lose 1 point of durability every 60 ticks. Woodbound entities are fully immune.",
+        "Impalement Falling: Falling from a height of 3 blocks or more on these planks without steel-capped boots multiplies impact gravity, inflicting severe impalement damage (fall distance plus 1-2 bonus physical damage) bypassing normal fall-mitigating blocks."
+      ]
     },
     {
       name: "Petrified Rotten Oak Wood",

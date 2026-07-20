@@ -232,7 +232,16 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 </div>
 
 <h3 style="color: #8c9cb3; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Shard</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">Found by mining Memory Quartz in [[dimensions|The Loss dimension]]. Can be used to craft the [[Items#Resonant Rot Effigy|Resonant Rot Effigy]]</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A rare and powerful temporal crystal found by mining Memory Quartz Ore in [[dimensions|The Loss dimension]]. It offers advanced active survival tools and key passive protection against inventory decay.</p>
+
+<div style="background: #090a09; border: 1px solid #142817; border-left: 2px solid #709978; padding: 20px; margin-top: 15px; margin-bottom: 25px; color: #a4a090;">
+<h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: bold;">Dual-Mode Active Controls</h4>
+<ul style="margin: 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 0: Instant Rewind (Default)</strong> - Normal right-click instantly pops the player state back in time, rewinding your horizontal coordinates, health, and food levels back to a pre-recorded snapshot. Consumes 1 Memory Shard.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 1: Chrono-Stasis Anchor</strong> - Shift + Right-click toggles modes. Right-click to drop an anchor at your coordinates, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 Memory Shard. Toggling modes plays an ethereal click and splash particle display.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Passive Protection (Decay Halting)</strong> - Simply carrying a Memory Shard anywhere in your active inventory halts the passive decay of Faded tools. Faded tools normally suffer a 33.3% chance of losing 1 durability point every 100 ticks while in inventory;carrying a shard completely neutralizes this entropic decay.</li>
+</ul>
+</div>
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Seep</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">A rare crafting material that drops from oak planks broken inside [[dimensions|The Backwoods dimension]]. It appears as a small pale droplet - something that has seeped out of wood that should not be alive. The drop chance is low. Breaking many planks is often necessary to find one.</p>
@@ -306,7 +315,19 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 </ul>
 
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Sharpened Splinter Shard</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A brittle but jagged blade created by processing a Splinter Shard in a Stonecutter. Serves as a desperate, short-lived weapon for those lost in the woods.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A brittle but jagged blade created by processing a Splinter Shard in a Stonecutter. Serves as a desperate, short-lived weapon for those lost in the woods. However, holding this unrefined, razor-sharp item directly in your inventory without proper precautions carries a continuous physical hazard.</p>
+
+<!-- HAZARD WARNING BOX -->
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 3px solid #ff5252; padding: 14px; margin-bottom: 25px; color: #cfbfa8; border-radius: 4px;">
+    <strong style="color: #ff5252; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.08em; display: block; margin-bottom: 6px;">Splinter Hazard (Inventory Tick Damage)</strong>
+    <ul style="margin: 0; padding-left: 18px; font-size: 0.85em; color: #9c9788; list-style-type: square; line-height: 1.5;">
+        <li style="margin-bottom: 4px;"><strong>Tick Interval:</strong> Automatically checks the player's inventory every <strong>160 ticks (8.0 seconds)</strong>.</li>
+        <li style="margin-bottom: 4px;"><strong>Bleeding Damage:</strong> Deals <strong>0.08 HP</strong> of sweet berry bush-style cutting damage directly to the user if any Sharpened Splinter Shard is detected inside the inventory slots.</li>
+        <li style="margin-bottom: 4px;"><strong>Immunization:</strong> Creative mode players (Instabuild active) are completely immune.</li>
+        <li style="margin-bottom: 0;"><strong>Active Medicine:</strong> Survival players can completely nullify this bleeding/injury damage by maintaining the active <strong style="color: #c4bfa5;">Inoculation Effect</strong>.</li>
+    </ul>
+</div>
+
 <table class="article-table" style="width: 100%; max-width: 300px; font-size: 0.9em; border-collapse: collapse; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 25px;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
         <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Stat</th>

@@ -1266,5 +1266,27 @@
         "minecraft:water_bottle"
       ]
     }
+  ],
+  "the_backwoods:splintered_oak_planks": [
+    {
+      "file": "splintered_oak_plank_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:sharpened_splinter_shard"
+        },
+        "b": {
+          "item": "minecraft:oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:sharpened_splinter_shard",
+        "b = minecraft:oak_planks"
+      ]
+    }
   ]
 }
