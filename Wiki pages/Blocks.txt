@@ -166,6 +166,45 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Infection Delay:</strong> All active defense, spread, and cleansing mechanics remain completely dormant until the world age is at least <strong style="color: #c4bfa5;">1,200 ticks old (1 minute)</strong>, preventing instant early-game disasters.</li>
 </ul>
 
+<h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Lignum Caro Trapdoor</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A fleshy trapdoor crafted from Lignum Caro. Can be opened by redstone or by hand. Due to its reactive organic nature, whenever an entity steps directly on a closed Lignum Caro Trapdoor, it will automatically snap open after a brief 4-tick delay, dropping the entity down. It can also be used as a furnace fuel (burns for 300 ticks).</p>
+
+<!-- Crafting Box for Lignum Caro Trapdoor -->
+<div style="margin-top: 15px; margin-bottom: 25px;">
+  <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 10px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Lignum Caro Trapdoor Recipe</h4>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center; border: 1px solid #2d1814; background: #0c0a0a; padding: 15px; margin-bottom: 12px; border-radius: 4px;">
+    <!-- Left: Visual Grid -->
+    <div style="flex: 0 0 150px; text-align: center;">
+      <table style="width: 140px; border-collapse: collapse; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto;">
+        <tr style="border: none;">
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+        </tr>
+        <tr style="border: none;">
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="the_backwoods:lignum_caro"><span style="font-size: 0.85em; color: #cfbfa8;">lignum_caro</span></td>
+        </tr>
+        <tr style="border: none;">
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td>
+          <td style="width: 32%; height: 40px; border: 1px solid #2d1814; text-align: center; background: #080808; padding: 2px;" title="">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- Right: Recipe Details -->
+    <div style="flex: 1; min-width: 200px;">
+      <div style="font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.05em; color: #8e8375; margin-bottom: 6px;">CRAFTING SHAPED &nbsp;|&nbsp; Yields: <span style="color: #c4bfa5; font-weight: bold;">x2</span></div>
+      <ul style="margin: 0; padding-left: 15px; font-size: 0.85em; color: #9c9788; line-height: 1.5;">
+        <li style="margin-bottom: 4px;">a: <strong style="color: #c4bfa5;">lignum_caro</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">False Oak Planks</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">A highly deceptive decoy block that looks visually indistinguishable from standard Oak Planks but physically behaves as a leaf block. It can only be found in [[dimensions|The Backwoods dimension]], acting as leaves for the trees in the Thicket biome. It is designed for hidden traps, secret pathways, or deceptive building.</p>
 
@@ -196,6 +235,19 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Stick Drops:</strong> Breaking the block without Shears or a Silk Touch tool drops 1 to 2 Sticks instead of the block itself.</li>
 </ul>
 
+<h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Splintered Oak Planks</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A perilous variant of wooden planks. While they appear similar to standard planks, their structural integrity is highly compromised and covered in dangerous splinters. To safely place blocks on top of Splintered Oak Planks without taking damage, players must sneak.</p>
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Tool Tier</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Axe (Any)</td>
+    </tr>
+</table>
+
 <!-- ==========================================
      [[dimensions|Loss dimension]] SECTION
      ========================================== -->
@@ -218,7 +270,7 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
 </table>
 
 <h3 style="color: #8c9cb3; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Nullstone & Variants</h3>
-<p style="margin-bottom: 20px; font-size: 0.95em;">The primary stone of [[dimensions|The Loss dimension]], formed from a degraded and memory-eroded variant of stone. Its texture appears washed out and low in detail, reflecting the instability of the environment. Produces <strong style="color: #9e2a2a; font-style: italic;">no sound</strong> when interacted with.</p>
+<p style="margin-bottom: 20px; font-size: 0.95em;">The primary stone of [[dimensions|The Loss dimension]], formed from a degraded and memory-eroded variant of stone. Its texture appears washed out and low in detail, reflecting the instability of the environment. Produces <strong style="color: #9e2a2a; font-style: italic;">no sound</strong> when interacted with. Additionally, its void-like composition absorbs physical impact—any projectile (such as arrows or spectral arrows) that strikes a Nullstone block is instantly destroyed in a flash of particles.</p>
 
 <table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
     <tr style="border-bottom: 1px solid #301414; background: #120c0c;">

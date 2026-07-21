@@ -232,13 +232,13 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
 </div>
 
 <h3 style="color: #8c9cb3; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Memory Shard</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A rare and powerful temporal crystal found by mining Memory Quartz Ore in [[dimensions|The Loss dimension]]. It offers advanced active survival tools and key passive protection against inventory decay.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A rare and powerful temporal crystal found by mining Memory Quartz Ore in [[dimensions|The Loss dimension]]. It offers advanced active survival tools and key passive protection against inventory decay. The item visibly changes its texture model to reflect its currently active mode.</p>
 
 <div style="background: #090a09; border: 1px solid #142817; border-left: 2px solid #709978; padding: 20px; margin-top: 15px; margin-bottom: 25px; color: #a4a090;">
 <h4 style="color: #c4bfa5; margin-top: 0; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: bold;">Dual-Mode Active Controls</h4>
 <ul style="margin: 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em;">
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 0: Instant Rewind (Default)</strong> - Normal right-click instantly pops the player state back in time, rewinding your horizontal coordinates, health, and food levels back to a pre-recorded snapshot. Consumes 1 Memory Shard.</li>
-    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 1: Chrono-Stasis Anchor</strong> - Shift + Right-click toggles modes. Right-click to drop an anchor at your coordinates, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 Memory Shard. Toggling modes plays an ethereal click and splash particle display.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 0: Instant Rewind (Default)</strong> - Normal right-click instantly pops the player state back in time, rewinding your horizontal coordinates, health, and food levels back to a pre-recorded snapshot. Consumes 1 Memory Shard. The crystal appears whole and dormant in this mode.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Mode 1: Chrono-Stasis Anchor</strong> - "Shaking" toggles modes (swinging arm 2-5 times). Right-click to drop an anchor at your coordinates, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 Memory Shard. Toggling modes plays an ethereal click, a splash particle display, and visually shifts the shard's model to its awakened state.</li>
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Passive Protection (Decay Halting)</strong> - Simply carrying a Memory Shard anywhere in your active inventory halts the passive decay of Faded tools. Faded tools normally suffer a 33.3% chance of losing 1 durability point every 100 ticks while in inventory;carrying a shard completely neutralizes this entropic decay.</li>
 </ul>
 </div>

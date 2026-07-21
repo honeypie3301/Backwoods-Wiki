@@ -140,7 +140,7 @@ export default function BlocksView() {
       dimension: "loss",
       hardness: "2.2",
       blastRes: "7.5",
-      description: "The primary stone of the Loss dimension, formed from degraded stone. Texture is washed-out and low-detail. Produces no sound upon interaction.",
+      description: "The primary stone of the Loss dimension, formed from degraded stone. Texture is washed-out and low-detail. Produces no sound upon interaction. Additionally, its void-like composition absorbs physical impact—any projectile (such as arrows or spectral arrows) that strikes a Nullstone block is instantly destroyed in a flash of particles.",
       mechanics: [
         "Nullstone Family: Can be crafted into slabs, stairs, and walls.",
         "Cracked Nullstone: Created by smelting Nullstone in a furnace (takes 6 seconds, grants 0.2 XP; hardness 1.8, blast res 6.0)."
@@ -252,6 +252,17 @@ export default function BlocksView() {
         "Colony Restoration: Actively seeks out nearby burnt blocks and restores them to their healthy equivalents, triggering a cascading wave of rapid regeneration through neighboring colony blocks to repair damaged areas.",
         "Corruption Vulnerability: Has an 'infected' state property. If it becomes compromised, its defenses shut down and it starts spreading the spore infection, converting adjacent blocks into infected Lignum Caro at a 35% chance with rapid chain propagation.",
         "Infection Delay: All active defense, spread, and cleansing mechanics remain completely dormant until the world is at least 1,200 ticks old (1 minute)."
+      ]
+    },
+    {
+      name: "Lignum Caro Trapdoor",
+      dimension: "backwoods_rotting",
+      hardness: "2.5",
+      blastRes: "1.5",
+      description: "A fleshy trapdoor crafted from Lignum Caro. Can be opened by redstone or by hand.",
+      mechanics: [
+        "Reactive Organic Snapping: Due to its reactive organic nature, whenever an entity steps directly on a closed Lignum Caro Trapdoor, it will automatically snap open after a brief 4-tick delay, dropping the entity down.",
+        "Furnace Fuel: It can be used as a furnace fuel (burns for 300 ticks)."
       ]
     },
     {

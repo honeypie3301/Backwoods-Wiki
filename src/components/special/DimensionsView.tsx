@@ -74,6 +74,10 @@ export default function DimensionsView() {
         {
           title: "Inventory Erosion",
           desc: "Remaining inside this dimension carries a passive danger of permanently warping or altering specific items in your inventory."
+        },
+        {
+          title: "Fading Mechanics",
+          desc: "The Loss actively drains the physical substance of living beings. Simply being inside The Loss—or holding a Faded Block anywhere in your inventory—causes your entity to undergo Existential Phase-Shifting (accumulating a \"fade level\"). Your physical body becomes increasingly translucent and you shed ash particles. Your attack damage and gravity are dynamically reduced the more you fade, making your strikes weaker and jumps floaty. Once your fade level surpasses a critical threshold (15.0), you become partially intangible—all incoming projectiles (like arrows) will phase harmlessly right through you."
         }
       ]
     },

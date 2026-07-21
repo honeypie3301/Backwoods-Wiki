@@ -68,6 +68,14 @@ When deployed, the Rot does not simply walk into battle. It is synthesized high 
 <h4 style="color: #d7ccc8; margin-top: 15px;">Entrance</h4>
 <p>You can only enter this dimension involuntarily by being on the last stage of [[Sanity|mental degradation]] with a chance of <strong>0.2666% per second</strong>.</p>
 
+<h4 style="color: #d7ccc8; margin-top: 15px;">Fading Mechanics</h4>
+<p>The Loss actively drains the physical substance of living beings. Simply being inside The Loss—or holding a Faded Block anywhere in your inventory—causes your entity to undergo <strong>Existential Phase-Shifting</strong> (accumulating a "fade level").</p>
+<ul style="list-style-type: square; padding-left: 20px;">
+    <li><strong>Visual Phasing:</strong> As you fade, your body (including skins, armor, capes, and held items) becomes increasingly translucent and begins to emit a ghostly shimmer. Ash particles will constantly shed from your form.</li>
+    <li><strong>Physical Deterioration:</strong> Your attack damage and gravity are dynamically reduced the more you fade, making your strikes weaker and your jumps floaty.</li>
+    <li><strong>Intangibility:</strong> Once your fade level surpasses a critical threshold (15.0), you become partially intangible—all incoming projectiles (like arrows) will phase harmlessly right through you.</li>
+</ul>
+
 <!-- ==========================================
      THE ROTTING
      ========================================== -->

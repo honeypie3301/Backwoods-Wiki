@@ -129,7 +129,7 @@ export default function ItemsView() {
       id: "memory_shard",
       name: "Memory Shard",
       category: "memory",
-      desc: "A powerful, multi-modal temporal anchor crystal harvested from the ancient depths of the Loss dimension. Employs advanced chrono-stasis and passive decay-halting fields.",
+      desc: "A powerful, multi-modal temporal anchor crystal harvested from the ancient depths of the Loss dimension. Employs advanced chrono-stasis and passive decay-halting fields. The item visibly changes its texture model to reflect its currently active mode.",
       stats: [
         { label: "Acquisition Method", value: "Mine Memory Quartz in Loss" },
         { label: "Primary Mode (0)", value: "Instant Rewind (consumes 1 shard)" },
@@ -137,8 +137,8 @@ export default function ItemsView() {
         { label: "Passive Protection", value: "Stops Faded tool passive inventory decay" }
       ],
       notes: [
-        "Mode 0 (Rewind Mode): Normal right-click instantly rolls back the player's spatial position, health, food level, and kinetic states to a pre-recorded timestamp.",
-        "Mode 1 (Chrono-Stasis Anchor): \"Shaking\" toggles modes (swinging arm 2-5 times). Right-click to drop an anchor at your current position, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 shard.",
+        "Mode 0 (Rewind Mode): Normal right-click instantly rolls back the player's spatial position, health, food level, and kinetic states to a pre-recorded timestamp. The crystal appears whole and dormant in this mode.",
+        "Mode 1 (Chrono-Stasis Anchor): \"Shaking\" toggles modes (swinging arm 2-5 times). Right-click to drop an anchor at your current position, saving your exact states. Activating it again within 15 seconds (300 ticks) snaps you back instantly, healing and restoring food. Dropping an anchor consumes 1 shard. Toggling modes plays an ethereal click, a splash particle display, and visually shifts the shard's model to its awakened state.",
         "Passive Time-Lock: Simply carrying a Memory Shard anywhere in your active inventory halts the passive decay of Faded tools (which normally face a 1-in-3 chance to lose 1 durability point every 100 ticks).",
         "Crafting utility: Required in quantities to craft highly resonant dimensional artifacts like the Resonant Rot Effigy."
       ]
@@ -585,14 +585,14 @@ export default function ItemsView() {
       id: "potion_of_inoculation",
       name: "Potion of Inoculation",
       category: "utility",
-      desc: "A potion to accelerate the decay of the Spore mod and the Arphex mod effects.",
+      desc: "A specialized, highly advanced potion designed to bolster the immune system and grant full resistance against decay.",
       stats: [
         { label: "Effect", value: "Inoculation I (3:00)" },
         { label: "Stack Size", value: "1" }
       ],
       notes: [
         "Brewed by combining Lignum Caro Ash with a Water Bottle in a brewing stand.",
-        "Every second, the effect checks the host entity for negative status effects originating from external mods such as Fungal Infection: Spore and ArPhEx. When an eligible debuff, such as corrosion, frostbite, or splintered sanity, is active on the entity, the procedure subtracts an additional 20 ticks from its remaining duration. Working in tandem with Minecraft's standard natural tick decay, this mechanism causes targeted afflictions to wear off twice as fast as normal."
+        "Grants the Inoculation effect, protecting players from the mental decay and temporal exposure of the Backwoods dimension."
       ]
     },
     {

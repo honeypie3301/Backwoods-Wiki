@@ -82,4 +82,63 @@ Welcome to the restricted KRONOS Tactical Database. Displays records of terminat
     <li style="margin-bottom: 0;"><strong>Execution Drops:</strong> Striking Azazel during the countdown prompts a full death explosion, dropping the primary <strong>Loot Barrel</strong>.</li>
 </ul>
 
+<h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Dossier Addition: Legendary Monsters</h2>
+
+<p style="margin-bottom: 15px; font-size: 0.95em;">A catalog of dangerous colossal bosses from the <strong>Legendary Monsters</strong> mod. Each entity has been encountered, analyzed, and successfully neutralized by <strong>The Rot</strong> during recent tactical engagements.</p>
+
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 0.9em; text-align: left; color: #9c9788;">
+  <thead>
+    <tr style="border-bottom: 1px solid #301414; color: #c4bfa5;">
+      <th style="padding: 10px; width: 25%;">Specimen Name</th>
+      <th style="padding: 10px; width: 15%;">Threat Level</th>
+      <th style="padding: 10px; width: 20%;">Combat Attributes</th>
+      <th style="padding: 10px;">Termination &amp; Tactical Log</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Possessed Paladin</td>
+      <td style="padding: 10px; font-family: monospace; color: #ff5555;">9.3 (Extreme)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Armor: 80.0<br/>Projectile Immunity<br/>Damage Adaptation Cap</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">Ancient holy warrior resurrected in the ruins of the Collapsed Kingdom. Wields a colossal soul great sword and shield. Evaded side-rolling slices and double-uppercut combos via 18-tick Dimensional Spacing (Blink). Shattered its shield-parry defense using Sonic Boom Resonance, finishing the host with a rapid Minos martial combo.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Cloud Golem</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.4 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 350.0 HP<br/>Armor: 90.0<br/>Damage Cap &amp; Invuln Windows</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">A titanic sky-temple boss boasting immense physical defense. Its absolute damage cap and invulnerability windows were bypass-neutralized by The Rot adapting its lightning charges to overload the core.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Frostbitten Golem</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.7 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 220.0 HP<br/>Attack: 16.0 Damage<br/>Heavy Ice Sheets</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">Clad in heavy ice sheets. Terminated by channeling overcharged Thermal Solar Beams to induce high-intensity thermal stress and fracture its structural joints.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Skeletosaurus</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.5 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 200.0 HP<br/>Armor: 30.0<br/>Toughness: 15.0</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">Prehistoric Desert Titan with a reinforced skeletal fossil frame. Defeated using Dimensional Spacing to evade biting sweeps and solidifying its frame with Cryo-Thermal Synthesis.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Overgrown Colossus</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.4 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 170.0 HP<br/>Knockback Res: 1.5</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">An overgrown vegetative titan whose high knockback resistance rendered standard displacement ineffective. Terminated by severing its massive vine tendons with Solar Beams while absorbing shocks.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Shulker Mimic</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.3 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 200.0 HP<br/>Armor: 30.0<br/>Protective Shell</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">Lurks in faux Shulker towers. Countered by using Sonic Boom Resonance to shatter its protective shell halves during its open-state loops.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1a1414;">
+      <td style="padding: 10px; font-weight: bold; color: #eaeaea;">Lava Eater</td>
+      <td style="padding: 10px; font-family: monospace; color: #ffaa00;">8.2 (High)</td>
+      <td style="padding: 10px; font-size: 0.85em;">Health: 170.0 HP<br/>Armor: 30.0<br/>Magmatic Scales</td>
+      <td style="padding: 10px; font-size: 0.85em; line-height: 1.5;">Magmatic beast with high-heat scales. Defeated by applying localized Cryo Beams to induce sudden thermal contraction stress, cracking its scales.</td>
+    </tr>
+  </tbody>
+</table>
+
 </div>
