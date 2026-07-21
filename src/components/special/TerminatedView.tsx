@@ -879,6 +879,83 @@ export default function TerminatedView() {
       isTerminated: true,
       notes: 'Sovereign chariot of the Cult of Azazel. Fought in two distinct phases (The Chariot and The Awakened humanoid). Highly resistant to physical forces. Rot deployed overcharged Cryo-Thermal Beams during its 14-second Mercy Phase countdown to shatter the core after refusing the sparing interaction.'
     },
+    {
+      id: 'possessed_paladin',
+      name: 'Possessed Paladin',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/possessed_paladin.png',
+      threatLevel: 9.3,
+      terminationCycle: 'CYCLE 81',
+      isTerminated: true,
+      notes: 'Ancient holy warrior resurrected in the ruins of the Collapsed Kingdom. Wields a colossal soul great sword and a shield, with a base armor of 80.0. Protected by projectile immunity and a dynamic damage adaptation cap. Evaded side-rolling slices and double-uppercut combos via 18-tick Dimensional Spacing (Blink). Shattered its shield-parry defense using Sonic Boom Resonance, finishing the host with a rapid Minos martial combo.'
+    },
+    {
+      id: 'cloud_golem',
+      name: 'Cloud Golem',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/cloud_golem.png',
+      threatLevel: 8.4,
+      terminationCycle: 'CYCLE 82',
+      isTerminated: true,
+      notes: 'A titanic sky-temple boss boasting a colossal 350.0 HP and standard-defying 90.0 Armor. Its absolute damage cap and invulnerability windows were bypass-neutralized by The Rot adapting its lightning charges to overload the core.'
+    },
+    {
+      id: 'frostbitten_golem',
+      name: 'Frostbitten Golem',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/frostbitten_golem.png',
+      threatLevel: 8.7,
+      terminationCycle: 'CYCLE 83',
+      isTerminated: true,
+      notes: 'Clad in heavy ice sheets with 220.0 HP and devastating 16.0 Attack Damage. Terminated by channeling overcharged Thermal Solar Beams to fracture its joints.'
+    },
+    {
+      id: 'skeletosaurus',
+      name: 'Skeletosaurus',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/skeletosaurus.png',
+      threatLevel: 8.5,
+      terminationCycle: 'CYCLE 84',
+      isTerminated: true,
+      notes: 'Prehistoric Desert Titan. Reinforced skeletal fossil boasting 200.0 HP, 30.0 Armor, and 15.0 Toughness. Defeated using Dimensional Spacing to evade biting sweeps and solidifying its frame with Cryo-Thermal Synthesis.'
+    },
+    {
+      id: 'overgrown_colossus',
+      name: 'Overgrown Colossus',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/overgrown_colossus.png',
+      threatLevel: 8.4,
+      terminationCycle: 'CYCLE 85',
+      isTerminated: true,
+      notes: 'Features 170.0 HP and a high 1.5 Knockback Resistance making standard pushes ineffective. Terminated by severing its massive vine tendons with Solar Beams while absorbing shocks.'
+    },
+    {
+      id: 'shulker_mimic',
+      name: 'Shulker Mimic',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/shulker_mimic.png',
+      threatLevel: 8.3,
+      terminationCycle: 'CYCLE 86',
+      isTerminated: true,
+      notes: 'Lurks in faux Shulker towers with 200.0 HP and 30.0 Armor. Countered by using Sonic Boom Resonance to shatter its protective shell halves during its open-state loops.'
+    },
+    {
+      id: 'lava_eater',
+      name: 'Lava Eater',
+      category: 'Modded',
+      modName: 'Legendary Monsters',
+      image: 'TerminatedEntities/Modded/Legendary Monsters/lava_eater.png',
+      threatLevel: 8.2,
+      terminationCycle: 'CYCLE 87',
+      isTerminated: true,
+      notes: 'Magmatic beast with 170.0 HP and 30.0 Armor. Defeated by applying localized Cryo Beams to induce thermal contraction stress, cracking its scales.'
+    }
   ];
 
   const totalCount = initialOpponents.length;
@@ -1089,7 +1166,8 @@ export default function TerminatedView() {
                 { id: 'Fungal Infection: Spore', label: 'SPORE' },
                 { id: "Mowzie's Mobs", label: "MOWZIE'S" },
                 { id: 'ArPhEx', label: 'ARPHEX' },
-                { id: 'Cult of Azazel', label: 'AZAZEL' }
+                { id: 'Cult of Azazel', label: 'AZAZEL' },
+                { id: 'Legendary Monsters', label: 'LEGENDARY' }
               ].map(mod => (
                 <button
                   key={mod.id}
