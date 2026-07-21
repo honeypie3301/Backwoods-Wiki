@@ -585,14 +585,14 @@ export default function ItemsView() {
       id: "potion_of_inoculation",
       name: "Potion of Inoculation",
       category: "utility",
-      desc: "A specialized, highly advanced potion designed to bolster the immune system and grant full resistance against decay.",
+      desc: "A potion to accelerate the decay of the Spore mod and the Arphex mod effects.",
       stats: [
         { label: "Effect", value: "Inoculation I (3:00)" },
         { label: "Stack Size", value: "1" }
       ],
       notes: [
         "Brewed by combining Lignum Caro Ash with a Water Bottle in a brewing stand.",
-        "Grants the Inoculation effect, protecting players from the mental decay and temporal exposure of the Backwoods dimension."
+        "Every second, the effect checks the host entity for negative status effects originating from external mods such as Fungal Infection: Spore and ArPhEx. When an eligible debuff, such as corrosion, frostbite, or splintered sanity, is active on the entity, the procedure subtracts an additional 20 ticks from its remaining duration. Working in tandem with Minecraft's standard natural tick decay, this mechanism causes targeted afflictions to wear off twice as fast as normal."
       ]
     },
     {
