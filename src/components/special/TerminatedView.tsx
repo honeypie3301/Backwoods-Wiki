@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Skull, Shield, Search, Terminal, Sliders, Crosshair, Cpu, Eye, EyeOff, Play, Pause, Info, X } from 'lucide-react';
+import { Skull, Shield, Search, Terminal, Sliders, Crosshair, Cpu, Eye, EyeOff, Play, Pause, Info, X, ChevronDown } from 'lucide-react';
 
 // Interface for Terminated Opponent
 interface Opponent {
@@ -955,6 +955,17 @@ export default function TerminatedView() {
       terminationCycle: 'CYCLE 87',
       isTerminated: true,
       notes: 'Magmatic beast with 170.0 HP and 30.0 Armor. Defeated by applying localized Cryo Beams to induce thermal contraction stress, cracking its scales.'
+    },
+    {
+      id: 'verity_demon',
+      name: 'Verity Demon',
+      category: 'Modded',
+      modName: 'Verity JE',
+      image: 'TerminatedEntities/Modded/Verity JE/verity_demon.png',
+      threatLevel: 3.5,
+      terminationCycle: 'CYCLE 88',
+      isTerminated: true,
+      notes: "Specimen possessed high raw aggression and 512m tracking, but zero defensive adaptation. Target's 19.0 melee strikes were instantly nullified. The Rot executed a baseline heavy punch into a rider kick, terminating the entity before high-level adaptive scaling was even triggered."
     }
   ];
 
@@ -1104,15 +1115,18 @@ export default function TerminatedView() {
 
           <div className="bg-[#12141c] border border-[#1e2230] px-3 py-1.5 rounded-lg flex items-center gap-2 shrink-0">
             <span className="text-[#546e7a] uppercase font-bold text-xs whitespace-nowrap">PROFILE:</span>
-            <select
-              value={operationProfile}
-              onChange={(e) => setOperationProfile(e.target.value as any)}
-              className="bg-[#090b10] border border-[#202430] text-[#eceff1] text-xs font-bold py-1 px-2 rounded cursor-pointer outline-none hover:border-[#546e7a]/50 transition-colors"
-            >
-              <option value="Baseline">BASELINE</option>
-              <option value="Totem of Undying">TOTEM OF UNDYING</option>
-              <option value="Infinity Totem">INFINITY TOTEM</option>
-            </select>
+            <div className="relative">
+              <select
+                value={operationProfile}
+                onChange={(e) => setOperationProfile(e.target.value as any)}
+                className="appearance-none bg-[#090b10] border border-[#202430] text-[#eceff1] text-xs font-bold py-1 pl-2 pr-6 rounded cursor-pointer outline-none hover:border-[#546e7a]/50 transition-colors"
+              >
+                <option value="Baseline">BASELINE</option>
+                <option value="Totem of Undying">TOTEM OF UNDYING</option>
+                <option value="Infinity Totem">INFINITY TOTEM</option>
+              </select>
+              <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#546e7a] pointer-events-none" />
+            </div>
           </div>
         </div>
       </div>
@@ -1155,33 +1169,30 @@ export default function TerminatedView() {
         {/* Mod Filter Selector */}
         <div className="col-span-12 md:col-span-6 lg:col-span-3 flex justify-end w-full">
           {activeTab === 'Modded' ? (
-            <div className="flex bg-[#090b0f] p-1 rounded-lg border border-[#202430] w-full gap-0.5 overflow-x-auto scrollbar-none">
-              {[
-                { id: 'all', label: 'ALL' },
-                { id: 'Twilight Forest', label: 'TWILIGHT' },
-                { id: "L_Ender's Cataclysm", label: 'CATACLYSM' },
-                { id: 'Bosses of Mass Destruction', label: 'BOMD' },
-                { id: "Bosses' Rise", label: "BOSSES' RISE" },
-                { id: 'Armageddon', label: 'ARMAGEDDON' },
-                { id: 'Fungal Infection: Spore', label: 'SPORE' },
-                { id: "Mowzie's Mobs", label: "MOWZIE'S" },
-                { id: 'ArPhEx', label: 'ARPHEX' },
-                { id: 'Cult of Azazel', label: 'AZAZEL' },
-                { id: 'Legendary Monsters', label: 'LEGENDARY' }
-              ].map(mod => (
-                <button
-                  key={mod.id}
-                  onClick={() => setActiveModFilter(mod.id)}
-                  className={`flex-1 text-center py-1.5 text-[8px] sm:text-[9px] md:text-[10px] font-black rounded-md uppercase tracking-tighter sm:tracking-tight transition-all cursor-pointer px-0.5 truncate ${
-                    activeModFilter === mod.id
-                      ? 'bg-[#ff3b30]/15 text-[#ff6b64] border border-[#ff3b30]/25'
-                      : 'text-[#455a64] hover:text-[#b0bec5]'
-                  }`}
-                  title={mod.label}
-                >
-                  {mod.label}
-                </button>
-              ))}
+            <div className="relative w-full">
+              <select
+                value={activeModFilter}
+                onChange={(e) => setActiveModFilter(e.target.value)}
+                className="w-full appearance-none bg-[#090b0f] border border-[#202430] text-[#eceff1] text-[10px] sm:text-xs font-bold py-2 pl-3 pr-8 rounded-lg cursor-pointer outline-none hover:border-[#546e7a]/50 transition-colors uppercase tracking-wide"
+              >
+                {[
+                  { id: 'all', label: 'ALL MODS' },
+                  { id: 'Twilight Forest', label: 'TWILIGHT FOREST' },
+                  { id: "L_Ender's Cataclysm", label: "L_ENDER'S CATACLYSM" },
+                  { id: 'Bosses of Mass Destruction', label: 'BOSSES OF MASS DESTRUCTION' },
+                  { id: "Bosses' Rise", label: "BOSSES' RISE" },
+                  { id: 'Armageddon', label: 'ARMAGEDDON' },
+                  { id: 'Fungal Infection: Spore', label: 'FUNGAL INFECTION: SPORE' },
+                  { id: "Mowzie's Mobs", label: "MOWZIE'S MOBS" },
+                  { id: 'ArPhEx', label: 'ARPHEX' },
+                  { id: 'Cult of Azazel', label: 'CULT OF AZAZEL' },
+                  { id: 'Legendary Monsters', label: 'LEGENDARY MONSTERS' },
+                  { id: 'Verity JE', label: 'VERITY JE' }
+                ].map(mod => (
+                  <option key={mod.id} value={mod.id}>{mod.label}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#546e7a] pointer-events-none" />
             </div>
           ) : (
             <div className="text-[10px] text-[#546e7a] uppercase flex items-center gap-1 bg-[#090b0f]/50 px-3 py-2 rounded-lg border border-[#1e2230]/50 w-full justify-center">
