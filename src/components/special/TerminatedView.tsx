@@ -94,7 +94,7 @@ export default function TerminatedView() {
       name: 'Elder Guardian',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Elder_Guardian.webp',
-      threatLevel: 6.5,
+      threatLevel: 3.8,
       terminationCycle: 'CYCLE 03',
       isTerminated: true,
       notes: 'Ocean monument infiltration. Target fatigue field resisted with Adaptive Health Regeneration. Rot broke retractable spikes via Minos Protocol shield-breaking punches.'
@@ -104,7 +104,7 @@ export default function TerminatedView() {
       name: 'Blaze Sentry',
       category: 'Vanilla',
       image: 'TerminatedEntities/Vanilla/Blaze.webp',
-      threatLevel: 4.5,
+      threatLevel: 3.3,
       terminationCycle: 'CYCLE 14',
       isTerminated: true,
       notes: 'Nether fortress battery. Rot siphoned local fire damage to fuel Thermal Synthesis, returning high-impact Cryo Beams that instantly shattered the target\'s core.'
