@@ -62,7 +62,7 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
 };
 
 const ENTITY_IMMUNITIES: Record<string, string[]> = {
-  rot: ["Fall Damage", "Cactus", "Drowning"],
+  rot: ["Fall Damage", "Cactus", "Drowning", "Freezing", "Soul Fracture"],
   splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   log_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   blindspot_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
@@ -317,40 +317,52 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
-      title: "Adaptive Learning & Action Overdrive",
+      title: "Adaptive Escalation & Action Overdrive",
       trigger: "Continuous engagement or target holding an active Totem of Undying",
-      description: "Studies combat patterns over time. Cooldowns between major attacks compress dynamically, forcing a frantic, continuous pace of strikes the longer combat lasts. If the player carries an active Totem, the sentinel enters absolute overdrive, locking its abilities to their minimum cooldown states for rapid, relentless combo strings.",
+      description: "Studies opponent combat patterns over time. Delay intervals between major offensive actions compress dynamically as battle continues, forcing an increasingly frantic, relentless pace. If a target equips or carries a Totem of Undying, the sentinel enters absolute overdrive, locking all abilities to minimum delay states for uninterrupted strike chains.",
       category: "Escalation"
     },
     {
-      title: "Adaptive Health Regeneration & Plating",
-      trigger: "Sustaining significant cumulative damage",
-      description: "Repairs its own physical damage over time. The self-healing rate accelerates the longer the fight rages, scaling to extreme speeds when its health falls below half or critical survival thresholds. Additionally, it temporarily hardens its outer defense plating when subjected to rapid high-DPS bursts, gaining heavy damage resistance layers.",
+      title: "Adaptive Regeneration & Defense Plating",
+      trigger: "Sustaining cumulative physical damage or high-DPS bursts",
+      description: "Continuously repairs its physical structure over time, with healing rates accelerating as the fight rages and scaling dramatically at critical health thresholds. Additionally, it temporarily hardens its outer defense plating when subjected to rapid burst damage, gaining heavy damage resistance layers. Possesses natural immunity to freezing, drowning, fall damage, and soul fractures.",
       category: "Defense"
     },
     {
-      title: "Acoustic Resonance & Ultimate Nova",
-      trigger: "Engaging a Warden or high-intensity sound sources",
-      description: "Instantly mimics the biological properties of the Warden, unleashing a devastating, armor-bypassing directional sonic boom at a distance. If cornered or pushed to its absolute limits, it channels a massive radial shockwave blast (Ultimate Nova) that bursts outwards to blow back all targets in a wide circular perimeter.",
-      category: "Mimicry"
+      title: "Acoustic Resonance & Radial Shockwaves",
+      trigger: "Learned from Warden engagements or during high-threat combat",
+      description: "Emits a focused, armor-bypassing directional sonic boom reaching targets up to 24 blocks away. Under high-threat conditions, it channels a 360-degree radial sonic shockwave that detonates in a 24-block perimeter, shattering defenses and blasting back all surrounding entities.",
+      category: "Acoustic"
     },
     {
       title: "Thermal Synthesis (Solar & Cryo Beams)",
-      trigger: "Sustaining fire/cold damage or navigating hot/cold environments",
-      description: "Charges and fires specialized energy beams with custom elemental payloads. Solar Beams scorch targets with persistent heat damage and deal severe bonus damage against frozen or cold opponents, while Cryo Beams flash-freeze and shatter targets, dealing immense bonus damage against Nether or fire-born creatures.",
+      trigger: "Sustaining elemental damage or navigating extreme environments",
+      description: "Channels high-density thermal and sub-zero energy beams. Solar Beams scorch targets with persistent heat damage and deal severe bonus damage against frozen opponents, while Cryo Beams flash-freeze prey, dealing catastrophic damage to fire-born or Nether entities.",
       category: "Lethal Ranged"
     },
     {
-      title: "Dimensional Spacing & Speed Calibration",
-      trigger: "Dodging attacks or closing gaps with targets",
-      description: "Gradually calibrates its physical speed, overcoming its initial movement penalty to speed up as combat ticks accumulate. It can execute ultra-fast spatial blinks to evade incoming weapons and projectile fire, repositioning directly behind the target to strike from visual blind spots.",
+      title: "Spatial Blinks & Tactical Standoff",
+      trigger: "Evading attacks, closing gaps, or target pillaring",
+      description: "Overcomes initial movement inertia over time, steadily increasing movement speed as combat progresses. Executes near-instantaneous spatial blinks to dodge incoming weapons and projectiles, repositioning directly behind targets. When targets construct elevated pillars or retreat to structures, it circles at a calculated standoff distance before launching aggressive leaps.",
       category: "Mobility"
     },
     {
-      title: "Martial Combat & Heavy Combos",
-      trigger: "Active once combat coordination and movement styles align",
-      description: "Executes heavy martial sequences, combining physical strikes like heavy ground slams, dropkicks, high-velocity diving kicks (Rider Kicks) that shatter shields, standalone uppercuts that launch targets into the air, alternating punches, and crushing downward double-fisted overhead slams.",
+      title: "Martial Combat & Close Quarters Strikes",
+      trigger: "Target within close proximity or elevated positions",
+      description: "Executes brutal close-quarters martial sequences—combining heavy punches, downward double-fisted overhead slams, dropkicks, high-velocity diving kicks, standalone uppercuts that launch targets airborne, and seismic ground slams upon landing. It also adopts a defensive blocking stance to absorb incoming physical strikes.",
       category: "Melee Combos"
+    },
+    {
+      title: "Armor Disarmament & Choke Hold",
+      trigger: "Engaging heavily armored targets in close quarters",
+      description: "Seizes targets in a single-handed choke hold, lifting them into the air. While suspended, it inflicts crushing physical damage while rapidly stripping away standard armor durability or forcefully dislodging indestructible armor pieces.",
+      category: "Grapple & Disarm"
+    },
+    {
+      title: "Operator Directive Overrides",
+      trigger: "Operator chat directives in developer environment",
+      description: "Responds to high-level operator directives issued in chat. Operatives can command the unit to target specific entities or players, sweep nearby threats within an extensive 512-block detection radius, or immediately stand down and clear its active kill queue.",
+      category: "Tactical Control"
     }
   ];
 

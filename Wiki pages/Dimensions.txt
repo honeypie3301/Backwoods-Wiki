@@ -80,11 +80,16 @@ When deployed, the Rot does not simply walk into battle. It is synthesized high 
      THE ROTTING
      ========================================== -->
 <h3 style="color: #ba68c8; margin-top: 35px; font-size: 1.5em; border-bottom: 1px solid #7b1fa2; padding-bottom: 3px;">The Rotting</h3>
-<p>The Rotting sub-dimension is a dark, atmospheric realm characterized by its dense, towering forests and a perpetual, suffocating fog. The dimension is a flat, expansive plateau heavily forested with rotten wood variants. The atmosphere is oppressive; the fog reduces visibility significantly, forcing players to rely on artificial light sources to navigate the dense pillars of wood. Unlike the Overworld, the terrain is largely uniform at sea level, though localized mountains can occasionally break through the canopy.</p>
+<p>The Rotting sub-dimension is a dark, atmospheric realm characterized by its dense, towering forests and a perpetual, suffocating fog. The dimension is made of rotting oak wood, features abundant ground foliage like mushrooms and dead bushes, and is densely populated with 32-block-high trees. The atmosphere is oppressive; the fog reduces visibility significantly, forcing players to rely on artificial light sources to navigate the dense pillars of wood.</p>
+
+<h4 style="color: #e1bee7; margin-top: 15px; font-size: 1.1em;">Biomes</h4>
+<ul style="list-style-type: square; padding-left: 20px;">
+    <li>'''Rotting Deep:''' The single, defining biome of the dimension. Constructed of rotting oak wood with abundant ground foliage like mushrooms and dead bushes, and densely populated with 32-block-high trees.</li>
+</ul>
 
 <div style="background: rgba(35, 25, 35, 0.5); border: 1px solid #7b1fa2; border-radius: 6px; padding: 15px; margin-top: 15px;">
 * '''Entry Requirement:''' This dimension can only be accessed by finding and entering a geode in [[dimensions|The Backwoods dimension]].
-* '''Environmental Rules:''' There is no day/night cycle, and the entire dimension consists of a single biome. Vines harvested in the Rotting carry a chance to drop string.
+* '''Environmental Rules:''' There is no day/night cycle, and the entire dimension consists solely of the Rotting Deep biome. Vines harvested in the Rotting carry a chance to drop string.
 </div>
 
 <!-- ==========================================

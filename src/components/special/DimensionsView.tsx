@@ -90,17 +90,19 @@ export default function DimensionsView() {
       bgGlow: "bg-purple-950/20",
       textColor: "text-purple-200",
       accentColor: "text-purple-400",
-      desc: "A dark, oppressive realm characterized by dense, towering forests of rotten wood and a thick, suffocating fog that heavily limits visibility.",
+      desc: "A dark, oppressive realm characterized by dense, towering forests of rotten oak wood and a thick, suffocating fog that heavily limits visibility.",
       access: "Discovered by exploring and entering deep underground geodes inside the Backwoods dimension.",
       biomes: [
-        "The Flat Plateaus: Uniform sea-level forest floors.",
-        "Rotten Canopy: Dense, layered columns of rotting branches.",
-        "Rotting Deep: Deep ocean-level valleys covered in Rotten Oak Wood with active falling ash."
+        "Rotting Deep: Made of rotting oak wood with abundant ground foliage like mushrooms and dead bushes, densely populated with 32-block-high trees."
       ],
       rules: [
         {
           title: "Perpetual Midnight",
           desc: "The Rotting has no day/night cycle, remaining permanently dark and requiring constant artificial lighting to survive."
+        },
+        {
+          title: "Single Biome Realm",
+          desc: "The entire dimension consists solely of the Rotting Deep biome."
         },
         {
           title: "Rotten Flora",
