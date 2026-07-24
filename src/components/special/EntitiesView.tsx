@@ -131,7 +131,7 @@ export default function EntitiesView() {
       speed: "0.3 (Scales dynamically in combat cycle)",
       dim: "The Backwoods / Dynamic Sentry deployment",
       aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
-      desc: "An advanced multi-dimensional biological sentinel designed to neutralize high-tier players carrying powerful gear modifiers. It starts combat in a dormant state, demonstrating no magical powers, but dynamically studies, adapts, and mimics your combat behaviors as the battle progresses."
+      desc: "A biological sentinel that does not engage until it has profiled you. It observes gear, reach, and combat rhythm before committing to a strategy, then re-profiles continuously — every exchange adjusts its damage output, resistances, and attack selection against you specifically. Prolonged engagement is punished: the longer a fight runs, the less margin for error it allows. Confirmed capable of stripping equipped armor and destroying held Totems of Undying mid-fight. Do not assume early behavior predicts late-fight behavior."
     },
     {
       id: "splinter",
@@ -317,51 +317,63 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
-      title: "Adaptive Escalation & Action Overdrive",
+      title: "Behavioral Profiling",
+      trigger: "Active target engagement & multi-signal observation",
+      description: "Tracks movement, facing, attack timing, and incoming projectiles in real time. Cross-references observed behavior against prior engagements with other hostiles in the region. Assigns a threat classification within seconds and adjusts its own attack selection accordingly. Effectively: it has already fought something like you before, and it remembers what worked.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Single-Action Lock",
+      trigger: "Simultaneous execution of complex combat maneuvers",
+      description: "Commits fully to one action at a time — grip, guard, or otherwise — with no overlap between states. There is no window where two competing behaviors leave it exposed. Whatever it starts, it finishes.",
+      category: "State Matrix"
+    },
+    {
+      title: "Damage-Triggered Regeneration",
+      trigger: "Taking 30 cumulative damage, 100 combat ticks, or high threat levels",
+      description: "Begins self-repair after roughly 30 damage taken, or 100 ticks in combat, whichever comes first. Regeneration rate increases further under sustained threat. Attrition strategies lose effectiveness the longer the fight runs — it heals faster the more danger it's in.",
+      category: "Defense & Healing"
+    },
+    {
+      title: "Escalating Aggression",
       trigger: "Continuous engagement or target holding an active Totem of Undying",
-      description: "Studies opponent combat patterns over time. Delay intervals between major offensive actions compress dynamically as battle continues, forcing an increasingly frantic, relentless pace. If a target equips or carries a Totem of Undying, the sentinel enters absolute overdrive, locking all abilities to minimum delay states for uninterrupted strike chains.",
+      description: "Cooldowns between actions shorten the longer combat continues. There is no cap on how aggressive it becomes short of the fight ending. If it detects a Totem of Undying on the target, all cooldowns drop to minimum immediately — do not assume you have time once it knows what you're holding.",
       category: "Escalation"
     },
     {
-      title: "Adaptive Regeneration & Defense Plating",
-      trigger: "Sustaining cumulative physical damage or high-DPS bursts",
-      description: "Continuously repairs its physical structure over time, with healing rates accelerating as the fight rages and scaling dramatically at critical health thresholds. Additionally, it temporarily hardens its outer defense plating when subjected to rapid burst damage, gaining heavy damage resistance layers. Possesses natural immunity to freezing, drowning, fall damage, and soul fractures.",
-      category: "Defense"
-    },
-    {
-      title: "Acoustic Resonance & Radial Shockwaves",
+      title: "Sonic Weaponry",
       trigger: "Learned from Warden engagements or during high-threat combat",
-      description: "Emits a focused, armor-bypassing directional sonic boom reaching targets up to 24 blocks away. Under high-threat conditions, it channels a 360-degree radial sonic shockwave that detonates in a 24-block perimeter, shattering defenses and blasting back all surrounding entities.",
+      description: "Directional sonic attack, effective range 24 blocks, bypasses armor mitigation. Under sufficient threat pressure it can instead release an omnidirectional shockwave — full 24-block radius, structural damage included, no directional counterplay.",
       category: "Acoustic"
     },
     {
-      title: "Thermal Synthesis (Solar & Cryo Beams)",
+      title: "Adaptive Elemental Beams",
       trigger: "Sustaining elemental damage or navigating extreme environments",
-      description: "Channels high-density thermal and sub-zero energy beams. Solar Beams scorch targets with persistent heat damage and deal severe bonus damage against frozen opponents, while Cryo Beams flash-freeze prey, dealing catastrophic damage to fire-born or Nether entities.",
+      description: "Fire damage taken unlocks a sustained heat beam, amplified against frozen targets. Freeze damage taken unlocks a sustained cold beam, amplified against fire-immune or Nether-origin targets. Element exposure is a permanent unlock, not a temporary buff.",
       category: "Lethal Ranged"
     },
     {
-      title: "Spatial Blinks & Tactical Standoff",
+      title: "Blink Repositioning",
       trigger: "Evading attacks, closing gaps, or target pillaring",
-      description: "Overcomes initial movement inertia over time, steadily increasing movement speed as combat progresses. Executes near-instantaneous spatial blinks to dodge incoming weapons and projectiles, repositioning directly behind targets. When targets construct elevated pillars or retreat to structures, it circles at a calculated standoff distance before launching aggressive leaps.",
+      description: "Movement speed is deliberately low on first contact and increases the longer combat runs. Once unlocked, it can teleport short distances to dodge attacks or reposition behind a target. Elevated or walled-off positions are not a safe strategy — it will hold distance and wait, then close the gap in one motion.",
       category: "Mobility"
     },
     {
-      title: "Martial Combat & Close Quarters Strikes",
+      title: "Close-Range Strike Sequences",
       trigger: "Target within close proximity or elevated positions",
-      description: "Executes brutal close-quarters martial sequences—combining heavy punches, downward double-fisted overhead slams, dropkicks, high-velocity diving kicks, standalone uppercuts that launch targets airborne, and seismic ground slams upon landing. It also adopts a defensive blocking stance to absorb incoming physical strikes.",
+      description: "Multiple close-quarters attack chains: heavy strikes, an overhead ground-impact attack, an aerial diving strike, and a launcher that sends the target airborne before following up on landing. Also capable of holding a defensive guard that absorbs incoming damage until it chooses to counter.",
       category: "Melee Combos"
     },
     {
-      title: "Armor Disarmament & Choke Hold",
+      title: "Grapple & Armor Strip",
       trigger: "Engaging heavily armored targets in close quarters",
-      description: "Seizes targets in a single-handed choke hold, lifting them into the air. While suspended, it inflicts crushing physical damage while rapidly stripping away standard armor durability or forcefully dislodging indestructible armor pieces.",
+      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks — more hits required the better protected you are.",
       category: "Grapple & Disarm"
     },
     {
-      title: "Operator Directive Overrides",
+      title: "Operator Override",
       trigger: "Operator chat directives in developer environment",
-      description: "Responds to high-level operator directives issued in chat. Operatives can command the unit to target specific entities or players, sweep nearby threats within an extensive 512-block detection radius, or immediately stand down and clear its active kill queue.",
+      description: "Under authorized operator commands only: can be directed onto a specific target, ordered to sweep a wide radius for hostiles, or told to disengage entirely. No standard player has access to this.",
       category: "Tactical Control"
     }
   ];
@@ -608,7 +620,7 @@ export default function EntitiesView() {
                     Totem Overload Integration
                   </h4>
                   <p className="text-xs text-[#829285] leading-relaxed mt-1">
-                    The Rot scans for equipped Totems of Undying or Infinity Totems in your hand. Within a 12-block radius, it siphons the totem over a 4-second sequence and crushes it to permanently empower itself.
+                    Detects an equipped Totem of Undying within 12 blocks. If allowed to close distance, it removes the totem over a multi-second sequence and destroys it, permanently upgrading itself in the process. This cannot be reversed. Do not let it close that distance.
                   </p>
                 </div>
 
@@ -640,7 +652,7 @@ export default function EntitiesView() {
                         Active Scan Protocol (Default)
                       </h5>
                       <p className="text-xs text-[#8c8779] leading-relaxed">
-                        The sentinel displays standard attributes (550 HP base) and pursues players relying purely on standard learned cooldown triggers. Equipped totems remain safe unless the player allows the sentinel to approach within close proximity.
+                        Baseline configuration. 550 HP, standard cooldown timing, no elevated attributes. Still lethal. Totems remain safe only as long as you keep it outside the 12-block detection range.
                       </p>
                     </div>
                   )}
@@ -651,15 +663,17 @@ export default function EntitiesView() {
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                         Standard Totem (Empowered State)
                       </h5>
+                      <p className="text-xs text-[#8c8779] leading-relaxed">
+                        Permanent upgrade, triggered once a totem is destroyed. Does not expire.
+                      </p>
                       <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed">
-                        <li>Grants the sentinel <strong className="text-[#e0e7e0]">+50% Attack Damage</strong> and <strong className="text-[#e0e7e0]">+12.5% Movement Speed</strong> boosts.</li>
-                        <li>Paces actions twice as fast, executing attacks and movement at an ultra-rapid cycle.</li>
-                        <li>Melee strikes have a massive <strong className="text-[#e0e7e0]">85% chance</strong> to trigger immediate follow-up combos.</li>
-                        <li>All physical strikes punch tunnels directly through solid blocks and terrain behind the target.</li>
-                        <li>Stomps and ground smashes trigger elevated shockwaves and heavy splash explosions.</li>
-                        <li>Choke holds are heavily reinforced, requiring far more physical strikes from the victim to break free.</li>
-                        <li>Ultimate Nova (Omnidirectional Sonic Boom) damage and kinetic launch forces are severely amplified.</li>
-                        <li>Intensifies ambient camera shaking and pitch shifts for extreme, hostile threat cues.</li>
+                        <li><strong className="text-[#e0e7e0]">+50% Attack Damage</strong>, <strong className="text-[#e0e7e0]">+12.5% Movement Speed</strong>.</li>
+                        <li>All action cooldowns roughly halved.</li>
+                        <li>85% chance for a landed melee hit to chain directly into a follow-up attack.</li>
+                        <li>Melee attacks now break blocks behind the target — walls no longer provide cover.</li>
+                        <li>Heavy impacts generate ground shockwaves with knockback and blast damage.</li>
+                        <li>Grapple holds require significantly more hits to break free from.</li>
+                        <li>Shockwave ability damage and knockback are substantially increased.</li>
                       </ul>
                     </div>
                   )}
@@ -671,12 +685,12 @@ export default function EntitiesView() {
                         Infinity Totem (Absolute Limit State)
                       </h5>
                       <p className="text-xs text-[#8c8779] leading-relaxed">
-                        Consuming the legendary Infinity Totem—supported via cross-mod compatibility with the <a href="https://www.curseforge.com/minecraft/mc-mods/re-avaritia" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline font-medium">Avaritia</a> mod—permanently elevates the sentinel to its absolute limit:
+                        Requires an Infinity Totem — reachable via cross-mod compatibility with the <a href="https://www.curseforge.com/minecraft/mc-mods/re-avaritia" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline font-medium">Avaritia</a> mod. Effectively a permanent, uncappable version of the empowered state.
                       </p>
                       <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed">
-                        <li>Inherits full attack damage and speed advantages permanently without any degradation.</li>
-                        <li>Bypasses standard regeneration limits to grant immense, continuous <strong className="text-emerald-400 font-bold">passive health regeneration</strong> that repairs wounds instantly in real time.</li>
-                        <li>Drives aggression and action selection to the absolute limit, completely immune to standard totem removal or stripping mechanics.</li>
+                        <li>All Standard Totem bonuses apply, permanently, with no decay.</li>
+                        <li>Continuous passive healing that outpaces most sustained damage.</li>
+                        <li>Cannot be stripped or reverted by any known method.</li>
                       </ul>
                     </div>
                   )}
