@@ -373,7 +373,7 @@ export default function EntitiesView() {
     {
       title: "Operator Override",
       trigger: "Operator chat directives in developer environment",
-      description: "Under authorized operator commands only: can be directed onto a specific target, ordered to sweep a wide radius for hostiles, or told to disengage entirely. No standard player has access to this.",
+      description: "Recognizes exactly two authorized identifiers, both resolving to a single individual. Under that identity alone, it can be pointed at a specific target, ordered to sweep a wide radius clean of hostiles, or called off entirely — obeyed instantly, without hesitation. Every other name in this world, it hunts on its own terms.",
       category: "Tactical Control"
     }
   ];
