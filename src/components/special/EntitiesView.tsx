@@ -317,6 +317,30 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
+      title: "Neural Network & Beta Distribution",
+      trigger: "Continuous engagement and combat outcome observation",
+      description: "Operates an 8-neuron feedforward neural network that evaluates tactical plans in real-time. Uses a Beta Distribution model with a 0.08 variance gate threshold to restrict overly aggressive decisions until sufficient combat samples are gathered. As it fights, its internal weights shift at a 0.05 learning rate, constantly refining its strategy.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Behavior Anomaly Detection (Welford)",
+      trigger: "Detecting sudden, unexpected changes in combat flow",
+      description: "Continuously computes statistical baselines of combat metrics. If a target performs an action that registers a Z-score above 2.5 (a drastic deviation from the norm, like sudden massive damage or erratic movement), the Rot enters a heightened 'surprise' alert state and immediately re-evaluates its tactical plan.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Multi-Agent Role Auction",
+      trigger: "Multiple Rot entities engaging the same target",
+      description: "When multiple Rots are present within a 32-block radius, they engage in a silent, decentralized bidding system. They auction off combat roles (e.g., Vanguard, Flanker, Support) every 60 ticks based on their individual positioning and current health, ensuring coordinated pack tactics without overlapping roles.",
+      category: "Swarm Logic"
+    },
+    {
+      title: "Master Subservience Protocol",
+      trigger: "Commands given via text chat by the creator",
+      description: "Despite its ferocity, the AI answers directly to its creator. Through commands like 'kill', 'kill everyone', 'stop', or 'help', the Rot will instantly override its current tactical matrix to execute crosshair acquisitions, mass extermination queues, or dedicated defensive routines for its master.",
+      category: "Overrides"
+    },
+    {
       title: "Behavioral Profiling",
       trigger: "Active target engagement & multi-signal observation",
       description: "Tracks movement, facing, attack timing, and incoming projectiles in real time. Cross-references observed behavior against prior engagements with other hostiles in the region. Assigns a threat classification within seconds and adjusts its own attack selection accordingly. Effectively: it has already fought something like you before, and it remembers what worked.",
@@ -369,12 +393,6 @@ export default function EntitiesView() {
       trigger: "Engaging heavily armored targets in close quarters",
       description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks — more hits required the better protected you are.",
       category: "Grapple & Disarm"
-    },
-    {
-      title: "Operator Override",
-      trigger: "Operator chat directives in developer environment",
-      description: "Recognizes exactly two authorized identifiers, both resolving to a single individual. Under that identity alone, it can be pointed at a specific target, ordered to sweep a wide radius clean of hostiles, or called off entirely — obeyed instantly, without hesitation. Every other name in this world, it hunts on its own terms.",
-      category: "Tactical Control"
     }
   ];
 
