@@ -341,24 +341,6 @@ export default function EntitiesView() {
       category: "Overrides"
     },
     {
-      title: "Target Intent Recognition & Capability Adaptation",
-      trigger: "Real-time observation of target movement, state, and equipment",
-      description: "Infers the target's tactical intent every tick—categorizing behavior into ENGAGING, ESCAPING, AERIAL_ADVANTAGE, REPOSITIONING, HEALING, RANGED_ATTACK, BAITING, or CREATING_DISTANCE. Dynamically unlocks specialized capabilities (e.g. Dropkick Combos, Ground shaking slams, Sonic Screams) to directly counter the target's current plan.",
-      category: "Intelligence Engine"
-    },
-    {
-      title: "Ender Pearl Interception & Trajectory Prediction",
-      trigger: "Target throwing an Ender Pearl within 48 blocks",
-      description: "Calculates the flight vector and predicted landing block of thrown Ender Pearls in mid-air. Locks gaze onto the projectile, unlocks teleportation, and moves to or teleports directly onto the predicted landing site to ambush the target the exact tick they land.",
-      category: "Interception Pipeline"
-    },
-    {
-      title: "Target Equipment & Consumable Profiling",
-      trigger: "Target wielding ranged weapons, blocking, or consuming items",
-      description: "Actively scans target HP, equipped armor value, held weapons (bows, crossbows, tridents), raised shields, and active item usage (Golden Apples, Potions, Milk Buckets). Instantly calculates punish windows when a target attempts to heal or drink, closing distance with hyper-aggressive combos.",
-      category: "Intelligence Engine"
-    },
-    {
       title: "Behavioral Profiling",
       trigger: "Active target engagement & multi-signal observation",
       description: "Tracks movement, facing, attack timing, and incoming projectiles in real time. Cross-references observed behavior against prior engagements with other hostiles in the region. Assigns a threat classification within seconds and adjusts its own attack selection accordingly. Effectively: it has already fought something like you before, and it remembers what worked.",
@@ -405,6 +387,36 @@ export default function EntitiesView() {
       trigger: "Target within close proximity or elevated positions",
       description: "Multiple close-quarters attack chains: heavy strikes, an overhead ground-impact attack, an aerial diving strike, and a launcher that sends the target airborne before following up on landing. Also capable of holding a defensive guard that absorbs incoming damage until it chooses to counter.",
       category: "Melee Combos"
+    },
+    {
+      title: "Target Intent Inference Engine",
+      trigger: "Observing target movement, held items, vehicles, or airborne states",
+      description: "Dynamically infers 8 distinct player intents (Engaging, Escaping, Aerial Advantage, Repositioning, Healing, Ranged Attack, Baiting, Creating Distance). Instantly adapts capability unlocks and applies up to a 5x score multiplier to counter-combos tailored specifically to the target's active intent.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Ender Pearl Interception & Ambush",
+      trigger: "Target throws an Ender Pearl within 48 blocks",
+      description: "Detects active Ender Pearls in real time, immediately overrides ongoing combat actions, locks gaze onto the flying projectile, and calculates the predicted landing trajectory. As the pearl reaches its destination, the Rot teleports directly to an ambush coordinate (1.6–3.0b offset) to strike the instant the target materializes.",
+      category: "Tactical Control"
+    },
+    {
+      title: "Consumable & Healing Item Punishment",
+      trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
+      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window — executing close-range strikes or a Judgment Dropkick / Teleportation strike to punish target immobilization.",
+      category: "Punishment Window"
+    },
+    {
+      title: "8-Tick Lead Prediction & Strafe Counter",
+      trigger: "Target attempting circle-strafing or lateral movement during melee",
+      description: "Computes an 8-tick lead prediction vector based on the target's velocity. Evaluates both live and predicted positions during punch windups to hit players trying to dodge laterally or strafe out of close-quarters range.",
+      category: "Melee Combos"
+    },
+    {
+      title: "Tactical Interception & Timing Matrix",
+      trigger: "Evaluating complex movement across air, water, boats, or terrain",
+      description: "Calculates startup ticks, travel speeds, and target momentum vectors across all movement modes. Recommends tactical delays (10–20 ticks) when holding an attack yields a significantly higher interception probability, such as waiting for an airborne target's landing trajectory.",
+      category: "Intelligence Engine"
     },
     {
       title: "Grapple & Armor Strip",
