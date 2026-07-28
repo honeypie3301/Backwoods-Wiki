@@ -341,6 +341,24 @@ export default function EntitiesView() {
       category: "Overrides"
     },
     {
+      title: "Target Intent Recognition & Capability Adaptation",
+      trigger: "Real-time observation of target movement, state, and equipment",
+      description: "Infers the target's tactical intent every tick—categorizing behavior into ENGAGING, ESCAPING, AERIAL_ADVANTAGE, REPOSITIONING, HEALING, RANGED_ATTACK, BAITING, or CREATING_DISTANCE. Dynamically unlocks specialized capabilities (e.g. Dropkick Combos, Ground shaking slams, Sonic Screams) to directly counter the target's current plan.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Ender Pearl Interception & Trajectory Prediction",
+      trigger: "Target throwing an Ender Pearl within 48 blocks",
+      description: "Calculates the flight vector and predicted landing block of thrown Ender Pearls in mid-air. Locks gaze onto the projectile, unlocks teleportation, and moves to or teleports directly onto the predicted landing site to ambush the target the exact tick they land.",
+      category: "Interception Pipeline"
+    },
+    {
+      title: "Target Equipment & Consumable Profiling",
+      trigger: "Target wielding ranged weapons, blocking, or consuming items",
+      description: "Actively scans target HP, equipped armor value, held weapons (bows, crossbows, tridents), raised shields, and active item usage (Golden Apples, Potions, Milk Buckets). Instantly calculates punish windows when a target attempts to heal or drink, closing distance with hyper-aggressive combos.",
+      category: "Intelligence Engine"
+    },
+    {
       title: "Behavioral Profiling",
       trigger: "Active target engagement & multi-signal observation",
       description: "Tracks movement, facing, attack timing, and incoming projectiles in real time. Cross-references observed behavior against prior engagements with other hostiles in the region. Assigns a threat classification within seconds and adjusts its own attack selection accordingly. Effectively: it has already fought something like you before, and it remembers what worked.",
