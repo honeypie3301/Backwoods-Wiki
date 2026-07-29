@@ -403,7 +403,7 @@ export default function EntitiesView() {
     {
       title: "Consumable & Healing Item Punishment",
       trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
-      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window — executing close-range strikes or a Judgment Dropkick / Teleportation strike to punish target immobilization.",
+      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window — executing close-range strikes or a Dropkick / Teleportation strike to punish target immobilization.",
       category: "Punishment Window"
     },
     {
