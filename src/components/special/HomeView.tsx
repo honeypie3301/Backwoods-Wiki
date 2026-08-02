@@ -45,15 +45,16 @@ export default function HomeView() {
           </div>
           
           <div className="p-3 bg-amber-950/30 border border-amber-500/30 rounded-lg text-amber-200 text-sm font-medium leading-relaxed">
-            <u className="underline decoration-amber-400 decoration-1 underline-offset-2 font-semibold">The wiki is always updated before a new version releases.</u> And if something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+            <u>The wiki is always updated before a new version releases.</u> If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
           </div>
 
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">New Entities Added:</strong> Lignum Spina, Petrified Lignum Spina, Lignum Echinus, Petrified Lignum Echinus, Lignum Trilobita, & Petrified Lignum Trilobita.</li>
-              <li><strong className="text-amber-300">Splinter Age System:</strong> <code className="bg-black/50 px-1 py-0.5 rounded text-amber-400">SplinterAgeProcedure</code> mechanics tracking entity maturation in sub-light darkness.</li>
-              <li><strong className="text-amber-300">New Commands:</strong> <code className="bg-black/50 px-1 py-0.5 rounded text-amber-400">/testdummy</code> (spawn ProjectE Gem & Avaritia Infinity test zombies) and <code className="bg-black/50 px-1 py-0.5 rounded text-amber-400">/switchdimensions</code> (operator realm travel).</li>
+              <li><strong className="text-amber-300">Charging Evacuation Teleport:</strong> Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.</li>
+              <li><strong className="text-amber-300">Fractus Indifference:</strong> Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.</li>
+              <li><strong className="text-amber-300">Ground Fauna Evacuation:</strong> Lignum & Petrified Trilobita flee on foot within 100 blocks of The Rot to escape collateral destruction.</li>
+              <li><strong className="text-amber-300">Splinter Age System:</strong> <code className="bg-black/50 px-1 py-0.5 rounded text-amber-400">SplinterAgeProcedure</code> tracking entity maturation in sub-light darkness.</li>
             </ul>
           </div>
         </div>

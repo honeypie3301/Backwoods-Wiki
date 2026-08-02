@@ -163,7 +163,8 @@ export default function EntitiesView() {
       speed: "0.3 (Scales dynamically in combat cycle)",
       dim: "The Backwoods / Dynamic Sentry deployment",
       aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
-      desc: "A biological sentinel that does not engage until it has profiled you. It observes gear, reach, and combat rhythm before committing to a strategy, then re-profiles continuously — every exchange adjusts its damage output, resistances, and attack selection against you specifically. Prolonged engagement is punished: the longer a fight runs, the less margin for error it allows. Confirmed capable of stripping equipped armor and destroying held Totems of Undying mid-fight. Do not assume early behavior predicts late-fight behavior."
+      isUpdated: true,
+      desc: "A biological sentinel that does not engage until it has profiled you. It observes gear, reach, and combat rhythm before committing to a strategy, then re-profiles continuously: every exchange adjusts its damage output, resistances, and attack selection against you specifically. Prolonged engagement is punished; the longer a fight runs, the less margin for error it allows. Confirmed capable of stripping equipped armor and destroying held Totems of Undying mid-fight. Do not assume early behavior predicts late-fight behavior."
     },
     {
       id: "splinter",
@@ -259,7 +260,7 @@ export default function EntitiesView() {
       speed: "0.220",
       dim: "The Backwoods / Sub-Strata Floors",
       isUpdated: true,
-      desc: "An ancient arthropod Made of interlocking oak scales. When health falls to 4 HP or lower, it enters a protective Hiding State — tucking into its shell and regenerating +1 HP every 10 ticks until restored to 10 HP. If a Rot entity is within 100 blocks, the presence of the sentinel forces it out of hiding immediately. It consumes edible items on the ground, growing +0.07 in scale each time it feeds."
+      desc: "An ancient arthropod made of interlocking oak scales. Driven by an innate flee mechanism targeting Rot entities (1.5x speed, 100-block range) and players (1.2x speed, 6-block range). Local fauna evacuate the area within 100 blocks of the Rot to avoid becoming collateral damage during its destructive engagements. When health falls to 4 HP or lower, it enters a protective shell hiding state to regenerate +1 HP every 10 ticks up to 10 HP. If a Rot entity approaches within 100 blocks, it breaks hiding instantly and flees. Consumes edible items on the ground, scaling up +0.07 in size per meal."
     },
     {
       id: "petrified_lignum_trilobita",
@@ -275,7 +276,7 @@ export default function EntitiesView() {
       speed: "0.140",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A heavily armored fossilized trilobite with 14 armor points. Tucks into its carapace when HP <= 4 to rapidly heal +1 HP every 10 ticks until reaching 10 HP. Un-hides immediately if a Rot entity is detected nearby."
+      desc: "A heavily calcified fossilized trilobite with 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade rot infection and avoid collateral destruction. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
     },
     {
       id: "log_splinter",
@@ -350,7 +351,8 @@ export default function EntitiesView() {
       armor: "0 Points",
       speed: "0.160",
       dim: "The Backwoods / Tall Canopies",
-      desc: "A tall, looming figure that watches from extreme distances. Prolonged observation activates its hostile phase. It locks its gaze unyieldingly on the player, rotating its body continuously even when teleporting."
+      isUpdated: true,
+      desc: "A tall, looming figure that watches from extreme distances. Prolonged observation activates its hostile phase. When the Rot approaches within 100 blocks, it drops all targets, charges a 3 to 5 second flashing aura, and teleports 70 to 120 blocks directly away to escape. It also uses short-range predictive teleportation during combat to dodge incoming attacks."
     },
     {
       id: "ash_weaver",
@@ -395,7 +397,8 @@ export default function EntitiesView() {
       armor: "6 Points (Metallic Chassis)",
       speed: "0.200 (Ignoring Gravity)",
       dim: "The Sub-Strata (Menger Sponge structures)",
-      desc: "A floating security drone guarding ancient geometries deep underground. It maintains strict tactical combat distances, utilizes tracking lasers, predictively evades projectiles, and coordinates summoning rituals with partners."
+      isUpdated: true,
+      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus entities do not possess biological evacuation instincts and do not flee from the Rot, remaining stationed on their aerial patrol perimeters."
     },
     {
       id: "fractus_prime",
@@ -410,7 +413,8 @@ export default function EntitiesView() {
       armor: "20 Points (High Alloy Plating)",
       speed: "0.200 (High-velocity reverse thrust)",
       dim: "The Sub-Strata (Summoned via Drone Rituals)",
-      desc: "A 2x scaled orbital laser battery defense drone. It commands a massive 48-block threat range, capable of engaging multiple targets simultaneously with split laser arrays, gravity-suspension, and devastating wide-area Helix beams."
+      isUpdated: true,
+      desc: "A 2x scaled orbital laser battery defense drone commanding a 48-block threat range. Operating on automated airborne defense programming, it does not flee from the Rot or surrounding entities, maintaining its orbital containment grid regardless of external threats."
     },
     {
       id: "lignum_vermis",
@@ -440,7 +444,8 @@ export default function EntitiesView() {
       armor: "6 Points",
       speed: "0.05 / 0.12 (Freeze/Chase States)",
       dim: "The Sub-Strata (Pillar-heavy structures)",
-      desc: "A towering, grid-bound entity standing approximately 5.8 blocks tall that stalks its prey through architecture, mimicry, and psychic coercion. It navigates exclusively along the cardinal axis of block grids, moving in perfectly straight lines and turning only at right angles to blend into structural columns."
+      isUpdated: true,
+      desc: "A towering grid-bound entity standing 5.8 blocks tall that stalks prey through architectural mimicry and gaze hypnosis. When the Rot is detected within 100 blocks, it immediately drops all targets, charges a 3 to 5 second flashing particle aura, and teleports 70 to 120 blocks away to safety. It also uses grid-aligned teleportation to dodge incoming projectiles."
     }
   ];
 
@@ -478,25 +483,25 @@ export default function EntitiesView() {
     {
       title: "Single-Action Lock",
       trigger: "Simultaneous execution of complex combat maneuvers",
-      description: "Commits fully to one action at a time — grip, guard, or otherwise — with no overlap between states. There is no window where two competing behaviors leave it exposed. Whatever it starts, it finishes.",
+      description: "Commits fully to one action at a time (grip, guard, or otherwise) with no overlap between states. There is no window where two competing behaviors leave it exposed. Whatever it starts, it finishes.",
       category: "State Matrix"
     },
     {
       title: "Damage-Triggered Regeneration",
       trigger: "Taking 30 cumulative damage, 100 combat ticks, or high threat levels",
-      description: "Begins self-repair after roughly 30 damage taken, or 100 ticks in combat, whichever comes first. Regeneration rate increases further under sustained threat. Attrition strategies lose effectiveness the longer the fight runs — it heals faster the more danger it's in.",
+      description: "Begins self-repair after roughly 30 damage taken, or 100 ticks in combat, whichever comes first. Regeneration rate increases further under sustained threat. Attrition strategies lose effectiveness the longer the fight runs: it heals faster the more danger it is in.",
       category: "Defense & Healing"
     },
     {
       title: "Escalating Aggression",
       trigger: "Continuous engagement or target holding an active Totem of Undying",
-      description: "Cooldowns between actions shorten the longer combat continues. There is no cap on how aggressive it becomes short of the fight ending. If it detects a Totem of Undying on the target, all cooldowns drop to minimum immediately — do not assume you have time once it knows what you're holding.",
+      description: "Cooldowns between actions shorten the longer combat continues. There is no cap on how aggressive it becomes short of the fight ending. If it detects a Totem of Undying on the target, all cooldowns drop to minimum immediately: do not assume you have time once it knows what you are holding.",
       category: "Escalation"
     },
     {
       title: "Sonic Weaponry",
       trigger: "Learned from Warden engagements or during high-threat combat",
-      description: "Directional sonic attack, effective range 24 blocks, bypasses armor mitigation. Under sufficient threat pressure it can instead release an omnidirectional shockwave — full 24-block radius, structural damage included, no directional counterplay.",
+      description: "Directional sonic attack, effective range 24 blocks, bypasses armor mitigation. Under sufficient threat pressure it can instead release an omnidirectional shockwave across a full 24-block radius, structural damage included, with no directional counterplay.",
       category: "Acoustic"
     },
     {
@@ -508,7 +513,7 @@ export default function EntitiesView() {
     {
       title: "Blink Repositioning",
       trigger: "Evading attacks, closing gaps, or target pillaring",
-      description: "Movement speed is deliberately low on first contact and increases the longer combat runs. Once unlocked, it can teleport short distances to dodge attacks or reposition behind a target. Elevated or walled-off positions are not a safe strategy — it will hold distance and wait, then close the gap in one motion.",
+      description: "Movement speed is deliberately low on first contact and increases the longer combat runs. Once unlocked, it can teleport short distances to dodge attacks or reposition behind a target. Elevated or walled-off positions are not a safe strategy: it will hold distance and wait, then close the gap in one motion.",
       category: "Mobility"
     },
     {
@@ -526,13 +531,13 @@ export default function EntitiesView() {
     {
       title: "Ender Pearl Interception & Ambush",
       trigger: "Target throws an Ender Pearl within 48 blocks",
-      description: "Detects active Ender Pearls in real time, immediately overrides ongoing combat actions, locks gaze onto the flying projectile, and calculates the predicted landing trajectory. As the pearl reaches its destination, the Rot teleports directly to an ambush coordinate (1.6–3.0b offset) to strike the instant the target materializes.",
+      description: "Detects active Ender Pearls in real time, immediately overrides ongoing combat actions, locks gaze onto the flying projectile, and calculates the predicted landing trajectory. As the pearl reaches its destination, the Rot teleports directly to an ambush coordinate (1.6 to 3.0b offset) to strike the instant the target materializes.",
       category: "Tactical Control"
     },
     {
       title: "Consumable & Healing Item Punishment",
       trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
-      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window — executing close-range strikes or a Dropkick / Teleportation strike to punish target immobilization.",
+      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window: executing close-range strikes or a Dropkick / Teleportation strike to punish target immobilization.",
       category: "Punishment Window"
     },
     {
@@ -544,13 +549,13 @@ export default function EntitiesView() {
     {
       title: "Tactical Interception & Timing Matrix",
       trigger: "Evaluating complex movement across air, water, boats, or terrain",
-      description: "Calculates startup ticks, travel speeds, and target momentum vectors across all movement modes. Recommends tactical delays (10–20 ticks) when holding an attack yields a significantly higher interception probability, such as waiting for an airborne target's landing trajectory.",
+      description: "Calculates startup ticks, travel speeds, and target momentum vectors across all movement modes. Recommends tactical delays (10 to 20 ticks) when holding an attack yields a significantly higher interception probability, such as waiting for an airborne target's landing trajectory.",
       category: "Intelligence Engine"
     },
     {
       title: "Grapple & Armor Strip",
       trigger: "Engaging heavily armored targets in close quarters",
-      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks — more hits required the better protected you are.",
+      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks; more hits are required the better protected you are.",
       category: "Grapple & Disarm"
     }
   ];

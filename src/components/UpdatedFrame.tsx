@@ -76,12 +76,12 @@ export default function UpdatedFrame({
       ref={containerRef}
       className={`relative transition-all duration-700 ${
         active
-          ? 'border border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.25)] rounded-xl'
+          ? 'z-20 border border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.25)] rounded-xl'
           : ''
       } ${className}`}
     >
       {active && (
-        <div className="absolute -top-2.5 right-4 z-30 bg-amber-500/90 text-[#0f110d] font-mono text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-300/40 shadow-sm uppercase tracking-wider flex items-center gap-1 pointer-events-none select-none">
+        <div className="absolute top-2.5 right-2.5 z-30 bg-amber-500/90 text-[#0f110d] font-mono text-[9px] font-bold px-2 py-0.5 rounded-full border border-amber-300/40 shadow-sm uppercase tracking-wider flex items-center gap-1 pointer-events-none select-none">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-200" />
           <span>{badgeLabel}</span>
           <span className="text-[8px] opacity-75 font-normal">(7s)</span>
