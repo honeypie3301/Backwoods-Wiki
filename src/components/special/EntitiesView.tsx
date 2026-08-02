@@ -5,6 +5,7 @@ import {
   EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown 
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
+import UpdatedFrame from '../UpdatedFrame';
 
 const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = {
   rot: {
@@ -58,6 +59,30 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   lignum_palus: {
     modelUrl: '/models/LignumPalus.obj',
     textureUrl: '/models/lignumpalus_skin.png'
+  },
+  lignum_spina: {
+    modelUrl: '/models/Lignum Spina.obj',
+    textureUrl: '/models/lignum_spina.png'
+  },
+  petrified_lignum_spina: {
+    modelUrl: '/models/Lignum Spina.obj',
+    textureUrl: '/models/petrified_lignum_spina.png'
+  },
+  lignum_echinus: {
+    modelUrl: '/models/LignumEchinus.obj',
+    textureUrl: '/models/lignum_echinus.png'
+  },
+  petrified_lignum_echinus: {
+    modelUrl: '/models/LignumEchinus.obj',
+    textureUrl: '/models/petrified_lignum_echinus.png'
+  },
+  lignum_trilobita: {
+    modelUrl: '/models/LignumTrilobita.obj',
+    textureUrl: '/models/lignum_trilobita.png'
+  },
+  petrified_lignum_trilobita: {
+    modelUrl: '/models/LignumTrilobita.obj',
+    textureUrl: '/models/petrified_lignum_trilobita.png'
   }
 };
 
@@ -74,7 +99,13 @@ const ENTITY_IMMUNITIES: Record<string, string[]> = {
   fractus: ["Poison", "Splash Potions", "Fall Damage", "Cactus", "Drowning", "Lightning", "Dragon's Breath", "Wither"],
   fractus_prime: ["Fire", "Poison", "Splash Potions", "Fall Damage", "Cactus", "Drowning", "Lightning", "Dragon's Breath", "Wither"],
   lignum_vermis: ["Cactus", "Drowning"],
-  lignum_palus: ["Poison", "Splash Potions", "Cactus", "Drowning", "Falling Anvils", "Wither"]
+  lignum_palus: ["Poison", "Splash Potions", "Cactus", "Drowning", "Falling Anvils", "Wither"],
+  lignum_spina: ["Sweet Berry / Thorns", "Cactus", "Drowning"],
+  petrified_lignum_spina: ["Sweet Berry / Thorns", "Cactus", "Drowning", "Arrows"],
+  lignum_echinus: ["Sweet Berry / Thorns", "Cactus", "Drowning"],
+  petrified_lignum_echinus: ["Sweet Berry / Thorns", "Cactus", "Drowning", "Fall Damage"],
+  lignum_trilobita: ["Cactus", "Drowning", "Suffocation"],
+  petrified_lignum_trilobita: ["Cactus", "Drowning", "Suffocation", "Falling Anvils"]
 };
 
 interface Ability {
@@ -99,6 +130,7 @@ interface EntityProfile {
   dim: string;
   desc: string;
   aka?: string;
+  isUpdated?: boolean;
 }
 
 export default function EntitiesView() {
@@ -146,7 +178,104 @@ export default function EntitiesView() {
       armor: "0 Points",
       speed: "0.335",
       dim: "The Backwoods (Dense Oak/Spruce forests)",
-      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched."
+      isUpdated: true,
+      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched."
+    },
+    {
+      id: "lignum_spina",
+      name: "Lignum Spina",
+      title: "Thorns Organism",
+      threatLevel: "Medium",
+      threatColor: "text-amber-400",
+      badgeBg: "bg-amber-950/30 border-amber-900/40 text-amber-400",
+      borderColor: "border-amber-950/20",
+      hp: "12 HP",
+      damage: "4 HP + Thorns Reflection",
+      armor: "4 Points",
+      speed: "0.320",
+      dim: "The Backwoods / Thicket Biomes",
+      isUpdated: true,
+      desc: "A nimble, thorned wooden organism that inflicts custom thorns damage on attackers whenever struck and has a 2% chance to deal sweet berry thorns damage on collision. In combat, it attacks aggressively while HP >= 5, but actively flees and avoids targets when its health drops below 5."
+    },
+    {
+      id: "petrified_lignum_spina",
+      name: "Petrified Lignum Spina",
+      title: "Calcified Thorns Organism",
+      threatLevel: "High",
+      threatColor: "text-zinc-400",
+      badgeBg: "bg-zinc-900/60 border-zinc-700/50 text-zinc-300",
+      borderColor: "border-zinc-800/30",
+      hp: "28 HP",
+      damage: "6 HP + Thorns Reflection",
+      armor: "8 Points (Fossilized Bark)",
+      speed: "0.260",
+      dim: "The Petrified Weald",
+      isUpdated: true,
+      desc: "A calcified variant of Lignum Spina adapted to the Petrified Weald. Features 8 armor points, arrow immunity, and custom thorns reflection. Fights aggressively when HP >= 5 and retreats when HP < 5."
+    },
+    {
+      id: "lignum_echinus",
+      name: "Lignum Echinus",
+      title: "Spiked Wood Burrower",
+      threatLevel: "Medium",
+      threatColor: "text-amber-500",
+      badgeBg: "bg-amber-950/40 border-amber-800/40 text-amber-500",
+      borderColor: "border-amber-900/20",
+      hp: "16 HP",
+      damage: "4 HP + Spike Reflection",
+      armor: "4 Points",
+      speed: "0.350",
+      dim: "The Backwoods Undergrowth",
+      isUpdated: true,
+      desc: "A fast, urchin-like wooden organism. Deals 3 points of thorns reflection damage back to attackers whenever hurt and has a 2% chance to deal collision spike damage. Fights aggressively when HP > 5, but shifts to avoidance mode when HP <= 5."
+    },
+    {
+      id: "petrified_lignum_echinus",
+      name: "Petrified Lignum Echinus",
+      title: "Fossilized Spiked Urchin",
+      threatLevel: "High",
+      threatColor: "text-zinc-400",
+      badgeBg: "bg-zinc-900/60 border-zinc-700/50 text-zinc-300",
+      borderColor: "border-zinc-800/30",
+      hp: "32 HP",
+      damage: "7 HP + Heavy Spike Reflection",
+      armor: "10 Points (Heavy Shell)",
+      speed: "0.380",
+      dim: "The Petrified Weald",
+      isUpdated: true,
+      desc: "A dense, fossilized variant of Lignum Echinus with 10 armor points and high movement speed. Reflects heavy spike damage back to attackers and flees when heavily injured (HP <= 5)."
+    },
+    {
+      id: "lignum_trilobita",
+      name: "Lignum Trilobita",
+      title: "Wood-Armor Scavenger",
+      threatLevel: "Low",
+      threatColor: "text-teal-400",
+      badgeBg: "bg-teal-950/20 border-teal-900/30 text-teal-400",
+      borderColor: "border-teal-950/10",
+      hp: "18 HP",
+      damage: "3 HP (1.5 Hearts)",
+      armor: "8 Points (Interlocking Planks)",
+      speed: "0.220",
+      dim: "The Backwoods / Sub-Strata Floors",
+      isUpdated: true,
+      desc: "An ancient arthropod Made of interlocking oak scales. When health falls to 4 HP or lower, it enters a protective Hiding State — tucking into its shell and regenerating +1 HP every 10 ticks until restored to 10 HP. If a Rot entity is within 100 blocks, the presence of the sentinel forces it out of hiding immediately. It consumes edible items on the ground, growing +0.07 in scale each time it feeds."
+    },
+    {
+      id: "petrified_lignum_trilobita",
+      name: "Petrified Lignum Trilobita",
+      title: "Fossilized Trilobite",
+      threatLevel: "Medium",
+      threatColor: "text-zinc-400",
+      badgeBg: "bg-zinc-900/60 border-zinc-700/50 text-zinc-300",
+      borderColor: "border-zinc-800/30",
+      hp: "40 HP",
+      damage: "4 HP (2 Hearts)",
+      armor: "14 Points (Calcified Carapace)",
+      speed: "0.140",
+      dim: "The Petrified Weald",
+      isUpdated: true,
+      desc: "A heavily armored fossilized trilobite with 14 armor points. Tucks into its carapace when HP <= 4 to rapidly heal +1 HP every 10 ticks until reaching 10 HP. Un-hides immediately if a Rot entity is detected nearby."
     },
     {
       id: "log_splinter",
@@ -500,23 +629,26 @@ export default function EntitiesView() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 max-h-[380px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
             {sortedEntities.map(e => (
-              <button
-                key={e.id}
-                onClick={() => setSelectedEntity(e.id)}
-                className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
-                  selectedEntity === e.id
-                    ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
-                    : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
-                }`}
-              >
-                <div className="flex justify-between items-center w-full">
-                  <span className="font-serif text-sm text-[#e0e7e0]">{e.name}</span>
-                  <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${e.badgeBg}`}>
-                    {e.threatLevel}
-                  </span>
-                </div>
-                <div className="text-[10px] text-[#5a6b5e] font-mono mt-1 italic">{e.title}</div>
-              </button>
+              <UpdatedFrame key={e.id} id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
+                <button
+                  onClick={() => setSelectedEntity(e.id)}
+                  className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
+                    selectedEntity === e.id
+                      ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
+                      : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
+                  }`}
+                >
+                  <div className="flex justify-between items-center w-full">
+                    <span className="font-serif text-sm text-[#e0e7e0] flex items-center gap-1.5">
+                      {e.name}
+                    </span>
+                    <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${e.badgeBg}`}>
+                      {e.threatLevel}
+                    </span>
+                  </div>
+                  <div className="text-[10px] text-[#5a6b5e] font-mono mt-1 italic">{e.title}</div>
+                </button>
+              </UpdatedFrame>
             ))}
           </div>
         </div>

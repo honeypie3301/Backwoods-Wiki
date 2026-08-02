@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { Terminal, Copy, Check, Info, ShieldAlert, Award, Package, Crosshair, HelpCircle } from 'lucide-react';
+import UpdatedFrame from '../UpdatedFrame';
 
 interface CommandData {
   cmd: string;
   usage: string;
-  category: 'debug' | 'time' | 'sentinel' | 'kits';
+  category: 'debug' | 'time' | 'sentinel' | 'kits' | 'teleport';
   summary: string;
   details: string;
+  isUpdated?: boolean;
   table?: { col1: string; col2: string }[];
+  dummies?: {
+    type: string;
+    description: string;
+    equipment: string;
+    requirement: string;
+  }[];
   kits?: {
     name: string;
     description: string;
@@ -21,6 +29,36 @@ export default function CommandsView() {
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const commands: CommandData[] = [
+    {
+      cmd: "/testdummy",
+      usage: "/testdummy [gem_zombie | infinity] <count>",
+      category: "debug",
+      summary: "Spawns specialized modded combat test dummy zombies.",
+      details: "Spawns fall-damage immune zombie test dummies equipped with high-tier modded armor and weapons at your exact position. Ideal for testing weapon DPS, armor penetration, attack combinations, and status effect damage without taking counterattacks.",
+      dummies: [
+        {
+          type: "gem_zombie",
+          description: "Spawns zombies clad in full ProjectE Gem Armor wielding a Red Matter Morning Star.",
+          equipment: "Full Gem Armor set (Boots, Leggings, Chestplate, Helmet) + Red Matter Morning Star (Charge 4)",
+          requirement: "ProjectE mod must be loaded"
+        },
+        {
+          type: "infinity",
+          description: "Spawns zombies clad in full Avaritia Infinity Armor wielding a Crystal Sword.",
+          equipment: "Full Infinity Armor set (Boots, Pants, Chestplate, Helmet) + Crystal Sword",
+          requirement: "Re-Avaritia (Avaritia) mod must be loaded"
+        }
+      ],
+      isUpdated: true
+    },
+    {
+      cmd: "/switchdimensions",
+      usage: "/switchdimensions [dimension]",
+      category: "teleport",
+      summary: "Operator dimension transport utility.",
+      details: "Instantly teleports the executing player to any registered dimension identifier. Uses Minecraft's dynamic DimensionArgument registry, enabling it to detect and target vanilla dimensions (e.g. minecraft:overworld, minecraft:the_nether, minecraft:the_end), Backwoods dimensions (e.g. the_backwoods:backwoods, the_backwoods:the_loss, the_backwoods:petrified_weald), as well as custom dimensions registered by any other installed mods.",
+      isUpdated: true
+    },
     {
       cmd: "/backwoodstime on",
       usage: "/backwoodstime on",
@@ -134,6 +172,7 @@ export default function CommandsView() {
         {[
           { id: 'all', label: 'All Utilities' },
           { id: 'debug', label: 'Player Debugging' },
+          { id: 'teleport', label: 'Dimension Travel' },
           { id: 'time', label: 'Time Thresholds' },
           { id: 'sentinel', label: 'Sentinel Overload' },
           { id: 'kits', label: 'Developer Combat Kits' }
@@ -155,11 +194,11 @@ export default function CommandsView() {
       {/* Commands List */}
       <div className="space-y-6">
         {filteredCmds.map((c) => (
-          <div 
-            key={c.cmd}
-            className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4 hover:border-[#2e3e31] transition-all duration-300"
-          >
-            {/* Command Header / Terminal Row */}
+          <UpdatedFrame key={c.cmd} id={`cmd_${c.cmd.replace(/[^a-z0-9]/gi, '_')}`} isUpdated={!!c.isUpdated}>
+            <div 
+              className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4 hover:border-[#2e3e31] transition-all duration-300"
+            >
+              {/* Command Header / Terminal Row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#070907] p-3 rounded-lg border border-[#151c16]">
               <div className="flex items-center gap-2 font-mono text-xs text-[#a9d1b0]">
                 <Terminal className="w-3.5 h-3.5 text-[#5a6b5e]" />
@@ -212,6 +251,33 @@ export default function CommandsView() {
               </div>
             )}
 
+            {/* If test dummy variants */}
+            {c.dummies && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                {c.dummies.map((d) => (
+                  <div key={d.type} className="p-4 bg-[#080908] border border-[#161d17] rounded-lg flex flex-col justify-between space-y-3">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <Crosshair className="w-4 h-4 text-amber-400" />
+                        <h5 className="font-mono text-xs font-bold text-amber-300 tracking-wide uppercase">/testdummy {d.type} &lt;count&gt;</h5>
+                      </div>
+                      <p className="text-xs text-[#9eb0a1] leading-relaxed">{d.description}</p>
+                      <div className="text-[11px] font-mono text-[#829285] bg-[#0d120e] p-2 rounded border border-[#18221b] space-y-1">
+                        <div><strong className="text-[#a9d1b0]">Equipped Loadout:</strong> {d.equipment}</div>
+                        <div><strong className="text-amber-400">Dependency:</strong> {d.requirement}</div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleCopy(`/testdummy ${d.type} 1`)}
+                      className="w-full text-center py-1.5 bg-[#101411] hover:bg-[#18201a] border border-[#202c22] rounded text-[10px] font-mono text-[#a9d1b0] transition-all cursor-pointer select-none"
+                    >
+                      Copy Command (`/testdummy {d.type} 1`)
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* If is Combat Kits display custom kits breakdown */}
             {c.kits && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
@@ -259,7 +325,8 @@ export default function CommandsView() {
               </div>
             )}
           </div>
-        ))}
+        </UpdatedFrame>
+      ))}
       </div>
     </div>
   );
