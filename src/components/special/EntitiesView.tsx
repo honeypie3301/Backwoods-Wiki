@@ -276,7 +276,7 @@ export default function EntitiesView() {
       speed: "0.140",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A heavily calcified fossilized trilobite with 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade rot infection and avoid collateral destruction. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
+      desc: "A heavily calcified fossilized trilobite with 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade the Rot and avoid collateral damage. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
     },
     {
       id: "log_splinter",
