@@ -24,7 +24,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
      THE SPLINTER
      ========================================== -->
 <h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">The Splinter</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">The primary threat of the Backwoods. A gaunt wooden figure that hunts the player through extreme patience and persistence. Every Splinter is assigned a dynamic personality profile upon spawning - half behave as stealthy stalkers, while the other half act as pure pursuers that advance directly toward the player whenever unwatched.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The primary threat of the Backwoods. A gaunt wooden figure that hunts the player through extreme patience and persistence. Every Splinter is assigned a dynamic personality profile upon spawning - half behave as stealthy stalkers, while the other half act as pure pursuers that advance directly toward the player whenever unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements.</p>
 
 <div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
     <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Assets &amp; Resources</strong>
@@ -236,7 +236,7 @@ To maintain focus on active threats, Backwoods entities check targets before eng
      LIGNUM GIGAS
      ========================================== -->
 <h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Lignum Gigas</h3>
-<p style="margin-bottom: 15px; font-size: 0.95em;">A massive, stationary bio-mechanical behemoth standing roughly 80 blocks tall. Constructed entirely from interlocking oak planks with six monumental appendages, its design profile heavily channels the properties of the ''Coelum Carnis'' organism. It possesses exceptional health regeneration loops and yields immense pools of experience upon destruction.</p>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A massive, stationary bio-mechanical behemoth standing roughly 80 blocks tall. Constructed entirely from interlocking oak planks with six monumental appendages, its design profile heavily channels the properties of the ''Coelum Carnis'' organism. Possessing an '''Inexhaustible Health Reservoir (1,008 HP)''' backed by immediate Coelum Carnis regeneration loops, its massive tissue repairs faster than kinetic strikes or environmental decay can consume it. Because of this infinite regenerative core, Lignum Gigas does NOT flee from The Rot, standing completely indifferent to its presence while lesser fauna evacuate.</p>
 
 <div style="background: #0b0e0c; border: 1px solid #1b221c; border-left: 2px solid #709978; padding: 12px 16px; margin: 15px 0; font-size: 0.85em; color: #8c8779; font-family: monospace;">
     <strong style="color: #a9d1b0; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px;">Technical Assets &amp; Resources</strong>

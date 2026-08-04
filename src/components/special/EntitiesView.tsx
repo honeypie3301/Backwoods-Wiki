@@ -180,7 +180,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Backwoods (Dense Oak/Spruce forests)",
       isUpdated: true,
-      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched."
+      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements."
     },
     {
       id: "lignum_spina",
@@ -196,7 +196,7 @@ export default function EntitiesView() {
       speed: "0.320",
       dim: "The Backwoods / Thicket Biomes",
       isUpdated: true,
-      desc: "A nimble, thorned wooden organism that inflicts custom thorns damage on attackers whenever struck and has a 2% chance to deal sweet berry thorns damage on collision. In combat, it attacks aggressively while HP >= 5, but actively flees and avoids targets when its health drops below 5."
+      desc: "A nimble, thorned wooden organism that inflicts custom thorns damage on attackers whenever struck and has a 2% chance to deal sweet berry thorns damage on collision. In combat, it attacks aggressively while HP >= 5, but actively flees and avoids targets when its health drops below 5. Additionally, it flees immediately when a Rot entity approaches within 100 blocks to evade its destructive footprint."
     },
     {
       id: "petrified_lignum_spina",
@@ -212,7 +212,7 @@ export default function EntitiesView() {
       speed: "0.260",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A calcified variant of Lignum Spina adapted to the Petrified Weald. Features 8 armor points, arrow immunity, and custom thorns reflection. Fights aggressively when HP >= 5 and retreats when HP < 5."
+      desc: "A calcified variant of Lignum Spina adapted to the Petrified Weald. Features 8 armor points, arrow immunity, and custom thorns reflection. Fights aggressively when HP >= 5 and retreats when HP < 5. Automatically flees from approaching Rot entities within a 100-block perimeter to avoid collateral destruction."
     },
     {
       id: "lignum_echinus",
@@ -228,7 +228,7 @@ export default function EntitiesView() {
       speed: "0.350",
       dim: "The Backwoods Undergrowth",
       isUpdated: true,
-      desc: "A fast, urchin-like wooden organism. Deals 3 points of thorns reflection damage back to attackers whenever hurt and has a 2% chance to deal collision spike damage. Fights aggressively when HP > 5, but shifts to avoidance mode when HP <= 5."
+      desc: "A fast, urchin-like wooden organism. Deals 3 points of thorns reflection damage back to attackers whenever hurt and has a 2% chance to deal collision spike damage. Fights aggressively when HP > 5, but shifts to avoidance mode when HP <= 5. Possesses an active flee routine targeting Rot entities within 100 blocks to evacuate the danger zone."
     },
     {
       id: "petrified_lignum_echinus",
@@ -244,7 +244,7 @@ export default function EntitiesView() {
       speed: "0.380",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A dense, fossilized variant of Lignum Echinus with 10 armor points and high movement speed. Reflects heavy spike damage back to attackers and flees when heavily injured (HP <= 5)."
+      desc: "A dense, fossilized variant of Lignum Echinus with 10 armor points and high movement speed. Reflects heavy spike damage back to attackers and flees when heavily injured (HP <= 5). Like its uncalcified kin, it flees from Rot entities within a 100-block range to avoid collateral damage."
     },
     {
       id: "lignum_trilobita",
@@ -382,7 +382,8 @@ export default function EntitiesView() {
       armor: "0 Points (Absorbs damage via massive health regen)",
       speed: "0.000 (Immobile Behemoth)",
       dim: "Wood Plains & The Thicket (Colossal Ring formations)",
-      desc: "A gargantuan stationary biomechanical titan standing 80 blocks tall. Built from ancient interlocking oak planks, it channels the legendary properties of the Coelum Carnis. Striking it triggers apocalyptic defensive routines."
+      isUpdated: true,
+      desc: "A gargantuan stationary biomechanical titan standing 80 blocks tall. Built from ancient interlocking oak planks, it channels the legendary properties of the Coelum Carnis. Anchored deep into the floor with an Inexhaustible Health Reservoir (1,008 HP) and immediate Coelum Carnis regeneration, its massive tissue repairs faster than kinetic strikes or environmental decay can consume it. Because of this infinite regenerative core, Lignum Gigas does NOT flee from The Rot, standing completely indifferent to its presence while lesser fauna evacuate. Striking it triggers apocalyptic defensive routines."
     },
     {
       id: "fractus",

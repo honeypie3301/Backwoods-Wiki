@@ -51,10 +51,10 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
+              <li><strong className="text-amber-300">Lignum Gigas Indifference:</strong> Stands its ground against The Rot due to its 1,008 HP Inexhaustible Health Reservoir & Coelum Carnis Regeneration.</li>
+              <li><strong className="text-amber-300">Fauna Evacuation Routine:</strong> Lignum Spina, Lignum Echinus, Trilobita & Splinters flee within 100 blocks of The Rot to escape collateral destruction.</li>
               <li><strong className="text-amber-300">Charging Evacuation Teleport:</strong> Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.</li>
               <li><strong className="text-amber-300">Fractus Indifference:</strong> Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.</li>
-              <li><strong className="text-amber-300">Ground Fauna Evacuation:</strong> Lignum & Petrified Trilobita flee on foot within 100 blocks of The Rot to escape collateral destruction.</li>
-              <li><strong className="text-amber-300">Splinter Age System:</strong> <code className="bg-black/50 px-1 py-0.5 rounded text-amber-400">SplinterAgeProcedure</code> tracking entity maturation in sub-light darkness.</li>
             </ul>
           </div>
         </div>

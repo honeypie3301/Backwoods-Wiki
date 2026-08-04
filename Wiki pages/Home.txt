@@ -43,9 +43,15 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 
 <!-- NOTICE ALERT BOX -->
 <div style="background: #111; border: 1px solid #222; border-left: 3px solid #7c1c1c; padding: 18px; margin-bottom: 40px; font-size: 0.95em; line-height: 1.6; color: #b2a89a;">
-'''Wiki Maintenance Note:''' The wiki is always updated before a new version releases.
+'''Wiki Maintenance Note:''' <u>The wiki is always updated before a new version releases.</u>
 
 If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+
+'''Recent Version Highlights:'''
+* '''Lignum Gigas Indifference:''' Stands its ground against The Rot due to its 1,008 HP Inexhaustible Health Reservoir & Coelum Carnis Regeneration.
+* '''Fauna Evacuation Routine:''' Lignum Spina, Lignum Echinus, Trilobita & Splinters flee within 100 blocks of The Rot to escape collateral destruction.
+* '''Charging Evacuation Teleport:''' Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.
+* '''Fractus Indifference:''' Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.
 </div>
 
 <!-- FOOTER -->
