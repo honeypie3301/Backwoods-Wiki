@@ -1441,7 +1441,7 @@ export default function TerminatedView() {
                         if (!img.dataset.triedFallback) {
                           img.dataset.triedFallback = 'true';
                           if (img.src.includes('/TerminatedEntities/')) {
-                            img.src = img.src.replace('/TerminatedEntities/', '/public/TerminatedEntities/');
+                            img.src = img.src.replace('/TerminatedEntities/', '/TerminatedEntities/');
                           }
                         }
                       }}
@@ -1488,7 +1488,7 @@ export default function TerminatedView() {
                         if (!img.dataset.triedFallback) {
                           img.dataset.triedFallback = 'true';
                           if (img.src.includes('/TerminatedEntities/')) {
-                            img.src = img.src.replace('/TerminatedEntities/', '/public/TerminatedEntities/');
+                            img.src = img.src.replace('/TerminatedEntities/', '/TerminatedEntities/');
                           }
                         }
                       }}
@@ -1723,5 +1723,5 @@ function getAbsoluteAssetUrl(url: string) {
     }
   }
   
-  return `${window.location.origin}${base}${cleanUrl}`;
+  return `${base}${cleanUrl}`;
 }

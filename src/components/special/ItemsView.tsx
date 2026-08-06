@@ -3,6 +3,7 @@ import {
   Package, Search, Shield, Zap, Flame, Compass, HelpCircle, 
   Dna, Swords, Hammer, Award, Star, ListFilter, AlertCircle, Sparkles 
 } from 'lucide-react';
+import UpdatedFrame from '../UpdatedFrame';
 import FancyRecipeView from './FancyRecipeView';
 
 interface ItemData {
@@ -768,8 +769,9 @@ export default function ItemsView() {
             {filteredItems.map(item => {
               const isSelected = item.id === selectedItemId;
               return (
-                <button
-                  key={item.id}
+                <UpdatedFrame key={item.id} id={`item_btn_${item.id}`} isUpdated={!!item.isUpdated}>
+                  <button
+                  
                   onClick={() => setSelectedItemId(item.id)}
                   className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 cursor-pointer flex flex-col ${
                     isSelected
@@ -785,6 +787,7 @@ export default function ItemsView() {
                   </div>
                   <p className="text-[10px] text-[#5a6b5e] mt-1 line-clamp-1">{item.desc}</p>
                 </button>
+                </UpdatedFrame>
               );
             })}
             {filteredItems.length === 0 && (

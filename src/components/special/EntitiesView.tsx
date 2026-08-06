@@ -1602,6 +1602,26 @@ export default function EntitiesView() {
                 <td className="p-3 text-center text-emerald-400 font-mono">Yes</td>
               </tr>
               <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Kyne Splinter</td>
+                <td className="p-3 text-center font-mono">20</td>
+                <td className="p-3 text-center font-mono">5</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0.280</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">50</td>
+                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Dorceless Splinter</td>
+                <td className="p-3 text-center font-mono">24</td>
+                <td className="p-3 text-center font-mono">6</td>
+                <td className="p-3 text-center font-mono">3</td>
+                <td className="p-3 text-center font-mono">0.220</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">50</td>
+                <td className="p-3 text-center text-emerald-400 font-mono">Yes</td>
+              </tr>
+              <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Log Splinter</td>
                 <td className="p-3 text-center font-mono">32</td>
                 <td className="p-3 text-center font-mono">6</td>
@@ -1626,19 +1646,39 @@ export default function EntitiesView() {
                 <td className="p-3 text-center font-mono">56</td>
                 <td className="p-3 text-center font-mono">8</td>
                 <td className="p-3 text-center font-mono">4</td>
-                <td className="p-3 text-center font-mono">0.3</td>
+                <td className="p-3 text-center font-mono">0.300</td>
                 <td className="p-3 text-center font-mono">400t</td>
                 <td className="p-3 text-center font-mono">60</td>
                 <td className="p-3 text-center text-emerald-400 font-mono">Yes</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">The Hollow</td>
+                <td className="p-3 text-center font-mono">10</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0.300</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
               </tr>
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Stilt Walker</td>
                 <td className="p-3 text-center font-mono">40</td>
                 <td className="p-3 text-center text-gray-500">N/A</td>
                 <td className="p-3 text-center font-mono">0</td>
-                <td className="p-3 text-center font-mono">0.16</td>
+                <td className="p-3 text-center font-mono">0.160</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono">50</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr className="bg-emerald-950/20">
+                <td className="p-3 font-bold text-emerald-400 text-left">The Ash-Weaver</td>
+                <td className="p-3 text-center font-mono">40</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0.300</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono">No</td>
               </tr>
               <tr className="bg-red-950/10">
@@ -1666,7 +1706,7 @@ export default function EntitiesView() {
                 <td className="p-3 text-center font-mono">48</td>
                 <td className="p-3 text-center font-mono">2 (3 angry)</td>
                 <td className="p-3 text-center font-mono">6</td>
-                <td className="p-3 text-center font-mono">0.2</td>
+                <td className="p-3 text-center font-mono">0.200</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono">0.2</td>
                 <td className="p-3 text-center font-mono">No</td>
@@ -1674,12 +1714,42 @@ export default function EntitiesView() {
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Fractus Prime</td>
                 <td className="p-3 text-center font-mono">270</td>
-                <td className="p-3 text-center font-mono">21.3 (31.3 angry)</td>
+                <td className="p-3 text-center font-mono">21.3 (55.0 angry)</td>
                 <td className="p-3 text-center font-mono">20</td>
-                <td className="p-3 text-center font-mono">0.2</td>
+                <td className="p-3 text-center font-mono">0.200</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono">4.5</td>
                 <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Vermis</td>
+                <td className="p-3 text-center font-mono">10</td>
+                <td className="p-3 text-center font-mono">1</td>
+                <td className="p-3 text-center font-mono">0.5</td>
+                <td className="p-3 text-center font-mono">0.230</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Palus</td>
+                <td className="p-3 text-center font-mono">50</td>
+                <td className="p-3 text-center font-mono">8</td>
+                <td className="p-3 text-center font-mono">6</td>
+                <td className="p-3 text-center font-mono">0.05 / 0.12</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">10</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Petrified Lignum Trilobita</td>
+                <td className="p-3 text-center font-mono">40</td>
+                <td className="p-3 text-center font-mono">4</td>
+                <td className="p-3 text-center font-mono">14</td>
+                <td className="p-3 text-center font-mono">0.140</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
               </tr>
             </tbody>
           </table>

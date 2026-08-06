@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Compass, Sparkles, ShieldAlert, Skull, ArrowDown, Activity, Flame, HelpCircle } from 'lucide-react';
+import UpdatedFrame from '../UpdatedFrame';
 
 interface DimensionData {
   id: string;
@@ -54,6 +55,7 @@ export default function DimensionsView() {
     },
     {
       id: "loss",
+      isUpdated: true,
       name: "The Loss",
       subtitle: "The Forgotten Sub-Realm",
       color: "from-slate-500 to-slate-800",
@@ -266,8 +268,9 @@ export default function DimensionsView() {
             <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e] mb-3">Dimensions Index</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 max-h-[380px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
               {dimensions.map(d => (
+                <UpdatedFrame key={d.id} id={`dim_btn_${d.id}`} isUpdated={!!d.isUpdated}>
                 <button
-                  key={d.id}
+                  
                   onClick={() => setSelectedDimension(d.id)}
                   className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer ${
                     selectedDimension === d.id
@@ -278,6 +281,7 @@ export default function DimensionsView() {
                   <div className="font-serif text-sm">{d.name}</div>
                   <div className="text-[10px] opacity-70 font-mono mt-0.5">{d.subtitle}</div>
                 </button>
+              </UpdatedFrame>
               ))}
             </div>
           </div>

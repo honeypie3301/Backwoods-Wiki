@@ -39,7 +39,7 @@ function getAbsoluteAssetUrl(url: string) {
     }
   }
   
-  return `${window.location.origin}${base}${cleanUrl}`;
+  return `${base}${cleanUrl}`;
 }
 
 export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName }: ModelViewerProps) {

@@ -1,7 +1,7 @@
 /**
  * AI ASSISTANT MAINTENANCE NOTICE:
  * Whenever you update any wiki content or implement commit changes:
- * 1. Update the "Recent Highlights" list in the Wiki Maintenance Note below AND in `/public/wiki/Home.txt`.
+ * 1. Update the "Recent Highlights" list in the Wiki Maintenance Note below AND in `/wiki_assets/wiki/Home.txt`.
  * 2. Keep the underline strictly on: "The wiki is always updated before a new version releases."
  * 3. Wrap newly added/changed components across the wiki in `<UpdatedFrame id="..." isUpdated={true}>`.
  */

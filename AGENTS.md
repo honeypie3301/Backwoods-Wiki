@@ -9,7 +9,7 @@ When modifying or updating any Wiki pages, components, or mod features in this r
 ## 2. Wiki Maintenance & Version Update Note (CRITICAL)
 - **Mandatory Update**: Whenever you update any wiki content or implement commit changes, you **MUST** also update the **Wiki Maintenance Note** in:
   - `/src/components/special/HomeView.tsx`
-  - `/public/wiki/Home.txt`
+  - `/wiki_assets/wiki/Home.txt`
 - **Underline Rule**: Underline ONLY the exact sentence:
   `<u>The wiki is always updated before a new version releases.</u>`
 - **Highlights List**: Update the `Recent Highlights` list inside the notice box with concise bullet points describing the newest entities, procedures, commands, or mechanics added in the latest update.

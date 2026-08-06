@@ -1,78 +1,78 @@
 [
   {
     "slug": "home",
-    "filename": "Home.txt",
     "title": "Home",
+    "filename": "Home.txt",
     "category": "Core Guide",
     "order": 1
   },
   {
     "slug": "sanity",
-    "filename": "Sanity.txt",
     "title": "Mental Degradation",
+    "filename": "Sanity.txt",
     "category": "Core Guide",
     "order": 2
   },
   {
     "slug": "achievements",
-    "filename": "Achievements.txt",
     "title": "Achievements",
+    "filename": "Achievements.txt",
     "category": "Core Guide",
     "order": 3
   },
   {
     "slug": "versions",
-    "filename": "Versions.txt",
     "title": "Version History",
+    "filename": "Versions.txt",
     "category": "Core Guide",
     "order": 4
   },
   {
     "slug": "dimensions",
-    "filename": "Dimensions.txt",
     "title": "Dimensions",
+    "filename": "Dimensions.txt",
     "category": "The World",
     "order": 5
   },
   {
     "slug": "structures",
-    "filename": "Structures.txt",
     "title": "Structures",
+    "filename": "Structures.txt",
     "category": "The World",
     "order": 6
   },
   {
     "slug": "blocks",
-    "filename": "Blocks.txt",
     "title": "Blocks",
+    "filename": "Blocks.txt",
     "category": "The World",
     "order": 7
   },
   {
     "slug": "entities",
-    "filename": "Entities.txt",
     "title": "Hostile & Neutral Entities",
+    "filename": "Entities.txt",
     "category": "Flora & Fauna",
     "order": 8
   },
   {
     "slug": "items",
-    "filename": "Items.txt",
     "title": "Items & Gear",
+    "filename": "Items.txt",
     "category": "Flora & Fauna",
     "order": 9
   },
   {
     "slug": "commands",
-    "filename": "Commands.txt",
     "title": "Commands",
+    "filename": "Commands.txt",
     "category": "Flora & Fauna",
     "order": 10
   },
   {
     "slug": "terminated",
-    "filename": "Terminated.txt",
     "title": "Terminated Dossier",
+    "filename": "Terminated.txt",
     "category": "Flora & Fauna",
     "order": 11
   }
