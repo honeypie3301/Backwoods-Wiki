@@ -194,10 +194,11 @@ export default function CommandsView() {
       {/* Commands List */}
       <div className="space-y-6">
         {filteredCmds.map((c) => (
-          <UpdatedFrame key={c.cmd} id={`cmd_${c.cmd.replace(/[^a-z0-9]/gi, '_')}`} isUpdated={!!c.isUpdated}>
-            <div 
-              className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4 hover:border-[#2e3e31] transition-all duration-300"
-            >
+          <div key={c.cmd}>
+            <UpdatedFrame id={`cmd_${c.cmd.replace(/[^a-z0-9]/gi, '_')}`} isUpdated={!!c.isUpdated}>
+              <div 
+                className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4 hover:border-[#2e3e31] transition-all duration-300"
+              >
               {/* Command Header / Terminal Row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#070907] p-3 rounded-lg border border-[#151c16]">
               <div className="flex items-center gap-2 font-mono text-xs text-[#a9d1b0]">
@@ -326,7 +327,8 @@ export default function CommandsView() {
             )}
           </div>
         </UpdatedFrame>
-      ))}
+      </div>
+    ))}
       </div>
     </div>
   );

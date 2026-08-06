@@ -43,17 +43,15 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 
 <!-- NOTICE ALERT BOX -->
 <div style="background: #111; border: 1px solid #222; border-left: 3px solid #7c1c1c; padding: 18px; margin-bottom: 40px; font-size: 0.95em; line-height: 1.6; color: #b2a89a;">
-'''Wiki Maintenance Note:''' <u>The wiki is always updated before a new version releases.</u> If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+'''Wiki Maintenance Note:''' <u>The wiki is always updated before a new version releases.</u>
 
-<div style="font-size: 0.9em; border-top: 1px solid #222; padding-top: 10px; margin-top: 10px; color: #8e8375;">
-<strong style="color: #c4bfa5; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.05em; display: block; margin-bottom: 6px; margin-top: 8px;">Recent Highlights:</strong>
-<ul style="margin: 0; padding-left: 18px; line-height: 1.5;">
-    <li><strong>Charging Evacuation Teleport:</strong> Lignum Palus &amp; Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.</li>
-    <li><strong>Fractus Indifference:</strong> Fractus &amp; Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.</li>
-    <li><strong>Ground Fauna Evacuation:</strong> Lignum &amp; Petrified Trilobita flee on foot within 100 blocks of The Rot to escape collateral destruction.</li>
-    <li><strong>Splinter Age System:</strong> SplinterAgeProcedure tracking entity maturation in sub-light darkness.</li>
-</ul>
-</div>
+If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+
+'''Recent Version Highlights:'''
+* '''Lignum Gigas Indifference:''' Stands its ground against The Rot due to its 1,008 HP Inexhaustible Health Reservoir & Coelum Carnis Regeneration.
+* '''Fauna Evacuation Routine:''' Lignum Spina, Lignum Echinus, Trilobita & Splinters flee within 100 blocks of The Rot to escape collateral destruction.
+* '''Charging Evacuation Teleport:''' Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.
+* '''Fractus Indifference:''' Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.
 </div>
 
 <!-- FOOTER -->

@@ -83,12 +83,22 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   petrified_lignum_trilobita: {
     modelUrl: '/models/LignumTrilobita.obj',
     textureUrl: '/models/petrified_lignum_trilobita.png'
+  },
+  kyne_splinter: {
+    modelUrl: '/models/Kyne.obj',
+    textureUrl: '/models/kyne.png'
+  },
+  dorceless_splinter: {
+    modelUrl: '/models/Dorceless.obj',
+    textureUrl: '/models/dorceless.png'
   }
 };
 
 const ENTITY_IMMUNITIES: Record<string, string[]> = {
   rot: ["Fall Damage", "Cactus", "Drowning", "Freezing", "Soul Fracture"],
   splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
+  kyne_splinter: ["Cactus", "Drowning"],
+  dorceless_splinter: ["Cactus", "Drowning"],
   log_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   blindspot_splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   petrified_splinter: ["In Fire", "Arrows & Bows", "Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath", "Wither"],
@@ -279,6 +289,38 @@ export default function EntitiesView() {
       desc: "A heavily calcified fossilized trilobite with 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade the Rot and avoid collateral damage. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
     },
     {
+      id: "kyne_splinter",
+      name: "Kyne Splinter",
+      title: "Woodbound Aggressor",
+      threatLevel: "Medium",
+      threatColor: "text-amber-400",
+      badgeBg: "bg-amber-950/30 border-amber-900/40 text-amber-400",
+      borderColor: "border-amber-950/20",
+      hp: "20 HP",
+      damage: "5 HP (2.5 Hearts)",
+      armor: "0 Points",
+      speed: "0.280",
+      dim: "Wood Plains & The Thicket",
+      isUpdated: true,
+      desc: "A predatory Woodbound entity that drops 7 XP upon defeat. When struck, if nearby pack members are present, it triggers a pack-wide avenge protocol, rallying surrounding Woodbound entities to retaliate against the attacker. Like all Splinter species, Kyne Splinters actively flee from any Rot entity that approaches within 100 blocks to evade its destructive footprint."
+    },
+    {
+      id: "dorceless_splinter",
+      name: "Dorceless Splinter",
+      title: "Evasive Void Stalker",
+      threatLevel: "High",
+      threatColor: "text-purple-400",
+      badgeBg: "bg-purple-950/30 border-purple-900/40 text-purple-400",
+      borderColor: "border-purple-950/20",
+      hp: "24 HP",
+      damage: "6 HP (3 Hearts)",
+      armor: "3 Points",
+      speed: "0.220",
+      dim: "Wood Plains & The Thicket",
+      isUpdated: true,
+      desc: "An elusive, armored variant of the Splinter lineage that drops 10 XP, Oak Planks, and a Tetherless Pearl upon defeat. Possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: 85% chance to dodge incoming projectile attacks and 50% chance to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports 6 to 11 blocks away to flank the attacker while immediately facing them. Possesses an innate evacuation instinct, actively fleeing when a Rot entity comes within 100 blocks."
+    },
+    {
       id: "log_splinter",
       name: "Log Splinter",
       title: "Camouflaged Sentry",
@@ -291,7 +333,8 @@ export default function EntitiesView() {
       armor: "2 Points (Dense Bark)",
       speed: "0.335",
       dim: "The Backwoods / Forestry Mimicry",
-      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. It excels at camouflaging against local trees, packing tightly together in mature world phases."
+      isUpdated: true,
+      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. It excels at camouflaging against local trees, packing tightly together in mature world phases. Like all Splinter species, it actively flees from approaching Rot entities within a 100-block range."
     },
     {
       id: "blindspot_splinter",
@@ -306,7 +349,8 @@ export default function EntitiesView() {
       armor: "0 Points",
       speed: "0.335",
       dim: "The Grain (Labyrinths) / The Sub-Strata",
-      desc: "A terrifying sub-species that leverages advanced visual manipulation, turning completely invisible when viewed through the front third-person camera perspective. It wilts protective Ash-Roses at accelerated rates."
+      isUpdated: true,
+      desc: "A terrifying sub-species that leverages advanced visual manipulation, turning completely invisible when viewed through the front third-person camera perspective. It wilts protective Ash-Roses at accelerated rates. Shares the Splinter evacuation instinct, fleeing from any Rot entity within 100 blocks."
     },
     {
       id: "petrified_splinter",
@@ -321,7 +365,8 @@ export default function EntitiesView() {
       armor: "4 Points (Fossilized Wood)",
       speed: "0.300",
       dim: "The Petrified Weald",
-      desc: "A highly resilient, fossilized variant of the Splinter lineage. Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes."
+      isUpdated: true,
+      desc: "A highly resilient, fossilized variant of the Splinter lineage. Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes. Like all Splinter sub-species, it evacuates the area whenever a Rot entity approaches within 100 blocks."
     },
     {
       id: "hollow",
@@ -635,26 +680,28 @@ export default function EntitiesView() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 max-h-[380px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
             {sortedEntities.map(e => (
-              <UpdatedFrame key={e.id} id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
-                <button
-                  onClick={() => setSelectedEntity(e.id)}
-                  className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
-                    selectedEntity === e.id
-                      ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
-                      : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
-                  }`}
-                >
-                  <div className="flex justify-between items-center w-full">
-                    <span className="font-serif text-sm text-[#e0e7e0] flex items-center gap-1.5">
-                      {e.name}
-                    </span>
-                    <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${e.badgeBg}`}>
-                      {e.threatLevel}
-                    </span>
-                  </div>
-                  <div className="text-[10px] text-[#5a6b5e] font-mono mt-1 italic">{e.title}</div>
-                </button>
-              </UpdatedFrame>
+              <div key={e.id}>
+                <UpdatedFrame id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
+                  <button
+                    onClick={() => setSelectedEntity(e.id)}
+                    className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
+                      selectedEntity === e.id
+                        ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
+                        : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
+                    }`}
+                  >
+                    <div className="flex justify-between items-center w-full">
+                      <span className="font-serif text-sm text-[#e0e7e0] flex items-center gap-1.5">
+                        {e.name}
+                      </span>
+                      <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${e.badgeBg}`}>
+                        {e.threatLevel}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-[#5a6b5e] font-mono mt-1 italic">{e.title}</div>
+                  </button>
+                </UpdatedFrame>
+              </div>
             ))}
           </div>
         </div>

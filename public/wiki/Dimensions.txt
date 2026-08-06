@@ -61,7 +61,7 @@ When deployed, the Rot does not simply walk into battle. It is synthesized high 
      THE LOSS
      ========================================== -->
 <h3 style="color: #90caf9; margin-top: 35px; font-size: 1.5em; border-bottom: 1px solid #1565c0; padding-bottom: 3px;">The Loss</h3>
-<p>The Loss is a sub-dimension that players are pulled into involuntarily after spending too long in the Backwoods; it cannot be entered willingly. It resembles a world that has forgotten what it was, featuring an ash-grey sky and terrain covered entirely in pale, washed-out blocks. Some areas appear partially infected by plaque that slowly spreads, as if the world's memory of itself is failing. Spending time within this realm may permanently alter your inventory items.</p>
+<p>A sub-dimension representing a fading memory of the world. It is composed of fading blocks, with absolutely no structures. An ash-grey sky looms over the vast, empty expanse. The Loss is a sub-dimension that players are pulled into involuntarily after spending too long in the Backwoods; it cannot be entered willingly. Spending time within this realm may permanently alter your inventory items.</p>
 
 <h4 style="color: #d7ccc8; margin-top: 15px;">Exits</h4>
 <p>You can either make a portal back since the igniters success rates vary by dimension or wait for the dimension to kick you out since you have a timer of 20 minutes.</p>

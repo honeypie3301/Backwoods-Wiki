@@ -1288,5 +1288,43 @@
         "b = minecraft:oak_planks"
       ]
     }
+  ],
+  "the_backwoods:splinter_needle": [
+    {
+      "file": "splinter_needle_recipe.json",
+      "type": "minecraft:stonecutting",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "the_backwoods:sharpened_splinter_shard"
+      ]
+    }
+  ],
+  "the_backwoods:resonant_tetherless_pearl": [
+    {
+      "file": "resonant_tetherless_pearl_recipe.json",
+      "type": "minecraft:crafting_shapeless",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "the_backwoods:loss",
+        "the_backwoods:scandere_resin",
+        "the_backwoods:tetherless_pearl"
+      ]
+    },
+    {
+      "file": "resonant_tetherless_pearl_recipe_2.json",
+      "type": "minecraft:crafting_shapeless",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "the_backwoods:loss",
+        "the_backwoods:fractus_core_nugget",
+        "the_backwoods:tetherless_pearl"
+      ]
+    }
   ]
 }

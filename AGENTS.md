@@ -17,3 +17,12 @@ When modifying or updating any Wiki pages, components, or mod features in this r
 ## 3. Data Integrity & Accuracy
 - Always inspect the source code or patch diffs to verify mechanics before updating descriptions.
 - Never guess or extrapolate features without checking source implementation.
+- When adding new items, blocks, etc., always check if it has a recipe. If it does, always use the crafting table grid design (`FancyRecipeView.tsx`). If none, then leave it.
+
+## 4. Recipe Grid Implementation (FancyRecipeView.tsx)
+- **NO MANUAL RECIPE TABLES**: You are strictly forbidden from writing manual HTML tables, bullet points, or text descriptions to display crafting recipes.
+- **Automated Rendering**: `ItemsView.tsx` and `BlocksView.tsx` automatically render the `<FancyRecipeView>` grid if the item's `id` has a matching recipe in `recipe_details.json`.
+- **How to add a new recipe**:
+  1. Add the raw JSON recipe data (exactly as it appears in the mod's source code) into the `recipe_details.json` file.
+  2. Ensure the item ID in the view (e.g., `id: "splinter_needle"`) precisely matches the suffix of the recipe result (e.g., `the_backwoods:splinter_needle`).
+  3. If the recipe contains new items/ingredients not yet visually mapped, add their shortcodes, colors, and visual specs to `getItemVisualSpec` in `/src/components/special/FancyRecipeView.tsx`.

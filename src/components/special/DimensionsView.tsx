@@ -61,12 +61,16 @@ export default function DimensionsView() {
       bgGlow: "bg-slate-900/30",
       textColor: "text-slate-200",
       accentColor: "text-slate-400",
-      desc: "A sub-dimension representing a fading memory of the world. It is composed entirely of oak planks and oak logs, with absolutely no structures in the Loss dimension. An ash-grey sky looms over the vast, empty expanse of wood.",
-      access: "Entered involuntarily with a 0.2666% chance per second when experiencing Stage Four mental degradation in the Backwoods.",
+      desc: "A sub-dimension representing a fading memory of the world. It is composed of fading blocks, with absolutely no structures. An ash-grey sky looms over the vast, empty expanse.",
+      access: "Can be entered involuntarily via Stage Four mental degradation, or manually activated by building a portal frame out of Nullstone and igniting it using a Dead Memory Shard.",
       biomes: [
         "Confusion: A dark, ash-swept biome with a grey-fog sky, with floors of Faded Blocks and trenches filled with Plaque. Passive ash particles drift through the atmosphere."
       ],
       rules: [
+        {
+          title: "Portal Ignition",
+          desc: "Constructed using a Nullstone frame and ignited with a Dead Memory Shard (harvested from Memory Quartz). In survival, each ignition attempt consumes 16 durability."
+        },
         {
           title: "Automatic Exit",
           desc: "The Loss will forcibly eject the player after a maximum duration of 20 minutes."
@@ -120,7 +124,7 @@ export default function DimensionsView() {
       textColor: "text-yellow-100",
       accentColor: "text-yellow-400",
       desc: "Constructed purely out of oak planks and saturated in an eerie, thick yellow fog. This realm is highly structured and filled with repetitive wooden architectural grids.",
-      access: "Entered by being struck by a Splinter, building to extreme altitudes, or staying in the Backwoods for long durations.",
+      access: "Can be entered by building a portal frame out of Oak Planks and igniting it with a Splinter Needle (stonecut from Sharpened Splinter Shards), or by being struck by a Splinter, building to extreme altitudes, or remaining in the Backwoods for long durations.",
       biomes: [
         "The Uniform Grain: Flat, tree-less expanses of pure oak floor.",
         "The Stillwood: The primary forest biome, filled with vertical wooden towers.",
@@ -130,6 +134,10 @@ export default function DimensionsView() {
         "The Fractured Barrens: Fractured angular frameworks resembling broken grids."
       ],
       rules: [
+        {
+          title: "Portal Ignition",
+          desc: "Constructed using Oak Planks (or Splintered Oak Planks) and ignited using a Splinter Needle. Has a 100% ignition chance inside The Grain, 50% in Overworld, 30% in Backwoods, and 20% in Loss."
+        },
         {
           title: "Splinter Threat",
           desc: "The Grain acts as the primary spawning sector and home nest for aggressive Splinter entities."

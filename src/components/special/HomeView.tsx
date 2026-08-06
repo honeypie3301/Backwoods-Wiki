@@ -51,10 +51,10 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Lignum Gigas Indifference:</strong> Stands its ground against The Rot due to its 1,008 HP Inexhaustible Health Reservoir & Coelum Carnis Regeneration.</li>
-              <li><strong className="text-amber-300">Fauna Evacuation Routine:</strong> Lignum Spina, Lignum Echinus, Trilobita & Splinters flee within 100 blocks of The Rot to escape collateral destruction.</li>
-              <li><strong className="text-amber-300">Charging Evacuation Teleport:</strong> Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.</li>
-              <li><strong className="text-amber-300">Fractus Indifference:</strong> Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.</li>
+              <li><strong className="text-amber-300">Kyne & Dorceless Splinters:</strong> Kyne Splinter (7 XP drop, pack avenge) & Dorceless Splinter (10 XP drop, 85% projectile/50% melee dodge teleport). Both flee from The Rot within 100 blocks.</li>
+              <li><strong className="text-amber-300">Loss Dimension Ignition:</strong> Dead Memory Shard (rare Memory Quartz drop) ignites Loss portals on Nullstone frames.</li>
+              <li><strong className="text-amber-300">The Grain Dimension Ignition:</strong> Splinter Needle (stonecut from Sharpened Splinter Shard) ignites Grain portals on Oak Planks frames.</li>
+              <li><strong className="text-amber-300">Resonant Tetherless Pearl & Splintered Effect:</strong> Pearl with 2 recipes (64-96 block warp). Splintered effect deals 0.1 thorns damage every 3s unless inoculated.</li>
             </ul>
           </div>
         </div>

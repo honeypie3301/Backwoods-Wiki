@@ -7,16 +7,6 @@ The Backwoods adds a small set of developer and debug commands. These commands r
 
 <h2 style="color: #ff7043; border-bottom: 2px solid #d84315; padding-bottom: 5px; font-size: 2em; margin-top: 30px;">Commands</h2>
 
-<h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/testdummy [gem_zombie | infinity] [count]</h3>
-<p>Spawns fall-damage immune zombie combat test dummies equipped with endgame modded gear sets at the player's position. Used for DPS testing, armor penetration calculations, and combat balance checks without taking counterattacks.</p>
-<ul style="list-style-type: disc; padding-left: 20px; margin-top: 5px;">
-    <li><strong style="color: #ffb74d;">gem_zombie:</strong> Spawns zombies equipped with full ProjectE Gem Armor (Boots, Leggings, Chestplate, Helmet) and a Red Matter Morning Star (Charge 4). <em>Requires the ProjectE mod to be loaded.</em></li>
-    <li><strong style="color: #ffb74d;">infinity:</strong> Spawns zombies equipped with full Avaritia Infinity Armor (Boots, Pants, Chestplate, Helmet) and a Crystal Sword. <em>Requires the Re-Avaritia (Avaritia) mod to be loaded.</em></li>
-</ul>
-
-<h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/switchdimensions [dimension]</h3>
-<p>Instantly teleports the executing player to any registered dimension identifier. Uses Minecraft's dynamic DimensionArgument registry, enabling target travel to vanilla dimensions (e.g., <code style="color: #e06c75;">minecraft:overworld</code>, <code style="color: #e06c75;">minecraft:the_nether</code>, <code style="color: #e06c75;">minecraft:the_end</code>), Backwoods dimensions (<code style="color: #e06c75;">the_backwoods:backwoods</code>, <code style="color: #e06c75;">the_backwoods:the_loss</code>, <code style="color: #e06c75;">the_backwoods:petrified_weald</code>), or dimensions registered by other installed mods.</p>
-
 <h3 style="color: #ffab91; margin-top: 25px; font-size: 1.5em; border-bottom: 1px solid #3e2723; padding-bottom: 3px;">/backwoodstime on</h3>
 <p>Enables debug mode for the player. While active, the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">backwoods_time</code> value is displayed above the hotbar in real time while inside [[dimensions|The Backwoods dimension]], and the current <code style="color: #e06c75; background: #282c34; padding: 2px 4px; border-radius: 4px;">void_time</code> value is displayed while inside [[dimensions|The Loss dimension]].</p>
 

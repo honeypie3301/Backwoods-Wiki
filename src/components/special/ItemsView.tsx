@@ -10,6 +10,7 @@ interface ItemData {
   name: string;
   category: 'keys' | 'materials' | 'memory' | 'weapons' | 'tools' | 'utility';
   desc: string;
+  isUpdated?: boolean;
   burnTime?: string;
   stats?: { label: string; value: string }[];
   recipes?: string[];
@@ -46,6 +47,42 @@ export default function ItemsView() {
       notes: [
         "Striking it plays a deep metallic sound and releases heavy gray cloud particles.",
         "If it fails to connect, the steel's durability is depleted and the charcoal is consumed without opening a gateway."
+      ]
+    },
+    {
+      id: "dead_memory_shard",
+      name: "Dead Memory Shard",
+      category: "keys",
+      isUpdated: true,
+      desc: "An ancient, extinguished temporal crystal harvested as a rare drop from mining Memory Quartz blocks in the Loss dimension. Serves as the portal igniter for entering The Loss dimension on a Nullstone frame.",
+      stats: [
+        { label: "Acquisition Method", value: "Rare drop from mining Memory Quartz" },
+        { label: "Loss Portal Success Rate", value: "100% inside Loss; 20% in The Familiar; 10% in Overworld/Backwoods" },
+        { label: "Portal Frame Required", value: "Nullstone" },
+        { label: "Durability / Uses", value: "64 durability (consumes 16 durability per attempt)" }
+      ],
+      notes: [
+        "Has no crafting recipe in the source code (harvested directly by mining Memory Quartz in the Loss dimension).",
+        "Used to ignite the Loss dimension portal when struck against a frame built of Nullstone.",
+        "Consumes 16 durability per portal attempt in survival mode."
+      ]
+    },
+    {
+      id: "splinter_needle",
+      name: "Splinter Needle",
+      category: "keys",
+      isUpdated: true,
+      desc: "A needle ground down from a Sharpened Splinter Shard using a stonecutter. Serves as the portal igniter for entering The Grain dimension when struck against an Oak Planks frame.",
+      stats: [
+        { label: "Acquisition Method", value: "Stonecutter (1 Sharpened Splinter Shard)" },
+        { label: "The Grain Ignition Rate", value: "100% in Grain; 50% in Overworld; 30% in Backwoods; 20% in Loss" },
+        { label: "Portal Frame Required", value: "Oak Planks / Splintered Oak Planks" },
+        { label: "Status Effect Inflicted", value: "Splintered Effect (0.1 thorns damage every 3s)" }
+      ],
+      notes: [
+        "When used on an Oak Planks frame, ignites the portal to The Grain dimension.",
+        "Pricks the holder for 0.095 damage every 160 ticks while held unless protected by Inoculation.",
+        "Deals minor damage on hit and inflicts the Splintered status effect on targets."
       ]
     },
     {
@@ -518,6 +555,36 @@ export default function ItemsView() {
         "Significantly reduces mental strain and exposure to dimension-decay conditions.",
         "Always edible. Drinking returns an empty glass Bowl to the player's inventory.",
         "Crafted shapelessly from 1 Seep, 1 Ash-Rose, 1 Bowl, and 1 Recovered Memory Fragment."
+      ]
+    },
+    {
+      id: "tetherless_pearl",
+      name: "Tetherless Pearl",
+      category: "utility",
+      isUpdated: true,
+      desc: "A weightless dimensional pearl item that launches a high-velocity projectile upon release.",
+      stats: [
+        { label: "Acquisition Method", value: "Mob Drop from Dorceless Splinter" },
+        { label: "Item Classification", value: "Ranged Projectile / Dimensional Component" },
+        { label: "Velocity Profile", value: "High-velocity trajectory" }
+      ],
+      notes: [
+        "Obtainable as a mob drop from defeating a Dorceless Splinter entity (75 weight, 1 count).",
+        "Serves as the core catalyst ingredient for crafting the Resonant Tetherless Pearl."
+      ]
+    },
+    {
+      id: "resonant_tetherless_pearl",
+      name: "Resonant Tetherless Pearl",
+      category: "utility",
+      isUpdated: true,
+      desc: "An advanced, highly resonant spatial pearl projectile. Upon release, it propels a high-frequency warp wave that teleports the user 64 to 96 blocks away.",
+      stats: [
+        { label: "Teleportation Distance", value: "64 – 96 Blocks" },
+        { label: "Crafting Recipes", value: "2 Shapeless Recipes" }
+      ],
+      notes: [
+        "Provides immediate long-distance spatial evasion to escape hostile swarms or dangerous terrain."
       ]
     },
     {

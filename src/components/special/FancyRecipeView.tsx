@@ -76,6 +76,9 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     // Shards & tools (rose/crimson/emerald tones)
     'splinter_shard': { short: 'Ss', bg: 'bg-[#221215]', text: 'text-[#f43f5e]', border: 'border-[#4c1620]', glow: 'group-hover:shadow-[0_0_10px_rgba(244,63,94,0.15)]' },
     'sharpened_splinter_shard': { short: 'Sss', bg: 'bg-[#2b1116]', text: 'text-[#fda4af]', border: 'border-[#5c1c28]', glow: 'group-hover:shadow-[0_0_12px_rgba(253,164,175,0.2)]' },
+    'splinter_needle': { short: 'Sn', bg: 'bg-[#2b1116]', text: 'text-[#fda4af]', border: 'border-[#5c1c28]', glow: 'group-hover:shadow-[0_0_12px_rgba(253,164,175,0.2)]' },
+    'tetherless_pearl': { short: 'Tp', bg: 'bg-[#181126]', text: 'text-[#c084fc]', border: 'border-[#45206b]', glow: 'group-hover:shadow-[0_0_10px_rgba(192,132,252,0.15)]' },
+    'resonant_tetherless_pearl': { short: 'Rtp', bg: 'bg-[#2a1142]', text: 'text-[#e9d5ff]', border: 'border-[#5b208c]', glow: 'group-hover:shadow-[0_0_14px_rgba(233,213,255,0.25)]' },
     'heartwood_shard': { short: 'Hw', bg: 'bg-[#0f201d]', text: 'text-[#14b8a6]', border: 'border-[#1b3d37]', glow: 'group-hover:shadow-[0_0_10px_rgba(20,184,166,0.15)]' },
 
     // Petrified variations (greenish/teal tones)
@@ -99,6 +102,7 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'distorted_memory_fragment': { short: 'Dmf', bg: 'bg-[#201133]', text: 'text-[#c084fc]', border: 'border-[#45206b]', glow: 'group-hover:shadow-[0_0_12px_rgba(192,132,252,0.2)]' },
     'recovered_memory_fragment': { short: 'Rmf', bg: 'bg-[#2a1142]', text: 'text-[#e9d5ff]', border: 'border-[#5b208c]', glow: 'group-hover:shadow-[0_0_14px_rgba(233,213,255,0.25)]' },
     'memory_shard': { short: 'Ms', bg: 'bg-[#181126]', text: 'text-[#a855f7]/90', border: 'border-[#352055]/80', glow: '' },
+    'loss': { short: 'Dms', bg: 'bg-[#181126]', text: 'text-[#a855f7]/90', border: 'border-[#352055]/80', glow: '' },
 
     // Miscellaneous
     'lignum_caro': { short: 'Lc', bg: 'bg-[#102d18]', text: 'text-[#4ade80]', border: 'border-[#1b4c26]', glow: 'group-hover:shadow-[0_0_10px_rgba(74,222,128,0.15)]' },
