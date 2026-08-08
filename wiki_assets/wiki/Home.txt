@@ -48,10 +48,10 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
 
 '''Recent Version Highlights:'''
-* '''Lignum Gigas Indifference:''' Stands its ground against The Rot due to its 1,008 HP Inexhaustible Health Reservoir & Coelum Carnis Regeneration.
-* '''Fauna Evacuation Routine:''' Lignum Spina, Lignum Echinus, Trilobita & Splinters flee within 100 blocks of The Rot to escape collateral destruction.
-* '''Charging Evacuation Teleport:''' Lignum Palus & Stilt Walker charge a 3-5s particle aura to warp 70-120 blocks away when The Rot is within 100 blocks.
-* '''Fractus Indifference:''' Fractus & Fractus Prime sentry drones lack biological evacuation instincts and hold fixed patrol coordinates.
+* '''Portal Catalysts & Igniters:''' Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.
+* '''Splinter Aging & Decay Mechanics:''' Documented temporal aging (`DATA_Age`), water/rain decay acceleration (+9 to +12 ticks/tick), fire combustion stress (+14 to +16 ticks/tick), lightning burst (+60,000 ticks), and the final rotting stage (AGE_LAST).
+* '''Dimensions Biome Gallery & Custom Theme Dropdown:''' Added complete photographic dossier across all 18 regional biomes with a custom styled theme filter dropdown.
+* '''Small Menger Sponge Feature:''' Compact 27-block fractal cavern module generating subterranean Y=-50 to Y=-24, constructed from Lignum Caro, Splintered Oak Planks, and a Furnace housing a hidden loot chest.
 </div>
 
 <!-- FOOTER -->

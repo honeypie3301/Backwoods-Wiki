@@ -1,10 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Info, Shield, Flame, Hammer, Coins, AlertTriangle, ShieldAlert, Sparkles } from 'lucide-react';
 import FancyRecipeView from './FancyRecipeView';
+import UpdatedFrame from '../UpdatedFrame';
 
 function getBlockRecipeIds(name: string): string[] {
   if (name === "Splintered Oak Planks") {
     return ['splintered_oak_planks'];
+  }
+  if (name === "Splintered Oak Wood") {
+    return ['splintered_oak_wood'];
   }
   if (name === "Nullstone & Cobbled Nullstone") {
     return [
@@ -51,6 +55,7 @@ interface BlockItem {
   warningText?: string;
   isSpecial?: boolean;
   specialText?: string;
+  isUpdated?: boolean;
 }
 
 export default function BlocksView() {
@@ -317,6 +322,35 @@ export default function BlocksView() {
         "Mineral Density: Steps produce a deep, solid stony tuff sound.",
         "Excavation: Drops itself as a building block when cleared with a shovel tool."
       ]
+    },
+    {
+      name: "Splintered Oak Wood",
+      dimension: "backwoods_rotting",
+      hardness: "2.2",
+      blastRes: "3.5",
+      isUpdated: true,
+      description: "Hazardous spiked wood block used actively by Log Splinter entities. Slows movement speed and inflicts prick damage on creatures traversing over it.",
+      mechanics: [
+        "Dynamic Entity Construction: Used directly by Log Splinter entities to construct vertical pillars and bridge terrain gaps while pursuing targets.",
+        "Spiked Slowdown & Damage: Walking on the block slows movement velocity (speed factor 0.6) and deals 1.0 prick damage.",
+        "Disarming / Stripping: Right-clicking with an Axe or Shears strips/disarms the block back to Oak Planks, dropping Sharpened Splinter Shards (with a 25% chance of structural collapse)."
+      ],
+      lootTable: [
+        { item: "Sharpened Splinter Shard", weight: 100, condition: "When disarmed with Axe/Shears" }
+      ]
+    },
+    {
+      name: "Petrified Splintered Oak Wood",
+      dimension: "petrified_weald",
+      hardness: "22.0",
+      blastRes: "25.0",
+      isUpdated: true,
+      description: "Fossilized, calcified spiked wood variant with extreme structural density. Deployed in the Petrified Weald by Petrified Log Splinter entities.",
+      mechanics: [
+        "Subterranean Calcified Construction: Deployed by Petrified Log Splinter entities using fill and bridge procedures to traverse chasms.",
+        "Extreme Hardness: Hardness 22 and Blast Resistance 25 make it virtually impervious to standard explosions.",
+        "Spiked Slowdown & Impalement: Impairs movement velocity and inflicts prick damage to trespassers."
+      ]
     }
   ];
 
@@ -374,153 +408,165 @@ export default function BlocksView() {
 
       {/* Grid List */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredBlocks.map((block) => (
-          <div 
-            key={block.name}
-            className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl flex flex-col justify-between hover:border-[#2e3e31] transition-all duration-300"
-          >
-            <div className="space-y-3.5">
-              {/* Card Header */}
-              <div className="flex justify-between items-start gap-2">
-                <div>
-                  <h3 className="font-serif text-lg font-bold text-[#e0e7e0]">{block.name}</h3>
-                  <span className="text-[9px] font-mono uppercase text-[#709978] bg-[#111612] px-1.5 py-0.5 rounded border border-[#1f2820] mt-1 inline-block">
-                    {block.dimension.replace('_', ' & ')}
-                  </span>
+        {filteredBlocks.map((block) => {
+          const cardContent = (
+            <div 
+              key={block.name}
+              className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl flex flex-col justify-between hover:border-[#2e3e31] transition-all duration-300 h-full"
+            >
+              <div className="space-y-3.5">
+                {/* Card Header */}
+                <div className="flex justify-between items-start gap-2">
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-[#e0e7e0]">{block.name}</h3>
+                    <span className="text-[9px] font-mono uppercase text-[#709978] bg-[#111612] px-1.5 py-0.5 rounded border border-[#1f2820] mt-1 inline-block">
+                      {block.dimension.replace('_', ' & ')}
+                    </span>
+                  </div>
+                  
+                  {/* Latin title translation if exists */}
+                  {block.latin && (
+                    <div className="text-[10px] font-mono text-right text-[#5a6b5e]">
+                      {block.latin.map((l, idx) => (
+                        <div key={idx}>
+                          <span className="text-rose-400 font-semibold">"{l.term}"</span>: {l.translation}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                
-                {/* Latin title translation if exists */}
-                {block.latin && (
-                  <div className="text-[10px] font-mono text-right text-[#5a6b5e]">
-                    {block.latin.map((l, idx) => (
-                      <div key={idx}>
-                        <span className="text-rose-400 font-semibold">"{l.term}"</span>: {l.translation}
-                      </div>
-                    ))}
+
+                {/* Stats badges */}
+                {(block.hardness || block.blastRes || block.burnTime) && (
+                  <div className="flex flex-wrap gap-3 py-1.5 border-y border-[#1a221c]/50">
+                    {block.hardness && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
+                        <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
+                        Hardness: <span className="text-[#a9d1b0] font-bold">{block.hardness}</span>
+                      </span>
+                    )}
+                    {block.blastRes && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
+                        <Shield className="w-3.5 h-3.5 text-[#5a6b5e]" />
+                        Blast Res: <span className="text-[#a9d1b0] font-bold">{block.blastRes}</span>
+                      </span>
+                    )}
+                    {block.burnTime && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
+                        <Flame className="w-3.5 h-3.5 text-[#5a6b5e]" />
+                        Burn Time: <span className="text-[#a9d1b0] font-bold">{block.burnTime}</span>
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Description */}
+                <p className="text-xs text-[#829285] leading-relaxed">{block.description}</p>
+
+                {/* Warnings and Hazards */}
+                {block.isWarning && (
+                  <div className="p-3 bg-[#1c1212] border-l-2 border-rose-500 rounded text-[11px] text-rose-300 leading-relaxed flex items-start gap-2 select-none">
+                    <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                    <span>{block.warningText}</span>
+                  </div>
+                )}
+
+                {/* Material safety */}
+                {block.isSpecial && (
+                  <div className="p-3 bg-[#111512] border-l-2 border-emerald-500 rounded text-[11px] text-emerald-300 leading-relaxed flex items-start gap-2 select-none">
+                    <Sparkles className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span>{block.specialText}</span>
+                  </div>
+                )}
+
+                {/* Behavioral Mechanics list */}
+                {block.mechanics && block.mechanics.length > 0 && (
+                  <div className="space-y-1 pt-1.5">
+                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e]">Behavioral Mechanics</h4>
+                    <ul className="space-y-1 pl-3.5 list-disc text-[11px] text-[#829285] leading-relaxed">
+                      {block.mechanics.map((mech, mIdx) => (
+                        <li key={mIdx}>
+                          {mech.includes(':') ? (
+                            <>
+                              <strong className="text-[#c9d1c9] font-semibold">{mech.split(':')[0]}:</strong>
+                              <span>{mech.split(':')[1]}</span>
+                            </>
+                          ) : (
+                            <span>{mech}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
               </div>
 
-              {/* Stats badges */}
-              {(block.hardness || block.blastRes || block.burnTime) && (
-                <div className="flex flex-wrap gap-3 py-1.5 border-y border-[#1a221c]/50">
-                  {block.hardness && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                      <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                      Hardness: <span className="text-[#a9d1b0] font-bold">{block.hardness}</span>
-                    </span>
-                  )}
-                  {block.blastRes && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                      <Shield className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                      Blast Res: <span className="text-[#a9d1b0] font-bold">{block.blastRes}</span>
-                    </span>
-                  )}
-                  {block.burnTime && (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                      <Flame className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                      Burn Time: <span className="text-[#a9d1b0] font-bold">{block.burnTime}</span>
-                    </span>
-                  )}
-                </div>
-              )}
-
-              {/* Description */}
-              <p className="text-xs text-[#829285] leading-relaxed">{block.description}</p>
-
-              {/* Warnings and Hazards */}
-              {block.isWarning && (
-                <div className="p-3 bg-[#1c1212] border-l-2 border-rose-500 rounded text-[11px] text-rose-300 leading-relaxed flex items-start gap-2 select-none">
-                  <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                  <span>{block.warningText}</span>
-                </div>
-              )}
-
-              {/* Material safety */}
-              {block.isSpecial && (
-                <div className="p-3 bg-[#111512] border-l-2 border-emerald-500 rounded text-[11px] text-emerald-300 leading-relaxed flex items-start gap-2 select-none">
-                  <Sparkles className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>{block.specialText}</span>
-                </div>
-              )}
-
-              {/* Behavioral Mechanics list */}
-              {block.mechanics && block.mechanics.length > 0 && (
-                <div className="space-y-1 pt-1.5">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e]">Behavioral Mechanics</h4>
-                  <ul className="space-y-1 pl-3.5 list-disc text-[11px] text-[#829285] leading-relaxed">
-                    {block.mechanics.map((mech, mIdx) => (
-                      <li key={mIdx}>
-                        {mech.includes(':') ? (
-                          <>
-                            <strong className="text-[#c9d1c9] font-semibold">{mech.split(':')[0]}:</strong>
-                            <span>{mech.split(':')[1]}</span>
-                          </>
-                        ) : (
-                          <span>{mech}</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Loot Table */}
-            {block.lootTable && (
-              <div className="mt-4 pt-3 border-t border-[#1a221c]/40">
-                <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e] mb-2">Loot Drops</h4>
-                <div className="overflow-hidden rounded border border-[#1a221c] text-[10px]">
-                  <table className="w-full text-left border-collapse font-mono">
-                    <thead>
-                      <tr className="bg-[#101311] text-[#5a6b5e] border-b border-[#1a221c]">
-                        <th className="p-2">Drop Item</th>
-                        <th className="p-2 text-center">Weight</th>
-                        <th className="p-2 text-right">Condition</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#171e19]">
-                      {block.lootTable.map((loot, lIdx) => (
-                        <tr key={lIdx}>
-                          <td className="p-2 font-medium text-[#c9d1c9]">{loot.item}</td>
-                          <td className="p-2 text-center text-[#829285]">{loot.weight}</td>
-                          <td className="p-2 text-right text-[#5a6b5e] font-sans italic">{loot.condition}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-
-            {/* Collapsible Crafting Recipes */}
-            {(() => {
-              const recipeIds = getBlockRecipeIds(block.name);
-              if (recipeIds.length === 0) return null;
-              const isExpanded = !!expandedRecipes[block.name];
-              return (
+              {/* Loot Table */}
+              {block.lootTable && (
                 <div className="mt-4 pt-3 border-t border-[#1a221c]/40">
-                  <button
-                    onClick={() => setExpandedRecipes(prev => ({ ...prev, [block.name]: !isExpanded }))}
-                    className="w-full flex items-center justify-between px-3 py-1.5 bg-[#0a0d0a] hover:bg-[#111711] border border-[#1c261d]/80 hover:border-[#304433] rounded-lg text-[11px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-all cursor-pointer select-none"
-                  >
-                    <span className="flex items-center gap-1.5">
-                      <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                      {isExpanded ? 'Hide Crafting Recipes' : `View Crafting Recipes (${recipeIds.length})`}
-                    </span>
-                    <span className="text-[9px]">{isExpanded ? '▲' : '▼'}</span>
-                  </button>
-
-                  {isExpanded && (
-                    <div className="mt-3">
-                      <FancyRecipeView itemIds={recipeIds} />
-                    </div>
-                  )}
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e] mb-2">Loot Drops</h4>
+                  <div className="overflow-hidden rounded border border-[#1a221c] text-[10px]">
+                    <table className="w-full text-left border-collapse font-mono">
+                      <thead>
+                        <tr className="bg-[#101311] text-[#5a6b5e] border-b border-[#1a221c]">
+                          <th className="p-2">Drop Item</th>
+                          <th className="p-2 text-center">Weight</th>
+                          <th className="p-2 text-right">Condition</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#171e19]">
+                        {block.lootTable.map((loot, lIdx) => (
+                          <tr key={lIdx}>
+                            <td className="p-2 font-medium text-[#c9d1c9]">{loot.item}</td>
+                            <td className="p-2 text-center text-[#829285]">{loot.weight}</td>
+                            <td className="p-2 text-right text-[#5a6b5e] font-sans italic">{loot.condition}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              );
-            })()}
-          </div>
-        ))}
+              )}
+
+              {/* Collapsible Crafting Recipes */}
+              {(() => {
+                const recipeIds = getBlockRecipeIds(block.name);
+                if (recipeIds.length === 0) return null;
+                const isExpanded = !!expandedRecipes[block.name];
+                return (
+                  <div className="mt-4 pt-3 border-t border-[#1a221c]/40">
+                    <button
+                      onClick={() => setExpandedRecipes(prev => ({ ...prev, [block.name]: !isExpanded }))}
+                      className="w-full flex items-center justify-between px-3 py-1.5 bg-[#0a0d0a] hover:bg-[#111711] border border-[#1c261d]/80 hover:border-[#304433] rounded-lg text-[11px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-all cursor-pointer select-none"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
+                        {isExpanded ? 'Hide Crafting Recipes' : `View Crafting Recipes (${recipeIds.length})`}
+                      </span>
+                      <span className="text-[9px]">{isExpanded ? '▲' : '▼'}</span>
+                    </button>
+
+                    {isExpanded && (
+                      <div className="mt-3">
+                        <FancyRecipeView itemIds={recipeIds} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+            </div>
+          );
+
+          if (block.isUpdated) {
+            return (
+              <UpdatedFrame key={block.name} id={`block_${block.name.toLowerCase().replace(/[^a-z0-9]/g, '_')}`} isUpdated={true}>
+                {cardContent}
+              </UpdatedFrame>
+            );
+          }
+
+          return cardContent;
+        })}
       </div>
     </div>
   );

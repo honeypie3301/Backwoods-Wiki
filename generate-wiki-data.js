@@ -1,12 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
-const wikiPagesDir = path.join(process.cwd(), 'wiki_pages');
-const publicWikiDir = path.join(process.cwd(), 'wiki_assets', 'wiki');
+const wikiDir = path.join(process.cwd(), 'wiki_assets', 'wiki');
 
-// Ensure public/wiki directory exists
-if (!fs.existsSync(publicWikiDir)) {
-  fs.mkdirSync(publicWikiDir, { recursive: true });
+// Ensure directory exists
+if (!fs.existsSync(wikiDir)) {
+  fs.mkdirSync(wikiDir, { recursive: true });
 }
 
 // Map files to display names, categories, and custom order
@@ -33,22 +32,16 @@ const catOrder = {
 };
 
 function generateWikiManifest() {
-  if (!fs.existsSync(wikiPagesDir)) {
-    console.error('Wiki pages directory not found:', wikiPagesDir);
+  if (!fs.existsSync(wikiDir)) {
+    console.error('Wiki directory not found:', wikiDir);
     return;
   }
 
-  const files = fs.readdirSync(wikiPagesDir);
+  const files = fs.readdirSync(wikiDir);
   const manifest = [];
 
   for (const file of files) {
     if (file.endsWith('.txt')) {
-      const srcPath = path.join(wikiPagesDir, file);
-      const destPath = path.join(publicWikiDir, file);
-      
-      // Copy the file
-      fs.copyFileSync(srcPath, destPath);
-      
       const slug = file.replace('.txt', '').toLowerCase();
       const meta = articleMeta[file] || { title: file.replace('.txt', ''), category: 'Other', order: 99 };
       
@@ -70,10 +63,10 @@ function generateWikiManifest() {
     return a.order - b.order;
   });
 
-  const manifestPath = path.join(publicWikiDir, 'manifest.json');
+  const manifestPath = path.join(wikiDir, 'manifest.json');
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
-  console.log(`Successfully copied wiki pages and generated manifest at ${manifestPath}`);
+  console.log(`Successfully generated manifest at ${manifestPath} with ${manifest.length} articles.`);
 }
 
 generateWikiManifest();

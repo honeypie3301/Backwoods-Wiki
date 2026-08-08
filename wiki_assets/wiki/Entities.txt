@@ -179,6 +179,54 @@ To maintain focus on active threats, Backwoods entities check targets before eng
 </div>
 
 <!-- ==========================================
+     SPLINTER AGING & DECAY MECHANICS
+     ========================================== -->
+<h3 style="color: #c4bfa5; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Splinter Aging &amp; Decay Mechanics</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">Entities within the active Splinter taxonomy (standard Splinter, Log Splinter, and Blindspot Splinter) are woodbound entities subject to continuous temporal aging (tracked via the internal <code>DATA_Age</code> counter). As time passes, woodbound entities weather, fracture, rot, and eventually decompose completely. Petrified Log Splinters are calcified and fossilized, rendering them completely immune to temporal aging.</p>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Aging Rates &amp; Environmental Accelerators</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">In normal dry environments, active Splinters age at a baseline rate of <strong>1 tick per server tick</strong> (20 ticks = 1 second; 72,000 ticks = 1 hour). However, exposure to physical hazards or environmental stress heavily accelerates timber decomposition:</p>
+
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #a9d1b0;">Water, Rain &amp; Moisture Exposure:</strong> Being submerged in water, standing under rain, or caught in bubble columns rapidly rots the timber. Standard Splinters &amp; Blindspots age at <strong>+9 to +12 ticks per tick</strong> (~10× speed). Log Splinters age at <strong>+12 ticks per tick</strong> (12× speed).</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #ffb74d;">Thermal &amp; Combustion Stress (Fire):</strong> Being on fire inflicts severe structural damage. Standard Splinters &amp; Blindspots age at <strong>+14 ticks per tick</strong> (14× speed). Log Splinters age at <strong>+16 ticks per tick</strong> (16× speed).</li>
+    <li style="margin-bottom: 0;"><strong style="color: #ff7043;">Lightning Strikes:</strong> A direct lightning strike instantly forces <strong>+60,000 ticks</strong> (50 minutes) of age onto the entity in a single burst, releasing thick smoke clouds.</li>
+</ul>
+
+<h4 style="color: #eaeaea; margin-top: 20px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Standard &amp; Blindspot Splinter Decay Stages</h4>
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Age Range (Ticks)</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 25%;">Real-Time Equivalent</th>
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Structural Condition &amp; Behavior Notes</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #a9d1b0; font-weight: 500;">0 – 72,000 Ticks</td><td style="text-align: center; color: #9c9788;">0 – 1 Hour</td><td style="padding: 10px 14px; color: #9c9788;">Fresh timber. Full movement speed, building, and bridging capabilities.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">72,001 – 144,000 Ticks</td><td style="text-align: center; color: #9c9788;">1 – 2 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Weathered state. Subtle surface discoloration.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">144,001 – 216,000 Ticks</td><td style="text-align: center; color: #9c9788;">2 – 3 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Cracked timber. Minor agility reduction.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #ffb74d; font-weight: 500;">360,000 Ticks Threshold</td><td style="text-align: center; color: #ffb74d;">3 – 5 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Fractured wood. Increased vulnerability to combustion.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #ff7043; font-weight: 500;">360,001 – 432,000 Ticks</td><td style="text-align: center; color: #9c9788;">5 – 6 Hours</td><td style="padding: 10px 14px; color: #9c9788;"><strong style="color: #ff7043;">Rotting Stage:</strong> Timber loses structural integrity. Splinters permanently lose building and bridging capabilities.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #e57373; font-weight: 500;">432,001 – 576,000 Ticks</td><td style="text-align: center; color: #9c9788;">6 – 8 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Decomposing state. Severe structural weakness.</td></tr>
+    <tr><td style="padding: 10px 14px; color: #ef5350; font-weight: 500;">648,000+ Ticks</td><td style="text-align: center; color: #ef5350; font-weight: bold;">9+ Hours (Final)</td><td style="padding: 10px 14px; color: #ef5350;"><strong style="color: #ef5350;">Decomposition (AGE_LAST):</strong> Splinter dissolves completely, dropping rotten organic remains and despawning.</td></tr>
+</table>
+
+<h4 style="color: #eaeaea; margin-top: 25px; margin-bottom: 8px; font-size: 1.05em; font-weight: 500;">Log Splinter Decay Stages (Accelerated Lifespan)</h4>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The heavier, denser Log Splinters rot and decompose significantly faster than standard timber varieties. Their lifespan is capped at <strong>480,000 ticks</strong> (~6.67 hours) rather than 648,000 ticks, meaning they succumb to temporal rot according to these accelerated thresholds:</p>
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; border: 1px solid #201414; background: #0c0c0c; margin-bottom: 30px;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Age Range (Ticks)</th>
+        <th style="padding: 10px 14px; text-align: center; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; width: 25%;">Real-Time Equivalent</th>
+        <th style="padding: 10px 14px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Structural Condition &amp; Behavior Notes</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #a9d1b0; font-weight: 500;">0 – 60,000 Ticks</td><td style="text-align: center; color: #9c9788;">0 – 50 Minutes</td><td style="padding: 10px 14px; color: #9c9788;">Fresh heavy log timber. Full movement speed, building, and bridging.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">60,001 – 120,000 Ticks</td><td style="text-align: center; color: #9c9788;">50 Mins – 1.6 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Weathered heavy log state. Subtle log texture darkening.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #c4bfa5; font-weight: 500;">120,001 – 240,000 Ticks</td><td style="text-align: center; color: #9c9788;">1.6 – 3.3 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Cracked wood core. Minor agility penalties applied.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #ffb74d; font-weight: 500;">360,000 Ticks Threshold</td><td style="text-align: center; color: #ffb74d;">5 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Fractured log. Highly vulnerable to fire stress.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #ff7043; font-weight: 500;">360,001 – 420,000 Ticks</td><td style="text-align: center; color: #9c9788;">5 – 5.8 Hours</td><td style="padding: 10px 14px; color: #9c9788;"><strong style="color: #ff7043;">Rotting Stage:</strong> Severe heartwood decay. Permanently loses block placement and bridging mechanics.</td></tr>
+    <tr style="border-bottom: 1px solid #1c1414;"><td style="padding: 10px 14px; color: #e57373; font-weight: 500;">420,001 – 480,000 Ticks</td><td style="text-align: center; color: #9c9788;">5.8 – 6.67 Hours</td><td style="padding: 10px 14px; color: #9c9788;">Decomposing state. Drastic speed reduction and structural breakdown.</td></tr>
+    <tr><td style="padding: 10px 14px; color: #ef5350; font-weight: 500;">480,000+ Ticks</td><td style="text-align: center; color: #ef5350; font-weight: bold;">6.67+ Hours (Final)</td><td style="padding: 10px 14px; color: #ef5350;"><strong style="color: #ef5350;">Decomposition (AGE_LAST):</strong> Splinter completely disintegrates, dropping rotten drops and despawning.</td></tr>
+</table>
+
+<!-- ==========================================
      OTHER ENTITIES SECTION
      ========================================== -->
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Other Entities</h2>

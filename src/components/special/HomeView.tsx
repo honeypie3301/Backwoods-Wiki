@@ -51,10 +51,10 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Kyne & Dorceless Splinters:</strong> Kyne Splinter (7 XP drop, pack avenge) & Dorceless Splinter (10 XP drop, 85% projectile/50% melee dodge teleport). Both flee from The Rot within 100 blocks.</li>
-              <li><strong className="text-amber-300">Loss Dimension Ignition:</strong> Dead Memory Shard (rare Memory Quartz drop) ignites Loss portals on Nullstone frames.</li>
-              <li><strong className="text-amber-300">The Grain Dimension Ignition:</strong> Splinter Needle (stonecut from Sharpened Splinter Shard) ignites Grain portals on Oak Planks frames.</li>
-              <li><strong className="text-amber-300">Resonant Tetherless Pearl & Splintered Effect:</strong> Pearl with 2 recipes (64-96 block warp). Splintered effect deals 0.1 thorns damage every 3s unless inoculated.</li>
+              <li><strong className="text-amber-300">Portal Catalysts & Igniters:</strong> Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.</li>
+              <li><strong className="text-amber-300">Splinter Aging & Decay Mechanics:</strong> Documented temporal aging (`DATA_Age`), water/rain decay acceleration (+9 to +12 ticks/tick), fire combustion stress (+14 to +16 ticks/tick), lightning burst (+60,000 ticks), and the final rotting stage (AGE_LAST).</li>
+              <li><strong className="text-amber-300">Dimensions Biome Gallery & Custom Theme Dropdown:</strong> Added complete photographic dossier across all 18 regional biomes with a custom styled theme filter dropdown.</li>
+              <li><strong className="text-amber-300">Small Menger Sponge Feature:</strong> Subterranean Y=-50 to Y=-24 fractal cavern constructed from Lignum Caro, Splintered Oak Planks, and a Furnace housing a hidden loot chest.</li>
             </ul>
           </div>
         </div>

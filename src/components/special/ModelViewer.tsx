@@ -259,7 +259,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
           if (resolvedTextureUrl) {
             const textureLoader = new THREE.TextureLoader();
             textureLoader.load(
-              resolvedTextureUrl,
+              encodeURI(resolvedTextureUrl),
               (texture) => {
                 texture.magFilter = THREE.NearestFilter;
                 texture.minFilter = THREE.NearestFilter;
@@ -271,8 +271,8 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
                 setLoadProgress(100);
               },
               undefined,
-              (err) => {
-                console.warn('Error loading texture override, falling back to MTL textures:', err);
+              () => {
+                // Fall back cleanly to MTL or base materials if texture override is missing or unreadable
                 applyMaterials(obj, null, renderMode);
                 setLoading(false);
                 setLoadProgress(100);

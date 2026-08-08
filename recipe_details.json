@@ -1287,6 +1287,108 @@
         "a = the_backwoods:sharpened_splinter_shard",
         "b = minecraft:oak_planks"
       ]
+    },
+    {
+      "file": "splintered_oak_plank_recipe_shard.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:splinter_shard"
+        },
+        "b": {
+          "item": "minecraft:oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:splinter_shard",
+        "b = minecraft:oak_planks"
+      ]
+    },
+    {
+      "file": "splintered_oak_plank_recipe_needle.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:splinter_needle"
+        },
+        "b": {
+          "item": "minecraft:oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:splinter_needle",
+        "b = minecraft:oak_planks"
+      ]
+    }
+  ],
+  "the_backwoods:splintered_oak_wood": [
+    {
+      "file": "splintered_oak_wood_recipe_sharpened.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:sharpened_splinter_shard"
+        },
+        "b": {
+          "item": "minecraft:oak_wood"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:sharpened_splinter_shard",
+        "b = minecraft:oak_wood"
+      ]
+    },
+    {
+      "file": "splintered_oak_wood_recipe_shard.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:splinter_shard"
+        },
+        "b": {
+          "item": "minecraft:oak_wood"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:splinter_shard",
+        "b = minecraft:oak_wood"
+      ]
+    },
+    {
+      "file": "splintered_oak_wood_recipe_needle.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:splinter_needle"
+        },
+        "b": {
+          "item": "minecraft:oak_wood"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:splinter_needle",
+        "b = minecraft:oak_wood"
+      ]
     }
   ],
   "the_backwoods:splinter_needle": [

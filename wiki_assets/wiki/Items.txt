@@ -354,7 +354,9 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
         
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 140px; height: 120px; border: 2px solid #3c1c17; background: #0c0a0a; margin: 0 auto; gap: 8px;">
       <div style="padding: 6px; border: 1px solid #2d1814; background: #080808; font-size: 0.85em; text-align: center; color: #cfbfa8;" title="unknown">unknown</div>
-      <div style="color: #8c9cb3; font-weight: bold; font-size: 1.2em;">⛏️</div>
+      <div style="color: #8c9cb3; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#8c9cb3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle;"><path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"/><path d="m16 16 3.293-3.293a1 1 0 0 0 0-1.414l-7.586-7.586a1 1 0 0 0-1.414 0L7 7"/></svg>
+      </div>
       <div style="font-size: 0.8em; color: #8e8375;">STONECUTTING</div>
     </div>
     

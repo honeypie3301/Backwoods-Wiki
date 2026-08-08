@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
-  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown 
+  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
@@ -1093,6 +1093,107 @@ export default function EntitiesView() {
                   <span className="px-2 py-1 bg-[#101311] border border-[#1a221c] rounded text-zinc-500">Nothing: <strong>42.86%</strong></span>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* SPLINTER AGING & DECAY MECHANICS (Shared across woodbound entities) */}
+          {['splinter', 'log_splinter', 'blindspot_splinter'].includes(currentEntity.id) && (
+            <div className="pt-4 border-t border-[#1a221c]">
+              <UpdatedFrame id="splinter_aging_decay_mechanics" isUpdated={true}>
+                <div className="p-5 bg-[#0a0c0a] border border-[#232f25] rounded-xl space-y-4">
+                  <div className="flex items-center gap-2">
+                    <RefreshCw className="w-4 h-4 text-[#709978] animate-spin" style={{ animationDuration: '8s' }} />
+                    <h5 className="font-serif text-base font-bold text-[#e0e7e0]">
+                      Splinter Aging & Decay Mechanics (<code className="text-[#a9d1b0] text-xs font-mono">DATA_Age</code>)
+                    </h5>
+                  </div>
+
+                  <p className="text-xs text-[#8c8779] leading-relaxed">
+                    All entities within the active Splinter taxonomy (standard Splinter, Log Splinter, and Blindspot Splinter) are woodbound organisms subject to continuous temporal aging (tracked via the internal <code className="text-[#a9d1b0]">DATA_Age</code> counter). As time passes, timber entities weather, fracture, rot, and eventually decompose completely into organic matter. Petrified Log Splinters are fossilized/calcified and immune to this decay process.
+                  </p>
+
+                  <div className="space-y-2">
+                    <h6 className="text-xs font-mono font-bold uppercase text-[#709978]">Environmental Decay Accelerators</h6>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
+                      <div className="p-3 bg-[#0d120e] border border-[#1c271e] rounded-lg space-y-1">
+                        <div className="text-emerald-400 font-bold flex items-center gap-1.5">
+                          <Droplets className="w-3.5 h-3.5 shrink-0" />
+                          <span>Water &amp; Rain Exposure</span>
+                        </div>
+                        <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
+                          Submersion or rain exposure rots wood at <strong className="text-emerald-300">+9 to +12 ticks/tick</strong> (~10x-12x rate).
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-[#140e0a] border border-amber-900/30 rounded-lg space-y-1">
+                        <div className="text-amber-400 font-bold flex items-center gap-1.5">
+                          <Flame className="w-3.5 h-3.5 shrink-0" />
+                          <span>Fire &amp; Thermal Stress</span>
+                        </div>
+                        <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
+                          Combustion inflicts severe thermal stress at <strong className="text-amber-300">+14 to +16 ticks/tick</strong> (14x-16x rate).
+                        </p>
+                      </div>
+
+                      <div className="p-3 bg-[#110f17] border border-purple-900/30 rounded-lg space-y-1">
+                        <div className="text-purple-400 font-bold flex items-center gap-1.5">
+                          <Zap className="w-3.5 h-3.5 shrink-0" />
+                          <span>Lightning Strike</span>
+                        </div>
+                        <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
+                          Direct strikes instantly force <strong className="text-purple-300">+60,000 ticks</strong> (50 mins) of age in a single burst.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <h6 className="text-xs font-mono font-bold uppercase text-[#709978]">
+                      Decay Stages &amp; Structural Limitations ({currentEntity.id === 'log_splinter' ? 'Log Splinter' : 'Standard/Blindspot'})
+                    </h6>
+                    <div className="overflow-x-auto rounded border border-[#1c241e]">
+                      <table className="w-full text-left border-collapse text-xs font-mono">
+                        <thead>
+                          <tr className="bg-[#121713] text-[#5a6b5e] border-b border-[#1c241e]">
+                            <th className="p-2.5">Age Range (Ticks)</th>
+                            <th className="p-2.5 text-center">Real-Time</th>
+                            <th className="p-2.5">Structural Condition &amp; Behavior</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-[#151c16] text-[#8c8779]">
+                          {(() => {
+                            const isLog = currentEntity.id === 'log_splinter';
+                            const stages = isLog ? [
+                              { range: "0 – 60,000", time: "0 – 50 min", desc: "Fresh heavy log timber. Full speed, block placement, and gap bridging.", color: "text-[#a9d1b0]" },
+                              { range: "60,001 – 120,000", time: "50m – 1.6h", desc: "Weathered heavy log state. Subtle log texture darkening.", color: "text-[#c9d1c9]" },
+                              { range: "120,001 – 240,000", time: "1.6 – 3.3h", desc: "Cracked wood core. Minor agility penalties applied.", color: "text-[#c9d1c9]" },
+                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured log. Highly vulnerable to fire stress.", color: "text-amber-400" },
+                              { range: "360,001 – 420,000", time: "5 – 5.8h", desc: "Rotting Stage: Severe heartwood decay. Permanently loses building and bridging capabilities.", color: "text-amber-500", bg: "bg-amber-950/10 text-amber-200" },
+                              { range: "420,001 – 480,000", time: "5.8 – 6.67h", desc: "Decomposing state. Drastic speed reduction and structural breakdown.", color: "text-rose-400" },
+                              { range: "480,000+ Ticks", time: "6.67+ hrs", desc: "Decomposition (AGE_LAST): Entity dissolves completely into rotten drops and despawns.", color: "text-red-400", bg: "bg-red-950/20 text-red-300 font-bold" }
+                            ] : [
+                              { range: "0 – 72,000", time: "0 – 1 hr", desc: "Fresh timber. Full speed, block placement, and gap bridging.", color: "text-[#a9d1b0]" },
+                              { range: "72,001 – 144,000", time: "1 – 2 hrs", desc: "Weathered state. Subtle surface discoloration.", color: "text-[#c9d1c9]" },
+                              { range: "144,001 – 216,000", time: "2 – 3 hrs", desc: "Cracked timber. Minor agility reduction.", color: "text-[#c9d1c9]" },
+                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured wood. Increased vulnerability to combustion.", color: "text-amber-400" },
+                              { range: "360,001 – 432,000", time: "5 – 6 hrs", desc: "Rotting Stage: Timber loses structural integrity. Permanently loses building and bridging capabilities.", color: "text-amber-500", bg: "bg-amber-950/10 text-amber-200" },
+                              { range: "432,001 – 576,000", time: "6 – 8 hrs", desc: "Decomposing state. Severe structural weakness.", color: "text-rose-400" },
+                              { range: "648,000+ Ticks", time: "9+ hrs", desc: "Decomposition (AGE_LAST): Entity dissolves completely into rotten drops and despawns.", color: "text-red-400", bg: "bg-red-950/20 text-red-300 font-bold" }
+                            ];
+                            return stages.map((stage, idx) => (
+                              <tr key={idx} className={stage.bg || ""}>
+                                <td className={`p-2.5 font-bold ${stage.color}`}>{stage.range}</td>
+                                <td className="p-2.5 text-center text-[#5a6b5e]">{stage.time}</td>
+                                <td className="p-2.5 font-sans">{stage.desc}</td>
+                              </tr>
+                            ));
+                          })()}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
             </div>
           )}
 

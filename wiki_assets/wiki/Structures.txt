@@ -33,6 +33,14 @@ Custom structures generate across the various dimensions of the mod, providing e
     <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Ceiling Anchoring:</strong> Requires a solid block ceiling above to spawn, embedding itself up to 6 blocks deep for seamless structural blending.</li>
 </ul>
 
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Menger Sponge Small</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A compact 3x3x3 (27-block) fractal cavern feature generating deep subterranean layers between Y=-50 and Y=-24. Formed from Lignum Caro, Splintered Oak Planks, and Oak Planks, it encloses a central Furnace vault housing a hidden loot chest filled with valuable dimension progression items.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Material Composition:</strong> Constructed from <code style="color: #eaeaea;">Lignum Caro</code>, <code style="color: #eaeaea;">Splintered Oak Planks</code>, and <code style="color: #eaeaea;">Oak Planks</code>.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Subterranean Pockets:</strong> Replaces cave stone and dirt with fractal cutouts, creating accessible hollow cavities.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Furnace Vault:</strong> Features a central Furnace block containing a hidden loot chest stocked with dimension progression resources.</li>
+</ul>
+
 <hr style="border: 0; border-top: 1px solid #1c1414; margin: 40px 0;" />
 
 <!-- ==========================================
@@ -124,6 +132,14 @@ These wooden clusters punch clean holes straight through the bedrock, offering h
 <div style="background: #0d0909; border: 1px solid #321616; border-left: 2px solid #5c1414; padding: 15px; margin: 20px 0; color: #cfbfa8; font-size: 0.9em; line-height: 1.6;">
 Near the very bottom of the world ('''Y=-64 to Y=-59'''), the structure will refuse to delete pre-existing bedrock or custom floor structures, ensuring players cannot fall through into the void below.
 </div>
+
+<h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Small Menger Sponge</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A compact 3x3x3 (27-block) fractal cavern feature generating deep subterranean in '''The Dead Grain''' biome between '''Y=-50 and Y=-24'''. Rather than sprawling across entire chunks, this smaller variant forms concentrated pockets containing rare organic tissue and a hidden loot chest.</p>
+<ul style="margin: 0 0 20px 0; padding-left: 18px; list-style-type: square; line-height: 1.7; font-size: 0.9em; color: #9c9788;">
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Material Composition:</strong> Constructed from a mix of <code style="color: #eaeaea;">Lignum Caro</code>, <code style="color: #eaeaea;">Splintered Oak Planks</code>, and standard <code style="color: #eaeaea;">Oak Planks</code>.</li>
+    <li style="margin-bottom: 8px;"><strong style="color: #c4bfa5;">Subterranean Pockets:</strong> Replaces existing cave stone and dirt with fractal cutouts, creating accessible hollow cavities.</li>
+    <li style="margin-bottom: 0;"><strong style="color: #c4bfa5;">Furnace Vault:</strong> Features a central Furnace block containing a hidden Menger Sponge loot chest stocked with dimension progression items.</li>
+</ul>
 
 <h3 style="color: #a39081; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Catwalk Sub-Cavern</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">A complex, floating wooden maze network situated deep within the cavernous depths of '''The Dead Grain''' biome. Rather than flat tunnels, the paths here are narrow wooden scaffolding bridges suspended in pitch-black subterranean chambers.</p>

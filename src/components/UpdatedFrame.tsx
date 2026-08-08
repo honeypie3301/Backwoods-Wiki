@@ -13,6 +13,7 @@ interface UpdatedFrameProps {
   isUpdated?: boolean;
   className?: string;
   badgeLabel?: string;
+  key?: React.Key;
 }
 
 export default function UpdatedFrame({

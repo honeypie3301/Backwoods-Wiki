@@ -125,7 +125,9 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'rot_effigy': { short: 'Re', bg: 'bg-[#1f1710]', text: 'text-[#b45309]', border: 'border-[#422d1b]', glow: '' },
     'resonant_rot_effigy': { short: 'Rre', bg: 'bg-[#271b10]', text: 'text-[#fbbf24]', border: 'border-[#5c3c16]', glow: '' },
     'splintered_oak_planks': { short: 'Sop', bg: 'bg-[#211511]', text: 'text-[#f43f5e]', border: 'border-[#5c1c11]', glow: 'group-hover:shadow-[0_0_10px_rgba(244,63,94,0.15)]' },
+    'splintered_oak_wood': { short: 'Sow', bg: 'bg-[#211511]', text: 'text-[#f43f5e]', border: 'border-[#5c1c11]', glow: 'group-hover:shadow-[0_0_10px_rgba(244,63,94,0.15)]' },
     'oak_planks': { short: 'Op', bg: 'bg-[#291b12]', text: 'text-[#fbbf24]', border: 'border-[#543b22]', glow: '' },
+    'oak_wood': { short: 'Ow', bg: 'bg-[#291b12]', text: 'text-[#fbbf24]', border: 'border-[#543b22]', glow: '' },
   };
 
   if (mapping[cleanId]) {
@@ -293,7 +295,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                       </div>
 
                       {/* Arrow */}
-                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">➔</div>
+                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">→</div>
 
                       {/* Furnace Output Slot */}
                       <div className="relative group shrink-0 hover:z-30">
@@ -339,7 +341,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                       </div>
 
                       {/* Arrow */}
-                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">➔</div>
+                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">→</div>
 
                       {/* Output Slot */}
                       <div className="relative group shrink-0 hover:z-30">
@@ -400,7 +402,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                       })()}
 
                       {/* Arrow */}
-                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">➔</div>
+                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0">→</div>
 
                       {/* Result */}
                       <div className="relative group shrink-0 hover:z-30">
@@ -467,7 +469,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                       })()}
 
                       {/* Arrow */}
-                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0 mt-4">➔</div>
+                      <div className="text-[#3a4f3e] font-bold text-sm sm:text-base select-none shrink-0 mt-4">→</div>
 
                       {/* Output Potion Result */}
                       <div className="relative group shrink-0 hover:z-30">
@@ -559,7 +561,7 @@ export default function FancyRecipeView({ itemIds, title }: FancyRecipeViewProps
                       </div>
 
                       {/* Arrow */}
-                      <div className="text-[#3a4f3e] font-bold text-base sm:text-lg select-none animate-pulse shrink-0">➔</div>
+                      <div className="text-[#3a4f3e] font-bold text-base sm:text-lg select-none animate-pulse shrink-0">→</div>
 
                       {/* Large Output Slot */}
                       <div className="relative group shrink-0 hover:z-30">

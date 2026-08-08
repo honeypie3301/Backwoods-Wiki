@@ -129,7 +129,7 @@ export function parseWikiSyntax(content: string): string {
   html = html.replace(/\[\[File:([^|\]]+).*?\]\]/gi, (match, filename) => {
     return `
       <div class="p-4 bg-[#111612] border border-[#1e241f] rounded-md text-center text-xs text-[#5a6b5e] my-4 font-mono">
-        📄 Asset: ${filename} (Fandom Reference Block)
+        Asset: ${filename} (Fandom Reference Block)
       </div>
     `;
   });
