@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
   return {
-    base: command === 'build' ? '/Backwoods-Wiki/' : '/',
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/Backwoods-Wiki/' : '/',
     publicDir: 'wiki_assets',
     plugins: [react(), tailwindcss()],
     resolve: {
