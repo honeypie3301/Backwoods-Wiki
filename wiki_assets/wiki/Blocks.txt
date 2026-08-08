@@ -289,6 +289,36 @@ The '''Backwoods''' mod introduces a vast array of custom blocks across all of i
     </tr>
 </table>
 
+<h3 style="color: #709978; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Petrified Oak Planks</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">The primary filler block of the Backwoods dimension. Formed from fossilized and mineralized ancient oak forests, these heavy wood planks have absorbed mineral compounds over eons, rendering them completely fireproof and rock-hard. Interestingly, these planks are registered as standard vanilla planks, allowing you to use them to craft basic vanilla items such as Sticks, Crafting Tables, and tools.</p>
+
+<table class="article-table" style="width: 100%; border-collapse: collapse; margin: 20px 0; border: 1px solid #201414; background: #0c0c0c;">
+    <tr style="border-bottom: 1px solid #301414; background: #120c0c;">
+        <th style="padding: 12px 16px; width: 30%; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Property</th>
+        <th style="padding: 12px 16px; text-align: left; color: #8e8375; font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;">Value</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Hardness</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">2.2</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Blast Resistance</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">3.0</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #1c1414;">
+        <td style="padding: 14px 16px; font-weight: 500; color: #c4bfa5; font-size: 0.95em;">Tool Tier</td>
+        <td style="padding: 14px 16px; font-size: 0.9em; color: #9c9788; line-height: 1.6;">Pickaxe (Any)</td>
+    </tr>
+</table>
+
+<h4 style="color: #9e2a2a; margin-top: 25px; margin-bottom: 12px; font-size: 0.9em; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600;">Adaptation & Structural Features</h4>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 25px;">
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Pale Oak Aesthetics:</strong> Visually utilizes the same texture as standard vanilla Oak Planks, but has been bleached into a very slightly pale/ashy tone due to calcification.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Total Fire Immunity:</strong> Unlike ordinary wood planks, Petrified Oak Planks are completely fireproof and impervious to fire spread or lava ignition.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Living Dimension Defense:</strong> Lore indicates that the Backwoods dimension is itself a living, adapting entity. These planks act as a form of self-defense, fossilizing regional wood to resist high-temperature stresses, fire hazards, and external intrusions.</li>
+    <li style="margin-bottom: 10px; padding-left: 15px; border-left: 1px solid #401414; font-size: 0.95em;"><strong style="color: #c4bfa5;">Vanilla Tag Compatibility:</strong> Registered under the vanilla <code style="color: #e0d0b0; background: #1a1a1a; padding: 1px 4px; border-radius: 2px;">#minecraft:planks</code> block and item tags. This guarantees seamless compatibility with vanilla recipes such as crafting Sticks, Crafting Tables, Fences, and Wooden Tools.</li>
+</ul>
+
 <!-- ==========================================
      [[dimensions|Loss dimension]] SECTION
      ========================================== -->

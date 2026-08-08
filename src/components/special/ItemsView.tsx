@@ -622,20 +622,6 @@ export default function ItemsView() {
       ]
     },
     {
-      id: "lignum_caro",
-      name: "Lignum Caro",
-      category: "materials",
-      desc: "A highly dense organic meat block harvested from Lignum trees. It beats like flesh but grows like wood, harboring strange immunological resistance.",
-      stats: [
-        { label: "Smelting Temp", value: "High Yield" },
-        { label: "Stack Size", value: "64" }
-      ],
-      notes: [
-        "Can be cooked in a furnace or smoker to produce Lignum Caro Ash.",
-        "Used as a basic structural component and is a required ingredient for crafting the Lignum Caro Sword."
-      ]
-    },
-    {
       id: "lignum_caro_ash",
       name: "Lignum Caro Ash",
       category: "materials",

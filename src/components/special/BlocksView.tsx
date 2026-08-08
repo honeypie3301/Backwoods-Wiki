@@ -351,6 +351,21 @@ export default function BlocksView() {
         "Extreme Hardness: Hardness 22 and Blast Resistance 25 make it virtually impervious to standard explosions.",
         "Spiked Slowdown & Impalement: Impairs movement velocity and inflicts prick damage to trespassers."
       ]
+    },
+    {
+      name: "Petrified Oak Planks",
+      dimension: "backwoods_rotting",
+      hardness: "2.2",
+      blastRes: "3.0",
+      isUpdated: true,
+      description: "Heavy, fossilized oak wood planks that serve as the main filler block of the Backwoods. Over eons, these planks have absorbed mineral compounds from the living environment, rendering them rock-hard and completely fireproof.",
+      mechanics: [
+        "Pale Oak Aesthetics: Same texture as standard vanilla Oak Planks, but has been bleached into a very slightly pale, mineralized tone.",
+        "Total Fire Immunity: Completely fireproof and impervious to fire spreads or lava ignition.",
+        "Tool Requirements: Requires a Pickaxe (any tier) to mine and collect efficiently.",
+        "Living Dimension Self-Defense: The dimension's living wood adapted and petrified to protect its core structure from extreme environmental stress and heat hazards.",
+        "Vanilla Wood Tag Compatibility: Registered under vanilla plank tags, allowing them to craft standard vanilla items like Sticks, Crafting Tables, fences, and tools seamlessly."
+      ]
     }
   ];
 

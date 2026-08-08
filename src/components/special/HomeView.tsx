@@ -51,8 +51,9 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
+              <li><strong className="text-amber-300">Petrified Oak Planks:</strong> Added the fireproof, heavy-density Petrified Oak Planks block (Hardness 2.2, Blast Resistance 3, Pickaxe required) as the primary self-defense filler block of the Backwoods. Cleaned up Items catalog by removing Lignum Caro block duplication.</li>
+              <li><strong className="text-amber-300">Splinter Decay Rebalancing:</strong> Log Splinters now age and decay significantly faster (max lifespan of 480,000 ticks / ~6.67 hours) than standard woodbound varieties, while Petrified Log Splinters are completely fossilized and immune to temporal aging.</li>
               <li><strong className="text-amber-300">Portal Catalysts & Igniters:</strong> Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.</li>
-              <li><strong className="text-amber-300">Splinter Aging & Decay Mechanics:</strong> Documented temporal aging (`DATA_Age`), water/rain decay acceleration (+9 to +12 ticks/tick), fire combustion stress (+14 to +16 ticks/tick), lightning burst (+60,000 ticks), and the final rotting stage (AGE_LAST).</li>
               <li><strong className="text-amber-300">Dimensions Biome Gallery & Custom Theme Dropdown:</strong> Added complete photographic dossier across all 18 regional biomes with a custom styled theme filter dropdown.</li>
               <li><strong className="text-amber-300">Small Menger Sponge Feature:</strong> Subterranean Y=-50 to Y=-24 fractal cavern constructed from Lignum Caro, Splintered Oak Planks, and a Furnace housing a hidden loot chest.</li>
             </ul>

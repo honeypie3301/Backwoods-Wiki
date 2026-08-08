@@ -1374,13 +1374,17 @@ export default function EntitiesView() {
           {/* PETRIFIED LOG SPLINTER: Custom mechanics */}
           {currentEntity.id === 'petrified_splinter' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-zinc-900/40 border border-zinc-800 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-zinc-300">Hardened Physiology:</strong> Emerging solely from fossilized understories, the Petrified Log Splinter is incredibly robust. It possesses high natural armor ratings (4 points) and moves slower than its fleshier brothers (0.3 speed), acting as an unyielding physical gatekeeper in the high-density ash forests.
-              </div>
-              <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
-                <li><strong className="text-zinc-300">Gaze Locking:</strong> Freezes on direct sights and stalks once line of sight breaks.</li>
-                <li><strong className="text-zinc-300">Kinship Alarms:</strong> Integrates fully with the global difficulty death alert triggers, driving surrounding Petrified Log Splinters into instant 600-tick fury states.</li>
-              </ul>
+              <UpdatedFrame id="petrified_log_splinter_mechanics" isUpdated={true}>
+                <div className="space-y-4">
+                  <div className="p-4 bg-zinc-900/40 border border-zinc-800 rounded-lg text-xs text-[#8c8779] leading-relaxed">
+                    <strong className="text-zinc-300">Hardened Physiology:</strong> Emerging solely from fossilized understories, the Petrified Log Splinter is incredibly robust. It possesses high natural armor ratings (4 points) and moves slower than its fleshier brothers (0.3 speed), acting as an unyielding physical gatekeeper in the high-density ash forests.
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
+                    <li><strong className="text-zinc-300">Gaze Locking:</strong> Freezes on direct sights and stalks once line of sight breaks.</li>
+                    <li><strong className="text-zinc-300">Kinship Alarms:</strong> Integrates fully with the global difficulty death alert triggers, driving surrounding Petrified Log Splinters into instant 600-tick fury states.</li>
+                  </ul>
+                </div>
+              </UpdatedFrame>
             </div>
           )}
 

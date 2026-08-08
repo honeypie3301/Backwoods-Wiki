@@ -48,8 +48,9 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
 
 '''Recent Version Highlights:'''
+* '''Petrified Oak Planks:''' Added the fireproof, heavy-density Petrified Oak Planks block (Hardness 2.2, Blast Resistance 3, Pickaxe required) as the primary self-defense filler block of the Backwoods. Cleaned up Items catalog by removing Lignum Caro block duplication.
+* '''Splinter Decay Rebalancing:''' Log Splinters now age and decay significantly faster (max lifespan of 480,000 ticks / ~6.67 hours) than standard woodbound varieties, while Petrified Log Splinters are completely fossilized and immune to temporal aging.
 * '''Portal Catalysts & Igniters:''' Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.
-* '''Splinter Aging & Decay Mechanics:''' Documented temporal aging (`DATA_Age`), water/rain decay acceleration (+9 to +12 ticks/tick), fire combustion stress (+14 to +16 ticks/tick), lightning burst (+60,000 ticks), and the final rotting stage (AGE_LAST).
 * '''Dimensions Biome Gallery & Custom Theme Dropdown:''' Added complete photographic dossier across all 18 regional biomes with a custom styled theme filter dropdown.
 * '''Small Menger Sponge Feature:''' Compact 27-block fractal cavern module generating subterranean Y=-50 to Y=-24, constructed from Lignum Caro, Splintered Oak Planks, and a Furnace housing a hidden loot chest.
 </div>
