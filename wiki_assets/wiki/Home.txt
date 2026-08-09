@@ -48,6 +48,7 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
 
 '''Recent Version Highlights:'''
+* '''Advancement XP Rebalancing:''' Redesigned the Achievements index with fully updated, rebalanced XP rewards across 13 progression, travel, and combat milestones. Features interactive filter categorizations, real-time comparison metrics, and visual highlights for all modified values.
 * '''Petrified Oak Planks:''' Added the fireproof, heavy-density Petrified Oak Planks block (Hardness 2.2, Blast Resistance 3, Pickaxe required) as the primary self-defense filler block of the Backwoods. Cleaned up Items catalog by removing Lignum Caro block duplication.
 * '''Splinter Decay Rebalancing:''' Log Splinters now age and decay significantly faster (max lifespan of 480,000 ticks / ~6.67 hours) than standard woodbound varieties, while Petrified Log Splinters are completely fossilized and immune to temporal aging.
 * '''Portal Catalysts & Igniters:''' Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.

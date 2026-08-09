@@ -1,86 +1,114 @@
 
 === Backwoods ===
 
-* Enter [[dimensions|The Backwoods dimension]].
+* Description: Step into the cold, dense overgrowth of the Backwoods.
+* Requirement: Enter [[dimensions|The Backwoods dimension]].
+* Reward: 20 XP (Rebalanced from 1 XP)
 
 === Inner Circle ===
 
 * Description: Reach the core of the Backwoods infection.
-* Enter [[dimensions|The Rotting dimension]].
+* Requirement: Enter [[dimensions|The Rotting dimension]].
+* Reward: 20 XP (Rebalanced from 0 XP)
 
 === Total Stasis ===
 
 * Description: Enter the dimension where time forgot to move.
-* Enter [[dimensions|The Still dimension]]
+* Requirement: Enter [[dimensions|The Still dimension]].
+* Reward: 20 XP (Rebalanced from 0 XP)
 
 === Home sweet? ===
 
 * Description: Discover the dimension that mirrors your memories.
-* Enter [[dimensions|The Familiar dimension]].
+* Requirement: Enter [[dimensions|The Familiar dimension]].
+* Reward: 30 XP (Rebalanced from 3 XP)
 
 === The Hive Walls ===
 
 * Description: Enter a biome where the structures reach the sky and the silence is loud.
-* Step into the Splinter Nest biome in the Grain.
+* Requirement: Step into the Splinter Nest biome in the Grain.
+* Reward: 25 XP (Rebalanced from 7 XP)
 
 === Stagnant Brew ===
 
 * Description: Refine Seep into a liquid gateway.
-* Drink the Pale Draught.
+* Requirement: Drink the Pale Draught.
+* Reward: 15 XP (Rebalanced from 1 XP)
 
 === A Cruel Likeness ===
 
 * Description: Fashion a key out of splintered shards and string.
-* Craft the Rot Effigy.
+* Requirement: Craft the Rot Effigy.
+* Reward: 15 XP (Rebalanced from 5 XP)
 
 === Coward's Smoke ===
 
 * Description: Drive the sentinel back into the wooden depths.
-* Try to kill the Rot.
+* Requirement: Fend off or force the Rot Sentinel to flee.
+* Reward: 2,077 XP (Rebalanced from 16 XP)
 
 === Pumping Heart ===
 
 * Description: Infuse your blade with the core of [[dimensions|The Rotting dimension]].
-* Craft the Heartwood Rotten Sword.
+* Requirement: Craft the Heartwood Rotten Sword.
+* Reward: 30 XP (Rebalanced from 8 XP)
 
 === Sentinel ===
 
-* Description: Prove that even the most ancient guardian can crumble.
-* Use the mace on the Rot.
+* Description: Try to kill the Rot.
+* Requirement: Initiate or face the ultimate trial against the Rot boss.
+* Reward: 1,000 XP (No change)
 
 === The source ===
 
 * Description: Get dragged into The Grain for looking where you shouldn't.
-* Get teleported into [[dimensions|The Grain dimension]].
+* Requirement: Get teleported into [[dimensions|The Grain dimension]].
+* Reward: 25 XP (Rebalanced from 3 XP)
 
 === A Memory Misplaced ===
 
-* Description: Enter [[dimensions|The Loss dimension]].
+* Description: Seek out what was forgotten.
+* Requirement: Enter [[dimensions|The Loss dimension]].
+* Reward: 35 XP (Rebalanced from 5 XP)
 
 === First Splinter of Memory ===
 
 * Description: Obtain a Memory Fragment from a Plaque Heart.
+* Requirement: Recover a fragment of past awareness.
+* Reward: 15 XP (No change)
 
 === Recovered Thought ===
 
 * Description: Craft a Recovered Fragment from distorted memory and remedy.
+* Requirement: Synthesize memory and remedy together.
+* Reward: 15 XP (No change)
 
 === Edge of Recall ===
 
 * Description: Forge your first Recovered Faded tool.
+* Requirement: Forge a tool imbued with past thoughts.
+* Reward: 11 XP (No change)
 
 === Borrowed Time ===
 
 * Description: Destroy a Plaque Heart to buy more time in Loss.
+* Requirement: Shatter a pulsing heart in the depths.
+* Reward: 16 XP (No change)
 
 === Patchwork Survival ===
 
 * Description: Use Petrified Resin to repair a Recovered Faded tool.
+* Requirement: Apply resin to mend deteriorating gear.
+* Reward: 8 XP (No change)
 
 === The Forest That Outlived Time ===
 
-* Description: Enter the [[dimensions|Weald dimension]].
+* Description: Travel beyond the boundaries of temporal decay.
+* Requirement: Enter the [[dimensions|Weald dimension]].
+* Reward: 45 XP (Rebalanced from 8 XP)
 
 === What Was Lost ===
 
-* Description: Reclaim every recovered faded tool
+* Description: Reclaim every recovered faded tool.
+* Requirement: Complete the full set of recovered faded armaments.
+* Reward: 60 XP (Rebalanced from 20 XP)

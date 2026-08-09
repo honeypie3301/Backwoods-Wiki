@@ -18,6 +18,7 @@ import EntitiesView from './special/EntitiesView';
 import ItemsView from './special/ItemsView';
 import TerminatedView from './special/TerminatedView';
 import HomeView from './special/HomeView';
+import AchievementsView from './special/AchievementsView';
 
 interface ArticleViewProps {
   article: WikiArticle;
@@ -46,7 +47,7 @@ export default function ArticleView({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const isSpecialPage = ['home', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated'].includes(article.slug);
+  const isSpecialPage = ['home', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements'].includes(article.slug);
 
   // Parse headers and content
   useEffect(() => {
@@ -256,6 +257,8 @@ export default function ArticleView({
               <ItemsView />
             ) : article.slug === 'terminated' ? (
               <TerminatedView />
+            ) : article.slug === 'achievements' ? (
+              <AchievementsView />
             ) : null
           ) : (
             /* HTML Rendered view */
