@@ -48,7 +48,7 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
 
 '''Recent Version Highlights:'''
-* '''The Woodweaver Boss:''' Added the Extermination Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.
+* '''The Woodweaver Boss:''' Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.
 * '''3 New Brewable Potions:''' Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.
 * '''Dimensions Biome Gallery:''' Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.
 </div>
