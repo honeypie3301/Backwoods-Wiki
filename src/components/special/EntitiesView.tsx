@@ -91,11 +91,16 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   dorceless_splinter: {
     modelUrl: '/models/Dorceless.obj',
     textureUrl: '/models/dorceless.png'
+  },
+  woodweaver: {
+    modelUrl: '/models/WoodWeaver.obj',
+    textureUrl: '/models/woodweaver_skin.png'
   }
 };
 
 const ENTITY_IMMUNITIES: Record<string, string[]> = {
   rot: ["Fall Damage", "Cactus", "Drowning", "Freezing", "Soul Fracture"],
+  woodweaver: ["Fall Damage", "Drowning", "Suffocation"],
   splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   kyne_splinter: ["Cactus", "Drowning"],
   dorceless_splinter: ["Cactus", "Drowning"],
@@ -175,6 +180,22 @@ export default function EntitiesView() {
       aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
       isUpdated: true,
       desc: "A biological sentinel that does not engage until it has profiled you. It observes gear, reach, and combat rhythm before committing to a strategy, then re-profiles continuously: every exchange adjusts its damage output, resistances, and attack selection against you specifically. Prolonged engagement is punished; the longer a fight runs, the less margin for error it allows. Confirmed capable of stripping equipped armor and destroying held Totems of Undying mid-fight. Do not assume early behavior predicts late-fight behavior."
+    },
+    {
+      id: "woodweaver",
+      name: "Woodweaver",
+      title: "Telekinetic Adaptive Sentinel",
+      threatLevel: "Extreme",
+      threatColor: "text-rose-500",
+      badgeBg: "bg-rose-950/30 border-rose-900/40 text-rose-400",
+      borderColor: "border-rose-950/20",
+      hp: "370 HP",
+      damage: "16 Base (Claw Sweeps) / 50.0F (Vaporize Beam)",
+      armor: "20 Points",
+      speed: "0.28 (Phase Adaptive)",
+      dim: "The Backwoods (Mysterious Sightings)",
+      isUpdated: true,
+      desc: "An ancient, highly intelligent boss organism capable of advanced telekinetic manipulation, gaze-reactive tracking, and a block-shattering Ramming Dash. Much like the Rot sentinel but in a lighter, more volatile form, it utilizes a cognitive weight decision engine that constantly re-scores and re-weights its active tactics based on target behaviors, decaying biases by 0.5% per tick back to neutral. In its dormant phase, it stalks survivors from up to 96 blocks away, retreating backward with locked-gaze alignment or vanishing with blindness when cornered. Once its Dread Meter reaches 100, it awakens into an aggressive combatant. Its primary weapon is a 50.0F strength Flash Vaporize beam that disintegrates terrain blocks up to a hardness of 50.0F and vaporizes anyone in its path. Upon defeat, it undergoes a 10-second levitating core instability, culminating in a colossal terrain-destroying 10.0F explosion."
     },
     {
       id: "splinter",
@@ -606,6 +627,75 @@ export default function EntitiesView() {
     }
   ];
 
+  const woodweaverAbilities: Ability[] = [
+    {
+      title: "Cornered Vanish",
+      trigger: "Target player approaches within 24 blocks during Dormant phase",
+      description: "When cornered closer than 24 blocks, the Woodweaver immediately teleports 75 to 100 blocks away in a cloud of smoke, inflicting 1 second (20 ticks) of blindness onto all players within a 40-block radius.",
+      category: "Dormant Defense"
+    },
+    {
+      title: "Gaze Tracking & Smooth Retreat",
+      trigger: "Target focuses crosshairs on the Woodweaver for >18 ticks (25–70 blocks away)",
+      description: "Observes the player's sight cone. If locked onto, it gains +15 Dread points per look and smooth-walks backward for 60 ticks while locking its head and eye yaw perfectly on the target to avoid skeletal twitching.",
+      category: "Dormant Observation"
+    },
+    {
+      title: "Infect Modesis (Infect)",
+      trigger: "Adaptive priority choice (no active Cellular Collapse disease on target)",
+      description: "Locks onto the target, telekinetically suspending them helplessly in mid-air to inject the severe 'Cellular Collapse' disease. This infectious state permanently removes 6 Max HP (3 hearts), reduces movement and swim speed by -35% to -50%, hampers jump strength by -25%, and continuously tick-damages the target for 0.5 HP every 1.75 seconds (35 ticks). Active infections can pile up to a maximum duration of 5 minutes.",
+      category: "Telekinetic Hypnosis"
+    },
+    {
+      title: "Leech Modesis (Leech)",
+      trigger: "Woodweaver HP <= 35% or target engaging with high-damage velocity",
+      description: "Siphons health directly across an active cellular bond. Drains 2 to 30 HP from infected targets suffering from Cellular Collapse. This process fully restores the Woodweaver's vital health reserves while permanently increasing the Woodweaver's maximum HP attribute by the exact amount of health siphoned from the victim.",
+      category: "Telekinetic Hypnosis"
+    },
+    {
+      title: "Incinerate Modesis (Incinerate)",
+      trigger: "Woodweaver HP <= 35% or target is blocking, towering, or shielding",
+      description: "Channels elemental heat to ignite the atmosphere, unleashing intense close-range fire damage that pierces standard armor values.",
+      category: "Telekinetic Hypnosis"
+    },
+    {
+      title: "Flash Vaporize (Vaporize Beam)",
+      trigger: "Active target tracking after a telemetric roar sequence",
+      description: "Telemetered by screaming beacon sounds. Once charged, it fires a colossal 3D square pyramid frustum beam up to 64 blocks. Deals 50.0F damage (25 hearts!), ignites targets for 5 seconds, and instantly vaporizes all environmental blocks in its path with hardness up to 50.0F.",
+      category: "Destructive Beam"
+    },
+    {
+      title: "Post-Hypno Fatigue Cooldown",
+      trigger: "Immediately following the firing phase of Flash Vaporize",
+      description: "The massive energy dump forces the Woodweaver into a 45-tick (2.25s) exhaustion state where it is completely frozen, immobile, and cannot execute attacks, exposing its core to physical retribution.",
+      category: "Exhaustion State"
+    },
+    {
+      title: "Claw Sweep Combos",
+      trigger: "Melee engagement range inside active Awakened combat state",
+      description: "Executes 7 distinct claw swipe patterns (Left, Right, Double, Left Hook, Right Hook, Left Sweep, Right Sweep). Each swing shreds terrain blocks with a hardness up to 10.0.",
+      category: "Melee Combos"
+    },
+    {
+      title: "Ramming Dash (Kool-Aid Man Dash)",
+      trigger: "Target fleeing quickly (>3m/s), Woodweaver physically stuck, or mining blocked for >4s",
+      description: "Charges directly through and past the target, overshooting by 4 to 6 blocks. Shatters all blocking environmental block obstacles in its path up to the maximum hardness threshold. Triggers an Escape Override to catch runners, a Stuck Override to bypass obstructions, or a Mining Impatience dash if physically held back. Followed by a smoking fatigue cooldown.",
+      category: "Mobility & Assault"
+    },
+    {
+      title: "Cognitive Weight Decision-Making",
+      trigger: "Continuous tick evaluation of successes, failures, and target intents",
+      description: "A lighter, highly dynamic counterpart to the Rot's permanent combat unlocks. Evaluates Target Intent to score and weight its 4 hypnosis options. Incorporates a dynamic reinforcement loop where successful hits increase weights, and failed or interrupted actions suffer a heavy -2.0 bias penalty. All biases decay by 0.5% every tick back to a neutral baseline to preserve unpredictable, shifting combat patterns.",
+      category: "Intelligence Engine"
+    },
+    {
+      title: "Cinematic Core Detonation",
+      trigger: "Health drop to <= 0.01F points",
+      description: "Intercepts standard death to trigger a 10-second (200-ticks) sequence. Levitates up to 18 blocks, gains invulnerability, emits an expanding particle field, and generates an escalating beacon hum before detonating in a real 10.0F strength block-shattering explosion.",
+      category: "Death Sequence"
+    }
+  ];
+
   const toggleAbility = (idx: number) => {
     setOpenAbilityIndex(openAbilityIndex === idx ? null : idx);
   };
@@ -984,6 +1074,55 @@ export default function EntitiesView() {
                       `"I tried to play dirty. I brought three Wither skulls down into the thick of the trees, thinking I could let two monsters destroy each other. It was an insult to the thing. It didn't even flinch at the decay. It met the beast head-on, shattering its skulls with consecutive, deafening strikes that sounded like thunderclaps. Then, it let out a localized scream so violent it shook the valley and blew out my eardrums—a terrifying echo of the deep dark, weaponized in the open air. The woods don't belong to the old legends anymore."`
                     ][activeRotLog]}
                   </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* THE WOODWEAVER: Custom mechanics */}
+          {currentEntity.id === 'woodweaver' && (
+            <div className="space-y-6 pt-2">
+              {/* Abilities Accordion */}
+              <div className="space-y-3">
+                <h4 className="text-[11px] font-mono uppercase tracking-widest text-red-500 font-bold">
+                  Adaptive Mechanics Dossier (Click to expand details)
+                </h4>
+                
+                <div className="space-y-2">
+                  {woodweaverAbilities.map((ab, idx) => {
+                    const isOpen = openAbilityIndex === idx;
+                    return (
+                      <div 
+                        key={idx} 
+                        className="bg-[#120c0c] border border-red-950/20 hover:border-red-900/30 rounded-lg transition-all"
+                      >
+                        <button
+                          onClick={() => toggleAbility(idx)}
+                          className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-[9px] font-mono text-red-400 bg-red-950/30 border border-red-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                              {ab.category}
+                            </span>
+                            <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-red-400 transition-colors">
+                              {ab.title}
+                            </span>
+                          </div>
+                          {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                        </button>
+                        
+                        {isOpen && (
+                          <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-red-950/20 space-y-2">
+                            <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                              <Zap className="w-3.5 h-3.5" />
+                              <span>Trigger Rule: {ab.trigger}</span>
+                            </div>
+                            <p className="leading-relaxed pl-1">{ab.description}</p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
