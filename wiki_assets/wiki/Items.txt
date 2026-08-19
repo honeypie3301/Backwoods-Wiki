@@ -101,6 +101,15 @@ The Backwoods introduces a focused set of items, most tied to survival, traversa
   </div>
   
 
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Atrophy Potion</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A degenerative, corrosive potion brewed with a Phantom Membrane and Awkward Potion. It directly modifies target attributes, reducing Max Health by 4 HP (-2 hearts), Attack Damage by 20%, and Jump Strength by 15%.</p>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cellular Collapse Potion</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">A highly volatile chemical brew made by combining Dragon's Breath and Atrophy Potion. It initiates widespread physical failure by severely debuffing core attributes: Max Health (-6 HP / -3 hearts), Attack Damage (-60%), Attack Knockback (-50%), Attack Speed (-30%), Mining Speed (-40%), Submerged Mining Speed (-50%), Sweeping Ratio (-50%), Jump Strength (-25%), and Swim Speed (-35%). Deals 0.5 custom kinetic damage every 35 ticks (1.75 seconds).</p>
+
+<h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Cellular Collapse II Potion</h3>
+<p style="margin-bottom: 15px; font-size: 0.95em;">An ultra-concentrated formulation made by combining Glowstone Dust with Cellular Collapse Potion. While keeping the same attribute debuffs of level I, it extends duration to 45 seconds and introduces secondary metabolic failure on active tick: every 40 ticks (2.0s) it deals 0.5 kinetic damage, adds 0.4 food exhaustion, and has a 30% chance to trigger Poison I (4.5s) and a 45% chance to trigger Hunger I (4.5s).</p>
+
 <h3 style="color: #c4bfa5; margin-top: 35px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">Pale Draught</h3>
 <p style="margin-bottom: 15px; font-size: 0.95em;">Crafted with a glass bottle and Seep. Drinking it will send the player to the Familiar. Use with caution - there is no return.</p>
 

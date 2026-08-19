@@ -1267,6 +1267,45 @@
       ]
     }
   ],
+  "the_backwoods:atrophy_potion": [
+    {
+      "file": "Brewing Stand Registration",
+      "type": "minecraft:brewing",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "minecraft:phantom_membrane",
+        "minecraft:awkward_potion"
+      ]
+    }
+  ],
+  "the_backwoods:cellular_collapse_potion": [
+    {
+      "file": "Brewing Stand Registration",
+      "type": "minecraft:brewing",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "minecraft:dragon_breath",
+        "the_backwoods:atrophy_potion"
+      ]
+    }
+  ],
+  "the_backwoods:cellular_collapse_potion_2": [
+    {
+      "file": "Brewing Stand Registration",
+      "type": "minecraft:brewing",
+      "outputCount": 1,
+      "pattern": null,
+      "keyMap": null,
+      "ingredients": [
+        "minecraft:glowstone_dust",
+        "the_backwoods:cellular_collapse_potion"
+      ]
+    }
+  ],
   "the_backwoods:splintered_oak_planks": [
     {
       "file": "splintered_oak_plank_recipe.json",
