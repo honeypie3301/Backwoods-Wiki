@@ -50,13 +50,10 @@ export default function HomeView() {
 
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
-            <ul className="list-disc list-inside space-y-1 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Advancement XP Rebalancing:</strong> Redesigned the Achievements index with fully updated, rebalanced XP rewards across 13 progression, travel, and combat milestones. Features interactive filter categorizations, real-time comparison metrics, and visual highlights for all modified values.</li>
-              <li><strong className="text-amber-300">Petrified Oak Planks:</strong> Added the fireproof, heavy-density Petrified Oak Planks block (Hardness 2.2, Blast Resistance 3, Pickaxe required) as the primary self-defense filler block of the Backwoods. Cleaned up Items catalog by removing Lignum Caro block duplication.</li>
-              <li><strong className="text-amber-300">Splinter Decay Rebalancing:</strong> Log Splinters now age and decay significantly faster (max lifespan of 480,000 ticks / ~6.67 hours) than standard woodbound varieties, while Petrified Log Splinters are completely fossilized and immune to temporal aging.</li>
-              <li><strong className="text-amber-300">Portal Catalysts & Igniters:</strong> Expanded dimension portal triggers with Dead Memory Shard (Loss Portal, 100% in-dimension) and Splinter Needle (Grain Portal, 60% in Backwoods/Grain) alongside Steel and Charcoal & Steel and Shard.</li>
-              <li><strong className="text-amber-300">Dimensions Biome Gallery & Custom Theme Dropdown:</strong> Added complete photographic dossier across all 18 regional biomes with a custom styled theme filter dropdown.</li>
-              <li><strong className="text-amber-300">Small Menger Sponge Feature:</strong> Subterranean Y=-50 to Y=-24 fractal cavern constructed from Lignum Caro, Splintered Oak Planks, and a Furnace housing a hidden loot chest.</li>
+            <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
+              <li><strong className="text-amber-300">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
+              <li><strong className="text-amber-300">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
+              <li><strong className="text-amber-300">Dimensions Biome Gallery:</strong> Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.</li>
             </ul>
           </div>
         </div>
