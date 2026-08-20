@@ -644,6 +644,39 @@ Once active, Lignum Palus locks in place and telekinetically pulls the player to
 </div>
 
 <!-- ==========================================
+     THE WOODWEAVER
+     ========================================== -->
+<h3 style="color: #ff5252; margin-top: 40px; margin-bottom: 12px; font-size: 1.15em; letter-spacing: 0.05em; text-transform: uppercase; font-weight: bold;">The Woodweaver</h3>
+<div style="background: #0d0909; border: 1px solid #321616; border-left: 2px dashed #9e2a2a; padding: 20px; margin-bottom: 30px;">
+    <p style="font-size: 0.95em; margin-bottom: 12px; color: #ff5252; line-height: 1.6; font-weight: bold;">Ancient. Telekinetic. Destructive Sentinel.</p>
+    <p style="font-size: 0.9em; margin-bottom: 15px; color: #8c8779; line-height: 1.6;">The Woodweaver is a formidable boss entity inhabiting the Backwoods. During its dormant stalking phase, it observes survivors from a distance, cautiously maintaining spacing and vanishing in a blinding smoke screen if approached too closely. Once fully provoked, it awakens into an aggressive predator, deploying telekinetic suspensions, high-velocity ramming charges, and a devastating vaporizing energy beam that tears through both players and terrain. Upon fatal damage, its unstable core triggers a massive, terrain-destroying blast.</p>
+
+    <div class="mw-collapsible mw-collapsed" style="background: #110909; border: 1px solid #321616; border-radius: 4px; padding: 12px; margin-top: 15px;">
+        <div class="mw-collapsible-toggle" style="background: #201414; border: 1px solid #3e1e1e; border-radius: 3px; padding: 8px 16px; font-weight: bold; font-size: 0.9em; color: #ff5252; text-align: center; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; display: inline-block; user-select: none;">
+            Behavioral &amp; Combat Dossier
+        </div>
+
+        <div class="mw-collapsible-content" style="margin-top: 12px; border-top: 1px solid #201414; padding-top: 12px; font-size: 0.85em; line-height: 1.6; color: #8c8779;">
+            <p style="margin-bottom: 10px;"><strong style="color: #c4bfa5;">Dormant Phase Tactics:</strong></p>
+            <ul style="margin: 0 0 12px 0; padding-left: 16px; list-style-type: square; color: #9c9788;">
+                <li style="margin-bottom: 6px;"><strong>Smoke Screen Escape:</strong> If cornered or approached while dormant, the Woodweaver instantly vanishes in blinding smoke to reposition elsewhere.</li>
+                <li style="margin-bottom: 6px;"><strong>Gaze Evasion:</strong> When direct eye contact is held, it glides backward while locking gaze, steadily building tension until it awakens.</li>
+            </ul>
+
+            <p style="margin-bottom: 10px;"><strong style="color: #c4bfa5;">Awakened Combat Capabilities:</strong></p>
+            <ul style="margin: 0 0 12px 0; padding-left: 16px; list-style-type: square; color: #9c9788;">
+                <li style="margin-bottom: 6px;"><strong>Cellular Infection:</strong> Suspends targets mid-air with telekinesis and inflicts Cellular Collapse, debuffing health, speed, and jump power while dealing internal damage.</li>
+                <li style="margin-bottom: 6px;"><strong>Life Siphon:</strong> Drains vitality across active infections, recovering its own health and expanding its maximum health pool.</li>
+                <li style="margin-bottom: 6px;"><strong>Combustion Wave:</strong> Ignites the air around blocking or shielded opponents with piercing heat damage.</li>
+                <li style="margin-bottom: 6px;"><strong>Vaporize Beam:</strong> Fires a high-powered energy beam after a telegraphed roar, destroying terrain and dealing lethal damage. Discharging the beam leaves the Woodweaver briefly exhausted and vulnerable to counterattacks.</li>
+                <li style="margin-bottom: 6px;"><strong>Ramming Dash &amp; Claw Combos:</strong> Bulldozes through blocks and obstacles to chase runners, followed by sweeping melee claw strikes in close quarters.</li>
+                <li style="margin-bottom: 0;"><strong>Core Detonation:</strong> Levitates and overloads upon reaching zero health, culminating in a huge area-of-effect explosion before vanishing.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
      GLOBAL STATISTICS TABLE
      ========================================== -->
 <h2 style="color: #eaeaea; border-bottom: 1px solid #301414; padding-bottom: 8px; margin-top: 50px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 0.15em; text-transform: uppercase; font-weight: normal;">Global Entity Statistics</h2>
