@@ -246,6 +246,8 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
             finalScale = blockScale * 1.25; // prime variant is slightly larger (1.25 blocks)
           } else if (entityId === 'lignum_gigas') {
             finalScale = blockScale * 8.0; // stands 16 blocks tall (massive, but fits perfectly in view)
+          } else if (entityId === 'woodweaver') {
+            finalScale = blockScale * 1.1; // Restore majestic, towering boss scale (stands several blocks tall)
           }
 
           modelGroup.scale.set(finalScale, finalScale, finalScale);
@@ -254,6 +256,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
           } else {
             modelGroup.position.y = 0; // base sits directly on pedestal
           }
+          modelGroup.position.z = 0; // Center model perfectly on pedestal and camera target rotation axis
 
           // Load custom texture override if resolvedTextureUrl is specified
           if (resolvedTextureUrl) {
@@ -703,11 +706,19 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     <div className="relative border border-[#1b221c] rounded-xl bg-[#060806] overflow-hidden group select-none">
       
       {/* Title block */}
-      <div className="absolute top-3 left-4 z-10 flex items-center gap-2 pointer-events-none">
-        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="font-mono text-[10px] text-emerald-400 uppercase tracking-widest font-bold">
-          3D MODEL VIEWPORT
-        </span>
+      <div className="absolute top-3 left-4 z-10 flex flex-col gap-1.5 pointer-events-none">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-mono text-[10px] text-emerald-400 uppercase tracking-widest font-bold">
+            3D MODEL VIEWPORT
+          </span>
+        </div>
+        {entityId === 'woodweaver' && (
+          <div className="bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[8px] font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase flex items-center gap-1 w-fit">
+            <span className="w-1 h-1 rounded-full bg-amber-400 animate-ping" />
+            <span>WIP: MODEL STAGED</span>
+          </div>
+        )}
       </div>
 
       {/* Loading overlay */}
@@ -730,6 +741,17 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
         ref={containerRef} 
         className="w-full h-[320px] sm:h-[380px] lg:h-[420px] cursor-grab active:cursor-grabbing" 
       />
+
+      {/* Censor Banner for Woodweaver */}
+      {entityId === 'woodweaver' && (
+        <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <div className="w-full bg-[#0a0c0a]/90 border-y border-[#1c241e] py-4 text-center transform -rotate-3 scale-110 shadow-lg">
+            <div className="font-mono text-sm font-bold tracking-[0.3em] text-[#709978] uppercase">
+              WORK IN PROGRESS
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Controls Overlay Footer */}
       <div className="absolute bottom-3 left-3 right-3 z-10 flex flex-wrap items-center justify-between gap-3 bg-[#0a0d0a]/80 backdrop-blur border border-[#1b221c]/50 p-2.5 rounded-lg">
