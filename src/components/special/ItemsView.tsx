@@ -563,14 +563,16 @@ export default function ItemsView() {
       name: "Tetherless Pearl",
       category: "utility",
       isUpdated: true,
-      desc: "A weightless dimensional pearl item that launches a high-velocity projectile upon release.",
+      desc: "A weightless dimensional pearl item dropped by the Dorceless Splinter. Thrown as a projectile, it shatters on impact and instantly swaps physical locations between the thrower and the target entity.",
       stats: [
         { label: "Acquisition Method", value: "Mob Drop from Dorceless Splinter" },
-        { label: "Item Classification", value: "Ranged Projectile / Dimensional Component" },
-        { label: "Velocity Profile", value: "High-velocity trajectory" }
+        { label: "Item Classification", value: "Entity Position-Swapping Projectile" },
+        { label: "Impact Effect", value: "Target Location Swap on Impact" }
       ],
       notes: [
-        "Obtainable as a mob drop from defeating a Dorceless Splinter entity (75 weight, 1 count).",
+        "Striking any living target (except The Rot) shatters the pearl with a glass crunch and immediately swaps your position with theirs.",
+        "Plays distinct spatial teleport sound effects at both the thrower's and the target's locations upon swapping.",
+        "Cannot swap positions with The Rot or the thrower.",
         "Serves as the core catalyst ingredient for crafting the Resonant Tetherless Pearl."
       ]
     },
@@ -579,13 +581,15 @@ export default function ItemsView() {
       name: "Resonant Tetherless Pearl",
       category: "utility",
       isUpdated: true,
-      desc: "An advanced, highly resonant spatial pearl projectile. Upon release, it propels a high-frequency warp wave that teleports the user 64 to 96 blocks away.",
+      desc: "An amplified, highly resonant spatial pearl projectile. When thrown, it propels a high-frequency warp wave that teleports the user forward over long distances across 64 to 96 blocks.",
       stats: [
         { label: "Teleportation Distance", value: "64 – 96 Blocks" },
-        { label: "Crafting Recipes", value: "2 Shapeless Recipes" }
+        { label: "Item Classification", value: "Long-Range Spatial Evasion" },
+        { label: "Crafting Method", value: "2 Shapeless Recipes (requires Tetherless Pearl)" }
       ],
       notes: [
-        "Provides immediate long-distance spatial evasion to escape hostile swarms or dangerous terrain."
+        "Provides immediate long-distance spatial evasion to escape hostile swarms or cross hazardous gaps.",
+        "Unlike the standard Tetherless Pearl, it displaces the thrower directly over vast distances without needing an entity target."
       ]
     },
     {

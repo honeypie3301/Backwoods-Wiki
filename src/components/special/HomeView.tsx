@@ -52,6 +52,7 @@ export default function HomeView() {
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
               <li><strong className="text-amber-300">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
+              <li><strong className="text-amber-300">Tetherless & Resonant Pearl Mechanics:</strong> Updated the Tetherless Pearl with its projectile position-swapping procedure (swaps locations with hit targets on impact) and the Resonant Pearl's long-range 64–96 block warp wave evasion.</li>
               <li><strong className="text-amber-300">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
               <li><strong className="text-amber-300">Dimensions Biome Gallery:</strong> Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.</li>
             </ul>

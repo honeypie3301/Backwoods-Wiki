@@ -101,7 +101,7 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'memory_fragment': { short: 'Mf', bg: 'bg-[#181126]', text: 'text-[#a855f7]', border: 'border-[#352055]', glow: 'group-hover:shadow-[0_0_10px_rgba(168,85,247,0.15)]' },
     'distorted_memory_fragment': { short: 'Dmf', bg: 'bg-[#201133]', text: 'text-[#c084fc]', border: 'border-[#45206b]', glow: 'group-hover:shadow-[0_0_12px_rgba(192,132,252,0.2)]' },
     'recovered_memory_fragment': { short: 'Rmf', bg: 'bg-[#2a1142]', text: 'text-[#e9d5ff]', border: 'border-[#5b208c]', glow: 'group-hover:shadow-[0_0_14px_rgba(233,213,255,0.25)]' },
-    'memory_shard': { short: 'Ms', bg: 'bg-[#181126]', text: 'text-[#a855f7]/90', border: 'border-[#352055]/80', glow: '' },
+    'memory_shard': { short: 'Ms', bg: 'bg-[#181126]', text: 'text-[#c084fc]', border: 'border-[#45206b]', glow: 'group-hover:shadow-[0_0_12px_rgba(192,132,252,0.2)]' },
     'loss': { short: 'Dms', bg: 'bg-[#181126]', text: 'text-[#a855f7]/90', border: 'border-[#352055]/80', glow: '' },
 
     // Miscellaneous

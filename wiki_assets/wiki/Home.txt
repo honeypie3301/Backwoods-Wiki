@@ -52,6 +52,7 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 <div style="font-weight: bold; color: #a9d1b0; text-transform: uppercase; margin-bottom: 8px; font-size: 0.9em; font-family: monospace;">Recent Version Highlights:</div>
 <ul style="margin: 0; padding-left: 20px;">
 <li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
+<li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">Tetherless & Resonant Pearl Mechanics:</strong> Updated the Tetherless Pearl with its projectile position-swapping procedure (swaps locations with hit targets on impact) and the Resonant Pearl's long-range 64–96 block warp wave evasion.</li>
 <li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
 <li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">Dimensions Biome Gallery:</strong> Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.</li>
 </ul>

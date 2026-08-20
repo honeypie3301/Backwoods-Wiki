@@ -1450,7 +1450,7 @@
       "pattern": null,
       "keyMap": null,
       "ingredients": [
-        "the_backwoods:loss",
+        "the_backwoods:memory_shard",
         "the_backwoods:scandere_resin",
         "the_backwoods:tetherless_pearl"
       ]
@@ -1462,7 +1462,7 @@
       "pattern": null,
       "keyMap": null,
       "ingredients": [
-        "the_backwoods:loss",
+        "the_backwoods:memory_shard",
         "the_backwoods:fractus_core_nugget",
         "the_backwoods:tetherless_pearl"
       ]
