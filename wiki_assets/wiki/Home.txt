@@ -43,14 +43,18 @@ The mod aims to diversify and intensify survival through oppressive exploration,
 
 <!-- NOTICE ALERT BOX -->
 <div style="background: #111; border: 1px solid #222; border-left: 3px solid #7c1c1c; padding: 18px; margin-bottom: 40px; font-size: 0.95em; line-height: 1.6; color: #b2a89a;">
-'''Wiki Maintenance Note:''' <u>The wiki is always updated before a new version releases.</u>
+<div style="font-weight: bold; color: #e69d00; text-transform: uppercase; margin-bottom: 10px; font-family: monospace;">Wiki Maintenance Note</div>
 
-If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+<div style="background: rgba(80, 40, 0, 0.3); border: 1px solid rgba(230, 157, 0, 0.3); padding: 12px; border-radius: 8px; color: #f5d082; margin-bottom: 14px;">
+<u>The wiki is always updated before a new version releases.</u> If something in-game doesn't match what's documented here, please make sure your mod build is up to date.
+</div>
 
-'''Recent Version Highlights:'''
-* '''The Woodweaver Boss:''' Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.
-* '''3 New Brewable Potions:''' Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.
-* '''Dimensions Biome Gallery:''' Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.
+<div style="font-weight: bold; color: #a9d1b0; text-transform: uppercase; margin-bottom: 8px; font-size: 0.9em; font-family: monospace;">Recent Version Highlights:</div>
+<ul style="margin: 0; padding-left: 20px;">
+<li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
+<li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
+<li style="margin-bottom: 6px;"><strong style="color: #fcd34d;">Dimensions Biome Gallery:</strong> Added a complete photographic dossier across all 18 regional biomes with a custom styled theme filter and interactive dropdown.</li>
+</ul>
 </div>
 
 <!-- FOOTER -->
