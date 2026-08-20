@@ -86,7 +86,15 @@ function WikiContainer() {
 
   // Determine active article
   const activeSlug = slug || 'home';
-  const activeArticle = articles.find(a => a.slug === activeSlug);
+  const activeArticle = articles.find(a => a.slug === activeSlug) || (
+    activeSlug === 'rot-lab' ? {
+      title: 'Rot Neural Lab & Mindspace Architecture',
+      slug: 'rot-lab',
+      category: 'Special',
+      filename: 'RotLab.txt',
+      order: 999
+    } : undefined
+  );
   const activeContent = articlesContent[activeSlug] || '';
 
   // Track page visits
