@@ -19,6 +19,7 @@ import ItemsView from './special/ItemsView';
 import TerminatedView from './special/TerminatedView';
 import HomeView from './special/HomeView';
 import AchievementsView from './special/AchievementsView';
+import RotLabView from './special/RotLabView';
 
 interface ArticleViewProps {
   article: WikiArticle;
@@ -47,7 +48,7 @@ export default function ArticleView({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const isSpecialPage = ['home', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements'].includes(article.slug);
+  const isSpecialPage = ['home', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements', 'rot-lab'].includes(article.slug);
 
   // Parse headers and content
   useEffect(() => {
@@ -259,6 +260,8 @@ export default function ArticleView({
               <TerminatedView />
             ) : article.slug === 'achievements' ? (
               <AchievementsView />
+            ) : article.slug === 'rot-lab' ? (
+              <RotLabView />
             ) : null
           ) : (
             /* HTML Rendered view */

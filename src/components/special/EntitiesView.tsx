@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
@@ -154,6 +154,22 @@ export default function EntitiesView() {
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
+  const rotClickTimesRef = useRef<number[]>([]);
+
+  const handleEntitySelect = (entityId: string) => {
+    setSelectedEntity(entityId);
+    if (entityId === 'rot') {
+      const now = Date.now();
+      const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
+      rotClickTimesRef.current = recent;
+      if (recent.length >= 5) {
+        rotClickTimesRef.current = [];
+        window.location.hash = '#/wiki/rot-lab';
+      }
+    } else {
+      rotClickTimesRef.current = [];
+    }
+  };
 
   const THREAT_VALUES: Record<string, number> = {
     "Low": 1,
@@ -773,7 +789,7 @@ export default function EntitiesView() {
               <div key={e.id}>
                 <UpdatedFrame id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
                   <button
-                    onClick={() => setSelectedEntity(e.id)}
+                    onClick={() => handleEntitySelect(e.id)}
                     className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
                       selectedEntity === e.id
                         ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
@@ -806,7 +822,13 @@ export default function EntitiesView() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#1a221c]">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-wider text-[#5a6b5e]">Entity Profile</span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e0e7e0] mt-1">{currentEntity.name}</h3>
+              <h3 
+                onClick={() => handleEntitySelect(currentEntity.id)}
+                className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e0e7e0] mt-1 cursor-pointer select-none hover:text-red-400 transition-colors"
+                title={currentEntity.id === 'rot' ? 'The Rot Mindspace' : undefined}
+              >
+                {currentEntity.name}
+              </h3>
               {currentEntity.aka && (
                 <div className="text-[10px] font-mono text-red-400 mt-0.5">
                   <span className="text-[#5a6b5e]">AKA: </span>{currentEntity.aka}

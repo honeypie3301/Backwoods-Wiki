@@ -650,65 +650,6 @@ export default function ItemsView() {
       ]
     },
     {
-      id: "atrophy_potion",
-      name: "Atrophy Potion",
-      category: "utility",
-      isUpdated: true,
-      desc: "A corrosive, degenerative potion that severely limits physical attributes, vitality, and health, leaving the body weak and fragile.",
-      stats: [
-        { label: "Effect", value: "Atrophy I (1:00)" },
-        { label: "Max Health", value: "-4.0 HP (-2 Hearts)" },
-        { label: "Attack Damage", value: "-20% Base Damage" },
-        { label: "Jump Strength", value: "-15% Jump Height" },
-        { label: "Stack Size", value: "1" }
-      ],
-      notes: [
-        "Brewed by combining a Phantom Membrane with an Awkward Potion in a brewing stand.",
-        "Modifies core entity attributes to directly suppress health capacity, physical force, and mobility."
-      ]
-    },
-    {
-      id: "cellular_collapse_potion",
-      name: "Cellular Collapse Potion",
-      category: "utility",
-      isUpdated: true,
-      desc: "An extremely dangerous, volatile mixture that initiates widespread cellular breakdown, drastically weakening the affected target's vital functions.",
-      stats: [
-        { label: "Effect", value: "Cellular Collapse I (0:30)" },
-        { label: "Max Health", value: "-6.0 HP (-3 Hearts)" },
-        { label: "Attack Damage", value: "-60%" },
-        { label: "Attack Speed", value: "-30%" },
-        { label: "Mining/Break Speed", value: "-40%" },
-        { label: "Jump Strength", value: "-25%" },
-        { label: "Swim & Water Eff.", value: "-35% / -45%" }
-      ],
-      notes: [
-        "Brewed by combining Dragon's Breath with Atrophy Potion in a brewing stand.",
-        "Severely reduces key attribute modifiers: Max Health (-6 HP), Attack Damage (-60%), Attack Knockback (-50%), Attack Speed (-30%), Mining Speed (-40%), Submerged Mining Speed (-50%), Sweeping Ratio (-50%), Jump Strength (-25%), and Swim Speed (-35%).",
-        "Every 35 ticks (1.75 seconds), deals 0.5 custom kinetic damage (half a heart / 1 HP) of type 'the_backwoods:cellular_collapse_damage'."
-      ]
-    },
-    {
-      id: "cellular_collapse_potion_2",
-      name: "Cellular Collapse II Potion",
-      category: "utility",
-      isUpdated: true,
-      desc: "An enhanced, ultra-concentrated formulation of cellular collapse, introducing complete metabolic failure, intense necrosis, and physical atrophy.",
-      stats: [
-        { label: "Effect", value: "Cellular Collapse II (0:45)" },
-        { label: "Max Health", value: "-6.0 HP (-3 Hearts)" },
-        { label: "Attack Damage", value: "-60%" },
-        { label: "Active Poison Chance", value: "30% (every 2.0s)" },
-        { label: "Active Hunger Chance", value: "45% (every 2.0s)" },
-        { label: "Food Exhaustion", value: "+0.4 points" }
-      ],
-      notes: [
-        "Brewed by combining Glowstone Dust with Cellular Collapse Potion in a brewing stand.",
-        "Shares the exact attribute modifiers of level I, but lasts longer (45 seconds) and introduces secondary metabolic collapse.",
-        "Every 40 ticks (2.0 seconds), deals 0.5 custom kinetic damage, inflicts +0.4 points of Food Exhaustion on Player targets, and carries a 30% chance to inflict Poison I (4.5s) and a 45% chance to inflict Hunger I (4.5s)."
-      ]
-    },
-    {
       id: "lignum_caro_sword",
       name: "Lignum Caro Sword",
       category: "weapons",
