@@ -20,10 +20,12 @@ import TerminatedView from './special/TerminatedView';
 import HomeView from './special/HomeView';
 import AchievementsView from './special/AchievementsView';
 import RotLabView from './special/RotLabView';
+import SanityView from './special/SanityView';
+import StructuresView from './special/StructuresView';
 
 interface ArticleViewProps {
   article: WikiArticle;
-  rawContent: string;
+  rawContent?: string;
   articles: WikiArticle[];
   searchQuery: string;
 }
@@ -36,7 +38,7 @@ interface HeadingItem {
 
 export default function ArticleView({
   article,
-  rawContent,
+  rawContent = '',
   articles,
   searchQuery
 }: ArticleViewProps) {
@@ -48,7 +50,7 @@ export default function ArticleView({
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const isSpecialPage = ['home', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements', 'rot-lab'].includes(article.slug);
+  const isSpecialPage = ['home', 'sanity', 'structures', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements', 'rot-lab'].includes(article.slug);
 
   // Parse headers and content
   useEffect(() => {
@@ -244,6 +246,10 @@ export default function ArticleView({
           {isSpecialPage ? (
             article.slug === 'home' ? (
               <HomeView />
+            ) : article.slug === 'sanity' ? (
+              <SanityView />
+            ) : article.slug === 'structures' ? (
+              <StructuresView />
             ) : article.slug === 'versions' ? (
               <VersionsView />
             ) : article.slug === 'dimensions' ? (

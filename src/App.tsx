@@ -4,6 +4,7 @@ import { Menu, Search, X, BookOpen, AlertCircle, HelpCircle, FileText, FileSearc
 import { doc, getDoc, setDoc, addDoc, collection, increment, serverTimestamp } from 'firebase/firestore';
 import { db as firestoreDb, hasConfig } from './lib/firebase';
 import { WikiArticle } from './types';
+import { WIKI_ARTICLES, WIKI_SEARCH_DATABASE } from './data/wikiData';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
 import StatsModal from './components/StatsModal';
@@ -13,61 +14,13 @@ function WikiContainer() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const [articles, setArticles] = useState<WikiArticle[]>([]);
-  const [articlesContent, setArticlesContent] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [articles] = useState<WikiArticle[]>(WIKI_ARTICLES);
+  const [articlesContent] = useState<Record<string, string>>(WIKI_SEARCH_DATABASE);
+  const [loading] = useState(false);
+  const [error] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [statsOpen, setStatsOpen] = useState(false);
-
-  // 1. Fetch Manifest and All Articles on mount
-  useEffect(() => {
-    async function loadWikiData() {
-      try {
-        setLoading(true);
-
-        // Get Vite base URL dynamically to support deployment subpaths (like GitHub Pages)
-        const base = import.meta.env.BASE_URL || '/';
-        const baseUrl = base.endsWith('/') ? base : `${base}/`;
-
-        // Fetch manifest
-        const manifestRes = await fetch(`${baseUrl}wiki/manifest.json`);
-        if (!manifestRes.ok) {
-          throw new Error('Failed to load wiki manifest.json');
-        }
-        const manifestData = await manifestRes.json() as WikiArticle[];
-        setArticles(manifestData);
-
-        // Fetch all raw txt files in parallel to cache for deep search
-        const contentMap: Record<string, string> = {};
-        await Promise.all(
-          manifestData.map(async (article) => {
-            try {
-              const res = await fetch(`${baseUrl}wiki/${article.filename}`);
-              if (res.ok) {
-                const text = await res.text();
-                contentMap[article.slug] = text;
-              } else {
-                contentMap[article.slug] = `Error: Could not load the content of ${article.title}`;
-              }
-            } catch (err) {
-              contentMap[article.slug] = `Error loading content: ${err instanceof Error ? err.message : String(err)}`;
-            }
-          })
-        );
-        setArticlesContent(contentMap);
-        setError(null);
-      } catch (err) {
-        console.error(err);
-        setError(err instanceof Error ? err.message : 'Unknown error loading wiki');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadWikiData();
-  }, []);
 
   // Sync hash section parameter
   useEffect(() => {

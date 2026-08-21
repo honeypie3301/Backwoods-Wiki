@@ -279,6 +279,47 @@ export default function DimensionsView() {
       ]
     },
     {
+      id: "still",
+      isUpdated: true,
+      name: "The Still",
+      subtitle: "The Silent Canopy",
+      color: "from-teal-600 to-cyan-900",
+      borderColor: "border-teal-800/40",
+      bgGlow: "bg-teal-950/30",
+      textColor: "text-teal-200",
+      accentColor: "text-teal-400",
+      desc: "A tranquil, unsettling realm locked in perpetual quiet beneath an unbroken canopy. Unlike the oppressive yellow fog of other realms, The Still features open, unclouded skies, but carries an unnerving silence that masks hidden drops and silent mechanics.",
+      access: "Can be accessed by drinking a Pale Draught Bottle while inside The Grain, or by crouch-activating an Attuned Resonant Rot Effigy / Rot Effigy while inside The Rotting.",
+      biomes: [
+        {
+          id: "still",
+          name: "Still",
+          image: "biomes/the_still.png",
+          desc: "The solitary biome of The Still dimension. Characterized by serene, unmoving wooden formations, calm atmospheric melodies, eerie mood cues, and secluded canopies.",
+          dimensionId: "still",
+          dimensionName: "The Still"
+        }
+      ],
+      rules: [
+        {
+          title: "Pale Draught Passage",
+          desc: "Drinking a Pale Draught Bottle inside The Grain teleports the player directly into The Still at Y=129. Consuming a second Pale Draught Bottle while within The Still propels the explorer forward into The Familiar."
+        },
+        {
+          title: "Attuned Effigy Transference",
+          desc: "Sneaking and using an Attuned Resonant Rot Effigy (or Rot Effigy) from within The Rotting channels inter-realm resonance to warp the user straight to Y=129 in The Still."
+        },
+        {
+          title: "Wood Seep Harvesting",
+          desc: "Harvesting Oak Planks or Rotten Oak Wood blocks inside The Still carries a 2.5% chance to extract rare Seep into the world."
+        },
+        {
+          title: "Acoustic Atmosphere",
+          desc: "Features custom ambient tracks (still_music, still_music2), spatial mood stingers (still_mood 1-3), and layered ambient audio (still_ambient 1-3)."
+        }
+      ]
+    },
+    {
       id: "familiar",
       name: "The Familiar",
       subtitle: "The Simulated Overworld",
