@@ -34,21 +34,28 @@ export default function TitleDialPicker() {
   const dragStartPos = useRef<number>(0);
   const animFrameId = useRef<number | null>(null);
   const isSettling = useRef<boolean>(false);
+  const resetTimerRef = useRef<number | null>(null);
+  const redirectTimerRef = useRef<number | null>(null);
 
   const itemHeight = 52;
   const viewportHeight = 56;
 
-  const handleSettleOption = useCallback((index: number) => {
-    const targetOption = WIKI_OPTIONS[index];
-    if (!targetOption) return;
+  // Reset to Backwoods (0) on mount, focus, or pageshow
+  useEffect(() => {
+    setPosition(0);
+    setSelectedIndex(0);
 
-    if (targetOption.id === 'super_bonemeal' && targetOption.url) {
-      window.location.href = targetOption.url;
-    } else if (targetOption.id === 'backwoods') {
-      if (window.location.hash !== '#/wiki/home' && window.location.hash !== '') {
-        window.location.hash = '#/wiki/home';
-      }
-    }
+    const handleReset = () => {
+      setPosition(0);
+      setSelectedIndex(0);
+    };
+
+    window.addEventListener('pageshow', handleReset);
+    window.addEventListener('focus', handleReset);
+    return () => {
+      window.removeEventListener('pageshow', handleReset);
+      window.removeEventListener('focus', handleReset);
+    };
   }, []);
 
   const animateToTarget = useCallback((targetIndex: number) => {
@@ -76,7 +83,34 @@ export default function TitleDialPicker() {
     };
 
     animFrameId.current = requestAnimationFrame(step);
-  }, [handleSettleOption]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSettleOption = useCallback((index: number) => {
+    const targetOption = WIKI_OPTIONS[index];
+    if (!targetOption) return;
+
+    // Clear any previous timers
+    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
+
+    if (index !== 0) {
+      // 1. If it has a redirection URL (e.g. Super Bonemeal), redirect the user
+      if (targetOption.url) {
+        redirectTimerRef.current = window.setTimeout(() => {
+          window.location.href = targetOption.url!;
+        }, 600);
+      }
+
+      // 2. Automatically rotate the dial back to BACKWOODS (index 0)
+      resetTimerRef.current = window.setTimeout(() => {
+        animateToTarget(0);
+      }, 400);
+    } else {
+      if (window.location.hash !== '#/wiki/home' && window.location.hash !== '') {
+        window.location.hash = '#/wiki/home';
+      }
+    }
+  }, [animateToTarget]);
 
   const handleDragEnd = useCallback(() => {
     if (!isDragging) return;
@@ -93,6 +127,9 @@ export default function TitleDialPicker() {
     if (animFrameId.current) {
       cancelAnimationFrame(animFrameId.current);
     }
+    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
+
     setIsDragging(true);
     dragStartY.current = clientY;
     dragStartPos.current = position;
@@ -160,6 +197,8 @@ export default function TitleDialPicker() {
     if (isDragging) return;
 
     if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
+    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
 
     const delta = e.deltaY > 0 ? 1 : -1;
     const nextIndex = Math.max(0, Math.min(WIKI_OPTIONS.length - 1, selectedIndex + delta));
@@ -171,6 +210,8 @@ export default function TitleDialPicker() {
   useEffect(() => {
     return () => {
       if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+      if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
     };
   }, []);
 
