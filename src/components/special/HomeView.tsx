@@ -19,22 +19,21 @@ import {
   Sparkles
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
+import TitleDialPicker from '../TitleDialPicker';
 
 export default function HomeView() {
   return (
     <div className="space-y-8 max-w-[1000px] mx-auto text-[#c9d1c9]">
       
-      {/* 1. LOGO HERO BANNER */}
-      <div className="relative overflow-hidden rounded-xl bg-[#0c0f0d] border border-[#1e2720] p-8 text-center shadow-lg">
-        <div className="space-y-2">
-          <h1 className="font-serif text-4xl sm:text-5xl font-extrabold tracking-widest text-[#e0e7e0] uppercase">
-            BACKWOODS
-          </h1>
+      {/* 1. LOGO HERO BANNER WITH SECRET INTERACTIVE DIAL PICKER */}
+      <UpdatedFrame id="home_hero_dial_picker" isUpdated={true}>
+        <div className="relative overflow-hidden rounded-xl bg-[#0c0f0d] border border-[#1e2720] p-8 text-center shadow-lg space-y-2">
+          <TitleDialPicker />
           <p className="text-xs sm:text-sm font-mono tracking-[0.2em] text-[#709978] uppercase">
             Official Survival & Horror Field Guide
           </p>
         </div>
-      </div>
+      </UpdatedFrame>
 
       {/* 2. WIKI MAINTENANCE NOTE (UPDATED FRAME) */}
       <UpdatedFrame id="home_maintenance_notice" isUpdated={true}>
@@ -51,6 +50,7 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
+              <li><strong className="text-amber-300">iOS Style Title Dial Picker:</strong> Implemented a 3D cylindrical draggable title dial wheel allowing seamless switching between Backwoods, Super Bonemeal, and Darwinism wikis with automatic redirection upon settlement.</li>
               <li><strong className="text-amber-300">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
               <li><strong className="text-amber-300">Tetherless & Resonant Pearl Mechanics:</strong> Updated the Tetherless Pearl with its projectile position-swapping procedure (swaps locations with hit targets on impact) and the Resonant Pearl's long-range 64–96 block warp wave evasion.</li>
               <li><strong className="text-amber-300">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
