@@ -34,13 +34,12 @@ export default function TitleDialPicker() {
   const dragStartPos = useRef<number>(0);
   const animFrameId = useRef<number | null>(null);
   const isSettling = useRef<boolean>(false);
-  const resetTimerRef = useRef<number | null>(null);
-  const redirectTimerRef = useRef<number | null>(null);
+  const isAutoResetting = useRef<boolean>(false);
 
   const itemHeight = 52;
   const viewportHeight = 56;
 
-  // Reset to Backwoods (0) on mount, focus, or pageshow
+  // Reset to Backwoods (0) on mount, focus, or pageshow (such as when user presses Back button)
   useEffect(() => {
     setPosition(0);
     setSelectedIndex(0);
@@ -58,7 +57,7 @@ export default function TitleDialPicker() {
     };
   }, []);
 
-  const animateToTarget = useCallback((targetIndex: number) => {
+  const animateToTarget = useCallback((targetIndex: number, shouldTriggerSettle: boolean = true) => {
     if (animFrameId.current) {
       cancelAnimationFrame(animFrameId.current);
     }
@@ -71,7 +70,9 @@ export default function TitleDialPicker() {
         if (Math.abs(diff) < 0.005) {
           isSettling.current = false;
           setSelectedIndex(targetIndex);
-          handleSettleOption(targetIndex);
+          if (shouldTriggerSettle) {
+            handleSettleOption(targetIndex);
+          }
           return targetIndex;
         }
         return prev + diff * 0.22;
@@ -86,25 +87,25 @@ export default function TitleDialPicker() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSettleOption = useCallback((index: number) => {
+    if (isAutoResetting.current) {
+      isAutoResetting.current = false;
+      return;
+    }
+
     const targetOption = WIKI_OPTIONS[index];
     if (!targetOption) return;
 
-    // Clear any previous timers
-    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
-
     if (index !== 0) {
-      // 1. If it has a redirection URL (e.g. Super Bonemeal), redirect the user
+      // 1. If option has a URL (e.g. Super Bonemeal), redirect to it
       if (targetOption.url) {
-        redirectTimerRef.current = window.setTimeout(() => {
-          window.location.href = targetOption.url!;
-        }, 600);
+        window.location.href = targetOption.url;
       }
 
-      // 2. Automatically rotate the dial back to BACKWOODS (index 0)
-      resetTimerRef.current = window.setTimeout(() => {
-        animateToTarget(0);
-      }, 400);
+      // 2. Animate dial back to BACKWOODS (0) smoothly
+      setTimeout(() => {
+        isAutoResetting.current = true;
+        animateToTarget(0, false);
+      }, 350);
     } else {
       if (window.location.hash !== '#/wiki/home' && window.location.hash !== '') {
         window.location.hash = '#/wiki/home';
@@ -118,7 +119,7 @@ export default function TitleDialPicker() {
 
     setPosition(currentPos => {
       const targetIndex = Math.max(0, Math.min(WIKI_OPTIONS.length - 1, Math.round(currentPos)));
-      animateToTarget(targetIndex);
+      animateToTarget(targetIndex, true);
       return currentPos;
     });
   }, [isDragging, animateToTarget]);
@@ -127,8 +128,7 @@ export default function TitleDialPicker() {
     if (animFrameId.current) {
       cancelAnimationFrame(animFrameId.current);
     }
-    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
+    isAutoResetting.current = false;
 
     setIsDragging(true);
     dragStartY.current = clientY;
@@ -197,21 +197,18 @@ export default function TitleDialPicker() {
     if (isDragging) return;
 
     if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
-    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-    if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
+    isAutoResetting.current = false;
 
     const delta = e.deltaY > 0 ? 1 : -1;
     const nextIndex = Math.max(0, Math.min(WIKI_OPTIONS.length - 1, selectedIndex + delta));
     if (nextIndex !== selectedIndex) {
-      animateToTarget(nextIndex);
+      animateToTarget(nextIndex, true);
     }
   };
 
   useEffect(() => {
     return () => {
       if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
-      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-      if (redirectTimerRef.current) clearTimeout(redirectTimerRef.current);
     };
   }, []);
 
@@ -247,7 +244,7 @@ export default function TitleDialPicker() {
               key={opt.id}
               onClick={() => {
                 if (!isDragging && idx !== selectedIndex) {
-                  animateToTarget(idx);
+                  animateToTarget(idx, true);
                 }
               }}
               style={{
