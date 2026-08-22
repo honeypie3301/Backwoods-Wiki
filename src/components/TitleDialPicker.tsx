@@ -20,7 +20,7 @@ export const WIKI_OPTIONS: WikiOption[] = [
   {
     id: 'darwinism',
     title: 'DARWINISM',
-    url: undefined
+    url: 'https://honeypie3301.github.io/Darwinism-Wiki/#/wiki/home'
   }
 ];
 
