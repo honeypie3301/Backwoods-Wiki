@@ -84,7 +84,7 @@ export default function TerminatedView() {
       name: 'Ender Dragon',
       category: 'Vanilla',
       image: 'terminated_entities/Vanilla/Ender_Dragon.webp',
-      threatLevel: 8.5,
+      threatLevel: 6.6,
       terminationCycle: 'CYCLE 01',
       isTerminated: true,
       notes: 'Apex End organism. Rot adapted Dimensional Spacing (Blink) to match target flying maneuvers, teleporting behind its blind spot and executing Cryo-Thermal Synthesis.'
@@ -94,7 +94,7 @@ export default function TerminatedView() {
       name: 'Elder Guardian',
       category: 'Vanilla',
       image: 'terminated_entities/Vanilla/Elder_Guardian.webp',
-      threatLevel: 6.5,
+      threatLevel: 3.6,
       terminationCycle: 'CYCLE 03',
       isTerminated: true,
       notes: 'Ocean monument infiltration. Target fatigue field resisted with Adaptive Health Regeneration. Rot broke retractable spikes via Minos Protocol shield-breaking punches.'
@@ -114,7 +114,7 @@ export default function TerminatedView() {
       name: 'Creeper Unit',
       category: 'Vanilla',
       image: 'terminated_entities/Vanilla/Creeper_JE2_BE1.webp',
-      threatLevel: 3.5,
+      threatLevel: 3.0,
       terminationCycle: 'CYCLE 22',
       isTerminated: true,
       notes: 'Stealth ambush intercepted. Target fusion fuse bypassed using 18-tick Dimensional Spacing (Blink) to teleport behind the unit, followed by a launching kick.'
@@ -966,6 +966,17 @@ export default function TerminatedView() {
       terminationCycle: 'CYCLE 88',
       isTerminated: true,
       notes: "Specimen possessed high raw aggression and 512m tracking, but zero defensive adaptation. Target's 19.0 melee strikes were instantly nullified. The Rot executed a baseline heavy punch into a rider kick, terminating the entity before high-level adaptive scaling was even triggered."
+    },
+    {
+      id: 'integrity_p3',
+      name: 'Integrity (Phase 3)',
+      category: 'Modded',
+      modName: 'The Broken Script',
+      image: 'terminated_entities/Modded/TBS/integrity_phase_3.png',
+      threatLevel: 1.5,
+      terminationCycle: 'CYCLE 89',
+      isTerminated: true,
+      notes: "A powerful reality-scripted sovereign normally possessing invulnerability frames and strict damage-per-hit limits. However, the Rot's upgraded AI completely bypassed all boss damage filters, directly subtracting health from Integrity's core while ignoring its 4-second Mace parrying defenses. Though the deflected fireball did minor damage, Integrity was terminated effortlessly."
     }
   ];
 
@@ -1187,7 +1198,8 @@ export default function TerminatedView() {
                   { id: 'ArPhEx', label: 'ARPHEX' },
                   { id: 'Cult of Azazel', label: 'CULT OF AZAZEL' },
                   { id: 'Legendary Monsters', label: 'LEGENDARY MONSTERS' },
-                  { id: 'Verity JE', label: 'VERITY JE' }
+                  { id: 'Verity JE', label: 'VERITY JE' },
+                  { id: 'The Broken Script', label: 'THE BROKEN SCRIPT' }
                 ].map(mod => (
                   <option key={mod.id} value={mod.id}>{mod.label}</option>
                 ))}
