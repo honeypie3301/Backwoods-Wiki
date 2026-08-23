@@ -1,17 +1,44 @@
 import React, { useState } from 'react';
 import { 
   Building2, 
-  Compass, 
-  Layers, 
-  MapPin, 
-  Boxes, 
   Search, 
   Eye, 
-  ShieldAlert, 
-  ChevronRight,
-  Sparkles
+  X, 
+  Maximize2, 
+  Image as ImageIcon,
+  AlertTriangle
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
+
+function getAbsoluteAssetUrl(url: string) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  
+  let cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+  if (cleanUrl.startsWith('wiki_assets/')) {
+    cleanUrl = cleanUrl.replace('wiki_assets/', '');
+  }
+  
+  const pathname = window.location.pathname;
+  const segments = pathname.split('/').filter(Boolean);
+  const isGitHubPages = window.location.hostname.endsWith('github.io');
+  
+  let base = '';
+  if (isGitHubPages && segments.length > 0) {
+    base = `/${segments[0]}/`;
+  } else {
+    const viteBase = import.meta.env.BASE_URL || '/';
+    if (viteBase === './' || viteBase === '.') {
+      base = '/';
+    } else {
+      base = viteBase.endsWith('/') ? viteBase : `${viteBase}/`;
+    }
+  }
+  
+  return `${base}${cleanUrl}`;
+}
 
 interface StructureItem {
   id: string;
@@ -24,11 +51,19 @@ interface StructureItem {
   desc: string;
   features: string[];
   color: string;
+  image?: string;
+  isUpdated?: boolean;
 }
 
 export default function StructuresView() {
   const [selectedDimension, setSelectedDimension] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [enlargedImage, setEnlargedImage] = useState<{ url: string; name: string; desc: string } | null>(null);
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setFailedImages(prev => ({ ...prev, [id]: true }));
+  };
 
   const structures: StructureItem[] = [
     // THE BACKWOODS
@@ -42,11 +77,12 @@ export default function StructuresView() {
       materials: ["Oak Planks", "Oak Slabs", "Loot Chest"],
       desc: "An ominous, freestanding spiral flight of wooden stairs ascending unanchored into the thick yellow fog.",
       features: [
-        "Loot Reward: Houses a high-tier wooden chest at its summit containing dimensional survival equipment.",
-        "Aesthetic: Eerie architectural anomaly with missing banisters and worn steps.",
-        "Hazard: Steep drop hazard with zero safety barriers into surrounding woods."
+        "Summit Loot: Houses a high-tier wooden chest at its summit containing dimensional survival equipment.",
+        "Architectural Anomaly: Features missing banisters, worn steps, and zero structural foundation support.",
+        "Fall Peril: Steep drop hazard with zero safety barriers into the surrounding dense woods."
       ],
-      color: "border-amber-700/40 text-amber-300"
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/staircase.png"
     },
     {
       id: "backwoods_farlands",
@@ -56,29 +92,31 @@ export default function StructuresView() {
       tag: "Boundary Glitch",
       scale: "Monolithic Planks (6,275,412m+)",
       materials: ["Solid Oak Planks", "Rotten Oak Logs"],
-      desc: "Massive solid walls of Oak Planks and structural distortion extending towards world boundaries.",
+      desc: "Massive solid walls of Oak Planks and structural distortion extending infinitely towards world boundaries.",
       features: [
-        "Gravity Anomaly: Beyond the boundary threshold, localized gravity degrades into anti-gravity float states.",
-        "Structural Scale: Infinite vertical and horizontal walls composed entirely of wooden boards.",
-        "Navigational Hazard: Extreme spatial distortion makes coordinate tracking unreliable."
+        "Anti-Gravity Anomaly: Crossing the boundary threshold degrades gravity into an anti-gravity floating state.",
+        "Monolithic Scale: Infinite vertical and horizontal walls composed entirely of wooden boards.",
+        "Spatial Distortions: Coordinate tracking becomes unreliable due to non-Euclidean mesh compression."
       ],
-      color: "border-amber-700/40 text-amber-300"
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/backwoods_farlands.png"
     },
     {
       id: "oak_stalactites",
       name: "Oak Stalactites",
       dimension: "The Backwoods",
       dimensionId: "backwoods",
-      tag: "Geological Anomaly",
-      scale: "Medium Columns (12-30m)",
-      materials: ["Oak Planks", "Lignum Caro"],
-      desc: "Massive inverted wooden pillars hanging from subterranean ceilings and dense overgrowth.",
+      tag: "Subterranean Stalactite",
+      scale: "Tapered Columns (12-30m)",
+      materials: ["Oak Logs"],
+      desc: "Inverted wooden log spikes growing upward into solid cave ceilings with inverse tapering.",
       features: [
-        "Biological Fusion: Frequently embedded with pulsating Lignum Caro organic matter.",
-        "Cave Hazard: Obstructs cave navigation and creates blind spots for stalking predators.",
-        "Harvestable: High density of harvestable wood blocks in cave biomes."
+        "Ceiling Anchoring: Embeds directly into overhead stone ceilings without popping out on floor surfaces.",
+        "Inverse Taper: Widens at the top ceiling junction and tapers downward into a sharp wooden point.",
+        "Wood Harvest: High density source of harvestable Oak Logs inside subterranean caverns."
       ],
-      color: "border-amber-700/40 text-amber-300"
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/oak_stalactites.png"
     },
     {
       id: "menger_sponge_small",
@@ -86,65 +124,122 @@ export default function StructuresView() {
       dimension: "The Backwoods",
       dimensionId: "backwoods",
       tag: "Fractal Formation",
-      scale: "Compact Recursive Cube (9x9x9m)",
-      materials: ["Oak Planks", "Decayed Logs"],
-      desc: "A mathematically pure 3D fractal cubic sponge constructed entirely from oak planks.",
+      scale: "Compact Recursive Cube (2% Spawn Rate / Chunk)",
+      materials: ["Lignum Caro (90%)", "Splintered Oak (9%)", "Oak Planks (1%)", "Chest", "Furnace", "Red Bed"],
+      desc: "A compact 3D recursive cubic sponge constructed from weighted organic Caro and oak materials.",
       features: [
-        "Recursive Voids: Features interconnected hollow tunnels through mathematical subtraction.",
-        "Shelter: Functions as a temporary natural redoubt against open-range hostile mobs.",
-        "Loot Node: Occasional internal hidden compartments with supplies."
+        "Weighted Material Mix: Generated from 90% organic Lignum Caro, 9% Splintered Oak, and 1% Oak Planks.",
+        "Interior Loot Voids: Hollow internal fractal chambers contain Furnaces, Loot Chests, and Red Beds.",
+        "Compact Redoubt: Functions as a defensive shelter against hostile surface predators."
       ],
-      color: "border-amber-700/40 text-amber-300"
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/small_menger_sponge.png"
     },
 
     // THE GRAIN
+    {
+      id: "the_underside",
+      name: "The Underside",
+      dimension: "The Grain",
+      dimensionId: "grain",
+      tag: "Sub-Floor Void Chamber",
+      scale: "Y=20 to Y=44 (24m Chamber Height)",
+      materials: ["Oak Planks (Ceiling & Floor)", "Oak Fences"],
+      desc: "A sprawling subterranean void chamber generating directly beneath the main floorboards of The Grain.",
+      features: [
+        "Structural Boundaries: Enclosed by solid Oak Plank ceiling (Y=44) and floor (Y=20) plates.",
+        "Support Columns: Vertical Oak Fence columns generate on a strict 4-block grid (absX % 4 == 0 && absZ % 4 == 0).",
+        "Terrain Override: Force-overwrites pre-existing terrain rule blocks and mazes as chunks process."
+      ],
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/the_underside.png",
+      isUpdated: true
+    },
     {
       id: "void_basement",
       name: "Void Basement",
       dimension: "The Grain",
       dimensionId: "grain",
       tag: "Subterranean Sub-Grid",
-      scale: "Expansive Chamber",
-      materials: ["Stripped Oak Planks", "Reinforced Beams"],
-      desc: "A submerged, hollow undercroft generating beneath the floorboards of The Grain.",
+      scale: "Y=-50 to Y=-13 (Catwalks at Y=-34)",
+      materials: ["Oak Planks (Catwalks & Plates)", "Oak Fences"],
+      desc: "A submerged undercroft beneath floorboards featuring sharp 90-degree walkway networks over deep voids.",
       features: [
-        "Atmosphere: Thick darkness and echoey acoustic dampening.",
-        "Navigation: Accessible through missing flooring fissures in upper grain layers.",
-        "Hostile Activity: High spawn rate of lurking entities seeking darkness."
+        "Catwalk Array: 2-block wide Oak Plank catwalks at Y=-34 following 'Square Snake' grid paths (24-block frequency).",
+        "Downward Support: Oak Fence columns extend downward every 5 blocks beneath catwalk intersections.",
+        "Enclosed Volume: Sealed above (Y=-13) and below (Y=-50) by solid Oak Plank floor/ceiling layers."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/void_basement.png"
+    },
+    {
+      id: "void_bedrock_planks",
+      name: "Void Bedrock Planks",
+      dimension: "The Grain",
+      dimensionId: "grain",
+      tag: "Bedrock Fissure Anomaly",
+      scale: "Y=-64 to Y=-59 Bedrock Layer (3-5.5m Radius Blobs)",
+      materials: ["Oak Planks", "Bedrock"],
+      desc: "Direct bedrock layer replacement where ellipsoidal Oak Plank blobs punch holes down into the Void.",
+      features: [
+        "Bedrock Punchout: Replaces vanilla bedrock blocks at Y=-64 to Y=-59 with randomized 3 to 5.5 block radius blobs.",
+        "Flattened Ellipsoid Math: Uses (dx² + 1.5*dy² + dz²) <= radius² distance calculation to stamp plank clusters.",
+        "Void Apertures: Creates direct fall holes into the Void at the bottom of the world."
+      ],
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/void_planks.png",
+      isUpdated: true
     },
     {
       id: "cavern_grid",
       name: "Cavern Grid",
       dimension: "The Grain",
       dimensionId: "grain",
-      tag: "Structural Maze",
-      scale: "Multi-level Grid",
-      materials: ["Oak Planks", "Wooden Slabs", "Lattices"],
+      tag: "Structural Cavern Grid",
+      scale: "Multi-level Subterranean Lattice",
+      materials: ["Oak Planks", "Air"],
       desc: "An intricate 3D grid layout stretching across subterranean caverns within The Grain.",
       features: [
         "Modular Architecture: Repeating hallway cells separated by wooden partitions.",
         "Disorientation: Identical room geometries induce acute navigational confusion.",
-        "Acoustic Traps: Footsteps reverberate loudly across wooden grid frames."
+        "Acoustic Amplification: Footsteps reverberate loudly across wooden grid frames."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/cavern_grid.png"
+    },
+    {
+      id: "menger_sponge",
+      name: "Menger Sponge (Macro)",
+      dimension: "The Grain",
+      dimensionId: "grain",
+      tag: "Macro Fractal Matrix",
+      scale: "Massive 81x81x81m Cube Matrix",
+      materials: ["Oak Planks", "Bedrock", "Air"],
+      desc: "An 81x81x81 block recursive 3D fractal Menger sponge matrix carved into the terrain.",
+      features: [
+        "3D Fractal Subtraction: Evaluates 3D coordinate matrices (x%3, y%3, z%3) to carve infinite hollow tunnels.",
+        "Floor Protection: Preserves existing bedrock floor plates from being sliced by fractal voids.",
+        "Navigational Labyrinth: Complex multi-tier 3D interior tunnel network."
+      ],
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/grain_menger_sponge.png"
     },
     {
       id: "sky_grid",
       name: "Sky Grid",
       dimension: "The Grain",
       dimensionId: "grain",
-      tag: "Aerial Formation",
-      scale: "High Altitude Grid (Y=180-260)",
-      materials: ["Oak Planks", "Oak Fences"],
-      desc: "A suspended network of wooden walkways and cross-braced beams hanging high above the grain floor.",
+      tag: "Aerial Grid Matrix",
+      scale: "Y=190 to Y=319 (12-block Equalized Cube Cavities)",
+      materials: ["Oak Planks"],
+      desc: "An aerial lattice of 1-block wide Oak Plank beams forming 12x12x12 block open cube cavities high overhead.",
       features: [
-        "Fall Peril: Open-air catwalks with no railings over lethal void depths.",
-        "Transit Network: Allows swift cross-biome travel across dense forest canopies below.",
-        "Atmospheric Wind: Severe wind gusts increase slipping risk on narrow beams."
+        "Equalized Spacing: Beams generate every 12 blocks horizontally and vertically (11 blocks air + 1 block beam).",
+        "Pillar Intersections: Solid vertical Oak Plank columns run full height through every grid line intersection.",
+        "High-Altitude Crossing: Allows elevated cross-biome transit above forest canopy terrain."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/sky_grid.png"
     },
     {
       id: "the_nest_grids",
@@ -160,23 +255,25 @@ export default function StructuresView() {
         "Resource Hub: Abundant source of Sharpened Splinters and rare drops.",
         "Labyrinthine Layout: Multiple dead-ends designed to trap intruders."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/nest_grids.png"
     },
     {
       id: "sub_grain_atria",
       name: "Sub-Grain Atria",
       dimension: "The Grain",
       dimensionId: "grain",
-      tag: "Central Monument",
-      scale: "Massive Hall (40x40x30m)",
-      materials: ["Polished Oak", "Decorative Planks"],
-      desc: "Colossal multi-tier atriums featuring soaring wooden pillars and skylights into the yellow fog.",
+      tag: "Stacked Colonnade Halls",
+      scale: "Y=8 (3 Stacked 5-block Floors with 1-block Gaps)",
+      materials: ["Oak Planks", "Air"],
+      desc: "A multi-floor atrium structure starting at Y=8 with carved 6-block wide hallways and vertical shafts.",
       features: [
-        "Architectural Grandeur: Symmetrical colonnades and elevated viewing galleries.",
-        "Loot Sanctuaries: Often contains concealed artifact pedestals.",
-        "Echo Chamber: Amplifies ambient whispers and entity movement."
+        "Triple Tier Design: Generates 3 stacked 5-block tall floor levels with 1-block gaps between floors.",
+        "Coordinate Carving: Carves 6-block wide hallways along X and Z axes wherever world coordinates match (worldX % 10 < 3).",
+        "Connecting Shafts: 2x2 vertical shaft openings carved every 20 blocks to allow movement between levels."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/sub_grain_atria.png"
     },
     {
       id: "labyrinthine_grids",
@@ -186,13 +283,14 @@ export default function StructuresView() {
       tag: "Non-Euclidean Maze",
       scale: "Endless Partitions",
       materials: ["Uniform Oak Planks"],
-      desc: "Seamless repeating corridors designed to trap travelers in an infinite loop of indistinguishable wooden halls.",
+      desc: "Repeating 3D corridor grids designed to disorient travelers in an infinite loop of indistinguishable wooden halls.",
       features: [
         "Geometric Confusion: Hallways seamlessly reconnect in non-intuitive patterns.",
         "Blind Corners: High probability of ambushes at 90-degree intersections.",
         "Marker Strategy: Explorers are advised to leave torch or block trails."
       ],
-      color: "border-yellow-700/40 text-yellow-300"
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/labyrinthine_grids.png"
     },
 
     // THE SUB-STRATA
@@ -201,16 +299,17 @@ export default function StructuresView() {
       name: "Right Side Up City",
       dimension: "The Sub-Strata",
       dimensionId: "substrata",
-      tag: "Megalopolis Ruin",
-      scale: "Multi-block Skyscraper Complex",
-      materials: ["Dark Oak Planks", "Petrified Logs", "Deepslate"],
-      desc: "A decayed, colossal city of wooden skyscrapers standing upright across the floor of The Sub-Strata.",
+      tag: "Skyscraper Ruins",
+      scale: "Floor at Y=63 (20-50m Building Heights)",
+      materials: ["Oak Planks", "Air"],
+      desc: "A decayed metropolis of wooden skyscrapers standing upright across a solid Y=63 floor plate.",
       features: [
-        "Tower Exploration: Explorable multi-floor buildings with interior stairwells and offices.",
-        "Catastrophic Decay: Collapsed floorboards create vertical drop pitfalls.",
-        "High Loot Value: Concentrated tech, gear, and rare dimensional artifacts."
+        "Procedural Heights: Buildings stand 20 to 50 blocks tall with 5x5 to 8x8 block footprints on a 10-block grid.",
+        "40% Hollow Shell Chance: 40% of generated buildings feature hollow air interiors with roof and floor slabs.",
+        "Macro Roundabouts: 24-block radius circular park roundabouts generate every 10x10 macro chunk sector."
       ],
-      color: "border-stone-600 text-stone-300"
+      color: "border-stone-600 text-stone-300",
+      image: "structures/right_side_up_city.png"
     },
     {
       id: "upside_down_city",
@@ -218,15 +317,16 @@ export default function StructuresView() {
       dimension: "The Sub-Strata",
       dimensionId: "substrata",
       tag: "Inverted Megastructure",
-      scale: "Ceiling-Anchored Skyscrapers",
-      materials: ["Petrified Planks", "Inverted Pillars"],
-      desc: "A surreal, fully inverted mirror city hanging suspended from the bedrock ceiling.",
+      scale: "Ceiling at Y=160 (20-50m Inverted Towers)",
+      materials: ["Oak Planks"],
+      desc: "A surreal inverted mirror city hanging suspended downward from a solid Y=160 bedrock ceiling plate.",
       features: [
-        "Inverted Navigation: Requires scaffolding, pearl projection, or flight to explore safely.",
-        "Gravity Contrast: The visual disorientation of walking under skyscrapers overhead.",
-        "Ancient Lore: Relics of an extinct pre-collapse civilization."
+        "Solid Ceiling Anchor: Anchored to a forced Y=160 ceiling plate using Flag 16 world data injections.",
+        "Downward Towers: Buildings extend 20 to 50 blocks downward into subterranean cavern air space.",
+        "Vertical Navigation: Requires ladders, scaffolding, or Ender Pearl projection to explore safely."
       ],
-      color: "border-stone-600 text-stone-300"
+      color: "border-stone-600 text-stone-300",
+      image: "structures/upside_down_city.png"
     },
     {
       id: "scaffolding_tower",
@@ -234,31 +334,33 @@ export default function StructuresView() {
       dimension: "The Sub-Strata",
       dimensionId: "substrata",
       tag: "Spawn Monument",
-      scale: "Colossal Descent Shaft (Y=319 to Y=161)",
-      materials: ["Scaffolding", "Reinforced Planks", "Ladders"],
-      desc: "A massive, towering lattice of scaffolding where players spawn upon first entering The Sub-Strata.",
+      scale: "Y=161 to Y=319 (158m Tall / 14x14 Symmetrical Frame)",
+      materials: ["Oak Planks", "Oak Stairs"],
+      desc: "A colossal 14x14 symmetrical frame built from Oak Planks and directional Oak Stairs spanning 158 vertical blocks.",
       features: [
-        "Descent Requirement: Players must carefully climb down 158 vertical blocks to reach solid ground.",
-        "Safe Staging: Protected starting perimeter before venturing into hostile sectors.",
-        "Structural Landmarks: Visible across great distances in the subterranean gloom."
+        "Sub-Strata Spawn Point: Serves as the initial arrival landmark when descending into The Sub-Strata.",
+        "14x14 Grid Frame: Constructed from Oak Plank corner pillars, horizontal beams, and directional Oak Stair ramps.",
+        "Massive Descent Shaft: Spans 158 vertical blocks from Y=161 to build limit at Y=319."
       ],
-      color: "border-stone-600 text-stone-300"
+      color: "border-stone-600 text-stone-300",
+      image: "structures/scaffolding_tower.png"
     },
     {
       id: "catwalk_sub_cavern",
       name: "Catwalk Sub-Cavern",
       dimension: "The Sub-Strata",
       dimensionId: "substrata",
-      tag: "Transit Network",
+      tag: "Industrial Transit Network",
       scale: "Sprawling Bridge Array",
-      materials: ["Iron Grates", "Petrified Oak Planks"],
-      desc: "Extensive industrial catwalks spanning deep abysses between subterranean city sectors.",
+      materials: ["Oak Planks", "Air"],
+      desc: "Extensive elevated catwalks spanning deep abysses between subterranean city sectors.",
       features: [
-        "Inter-Sector Bridges: Connects distant skyscraper rooftops and cavern walls.",
-        "Perilous Crossings: Missing walkway segments demand precision jumping.",
-        "Strategic High Ground: Excellent vantage point for spotting Blindspot Splinters."
+        "Elevated Transit: Connects distant skyscraper rooftops and cavern walls across cavern gulfs.",
+        "Perilous Crossings: Missing walkway segments demand precision jumping over deep drops.",
+        "Vantage Points: Excellent high ground for surveying city sectors and spotting Blindspot Splinters."
       ],
-      color: "border-stone-600 text-stone-300"
+      color: "border-stone-600 text-stone-300",
+      image: "structures/catwalk_sub_cavern.png"
     },
 
     // THE PETRIFIED WEALD
@@ -272,27 +374,29 @@ export default function StructuresView() {
       materials: ["Petrified Rotten Oak Wood", "Ash Stone"],
       desc: "Gargantuan needle-sharp spikes of petrified wood piercing the ash-choked atmosphere.",
       features: [
-        "Rugged Profile: Leans 4 to 10 blocks in randomized directions with heavy surface roughness.",
-        "Deep Anchoring: Embeds up to 20 blocks below surface terrain for seamless integration.",
-        "Imposing Landscape: Defines the iconic silhouette of the Calcified Plains."
+        "Randomized Lean: Leans 4 to 10 blocks in randomized directions with heavy surface roughness.",
+        "Deep Root Anchor: Embeds up to 20 blocks below surface terrain for seamless geological integration.",
+        "Petrified Weald Icon: Defines the jagged, calcified skyline of the Calcified Plains."
       ],
-      color: "border-zinc-600 text-zinc-300"
+      color: "border-zinc-600 text-zinc-300",
+      image: "structures/calcified_spikes.png"
     },
     {
       id: "large_calcified_spikes",
       name: "Large Calcified Spikes",
       dimension: "The Petrified Weald",
       dimensionId: "petrified",
-      tag: "Megastructure",
+      tag: "Oceanic Megastructure",
       scale: "100 to 185 Blocks Tall (Base Radius 10-14m)",
       materials: ["Petrified Rotten Oak Wood"],
-      desc: "Mountain-scale pillars rising from deep oceanic trenches and river beds up into the sky.",
+      desc: "Mountain-scale petrified pillars rising from ocean floors and deep trenches up into the sky.",
       features: [
-        "Water-Logging Safe: Specifically anchored to ocean floor heightmaps without fluid displacement errors.",
-        "Subterranean Base: Embeds up to 25 blocks beneath the ocean bed to withstand tectonic currents.",
+        "Water-Logging Safe: Evaluates OCEAN_FLOOR_WG heightmaps to anchor safely on seabed stone.",
+        "25-Block Sub-Bed Foundation: Embeds up to 25 blocks beneath ocean beds to prevent water displacement errors.",
         "Colossal Landmarks: Visible from multiple biomes away across the Fossilized Core."
       ],
-      color: "border-zinc-600 text-zinc-300"
+      color: "border-zinc-600 text-zinc-300",
+      image: "structures/large_calcified_spikes.png"
     },
 
     // THE FAMILIAR
@@ -306,11 +410,13 @@ export default function StructuresView() {
       materials: ["Grass Blocks", "Dirt", "Stone"],
       desc: "A faithful recreation of classic Minecraft beta world generation glitches in The Familiar.",
       features: [
-        "Organic Composition: Unlike Backwoods Farlands, these are built organically from natural grass and stone.",
+        "Organic Composition: Built organically from natural grass, dirt, and stone in mirrored biomes.",
         "Gravity Decay: Moving past boundary coordinates induces weightlessness physics.",
         "Peaceful Glitch: Generates without hostile infestation in serene mirrored biomes."
       ],
-      color: "border-emerald-600 text-emerald-300"
+      color: "border-emerald-600 text-emerald-300",
+      image: "structures/familiar_farlands.png",
+      isUpdated: true
     }
   ];
 
@@ -349,7 +455,7 @@ export default function StructuresView() {
           </h1>
 
           <p className="text-sm sm:text-base leading-relaxed text-[#a9bcae]">
-            Across the dimensional layers of Backwoods generate anomalous structures, fractal anomalies, colossal scaffolding towers, and monolithic glitch walls that defy standard Minecraft physics and geometry.
+            Across the dimensional layers of Backwoods generate anomalous structures, fractal anomalies, colossal scaffolding towers, subterranean sub-floors, and monolithic glitch walls that defy standard Minecraft physics and geometry.
           </p>
 
           {/* Search and Filters */}
@@ -385,57 +491,116 @@ export default function StructuresView() {
 
         {/* STRUCTURES GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {filteredStructures.map((struct) => (
-            <div
-              key={struct.id}
-              className={`p-5 bg-[#0a0d0b] border ${struct.color} rounded-xl space-y-4 shadow-md flex flex-col justify-between hover:scale-[1.01] transition-transform`}
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between border-b border-[#18221a] pb-2.5">
-                  <div>
-                    <span className="text-[10px] font-mono uppercase text-[#709978] tracking-wider block">
-                      {struct.dimension}
+          {filteredStructures.map((struct) => {
+            const cardContent = (
+              <div
+                key={struct.id}
+                className={`p-5 bg-[#0a0d0b] border ${struct.color} rounded-xl space-y-4 shadow-md flex flex-col justify-between hover:scale-[1.01] transition-transform relative overflow-hidden`}
+              >
+                <div className="space-y-3">
+                  {/* Structure Image Container */}
+                  {struct.image && !failedImages[struct.id] ? (
+                    <div 
+                      className="relative w-full h-44 bg-[#080b09] rounded-lg overflow-hidden border border-[#19231b] group cursor-pointer"
+                      onClick={() => setEnlargedImage({ url: getAbsoluteAssetUrl(struct.image!), name: struct.name, desc: struct.desc })}
+                    >
+                      <img
+                        src={getAbsoluteAssetUrl(struct.image)}
+                        alt={struct.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={() => handleImageError(struct.id)}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0d0b] via-transparent to-transparent opacity-80" />
+                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-[#060806]/80 backdrop-blur-sm rounded border border-[#1f2c21] text-[10px] font-mono text-[#a9d1b0] flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Eye className="w-3 h-3" />
+                        <span>Enlarge Photo</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-full h-24 bg-[#0d120e] rounded-lg border border-[#18231a] flex flex-col items-center justify-center text-[#526355] text-xs font-mono space-y-1">
+                      <ImageIcon className="w-6 h-6 opacity-40" />
+                      <span>No Photo Archive</span>
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between border-b border-[#18221a] pb-2.5">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-[#709978] tracking-wider block">
+                        {struct.dimension}
+                      </span>
+                      <h3 className="font-serif text-lg font-bold text-[#e0e7e0] mt-0.5 flex items-center gap-2">
+                        <span>{struct.name}</span>
+                      </h3>
+                    </div>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#141d16] text-[#a9d1b0] border border-[#1e2c20]">
+                      {struct.tag}
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#e0e7e0] mt-0.5">{struct.name}</h3>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#141d16] text-[#a9d1b0] border border-[#1e2c20]">
-                    {struct.tag}
-                  </span>
+
+                  <p className="text-xs text-[#9eb0a1] leading-relaxed">
+                    {struct.desc}
+                  </p>
+
+                  {/* FARLANDS DISTANCE ANOMALY WARNING CALLOUT */}
+                  {(struct.id === 'backwoods_farlands' || struct.id === 'familiar_farlands') && (
+                    <div className="p-3 bg-amber-950/25 border border-amber-600/40 rounded-lg space-y-2 text-xs font-mono">
+                      <div className="flex items-center gap-1.5 text-amber-300 font-bold text-[11px] uppercase tracking-wider">
+                        <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400" />
+                        <span>Farlands Generation Glitch & Distance Anomaly</span>
+                      </div>
+                      <p className="text-[11px] leading-relaxed text-amber-200/90">
+                        <strong>Perlin Noise Bug Emulation:</strong> The Farlands terrain is an intentional recreation of the historic Beta 1.7 terrain generation glitch, triggered when 3D Perlin noise coordinates overflow via integer truncation (<code>(int) x</code>).
+                      </p>
+                      <p className="text-[11px] leading-relaxed text-amber-200/90">
+                        <strong>Threshold Distance vs. Morphing Glitch:</strong> If <code>farLandsThreshold</code> in <code>config/backwoods_antigrav.properties</code> is set to a low value (e.g. <code>256</code> instead of the default <code>836721</code>), the Farlands render as classic, authentic Beta 1.7 wall slabs and Swiss-cheese grids right near spawn.
+                      </p>
+                      <p className="text-[11px] leading-relaxed text-amber-200/90">
+                        When generating at extreme coordinates (836,721+ blocks out), a secondary floating-point coordinate precision degradation bug occurs in the engine. This causes the classic Farlands walls to morph, fracture, and compress into erratic Swiss-cheese tunnels and floating block clusters the farther out you travel.
+                      </p>
+                      <div className="pt-1.5 text-[10px] text-amber-300/80 border-t border-amber-700/30 font-mono">
+                        <strong>Gravity Decay:</strong> Past the distance threshold, gravitational pull smoothly decays (jump height increases up to 1.8x, and dropped items form zero-g magnetic clusters).
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="space-y-2 pt-1">
+                    <div className="text-[11px] font-mono text-[#5a6b5e] uppercase tracking-wider">Key Specifications:</div>
+                    <ul className="space-y-1 text-xs text-[#829285]">
+                      {struct.features.map((feat, i) => (
+                        <li key={i} className="flex items-start gap-1.5 leading-relaxed">
+                          <span className="w-1 h-1 rounded-full bg-[#709978] mt-1.5 shrink-0" />
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <p className="text-xs text-[#9eb0a1] leading-relaxed">
-                  {struct.desc}
-                </p>
-
-                <div className="space-y-2 pt-1">
-                  <div className="text-[11px] font-mono text-[#5a6b5e] uppercase tracking-wider">Key Specifications:</div>
-                  <ul className="space-y-1 text-xs text-[#829285]">
-                    {struct.features.map((feat, i) => (
-                      <li key={i} className="flex items-start gap-1.5 leading-relaxed">
-                        <span className="w-1 h-1 rounded-full bg-[#709978] mt-1.5 shrink-0" />
-                        <span>{feat}</span>
-                      </li>
+                {/* Footer Meta */}
+                <div className="pt-3 border-t border-[#141c15] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#617364]">
+                  <div>
+                    <span className="text-[#4a594c]">Scale: </span>
+                    <span className="text-[#a9d1b0]">{struct.scale}</span>
+                  </div>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    {struct.materials.map((m, idx) => (
+                      <span key={idx} className="bg-[#101612] px-1.5 py-0.5 rounded border border-[#19221b] text-[#c9d1c9]">
+                        {m}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </div>
+            );
 
-              {/* Footer Meta */}
-              <div className="pt-3 border-t border-[#141c15] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#617364]">
-                <div>
-                  <span className="text-[#4a594c]">Scale: </span>
-                  <span className="text-[#a9d1b0]">{struct.scale}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  {struct.materials.map((m, idx) => (
-                    <span key={idx} className="bg-[#101612] px-1.5 py-0.5 rounded border border-[#19221b] text-[#c9d1c9]">
-                      {m}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+            return struct.isUpdated ? (
+              <UpdatedFrame key={struct.id} id={`struct_${struct.id}`} isUpdated={true}>
+                {cardContent}
+              </UpdatedFrame>
+            ) : (
+              cardContent
+            );
+          })}
         </div>
 
         {filteredStructures.length === 0 && (
@@ -451,6 +616,45 @@ export default function StructuresView() {
         )}
 
       </div>
+
+      {/* ENLARGED IMAGE LIGHTBOX MODAL */}
+      {enlargedImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setEnlargedImage(null)}
+        >
+          <div 
+            className="relative max-w-4xl w-full bg-[#0c100d] border border-[#1f2d22] rounded-2xl overflow-hidden shadow-2xl flex flex-col space-y-4 p-4 sm:p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-[#18231a] pb-3">
+              <div>
+                <span className="text-xs font-mono text-[#709978] uppercase tracking-wider">Structure Survey Archive</span>
+                <h3 className="font-serif text-xl font-bold text-[#e0e7e0]">{enlargedImage.name}</h3>
+              </div>
+              <button 
+                onClick={() => setEnlargedImage(null)}
+                className="p-1.5 rounded-lg bg-[#141b16] text-[#718274] hover:text-[#e0e7e0] hover:bg-[#1f2a21] transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative max-h-[70vh] flex items-center justify-center bg-[#060806] rounded-xl overflow-hidden border border-[#161f17]">
+              <img 
+                src={enlargedImage.url} 
+                alt={enlargedImage.name}
+                className="max-h-[68vh] w-auto object-contain" 
+              />
+            </div>
+
+            <p className="text-xs text-[#9eb0a1] font-mono leading-relaxed bg-[#080b09] p-3 rounded-lg border border-[#141c15]">
+              {enlargedImage.desc}
+            </p>
+          </div>
+        </div>
+      )}
     </UpdatedFrame>
   );
 }
+

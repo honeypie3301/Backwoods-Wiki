@@ -50,12 +50,12 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
+              <li><strong className="text-amber-300">Structures Photo Gallery & Farlands Anomaly Dossier:</strong> Integrated the high-res photo for the Familiar Farlands, fixed asset path resolution for structures, and added a technical Farlands generation caution detailing why terrain morphs farther out past the 836,721 block threshold due to Perlin noise overflow simulation.</li>
               <li><strong className="text-amber-300">The Still Dimension:</strong> Added the tranquil silent canopy realm with its solitary Still biome dossier, custom atmospheric soundscapes, Seep harvest drops, and dimensional transit conduits via Pale Draught Bottles and Attuned Resonant Rot Effigies.</li>
               <li><strong className="text-amber-300">iOS Style Title Dial Picker:</strong> Implemented a 3D cylindrical draggable title dial wheel allowing seamless switching between Backwoods, Super Bonemeal, and Darwinism wikis with automatic redirection upon settlement.</li>
               <li><strong className="text-amber-300">The Woodweaver Boss:</strong> Added the Extreme Class boss entity that stalks players, accumulates Dread, and unleashes hypnotic effects alongside a colossal block-vaporizing beam. Features full interactive 3D model staging and dossier.</li>
               <li><strong className="text-amber-300">Tetherless & Resonant Pearl Mechanics:</strong> Updated the Tetherless Pearl with its projectile position-swapping procedure (swaps locations with hit targets on impact) and the Resonant Pearl's long-range 64–96 block warp wave evasion.</li>
               <li><strong className="text-amber-300">3 New Brewable Potions:</strong> Added Atrophy Potion (reduces health, attack damage, and jump strength), Cellular Collapse Potion (reduces core attributes and deals custom damage), and Cellular Collapse II Potion (severe necrosis, hunger, poison, and metabolic failure). Fully integrated into the automated recipe grid display.</li>
-              <li><strong className="text-amber-300">Dimensions Biome Gallery:</strong> Added a complete photographic dossier across all regional biomes with a custom styled theme filter and interactive dropdown.</li>
             </ul>
           </div>
         </div>
