@@ -148,7 +148,7 @@ export default function StructuresView() {
       desc: "A sprawling subterranean void chamber generating directly beneath the main floorboards of The Grain.",
       features: [
         "Structural Boundaries: Enclosed by solid Oak Plank ceiling (Y=44) and floor (Y=20) plates.",
-        "Support Columns: Vertical Oak Fence columns generate on a strict 4-block grid (absX % 4 == 0 && absZ % 4 == 0).",
+        "Support Columns: Vertical Oak Fence columns generate on a strict 4-block grid between Y=20 and Y=44.",
         "Terrain Override: Force-overwrites pre-existing terrain rule blocks and mazes as chunks process."
       ],
       color: "border-yellow-700/40 text-yellow-300",
@@ -183,7 +183,7 @@ export default function StructuresView() {
       desc: "Direct bedrock layer replacement where ellipsoidal Oak Plank blobs punch holes down into the Void.",
       features: [
         "Bedrock Punchout: Replaces vanilla bedrock blocks at Y=-64 to Y=-59 with randomized 3 to 5.5 block radius blobs.",
-        "Flattened Ellipsoid Math: Uses (dx² + 1.5*dy² + dz²) <= radius² distance calculation to stamp plank clusters.",
+        "Flattened Ellipsoid Clusters: Stamped across bedrock floor layers from Y=-64 to Y=-59 with a 3 to 5.5 block radius.",
         "Void Apertures: Creates direct fall holes into the Void at the bottom of the world."
       ],
       color: "border-yellow-700/40 text-yellow-300",
@@ -217,7 +217,7 @@ export default function StructuresView() {
       materials: ["Oak Planks", "Bedrock", "Air"],
       desc: "An 81x81x81 block recursive 3D fractal Menger sponge matrix carved into the terrain.",
       features: [
-        "3D Fractal Subtraction: Evaluates 3D coordinate matrices (x%3, y%3, z%3) to carve infinite hollow tunnels.",
+        "3D Fractal Subtraction: Carves recursive 3D hollow tunnel networks through the solid structure.",
         "Floor Protection: Preserves existing bedrock floor plates from being sliced by fractal voids.",
         "Navigational Labyrinth: Complex multi-tier 3D interior tunnel network."
       ],
@@ -269,7 +269,7 @@ export default function StructuresView() {
       desc: "A multi-floor atrium structure starting at Y=8 with carved 6-block wide hallways and vertical shafts.",
       features: [
         "Triple Tier Design: Generates 3 stacked 5-block tall floor levels with 1-block gaps between floors.",
-        "Coordinate Carving: Carves 6-block wide hallways along X and Z axes wherever world coordinates match (worldX % 10 < 3).",
+        "Coordinate Carving: Carves 6-block wide hallways along X and Z axes at regular 10-block intervals starting at Y=8.",
         "Connecting Shafts: 2x2 vertical shaft openings carved every 20 blocks to allow movement between levels."
       ],
       color: "border-yellow-700/40 text-yellow-300",
@@ -549,10 +549,10 @@ export default function StructuresView() {
                         <span>Farlands Generation Glitch & Distance Anomaly</span>
                       </div>
                       <p className="text-[11px] leading-relaxed text-amber-200/90">
-                        <strong>Perlin Noise Bug Emulation:</strong> The Farlands terrain is an intentional recreation of the historic Beta 1.7 terrain generation glitch, triggered when 3D Perlin noise coordinates overflow via integer truncation (<code>(int) x</code>).
+                        <strong>Perlin Noise Bug Emulation:</strong> The Farlands terrain is an intentional recreation of the historic Beta 1.7 terrain generation glitch, triggered when 3D Perlin noise coordinates overflow near world boundaries.
                       </p>
                       <p className="text-[11px] leading-relaxed text-amber-200/90">
-                        <strong>Threshold Distance vs. Morphing Glitch:</strong> If <code>farLandsThreshold</code> in <code>config/backwoods_antigrav.properties</code> is set to a low value (e.g. <code>256</code> instead of the default <code>836721</code>), the Farlands render as classic, authentic Beta 1.7 wall slabs and Swiss-cheese grids right near spawn.
+                        <strong>Threshold Distance vs. Morphing Glitch:</strong> If the Farlands distance threshold is configured to a low value (such as 256 blocks instead of the default 836,721 blocks), the Farlands render as classic, authentic Beta 1.7 wall slabs and Swiss-cheese grids right near spawn.
                       </p>
                       <p className="text-[11px] leading-relaxed text-amber-200/90">
                         When generating at extreme coordinates (836,721+ blocks out), a secondary floating-point coordinate precision degradation bug occurs in the engine. This causes the classic Farlands walls to morph, fracture, and compress into erratic Swiss-cheese tunnels and floating block clusters the farther out you travel.

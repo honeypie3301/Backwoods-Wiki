@@ -1456,7 +1456,7 @@ export default function EntitiesView() {
                 <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Evasion & Spawning Demands</h5>
                 <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
                   <li><strong className="text-[#c9d1c9]">Base Block Safety:</strong> Cannot generate on empty air blocks; requires structural support beneath coordinates.</li>
-                  <li><strong className="text-[#c9d1c9]">Occlusion Control:</strong> Floor blocks in targeted biomes must possess light-occluding density values (<code>canOcclude</code>).</li>
+                  <li><strong className="text-[#c9d1c9]">Occlusion Control:</strong> Floor blocks in targeted biomes must possess light-occluding density values.</li>
                   <li><strong className="text-[#c9d1c9]">Ash-Rose Counter:</strong> Proximal Ash-Roses wilt at significantly accelerated rates when kept near a Blindspot Splinter.</li>
                 </ul>
               </div>
@@ -1483,7 +1483,7 @@ export default function EntitiesView() {
               <div className="space-y-2">
                 <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Sub-Strata Boundary Compression</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  Inside the Dead Grain biome, the safety exclusion zone compresses relentlessly as total player ticks (<code>sub_strata_time</code>) accumulate:
+                  Inside the Dead Grain biome, the safety exclusion zone compresses relentlessly as total time spent in the dimension accumulates:
                 </p>
                 <div className="overflow-hidden rounded border border-[#1c241e] text-xs font-mono">
                   <table className="w-full text-left border-collapse">
