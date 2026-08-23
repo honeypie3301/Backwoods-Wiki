@@ -290,7 +290,7 @@ export default function StructuresView() {
         "Marker Strategy: Explorers are advised to leave torch or block trails."
       ],
       color: "border-yellow-700/40 text-yellow-300",
-      image: "structures/labyrinthine_grids.png"
+      image: "structures/labyrinthine_grids_structure.png"
     },
 
     // THE SUB-STRATA
