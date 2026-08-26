@@ -151,6 +151,7 @@ interface EntityProfile {
 export default function EntitiesView() {
   const [selectedEntity, setSelectedEntity] = useState<string>('hollow');
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
+  const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
@@ -534,10 +535,46 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
-      title: "Neural Network & Beta Distribution",
-      trigger: "Continuous engagement and combat outcome observation",
-      description: "Operates an 8-neuron feedforward neural network that evaluates tactical plans in real-time. Uses a Beta Distribution model with a 0.08 variance gate threshold to restrict overly aggressive decisions until sufficient combat samples are gathered. As it fights, its internal weights shift at a 0.05 learning rate, constantly refining its strategy.",
+      title: "Tactical Neural Network (18 Inputs -> 16 Hidden -> 15 Outputs)",
+      trigger: "Continuous tick evaluation & combat outcome observation",
+      description: "Operates an 18-input feedforward neural network featuring 16 hidden ReLU neurons generating 15 tactical action scores in real-time. Features an integrated Softmax action selection matrix and Beta Distribution exploration model with a 0.08 variance gate threshold. Internal synapse weights calibrate at a 0.05 learning rate, constantly adapting combat plans.",
       category: "Intelligence Engine"
+    },
+    {
+      title: "Defensive Kinetic Guard",
+      trigger: "Target initiates rapid physical or projectile attack strings",
+      description: "Crosses forearms to enter a reinforced guard posture, absorbing physical and projectile damage. Absorbed kinetic impact is converted directly into internal counter-charge, powering immediate follow-up combo transitions.",
+      category: "Defense & Counter"
+    },
+    {
+      title: "Airborne Launcher Uppercut",
+      trigger: "Target within close melee proximity (<3.8 blocks)",
+      description: "Unleashes an explosive rising vertical fist strike dealing 45 damage, breaking shields (80-tick disable), and launching the target 12+ blocks high into the air, priming guaranteed aerial or landing punishment combos.",
+      category: "Melee Combos"
+    },
+    {
+      title: "Aerial Dive Bomb & Slam",
+      trigger: "Target airborne or elevated upon high ground",
+      description: "Propels vertically upward and executes an angled supersonic plunge into the target's coordinates, inflicting 75 damage, shattering active shields, and triggering a 6.5-block radial kinetic shockwave.",
+      category: "Melee Combos"
+    },
+    {
+      title: "Ender Pearl Trajectory Intercept",
+      trigger: "Target throws an Ender Pearl within 48 blocks",
+      description: "Instantly detects thrown Ender Pearls in flight, computes parabolic trajectory equations, and teleports to an ambush coordinate (1.6 to 3.0b offset) to strike the target the exact tick they materialize.",
+      category: "Tactical Control"
+    },
+    {
+      title: "Consumable & Item Eat Punish",
+      trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
+      description: "Sensory reflex that instantly dashes forward or dropkicks targets caught in item consumption animations (requiring >=6 animation ticks remaining), punishing healing attempts with unblockable physical burst damage.",
+      category: "Punishment Window"
+    },
+    {
+      title: "Armor-Bypassing Sonic Scream & Radial Shockwave",
+      trigger: "Learned from Warden engagements or during high-threat combat",
+      description: "Fires a 24-block directional acoustic beam dealing 80 damage that completely ignores armor and shield mitigation. Under extreme pressure, releases an omnidirectional 360° sonic shockwave across a 24-block radius with massive terrain destruction.",
+      category: "Acoustic"
     },
     {
       title: "Behavior Anomaly Detection (Welford)",
@@ -552,163 +589,85 @@ export default function EntitiesView() {
       category: "Swarm Logic"
     },
     {
-      title: "Master Subservience Protocol",
-      trigger: "Commands given via text chat by the creator",
-      description: "Despite its ferocity, the AI answers directly to its creator. Through commands like 'kill', 'kill everyone', 'stop', or 'help', the Rot will instantly override its current tactical matrix to execute crosshair acquisitions, mass extermination queues, or dedicated defensive routines for its master.",
-      category: "Overrides"
-    },
-    {
-      title: "Behavioral Profiling",
-      trigger: "Active target engagement & multi-signal observation",
-      description: "Tracks movement, facing, attack timing, and incoming projectiles in real time. Cross-references observed behavior against prior engagements with other hostiles in the region. Assigns a threat classification within seconds and adjusts its own attack selection accordingly. Effectively: it has already fought something like you before, and it remembers what worked.",
-      category: "Intelligence Engine"
-    },
-    {
-      title: "Single-Action Lock",
-      trigger: "Simultaneous execution of complex combat maneuvers",
-      description: "Commits fully to one action at a time (grip, guard, or otherwise) with no overlap between states. There is no window where two competing behaviors leave it exposed. Whatever it starts, it finishes.",
-      category: "State Matrix"
-    },
-    {
-      title: "Damage-Triggered Regeneration",
-      trigger: "Taking 30 cumulative damage, 100 combat ticks, or high threat levels",
-      description: "Begins self-repair after roughly 30 damage taken, or 100 ticks in combat, whichever comes first. Regeneration rate increases further under sustained threat. Attrition strategies lose effectiveness the longer the fight runs: it heals faster the more danger it is in.",
-      category: "Defense & Healing"
-    },
-    {
-      title: "Escalating Aggression",
-      trigger: "Continuous engagement or target holding an active Totem of Undying",
-      description: "Cooldowns between actions shorten the longer combat continues. There is no cap on how aggressive it becomes short of the fight ending. If it detects a Totem of Undying on the target, all cooldowns drop to minimum immediately: do not assume you have time once it knows what you are holding.",
-      category: "Escalation"
-    },
-    {
-      title: "Sonic Weaponry",
-      trigger: "Learned from Warden engagements or during high-threat combat",
-      description: "Directional sonic attack, effective range 24 blocks, bypasses armor mitigation. Under sufficient threat pressure it can instead release an omnidirectional shockwave across a full 24-block radius, structural damage included, with no directional counterplay.",
-      category: "Acoustic"
-    },
-    {
-      title: "Adaptive Elemental Beams",
-      trigger: "Sustaining elemental damage or navigating extreme environments",
-      description: "Fire damage taken unlocks a sustained heat beam, amplified against frozen targets. Freeze damage taken unlocks a sustained cold beam, amplified against fire-immune or Nether-origin targets. Element exposure is a permanent unlock, not a temporary buff.",
-      category: "Lethal Ranged"
-    },
-    {
-      title: "Blink Repositioning",
-      trigger: "Evading attacks, closing gaps, or target pillaring",
-      description: "Movement speed is deliberately low on first contact and increases the longer combat runs. Once unlocked, it can teleport short distances to dodge attacks or reposition behind a target. Elevated or walled-off positions are not a safe strategy: it will hold distance and wait, then close the gap in one motion.",
-      category: "Mobility"
-    },
-    {
-      title: "Close-Range Strike Sequences",
-      trigger: "Target within close proximity or elevated positions",
-      description: "Multiple close-quarters attack chains: heavy strikes, an overhead ground-impact attack, an aerial diving strike, and a launcher that sends the target airborne before following up on landing. Also capable of holding a defensive guard that absorbs incoming damage until it chooses to counter.",
-      category: "Melee Combos"
-    },
-    {
       title: "Target Intent Inference Engine",
       trigger: "Observing target movement, held items, vehicles, or airborne states",
       description: "Dynamically infers 8 distinct player intents (Engaging, Escaping, Aerial Advantage, Repositioning, Healing, Ranged Attack, Baiting, Creating Distance). Instantly adapts capability unlocks and applies up to a 5x score multiplier to counter-combos tailored specifically to the target's active intent.",
       category: "Intelligence Engine"
     },
     {
-      title: "Ender Pearl Interception & Ambush",
-      trigger: "Target throws an Ender Pearl within 48 blocks",
-      description: "Detects active Ender Pearls in real time, immediately overrides ongoing combat actions, locks gaze onto the flying projectile, and calculates the predicted landing trajectory. As the pearl reaches its destination, the Rot teleports directly to an ambush coordinate (1.6 to 3.0b offset) to strike the instant the target materializes.",
-      category: "Tactical Control"
-    },
-    {
-      title: "Consumable & Healing Item Punishment",
-      trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
-      description: "Detects healing and consumable usage in real time. If the target has at least 6 ticks of consumption animation remaining, the Rot instantly triggers an aggressive punishment window: executing close-range strikes or a Dropkick / Teleportation strike to punish target immobilization.",
-      category: "Punishment Window"
-    },
-    {
-      title: "8-Tick Lead Prediction & Strafe Counter",
-      trigger: "Target attempting circle-strafing or lateral movement during melee",
-      description: "Computes an 8-tick lead prediction vector based on the target's velocity. Evaluates both live and predicted positions during punch windups to hit players trying to dodge laterally or strafe out of close-quarters range.",
-      category: "Melee Combos"
-    },
-    {
-      title: "Tactical Interception & Timing Matrix",
-      trigger: "Evaluating complex movement across air, water, boats, or terrain",
-      description: "Calculates startup ticks, travel speeds, and target momentum vectors across all movement modes. Recommends tactical delays (10 to 20 ticks) when holding an attack yields a significantly higher interception probability, such as waiting for an airborne target's landing trajectory.",
-      category: "Intelligence Engine"
+      title: "Biological Surge Regeneration",
+      trigger: "Taking cumulative damage or fighting sustained engagements",
+      description: "Autonomous rapid cellular healing pulsing +5 to +28 HP every 6 ticks (3.3x/sec) based on adaptation stacks. Attrition strategies lose effectiveness the longer the fight runs: it heals faster the more danger it is in.",
+      category: "Defense & Healing"
     },
     {
       title: "Grapple & Armor Strip",
       trigger: "Engaging heavily armored targets in close quarters",
-      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks; more hits are required the better protected you are.",
+      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks.",
       category: "Grapple & Disarm"
     }
   ];
 
   const woodweaverAbilities: Ability[] = [
     {
-      title: "Smoke Screen Escape",
-      trigger: "Approached or cornered during its stalking phase",
-      description: "If players get too close while the Woodweaver is in its dormant state, it vanishes instantly in a dense plume of smoke, blinding nearby players and relocating to a distant vantage point.",
-      category: "Dormant Defense"
+      title: "Dormant Stalker & Gaze Evasion",
+      trigger: "Target within 48 blocks during initial encounter phase",
+      description: "The Woodweaver observes targets carefully from afar without initiating direct aggression. If the player maintains direct eye contact, the creature smoothly glides backward while keeping its crimson gaze locked onto the target, steadily building internal Dread.",
+      category: "Intelligence & Stalking"
     },
     {
-      title: "Gaze Evasion & Stalking",
-      trigger: "Maintaining direct eye contact from a distance",
-      description: "The Woodweaver observes targets carefully from afar. If you look directly back at it, the creature smoothly glides backward while keeping its eyes locked onto you, steadily building dread before it awakens.",
-      category: "Dormant Stalker"
+      title: "Emergency Smoke Screen Relocation",
+      trigger: "Approached within 5 blocks or cornered during stalking phase",
+      description: "If players attempt to rush or corner the entity during its dormant state, it vanishes instantly in a thick cloud of obscuring smoke particles, inflicting temporary blindness and relocating to an elevated vantage point.",
+      category: "Evasion & Defense"
     },
     {
-      title: "Cellular Infection",
-      trigger: "Target is healthy and uninfected",
-      description: "Suspends the target in mid-air using telekinesis and inflicts the debilitating 'Cellular Collapse' effect, reducing max health, speed, and jump capability while causing periodic internal damage.",
-      category: "Telekinesis"
+      title: "Dread Accumulation & Combat Awakening",
+      trigger: "Prolonged line-of-sight exposure, proximity, or taking direct damage",
+      description: "Tracks an internal Dread meter from 0% to 100%. Maintaining eye contact or striking the entity rapidly fills this gauge. Upon reaching 100%, the Woodweaver unleashes a deafening roar and transitions permanently into its lethal combat state.",
+      category: "State Matrix"
     },
     {
-      title: "Life Siphon",
-      trigger: "When damaged or fighting infected targets",
-      description: "Forms a psychic link with targets afflicted by Cellular Collapse, draining their life force to heal its own injuries and bolster its maximum health pool.",
-      category: "Telekinesis"
+      title: "Hypnosis Gaze & Sensory Stun",
+      trigger: "Maintaining direct eye contact during active combat",
+      description: "Locks crimson optics onto the player, applying intense Slowness IV, Weakness III, and dynamic camera tilt disorientation. Victims caught in the gaze find their movement frozen as the creature closes the distance.",
+      category: "Psychological & Debuff"
     },
     {
-      title: "Combustion Wave",
-      trigger: "Target is blocking with a shield or taking cover",
-      description: "Superheats the surrounding atmosphere with intense thermal energy, bypassing defensive shields and setting targets ablaze.",
-      category: "Elemental Attack"
+      title: "Cellular Collapse & Telekinetic Siphon",
+      trigger: "Target within 16 blocks and currently uninfected",
+      description: "Suspends the victim mid-air using woodbound telekinesis and inflicts the debilitating 'Cellular Collapse' status effect. The affliction reduces max HP, slows movement, impairs jump strength, and siphons health directly back into the Woodweaver's vital reservoir.",
+      category: "Telekinesis & Drain"
     },
     {
-      title: "Vaporize Beam",
-      trigger: "Telegraphed after an echoing roar",
-      description: "Channels a devastating long-range energy beam that disintegrates terrain blocks in its path, sets targets on fire, and deals lethal damage to anything caught in the blast.",
-      category: "Destructive Beam"
+      title: "Colossal Vaporize Beam",
+      trigger: "Telegraphed after an echoing roar and core charge sequence",
+      description: "Channels a concentrated high-energy thermal beam over 40 ticks, firing across a 36-block line-of-sight vector. The beam completely disintegrates all destructible blocks in its trajectory, igniting victims and dealing lethal tick-based damage.",
+      category: "Destructive Ranged"
     },
     {
-      title: "Exhaustion Window",
-      trigger: "Immediately following a Vaporize Beam attack",
-      description: "Discharging the vaporize beam temporarily exhausts the Woodweaver, leaving it stunned and immobile for a brief moment and creating an opening for players to strike back.",
-      category: "Vulnerability"
+      title: "Post-Beam Core Exhaustion",
+      trigger: "Immediately following a complete Vaporize Beam discharge",
+      description: "Discharging the vaporize beam overloads and temporarily depletes the Woodweaver's core, leaving it stunned, grounded, and completely immobile for 60 ticks (3.0s). This represents the primary vulnerability window for players to deal massive counter-damage.",
+      category: "Vulnerability Window"
     },
     {
-      title: "Claw Sweeps",
-      trigger: "Close-quarters combat",
-      description: "Unleashes rapid, sweeping claw combos that cleave through melee attackers and shatter nearby fragile blocks.",
-      category: "Melee Assault"
-    },
-    {
-      title: "Ramming Dash",
-      trigger: "Target flees, or when terrain blocks its path",
-      description: "Launches into a high-speed charge directly through blocks and obstacles to close the gap on fleeing prey, bulldozing through terrain before recovering.",
+      title: "Ramming Dash & Terrain Bulldozer",
+      trigger: "Target flees beyond melee reach or takes cover behind blocks",
+      description: "Launches into a high-speed charge (0.42 speed) directly toward the target, bulldozing straight through wooden blocks, fences, and natural foliage, closing gaps instantly and crushing obstructed targets.",
       category: "Mobility & Breach"
     },
     {
-      title: "Adaptive Tactics",
-      trigger: "Continuous combat flow",
-      description: "Continuously adjusts its strategy based on player reactions, alternating between ranged energy beams, telekinesis, and aggressive melee combos to keep opponents off-balance.",
-      category: "Combat AI"
+      title: "Claw Sweeps & Shield Breaker",
+      trigger: "Close-quarters combat (<4 blocks)",
+      description: "Unleashes rapid 3-hit horizontal and vertical claw cleaves dealing 24-36 damage. Attacks shatter active player shield guards for 100 ticks (5.0s) and knock players backward.",
+      category: "Melee Assault"
     },
     {
-      title: "Core Detonation",
-      trigger: "Upon reaching zero health",
-      description: "Upon defeat, the Woodweaver rises into the air as its unstable core overloads, releasing an escalating energy pulse before detonating in a massive, terrain-destroying explosion. Clear the area immediately!",
-      category: "Death Sequence"
+      title: "Combustion Wave",
+      trigger: "Target holding shield guard or hiding behind non-wood cover",
+      description: "Superheats the surrounding atmosphere with intense thermal radiation, bypassing shields and wall cover to ignite all targets within an 8-block radius.",
+      category: "Elemental & Shield Bypass"
     }
   ];
 
@@ -1103,51 +1062,173 @@ export default function EntitiesView() {
 
           {/* THE WOODWEAVER: Custom mechanics */}
           {currentEntity.id === 'woodweaver' && (
-            <div className="space-y-6 pt-2">
-              {/* Abilities Accordion */}
-              <div className="space-y-3">
-                <h4 className="text-[11px] font-mono uppercase tracking-widest text-red-500 font-bold">
-                  Behavioral & Combat Dossier (Click to expand details)
-                </h4>
-                
-                <div className="space-y-2">
-                  {woodweaverAbilities.map((ab, idx) => {
-                    const isOpen = openAbilityIndex === idx;
-                    return (
-                      <div 
-                        key={idx} 
-                        className="bg-[#120c0c] border border-red-950/20 hover:border-red-900/30 rounded-lg transition-all"
-                      >
-                        <button
-                          onClick={() => toggleAbility(idx)}
-                          className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+            <UpdatedFrame id="woodweaver_custom_dossier" isUpdated={true}>
+              <div className="space-y-6 pt-2">
+                {/* Abilities Accordion */}
+                <div className="space-y-3">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-rose-400" />
+                    Behavioral &amp; Combat Dossier (Click to expand details)
+                  </h4>
+                  
+                  <div className="space-y-2">
+                    {woodweaverAbilities.map((ab, idx) => {
+                      const isOpen = openAbilityIndex === idx;
+                      return (
+                        <div 
+                          key={idx} 
+                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
                         >
-                          <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-mono text-red-400 bg-red-950/30 border border-red-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                              {ab.category}
-                            </span>
-                            <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-red-400 transition-colors">
-                              {ab.title}
-                            </span>
-                          </div>
-                          {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                        </button>
-                        
-                        {isOpen && (
-                          <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-red-950/20 space-y-2">
-                            <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                              <Zap className="w-3.5 h-3.5" />
-                              <span>Encounter Trigger: {ab.trigger}</span>
+                          <button
+                            onClick={() => toggleAbility(idx)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                {ab.category}
+                              </span>
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                                {ab.title}
+                              </span>
                             </div>
-                            <p className="leading-relaxed pl-1">{ab.description}</p>
-                          </div>
-                        )}
+                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                          </button>
+                          
+                          {isOpen && (
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                <Zap className="w-3.5 h-3.5" />
+                                <span>Trigger Condition: {ab.trigger}</span>
+                              </div>
+                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* State / Phase Matrix Switcher */}
+                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                  <div>
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-rose-400" />
+                      Boss Phase &amp; State Matrix
+                    </h4>
+                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
+                      The Woodweaver transitions through distinct behavioral states governed by player distance, visual engagement angles, internal Dread accumulation, and core stability metrics.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                    {[
+                      { id: 'dormant', label: '1. Dormant Stalker' },
+                      { id: 'combat', label: '2. Awakened Combat' },
+                      { id: 'beam', label: '3. Vaporize Beam' }
+                    ].map((state) => (
+                      <button
+                        key={state.id}
+                        onClick={() => setActiveWoodweaverState(state.id as any)}
+                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
+                          activeWoodweaverState === state.id
+                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            : 'text-[#5a6b5e] hover:text-[#829285]'
+                        }`}
+                      >
+                        {state.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
+                    {activeWoodweaverState === 'dormant' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
+                          Phase 1: Dormant Stalker &amp; Gaze Evasion
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Initial passive encounter state. The entity maintains long-distance surveillance (up to 48 blocks) without attacking.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-[#e0e7e0]">Gaze Backstep:</strong> Direct eye contact causes the entity to glide backward smoothly while maintaining eye lock.</li>
+                          <li><strong className="text-amber-400">Dread Accumulation:</strong> Eye contact and proximity fill an internal Dread meter at +1.5% per tick.</li>
+                          <li><strong className="text-purple-400">Smoke Vanish:</strong> Approaching within 5 blocks causes an instantaneous smoke screen teleport (18-28 blocks away).</li>
+                        </ul>
                       </div>
-                    );
-                  })}
+                    )}
+
+                    {activeWoodweaverState === 'combat' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-rose-400">
+                          Phase 2: Awakened Aggression &amp; Hypnosis
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Triggered upon Dread reaching 100% or upon receiving direct player damage. All passive evasion behaviors terminate.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Hypnosis Lock:</strong> Sustained eye contact inflicts Slowness IV, Weakness III, and severe camera tilting.</li>
+                          <li><strong className="text-purple-400">Cellular Collapse:</strong> Telekinetically suspends targets and siphons health (+4 HP/tick drained back to Woodweaver).</li>
+                          <li><strong className="text-amber-400">Terrain Bulldozer:</strong> High-speed charge (0.42) breaks wooden structures, fences, and foliage.</li>
+                          <li><strong className="text-emerald-400">Shield Breaker:</strong> 3-hit claw strikes pierce guards, disabling shields for 5 seconds.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeWoodweaverState === 'beam' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-amber-500">
+                          Phase 3: Vaporize Beam &amp; Exhaustion Opening
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Periodic heavy offensive cycle telegraphed by a loud roar and a glowing core animation.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">36-Block Thermal Beam:</strong> Channels high-DPS disintegrating beam over 40 ticks, destroying destructible blocks in path.</li>
+                          <li><strong className="text-amber-300">Shield Bypass:</strong> Ignores active player shield blocks and inflicts direct fire damage.</li>
+                          <li><strong className="text-emerald-400">Critical Exhaustion Opening:</strong> Firing exhausts the core, rendering the Woodweaver completely stunned for 60 ticks (3.0s).</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tactical Counterplay & Survival Directives */}
+                <div className="pt-4 border-t border-rose-950/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                    Tactical Counterplay &amp; Survival Directives
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-amber-400 font-bold font-mono text-[11px]">
+                        Gaze &amp; Angle Discipline
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        Avoid sustained direct eye contact during early scouting. Gaze locking fills the Dread meter rapidly and triggers the Hypnosis Stun debuff once combat begins.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
+                        Punish Beam Exhaustion
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        When the Woodweaver channels its linear Vaporize Beam, dodge laterally. Attack during the 3.0-second stun window immediately after the beam ends.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-purple-400 font-bold font-mono text-[11px]">
+                        Cellular Collapse Counter
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        Carry Pale Remedies or Milk Buckets into combat. Cellular Collapse drains max HP and heals the Woodweaver; cleansing the effect prevents the boss from sustaining its health pool.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            </UpdatedFrame>
           )}
 
           {/* THE SPLINTER: Custom mechanics */}

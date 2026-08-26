@@ -138,59 +138,6 @@ export default function StructuresView() {
 
     // THE GRAIN
     {
-      id: "the_underside",
-      name: "The Underside",
-      dimension: "The Grain",
-      dimensionId: "grain",
-      tag: "Sub-Floor Void Chamber",
-      scale: "Y=20 to Y=44 (24m Chamber Height)",
-      materials: ["Oak Planks (Ceiling & Floor)", "Oak Fences"],
-      desc: "A sprawling subterranean void chamber generating directly beneath the main floorboards of The Grain.",
-      features: [
-        "Structural Boundaries: Enclosed by solid Oak Plank ceiling (Y=44) and floor (Y=20) plates.",
-        "Support Columns: Vertical Oak Fence columns generate on a strict 4-block grid between Y=20 and Y=44.",
-        "Terrain Override: Force-overwrites pre-existing terrain rule blocks and mazes as chunks process."
-      ],
-      color: "border-yellow-700/40 text-yellow-300",
-      image: "structures/the_underside.png",
-      isUpdated: true
-    },
-    {
-      id: "void_basement",
-      name: "Void Basement",
-      dimension: "The Grain",
-      dimensionId: "grain",
-      tag: "Subterranean Sub-Grid",
-      scale: "Y=-50 to Y=-13 (Catwalks at Y=-34)",
-      materials: ["Oak Planks (Catwalks & Plates)", "Oak Fences"],
-      desc: "A submerged undercroft beneath floorboards featuring sharp 90-degree walkway networks over deep voids.",
-      features: [
-        "Catwalk Array: 2-block wide Oak Plank catwalks at Y=-34 following 'Square Snake' grid paths (24-block frequency).",
-        "Downward Support: Oak Fence columns extend downward every 5 blocks beneath catwalk intersections.",
-        "Enclosed Volume: Sealed above (Y=-13) and below (Y=-50) by solid Oak Plank floor/ceiling layers."
-      ],
-      color: "border-yellow-700/40 text-yellow-300",
-      image: "structures/void_basement.png"
-    },
-    {
-      id: "void_bedrock_planks",
-      name: "Void Bedrock Planks",
-      dimension: "The Grain",
-      dimensionId: "grain",
-      tag: "Bedrock Fissure Anomaly",
-      scale: "Y=-64 to Y=-59 Bedrock Layer (3-5.5m Radius Blobs)",
-      materials: ["Oak Planks", "Bedrock"],
-      desc: "Direct bedrock layer replacement where ellipsoidal Oak Plank blobs punch holes down into the Void.",
-      features: [
-        "Bedrock Punchout: Replaces vanilla bedrock blocks at Y=-64 to Y=-59 with randomized 3 to 5.5 block radius blobs.",
-        "Flattened Ellipsoid Clusters: Stamped across bedrock floor layers from Y=-64 to Y=-59 with a 3 to 5.5 block radius.",
-        "Void Apertures: Creates direct fall holes into the Void at the bottom of the world."
-      ],
-      color: "border-yellow-700/40 text-yellow-300",
-      image: "structures/void_planks.png",
-      isUpdated: true
-    },
-    {
       id: "cavern_grid",
       name: "Cavern Grid",
       dimension: "The Grain",
@@ -206,23 +153,6 @@ export default function StructuresView() {
       ],
       color: "border-yellow-700/40 text-yellow-300",
       image: "structures/cavern_grid.png"
-    },
-    {
-      id: "menger_sponge",
-      name: "Menger Sponge (Macro)",
-      dimension: "The Grain",
-      dimensionId: "grain",
-      tag: "Macro Fractal Matrix",
-      scale: "Massive 81x81x81m Cube Matrix",
-      materials: ["Oak Planks", "Bedrock", "Air"],
-      desc: "An 81x81x81 block recursive 3D fractal Menger sponge matrix carved into the terrain.",
-      features: [
-        "3D Fractal Subtraction: Carves recursive 3D hollow tunnel networks through the solid structure.",
-        "Floor Protection: Preserves existing bedrock floor plates from being sliced by fractal voids.",
-        "Navigational Labyrinth: Complex multi-tier 3D interior tunnel network."
-      ],
-      color: "border-yellow-700/40 text-yellow-300",
-      image: "structures/grain_menger_sponge.png"
     },
     {
       id: "sky_grid",
@@ -294,6 +224,78 @@ export default function StructuresView() {
     },
 
     // THE SUB-STRATA
+    {
+      id: "menger_sponge",
+      name: "Menger Sponge (Macro)",
+      dimension: "The Sub-Strata",
+      dimensionId: "substrata",
+      tag: "Macro Fractal Matrix",
+      scale: "Massive 81x81x81m Cube Matrix",
+      materials: ["Oak Planks", "Bedrock", "Air"],
+      desc: "An 81x81x81 block recursive 3D fractal Menger sponge matrix carved directly into the Sub-Strata subterranean strata.",
+      features: [
+        "3D Fractal Subtraction: Carves recursive 3D hollow tunnel networks through the solid structure.",
+        "Floor Protection: Preserves existing bedrock floor plates from being sliced by fractal voids.",
+        "Navigational Labyrinth: Complex multi-tier 3D interior tunnel network."
+      ],
+      color: "border-stone-600 text-stone-300",
+      image: "structures/grain_menger_sponge.png",
+      isUpdated: true
+    },
+    {
+      id: "the_underside",
+      name: "The Underside",
+      dimension: "The Sub-Strata",
+      dimensionId: "substrata",
+      tag: "Sub-Floor Void Chamber",
+      scale: "Y=20 to Y=44 (24m Chamber Height)",
+      materials: ["Oak Planks (Ceiling & Floor)", "Oak Fences"],
+      desc: "A sprawling subterranean void chamber generating directly beneath the main floorboards of the Sub-Strata realm.",
+      features: [
+        "Structural Boundaries: Enclosed by solid Oak Plank ceiling (Y=44) and floor (Y=20) plates.",
+        "Support Columns: Vertical Oak Fence columns generate on a strict 4-block grid between Y=20 and Y=44.",
+        "Terrain Override: Force-overwrites pre-existing terrain rule blocks and mazes as chunks process."
+      ],
+      color: "border-stone-600 text-stone-300",
+      image: "structures/the_underside.png",
+      isUpdated: true
+    },
+    {
+      id: "void_basement",
+      name: "Void Basement",
+      dimension: "The Sub-Strata",
+      dimensionId: "substrata",
+      tag: "Subterranean Sub-Grid",
+      scale: "Y=-50 to Y=-13 (Catwalks at Y=-34)",
+      materials: ["Oak Planks (Catwalks & Plates)", "Oak Fences"],
+      desc: "A submerged undercroft beneath Sub-Strata floorboards featuring sharp 90-degree walkway networks over deep voids.",
+      features: [
+        "Catwalk Array: 2-block wide Oak Plank catwalks at Y=-34 following 'Square Snake' grid paths (24-block frequency).",
+        "Downward Support: Oak Fence columns extend downward every 5 blocks beneath catwalk intersections.",
+        "Enclosed Volume: Sealed above (Y=-13) and below (Y=-50) by solid Oak Plank floor/ceiling layers."
+      ],
+      color: "border-stone-600 text-stone-300",
+      image: "structures/void_basement.png",
+      isUpdated: true
+    },
+    {
+      id: "void_bedrock_planks",
+      name: "Void Bedrock Planks",
+      dimension: "The Sub-Strata",
+      dimensionId: "substrata",
+      tag: "Bedrock Fissure Anomaly",
+      scale: "Y=-64 to Y=-59 Bedrock Layer (3-5.5m Radius Blobs)",
+      materials: ["Oak Planks", "Bedrock"],
+      desc: "Direct bedrock layer replacement where ellipsoidal Oak Plank blobs punch holes down into the Void beneath the Sub-Strata.",
+      features: [
+        "Bedrock Punchout: Replaces vanilla bedrock blocks at Y=-64 to Y=-59 with randomized 3 to 5.5 block radius blobs.",
+        "Flattened Ellipsoid Clusters: Stamped across bedrock floor layers from Y=-64 to Y=-59 with a 3 to 5.5 block radius.",
+        "Void Apertures: Creates direct fall holes into the Void at the bottom of the world."
+      ],
+      color: "border-stone-600 text-stone-300",
+      image: "structures/void_planks.png",
+      isUpdated: true
+    },
     {
       id: "right_side_up_city",
       name: "Right Side Up City",

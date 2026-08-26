@@ -144,6 +144,142 @@ export const ROTS_ABILITY_REGISTRY: Record<string, AbilityInfo> = {
     shockwaveImpulse: 0.0,
     description: 'Autonomous rapid cellular healing pulsing +5 to +28 HP every 6 ticks (3.3x/sec) based on adaptation stacks.',
     counterplay: 'Burst down with continuous DPS before kinetic/swarm adaptation accumulates.'
+  },
+  defensive_guard: {
+    id: 'defensive_guard',
+    name: 'Defensive Kinetic Guard',
+    cooldownMaxTicks: 90,
+    cooldownCurrentTicks: 0,
+    windupTicks: 2,
+    activeTicks: 30,
+    recoveryTicks: 6,
+    effectiveRange: 3.0,
+    rawDamage: 0.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 0.0,
+    shockwaveImpulse: 0.0,
+    description: 'Crosses forearms to absorb incoming physical and projectile damage, building internal kinetic energy before unleashing a counter-offensive.',
+    counterplay: 'Cease physical attacks during guard frames to prevent charging its counter-offensive.'
+  },
+  launcher_uppercut: {
+    id: 'launcher_uppercut',
+    name: 'Airborne Launcher Uppercut',
+    cooldownMaxTicks: 70,
+    cooldownCurrentTicks: 0,
+    windupTicks: 6,
+    activeTicks: 6,
+    recoveryTicks: 8,
+    effectiveRange: 3.8,
+    rawDamage: 45.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 80,
+    shockwaveRadius: 3.5,
+    shockwaveImpulse: 1.15,
+    description: 'A brutal rising vertical punch launching targets 12+ blocks high into the air, setting up guaranteed aerial or landing dive bomb punishments.',
+    counterplay: 'Air-strafe or use Water Bucket / Slow Falling before touching down.'
+  },
+  aerial_dive_bomb: {
+    id: 'aerial_dive_bomb',
+    name: 'Aerial Dive Bomb & Slam',
+    cooldownMaxTicks: 110,
+    cooldownCurrentTicks: 0,
+    windupTicks: 8,
+    activeTicks: 14,
+    recoveryTicks: 12,
+    effectiveRange: 16.0,
+    rawDamage: 75.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 100,
+    shockwaveRadius: 6.5,
+    shockwaveImpulse: 0.80,
+    description: 'Propels vertically upward and executes an angled downward plunge into elevated or airborne targets with catastrophic impact force.',
+    counterplay: 'Dash laterally perpendicular to the descent angle when the downward plunge begins.'
+  },
+  ender_pearl_intercept: {
+    id: 'ender_pearl_intercept',
+    name: 'Ender Pearl Trajectory Intercept',
+    cooldownMaxTicks: 40,
+    cooldownCurrentTicks: 0,
+    windupTicks: 2,
+    activeTicks: 8,
+    recoveryTicks: 4,
+    effectiveRange: 48.0,
+    rawDamage: 48.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 3.0,
+    shockwaveImpulse: 0.45,
+    description: 'Detects thrown Ender Pearls in flight, extrapolates the parabolic landing coordinate, and pre-teleports to ambush the victim on arrival.',
+    counterplay: 'Avoid predictable pearl throws when within 48 blocks of an active Rot entity.'
+  },
+  consumable_punish: {
+    id: 'consumable_punish',
+    name: 'Consumable & Item Eat Punish',
+    cooldownMaxTicks: 30,
+    cooldownCurrentTicks: 0,
+    windupTicks: 2,
+    activeTicks: 6,
+    recoveryTicks: 4,
+    effectiveRange: 10.0,
+    rawDamage: 55.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 100,
+    shockwaveRadius: 4.0,
+    shockwaveImpulse: 0.60,
+    description: 'Sensory reflex that instantly dashes forward or dropkicks targets caught in item consumption animations (Golden Apples, Potions, Milk).',
+    counterplay: 'Only consume healing items behind solid barricades or at extreme range.'
+  },
+  sonic_scream_directional: {
+    id: 'sonic_scream_directional',
+    name: 'Armor-Bypassing Sonic Scream',
+    cooldownMaxTicks: 180,
+    cooldownCurrentTicks: 0,
+    windupTicks: 16,
+    activeTicks: 10,
+    recoveryTicks: 18,
+    effectiveRange: 24.0,
+    rawDamage: 80.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 120,
+    shockwaveRadius: 2.5,
+    shockwaveImpulse: 0.90,
+    description: 'Focused high-frequency acoustic beam learned from Warden encounters that completely ignores armor and shield mitigation across 24 blocks.',
+    counterplay: 'Break line of sight behind thick stone or obsidian walls.'
+  },
+  sonic_shockwave_radial: {
+    id: 'sonic_shockwave_radial',
+    name: 'Omnidirectional Sonic Shockwave',
+    cooldownMaxTicks: 240,
+    cooldownCurrentTicks: 0,
+    windupTicks: 20,
+    activeTicks: 16,
+    recoveryTicks: 24,
+    effectiveRange: 24.0,
+    rawDamage: 95.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 140,
+    shockwaveRadius: 24.0,
+    shockwaveImpulse: 1.40,
+    description: 'Unleashes an apocalyptic 360-degree acoustic detonation fracturing terrain and knocking all surrounding entities back with extreme violence.',
+    counterplay: 'Sprint beyond the 24-block threshold the moment the sonic charging telegraph begins.'
+  },
+  tactical_stalk: {
+    id: 'tactical_stalk',
+    name: 'Tactical Stalk & Circle Strafe',
+    cooldownMaxTicks: 60,
+    cooldownCurrentTicks: 0,
+    windupTicks: 0,
+    activeTicks: 40,
+    recoveryTicks: 0,
+    effectiveRange: 14.0,
+    rawDamage: 0.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 0.0,
+    shockwaveImpulse: 0.0,
+    description: 'Calculates target blindspots and circle-strafes around shields and barricades, waiting for optimal combo openings.',
+    counterplay: 'Keep back to a wall and maintain rotational awareness.'
   }
 };
 
@@ -216,7 +352,7 @@ export interface PlayerBehaviorData {
   estimatedReactionMs: number;
 }
 
-// 7. Tactical Neural Network (8 Inputs -> 16 Hidden -> 6 Outputs)
+// 7. Tactical Neural Network (18 Inputs -> 16 Hidden (ReLU) -> 15 Tactical Outputs)
 export interface TacticalNeuralData {
   inputs: number[];
   hidden: number[];
@@ -226,8 +362,17 @@ export interface TacticalNeuralData {
     judgment: number;
     prepareThyself: number;
     overheadSlam: number;
+    heavyStrike?: number;
     solarLaser: number;
     tacticalStalk: number;
+    defensiveGuard?: number;
+    launcherUppercut?: number;
+    aerialDiveBomb?: number;
+    enderPearlIntercept?: number;
+    consumablePunish?: number;
+    sonicScream?: number;
+    sonicShockwave?: number;
+    surgeRegen?: number;
   };
 }
 

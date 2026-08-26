@@ -80,20 +80,20 @@ export default function SanityView() {
       desc: "Severe neuro-perceptual breakdown. Auditory hallucinations mimic actual survival sounds to manipulate player decision-making.",
       symptoms: [
         {
-          name: "Degradation Sound Stinger",
-          detail: "A deep, heavily distorted audio event (degradation_o1) plays directly at the player's position, accompanied by sudden screen jolts."
+          name: "Hallucinatory Audio Distortion",
+          detail: "A deep, distorted audio hallucination plays directly at the player's position, signaling cognitive degradation."
         },
         {
-          name: "Camera Incoherence",
-          detail: "Micro camera shakes and subtle pitch tilts disorient navigation, simulating intense vertigo."
+          name: "Forced Camera Jerks",
+          detail: "Random involuntary camera snaps forcibly jerk the player's line of sight toward arbitrary coordinates, disorienting navigation."
         },
         {
           name: "Phantom Interaction Sounds",
-          detail: "Chest opening/closing noises, distant bell tolls, wood cracking (wood_crack_1 to wood_crack_7), and footsteps play phantom-style around the player."
+          detail: "Chest opening/closing noises, distant bell tolls, wood cracking, and footsteps play phantom-style around the player."
         },
         {
-          name: "Prolonged Darkness",
-          detail: "Darkness pulses occur more frequently with extended duration, making navigating uneven terrain treacherous."
+          name: "Intermittent Darkness Pulses",
+          detail: "Darkness status effect pulses constrict vision for 3.5 seconds (70 ticks), disrupting situational awareness."
         }
       ]
     },
@@ -319,6 +319,33 @@ export default function SanityView() {
             </div>
 
           </div>
+
+          {/* RESONANT ROT EFFIGY ARTIFACT CARD */}
+          <UpdatedFrame id="resonant_rot_effigy_sanity" isUpdated={true}>
+            <div className="p-5 bg-[#0f1310] border border-amber-500/30 rounded-xl space-y-3 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="text-amber-400 font-mono text-xs uppercase font-bold tracking-wider">
+                  Stage 3 Sensory Protection: Resonant Rot Effigy
+                </div>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950/60 border border-amber-500/40 text-amber-300">
+                  INVENTORY PASSIVE
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#d1dad1] leading-relaxed">
+                Carrying a <strong className="text-amber-300">Resonant Rot Effigy</strong> in your inventory provides passive sensory stabilization during <strong className="text-amber-300">Stage 3 (Cognitive Distortion)</strong>.
+              </p>
+
+              <div className="p-4 bg-[#141b16] border border-[#233126] rounded-lg space-y-2">
+                <div className="text-emerald-300 font-mono text-xs font-bold uppercase">
+                  Stage 3 Symptom Immunity
+                </div>
+                <p className="text-xs text-[#9eb0a1] leading-relaxed">
+                  While the effigy remains in the player's inventory, it completely suppresses the sporadic Stage 3 darkness pulses, distorted audio hallucinations, and involuntary camera jerks that normally afflict unshielded minds.
+                </p>
+              </div>
+            </div>
+          </UpdatedFrame>
         </div>
 
         {/* SUMMARY REFERENCE MATRIX TABLE */}
