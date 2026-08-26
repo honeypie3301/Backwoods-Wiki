@@ -127,15 +127,6 @@ export default function AchievementsView() {
       newXp: 60
     },
     {
-      id: "rot_vanish",
-      title: "Coward's Smoke",
-      type: "Challenge",
-      description: "Drive the sentinel back into the wooden depths.",
-      requirement: "Fend off or force the Rot Sentinel to flee.",
-      oldXp: 16,
-      newXp: 2077
-    },
-    {
       id: "borrowed_time",
       title: "Borrowed Time",
       type: "Task",
@@ -185,9 +176,9 @@ export default function AchievementsView() {
       title: "Sentinel",
       type: "Challenge",
       description: "Try to kill the Rot.",
-      requirement: "Initiate or face the ultimate trial against the Rot boss.",
+      requirement: "Initiate or face the ultimate trial against the Rot.",
       oldXp: 1000,
-      newXp: 1000
+      newXp: 2077
     }
   ];
 

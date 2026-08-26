@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
-  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame
+  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
@@ -210,9 +210,9 @@ export default function EntitiesView() {
       damage: "High Melee / Devastating Beam",
       armor: "20 Points",
       speed: "Fast (Phase Adaptive)",
-      dim: "The Backwoods",
+      dim: "The Grain",
       isUpdated: true,
-      desc: "An ancient, highly intelligent boss entity that stalks its prey from afar before engaging in relentless combat. In its dormant phase, it observes players from a distance, cautiously retreating if stared at and vanishing in a cloud of smoke if cornered. As tension builds, it awakens into an aggressive predator capable of telekinetic attacks, charging through obstacles, and firing a devastating vaporizing beam that tears through both terrain and armor. Defeating the Woodweaver causes its core to destabilize in a violent, terrain-shattering explosion."
+      desc: "An ancient, highly intelligent boss entity residing in The Grain that stalks its prey from afar before engaging in relentless combat. Natural spawns operate on a 20% roll requiring at least 256 blocks clearance from other Woodweavers, at least 32 blocks distance from players, and solid occluding ground. In its dormant phase, it observes players from a distance, cautiously retreating if stared at and vanishing in a cloud of smoke if cornered. As tension builds, it awakens into an aggressive predator capable of telekinetic attacks, charging through obstacles, and firing a devastating vaporizing beam that tears through both terrain and armor. Defeating the Woodweaver causes its core to destabilize in a violent, terrain-shattering explosion."
     },
     {
       id: "splinter",
@@ -244,7 +244,7 @@ export default function EntitiesView() {
       speed: "0.320",
       dim: "The Backwoods / Thicket Biomes",
       isUpdated: true,
-      desc: "A nimble, thorned wooden organism that inflicts custom thorns damage on attackers whenever struck and has a 2% chance to deal sweet berry thorns damage on collision. In combat, it attacks aggressively while HP >= 5, but actively flees and avoids targets when its health drops below 5. Additionally, it flees immediately when a Rot entity approaches within 100 blocks to evade its destructive footprint."
+      desc: "A nimble, thorned wooden organism that inflicts custom thorns damage on attackers whenever struck and has a 2% chance to deal sweet berry thorns damage on collision. Commonly generates in upper forest layers at or above Y=50 (requiring a 32-block separation between specimens on solid ground). In combat, it attacks aggressively while HP >= 5, but actively flees and avoids targets when its health drops below 5. Additionally, it flees immediately when a Rot entity approaches within 100 blocks to evade its destructive footprint."
     },
     {
       id: "petrified_lignum_spina",
@@ -260,7 +260,7 @@ export default function EntitiesView() {
       speed: "0.260",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A calcified variant of Lignum Spina adapted to the Petrified Weald. Features 8 armor points, arrow immunity, and custom thorns reflection. Fights aggressively when HP >= 5 and retreats when HP < 5. Automatically flees from approaching Rot entities within a 100-block perimeter to avoid collateral destruction."
+      desc: "A calcified variant of Lignum Spina adapted to the Petrified Weald, naturally generating at elevations between Y=60 and Y=120 (maintaining a 32-block separation on solid ground). Features 8 armor points, arrow immunity, and custom thorns reflection. Fights aggressively when HP >= 5 and retreats when HP < 5. Automatically flees from approaching Rot entities within a 100-block perimeter to avoid collateral destruction."
     },
     {
       id: "lignum_echinus",
@@ -276,7 +276,7 @@ export default function EntitiesView() {
       speed: "0.350",
       dim: "The Backwoods Undergrowth",
       isUpdated: true,
-      desc: "A fast, urchin-like wooden organism. Deals 3 points of thorns reflection damage back to attackers whenever hurt and has a 2% chance to deal collision spike damage. Fights aggressively when HP > 5, but shifts to avoidance mode when HP <= 5. Possesses an active flee routine targeting Rot entities within 100 blocks to evacuate the danger zone."
+      desc: "A fast, urchin-like wooden organism that commonly spawns in undergrowth layers at or above Y=58 (requiring a 36-block exclusion zone from other specimens on solid ground). Deals 3 points of thorns reflection damage back to attackers whenever hurt and has a 2% chance to deal collision spike damage. Fights aggressively when HP > 5, but shifts to avoidance mode when HP <= 5. Possesses an active flee routine targeting Rot entities within 100 blocks to evacuate the danger zone."
     },
     {
       id: "petrified_lignum_echinus",
@@ -292,7 +292,7 @@ export default function EntitiesView() {
       speed: "0.380",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A dense, fossilized variant of Lignum Echinus with 10 armor points and high movement speed. Reflects heavy spike damage back to attackers and flees when heavily injured (HP <= 5). Like its uncalcified kin, it flees from Rot entities within a 100-block range to avoid collateral damage."
+      desc: "A dense, fossilized variant of Lignum Echinus generating within the Petrified Weald between Y=-30 and Y=50 (with a 32-block separation on solid ground). Features 10 armor points and high movement speed. Reflects heavy spike damage back to attackers and flees when heavily injured (HP <= 5). Like its uncalcified kin, it flees from Rot entities within a 100-block range to avoid collateral damage."
     },
     {
       id: "lignum_trilobita",
@@ -308,7 +308,7 @@ export default function EntitiesView() {
       speed: "0.220",
       dim: "The Backwoods / Sub-Strata Floors",
       isUpdated: true,
-      desc: "An ancient arthropod made of interlocking oak scales. Driven by an innate flee mechanism targeting Rot entities (1.5x speed, 100-block range) and players (1.2x speed, 6-block range). Local fauna evacuate the area within 100 blocks of the Rot to avoid becoming collateral damage during its destructive engagements. When health falls to 4 HP or lower, it enters a protective shell hiding state to regenerate +1 HP every 10 ticks up to 10 HP. If a Rot entity approaches within 100 blocks, it breaks hiding instantly and flees. Consumes edible items on the ground, scaling up +0.07 in size per meal."
+      desc: "An ancient arthropod made of interlocking oak scales that inhabits subterranean sub-strata floors between Y=-20 and Y=48 (requiring a 16-block separation radius on solid ground). Driven by an innate flee mechanism targeting Rot entities (1.5x speed, 100-block range) and players (1.2x speed, 6-block range). Local fauna evacuate the area within 100 blocks of the Rot to avoid becoming collateral damage during its destructive engagements. When health falls to 4 HP or lower, it enters a protective shell hiding state to regenerate +1 HP every 10 ticks up to 10 HP. If a Rot entity approaches within 100 blocks, it breaks hiding instantly and flees. Consumes edible items on the ground, scaling up +0.07 in size per meal."
     },
     {
       id: "petrified_lignum_trilobita",
@@ -324,7 +324,7 @@ export default function EntitiesView() {
       speed: "0.140",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A heavily calcified fossilized trilobite with 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade the Rot and avoid collateral damage. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
+      desc: "A heavily calcified fossilized trilobite generating between Y=0 and Y=60 in the Petrified Weald (with a 32-block separation on solid ground). Features 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade the Rot and avoid collateral damage. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
     },
     {
       id: "kyne_splinter",
@@ -340,7 +340,7 @@ export default function EntitiesView() {
       speed: "0.280",
       dim: "Wood Plains & The Thicket",
       isUpdated: true,
-      desc: "A predatory Woodbound entity that drops 7 XP upon defeat. When struck, if nearby pack members are present, it triggers a pack-wide avenge protocol, rallying surrounding Woodbound entities to retaliate against the attacker. Like all Splinter species, Kyne Splinters actively flee from any Rot entity that approaches within 100 blocks to evade its destructive footprint."
+      desc: "A predatory Woodbound entity that drops 7 XP upon defeat. A rare spawn occurring on a 15% roll with a strict 512-block exclusion zone from other Kyne Splinters on solid ground. When struck, if nearby pack members are present, it triggers a pack-wide avenge protocol, rallying surrounding Woodbound entities to retaliate against the attacker. Like all Splinter species, Kyne Splinters actively flee from any Rot entity that approaches within 100 blocks to evade its destructive footprint."
     },
     {
       id: "dorceless_splinter",
@@ -356,7 +356,7 @@ export default function EntitiesView() {
       speed: "0.220",
       dim: "Wood Plains & The Thicket",
       isUpdated: true,
-      desc: "An elusive, armored variant of the Splinter lineage that drops 10 XP, Oak Planks, and a Tetherless Pearl upon defeat. Possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: 85% chance to dodge incoming projectile attacks and 50% chance to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports 6 to 11 blocks away to flank the attacker while immediately facing them. Possesses an innate evacuation instinct, actively fleeing when a Rot entity comes within 100 blocks."
+      desc: "An elusive, armored variant of the Splinter lineage that drops 10 XP, Oak Planks, and a Tetherless Pearl upon defeat. Operates on an uncommon 25% spawn chance roll requiring a 128-block clearance from other Dorceless Splinters on solid ground. Possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: 85% chance to dodge incoming projectile attacks and 50% chance to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports 6 to 11 blocks away to flank the attacker while immediately facing them. Possesses an innate evacuation instinct, actively fleeing when a Rot entity comes within 100 blocks."
     },
     {
       id: "log_splinter",
@@ -404,7 +404,7 @@ export default function EntitiesView() {
       speed: "0.300",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A highly resilient, fossilized variant of the Splinter lineage. Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes. Like all Splinter sub-species, it evacuates the area whenever a Rot entity approaches within 100 blocks."
+      desc: "A highly resilient, fossilized variant of the Splinter lineage generating in the Petrified Weald (requiring a 48-block clearance from other specimens on solid occluding ground). Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes. Like all Splinter sub-species, it evacuates the area whenever a Rot entity approaches within 100 blocks."
     },
     {
       id: "hollow",
@@ -419,7 +419,8 @@ export default function EntitiesView() {
       armor: "0 Points",
       speed: "0.300 (Teleporting)",
       dim: "Deep Backwoods Canopy",
-      desc: "An eerie stalking entity that never engages in physical confrontation. Instead, it looms in the distant fog, teleporting closer when the player is distracted, and instantly vanishes into thin air if attacked."
+      isUpdated: true,
+      desc: "An eerie stalking entity that manifests in deep forest canopies and dark caverns (requiring a 48-block separation from other Hollows on solid occluding ground). It never engages in physical confrontation. Instead, it looms in the distant fog, teleporting closer when the player is distracted, and instantly vanishes into thin air if attacked."
     },
     {
       id: "stilt_walker",
@@ -450,7 +451,8 @@ export default function EntitiesView() {
       armor: "0 Points",
       speed: "0.3",
       dim: "The Backwoods (Flat biomes)",
-      desc: "A rare, completely harmless entity that drifts peacefully across forest floors, planting defensive Ash-Roses in its wake. It always drops ash roses when defeated. Survivalists frequently follow its trail to harvest raw protective blossoms."
+      isUpdated: true,
+      desc: "A peaceful, harmless entity that drifts across forest floors, planting defensive Ash-Roses in its wake. Spawns naturally on solid occluding ground as long as no other Ash-Weaver exists within an 87.5-block radius (175-block area). It always drops ash roses when defeated. Survivalists frequently follow its trail to harvest raw protective blossoms."
     },
     {
       id: "lignum_gigas",
@@ -513,7 +515,8 @@ export default function EntitiesView() {
       armor: "0.5 Points",
       speed: "0.23",
       dim: "Sub-Strata (Specifically within wood blocks or mineshafts)",
-      desc: "A neutral, arthropod organism constructed entirely of segmented oak planks. Mirroring a wooden silverfish in scale and model size, it blends into forest debris, wood blocks, and abandoned mineshafts. Its diminutive stature allows it to squeeze through narrow apertures and crawl into spaces larger entities cannot navigate."
+      isUpdated: true,
+      desc: "A neutral arthropod organism constructed entirely of segmented oak planks. Generates naturally in subterranean sub-strata wood veins strictly between Y=44 and Y=52, and frequently emerges (10% chance) when mining Scandere Lignum blocks. Mirroring a wooden silverfish in scale and model size, it blends into forest debris, wood blocks, and abandoned mineshafts. Its diminutive stature allows it to squeeze through narrow apertures and crawl into spaces larger entities cannot navigate."
     },
     {
       id: "lignum_palus",
@@ -529,7 +532,7 @@ export default function EntitiesView() {
       speed: "0.05 / 0.12 (Freeze/Chase States)",
       dim: "The Sub-Strata (Pillar-heavy structures)",
       isUpdated: true,
-      desc: "A towering grid-bound entity standing 5.8 blocks tall that stalks prey through architectural mimicry and gaze hypnosis. When the Rot is detected within 100 blocks, it immediately drops all targets, charges a 3 to 5 second flashing particle aura, and teleports 70 to 120 blocks away to safety. It also uses grid-aligned teleportation to dodge incoming projectiles."
+      desc: "A towering grid-bound entity standing 5.8 blocks tall that patrols subterranean floors strictly between Y=20 and Y=46 (requiring a 10-block clearance from other Palus specimens on solid ground). Stalks prey through architectural mimicry and gaze hypnosis. When the Rot is detected within 100 blocks, it immediately drops all targets, charges a 3 to 5 second flashing particle aura, and teleports 70 to 120 blocks away to safety. It also uses grid-aligned teleportation to dodge incoming projectiles."
     }
   ];
 
@@ -1227,6 +1230,20 @@ export default function EntitiesView() {
                     </div>
                   </div>
                 </div>
+
+                {/* Spawning & Spatial Requirements */}
+                <div className="p-4 bg-[#0d0707] border border-rose-950/40 rounded-lg space-y-2">
+                  <h5 className="font-serif text-sm font-bold text-rose-400 flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-rose-500" />
+                    Spawning Parameters (The Grain)
+                  </h5>
+                  <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-1 leading-relaxed">
+                    <li><strong className="text-[#e0e7e0]">Native Realm:</strong> Generates exclusively within <strong className="text-rose-300">The Grain</strong> dimension.</li>
+                    <li><strong className="text-[#e0e7e0]">Spawn Chance &amp; Isolation:</strong> Governed by a 20% natural spawn roll.</li>
+                    <li><strong className="text-[#e0e7e0]">Spatial Separation:</strong> Enforces a strict <strong className="text-white">256-block exclusion radius</strong> (512-block bounding box) from any other existing Woodweaver.</li>
+                    <li><strong className="text-[#e0e7e0]">Player Clearance:</strong> Cannot spawn within <strong className="text-white">32 blocks</strong> of any player and requires solid occluding ground beneath its base.</li>
+                  </ul>
+                </div>
               </div>
             </UpdatedFrame>
           )}
@@ -1633,18 +1650,32 @@ export default function EntitiesView() {
           {/* THE HOLLOW: Custom mechanics */}
           {currentEntity.id === 'hollow' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-teal-400">The Silent Observer:</strong> The Hollow is an non-hostile phantom. It never pursues nor attacks. It maintains a safe, eerie presence in deep forests, creeping closer when your sight is turned, but vanishes instantly with a warp sound if struck.
-              </div>
+              <UpdatedFrame id="hollow_custom_dossier" isUpdated={true}>
+                <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
+                  <p>
+                    <strong className="text-teal-400">The Silent Observer:</strong> The Hollow is a non-hostile phantom. It never pursues nor attacks. It maintains a safe, eerie presence in deep forests and underground caverns, creeping closer when your sight is turned, but vanishes instantly with a warp sound if struck.
+                  </p>
+                  <p className="text-[11px] text-[#5a6b5e]">
+                    <strong className="text-[#a9d1b0]">Spawning Requirement:</strong> Spawns naturally on solid occluding surfaces requiring a 48-block exclusion radius (96-block bounding box) from any other living Hollow.
+                  </p>
+                </div>
+              </UpdatedFrame>
             </div>
           )}
 
           {/* LIGNUM VERMIS: Custom mechanics */}
           {currentEntity.id === 'lignum_vermis' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-teal-400">Harvesting Hazards:</strong> Mining Scandere Lignum blocks carries a notable risk: there is a 10% chance for a Lignum Vermis to emerge upon total block destruction via player tools or explosions. Additionally, there is a rare 1% chance per tick for the hidden organism to violently fracture the block early while a player is actively mining it. They also generate naturally at specific Y-levels within the Sub-Strata.
-              </div>
+              <UpdatedFrame id="lignum_vermis_dossier" isUpdated={true}>
+                <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-1.5">
+                  <p>
+                    <strong className="text-teal-400">Harvesting Hazards:</strong> Mining Scandere Lignum blocks carries a notable risk: there is a 10% chance for a Lignum Vermis to emerge upon total block destruction via player tools or explosions. Additionally, there is a rare 1% chance per tick for the hidden organism to violently fracture the block early while a player is actively mining it.
+                  </p>
+                  <p className="text-[11px] text-[#5a6b5e]">
+                    <strong className="text-[#a9d1b0]">Natural Elevation:</strong> Generates naturally exclusively in subterranean sub-strata wood layers between <strong className="text-white">Y: 44 and Y: 52</strong>.
+                  </p>
+                </div>
+              </UpdatedFrame>
               <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
                 <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2">Loot Drops & Probabilities</h5>
                 <div className="overflow-hidden rounded border border-[#1c241e] text-xs font-mono">
@@ -1770,9 +1801,20 @@ export default function EntitiesView() {
           {/* THE ASH-WEAVER: Custom mechanics */}
           {currentEntity.id === 'ash_weaver' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-emerald-950/10 border border-emerald-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-emerald-400">The Botanical Wanderer:</strong> Completely safe, the Ash-Weaver patrols the dark forest soils. It ignores active players and continuously places <strong className="text-emerald-300">Ash-Roses</strong> along its movement trail. Tailing an Ash-Weaver provides players with a guaranteed, unlimited source of protective blossoms.
-              </div>
+              <UpdatedFrame id="ash_weaver_custom_dossier" isUpdated={true}>
+                <div className="p-4 bg-emerald-950/10 border border-emerald-900/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
+                  <p>
+                    <strong className="text-emerald-400">The Botanical Wanderer:</strong> Completely safe, the Ash-Weaver patrols dark forest soils. It ignores active players and continuously places <strong className="text-emerald-300">Ash-Roses</strong> along its movement trail. Tailing an Ash-Weaver provides players with a renewable source of protective blossoms.
+                  </p>
+                  <div className="p-3 bg-[#0a100b] border border-emerald-950/30 rounded text-[11px] space-y-1">
+                    <div className="font-bold text-[#a9d1b0] uppercase font-mono tracking-wider">Natural Spawning Rules:</div>
+                    <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
+                      <li><strong className="text-[#e0e7e0]">Occluding Substrate:</strong> Must spawn on top of a solid occluding block (<code className="text-emerald-400">canOcclude() == true</code>).</li>
+                      <li><strong className="text-[#e0e7e0]">Spatial Separation:</strong> Enforces an <strong className="text-white">87.5-block clearance radius</strong> (175-block bounding box) from any other living Ash-Weaver.</li>
+                    </ul>
+                  </div>
+                </div>
+              </UpdatedFrame>
             </div>
           )}
 
