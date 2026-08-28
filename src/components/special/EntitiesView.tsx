@@ -190,13 +190,13 @@ export default function EntitiesView() {
       badgeBg: "bg-red-950/40 border-red-900/50 text-red-400",
       borderColor: "border-red-950/40",
       hp: "550 Base (+2 HP/minute scaling)",
-      damage: "18 Base (Adaptive / Mimicked multipliers)",
-      armor: "15 Points",
-      speed: "0.3 (Scales dynamically in combat cycle)",
+      damage: "18 Base (Adaptive / Direct Immunity Override)",
+      armor: "15 Points (Dynamic Damage Mitigation)",
+      speed: "0.3 (Dynamic Scale: Adaptive Combat Acceleration)",
       dim: "The Backwoods / Dynamic Sentry deployment",
       aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
       isUpdated: true,
-      desc: "A biological sentinel that does not engage until it has profiled you. It observes gear, reach, and combat rhythm before committing to a strategy, then re-profiles continuously: every exchange adjusts its damage output, resistances, and attack selection against you specifically. Prolonged engagement is punished; the longer a fight runs, the less margin for error it allows. Confirmed capable of stripping equipped armor and destroying held Totems of Undying mid-fight. Do not assume early behavior predicts late-fight behavior."
+      desc: "The apex autonomous combat sentinel of the Backwoods. Driven by a 53-neuron synthetic cognitive core, it continuously evaluates real-time threat vectors, ballistic trajectories, and target kinematics to select optimal neutralization protocols. Equipped with superheater thermal arrays, automated boss immunity overrides, armor-stripping chokes, and acoustic shockwaves, target survival probability decays rapidly with every second of engagement."
     },
     {
       id: "woodweaver",
@@ -538,76 +538,64 @@ export default function EntitiesView() {
 
   const rotAbilities: Ability[] = [
     {
-      title: "Tactical Neural Network (18 Inputs -> 16 Hidden -> 15 Outputs)",
-      trigger: "Continuous tick evaluation & combat outcome observation",
-      description: "Operates an 18-input feedforward neural network featuring 16 hidden ReLU neurons generating 15 tactical action scores in real-time. Features an integrated Softmax action selection matrix and Beta Distribution exploration model with a 0.08 variance gate threshold. Internal synapse weights calibrate at a 0.05 learning rate, constantly adapting combat plans.",
-      category: "Intelligence Engine"
+      title: "Direct Boss Immunity Override",
+      trigger: "Target entities exhibiting external damage caps, artificial potion buffs, or i-frame exploits",
+      description: "Neutralizes foreign defensive systems on formidable non-player targets. Invalidation protocols continuously strip invulnerability frames and artificial god-mode potion effects. Should standard damage pathways be artificially capped or cancelled by external entity logic, a direct true-damage health penalty is enforced to ensure target termination.",
+      category: "Boss Neutralization"
     },
     {
-      title: "Defensive Kinetic Guard",
-      trigger: "Target initiates rapid physical or projectile attack strings",
-      description: "Crosses forearms to enter a reinforced guard posture, absorbing physical and projectile damage. Absorbed kinetic impact is converted directly into internal counter-charge, powering immediate follow-up combo transitions.",
-      category: "Defense & Counter"
+      title: "Superheater",
+      trigger: "Submerged in fluid or engaging cold/frozen target entities within 24 blocks",
+      description: "Anchors its physical core to unleash a massive expanding thermal dome. Vaporizes surrounding fluid volumes, flash-melts cold and frozen terrain blocks into steam, and inflicts severe thermal true damage—amplifying devastation up to triple magnitude against cold-aligned organisms.",
+      category: "Thermal Warfare"
     },
     {
-      title: "Airborne Launcher Uppercut",
-      trigger: "Target within close melee proximity (<3.8 blocks)",
-      description: "Unleashes an explosive rising vertical fist strike dealing 45 damage, breaking shields (80-tick disable), and launching the target 12+ blocks high into the air, priming guaranteed aerial or landing punishment combos.",
-      category: "Melee Combos"
+      title: "Synthetic Neural Core",
+      trigger: "Active during all combat engagements",
+      description: "Operates an autonomous 53-neuron sensory matrix that continuously evaluates spatial positioning, crosshair locks, weapon classifications, and target kinematics. Tactical plans are dynamically scored and reinforced in real time based on encounter outcomes.",
+      category: "Cognitive Engine"
     },
     {
-      title: "Aerial Dive Bomb & Slam",
-      trigger: "Target airborne or elevated upon high ground",
-      description: "Propels vertically upward and executes an angled supersonic plunge into the target's coordinates, inflicting 75 damage, shattering active shields, and triggering a 6.5-block radial kinetic shockwave.",
-      category: "Melee Combos"
+      title: "Armor Choke & Equipment Destruction",
+      trigger: "Engaging target within close physical proximity",
+      description: "Immobilizes target in an inescapable aerial choke hold, dealing periodic damage while rapidly degrading equipped armor durability or forcibly stripping indestructible armor pieces outright.",
+      category: "Disarm & Containment"
     },
     {
-      title: "Ender Pearl Trajectory Intercept",
-      trigger: "Target throws an Ender Pearl within 48 blocks",
-      description: "Instantly detects thrown Ender Pearls in flight, computes parabolic trajectory equations, and teleports to an ambush coordinate (1.6 to 3.0b offset) to strike the target the exact tick they materialize.",
+      title: "Sonic Boom & Omnidirectional Acoustic Shockwave",
+      trigger: "Target beyond melee range or under high pressure",
+      description: "Fires a focused acoustic beam that completely bypasses target armor protection. Under extreme pressure, releases a 360-degree omnidirectional acoustic shockwave across a wide radius.",
+      category: "Acoustic Warfare"
+    },
+    {
+      title: "Rider Kick & High-Velocity Aerial Martial Strikes",
+      trigger: "Target airborne, elevated, or attempting rapid escape",
+      description: "Launches into high-velocity diagonal dive maneuvers, unleashing judgment dropkicks, standalone uppercuts, or rider kicks that detonate upon floor contact or target impact.",
+      category: "Kinetic Warfare"
+    },
+    {
+      title: "Short-Range Blinks & Trajectory Interception",
+      trigger: "Incoming physical strikes or projectile launches within range",
+      description: "Executes rapid tactical blinks to evade incoming strikes. Computes thrown object parabolic trajectories to materialize directly at predicted landing coordinates.",
+      category: "Tactical Mobility"
+    },
+    {
+      title: "Mace Dive Counter & Anti-Air Suppression",
+      trigger: "Target descending from height with heavy weapons",
+      description: "Identifies high-altitude heavy weapon plunging maneuvers, instantly triggering evasive counter-repositioning to neutralize aerial heavy strikes.",
       category: "Tactical Control"
     },
     {
-      title: "Consumable & Item Eat Punish",
-      trigger: "Target begins consuming Golden Apples, Potions, or Milk within 10 blocks",
-      description: "Sensory reflex that instantly dashes forward or dropkicks targets caught in item consumption animations (requiring >=6 animation ticks remaining), punishing healing attempts with unblockable physical burst damage.",
-      category: "Punishment Window"
-    },
-    {
-      title: "Armor-Bypassing Sonic Scream & Radial Shockwave",
-      trigger: "Learned from Warden engagements or during high-threat combat",
-      description: "Fires a 24-block directional acoustic beam dealing 80 damage that completely ignores armor and shield mitigation. Under extreme pressure, releases an omnidirectional 360° sonic shockwave across a 24-block radius with massive terrain destruction.",
-      category: "Acoustic"
-    },
-    {
-      title: "Behavior Anomaly Detection (Welford)",
-      trigger: "Detecting sudden, unexpected changes in combat flow",
-      description: "Continuously computes statistical baselines of combat metrics. If a target performs an action that registers a Z-score above 2.5 (a drastic deviation from the norm, like sudden massive damage or erratic movement), the Rot enters a heightened 'surprise' alert state and immediately re-evaluates its tactical plan.",
-      category: "Intelligence Engine"
-    },
-    {
-      title: "Multi-Agent Role Auction",
-      trigger: "Multiple Rot entities engaging the same target",
-      description: "When multiple Rots are present within a 32-block radius, they engage in a silent, decentralized bidding system. They auction off combat roles (e.g., Vanguard, Flanker, Support) every 60 ticks based on their individual positioning and current health, ensuring coordinated pack tactics without overlapping roles.",
-      category: "Swarm Logic"
-    },
-    {
-      title: "Target Intent Inference Engine",
-      trigger: "Observing target movement, held items, vehicles, or airborne states",
-      description: "Dynamically infers 8 distinct player intents (Engaging, Escaping, Aerial Advantage, Repositioning, Healing, Ranged Attack, Baiting, Creating Distance). Instantly adapts capability unlocks and applies up to a 5x score multiplier to counter-combos tailored specifically to the target's active intent.",
-      category: "Intelligence Engine"
-    },
-    {
-      title: "Biological Surge Regeneration",
-      trigger: "Taking cumulative damage or fighting sustained engagements",
-      description: "Autonomous rapid cellular healing pulsing +5 to +28 HP every 6 ticks (3.3x/sec) based on adaptation stacks. Attrition strategies lose effectiveness the longer the fight runs: it heals faster the more danger it is in.",
+      title: "Cellular Surge Regeneration & Adaptive Resistance",
+      trigger: "Sustaining cumulative damage during prolonged combat",
+      description: "Pulses cellular healing at accelerated rates during low-health thresholds, while building up dynamic physical resistance as incoming damage exceeds adaptive mitigation thresholds.",
       category: "Defense & Healing"
     },
     {
-      title: "Grapple & Armor Strip",
-      trigger: "Engaging heavily armored targets in close quarters",
-      description: "Can seize and suspend a target mid-air. While held, deals continuous damage and either degrades equipped armor durability or forcibly removes indestructible pieces outright. Escape requires repeated hits before the hold breaks.",
-      category: "Grapple & Disarm"
+      title: "Multi-Agent Swarm Coordinated Auction",
+      trigger: "Multiple sentinels present within the combat zone",
+      description: "Executes decentralized role allocation protocols to assign specialized combat roles without tactical overlap.",
+      category: "Swarm Logic"
     }
   ];
 
@@ -874,8 +862,9 @@ export default function EntitiesView() {
           
           {/* THE ROT: Custom mechanics */}
           {currentEntity.id === 'rot' && (
-            <div className="space-y-6 pt-2">
-              {/* Abilities Accordion */}
+            <UpdatedFrame id="rot_updated_1_21_1" isUpdated={true}>
+              <div className="space-y-6 pt-2">
+                {/* Abilities Accordion */}
               <div className="space-y-3">
                 <h4 className="text-[11px] font-mono uppercase tracking-widest text-red-500 font-bold">
                   Abilities Dossier (Click to expand details)
@@ -1061,6 +1050,7 @@ export default function EntitiesView() {
                 </div>
               </div>
             </div>
+          </UpdatedFrame>
           )}
 
           {/* THE WOODWEAVER: Custom mechanics */}
