@@ -551,8 +551,8 @@ export default function EntitiesView() {
     },
     {
       title: "Synthetic Neural Core",
-      trigger: "Active during all combat engagements",
-      description: "Operates an autonomous 53-neuron sensory matrix that continuously evaluates spatial positioning, crosshair locks, weapon classifications, and target kinematics. Tactical plans are dynamically scored and reinforced in real time based on encounter outcomes.",
+      trigger: "Continuous autonomic processing throughout all combat states",
+      description: "An adaptive, non-linear cognitive network driven by 53 synchronized sensory neurons. It continuously extracts high-dimensional data from the encounter—dissecting weapon draw speeds, crosshair tracking precision, evasion rhythms, and biological vitals. Synaptic weightings permanently reshape themselves in real time based on combat efficacy; every successful maneuver from its target is systematically analyzed, calculated, and transformed into an insurmountable tactical liability. It does not possess instinct—it learns, adapts, and executes.",
       category: "Cognitive Engine"
     },
     {
