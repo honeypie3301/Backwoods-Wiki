@@ -76,13 +76,13 @@ export const WIKI_SEARCH_DATABASE: Record<string, string> = {
   `,
   blocks: `
     Oak Planks Splintered Oak Planks Rotten Oak Wood Rotten Oak Planks Lignum Caro
-    Nullstone Dead Memory Shard Plaque Faded Blocks Memory Quartz
-    Petrified Rotten Oak Wood Ash Roses Deepslate
+    Nullstone Dead Memory Shard Plaque Faded Blocks Memory Quartz Amber Grit Cobbled Amber Grit
+    Petrified Rotten Oak Wood Ash Roses Deepslate Windcap Mushroom Plant
   `,
   entities: `
     The Rot Sentinel Spore Slayer Woodweaver Boss Hypnotic Beam
-    Splinter Blindspot Splinter Giant Vermis Gigas
-    Pale Stalker Mimic Woodbound Entities
+    Splinter Blindspot Splinter Giant Vermis Gigas Hewn Splinter Wood Plains Thicket
+    Pale Stalker Mimic Woodbound Entities Paralyzed Block-Form Splinter
   `,
   items: `
     Steel and Charcoal Dead Memory Shard Splinter Needle Steel and Shard
@@ -90,6 +90,8 @@ export const WIKI_SEARCH_DATABASE: Record<string, string> = {
     Resonant Rot Effigy Rot Effigy Tetherless Pearl Resonant Pearl
     Atrophy Potion Cellular Collapse Potion Cellular Collapse II Potion
     Seep Lignum Caro Fragment Sharpened Splinter Shard
+    Petrified Rotten Dagger Dagger Reach Penalty Petrified Oak Gall Amber Grit Projectile
+    Windcap Mushroom Light Lungs Movement Efficiency Ash Berries
   `,
   commands: `
     /backwoods sanity /backwoods threat /backwoods debug

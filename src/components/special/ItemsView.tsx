@@ -36,6 +36,71 @@ export default function ItemsView() {
 
   const items: ItemData[] = [
     {
+      id: "petrified_rotten_dagger",
+      name: "Petrified Rotten Dagger",
+      category: "weapons",
+      isUpdated: true,
+      desc: "A swift, short-ranged dagger carved from petrified bark. Highly effective in close-quarters skirmishes, but its compact dagger profile reduces your physical entity reach.",
+      stats: [
+        { label: "Attack Damage", value: "6.5" },
+        { label: "Attack Speed", value: "2.0" },
+        { label: "Durability", value: "1,013" },
+        { label: "Reach Penalty", value: "-10% Entity Interaction Range" },
+        { label: "Repair Material", value: "Petrified Bark" }
+      ],
+      notes: [
+        "Entity Reach Penalty: Reduces Entity Interaction Range by -10% when held in either Main Hand or Off Hand.",
+        "On-Hit Effect: Has a 20% chance on hit to inflict a random status debuff on the target:",
+        "• Against Players: Weakness I (15s), Wither I (12.5s), or Blindness I (4.5s)",
+        "• Against Mobs: Weakness I, Wither I, or Slowness I"
+      ]
+    },
+    {
+      id: "petrified_oak_gall",
+      name: "Petrified Oak Gall",
+      category: "utility",
+      isUpdated: true,
+      desc: "A heavy, calcified oak gall harvested by breaking Amber Grit blocks. Functions as a lethal throwable projectile.",
+      stats: [
+        { label: "Item Classification", value: "Throwable Impact Projectile" },
+        { label: "Stack Size", value: "32" },
+        { label: "Acquisition Method", value: "Drop from breaking Amber Grit" }
+      ],
+      notes: [
+        "Can be thrown directly at targets to deal impact damage.",
+        "Amber Grit blocks feature a custom loot table that drops Petrified Oak Galls when broken."
+      ]
+    },
+    {
+      id: "windcap_mushroom",
+      name: "Windcap Mushroom",
+      category: "keys",
+      isUpdated: true,
+      desc: "A pale, aerated mushroom that can be planted on blocks or consumed for metabolic benefits. Consuming it is the exclusive method to receive the non-brewable Light Lungs effect.",
+      stats: [
+        { label: "Nutrition / Saturation", value: "1 Hunger (0.5 drumsticks) / 0.1 Saturation" },
+        { label: "Granted Status Effect", value: "Light Lungs (33.5s / 670 ticks)" },
+        { label: "Movement Efficiency", value: "+8% Traversal Speed Boost" },
+        { label: "Exhaustion Relief", value: "-1 Exhaustion every 40 ticks (2.0s)" },
+        { label: "Plantable", value: "Can be placed on blocks as Windcap Mushroom Plant" }
+      ],
+      notes: [
+        "Light Lungs Effect Details (Non-Brewable): Consuming a Windcap Mushroom grants the Light Lungs effect for 33.5 seconds (670 ticks).",
+        "+8% Movement Efficiency: Enhances player speed and agility across dense forest terrain.",
+        "Stamina Exhaustion Relief: Reduces hunger exhaustion level by 1 unit every 40 ticks (2.0s), preventing stamina drain during sprinting."
+      ]
+    },
+    {
+      id: "ash_berries",
+      name: "Ash Berries",
+      category: "keys",
+      isUpdated: true,
+      desc: "Tart, resilient berries harvested in ash-laden biomes.",
+      stats: [
+        { label: "Nutrition / Saturation", value: "1 Hunger (0.5 drumsticks) / 0.3 Saturation" }
+      ]
+    },
+    {
       id: "steel_charcoal",
       name: "Steel and Charcoal",
       category: "keys",
@@ -567,9 +632,11 @@ export default function ItemsView() {
       stats: [
         { label: "Acquisition Method", value: "Mob Drop from Dorceless Splinter" },
         { label: "Item Classification", value: "Entity Position-Swapping Projectile" },
+        { label: "Throw Cooldown", value: "40 Ticks (2.0 Seconds)" },
         { label: "Impact Effect", value: "Target Location Swap on Impact" }
       ],
       notes: [
+        "Features a global 40-tick (2.0-second) cooldown after each throw.",
         "Striking any living target (except The Rot) shatters the pearl with a glass crunch and immediately swaps your position with theirs.",
         "Plays distinct spatial teleport sound effects at both the thrower's and the target's locations upon swapping.",
         "Cannot swap positions with The Rot or the thrower.",
@@ -584,10 +651,12 @@ export default function ItemsView() {
       desc: "An amplified, highly resonant spatial pearl projectile. When thrown, it propels a high-frequency warp wave that teleports the user forward over long distances across 64 to 96 blocks.",
       stats: [
         { label: "Teleportation Distance", value: "64 – 96 Blocks" },
+        { label: "Throw Cooldown", value: "40 Ticks (2.0 Seconds)" },
         { label: "Item Classification", value: "Long-Range Spatial Evasion" },
         { label: "Crafting Method", value: "2 Shapeless Recipes (requires Tetherless Pearl)" }
       ],
       notes: [
+        "Features a global 40-tick (2.0-second) cooldown after each throw.",
         "Provides immediate long-distance spatial evasion to escape hostile swarms or cross hazardous gaps.",
         "Unlike the standard Tetherless Pearl, it displaces the thrower directly over vast distances without needing an entity target."
       ]

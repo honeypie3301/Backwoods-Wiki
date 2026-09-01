@@ -95,12 +95,17 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   woodweaver: {
     modelUrl: '/models/WoodWeaver.obj',
     textureUrl: '/models/woodweaver_skin.png'
+  },
+  hewn_splinter: {
+    modelUrl: '/models/Hewn_Splinter.obj',
+    textureUrl: '/models/hewn_splinter.png'
   }
 };
 
 const ENTITY_IMMUNITIES: Record<string, string[]> = {
   rot: ["Fall Damage", "Cactus", "Drowning", "Freezing", "Soul Fracture"],
   woodweaver: ["Fall Damage", "Drowning", "Suffocation"],
+  hewn_splinter: ["Projectiles / Arrows", "Fall Damage", "Cactus", "Drowning", "Falling Anvils", "Fluid Pushes"],
   splinter: ["Poison", "Splash Potions", "Cactus", "Drowning", "Dragon's Breath"],
   kyne_splinter: ["Cactus", "Drowning"],
   dorceless_splinter: ["Cactus", "Drowning"],
@@ -325,6 +330,22 @@ export default function EntitiesView() {
       dim: "The Petrified Weald",
       isUpdated: true,
       desc: "A heavily calcified fossilized trilobite generating between Y=0 and Y=60 in the Petrified Weald (with a 32-block separation on solid ground). Features 14 armor points. Features an active fleeing routine targeting Rot entities (1.7x speed, 100-block range) to evade the Rot and avoid collateral damage. Tucks into its carapace when HP <= 4 to heal +1 HP every 10 ticks until reaching 10 HP, but breaks hiding immediately if a Rot entity approaches within 100 blocks."
+    },
+    {
+      id: "hewn_splinter",
+      name: "Hewn Splinter",
+      title: "Paralyzed Block-Form Splinter",
+      threatLevel: "Passive",
+      threatColor: "text-emerald-400",
+      badgeBg: "bg-emerald-950/30 border-emerald-900/40 text-emerald-400",
+      borderColor: "border-emerald-950/20",
+      hp: "6 HP (3 Hearts)",
+      damage: "0 HP (Harmless)",
+      armor: "0 Points",
+      speed: "0.0 (Immobile)",
+      dim: "The Backwoods (Wood Plains & Thicket Biomes)",
+      isUpdated: true,
+      desc: "Something subjected them to a fate inspired by pure, utilitarian cruelty, turned them from bipeds to cubes. They are entirely conscious, but paralyzed. They cannot move, they cannot scream, and they cannot fight back. Visually indistinguishable from a standard Oak Planks block, Hewn Splinters automatically snap their rotation to cardinal 90-degree angles upon spawning. They feature a 5% spawn chance on surface blocks in the Wood Plains and Thicket biomes provided no other Hewn Splinter exists within a 96-block radius. Completely immune to arrows, fall damage, cactus, drowning, falling anvils, and fluid pushes. Drops 1 Oak Planks when destroyed."
     },
     {
       id: "kyne_splinter",

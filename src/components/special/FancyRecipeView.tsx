@@ -87,6 +87,12 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'petrified_rotten_oak_wood': { short: 'Pwd', bg: 'bg-[#122318]', text: 'text-[#34d399]', border: 'border-[#224c32]', glow: '' },
     'petrified_rotten_stick': { short: 'Pst', bg: 'bg-[#0e1711]', text: 'text-[#059669]', border: 'border-[#153120]', glow: '' },
     'petrified_bark': { short: 'Pb', bg: 'bg-[#111c15]', text: 'text-[#047857]', border: 'border-[#193a26]', glow: '' },
+    'petrified_rotten_dagger': { short: 'Prd', bg: 'bg-[#12281b]', text: 'text-[#34d399]', border: 'border-[#225c38]', glow: 'group-hover:shadow-[0_0_12px_rgba(52,211,153,0.2)]' },
+    'petrified_oak_gall': { short: 'Pog', bg: 'bg-[#1e1b12]', text: 'text-[#fbbf24]', border: 'border-[#4a3b1a]', glow: 'group-hover:shadow-[0_0_10px_rgba(251,191,36,0.15)]' },
+    'windcap_mushroom': { short: 'Wm', bg: 'bg-[#122026]', text: 'text-[#38bdf8]', border: 'border-[#1e4159]', glow: 'group-hover:shadow-[0_0_10px_rgba(56,189,248,0.15)]' },
+    'ash_berries': { short: 'Ab', bg: 'bg-[#211219]', text: 'text-[#fb7185]', border: 'border-[#4c1d2d]', glow: '' },
+    'amber_grit': { short: 'Ag', bg: 'bg-[#1a1712]', text: 'text-[#f59e0b]', border: 'border-[#3f311a]', glow: '' },
+    'hewn_splinter': { short: 'Hs', bg: 'bg-[#1c140e]', text: 'text-[#fbbf24]', border: 'border-[#422d1b]', glow: '' },
     'petrified_resin': { short: 'Pr', bg: 'bg-[#0e1e1a]', text: 'text-[#10b981]', border: 'border-[#1b4332]', glow: '' },
     'compact_petrified_resin': { short: 'Cpr', bg: 'bg-[#102d24]', text: 'text-[#34d399]', border: 'border-[#215f47]', glow: 'group-hover:shadow-[0_0_10px_rgba(52,211,153,0.2)]' },
 

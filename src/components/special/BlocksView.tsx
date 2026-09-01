@@ -239,7 +239,22 @@ export default function BlocksView() {
       dimension: "petrified_weald",
       hardness: "3",
       blastRes: "9.0",
-      description: "Dense deepslate-like ground block generating naturally in the Petrified Weald."
+      description: "Dense deepslate-like ground block generating naturally in the Petrified Weald. Features a custom loot table dropping throwable Petrified Oak Galls when broken.",
+      isUpdated: true,
+      lootTable: [
+        { item: "Petrified Oak Gall", weight: 100, condition: "Breaking Amber Grit block" }
+      ]
+    },
+    {
+      name: "Windcap Mushroom Plant",
+      dimension: "backwoods_rotting",
+      hardness: "0.0",
+      blastRes: "0.0",
+      description: "A pale, aerated mushroom plant that generates naturally in damp forest biomes. Can be harvested for Windcap Mushrooms.",
+      isUpdated: true,
+      lootTable: [
+        { item: "Windcap Mushroom", weight: 100, condition: "Harvesting plant" }
+      ]
     },
     {
       name: "Lignum Caro",

@@ -320,6 +320,7 @@ export default function SanityView() {
 
           </div>
 
+
           {/* RESONANT ROT EFFIGY ARTIFACT CARD */}
           <UpdatedFrame id="resonant_rot_effigy_sanity" isUpdated={true}>
             <div className="p-5 bg-[#0f1310] border border-amber-500/30 rounded-xl space-y-3 shadow-md">
