@@ -139,7 +139,7 @@ interface EntityProfile {
   id: string;
   name: string;
   title: string;
-  threatLevel: 'Low' | 'Medium' | 'High' | 'Extreme' | 'Extermination Class';
+  threatLevel: 'Passive' | 'Low' | 'Medium' | 'High' | 'Extreme' | 'Extermination Class';
   threatColor: string;
   badgeBg: string;
   borderColor: string;
@@ -178,6 +178,7 @@ export default function EntitiesView() {
   };
 
   const THREAT_VALUES: Record<string, number> = {
+    "Passive": 0,
     "Low": 1,
     "Medium": 2,
     "High": 3,
