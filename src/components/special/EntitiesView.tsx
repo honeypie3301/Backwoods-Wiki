@@ -202,7 +202,7 @@ export default function EntitiesView() {
       dim: "The Backwoods / Dynamic Sentry deployment",
       aka: "Expugnatio, Venator, Vigil, Eversor, Rot Prime",
       isUpdated: true,
-      desc: "The apex autonomous combat sentinel of the Backwoods. Driven by a 53-neuron synthetic cognitive core, it continuously evaluates real-time threat vectors, ballistic trajectories, and target kinematics to select optimal neutralization protocols. Equipped with superheater thermal arrays, automated boss immunity overrides, armor-stripping chokes, and acoustic shockwaves, target survival probability decays rapidly with every second of engagement."
+      desc: "The apex autonomous combat sentinel of the Backwoods. Driven by a 96-node synthetic cognitive neural array, it continuously evaluates real-time threat vectors, ballistic trajectories, and target kinematics to select optimal neutralization protocols. Equipped with superheater thermal arrays, automated boss immunity overrides, and acoustic shockwaves, target survival probability decays rapidly with every second of engagement."
     },
     {
       id: "woodweaver",
@@ -574,7 +574,7 @@ export default function EntitiesView() {
     {
       title: "Synthetic Neural Core",
       trigger: "Continuous autonomic processing throughout all combat states",
-      description: "An adaptive, non-linear cognitive network driven by 53 synchronized sensory neurons. It continuously extracts high-dimensional data from the encounter—dissecting weapon draw speeds, crosshair tracking precision, evasion rhythms, and biological vitals. Synaptic weightings permanently reshape themselves in real time based on combat efficacy; every successful maneuver from its target is systematically analyzed, calculated, and transformed into an insurmountable tactical liability. It does not possess instinct—it learns, adapts, and executes.",
+      description: "An adaptive, non-linear cognitive network driven by 96 synchronized input vector channels feeding an 8-neuron hidden processing layer. It continuously extracts high-dimensional data from the encounter—dissecting weapon draw speeds, crosshair tracking precision, evasion rhythms, mace threat calculations, airtime frequencies, and biological vitals. Synaptic weightings permanently reshape themselves in real time based on combat efficacy; every successful maneuver from its target is systematically analyzed, calculated, and transformed into an insurmountable tactical liability. It does not possess instinct—it learns, adapts, and executes.",
       category: "Cognitive Engine"
     },
     {
