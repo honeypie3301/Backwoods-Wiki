@@ -99,8 +99,16 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     // Create camera
     const width = containerRef.current.clientWidth || 500;
     const height = containerRef.current.clientHeight || 400;
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 3, 8);
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000); // Expanded far clipping to 1000 for colossal scales
+    
+    // Dynamic starting position based on massive scale entities
+    if (entityId === 'lignum_gigas') {
+      camera.position.set(0, 15, 60);
+    } else if (entityId === 'verdant_engine') {
+      camera.position.set(0, 8, 30);
+    } else {
+      camera.position.set(0, 3, 8);
+    }
     cameraRef.current = camera;
 
     // Create renderer
@@ -121,7 +129,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     controls.dampingFactor = 0.05;
     controls.maxPolarAngle = Math.PI / 1.9; // don't go too far underground
     controls.minDistance = 1.5;
-    controls.maxDistance = 18;
+    controls.maxDistance = 150; // Increased to 150 to accommodate massive zoom levels
     controlsRef.current = controls;
 
     // Create model group
@@ -245,9 +253,11 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
           if (entityId === 'fractus_prime') {
             finalScale = blockScale * 1.25; // prime variant is slightly larger (1.25 blocks)
           } else if (entityId === 'lignum_gigas') {
-            finalScale = blockScale * 8.0; // stands 16 blocks tall (massive, but fits perfectly in view)
+            finalScale = blockScale * 40.0; // scale the gigas to 40x
           } else if (entityId === 'woodweaver') {
-            finalScale = blockScale * 1.1; // Restore majestic, towering boss scale (stands several blocks tall)
+            finalScale = blockScale * 1.0; // Woodweaver model is scaled not smaller or bigger, just 1x
+          } else if (entityId === 'verdant_engine') {
+            finalScale = blockScale * 15.0; // Verdant engine model scaled up 15x
           }
 
           modelGroup.scale.set(finalScale, finalScale, finalScale);
@@ -713,12 +723,6 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
             3D MODEL VIEWPORT
           </span>
         </div>
-        {entityId === 'woodweaver' && (
-          <div className="bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[8px] font-extrabold px-1.5 py-0.5 rounded tracking-wider uppercase flex items-center gap-1 w-fit">
-            <span className="w-1 h-1 rounded-full bg-amber-400 animate-ping" />
-            <span>WIP: MODEL STAGED</span>
-          </div>
-        )}
       </div>
 
       {/* Loading overlay */}
@@ -741,17 +745,6 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
         ref={containerRef} 
         className="w-full h-[320px] sm:h-[380px] lg:h-[420px] cursor-grab active:cursor-grabbing" 
       />
-
-      {/* Censor Banner for Woodweaver */}
-      {entityId === 'woodweaver' && (
-        <div className="absolute inset-0 z-15 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <div className="w-full bg-[#0a0c0a]/90 border-y border-[#1c241e] py-4 text-center transform -rotate-3 scale-110 shadow-lg">
-            <div className="font-mono text-sm font-bold tracking-[0.3em] text-[#709978] uppercase">
-              WORK IN PROGRESS
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Controls Overlay Footer */}
       <div className="absolute bottom-3 left-3 right-3 z-10 flex flex-wrap items-center justify-between gap-3 bg-[#0a0d0a]/80 backdrop-blur border border-[#1b221c]/50 p-2.5 rounded-lg">

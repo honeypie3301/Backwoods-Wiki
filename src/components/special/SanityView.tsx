@@ -117,10 +117,6 @@ export default function SanityView() {
         {
           name: "Dimensional Phase Destabilization",
           detail: "Extreme degradation triggers spontaneous phase pulls, forcing dimensional displacement into The Loss or The Grain."
-        },
-        {
-          name: "Severe Visual Vignette",
-          detail: "Vision borders darken heavily with chromatic aberration, severely limiting situational awareness."
         }
       ]
     }

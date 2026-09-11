@@ -99,6 +99,10 @@ const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = 
   hewn_splinter: {
     modelUrl: '/models/Hewn_Splinter.obj',
     textureUrl: '/models/hewn_splinter.png'
+  },
+  verdant_engine: {
+    modelUrl: '/models/VerdantEngine.obj',
+    textureUrl: '/models/verdant_skin.png'
   }
 };
 
@@ -125,7 +129,8 @@ const ENTITY_IMMUNITIES: Record<string, string[]> = {
   lignum_echinus: ["Sweet Berry / Thorns", "Cactus", "Drowning"],
   petrified_lignum_echinus: ["Sweet Berry / Thorns", "Cactus", "Drowning", "Fall Damage"],
   lignum_trilobita: ["Cactus", "Drowning", "Suffocation"],
-  petrified_lignum_trilobita: ["Cactus", "Drowning", "Suffocation", "Falling Anvils"]
+  petrified_lignum_trilobita: ["Cactus", "Drowning", "Suffocation", "Falling Anvils"],
+  verdant_engine: ["In Fire", "Projectiles / Arrows", "Poison & Splash Potions", "Fall Damage", "Cactus", "Drowning & Water current push", "Lightning Bolts", "Falling Anvils", "Wither & Wither Skulls"]
 };
 
 interface Ability {
@@ -153,10 +158,30 @@ interface EntityProfile {
   isUpdated?: boolean;
 }
 
+const getThreatBadgeStyle = (threatLevel: string) => {
+  switch (threatLevel) {
+    case 'Extermination Class':
+      return 'bg-[#251012] border border-red-500/70 text-red-400 font-bold animate-pulse shadow-[0_0_12px_rgba(239,68,68,0.75)]';
+    case 'Extreme':
+      return 'bg-[#221315] border border-red-900/50 text-[#cf8f92] font-semibold shadow-[0_0_8px_rgba(239,68,68,0.45)]';
+    case 'High':
+      return 'bg-[#1a1318] border border-[#3f2123]/40 text-[#b5a3bd] shadow-[0_0_4px_rgba(239,68,68,0.25)]';
+    case 'Medium':
+      return 'bg-[#1a1715] border border-[#2f2824]/40 text-[#c2b09f]';
+    case 'Low':
+      return 'bg-[#141715] border border-[#222924]/40 text-[#9bb0a0]';
+    case 'Passive':
+    default:
+      return 'bg-[#111412] border border-[#1b221d]/40 text-[#829285]';
+  }
+};
+
 export default function EntitiesView() {
-  const [selectedEntity, setSelectedEntity] = useState<string>('hollow');
+  const [selectedEntity, setSelectedEntity] = useState<string>('hewn_splinter');
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
+  const [activeGigasState, setActiveGigasState] = useState<'dormant' | 'anchored' | 'growling'>('dormant');
+  const [activeVerdantState, setActiveVerdantState] = useState<'scanning' | 'terraforming' | 'cascade'>('scanning');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
@@ -164,6 +189,7 @@ export default function EntitiesView() {
 
   const handleEntitySelect = (entityId: string) => {
     setSelectedEntity(entityId);
+    setOpenAbilityIndex(0);
     if (entityId === 'rot') {
       const now = Date.now();
       const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
@@ -362,7 +388,7 @@ export default function EntitiesView() {
       speed: "0.280",
       dim: "Wood Plains & The Thicket",
       isUpdated: true,
-      desc: "A predatory Woodbound entity that drops 7 XP upon defeat. A rare spawn occurring on a 15% roll with a strict 512-block exclusion zone from other Kyne Splinters on solid ground. When struck, if nearby pack members are present, it triggers a pack-wide avenge protocol, rallying surrounding Woodbound entities to retaliate against the attacker. Like all Splinter species, Kyne Splinters actively flee from any Rot entity that approaches within 100 blocks to evade its destructive footprint."
+      desc: "A predatory Woodbound entity based on the Thalasin, the analog horror, that drops 7 XP upon defeat. A rare spawn occurring on a 15% roll with a strict 512-block exclusion zone from other Kyne Splinters on solid ground. When struck, if nearby pack members are present, it triggers a pack-wide avenge protocol, rallying surrounding Woodbound entities to retaliate against the attacker. Like all Splinter species, Kyne Splinters actively flee from any Rot entity that approaches within 100 blocks to evade its destructive footprint."
     },
     {
       id: "dorceless_splinter",
@@ -378,7 +404,7 @@ export default function EntitiesView() {
       speed: "0.220",
       dim: "Wood Plains & The Thicket",
       isUpdated: true,
-      desc: "An elusive, armored variant of the Splinter lineage that drops 10 XP, Oak Planks, and a Tetherless Pearl upon defeat. Operates on an uncommon 25% spawn chance roll requiring a 128-block clearance from other Dorceless Splinters on solid ground. Possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: 85% chance to dodge incoming projectile attacks and 50% chance to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports 6 to 11 blocks away to flank the attacker while immediately facing them. Possesses an innate evacuation instinct, actively fleeing when a Rot entity comes within 100 blocks."
+      desc: "An elusive, armored variant of the Splinter lineage based on the Thalasin, the analog horror, that drops 10 XP, Oak Planks, and a Tetherless Pearl upon defeat. Operates on an uncommon 25% spawn chance roll requiring a 128-block clearance from other Dorceless Splinters on solid ground. Possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: 85% chance to dodge incoming projectile attacks and 50% chance to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports 6 to 11 blocks away to flank the attacker while immediately facing them. Possesses an innate evacuation instinct, actively fleeing when a Rot entity comes within 100 blocks."
     },
     {
       id: "log_splinter",
@@ -491,6 +517,22 @@ export default function EntitiesView() {
       dim: "Wood Plains & The Thicket (Colossal Ring formations)",
       isUpdated: true,
       desc: "A gargantuan stationary biomechanical titan standing 80 blocks tall. Built from ancient interlocking oak planks, it channels the legendary properties of the Coelum Carnis. Anchored deep into the floor with an Inexhaustible Health Reservoir (1,008 HP) and immediate Coelum Carnis regeneration, its massive tissue repairs faster than kinetic strikes or environmental decay can consume it. Because of this infinite regenerative core, Lignum Gigas does NOT flee from The Rot, standing completely indifferent to its presence while lesser fauna evacuate. Striking it triggers apocalyptic defensive routines."
+    },
+    {
+      id: "verdant_engine",
+      name: "Verdant Engine",
+      title: "Atmospheric Retribution Vanguard",
+      threatLevel: "Extreme",
+      threatColor: "text-rose-500",
+      badgeBg: "bg-rose-950/30 border-rose-900/40 text-rose-400 font-bold",
+      borderColor: "border-rose-950/20",
+      hp: "2,500 HP (Limit-Bypassed)",
+      damage: "0 (Environmental Restructuring / Failure Cascade)",
+      armor: "150 Points / 40 Toughness",
+      speed: "0.300 (Gravity-Defying Flight)",
+      dim: "Non-Mod Dimensions (Retributive high-sky spawn above Y=50)",
+      isUpdated: true,
+      desc: "A colossal sky-bound terraforming apparatus. Initiated through advanced planetary balance checks, it defies standard engine attribute limitations to execute continuous environmental restructuring protocols, converting regional biome states into Wood Plains."
     },
     {
       id: "fractus",
@@ -618,6 +660,66 @@ export default function EntitiesView() {
       trigger: "Multiple sentinels present within the combat zone",
       description: "Executes decentralized role allocation protocols to assign specialized combat roles without tactical overlap.",
       category: "Swarm Logic"
+    }
+  ];
+
+  const lignumGigasAbilities: Ability[] = [
+    {
+      title: "Geometrical Ring Formations",
+      trigger: "Entity Generation & Terrain Generation checks",
+      description: "Generates strictly in massive structures consisting of 7 giant units arranged in a 400-block wide circle (200-block radius from center), all facing inward. Ring centers enforce an absolute separation spacing constraint of at least 900 blocks from other rings.",
+      category: "Macro Generation"
+    },
+    {
+      title: "Sinking Anchor & Block Fracturing",
+      trigger: "On initial combat strike or receiving direct damage",
+      description: "Upon combat initiation, the behemoth fractures all solid blocks within a 9-block radius and sinks precisely 5 blocks into the terrain to anchor its immense weight against kinetic strikes.",
+      category: "Kinetic Defense"
+    },
+    {
+      title: "Omnidirectional Radial Flinging",
+      trigger: "Active target detected within 28-block radius of base",
+      description: "Maintains continuous sector clearance sweeps, forcefully launching active targets within a 28-block radius high into the air to trigger massive fall damage scenarios.",
+      category: "Area Control"
+    },
+    {
+      title: "Inventory Stripping Growl",
+      trigger: "Proximity combat after emitting an Ender Dragon growl sound",
+      description: "Emits a deep, echoing growl. All active targets within a 28-block radius find their active hotbars, main inventory items, and off-hands instantly stripped and cast onto the ground.",
+      category: "Equipment Disarm"
+    }
+  ];
+
+  const verdantEngineAbilities: Ability[] = [
+    {
+      title: "Direct Attribute Limit Bypass",
+      trigger: "Entity instantiation on world load",
+      description: "Bypasses standard Minecraft entity attribute boundaries. Direct memory overrides replace the default caps to enforce a true pool of 2,500 health points, 150 armor points, and 40 toughness points.",
+      category: "Internal Bypass"
+    },
+    {
+      title: "Radial Biome Transmutation",
+      trigger: "Continuous periodic cycle checking",
+      description: "Enforces regional block conversion inside a maximum radius of 256 blocks (16 chunks), converting local terrain and biome nodes into the custom Wood Plains biome.",
+      category: "Environmental"
+    },
+    {
+      title: "Territorial Saturation Shift",
+      trigger: "Every 10 seconds if regional biome conversion ratio is >90%",
+      description: "Scans 24 surrounding coordinate columns. If local Wood Plains biome saturation exceeds 90%, it triggers an automated coordinate shift, displacing itself 288 blocks away to clear new sectors.",
+      category: "Spatial Shift"
+    },
+    {
+      title: "Spacing Coordinates Constraint",
+      trigger: "Proximity to another active vanguard <192 blocks",
+      description: "Enforces a minimum clearance spacing constraint of 192 blocks from other active corrective units. Proximity triggers immediate spatial relocation of the lower-index ID entity to a distance of 224 blocks.",
+      category: "Collision Prevention"
+    },
+    {
+      title: "Catastrophic System Failure Cascade",
+      trigger: "Core physical degradation falling below 20 health points",
+      description: "Core failure below 20 health points suspends its propulsion fields, causing a rapid descending drop followed by a high-intensity terrain-fracturing explosion.",
+      category: "Terminal Event"
     }
   ];
 
@@ -756,27 +858,27 @@ export default function EntitiesView() {
               </span>
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 max-h-[380px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-1.5 max-h-[420px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
             {sortedEntities.map(e => (
               <div key={e.id}>
                 <UpdatedFrame id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
                   <button
                     onClick={() => handleEntitySelect(e.id)}
-                    className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
+                    className={`w-full text-left px-2.5 py-1.5 rounded-md border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
                       selectedEntity === e.id
                         ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
                         : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
                     }`}
                   >
                     <div className="flex justify-between items-center w-full">
-                      <span className="font-serif text-sm text-[#e0e7e0] flex items-center gap-1.5">
+                      <span className="font-serif text-xs text-[#e0e7e0] flex items-center gap-1">
                         {e.name}
                       </span>
-                      <span className={`text-[8px] font-mono uppercase px-1.5 py-0.5 rounded ${e.badgeBg}`}>
+                      <span className={`text-[7px] font-mono uppercase px-1 py-0.5 rounded ${getThreatBadgeStyle(e.threatLevel)}`}>
                         {e.threatLevel}
                       </span>
                     </div>
-                    <div className="text-[10px] text-[#5a6b5e] font-mono mt-1 italic">{e.title}</div>
+                    <div className="text-[9px] text-[#5a6b5e] font-mono mt-0.5 italic leading-tight">{e.title}</div>
                   </button>
                 </UpdatedFrame>
               </div>
@@ -809,7 +911,7 @@ export default function EntitiesView() {
               <p className="text-xs text-[#709978] font-mono mt-0.5">{currentEntity.title}</p>
             </div>
             <div className="shrink-0">
-              <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase ${currentEntity.badgeBg}`}>
+              <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase ${getThreatBadgeStyle(currentEntity.threatLevel)}`}>
                 <Skull className="w-3.5 h-3.5 animate-pulse" />
                 {currentEntity.threatLevel} Threat
               </span>
@@ -1832,38 +1934,342 @@ export default function EntitiesView() {
 
           {/* LIGNUM GIGAS: Custom mechanics */}
           {currentEntity.id === 'lignum_gigas' && (
-            <div className="space-y-5 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-rose-950/10 border border-rose-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-rose-400">Ancient Bio-mechanical Behemoth:</strong> Standing roughly 80 blocks tall and arranged in perfect geometrical formations, Lignum Gigas represents the peak of woodbound growth. Striking it triggers active defensive routines that strip players of their weapons.
-              </div>
+            <UpdatedFrame id="lignum_gigas_custom_dossier" isUpdated={true}>
+              <div className="space-y-6 pt-2">
+                {/* Abilities Accordion */}
+                <div className="space-y-3">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-rose-400" />
+                    Behavioral &amp; Combat Dossier (Click to expand details)
+                  </h4>
+                  
+                  <div className="space-y-2">
+                    {lignumGigasAbilities.map((ab, idx) => {
+                      const isOpen = openAbilityIndex === idx;
+                      return (
+                        <div 
+                          key={idx} 
+                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
+                        >
+                          <button
+                            onClick={() => toggleAbility(idx)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                {ab.category}
+                              </span>
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                                {ab.title}
+                              </span>
+                            </div>
+                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                          </button>
+                          
+                          {isOpen && (
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                <Zap className="w-3.5 h-3.5" />
+                                <span>Trigger Condition: {ab.trigger}</span>
+                              </div>
+                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
 
-              <div className="space-y-3">
-                <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Active Defence Routines</h5>
-                <ul className="space-y-3 text-xs text-[#8c8779] pl-4 list-decimal leading-relaxed">
-                  <li>
-                    <strong className="text-[#c9d1c9]">Sinking Logic:</strong> 
-                    On initial combat activation, it fractures all surrounding blocks in a <strong className="text-white">9-block radius</strong> and sinks exactly <strong className="text-white">5 blocks</strong> down to anchor its colossal mass.
-                  </li>
-                  <li>
-                    <strong className="text-[#c9d1c9]">Radial Flinging:</strong> 
-                    Every few ticks, it sweeps a <strong className="text-white">28-block area</strong> around its base, launching any active players high into the sky, inducing lethal fall risks.
-                  </li>
-                  <li>
-                    <strong className="text-rose-400 font-bold">Inventory Stripping:</strong> 
-                    Upon emitting an ominous Ender Dragon growl, all players in a 28-block radius have their active hotbars, main inventory items, and off-hands forcefully cast onto the ground (armor is safe).
-                  </li>
-                </ul>
-              </div>
+                {/* State / Phase Matrix Switcher */}
+                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                  <div>
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-rose-400" />
+                      Boss Phase &amp; State Matrix
+                    </h4>
+                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
+                      The Lignum Gigas operates as an immovable geometric system, executing severe repelling and disarming sequences when disturbed.
+                    </p>
+                  </div>
 
-              <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-2">
-                <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Spawning Formations</h5>
-                <ul className="space-y-1.5 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
-                  <li>Generates strictly in groups of <strong className="text-white">7 units</strong> arranged in a massive <strong className="text-white">400-block wide ring</strong> (200-block radius from center), all facing inward.</li>
-                  <li>Extremely rare: Ring centers cannot generate within <strong className="text-white">900 blocks</strong> of another ring.</li>
-                  <li>Only spawns on flat ground profiles above sea level, checking mountains and overhanging trees to prevent clipping.</li>
-                </ul>
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                    {[
+                      { id: 'dormant', label: '1. Dormant Ring' },
+                      { id: 'anchored', label: '2. Anchored Control' },
+                      { id: 'growling', label: '3. Inventory Strip' }
+                    ].map((state) => (
+                      <button
+                        key={state.id}
+                        onClick={() => setActiveGigasState(state.id as any)}
+                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
+                          activeGigasState === state.id
+                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            : 'text-[#5a6b5e] hover:text-[#829285]'
+                        }`}
+                      >
+                        {state.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
+                    {activeGigasState === 'dormant' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
+                          Phase 1: Dormant Ring Structure
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Initial passive state. Units are arranged in a 400-block wide geometric circle consisting of exactly 7 units.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-[#e0e7e0]">Macro Alignment:</strong> All 7 units face perfectly inward toward the center point of the ring structure.</li>
+                          <li><strong className="text-amber-400">Separation Constraint:</strong> Ring centers enforce a mandatory 900-block separation from other rings.</li>
+                          <li><strong className="text-purple-400">Inert Surveillance:</strong> Remains completely still and silent, observing players who cross the perimeter.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeGigasState === 'anchored' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-rose-400">
+                          Phase 2: Anchored Combat &amp; Radial Flinging
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Triggered upon receiving direct damage. The behemoth fractures nearby blocks, sinks 5 blocks into the ground, and begins periodic radial flinging sweeps.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Sinking Anchor:</strong> Instantly fractures all solid blocks within a 9-block radius and sinks 5 blocks down.</li>
+                          <li><strong className="text-purple-400">Continuous Sweeps:</strong> Executes sweep passes across a 28-block radius around its base coordinate.</li>
+                          <li><strong className="text-amber-400">Kinetic Repelling:</strong> Forcefully flings players high into the air, causing extreme fall damage risk.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeGigasState === 'growling' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-amber-500">
+                          Phase 3: Ender Dragon Growl &amp; Inventory Strip
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Severe defensive mechanism triggered after prolonged close-quarters combat inside its defense perimeter.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Dragon Growl:</strong> Emits a terrifying, deep vocalization that rumbles the surrounding ground.</li>
+                          <li><strong className="text-amber-300">Hotbar Evacuation:</strong> Instantly strips main-hand, off-hand, and all hotbar items from players.</li>
+                          <li><strong className="text-emerald-400">Item Scatter:</strong> Casts all stripped gear onto the floor within a 28-block radius, forcing strategic retreats.</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tactical Counterplay & Survival Directives */}
+                <div className="pt-4 border-t border-rose-950/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                    Tactical Counterplay &amp; Survival Directives
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-amber-400 font-bold font-mono text-[11px]">
+                        Ranged Range Discipline
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        Stay outside the 28-block active radius. Ranged weapons let you whittle down its massive health pool without triggering kinetic sweeps.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
+                        Scaffold &amp; Anchor Safety
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        Because Lignum Gigas is completely immobile, you can build scaffolds or vantage points out of range to avoid block fracturing altogether.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-purple-400 font-bold font-mono text-[11px]">
+                        Hotbar Scatter Protocol
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        If your inventory is stripped, do not panic. Retreat outward to a safe distance, wait for the sweep to cycle, then retrieve your gear.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </UpdatedFrame>
+          )}
+
+          {/* VERDANT ENGINE: Custom mechanics */}
+          {currentEntity.id === 'verdant_engine' && (
+            <UpdatedFrame id="verdant_engine_custom_dossier" isUpdated={true}>
+              <div className="space-y-6 pt-2">
+                {/* Abilities Accordion */}
+                <div className="space-y-3">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-rose-400" />
+                    Behavioral &amp; Combat Dossier (Click to expand details)
+                  </h4>
+                  
+                  <div className="space-y-2">
+                    {verdantEngineAbilities.map((ab, idx) => {
+                      const isOpen = openAbilityIndex === idx;
+                      return (
+                        <div 
+                          key={idx} 
+                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
+                        >
+                          <button
+                            onClick={() => toggleAbility(idx)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                {ab.category}
+                              </span>
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                                {ab.title}
+                              </span>
+                            </div>
+                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                          </button>
+                          
+                          {isOpen && (
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                <Zap className="w-3.5 h-3.5" />
+                                <span>Trigger Condition: {ab.trigger}</span>
+                              </div>
+                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* State / Phase Matrix Switcher */}
+                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                  <div>
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-rose-400" />
+                      Boss Phase &amp; State Matrix
+                    </h4>
+                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
+                      The Verdant Engine transitions through strict spatial coordinates, terraforming whole ecosystems until a terminal core system failure occurs.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                    {[
+                      { id: 'scanning', label: '1. High Scan' },
+                      { id: 'terraforming', label: '2. Transmutation' },
+                      { id: 'cascade', label: '3. Failure Cascade' }
+                    ].map((state) => (
+                      <button
+                        key={state.id}
+                        onClick={() => setActiveVerdantState(state.id as any)}
+                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
+                          activeVerdantState === state.id
+                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            : 'text-[#5a6b5e] hover:text-[#829285]'
+                        }`}
+                      >
+                        {state.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
+                    {activeVerdantState === 'scanning' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
+                          Phase 1: High-Altitude Scanning
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Initial coordinate survey state. The apparatus maintains flight above Y=50 while performing spatial spacing checks.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-[#e0e7e0]">Spacing Guard:</strong> Enforces a 192-block absolute clearance spacing constraint between active vanguards.</li>
+                          <li><strong className="text-amber-400">Reposition Trigger:</strong> If a co-presence violation occurs, the lower-index entity displaces 224 blocks away.</li>
+                          <li><strong className="text-purple-400">Ecosystem Monitoring:</strong> Scans surrounding forest grids for wood felling and structural colonizations.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeVerdantState === 'terraforming' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-rose-400">
+                          Phase 2: Active Biome Transmutation
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Triggered upon high environmental disruption indexes. Active transmutation operations override local biomes.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Radial Biome Shift:</strong> Converts surrounding terrain into the custom Wood Plains biome (256-block radius).</li>
+                          <li><strong className="text-[#e0e7e0]">Attribute Bypass:</strong> Overrides engine attributes to claim 2,500 health, 150 armor, and 40 toughness.</li>
+                          <li><strong className="text-amber-400">Saturation Shift:</strong> If regional conversion ratio exceeds 90%, displaces itself 288 blocks away.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeVerdantState === 'cascade' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-amber-500">
+                          Phase 3: Catastrophic Core Failure Cascade
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          The terminal state initiated when the engine sustains severe structural damage.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Engine Halt:</strong> Drops health below 20 HP, immediately disabling its gravity-defying propulsion fields.</li>
+                          <li><strong className="text-amber-300">Terminal Descent:</strong> Drops straight down onto the ground, smashing anything in its downward vector.</li>
+                          <li><strong className="text-emerald-400">Fracturing Explosion:</strong> Upon impact with solid ground, detonates in a high-intensity terrain-shattering explosion.</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Tactical Counterplay & Survival Directives */}
+                <div className="pt-4 border-t border-rose-950/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                    Tactical Counterplay &amp; Survival Directives
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-amber-400 font-bold font-mono text-[11px]">
+                        Disruption Level Check
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        Control your deforestation rate. Keep cumulative sector lumber and placement indexes below 90,000 and 30,000 to prevent engine alerts.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
+                        Tactical Retreat at low HP
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        When the Verdant Engine drops below 20 health, retreat at least 48 blocks away horizontally to completely dodge the core collapse explosion.
+                      </p>
+                    </div>
+
+                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                      <div className="text-purple-400 font-bold font-mono text-[11px]">
+                        Model-Scale Compensation
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        The vanguard's scale is 15x that of a regular drone. Expect its hitboxes and attack arcs to extend much further than standard models suggest.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </UpdatedFrame>
           )}
 
           {/* FRACTUS: Custom mechanics */}
