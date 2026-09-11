@@ -48,8 +48,8 @@ export default function SanityView() {
       title: "Stage Two — Auditory Dissociation & Sensory Loss",
       time: "10m 24s",
       ticks: "12,480 ticks",
-      color: "border-amber-500/40 text-amber-400 bg-amber-950/20",
-      badge: "bg-amber-900/40 text-amber-300 border-amber-700/50",
+      color: "border-amber-500/30 text-[#d4b57a] bg-amber-950/15",
+      badge: "bg-[#2a2315] text-[#e3cca1] border-amber-800/40",
       desc: "Sensory processing begins to collapse. Silence becomes aggressive and vision is intermittently throttled.",
       symptoms: [
         {
@@ -150,7 +150,7 @@ export default function SanityView() {
             </div>
             <div className="p-3 bg-[#111613] border border-[#1d2720] rounded-lg">
               <span className="text-[10px] font-mono uppercase text-[#5a6b5e] block">Adaptation Threshold</span>
-              <span className="text-xs font-mono text-amber-400 font-bold">20 Minutes (24,000 ticks)</span>
+              <span className="text-xs font-mono text-[#d4b57a] font-semibold">20 Minutes (24,000 ticks)</span>
             </div>
             <div className="p-3 bg-[#111613] border border-[#1d2720] rounded-lg">
               <span className="text-[10px] font-mono uppercase text-[#5a6b5e] block">Reset Mechanism</span>
@@ -161,19 +161,19 @@ export default function SanityView() {
 
         {/* REALITY ADAPTATION MECHANIC */}
         <div className="p-6 bg-[#0f1310] border border-[#1d261f] rounded-xl space-y-4 shadow-md">
-          <div className="flex items-center gap-2.5 text-amber-400 font-mono text-xs uppercase font-bold tracking-wider">
-            <Zap className="w-4 h-4 text-amber-400" />
+          <div className="flex items-center gap-2.5 text-[#d4b57a]/90 font-mono text-xs uppercase font-semibold tracking-wider">
+            <Zap className="w-4 h-4 text-[#d4b57a]" />
             <span>Reality Adaptation Mechanic</span>
           </div>
 
           <p className="text-xs sm:text-sm leading-relaxed text-[#c9d1c9]">
-            If a player survives continuously within the Backwoods for <strong className="text-amber-300">20 minutes (24,000 ticks)</strong> without triggering fatal collapse, their neural pathways begin developing <strong className="text-emerald-400">Reality Adaptation</strong>.
+            If a player survives continuously within the Backwoods for <strong className="text-[#e3cca1]">20 minutes (24,000 ticks)</strong> without triggering fatal collapse, their neural pathways begin developing <strong className="text-emerald-400">Reality Adaptation</strong>.
           </p>
 
-          <div className="p-4 bg-[#141b16] border-l-2 border-amber-500 rounded-r-lg space-y-2 text-xs">
-            <div className="text-amber-300 font-semibold uppercase tracking-wider font-mono text-[11px]">Adaptation Effect:</div>
+          <div className="p-4 bg-[#141b16] border-l-2 border-[#c09d5a]/60 rounded-r-lg space-y-2 text-xs">
+            <div className="text-[#e3cca1] font-semibold uppercase tracking-wider font-mono text-[11px]">Adaptation Effect:</div>
             <p className="text-[#9eb0a1] leading-relaxed">
-              Extends subsequent degradation stage threshold timings by <strong className="text-amber-300">+15%</strong>. This grants hardened explorers slightly wider windows of clarity during long deep-realm expeditions.
+              Extends subsequent degradation stage threshold timings by <strong className="text-[#e3cca1] font-semibold">+15%</strong>. This grants hardened explorers slightly wider windows of clarity during long deep-realm expeditions.
             </p>
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function SanityView() {
         {/* COUNTERMEASURES & RECOVERY */}
         <div className="space-y-4">
           <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#e0e7e0] flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-400" />
+            <Sparkles className="w-5 h-5 text-[#d4b57a]" />
             <span>Countermeasures & Medical Recovery</span>
           </h2>
 
@@ -270,7 +270,7 @@ export default function SanityView() {
             <div className="p-5 bg-[#0a0d0b] border border-[#1c261e] rounded-xl space-y-3 flex flex-col justify-between">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-[#e0e7e0] font-serif text-sm font-bold">
-                  <Flame className="w-4 h-4 text-amber-400" />
+                  <Flame className="w-4 h-4 text-[#d4b57a]" />
                   <span>Pale Remedy</span>
                 </div>
                 <p className="text-xs text-[#829285] leading-relaxed">
@@ -319,18 +319,18 @@ export default function SanityView() {
 
           {/* RESONANT ROT EFFIGY ARTIFACT CARD */}
           <UpdatedFrame id="resonant_rot_effigy_sanity" isUpdated={true}>
-            <div className="p-5 bg-[#0f1310] border border-amber-500/30 rounded-xl space-y-3 shadow-md">
+            <div className="p-5 bg-[#0f1310] border border-amber-500/20 rounded-xl space-y-3 shadow-md">
               <div className="flex items-center justify-between">
-                <div className="text-amber-400 font-mono text-xs uppercase font-bold tracking-wider">
+                <div className="text-[#d4b57a] font-mono text-xs uppercase font-semibold tracking-wider">
                   Stage 3 Sensory Protection: Resonant Rot Effigy
                 </div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-950/60 border border-amber-500/40 text-amber-300">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#1d170e] border border-amber-800/30 text-[#e3cca1]">
                   INVENTORY PASSIVE
                 </span>
               </div>
 
               <p className="text-xs sm:text-sm text-[#d1dad1] leading-relaxed">
-                Carrying a <strong className="text-amber-300">Resonant Rot Effigy</strong> in your inventory provides passive sensory stabilization during <strong className="text-amber-300">Stage 3 (Cognitive Distortion)</strong>.
+                Carrying a <strong className="text-[#e3cca1]">Resonant Rot Effigy</strong> in your inventory provides passive sensory stabilization during <strong className="text-[#e3cca1]">Stage 3 (Cognitive Distortion)</strong>.
               </p>
 
               <div className="p-4 bg-[#141b16] border border-[#233126] rounded-lg space-y-2">
@@ -349,7 +349,7 @@ export default function SanityView() {
         <div className="p-5 bg-[#0b0e0c] border border-[#1b251d] rounded-xl space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="font-serif text-base sm:text-lg font-bold text-[#e0e7e0] flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-amber-400" />
+              <ShieldAlert className="w-4 h-4 text-[#d4b57a]" />
               <span>Degradation Stages Reference Matrix</span>
             </h3>
             <span className="text-[10px] font-mono text-[#5a6b5e] uppercase">Summary Overview</span>
@@ -375,11 +375,11 @@ export default function SanityView() {
                   <td className="p-3 text-[#829285]">None (Auditory only)</td>
                 </tr>
                 <tr className="hover:bg-[#111713] transition-colors">
-                  <td className="p-3 font-bold text-amber-400">Stage 2</td>
+                  <td className="p-3 font-bold text-[#d4b57a]">Stage 2</td>
                   <td className="p-3 font-mono">10m 24s</td>
                   <td className="p-3 font-mono">12,480 ticks</td>
                   <td className="p-3">Music halts instantly; cave stingers inject</td>
-                  <td className="p-3 text-amber-300">Darkness pulses (3.0s duration)</td>
+                  <td className="p-3 text-[#e3cca1]/90">Darkness pulses (3.0s duration)</td>
                 </tr>
                 <tr className="hover:bg-[#111713] transition-colors">
                   <td className="p-3 font-bold text-orange-400">Stage 3</td>
