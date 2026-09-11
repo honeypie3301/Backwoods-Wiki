@@ -235,9 +235,9 @@ export default function EntitiesView() {
       name: "Woodweaver",
       title: "Telekinetic Adaptive Sentinel",
       threatLevel: "Extreme",
-      threatColor: "text-rose-500",
-      badgeBg: "bg-rose-950/30 border-rose-900/40 text-rose-400",
-      borderColor: "border-rose-950/20",
+      threatColor: "text-[#be6a6f]",
+      badgeBg: "bg-[#2c0f12]/30 border-[#5a1c21]/40 text-[#cc7e82]",
+      borderColor: "border-[#3c1215]/20",
       hp: "370 HP",
       damage: "High Melee / Devastating Beam",
       armor: "20 Points",
@@ -251,9 +251,9 @@ export default function EntitiesView() {
       name: "The Splinter",
       title: "Woodbound Predator",
       threatLevel: "Medium",
-      threatColor: "text-amber-400",
-      badgeBg: "bg-amber-950/30 border-amber-900/40 text-amber-400",
-      borderColor: "border-amber-950/20",
+      threatColor: "text-[#d1a851]",
+      badgeBg: "bg-[#221808]/30 border-[#473413]/40 text-[#d1a851]",
+      borderColor: "border-[#221808]/20",
       hp: "30 HP",
       damage: "6 (3 Hearts)",
       armor: "0 Points",
@@ -267,9 +267,9 @@ export default function EntitiesView() {
       name: "Lignum Spina",
       title: "Thorns Organism",
       threatLevel: "Medium",
-      threatColor: "text-amber-400",
-      badgeBg: "bg-amber-950/30 border-amber-900/40 text-amber-400",
-      borderColor: "border-amber-950/20",
+      threatColor: "text-[#d1a851]",
+      badgeBg: "bg-[#221808]/30 border-[#473413]/40 text-[#d1a851]",
+      borderColor: "border-[#221808]/20",
       hp: "12 HP",
       damage: "4 HP + Thorns Reflection",
       armor: "4 Points",
@@ -299,9 +299,9 @@ export default function EntitiesView() {
       name: "Lignum Echinus",
       title: "Spiked Wood Burrower",
       threatLevel: "Medium",
-      threatColor: "text-amber-500",
-      badgeBg: "bg-amber-950/40 border-amber-800/40 text-amber-500",
-      borderColor: "border-amber-900/20",
+      threatColor: "text-[#c28b40]",
+      badgeBg: "bg-[#221808]/40 border-[#3d2a0d]/40 text-[#c28b40]",
+      borderColor: "border-[#3d2a0d]/20",
       hp: "16 HP",
       damage: "4 HP + Spike Reflection",
       armor: "4 Points",
@@ -331,9 +331,9 @@ export default function EntitiesView() {
       name: "Lignum Trilobita",
       title: "Wood-Armor Scavenger",
       threatLevel: "Low",
-      threatColor: "text-teal-400",
-      badgeBg: "bg-teal-950/20 border-teal-900/30 text-teal-400",
-      borderColor: "border-teal-950/10",
+      threatColor: "text-[#4ca398]",
+      badgeBg: "bg-[#101b19]/20 border-[#1f3632]/30 text-[#4ca398]",
+      borderColor: "border-[#101b19]/10",
       hp: "18 HP",
       damage: "3 HP (1.5 Hearts)",
       armor: "8 Points (Interlocking Planks)",
@@ -363,9 +363,9 @@ export default function EntitiesView() {
       name: "Hewn Splinter",
       title: "Paralyzed Block-Form Splinter",
       threatLevel: "Passive",
-      threatColor: "text-emerald-400",
-      badgeBg: "bg-emerald-950/30 border-emerald-900/40 text-emerald-400",
-      borderColor: "border-emerald-950/20",
+      threatColor: "text-[#5ea386]",
+      badgeBg: "bg-[#131d17]/30 border-[#263e30]/40 text-[#5ea386]",
+      borderColor: "border-[#131d17]/20",
       hp: "6 HP (3 Hearts)",
       damage: "0 HP (Harmless)",
       armor: "0 Points",
@@ -379,9 +379,9 @@ export default function EntitiesView() {
       name: "Kyne Splinter",
       title: "Woodbound Aggressor",
       threatLevel: "Medium",
-      threatColor: "text-amber-400",
-      badgeBg: "bg-amber-950/30 border-amber-900/40 text-amber-400",
-      borderColor: "border-amber-950/20",
+      threatColor: "text-[#d1a851]",
+      badgeBg: "bg-[#221808]/30 border-[#473413]/40 text-[#d1a851]",
+      borderColor: "border-[#221808]/20",
       hp: "20 HP",
       damage: "5 HP (2.5 Hearts)",
       armor: "0 Points",
@@ -395,9 +395,9 @@ export default function EntitiesView() {
       name: "Dorceless Splinter",
       title: "Evasive Void Stalker",
       threatLevel: "High",
-      threatColor: "text-purple-400",
-      badgeBg: "bg-purple-950/30 border-purple-900/40 text-purple-400",
-      borderColor: "border-purple-950/20",
+      threatColor: "text-[#aa8bc9]",
+      badgeBg: "bg-[#1b1424]/30 border-[#312542]/40 text-[#aa8bc9]",
+      borderColor: "border-[#1b1424]/20",
       hp: "24 HP",
       damage: "6 HP (3 Hearts)",
       armor: "3 Points",
@@ -411,9 +411,9 @@ export default function EntitiesView() {
       name: "Log Splinter",
       title: "Camouflaged Sentry",
       threatLevel: "Medium",
-      threatColor: "text-amber-500",
-      badgeBg: "bg-amber-950/40 border-amber-800/40 text-amber-500",
-      borderColor: "border-amber-900/20",
+      threatColor: "text-[#c28b40]",
+      badgeBg: "bg-[#221808]/40 border-[#3d2a0d]/40 text-[#c28b40]",
+      borderColor: "border-[#3d2a0d]/20",
       hp: "32 HP",
       damage: "6 (3 Hearts)",
       armor: "2 Points (Dense Bark)",
@@ -459,9 +459,9 @@ export default function EntitiesView() {
       name: "The Hollow",
       title: "Phantom Spectator",
       threatLevel: "Low",
-      threatColor: "text-teal-400",
-      badgeBg: "bg-teal-950/20 border-teal-900/30 text-teal-400",
-      borderColor: "border-teal-950/10",
+      threatColor: "text-[#4ca398]",
+      badgeBg: "bg-[#101b19]/20 border-[#1f3632]/30 text-[#4ca398]",
+      borderColor: "border-[#101b19]/10",
       hp: "10 HP",
       damage: "0 (Passive Stalker)",
       armor: "0 Points",
@@ -475,9 +475,9 @@ export default function EntitiesView() {
       name: "Stilt Walker",
       title: "Dimensional Observer",
       threatLevel: "High",
-      threatColor: "text-purple-400",
-      badgeBg: "bg-purple-950/30 border-purple-900/40 text-purple-400",
-      borderColor: "border-purple-950/20",
+      threatColor: "text-[#aa8bc9]",
+      badgeBg: "bg-[#1b1424]/30 border-[#312542]/40 text-[#aa8bc9]",
+      borderColor: "border-[#1b1424]/20",
       hp: "40 HP",
       damage: "N/A (Spawns swarms on stalk cycle)",
       armor: "0 Points",
@@ -491,9 +491,9 @@ export default function EntitiesView() {
       name: "The Ash-Weaver",
       title: "Sub-Realm Gardener",
       threatLevel: "Low",
-      threatColor: "text-emerald-400",
-      badgeBg: "bg-emerald-950/20 border-emerald-900/30 text-emerald-400",
-      borderColor: "border-emerald-950/10",
+      threatColor: "text-[#5ea386]",
+      badgeBg: "bg-[#131d17]/20 border-[#263e30]/30 text-[#5ea386]",
+      borderColor: "border-[#131d17]/10",
       hp: "40 HP",
       damage: "0 (Completely Passive)",
       armor: "0 Points",
@@ -507,25 +507,25 @@ export default function EntitiesView() {
       name: "Lignum Gigas",
       title: "Woodbound Titan Behemoth",
       threatLevel: "Extreme",
-      threatColor: "text-rose-500",
-      badgeBg: "bg-rose-950/30 border-rose-900/40 text-rose-400",
-      borderColor: "border-rose-950/20",
+      threatColor: "text-[#be6a6f]",
+      badgeBg: "bg-[#2c0f12]/30 border-[#5a1c21]/40 text-[#cc7e82]",
+      borderColor: "border-[#3c1215]/20",
       hp: "1,008 HP",
       damage: "3 (Plus massive fall damage launches)",
       armor: "0 Points (Absorbs damage via massive health regen)",
       speed: "0.000 (Immobile Behemoth)",
       dim: "Wood Plains & The Thicket (Colossal Ring formations)",
       isUpdated: true,
-      desc: "A gargantuan stationary biomechanical titan standing 80 blocks tall. Built from ancient interlocking oak planks, it channels the legendary properties of the Coelum Carnis. Anchored deep into the floor with an Inexhaustible Health Reservoir (1,008 HP) and immediate Coelum Carnis regeneration, its massive tissue repairs faster than kinetic strikes or environmental decay can consume it. Because of this infinite regenerative core, Lignum Gigas does NOT flee from The Rot, standing completely indifferent to its presence while lesser fauna evacuate. Striking it triggers apocalyptic defensive routines."
+      desc: "A gargantuan stationary biomechanical titan standing 80 blocks tall. Built from ancient interlocking oak planks, it channels the legendary properties of the Coelum Carnis. Anchored deep into the floor with an Inexhaustible Health Reservoir (1,088 HP) and immediate Coelum Carnis regeneration, its massive tissue repairs faster than kinetic strikes or environmental decay can consume it. Because of this infinite regenerative core, Lignum Gigas does NOT flee from The Rot, standing completely indifferent to its presence while lesser fauna evacuate. Striking it triggers apocalyptic defensive routines."
     },
     {
       id: "verdant_engine",
       name: "Verdant Engine",
       title: "Atmospheric Retribution Vanguard",
       threatLevel: "Extreme",
-      threatColor: "text-rose-500",
-      badgeBg: "bg-rose-950/30 border-rose-900/40 text-rose-400 font-bold",
-      borderColor: "border-rose-950/20",
+      threatColor: "text-[#be6a6f]",
+      badgeBg: "bg-[#2c0f12]/30 border-[#5a1c21]/40 text-[#cc7e82] font-bold",
+      borderColor: "border-[#3c1215]/20",
       hp: "2,500 HP (Limit-Bypassed)",
       damage: "0 (Environmental Restructuring / Failure Cascade)",
       armor: "150 Points / 40 Toughness",
@@ -1183,8 +1183,8 @@ export default function EntitiesView() {
               <div className="space-y-6 pt-2">
                 {/* Abilities Accordion */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-rose-400" />
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-[#c08e91]" />
                     Behavioral &amp; Combat Dossier (Click to expand details)
                   </h4>
                   
@@ -1194,17 +1194,17 @@ export default function EntitiesView() {
                       return (
                         <div 
                           key={idx} 
-                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
+                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
                         >
                           <button
                             onClick={() => toggleAbility(idx)}
                             className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
                                 {ab.category}
                               </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
                                 {ab.title}
                               </span>
                             </div>
@@ -1212,7 +1212,7 @@ export default function EntitiesView() {
                           </button>
                           
                           {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
                               <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
                                 <Zap className="w-3.5 h-3.5" />
                                 <span>Trigger Condition: {ab.trigger}</span>
@@ -1227,10 +1227,10 @@ export default function EntitiesView() {
                 </div>
 
                 {/* State / Phase Matrix Switcher */}
-                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                <div className="space-y-4 pt-4 border-t border-[#301618]/20">
                   <div>
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                      <Shield className="w-4 h-4 text-rose-400" />
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-[#c08e91]" />
                       Boss Phase &amp; State Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
@@ -1238,7 +1238,7 @@ export default function EntitiesView() {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-[#301618]/30 max-w-xl select-none gap-1">
                     {[
                       { id: 'dormant', label: '1. Dormant Stalker' },
                       { id: 'combat', label: '2. Awakened Combat' },
@@ -1249,7 +1249,7 @@ export default function EntitiesView() {
                         onClick={() => setActiveWoodweaverState(state.id as any)}
                         className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
                           activeWoodweaverState === state.id
-                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            ? 'bg-[#241315] text-[#e0b9bb] border border-[#4d2427]/40'
                             : 'text-[#5a6b5e] hover:text-[#829285]'
                         }`}
                       >
@@ -1258,7 +1258,7 @@ export default function EntitiesView() {
                     ))}
                   </div>
 
-                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
+                  <div className="p-4 bg-[#110b0b] border border-[#301618]/30 rounded-xl">
                     {activeWoodweaverState === 'dormant' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
@@ -1277,7 +1277,7 @@ export default function EntitiesView() {
 
                     {activeWoodweaverState === 'combat' && (
                       <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-rose-400">
+                        <h5 className="font-serif text-sm font-bold text-[#c08e91]">
                           Phase 2: Awakened Aggression &amp; Hypnosis
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
@@ -1311,12 +1311,12 @@ export default function EntitiesView() {
                 </div>
 
                 {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-rose-950/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
                     Tactical Counterplay &amp; Survival Directives
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-amber-400 font-bold font-mono text-[11px]">
                         Gaze &amp; Angle Discipline
                       </div>
@@ -1325,7 +1325,7 @@ export default function EntitiesView() {
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-emerald-400 font-bold font-mono text-[11px]">
                         Punish Beam Exhaustion
                       </div>
@@ -1334,7 +1334,7 @@ export default function EntitiesView() {
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-purple-400 font-bold font-mono text-[11px]">
                         Cellular Collapse Counter
                       </div>
@@ -1346,13 +1346,13 @@ export default function EntitiesView() {
                 </div>
 
                 {/* Spawning & Spatial Requirements */}
-                <div className="p-4 bg-[#0d0707] border border-rose-950/40 rounded-lg space-y-2">
-                  <h5 className="font-serif text-sm font-bold text-rose-400 flex items-center gap-1.5">
-                    <MapPin className="w-4 h-4 text-rose-500" />
+                <div className="p-4 bg-[#0d0707] border border-[#301618]/40 rounded-lg space-y-2">
+                  <h5 className="font-serif text-sm font-bold text-[#c08e91] flex items-center gap-1.5">
+                    <MapPin className="w-4 h-4 text-[#b2797c]" />
                     Spawning Parameters (The Grain)
                   </h5>
                   <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-1 leading-relaxed">
-                    <li><strong className="text-[#e0e7e0]">Native Realm:</strong> Generates exclusively within <strong className="text-rose-300">The Grain</strong> dimension.</li>
+                    <li><strong className="text-[#e0e7e0]">Native Realm:</strong> Generates exclusively within <strong className="text-[#cfa4a6]">The Grain</strong> dimension.</li>
                     <li><strong className="text-[#e0e7e0]">Spawn Chance &amp; Isolation:</strong> Governed by a 20% natural spawn roll.</li>
                     <li><strong className="text-[#e0e7e0]">Spatial Separation:</strong> Enforces a strict <strong className="text-white">256-block exclusion radius</strong> (512-block bounding box) from any other existing Woodweaver.</li>
                     <li><strong className="text-[#e0e7e0]">Player Clearance:</strong> Cannot spawn within <strong className="text-white">32 blocks</strong> of any player and requires solid occluding ground beneath its base.</li>
@@ -1375,23 +1375,23 @@ export default function EntitiesView() {
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
                   <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2 flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4 text-amber-500" />
+                    <AlertCircle className="w-4 h-4 text-[#c28b40]" />
                     The Rage Mechanic
                   </h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Staring at a Splinter for too long triggers a sudden state of <strong className="text-amber-500">rage</strong>, overriding its freeze behavior. Striking the entity decreases this sight threshold, provoking enrage reactions progressively faster.
+                    Staring at a Splinter for too long triggers a sudden state of <strong className="text-[#c28b40]">rage</strong>, overriding its freeze behavior. Striking the entity decreases this sight threshold, provoking enrage reactions progressively faster.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 bg-[#120e09] border border-amber-900/20 rounded-lg space-y-1.5">
-                <h5 className="font-serif text-sm font-bold text-amber-400">Kinship Alarm (On Death)</h5>
+              <div className="p-4 bg-[#120e09] border border-[#3d2a0d]/20 rounded-lg space-y-1.5">
+                <h5 className="font-serif text-sm font-bold text-[#d1a851]">Kinship Alarm (On Death)</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  Upon death, a Splinter broadcasts a panic wave that forces all woodbound entities within range into an enraged hunt state for <strong className="text-amber-300 font-mono">600 ticks (30s)</strong>.
+                  Upon death, a Splinter broadcasts a panic wave that forces all woodbound entities within range into an enraged hunt state for <strong className="text-[#e7c787] font-mono">600 ticks (30s)</strong>.
                 </p>
                 <div className="grid grid-cols-3 gap-2 pt-2 font-mono text-[10px] text-center text-[#829285]">
-                  <div className="p-2 bg-[#090705] rounded">Easy: <strong className="text-emerald-400">24 blocks</strong></div>
-                  <div className="p-2 bg-[#090705] rounded">Normal: <strong className="text-amber-400">40 blocks</strong></div>
+                  <div className="p-2 bg-[#090705] rounded">Easy: <strong className="text-[#5ea386]">24 blocks</strong></div>
+                  <div className="p-2 bg-[#090705] rounded">Normal: <strong className="text-[#d1a851]">40 blocks</strong></div>
                   <div className="p-2 bg-[#090705] rounded">Hard: <strong className="text-red-400">64 blocks</strong></div>
                 </div>
               </div>
@@ -1400,8 +1400,8 @@ export default function EntitiesView() {
                 <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Environmental Hazards & Navigation</h5>
                 <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
                   <li><strong className="text-[#c9d1c9]">Adaptive Navigation:</strong> If you build up, it builds blocks upward. If you cross a gorge, it bridges across. Mines dividing terrain blockades (slower for high hardness materials).</li>
-                  <li><strong className="text-purple-400">Dimensional Pull:</strong> A rare subset (10%) carry a 10% chance per hit to drag the victim directly into <strong className="text-purple-300 font-bold">The Grain</strong>.</li>
-                  <li><strong className="text-emerald-400">Ash-Rose Vulnerability:</strong> Holding an Ash-Rose halts movement, and planting one freezes all Splinters within its aura.</li>
+                  <li><strong className="text-[#aa8bc9]">Dimensional Pull:</strong> A rare subset (10%) carry a 10% chance per hit to drag the victim directly into <strong className="text-[#c2afd6] font-bold">The Grain</strong>.</li>
+                  <li><strong className="text-[#5ea386]">Ash-Rose Vulnerability:</strong> Holding an Ash-Rose halts movement, and planting one freezes all Splinters within its aura.</li>
                 </ul>
               </div>
 
@@ -1424,7 +1424,7 @@ export default function EntitiesView() {
                       <tr>
                         <td className="p-2">0 - 4,000</td>
                         <td className="p-2 text-center">128</td>
-                        <td className="p-2 text-right text-emerald-400">64 Blocks around spawn</td>
+                        <td className="p-2 text-right text-[#5ea386]">64 Blocks around spawn</td>
                       </tr>
                       <tr>
                         <td className="p-2">4,001 - 7,500</td>
@@ -1444,7 +1444,7 @@ export default function EntitiesView() {
                       <tr>
                         <td className="p-2">17,001 - 20,000</td>
                         <td className="p-2 text-center">48</td>
-                        <td className="p-2 text-right text-amber-500">24 Blocks around spawn</td>
+                        <td className="p-2 text-right text-[#c28b40]">24 Blocks around spawn</td>
                       </tr>
                       <tr>
                         <td className="p-2 font-bold text-red-400">20,001+ Ticks</td>
@@ -1489,32 +1489,32 @@ export default function EntitiesView() {
                     <h6 className="text-xs font-mono font-bold uppercase text-[#709978]">Environmental Decay Accelerators</h6>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs font-mono">
                       <div className="p-3 bg-[#0d120e] border border-[#1c271e] rounded-lg space-y-1">
-                        <div className="text-emerald-400 font-bold flex items-center gap-1.5">
+                        <div className="text-[#5ea386] font-bold flex items-center gap-1.5">
                           <Droplets className="w-3.5 h-3.5 shrink-0" />
                           <span>Water &amp; Rain Exposure</span>
                         </div>
                         <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
-                          Submersion or rain exposure rots wood at <strong className="text-emerald-300">+9 to +12 ticks/tick</strong> (~10x-12x rate).
+                          Submersion or rain exposure rots wood at <strong className="text-[#81caa9]">+9 to +12 ticks/tick</strong> (~10x-12x rate).
                         </p>
                       </div>
 
-                      <div className="p-3 bg-[#140e0a] border border-amber-900/30 rounded-lg space-y-1">
-                        <div className="text-amber-400 font-bold flex items-center gap-1.5">
+                      <div className="p-3 bg-[#140e0a] border border-[#3d2a0d]/30 rounded-lg space-y-1">
+                        <div className="text-[#d1a851] font-bold flex items-center gap-1.5">
                           <Flame className="w-3.5 h-3.5 shrink-0" />
                           <span>Fire &amp; Thermal Stress</span>
                         </div>
                         <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
-                          Combustion inflicts severe thermal stress at <strong className="text-amber-300">+14 to +16 ticks/tick</strong> (14x-16x rate).
+                          Combustion inflicts severe thermal stress at <strong className="text-[#e7c787] font-mono">+14 to +16 ticks/tick</strong> (14x-16x rate).
                         </p>
                       </div>
 
-                      <div className="p-3 bg-[#110f17] border border-purple-900/30 rounded-lg space-y-1">
-                        <div className="text-purple-400 font-bold flex items-center gap-1.5">
+                      <div className="p-3 bg-[#110f17] border border-[#312542]/30 rounded-lg space-y-1">
+                        <div className="text-[#aa8bc9] font-bold flex items-center gap-1.5">
                           <Zap className="w-3.5 h-3.5 shrink-0" />
                           <span>Lightning Strike</span>
                         </div>
                         <p className="text-[#8c8779] text-[11px] leading-snug font-sans">
-                          Direct strikes instantly force <strong className="text-purple-300">+60,000 ticks</strong> (50 mins) of age in a single burst.
+                          Direct strikes instantly force <strong className="text-[#c2afd6]">+60,000 ticks</strong> (50 mins) of age in a single burst.
                         </p>
                       </div>
                     </div>
@@ -1540,16 +1540,16 @@ export default function EntitiesView() {
                               { range: "0 – 60,000", time: "0 – 50 min", desc: "Fresh heavy log timber. Full speed, block placement, and gap bridging.", color: "text-[#a9d1b0]" },
                               { range: "60,001 – 120,000", time: "50m – 1.6h", desc: "Weathered heavy log state. Subtle log texture darkening.", color: "text-[#c9d1c9]" },
                               { range: "120,001 – 240,000", time: "1.6 – 3.3h", desc: "Cracked wood core. Minor agility penalties applied.", color: "text-[#c9d1c9]" },
-                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured log. Highly vulnerable to fire stress.", color: "text-amber-400" },
-                              { range: "360,001 – 420,000", time: "5 – 5.8h", desc: "Rotting Stage: Severe heartwood decay. Permanently loses building and bridging capabilities.", color: "text-amber-500", bg: "bg-amber-950/10 text-amber-200" },
+                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured log. Highly vulnerable to fire stress.", color: "text-[#d1a851]" },
+                              { range: "360,001 – 420,000", time: "5 – 5.8h", desc: "Rotting Stage: Severe heartwood decay. Permanently loses building and bridging capabilities.", color: "text-[#c28b40]", bg: "bg-[#221808]/10 text-[#d1a851]" },
                               { range: "420,001 – 480,000", time: "5.8 – 6.67h", desc: "Decomposing state. Drastic speed reduction and structural breakdown.", color: "text-rose-400" },
                               { range: "480,000+ Ticks", time: "6.67+ hrs", desc: "Decomposition (AGE_LAST): Entity dissolves completely into rotten drops and despawns.", color: "text-red-400", bg: "bg-red-950/20 text-red-300 font-bold" }
                             ] : [
                               { range: "0 – 72,000", time: "0 – 1 hr", desc: "Fresh timber. Full speed, block placement, and gap bridging.", color: "text-[#a9d1b0]" },
                               { range: "72,001 – 144,000", time: "1 – 2 hrs", desc: "Weathered state. Subtle surface discoloration.", color: "text-[#c9d1c9]" },
                               { range: "144,001 – 216,000", time: "2 – 3 hrs", desc: "Cracked timber. Minor agility reduction.", color: "text-[#c9d1c9]" },
-                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured wood. Increased vulnerability to combustion.", color: "text-amber-400" },
-                              { range: "360,001 – 432,000", time: "5 – 6 hrs", desc: "Rotting Stage: Timber loses structural integrity. Permanently loses building and bridging capabilities.", color: "text-amber-500", bg: "bg-amber-950/10 text-amber-200" },
+                              { range: "360,000 Threshold", time: "5 hrs", desc: "Fractured wood. Increased vulnerability to combustion.", color: "text-[#d1a851]" },
+                              { range: "360,001 – 432,000", time: "5 – 6 hrs", desc: "Rotting Stage: Timber loses structural integrity. Permanently loses building and bridging capabilities.", color: "text-[#c28b40]", bg: "bg-[#221808]/10 text-[#d1a851]" },
                               { range: "432,001 – 576,000", time: "6 – 8 hrs", desc: "Decomposing state. Severe structural weakness.", color: "text-rose-400" },
                               { range: "648,000+ Ticks", time: "9+ hrs", desc: "Decomposition (AGE_LAST): Entity dissolves completely into rotten drops and despawns.", color: "text-red-400", bg: "bg-red-950/20 text-red-300 font-bold" }
                             ];
@@ -1613,7 +1613,7 @@ export default function EntitiesView() {
                       <tr>
                         <td className="p-2">17,001 - 20,000</td>
                         <td className="p-2 text-center">56</td>
-                        <td className="p-2 text-right text-amber-500">28 Blocks around spawn</td>
+                        <td className="p-2 text-right text-[#c28b40]">28 Blocks around spawn</td>
                       </tr>
                       <tr>
                         <td className="p-2 font-bold text-red-400">20,001+ Ticks</td>
@@ -1644,9 +1644,9 @@ export default function EntitiesView() {
                     <div className="text-[#5a6b5e] text-[9px]">Rotten Log</div>
                     <div className="text-[#c9d1c9] font-bold mt-1">10%</div>
                   </div>
-                  <div className="p-2 bg-[#0c120d] border border-emerald-900/30 rounded text-center">
-                    <div className="text-emerald-500 text-[9px]">Splinter Shard</div>
-                    <div className="text-emerald-400 font-bold mt-1">3%</div>
+                  <div className="p-2 bg-[#0c120d] border border-[#263e30]/30 rounded text-center">
+                    <div className="text-[#5ea386] text-[9px]">Splinter Shard</div>
+                    <div className="text-[#5ea386] font-bold mt-1">3%</div>
                   </div>
                   <div className="p-2 bg-[#090b09] border border-[#161d17] rounded text-center">
                     <div className="text-zinc-600 text-[9px]">No Drop</div>
@@ -1730,7 +1730,7 @@ export default function EntitiesView() {
                       <tr>
                         <td className="p-2">8,501 - 10,000</td>
                         <td className="p-2 text-center">28</td>
-                        <td className="p-2 text-right text-amber-500">28 Blocks safety radius</td>
+                        <td className="p-2 text-right text-[#c28b40]">28 Blocks safety radius</td>
                       </tr>
                       <tr>
                         <td className="p-2 font-bold text-red-400">10,001+ Ticks</td>
@@ -1765,12 +1765,12 @@ export default function EntitiesView() {
           {currentEntity.id === 'hollow' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
               <UpdatedFrame id="hollow_custom_dossier" isUpdated={true}>
-                <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
+                <div className="p-4 bg-[#101b19]/10 border border-[#1f3632]/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
                   <p>
-                    <strong className="text-teal-400">The Silent Observer:</strong> The Hollow is a non-hostile phantom. It never pursues nor attacks. It maintains a safe, eerie presence in deep forests and underground caverns, creeping closer when your sight is turned, but vanishes instantly with a warp sound if struck.
+                    <strong className="text-[#4ca398]">The Silent Observer:</strong> The Hollow is a non-hostile phantom. It never pursues nor attacks. It maintains a safe, eerie presence in deep forests and underground caverns, creeping closer when your sight is turned, but vanishes instantly with a warp sound if struck.
                   </p>
                   <p className="text-[11px] text-[#5a6b5e]">
-                    <strong className="text-[#a9d1b0]">Spawning Requirement:</strong> Spawns naturally on solid occluding surfaces requiring a 48-block exclusion radius (96-block bounding box) from any other living Hollow.
+                    <strong className="text-[#81caa9]">Spawning Requirement:</strong> Spawns naturally on solid occluding surfaces requiring a 48-block exclusion radius (96-block bounding box) from any other living Hollow.
                   </p>
                 </div>
               </UpdatedFrame>
@@ -1781,12 +1781,12 @@ export default function EntitiesView() {
           {currentEntity.id === 'lignum_vermis' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <UpdatedFrame id="lignum_vermis_dossier" isUpdated={true}>
-                <div className="p-4 bg-teal-950/10 border border-teal-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-1.5">
+                <div className="p-4 bg-[#101b19]/10 border border-[#1f3632]/20 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-1.5">
                   <p>
-                    <strong className="text-teal-400">Harvesting Hazards:</strong> Mining Scandere Lignum blocks carries a notable risk: there is a 10% chance for a Lignum Vermis to emerge upon total block destruction via player tools or explosions. Additionally, there is a rare 1% chance per tick for the hidden organism to violently fracture the block early while a player is actively mining it.
+                    <strong className="text-[#4ca398]">Harvesting Hazards:</strong> Mining Scandere Lignum blocks carries a notable risk: there is a 10% chance for a Lignum Vermis to emerge upon total block destruction via player tools or explosions. Additionally, there is a rare 1% chance per tick for the hidden organism to violently fracture the block early while a player is actively mining it.
                   </p>
                   <p className="text-[11px] text-[#5a6b5e]">
-                    <strong className="text-[#a9d1b0]">Natural Elevation:</strong> Generates naturally exclusively in subterranean sub-strata wood layers between <strong className="text-white">Y: 44 and Y: 52</strong>.
+                    <strong className="text-[#81caa9]">Natural Elevation:</strong> Generates naturally exclusively in subterranean sub-strata wood layers between <strong className="text-white">Y: 44 and Y: 52</strong>.
                   </p>
                 </div>
               </UpdatedFrame>
@@ -1803,11 +1803,11 @@ export default function EntitiesView() {
                     <tbody className="divide-y divide-[#151c16] text-[#8c8779]">
                       <tr>
                         <td className="p-2">Seep</td>
-                        <td className="p-2 text-right text-emerald-400">19.5%</td>
+                        <td className="p-2 text-right text-[#5ea386]">19.5%</td>
                       </tr>
                       <tr>
                         <td className="p-2">Splinter Shard</td>
-                        <td className="p-2 text-right text-emerald-400">15.6%</td>
+                        <td className="p-2 text-right text-[#5ea386]">15.6%</td>
                       </tr>
                       <tr>
                         <td className="p-2 italic">Nothing</td>
@@ -1884,26 +1884,26 @@ export default function EntitiesView() {
           {/* STILT WALKER: Custom mechanics */}
           {currentEntity.id === 'stilt_walker' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-purple-950/10 border border-purple-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-purple-400">Stalk & Punishment Loop:</strong> Remaining tracked or close to a Stilt Walker for too long triggers an escalation sequence: looking directly at it inflicts complete blindness (60 ticks) and spawns hostile Blindspot Splinters nearby right before the Stilt Walker teleports away.
+              <div className="p-4 bg-[#1b1424]/10 border border-[#312542]/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
+                <strong className="text-[#aa8bc9]">Stalk & Punishment Loop:</strong> Remaining tracked or close to a Stilt Walker for too long triggers an escalation sequence: looking directly at it inflicts complete blindness (60 ticks) and spawns hostile Blindspot Splinters nearby right before the Stilt Walker teleports away.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                  <h5 className="font-serif text-sm font-bold text-purple-400 mb-2">Predictive Dodging</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#aa8bc9] mb-2">Predictive Dodging</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
                     If a survival mode player within <strong className="text-white">3.2 blocks</strong> swings a weapon, the Stilt Walker instantly senses the action, plays an alert chime, inflicts blindness, spawns Splinters, and teleports on the exact same frame!
                   </p>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                  <h5 className="font-serif text-sm font-bold text-purple-400 mb-2">Circular Cage Formation</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#aa8bc9] mb-2">Circular Cage Formation</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
                     Whenever Blindspot Splinters are summoned by a Stilt Walker, they generate in a perfect, uniform circle (<strong className="text-white">3.2-block radius</strong>) centered around the attacker to build an inescapable wooden trap.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 bg-[#110d14] border border-purple-950/40 rounded-lg space-y-1">
+              <div className="p-4 bg-[#110d14] border border-[#1b1424]/40 rounded-lg space-y-1">
                 <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Spawn Grace Protection System</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
                   For the first <strong className="text-white">20 ticks (1s)</strong> after spawning, the Stilt Walker is immune to damage and predictive dodging checks. In addition, its stalk cycle cannot trigger/terminate until it has been alive for <strong className="text-white">60 ticks (3s)</strong>, preventing instant unfair traps.
@@ -1916,14 +1916,14 @@ export default function EntitiesView() {
           {currentEntity.id === 'ash_weaver' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
               <UpdatedFrame id="ash_weaver_custom_dossier" isUpdated={true}>
-                <div className="p-4 bg-emerald-950/10 border border-emerald-900/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
+                <div className="p-4 bg-[#131d17]/10 border border-[#263e30]/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
                   <p>
-                    <strong className="text-emerald-400">The Botanical Wanderer:</strong> Completely safe, the Ash-Weaver patrols dark forest soils. It ignores active players and continuously places <strong className="text-emerald-300">Ash-Roses</strong> along its movement trail. Tailing an Ash-Weaver provides players with a renewable source of protective blossoms.
+                    <strong className="text-[#5ea386]">The Botanical Wanderer:</strong> Completely safe, the Ash-Weaver patrols dark forest soils. It ignores active players and continuously places <strong className="text-[#81caa9]">Ash-Roses</strong> along its movement trail. Tailing an Ash-Weaver provides players with a renewable source of protective blossoms.
                   </p>
-                  <div className="p-3 bg-[#0a100b] border border-emerald-950/30 rounded text-[11px] space-y-1">
-                    <div className="font-bold text-[#a9d1b0] uppercase font-mono tracking-wider">Natural Spawning Rules:</div>
+                  <div className="p-3 bg-[#0a100b] border border-[#131d17]/30 rounded text-[11px] space-y-1">
+                    <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider">Natural Spawning Rules:</div>
                     <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
-                      <li><strong className="text-[#e0e7e0]">Occluding Substrate:</strong> Must spawn on top of a solid occluding block (<code className="text-emerald-400">canOcclude() == true</code>).</li>
+                      <li><strong className="text-[#e0e7e0]">Occluding Substrate:</strong> Must spawn on top of a solid occluding block (<code className="text-[#5ea386]">canOcclude() == true</code>).</li>
                       <li><strong className="text-[#e0e7e0]">Spatial Separation:</strong> Enforces an <strong className="text-white">87.5-block clearance radius</strong> (175-block bounding box) from any other living Ash-Weaver.</li>
                     </ul>
                   </div>
@@ -1938,8 +1938,8 @@ export default function EntitiesView() {
               <div className="space-y-6 pt-2">
                 {/* Abilities Accordion */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-rose-400" />
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-[#c08e91]" />
                     Behavioral &amp; Combat Dossier (Click to expand details)
                   </h4>
                   
@@ -1949,17 +1949,17 @@ export default function EntitiesView() {
                       return (
                         <div 
                           key={idx} 
-                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
+                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
                         >
                           <button
                             onClick={() => toggleAbility(idx)}
                             className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
                                 {ab.category}
                               </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
                                 {ab.title}
                               </span>
                             </div>
@@ -1967,7 +1967,7 @@ export default function EntitiesView() {
                           </button>
                           
                           {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
                               <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
                                 <Zap className="w-3.5 h-3.5" />
                                 <span>Trigger Condition: {ab.trigger}</span>
@@ -1982,10 +1982,10 @@ export default function EntitiesView() {
                 </div>
 
                 {/* State / Phase Matrix Switcher */}
-                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                <div className="space-y-4 pt-4 border-t border-[#301618]/20">
                   <div>
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                      <Shield className="w-4 h-4 text-rose-400" />
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-[#c08e91]" />
                       Boss Phase &amp; State Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
@@ -1993,7 +1993,7 @@ export default function EntitiesView() {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-[#301618]/30 max-w-xl select-none gap-1">
                     {[
                       { id: 'dormant', label: '1. Dormant Ring' },
                       { id: 'anchored', label: '2. Anchored Control' },
@@ -2004,7 +2004,7 @@ export default function EntitiesView() {
                         onClick={() => setActiveGigasState(state.id as any)}
                         className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
                           activeGigasState === state.id
-                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            ? 'bg-[#241315] text-[#e0b9bb] border border-[#4d2427]/40'
                             : 'text-[#5a6b5e] hover:text-[#829285]'
                         }`}
                       >
@@ -2013,7 +2013,7 @@ export default function EntitiesView() {
                     ))}
                   </div>
 
-                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
+                  <div className="p-4 bg-[#110b0b] border border-[#301618]/30 rounded-xl">
                     {activeGigasState === 'dormant' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
@@ -2032,7 +2032,7 @@ export default function EntitiesView() {
 
                     {activeGigasState === 'anchored' && (
                       <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-rose-400">
+                        <h5 className="font-serif text-sm font-bold text-[#c08e91]">
                           Phase 2: Anchored Combat &amp; Radial Flinging
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
@@ -2065,12 +2065,12 @@ export default function EntitiesView() {
                 </div>
 
                 {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-rose-950/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
                     Tactical Counterplay &amp; Survival Directives
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-amber-400 font-bold font-mono text-[11px]">
                         Ranged Range Discipline
                       </div>
@@ -2079,7 +2079,7 @@ export default function EntitiesView() {
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-emerald-400 font-bold font-mono text-[11px]">
                         Scaffold &amp; Anchor Safety
                       </div>
@@ -2088,7 +2088,7 @@ export default function EntitiesView() {
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-purple-400 font-bold font-mono text-[11px]">
                         Hotbar Scatter Protocol
                       </div>
@@ -2108,8 +2108,8 @@ export default function EntitiesView() {
               <div className="space-y-6 pt-2">
                 {/* Abilities Accordion */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-rose-400" />
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-[#c08e91]" />
                     Behavioral &amp; Combat Dossier (Click to expand details)
                   </h4>
                   
@@ -2119,17 +2119,17 @@ export default function EntitiesView() {
                       return (
                         <div 
                           key={idx} 
-                          className="bg-[#120c0c] border border-rose-950/20 hover:border-rose-900/30 rounded-lg transition-all"
+                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
                         >
                           <button
                             onClick={() => toggleAbility(idx)}
                             className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-rose-400 bg-rose-950/30 border border-rose-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
                                 {ab.category}
                               </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-rose-400 transition-colors">
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
                                 {ab.title}
                               </span>
                             </div>
@@ -2137,7 +2137,7 @@ export default function EntitiesView() {
                           </button>
                           
                           {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-rose-950/20 space-y-2">
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
                               <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
                                 <Zap className="w-3.5 h-3.5" />
                                 <span>Trigger Condition: {ab.trigger}</span>
@@ -2152,10 +2152,10 @@ export default function EntitiesView() {
                 </div>
 
                 {/* State / Phase Matrix Switcher */}
-                <div className="space-y-4 pt-4 border-t border-rose-950/20">
+                <div className="space-y-4 pt-4 border-t border-[#301618]/20">
                   <div>
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-rose-500 font-bold flex items-center gap-1.5">
-                      <Shield className="w-4 h-4 text-rose-400" />
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-[#c08e91]" />
                       Boss Phase &amp; State Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
@@ -2163,7 +2163,7 @@ export default function EntitiesView() {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-rose-950/30 max-w-xl select-none gap-1">
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-[#301618]/30 max-w-xl select-none gap-1">
                     {[
                       { id: 'scanning', label: '1. High Scan' },
                       { id: 'terraforming', label: '2. Transmutation' },
@@ -2174,7 +2174,7 @@ export default function EntitiesView() {
                         onClick={() => setActiveVerdantState(state.id as any)}
                         className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
                           activeVerdantState === state.id
-                            ? 'bg-rose-950 text-rose-200 border border-rose-900/40'
+                            ? 'bg-[#241315] text-[#e0b9bb] border border-[#4d2427]/40'
                             : 'text-[#5a6b5e] hover:text-[#829285]'
                         }`}
                       >
@@ -2235,21 +2235,21 @@ export default function EntitiesView() {
                 </div>
 
                 {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-rose-950/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-rose-500 font-bold">
+                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
+                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
                     Tactical Counterplay &amp; Survival Directives
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-amber-400 font-bold font-mono text-[11px]">
                         Disruption Level Check
                       </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        Control your deforestation rate. Keep cumulative sector lumber and placement indexes below 90,000 and 30,000 to prevent engine alerts.
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed font-sans">
+                        Maintain planetary equilibrium. Disruption of natural forestry and over-colonization triggers a retributive orbital sentinel launch. Avoid high-frequency harvesting and block placement to keep transgression indexes hidden.
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-emerald-400 font-bold font-mono text-[11px]">
                         Tactical Retreat at low HP
                       </div>
@@ -2258,7 +2258,7 @@ export default function EntitiesView() {
                       </p>
                     </div>
 
-                    <div className="p-3.5 bg-[#0e0a0a] border border-rose-950/30 rounded-lg space-y-1">
+                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
                       <div className="text-purple-400 font-bold font-mono text-[11px]">
                         Model-Scale Compensation
                       </div>
