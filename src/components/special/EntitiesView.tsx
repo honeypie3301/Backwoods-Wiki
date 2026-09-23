@@ -548,7 +548,7 @@ export default function EntitiesView() {
       speed: "0.200 (Ignoring Gravity)",
       dim: "The Sub-Strata (Menger Sponge structures)",
       isUpdated: true,
-      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus sentinels do not possess biological panic routines and ignore the presence of the Rot. If a Verdant Engine is present nearby, they coordinate into disciplined orbital rings around its chassis to form a perimeter defense screen."
+      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus sentinels do not possess biological panic routines and ignore the presence of the Rot. While formidable with thermal laser arrays, Fractus sentinels struggle to intercept high-speed incoming projectiles without the aid of the Verdant Engine's projectile dampening field—a primary reason they coordinate into disciplined orbital rings around the engine aside from direct perimeter defense."
     },
     {
       id: "fractus_prime",
@@ -1316,41 +1316,6 @@ export default function EntitiesView() {
                   </div>
                 </div>
 
-                {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
-                    Tactical Counterplay &amp; Survival Directives
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-amber-400 font-bold font-mono text-[11px]">
-                        Gaze &amp; Angle Discipline
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        Avoid sustained direct eye contact during early scouting. Gaze locking fills the Dread meter rapidly and triggers the Hypnosis Stun debuff once combat begins.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
-                        Punish Beam Exhaustion
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        When the Woodweaver channels its linear Vaporize Beam, dodge laterally. Attack during the 3.0-second stun window immediately after the beam ends.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-purple-400 font-bold font-mono text-[11px]">
-                        Cellular Collapse Counter
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        Carry Pale Remedies or Milk Buckets into combat. Cellular Collapse drains max HP and heals the Woodweaver; cleansing the effect prevents the boss from sustaining its health pool.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Spawning & Spatial Requirements */}
                 <div className="p-4 bg-[#0d0707] border border-[#301618]/40 rounded-lg space-y-2">
                   <h5 className="font-serif text-sm font-bold text-[#c08e91] flex items-center gap-1.5">
@@ -2069,41 +2034,6 @@ export default function EntitiesView() {
                     )}
                   </div>
                 </div>
-
-                {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
-                    Tactical Counterplay &amp; Survival Directives
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-amber-400 font-bold font-mono text-[11px]">
-                        Ranged Range Discipline
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        Stay outside the 28-block active radius. Ranged weapons let you whittle down its massive health pool without triggering kinetic sweeps.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
-                        Scaffold &amp; Anchor Safety
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        Because Lignum Gigas is completely immobile, you can build scaffolds or vantage points out of range to avoid block fracturing altogether.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-purple-400 font-bold font-mono text-[11px]">
-                        Hotbar Scatter Protocol
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        If your inventory is stripped, do not panic. Retreat outward to a safe distance, wait for the sweep to cycle, then retrieve your gear.
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </UpdatedFrame>
           )}
@@ -2247,7 +2177,7 @@ export default function EntitiesView() {
           {currentEntity.id === 'fractus' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <div className="p-4 bg-cyan-950/10 border border-cyan-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. If an active Verdant Engine is present, they assemble into disciplined orbital guard rings around its perimeter to provide layered air defense.
+                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. Because Fractus sentinels struggle to intercept fast-moving projectiles on their own, they coordinate into disciplined orbital rings around active Verdant Engines to provide layered defense while utilizing the engine's projectile dampening field for shielding.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -2257,7 +2187,7 @@ export default function EntitiesView() {
                     <li>Maintains stable airborne hovering, elevating when entering aggressive combat states.</li>
                     <li>Dynamically lowers altitude in tight subterranean corridors to establish line-of-sight locks.</li>
                     <li>Retreats smoothly to maintain optimal standoff distance while channeling beam attacks.</li>
-                    <li><strong className="text-cyan-400">Orbital Guard Network:</strong> Forms rotating multi-tier orbital screens around Verdant Engines, peeling off to engage hostiles and returning to their assigned ring positions once resolved.</li>
+                    <li><strong className="text-cyan-400">Orbital Defense Screen:</strong> Forms rotating multi-tier orbital screens around Verdant Engines, peeling off to intercept hostiles and returning to their assigned ring positions once resolved.</li>
                   </ul>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
