@@ -532,7 +532,7 @@ export default function EntitiesView() {
       speed: "0.300 (Gravity-Defying Flight)",
       dim: "Non-Mod Dimensions (Retributive high-sky spawn above Y=50)",
       isUpdated: true,
-      desc: "A colossal sky-bound terraforming apparatus. Initiated through advanced planetary balance checks, it defies standard engine attribute limitations to execute continuous environmental restructuring protocols, converting regional biome states into Wood Plains."
+      desc: "A colossal sky-bound terraforming apparatus. Initiated through ancient planetary balance protocols, it executes continuous environmental restructuring cycles, transmuting regional biomes into Wood Plains. When deployed, it acts as a central nexus for Fractus sentinels, which assemble into multi-tiered orbital guard rings around its perimeter to protect the terraforming core."
     },
     {
       id: "fractus",
@@ -548,7 +548,7 @@ export default function EntitiesView() {
       speed: "0.200 (Ignoring Gravity)",
       dim: "The Sub-Strata (Menger Sponge structures)",
       isUpdated: true,
-      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus entities do not possess biological evacuation instincts and do not flee from the Rot, remaining stationed on their aerial patrol perimeters."
+      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus sentinels do not possess biological panic routines and ignore the presence of the Rot. If a Verdant Engine is present nearby, they coordinate into disciplined orbital rings around its chassis to form a perimeter defense screen."
     },
     {
       id: "fractus_prime",
@@ -564,7 +564,7 @@ export default function EntitiesView() {
       speed: "0.200 (High-velocity reverse thrust)",
       dim: "The Sub-Strata (Summoned via Drone Rituals)",
       isUpdated: true,
-      desc: "A 2x scaled orbital laser battery defense drone commanding a 48-block threat range. Operating on automated airborne defense programming, it does not flee from the Rot or surrounding entities, maintaining its orbital containment grid regardless of external threats."
+      desc: "A massive overseer-class defense drone commanding a wide airspace perimeter. Operating on automated airborne combat programming, it maintains its containment grid regardless of external threats, deploying multi-beam laser arrays and destructive energy bursts."
     },
     {
       id: "lignum_vermis",
@@ -692,33 +692,39 @@ export default function EntitiesView() {
 
   const verdantEngineAbilities: Ability[] = [
     {
-      title: "Direct Attribute Limit Bypass",
-      trigger: "Entity instantiation on world load",
-      description: "Bypasses standard Minecraft entity attribute boundaries. Direct memory overrides replace the default caps to enforce a true pool of 2,500 health points, 150 armor points, and 40 toughness points.",
-      category: "Internal Bypass"
+      title: "Reinforced Colossal Bulk",
+      trigger: "Manifestation in active world space",
+      description: "Possesses immense physical density and fortified alloy plating, absorbing immense kinetic punishment while completely ignoring environmental hazards, fire, and suffocating terrain.",
+      category: "Colossal Chassis"
     },
     {
       title: "Radial Biome Transmutation",
-      trigger: "Continuous periodic cycle checking",
-      description: "Enforces regional block conversion inside a maximum radius of 256 blocks (16 chunks), converting local terrain and biome nodes into the custom Wood Plains biome.",
+      trigger: "Continuous periodic terraforming cycle",
+      description: "Projects a dense gravity beam straight down into the terrain below, transmuting the surrounding landscape and forest nodes into Wood Plains, expanding outward inside a maximum radius of up to 256 blocks.",
       category: "Environmental"
     },
     {
       title: "Territorial Saturation Shift",
-      trigger: "Every 10 seconds if regional biome conversion ratio is >90%",
-      description: "Scans 24 surrounding coordinate columns. If local Wood Plains biome saturation exceeds 90%, it triggers an automated coordinate shift, displacing itself 288 blocks away to clear new sectors.",
+      trigger: "Regional terraforming saturation reached",
+      description: "Continuously analyzes local terrain conversion. Once regional transmutation is saturated, the apparatus engages sub-warp displacement to relocate across the sky and claim fresh territory.",
       category: "Spatial Shift"
     },
     {
-      title: "Spacing Coordinates Constraint",
-      trigger: "Proximity to another active vanguard <192 blocks",
-      description: "Enforces a minimum clearance spacing constraint of 192 blocks from other active corrective units. Proximity triggers immediate spatial relocation of the lower-index ID entity to a distance of 224 blocks.",
+      title: "Vanguard Spacing Protocol",
+      trigger: "Proximity to another active terraformer",
+      description: "Enforces mandatory territorial clearance from other active engines, autonomously displacing away if another vanguard attempts to occupy the same airspace.",
       category: "Collision Prevention"
     },
     {
-      title: "Catastrophic System Failure Cascade",
-      trigger: "Core physical degradation falling below 20 health points",
-      description: "Core failure below 20 health points suspends its propulsion fields, causing a rapid descending drop followed by a high-intensity terrain-fracturing explosion.",
+      title: "Dynamic Gravity Deflection Field",
+      trigger: "Incoming projectiles or airborne intruders within defensive airspace",
+      description: "Distorts surrounding spacetime to severely slow down and deflect incoming arrows and airborne attacks. This defensive dampening field gradually destabilizes and weakens as the engine sustains structural damage.",
+      category: "Projectile Defense"
+    },
+    {
+      title: "Catastrophic Core Failure Cascade",
+      trigger: "Structural integrity reduced to critical levels",
+      description: "Sustaining critical structural damage overloads its internal propulsion core aloft, triggering a violent terminal system failure and terrain-fracturing detonation.",
       category: "Terminal Event"
     }
   ];
@@ -2156,7 +2162,7 @@ export default function EntitiesView() {
                   <div>
                     <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
                       <Shield className="w-4 h-4 text-[#c08e91]" />
-                      Boss Phase &amp; State Matrix
+                      Vanguard Phase &amp; State Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
                       The Verdant Engine transitions through strict spatial coordinates, terraforming whole ecosystems until a terminal core system failure occurs.
@@ -2190,12 +2196,12 @@ export default function EntitiesView() {
                           Phase 1: High-Altitude Scanning
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Initial coordinate survey state. The apparatus maintains flight above Y=50 while performing spatial spacing checks.
+                          Initial coordinate survey state. The apparatus maintains high-altitude flight while surveying regional airspace and establishing sentinel links.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-[#e0e7e0]">Spacing Guard:</strong> Enforces a 192-block absolute clearance spacing constraint between active vanguards.</li>
-                          <li><strong className="text-amber-400">Reposition Trigger:</strong> If a co-presence violation occurs, the lower-index entity displaces 224 blocks away.</li>
-                          <li><strong className="text-purple-400">Ecosystem Monitoring:</strong> Scans surrounding forest grids for wood felling and structural colonizations.</li>
+                          <li><strong className="text-[#e0e7e0]">Vanguard Spacing:</strong> Maintains autonomous territorial clearance from any other active terraforming apparatus.</li>
+                          <li><strong className="text-amber-400">Sentinel Coordination:</strong> Synchronizes with local Fractus sentinels, drawing them into protective orbital rings.</li>
+                          <li><strong className="text-purple-400">Ecosystem Monitoring:</strong> Continuously evaluates forest density and landscape equilibrium.</li>
                         </ul>
                       </div>
                     )}
@@ -2206,12 +2212,12 @@ export default function EntitiesView() {
                           Phase 2: Active Biome Transmutation
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Triggered upon high environmental disruption indexes. Active transmutation operations override local biomes.
+                          Active terraforming operations channel intense downward energy beams to override and transmute regional biomes.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Radial Biome Shift:</strong> Converts surrounding terrain into the custom Wood Plains biome (256-block radius).</li>
-                          <li><strong className="text-[#e0e7e0]">Attribute Bypass:</strong> Overrides engine attributes to claim 2,500 health, 150 armor, and 40 toughness.</li>
-                          <li><strong className="text-amber-400">Saturation Shift:</strong> If regional conversion ratio exceeds 90%, displaces itself 288 blocks away.</li>
+                          <li><strong className="text-red-400">Radial Transmutation:</strong> Transmutes surrounding regional terrain and forest nodes into the custom Wood Plains biome.</li>
+                          <li><strong className="text-[#e0e7e0]">Gravity Distortion:</strong> Distorts local gravity and deflects incoming projectile attacks away from the core.</li>
+                          <li><strong className="text-amber-400">Saturation Shift:</strong> Autonomously relocates across the sky once regional terraforming reaches saturation.</li>
                         </ul>
                       </div>
                     )}
@@ -2222,50 +2228,15 @@ export default function EntitiesView() {
                           Phase 3: Catastrophic Core Failure Cascade
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          The terminal state initiated when the engine sustains severe structural damage.
+                          The terminal state initiated when the engine sustains critical structural damage.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Engine Halt:</strong> Drops health below 20 HP, immediately disabling its gravity-defying propulsion fields.</li>
-                          <li><strong className="text-amber-300">Terminal Descent:</strong> Drops straight down onto the ground, smashing anything in its downward vector.</li>
-                          <li><strong className="text-emerald-400">Fracturing Explosion:</strong> Upon impact with solid ground, detonates in a high-intensity terrain-shattering explosion.</li>
+                          <li><strong className="text-red-400">Core Destabilization:</strong> Suspends propulsion cycles while overloading its internal power reservoir aloft.</li>
+                          <li><strong className="text-amber-300">Violent Shockwave:</strong> Overloaded core forces rupture outward across surrounding airspace.</li>
+                          <li><strong className="text-emerald-400">Fracturing Detonation:</strong> Unleashes a catastrophic terrain-shattering detonation before dissolving from the sky.</li>
                         </ul>
                       </div>
                     )}
-                  </div>
-                </div>
-
-                {/* Tactical Counterplay & Survival Directives */}
-                <div className="pt-4 border-t border-[#301618]/20 space-y-3">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#b2797c] font-bold">
-                    Tactical Counterplay &amp; Survival Directives
-                  </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-amber-400 font-bold font-mono text-[11px]">
-                        Disruption Level Check
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed font-sans">
-                        Maintain planetary equilibrium. Disruption of natural forestry and over-colonization triggers a retributive orbital sentinel launch. Avoid high-frequency harvesting and block placement to keep transgression indexes hidden.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-emerald-400 font-bold font-mono text-[11px]">
-                        Tactical Retreat at low HP
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        When the Verdant Engine drops below 20 health, retreat at least 48 blocks away horizontally to completely dodge the core collapse explosion.
-                      </p>
-                    </div>
-
-                    <div className="p-3.5 bg-[#0e0a0a] border border-[#301618]/30 rounded-lg space-y-1">
-                      <div className="text-purple-400 font-bold font-mono text-[11px]">
-                        Model-Scale Compensation
-                      </div>
-                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        The vanguard's scale is 15x that of a regular drone. Expect its hitboxes and attack arcs to extend much further than standard models suggest.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -2276,27 +2247,26 @@ export default function EntitiesView() {
           {currentEntity.id === 'fractus' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <div className="p-4 bg-cyan-950/10 border border-cyan-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Sponge Guard:</strong> Found protecting Menger Sponge structures inside the Sub-Strata, these gravity-defying drones coordinate as a security faction, dispersing their aggression across multiple group members instead of focus-firing a single player.
+                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. If an active Verdant Engine is present, they assemble into disciplined orbital guard rings around its perimeter to provide layered air defense.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2">Maneuvering & Hover Heights</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2">Aerial Maneuvering &amp; Orbital Formations</h5>
                   <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4">
-                    <li>Standard hover at <strong className="text-white">3.25 blocks</strong> (4.35b if angry).</li>
-                    <li>Gains a <strong className="text-white">+2.25 blocks</strong> height bonus if escaped from its home dimension.</li>
-                    <li>In Sub-Strata corridors, hover height scales down by <strong className="text-white">1.0 block</strong> to lock-on in close quarters.</li>
-                    <li>Retreats to maintain a defensive combat range of <strong className="text-white">13 blocks</strong> (17b if angry).</li>
+                    <li>Maintains stable airborne hovering, elevating when entering aggressive combat states.</li>
+                    <li>Dynamically lowers altitude in tight subterranean corridors to establish line-of-sight locks.</li>
+                    <li>Retreats smoothly to maintain optimal standoff distance while channeling beam attacks.</li>
+                    <li><strong className="text-cyan-400">Orbital Guard Network:</strong> Forms rotating multi-tier orbital screens around Verdant Engines, peeling off to engage hostiles and returning to their assigned ring positions once resolved.</li>
                   </ul>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2 font-mono text-cyan-400">Target-Lock Laser</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2 font-mono text-cyan-400">Target-Lock Laser &amp; Mega Burst</h5>
                   <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4">
-                    <li>Standard Range: <strong className="text-white">32 blocks</strong> (44b if angry).</li>
-                    <li><strong className="text-white">Calm Mode:</strong> Deals 2.0 damage every 10 ticks (0.5s).</li>
-                    <li><strong className="text-white">Angry Mode:</strong> Deals 3.0 damage every 6 ticks (0.3s).</li>
-                    <li>Interrupted: Taking damage while charging breaks the laser cycle and resets its hum.</li>
-                    <li><strong className="text-cyan-400">Mega Laser Burst:</strong> Fires long-range sweeps dealing 70.0 damage up to 128 blocks.</li>
+                    <li><strong className="text-white">Calm Tracking:</strong> Channels continuous thermal beam pulses against standard intruders.</li>
+                    <li><strong className="text-white">Aggressive Overdrive:</strong> Rapidly increases beam tick frequency and damage when agitated.</li>
+                    <li><strong className="text-white">Disruption Vulnerability:</strong> Sustaining direct damage during laser charge breaks the emitter cycle and forces a recalibration.</li>
+                    <li><strong className="text-cyan-400">Mega Laser Burst:</strong> Fires long-range concentrated thermal sweeps capable of piercing distant targets.</li>
                   </ul>
                 </div>
               </div>
@@ -2304,12 +2274,12 @@ export default function EntitiesView() {
               <div className="p-4 bg-[#0c120d] border border-emerald-900/30 rounded-lg space-y-2">
                 <h5 className="font-serif text-sm font-bold text-emerald-400">The Summoning Ritual</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  If 2 to 6 partners detect each other within a 96-block range, they freeze, emit Evoker chants, and project beams into a central focal point to tear open a gateway (once every 30s per drone).
+                  When multiple Fractus sentinels assemble in close proximity, they can halt all movement and converge their beams inward toward a single focal point, initiating a collaborative ritual to tear open a sub-dimensional gateway.
                 </p>
                 <ul className="text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
-                  <li><strong className="text-white">Duration:</strong> Base 420 ticks (21s). Each extra drone cuts the time down by <strong className="text-white">40 ticks</strong> (minimum 180 ticks / 9s with 6 drones).</li>
-                  <li><strong className="text-white">Adaptive Extension:</strong> Killing a participant mid-ritual forces the survivors to compensate, adding <strong className="text-red-400 font-bold">120 ticks (+6s)</strong> to the timer. Falls below 2 drones crashes the ritual.</li>
-                  <li><strong className="text-emerald-400">Gateway Yields:</strong> 70% chance to summon a <strong className="text-cyan-400 font-bold">Fractus Prime</strong>, 30% chance to summon <strong className="text-red-400 font-bold">The Rot</strong>.</li>
+                  <li><strong className="text-white">Collaborative Acceleration:</strong> As more sentinels join the focal convergence, the gateway opens at a significantly faster rate.</li>
+                  <li><strong className="text-white">Ritual Disruption:</strong> Destroying participating drones forces remaining sentinels to channel additional energy to sustain the rift. If too few drones remain, the ritual collapses entirely.</li>
+                  <li><strong className="text-emerald-400">Gateway Yields:</strong> Successfully completing the focal convergence breaches containment to summon either an apex <strong className="text-cyan-400 font-bold">Fractus Prime</strong> or an apocalyptic <strong className="text-red-400 font-bold">Rot</strong> entity.</li>
                 </ul>
               </div>
             </div>
@@ -2319,26 +2289,26 @@ export default function EntitiesView() {
           {currentEntity.id === 'fractus_prime' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <div className="p-4 bg-cyan-950/20 border border-cyan-900/40 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Elite Planetary Laser Overseer:</strong> The 2x scaled mini-boss drone operates as a heavy orbital defense array. Bypasses standard camouflage, locks targets in gravity-holds, and detonates wide-area thermal novas.
+                <strong className="text-cyan-400">Elite Planetary Laser Overseer:</strong> The colossal overseer drone commands a vast aerial perimeter. It bypasses camouflage, holds targets in telekinetic suspension, splits its laser array across multiple adversaries, and unleashes destructive energy detonations.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
-                  <h5 className="font-serif text-sm font-bold text-cyan-400">Laser Multiplication</h5>
+                  <h5 className="font-serif text-sm font-bold text-cyan-400">Multi-Target Split Arrays</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed font-sans">
-                    Range of 64 blocks (80b if angry). Base damage: 21.3 calm / 55.0 angry. 
+                    Commands a broad combat engagement radius with intensified laser output.
                   </p>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    If engaging strong entities (&ge;80 Max HP, &ge;60 Current HP, &ge;6 attack, or &ge;2,400 ticks age) or when angry, it splits its array to fire up to <strong className="text-white">5 concurrent lasers</strong> simultaneously.
+                    When engaging multiple threats or powerful adversaries, it splits its optical emitter into multiple concurrent beams, independently tracking and incinerating separate targets simultaneously.
                   </p>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
-                  <h5 className="font-serif text-sm font-bold text-cyan-400">Helix Ray & Telekinetic Hold</h5>
+                  <h5 className="font-serif text-sm font-bold text-cyan-400">Helix Ray &amp; Telekinetic Hold</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Sweeps a colossal helix beam up to 128 blocks dealing <strong className="text-white">180.0 damage</strong>. Frequently holds targets in a telekinetic grip during the sweep.
+                    Sweeps a colossal dual-helix beam across extreme distances. Targets caught in its focal grip are suspended mid-air in a tractor beam lock.
                   </p>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    <strong>Gaze Escape:</strong> Strike the Prime to break free. Needs 1-6 hits when healthy (&gt;100 HP), or <strong className="text-red-400 font-bold">8 to 24 hits</strong> when desperate (&le;100 HP).
+                    <strong>Grip Escape:</strong> Sustained physical strikes against the Prime weaken its tractor hold and force it to release the trapped target.
                   </p>
                 </div>
               </div>
@@ -2346,15 +2316,15 @@ export default function EntitiesView() {
               <div className="p-4 bg-[#140d0d] border border-red-950/40 rounded-lg space-y-2">
                 <h5 className="font-serif text-sm font-bold text-red-400 flex items-center gap-1.5">
                   <Zap className="w-4 h-4 text-red-500" />
-                  Laser Sphere Burst (Elite AoE Nova)
+                  Energy Sphere Burst
                 </h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  Triggers every 16s (8s against boss enemies). Buildup phase (135 ticks) expands an energy sphere up to 4.5 blocks; vaporization phase (5 ticks) explodes in a massive <strong className="text-white">17-block radius shell</strong>.
+                  Periodically charges an expanding core energy sphere before releasing a devastating shockwave that expands outward in a wide radius.
                 </p>
                 <ul className="text-xs text-red-300 pl-4 list-disc space-y-1 leading-relaxed">
-                  <li>Vaporizes all surrounding weak blocks with hardness values &le; 100.0.</li>
-                  <li>Inflicts a massive <strong className="font-bold">175.0 damage</strong> (225.0 if angry) to non-woodbound targets inside the shell.</li>
-                  <li><strong className="text-emerald-400">Vulnerability Window:</strong> Instantly enters a 2.5-second (50 ticks) post-nova fatigue phase where all incoming projectiles bypass its defenses with 100% accuracy.</li>
+                  <li>Vaporizes surrounding brittle blocks and foliage caught in the blast envelope.</li>
+                  <li>Deals massive concussive damage and radial knockback to all non-woodbound targets caught in the detonation.</li>
+                  <li><strong className="text-emerald-400">Post-Burst Fatigue:</strong> Enters a brief cooldown phase following the blast with reduced mobility and exposed defenses, giving adversaries a vital counterattack opening.</li>
                 </ul>
               </div>
 
@@ -2362,13 +2332,13 @@ export default function EntitiesView() {
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
                   <h5 className="font-serif text-sm font-bold text-cyan-400">Echolocation Network</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Bypasses standard invisibility. Emits mechanical clicks if an invisible target is within 15 blocks. Every 7s, projects an 18-block sonar sweep ripple. Revealing targets locks onto them for 9s with Glowing tags.
+                    Bypasses standard visual cloaking. Emits acoustic sonar pulses that detect invisible or sneaking targets, highlighting their outlines for immediate laser targeting.
                   </p>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
-                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Anti-Warden Adaptation</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Sub-Terranean Fortification</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Deep underground battle defenses reduce incoming Warden attacks: Sonic Booms are reduced by <strong className="text-emerald-400">-45%</strong>, and physical strikes are mitigated by <strong className="text-emerald-400">-30%</strong>.
+                    Reinforced alloy plating and acoustic shielding heavily dampen incoming sonic attacks and physical kinetic impacts.
                   </p>
                 </div>
               </div>
