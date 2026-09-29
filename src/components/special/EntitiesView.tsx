@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
-  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin
+  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin, Layers
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
