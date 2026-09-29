@@ -529,7 +529,7 @@ export default function EntitiesView() {
       damage: "0 (Environmental Restructuring / Failure Cascade)",
       armor: "150 Points / 40 Toughness",
       speed: "0.300 (Gravity-Defying Autonomous Levitation)",
-      dim: "Non-Mod Dimensions",
+      dim: "Non-Mod Dimensions (Retributive)",
       aka: "World Engine",
       isUpdated: true,
       desc: "A colossal sky-bound terraforming apparatus inspired by the World Engine from the movie Man of Steel. Deployed to enforce planetary biological equilibrium, it executes continuous environmental restructuring cycles by slamming high-energy gravity beams deep into the subterranean crust to transmute entire biomes into Wood Plains. While not designed for direct offensive combat, it commands a formidable 48-block spacetime distortion field that neutralizes incoming projectiles and repels intruders. Operating as synchronized nodes in a dimension-wide hivemind, multiple engines coordinate deterministically to fan across the sky, reserve territory, pinpoint uninfected ground gaps, and command protective orbital rings of Fractus sentinels."
@@ -2176,7 +2176,39 @@ export default function EntitiesView() {
                   </div>
                 </div>
 
-                {/* Subsystem 4: Spacetime Defense & Kinetic Distortion */}
+                {/* Subsystem 4: Fractus Orbital Defense Rings */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Layers className="w-4 h-4 text-cyan-400" />
+                    Fractus Orbital Defense Rings (39 Guard Slots across 3 Tiers)
+                  </h4>
+                  <div className="p-4 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-3">
+                    <p className="text-xs text-[#8c8779] leading-relaxed">
+                      Active Verdant Engines serve as central aerial nexuses for Fractus sentinels, drawing up to 39 drones into synchronized, rotating orbital defense rings. Sentinels utilize the engine's projectile dampening field for shielding while providing multi-angle thermal laser protection.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px]">
+                      <div className="p-2.5 bg-[#150d0d] border border-cyan-950/40 rounded">
+                        <span className="text-cyan-400 font-bold block mb-1">Tier 1: Middle Ring (Slots 0..12)</span>
+                        <span className="text-[#8c8779]">Strictly filled first at the engine's vertical center (Y + 50% height). Phase offset 0.0.</span>
+                      </div>
+                      <div className="p-2.5 bg-[#150d0d] border border-cyan-950/40 rounded">
+                        <span className="text-cyan-400 font-bold block mb-1">Tier 2: Bottom Ring (Slots 13..25)</span>
+                        <span className="text-[#8c8779]">Filled second around the lower hull (Y + 15% height). Phase offset π / 13.</span>
+                      </div>
+                      <div className="p-2.5 bg-[#150d0d] border border-cyan-950/40 rounded">
+                        <span className="text-cyan-400 font-bold block mb-1">Tier 3: Top Ring (Slots 26..38)</span>
+                        <span className="text-[#8c8779]">Filled third around the upper crown (Y + 85% height). Phase offset 2π / 39.</span>
+                      </div>
+                    </div>
+                    <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px] pt-1 border-t border-[#301618]/20">
+                      <li><strong className="text-cyan-300">Synchronized Celestial Orbit:</strong> Rings rotate at 0.00125 radians/tick with harmonic vertical wave bobbing at a standoff radius of (hitbox radius + 10.4) * 1.125 blocks.</li>
+                      <li><strong className="text-amber-400">Dynamic Peel-Off &amp; Re-Slotting:</strong> Sentinels smoothly break formation to engage approaching hostiles, automatically returning to their reserved ring slots once threats are neutralized.</li>
+                      <li><strong className="text-red-400">Core Beam Avoidance:</strong> Drones continuously calculate cylindrical collision margins, maintaining a 12-block safety radius away from the central downward terraforming beam.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Subsystem 5: Spacetime Defense & Kinetic Distortion */}
                 <div className="space-y-3 pt-2">
                   <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
                     <ShieldAlert className="w-4 h-4 text-[#c08e91]" />
@@ -2195,7 +2227,7 @@ export default function EntitiesView() {
                   </div>
                 </div>
 
-                {/* Subsystem 5: World Border Margin & Collective Dormancy */}
+                {/* Subsystem 6: World Border Margin & Collective Dormancy */}
                 <div className="space-y-3 pt-2">
                   <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
                     <RefreshCw className="w-4 h-4 text-[#c08e91]" />
@@ -2221,7 +2253,7 @@ export default function EntitiesView() {
           {currentEntity.id === 'fractus' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <div className="p-4 bg-cyan-950/10 border border-cyan-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. Because Fractus sentinels struggle to intercept fast-moving projectiles on their own, they coordinate into disciplined orbital rings around active Verdant Engines to provide layered defense while utilizing the engine's projectile dampening field for shielding.
+                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. Because Fractus sentinels struggle to intercept fast-moving projectiles on their own, they coordinate into disciplined 3-tier orbital rings (up to 39 drones) around active Verdant Engines to provide layered defense while utilizing the engine's projectile dampening field for shielding.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -2231,7 +2263,7 @@ export default function EntitiesView() {
                     <li>Maintains stable airborne hovering, elevating when entering aggressive combat states.</li>
                     <li>Dynamically lowers altitude in tight subterranean corridors to establish line-of-sight locks.</li>
                     <li>Retreats smoothly to maintain optimal standoff distance while channeling beam attacks.</li>
-                    <li><strong className="text-cyan-400">Orbital Defense Screen:</strong> Forms rotating multi-tier orbital screens around Verdant Engines, peeling off to intercept hostiles and returning to their assigned ring positions once resolved.</li>
+                    <li><strong className="text-cyan-400">3-Tier Orbital Defense Screen:</strong> Assembles into Middle (0..12), Bottom (13..25), and Top (26..38) rings around Verdant Engines, dynamically peeling off to intercept hostiles, steering clear of the core beam, and returning smoothly to assigned slots.</li>
                   </ul>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
