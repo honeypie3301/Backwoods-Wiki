@@ -181,7 +181,6 @@ export default function EntitiesView() {
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
   const [activeGigasState, setActiveGigasState] = useState<'dormant' | 'anchored' | 'growling'>('dormant');
-  const [activeVerdantState, setActiveVerdantState] = useState<'scanning' | 'terraforming' | 'cascade'>('scanning');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
@@ -521,18 +520,18 @@ export default function EntitiesView() {
     {
       id: "verdant_engine",
       name: "Verdant Engine",
-      title: "Atmospheric Retribution Vanguard",
-      threatLevel: "Extreme",
-      threatColor: "text-[#be6a6f]",
-      badgeBg: "bg-[#2c0f12]/30 border-[#5a1c21]/40 text-[#cc7e82] font-bold",
-      borderColor: "border-[#3c1215]/20",
+      title: "Atmospheric Retribution Vanguard & Autonomous Hive Node",
+      threatLevel: "Extermination Class",
+      threatColor: "text-red-400",
+      badgeBg: "bg-[#251012] border border-red-500/70 text-red-400 font-bold shadow-[0_0_12px_rgba(239,68,68,0.75)]",
+      borderColor: "border-[#3c1215]/40",
       hp: "2,500 HP (Limit-Bypassed)",
       damage: "0 (Environmental Restructuring / Failure Cascade)",
       armor: "150 Points / 40 Toughness",
-      speed: "0.300 (Gravity-Defying Flight)",
+      speed: "0.300 (Gravity-Defying Autonomous Levitation)",
       dim: "Non-Mod Dimensions (Retributive high-sky spawn above Y=50)",
       isUpdated: true,
-      desc: "A colossal sky-bound terraforming apparatus. Initiated through ancient planetary balance protocols, it executes continuous environmental restructuring cycles, transmuting regional biomes into Wood Plains. When deployed, it acts as a central nexus for Fractus sentinels, which assemble into multi-tiered orbital guard rings around its perimeter to protect the terraforming core."
+      desc: "A colossal sky-bound terraforming apparatus deployed to enforce planetary biological equilibrium. Operating as autonomous nodes in a synchronized dimension-wide hivemind network, engines divide the world into 256x256 block coordinate regions, continuously transmuting surface and subterranean strata into Wood Plains through high-energy vertical beam projection. Multiple engines coordinate deterministically to fan across the sky, reserve territory without path collision, pinpoint uninfected ground gaps, and establish layered orbital defense screens with Fractus sentinels."
     },
     {
       id: "fractus",
@@ -692,40 +691,52 @@ export default function EntitiesView() {
 
   const verdantEngineAbilities: Ability[] = [
     {
-      title: "Reinforced Colossal Bulk",
-      trigger: "Manifestation in active world space",
-      description: "Possesses immense physical density and fortified alloy plating, absorbing immense kinetic punishment while completely ignoring environmental hazards, fire, and suffocating terrain.",
-      category: "Colossal Chassis"
+      title: "Distributed Dimension Hivemind Network",
+      trigger: "Continuous global synchronization across active dimension",
+      description: "Operates as a synchronized node in a shared dimension-wide hivemind. The network partitions the world into discrete 256x256 block coordinate regions, synchronizes completed territory registers across server unloads, deterministically assigns angular radial sectors based on engine UUID to eliminate flight path overlap, and enforces an active 50-block repulsion bubble to prevent aerial clustering.",
+      category: "Hivemind Architecture"
     },
     {
-      title: "Radial Biome Transmutation",
-      trigger: "Continuous periodic terraforming cycle",
-      description: "Projects a dense gravity beam straight down into the terrain below, transmuting the surrounding landscape and forest nodes into Wood Plains, expanding outward inside a maximum radius of up to 256 blocks.",
-      category: "Environmental"
+      title: "Subterranean Wood & Biome Transmutation",
+      trigger: "Continuous downward gravity beam projection",
+      description: "Projects a high-energy downward gravity beam transmuting surface vegetation, stone strata, and subterranean caverns into Wood Plains across an expanding radius of up to 256 blocks. Employs an 8-tick chunk lease system, 100-tick column cooldowns, and a 16,384-slot salted open-addressing cache to completely eliminate redundant block recalculations across multiple active units.",
+      category: "Planetary Transmutation"
     },
     {
-      title: "Territorial Saturation Shift",
-      trigger: "Regional terraforming saturation reached",
-      description: "Continuously analyzes local terrain conversion. Once regional transmutation is saturated, the apparatus engages sub-warp displacement to relocate across the sky and claim fresh territory.",
-      category: "Spatial Shift"
+      title: "Kinetic Pound Scaling & Shockwave Acceleration",
+      trigger: "Continuous ground pounding impacts",
+      description: "Every cumulative ground pound permanently increases base column sampling by 12 samples per tick (up to 200 base samples), while each impact triggers a temporary shockwave burst injecting an additional 80 to 120 samples per tick. Upon reaching the maximum 256-block infection radius, sampling expands by 3.0x to accelerate final territory saturation.",
+      category: "Kinetic Amplification"
     },
     {
-      title: "Vanguard Spacing Protocol",
-      trigger: "Proximity to another active terraformer",
-      description: "Enforces mandatory territorial clearance from other active engines, autonomously displacing away if another vanguard attempts to occupy the same airspace.",
-      category: "Collision Prevention"
+      title: "Two-Tier Grid Auditing & Gap Pinpointing",
+      trigger: "Regional saturation assessment and territory exhaustion check",
+      description: "Surveys local 256x256 block territory using a 5x5 coarse grid, escalating to a high-density 9x9 fine grid once saturation reaches 90%. If uninfected gaps are detected, the engine calculates the largest untouched pocket coordinates and routes relocation directly to the hole rather than departing prematurely.",
+      category: "Spatial Telemetry"
     },
     {
-      title: "Dynamic Gravity Deflection Field",
-      trigger: "Incoming projectiles or airborne intruders within defensive airspace",
-      description: "Distorts surrounding spacetime to severely slow down and deflect incoming arrows and airborne attacks. This defensive dampening field gradually destabilizes and weakens as the engine sustains structural damage.",
-      category: "Projectile Defense"
+      title: "Direct Failed-Column Probe Restoration",
+      trigger: "Infection radius reaches 90% or higher of maximum bounds",
+      description: "When the infection radius is mature, the engine directly isolates the exact block columns that failed the multi-ring saturation probe and performs precision subterranean rod repairs on up to 8 failed columns per check, closing the final 5% saturation gap rapidly.",
+      category: "Precision Correction"
+    },
+    {
+      title: "Spacetime Distortion & Projectile Nullification",
+      trigger: "Incoming projectiles, flight maneuvers, or hostiles within 48-block defensive radius",
+      description: "Generates a 48-block defensive distortion sphere applying up to 90% drag on arrows, tridents, and fireworks, pulling airborne entities into Zero-G suspension, stalling Riptide tridents, and forcing immediate Elytra glide collapse. Field effectiveness automatically scales down to 55% during non-terraforming phases and weakens proportionally as the engine sustains hull damage.",
+      category: "Spacetime Defense"
+    },
+    {
+      title: "World Border Margin & Expansion Reactivation",
+      trigger: "Approaching world border boundaries or boundary adjustments",
+      description: "Enforces an authoritative 25-block clearance margin from world borders, dynamically adapting relocation jump distances down to 64 to 224 blocks in small custom borders. When 100% of regions inside the border achieve 95% or higher saturation, the hive initiates a final verification sweep and enters silent collective dormancy, instantly waking all engines if world borders expand.",
+      category: "Boundary Adaptation"
     },
     {
       title: "Catastrophic Core Failure Cascade",
-      trigger: "Structural integrity reduced to critical levels",
-      description: "Sustaining critical structural damage overloads its internal propulsion core aloft, triggering a violent terminal system failure and terrain-fracturing detonation.",
-      category: "Terminal Event"
+      trigger: "Hull structural integrity reduced to critical threshold (0 HP)",
+      description: "Upon sustaining fatal structural damage aloft, propulsion is suspended as internal power reservoirs overload. The destabilized core discharges violent spatial shockwaves outward across surrounding airspace before detonating in a catastrophic terrain-shattering explosion and dissolving from the sky.",
+      category: "Terminal Cataclysm"
     }
   ];
 
@@ -2087,86 +2098,118 @@ export default function EntitiesView() {
                   </div>
                 </div>
 
-                {/* State / Phase Matrix Switcher */}
-                <div className="space-y-4 pt-4 border-t border-[#301618]/20">
-                  <div>
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
-                      <Shield className="w-4 h-4 text-[#c08e91]" />
-                      Vanguard Phase &amp; State Matrix
-                    </h4>
-                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
-                      The Verdant Engine transitions through strict spatial coordinates, terraforming whole ecosystems until a terminal core system failure occurs.
+                {/* Subsystem 1: Global Hive Architecture & Spatial Telemetry */}
+                <div className="space-y-3 pt-4 border-t border-[#301618]/20">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Shield className="w-4 h-4 text-[#c08e91]" />
+                    Dimension-Wide Hivemind &amp; Spatial Coordination
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="p-3.5 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2">
+                      <h5 className="font-serif text-xs font-bold text-[#e0e7e0] flex items-center gap-2">
+                        <MapPin className="w-3.5 h-3.5 text-red-400" />
+                        256x256 Coordinate Grid &amp; Destination Locking
+                      </h5>
+                      <p className="text-[11px] text-[#8c8779] leading-relaxed">
+                        The dimension is mathematically mapped into 256x256 block coordinate regions. When an engine initiates relocation, it locks its target region in the shared hive register, applying a severe -50,000 fitness penalty to prevent two engines from ever selecting or contending for the same sector.
+                      </p>
+                    </div>
+                    <div className="p-3.5 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2">
+                      <h5 className="font-serif text-xs font-bold text-[#e0e7e0] flex items-center gap-2">
+                        <Compass className="w-3.5 h-3.5 text-amber-400" />
+                        Deterministic Radial Fanning &amp; Separation
+                      </h5>
+                      <p className="text-[11px] text-[#8c8779] leading-relaxed">
+                        Engines divide the 360-degree radial compass by total active members (2π multiplied by index divided by member count), fanning out uniformly without intersecting. In non-relocating states, engines enforce a strict 50-block repulsion bubble to prevent idling clusters.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subsystem 2: Transmutation Pipeline & Contention Locking */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Zap className="w-4 h-4 text-[#c08e91]" />
+                    Subterranean Rod Infection &amp; Contention Controls
+                  </h4>
+                  <div className="p-4 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-3">
+                    <p className="text-xs text-[#8c8779] leading-relaxed">
+                      Continuous downward gravity beams project vertical infected wood pillars through surface dirt, stone strata, deepslate, and subterranean caverns down to the bottom of the world. High-density multi-engine operations are protected by a 3-tier safety pipeline:
                     </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 font-mono text-[10px]">
+                      <div className="p-2.5 bg-[#150d0d] border border-[#301618]/40 rounded">
+                        <span className="text-red-400 font-bold block mb-1">1. Chunk Leases (8 Ticks)</span>
+                        <span className="text-[#8c8779]">Closer engine claims exclusive chunk execution rights; farther units skip redundant work.</span>
+                      </div>
+                      <div className="p-2.5 bg-[#150d0d] border border-[#301618]/40 rounded">
+                        <span className="text-amber-400 font-bold block mb-1">2. Column Cooldown (100 Ticks)</span>
+                        <span className="text-[#8c8779]">Sampled columns are locked for 5 seconds across a 65,536-entry coordinator cache.</span>
+                      </div>
+                      <div className="p-2.5 bg-[#150d0d] border border-[#301618]/40 rounded">
+                        <span className="text-emerald-400 font-bold block mb-1">3. Salted Tick Hash (16K)</span>
+                        <span className="text-[#8c8779]">Prevents single-tick duplicate checks, salted per dimension and server level.</span>
+                      </div>
+                    </div>
                   </div>
+                </div>
 
-                  <div className="flex flex-wrap sm:flex-nowrap bg-[#070505] p-1 rounded-lg border border-[#301618]/30 max-w-xl select-none gap-1">
-                    {[
-                      { id: 'scanning', label: '1. High Scan' },
-                      { id: 'terraforming', label: '2. Transmutation' },
-                      { id: 'cascade', label: '3. Failure Cascade' }
-                    ].map((state) => (
-                      <button
-                        key={state.id}
-                        onClick={() => setActiveVerdantState(state.id as any)}
-                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
-                          activeVerdantState === state.id
-                            ? 'bg-[#241315] text-[#e0b9bb] border border-[#4d2427]/40'
-                            : 'text-[#5a6b5e] hover:text-[#829285]'
-                        }`}
-                      >
-                        {state.label}
-                      </button>
-                    ))}
+                {/* Subsystem 3: Two-Tier Grid Auditing & Gap Correction */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <Eye className="w-4 h-4 text-[#c08e91]" />
+                    Two-Tier Grid Audits &amp; Coverage Gap Targeting
+                  </h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="p-3.5 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2">
+                      <h5 className="font-serif text-xs font-bold text-[#e0e7e0]">5x5 Coarse to 9x9 Fine Surveys</h5>
+                      <p className="text-[11px] text-[#8c8779] leading-relaxed">
+                        Surveys evaluate 256x256 block sectors on a 5x5 coarse grid during early infection, automatically escalating to a 9x9 high-density audit once measured saturation reaches 90%.
+                      </p>
+                    </div>
+                    <div className="p-3.5 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2">
+                      <h5 className="font-serif text-xs font-bold text-[#e0e7e0]">Gap Pinpointing &amp; Direct Repairs</h5>
+                      <p className="text-[11px] text-[#8c8779] leading-relaxed">
+                        Surveys locate the exact coordinates of uninfected ground pockets, routing relocation into gaps before sector departure. At mature radius (90% or higher), engines directly repair up to 8 failed probe columns per check.
+                      </p>
+                    </div>
                   </div>
+                </div>
 
-                  <div className="p-4 bg-[#110b0b] border border-rose-950/30 rounded-xl">
-                    {activeVerdantState === 'scanning' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-[#c9d1c9]">
-                          Phase 1: High-Altitude Scanning
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Initial coordinate survey state. The apparatus maintains high-altitude flight while surveying regional airspace and establishing sentinel links.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-[#e0e7e0]">Vanguard Spacing:</strong> Maintains autonomous territorial clearance from any other active terraforming apparatus.</li>
-                          <li><strong className="text-amber-400">Sentinel Coordination:</strong> Synchronizes with local Fractus sentinels, drawing them into protective orbital rings.</li>
-                          <li><strong className="text-purple-400">Ecosystem Monitoring:</strong> Continuously evaluates forest density and landscape equilibrium.</li>
-                        </ul>
-                      </div>
-                    )}
+                {/* Subsystem 4: Spacetime Defense & Kinetic Distortion */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <ShieldAlert className="w-4 h-4 text-[#c08e91]" />
+                    Spacetime Defense &amp; Projectile Nullification Field
+                  </h4>
+                  <div className="p-4 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2.5">
+                    <p className="text-xs text-[#8c8779] leading-relaxed">
+                      Surrounding airspace is distorted inside a 48-block defensive sphere. Incoming arrows, fireworks, and projectile entities experience up to 90% motion drag. Living players attempting flight or kinetic strikes face active atmospheric suppression:
+                    </p>
+                    <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                      <li><strong className="text-red-400">Anti-Elytra Wing Collapse:</strong> Gliding victims have their flight momentum arrested and chestplate wing states disrupted, while nearby firework rockets are vaporized instantly.</li>
+                      <li><strong className="text-amber-400">Riptide Stall:</strong> Trident-spinning attackers are clamped to 15% velocity, stripping impulse momentum on contact.</li>
+                      <li><strong className="text-purple-400">Zero-G Suspension &amp; Repulsion:</strong> Intruders within 16 blocks are pushed outward and lifted into low-gravity floating suspension.</li>
+                      <li><strong className="text-[#e0e7e0]">Non-Terraforming Dampening (55%):</strong> During idle navigation, relocation leaps, or dormancy, defensive drag and pushback automatically dampen down to 55% power.</li>
+                    </ul>
+                  </div>
+                </div>
 
-                    {activeVerdantState === 'terraforming' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-rose-400">
-                          Phase 2: Active Biome Transmutation
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Active terraforming operations channel intense downward energy beams to override and transmute regional biomes.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Radial Transmutation:</strong> Transmutes surrounding regional terrain and forest nodes into the custom Wood Plains biome.</li>
-                          <li><strong className="text-[#e0e7e0]">Gravity Distortion:</strong> Distorts local gravity and deflects incoming projectile attacks away from the core.</li>
-                          <li><strong className="text-amber-400">Saturation Shift:</strong> Autonomously relocates across the sky once regional terraforming reaches saturation.</li>
-                        </ul>
-                      </div>
-                    )}
-
-                    {activeVerdantState === 'cascade' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-amber-500">
-                          Phase 3: Catastrophic Core Failure Cascade
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          The terminal state initiated when the engine sustains critical structural damage.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Core Destabilization:</strong> Suspends propulsion cycles while overloading its internal power reservoir aloft.</li>
-                          <li><strong className="text-amber-300">Violent Shockwave:</strong> Overloaded core forces rupture outward across surrounding airspace.</li>
-                          <li><strong className="text-emerald-400">Fracturing Detonation:</strong> Unleashes a catastrophic terrain-shattering detonation before dissolving from the sky.</li>
-                        </ul>
-                      </div>
-                    )}
+                {/* Subsystem 5: World Border Margin & Collective Dormancy */}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
+                    <RefreshCw className="w-4 h-4 text-[#c08e91]" />
+                    World Border Clearance, Final Sweep &amp; Collective Dormancy
+                  </h4>
+                  <div className="p-4 bg-[#0e0909] border border-[#2b1416]/30 rounded-lg space-y-2.5 text-xs text-[#8c8779] leading-relaxed">
+                    <p>
+                      All physical navigation, coordinate locking, and candidate searches strictly maintain a 25-block clearance inside the active world border. In compact custom borders, relocation jump distances automatically adapt from 64 down to 224 blocks to stay within boundaries.
+                    </p>
+                    <div className="p-3 bg-[#150d0d] border border-[#301618]/40 rounded-lg text-[11px] space-y-1.5">
+                      <strong className="text-red-400 font-serif block">Final Sweep &amp; Border Expansion Wake-up Protocol:</strong>
+                      <p>
+                        Before entering dormancy, the hive executes a complete verification sweep across all regions. When 100% of regions inside the border achieve 95% or higher saturation, all engines transition into silent low-power hover with 70-tick one-shot closing petal animations. If world borders expand, the hive instantly detects new uninfected territory, clears dormancy, wakes every engine, and dispatches them into the frontier.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
