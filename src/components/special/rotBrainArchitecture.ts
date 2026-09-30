@@ -26,175 +26,260 @@ export interface AbilityInfo {
 }
 
 export const ROTS_ABILITY_REGISTRY: Record<string, AbilityInfo> = {
-  thy_end_is_now: {
-    id: 'thy_end_is_now',
-    name: 'Thy End Is Now (4-Hit Combo)',
-    cooldownMaxTicks: 80,
+  triple_threat_combo: {
+    id: 'triple_threat_combo',
+    name: 'Triple Threat (3-Hit Combo)',
+    cooldownMaxTicks: 1000,
     cooldownCurrentTicks: 0,
     windupTicks: 6,
     activeTicks: 18,
     recoveryTicks: 10,
     effectiveRange: 4.5,
-    rawDamage: 90.0,
-    shieldBreak: true,
-    shieldBreakDurationTicks: 100,
-    shockwaveRadius: 5.0,
-    shockwaveImpulse: 0.62,
-    description: 'Rapid 4-hit martial combo concluding with an explosive overhead cross that disables shields and knocks all surrounding entities outward.',
-    counterplay: 'Block strikes 1-3, then backdash before the unblockable 4th finisher connects.'
+    rawDamage: 54.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 3.0,
+    shockwaveImpulse: 0.55,
+    description: 'Rapid 3-hit martial punch sequence dealing 18.0 damage per strike (54.0 total) to maintain close-range melee pressure and combo rhythm.',
+    counterplay: 'Backstep out of the 4.5-block melee radius or raise shield to absorb the sequence.'
   },
-  judgment: {
-    id: 'judgment',
+  dropkick_combo: {
+    id: 'dropkick_combo',
     name: 'Judgment (Supersonic Dropkick)',
-    cooldownMaxTicks: 140,
+    cooldownMaxTicks: 1000,
     cooldownCurrentTicks: 0,
     windupTicks: 14,
     activeTicks: 12,
     recoveryTicks: 14,
-    effectiveRange: 18.0,
-    rawDamage: 110.0,
+    effectiveRange: 200.0,
+    rawDamage: 50.0,
     shieldBreak: true,
     shieldBreakDurationTicks: 100,
     shockwaveRadius: 7.0,
     shockwaveImpulse: 0.85,
-    description: 'Ascends to apex altitude (Y=76) before diving at supersonic speeds into the target trajectory, unleashing a massive radial shockwave.',
-    counterplay: 'Sprint perpendicularly or time an evasive dodge during the final 3 ticks of the dive.'
+    description: 'Accelerates across up to 200 meters into a supersonic dropkick that shatters active player shields (5.0s disable) and propels targets airborne.',
+    counterplay: 'Sprint perpendicularly or time an evasive dodge during the final ticks of the incoming dive vector.'
   },
-  prepare_thyself: {
-    id: 'prepare_thyself',
-    name: 'Prepare Thyself (Instant Warp Cross)',
-    cooldownMaxTicks: 100,
+  high_sky_slam_combo: {
+    id: 'high_sky_slam_combo',
+    name: 'High Sky Slam (Uppercut -> Seismic Slam)',
+    cooldownMaxTicks: 120,
     cooldownCurrentTicks: 0,
-    windupTicks: 6,
-    activeTicks: 4,
-    recoveryTicks: 8,
-    effectiveRange: 24.0,
-    rawDamage: 36.0,
-    shieldBreak: false,
-    shieldBreakDurationTicks: 0,
-    shockwaveRadius: 4.8,
-    shockwaveImpulse: 0.52,
-    description: 'Flash teleports directly into the target blindspot and instantly sweeps with twin cross-arm slashes.',
-    counterplay: 'Execute an instant 180° snap shield block upon hearing the teleport flash cue.'
+    windupTicks: 8,
+    activeTicks: 16,
+    recoveryTicks: 12,
+    effectiveRange: 6.0,
+    rawDamage: 65.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 100,
+    shockwaveRadius: 6.0,
+    shockwaveImpulse: 1.15,
+    description: 'Heavy rising uppercut (30.0 dmg) launching the victim 12+ blocks high before descending with a crushing seismic ground slam (35.0 dmg; 65.0 cumulative).',
+    counterplay: 'Air-strafe or deploy water bucket / slow falling immediately upon airborne launch.'
   },
-  overhead_slam: {
-    id: 'overhead_slam',
+  die_rider_kick: {
+    id: 'die_rider_kick',
+    name: 'Heavenly Repentance / Die Rider Kick',
+    cooldownMaxTicks: 160,
+    cooldownCurrentTicks: 0,
+    windupTicks: 10,
+    activeTicks: 14,
+    recoveryTicks: 14,
+    effectiveRange: 30.0,
+    rawDamage: 65.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 100,
+    shockwaveRadius: 8.0,
+    shockwaveImpulse: 1.25,
+    description: 'Acoustic-assisted supersonic leap dive punishing airborne, elevated, or fleeing targets with catastrophic kinetic detonation.',
+    counterplay: 'Avoid jumping or aerial mobility while within line-of-sight during its pursuit phase.'
+  },
+  overhead_combo: {
+    id: 'overhead_combo',
     name: 'Die! (Overhead Ground Smash)',
     cooldownMaxTicks: 120,
     cooldownCurrentTicks: 0,
     windupTicks: 12,
     activeTicks: 10,
     recoveryTicks: 12,
-    effectiveRange: 8.0,
-    rawDamage: 52.0,
+    effectiveRange: 4.5,
+    rawDamage: 40.0,
     shieldBreak: true,
     shieldBreakDurationTicks: 100,
     shockwaveRadius: 6.0,
     shockwaveImpulse: 0.72,
-    description: 'High vertical leap smashing both fists down onto the earth, triggering shield shatter and radial ground rupture.',
+    description: 'High vertical leap smashing both fists down onto the earth, triggering shield shatter (100t disable) and radial ground rupture.',
     counterplay: 'Flee the red target ground reticle before apex touchdown.'
   },
-  heavy_strike: {
-    id: 'heavy_strike',
-    name: 'Heavy Strike (Shield Breaker Uppercut)',
-    cooldownMaxTicks: 50,
+  minos_combo: {
+    id: 'minos_combo',
+    name: 'Minos Seismic Ground Slam',
+    cooldownMaxTicks: 100,
     cooldownCurrentTicks: 0,
     windupTicks: 8,
-    activeTicks: 4,
-    recoveryTicks: 6,
-    effectiveRange: 3.5,
-    rawDamage: 32.0,
+    activeTicks: 10,
+    recoveryTicks: 8,
+    effectiveRange: 5.0,
+    rawDamage: 35.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 5.0,
+    shockwaveImpulse: 0.65,
+    description: 'Seismic shockwave ripple fracturing ground blocks and applying sustained ground pressure.',
+    counterplay: 'Jump before the shockwave pulse touches your coordinates or maintain elevated positioning.'
+  },
+  sonic_boom: {
+    id: 'sonic_boom',
+    name: 'Warden Sonic Boom (Directional)',
+    cooldownMaxTicks: 324,
+    cooldownCurrentTicks: 0,
+    windupTicks: 16,
+    activeTicks: 10,
+    recoveryTicks: 18,
+    effectiveRange: 24.0,
+    rawDamage: 38.0,
     shieldBreak: true,
     shieldBreakDurationTicks: 100,
-    shockwaveRadius: 0.0,
-    shockwaveImpulse: 0.40,
-    description: 'Telegraphed heavy uppercut configured specifically to shatter active player shield guards.',
-    counterplay: 'Drop shield momentarily and deliver a fast weapon counter-jab.'
+    shockwaveRadius: 2.5,
+    shockwaveImpulse: 0.90,
+    description: 'Focused high-frequency acoustic beam learned from Warden encounters that completely ignores armor and shield mitigation across 24 blocks (deals 65.0 damage in Totem state).',
+    counterplay: 'Break line of sight behind thick stone or solid arena walls.'
   },
-  solar_laser: {
-    id: 'solar_laser',
+  omni_sonic_boom: {
+    id: 'omni_sonic_boom',
+    name: 'Omnidirectional Sonic Shockwave',
+    cooldownMaxTicks: 240,
+    cooldownCurrentTicks: 0,
+    windupTicks: 14,
+    activeTicks: 12,
+    recoveryTicks: 16,
+    effectiveRange: 6.0,
+    rawDamage: 10.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 6.0,
+    shockwaveImpulse: 1.10,
+    description: '360-degree acoustic shockwave pulse dealing 10.0 splash damage (22.0 in Totem state), repelling surrounding melee aggressors and disrupting combat spacing.',
+    counterplay: 'Maintain spacing greater than 6 blocks during sonic charging windup.'
+  },
+  solar_beam: {
+    id: 'solar_beam',
     name: 'Sweeping Solar Raycast Beam',
-    cooldownMaxTicks: 160,
+    cooldownMaxTicks: 360,
     cooldownCurrentTicks: 0,
     windupTicks: 18,
     activeTicks: 24,
     recoveryTicks: 16,
-    effectiveRange: 22.0,
-    rawDamage: 65.0,
+    effectiveRange: 32.0,
+    rawDamage: 8.0,
     shieldBreak: false,
     shieldBreakDurationTicks: 0,
     shockwaveRadius: 0.0,
     shockwaveImpulse: 0.25,
-    description: 'Continuous concentrated solar thermal beam sweeping across long-range threats with high DPS.',
+    description: 'Continuous concentrated solar thermal beam sweeping across long-range threats with high DPS (8.0 base, 18.0 boosted) and ignition; grants total immunity to Fire, Lava, Campfire, and Hot Floor damage.',
     counterplay: 'Hold shield facing the focal emitter or break line-of-sight behind arena walls.'
   },
-  surge_regeneration: {
-    id: 'surge_regeneration',
-    name: 'Biological Surge Regeneration',
-    cooldownMaxTicks: 6,
+  cryo_beam: {
+    id: 'cryo_beam',
+    name: 'Cryogenic Freezing Beam',
+    cooldownMaxTicks: 360,
     cooldownCurrentTicks: 0,
-    windupTicks: 0,
-    activeTicks: 1,
-    recoveryTicks: 5,
-    effectiveRange: 0.0,
-    rawDamage: 0.0,
+    windupTicks: 18,
+    activeTicks: 24,
+    recoveryTicks: 16,
+    effectiveRange: 32.0,
+    rawDamage: 8.0,
     shieldBreak: false,
     shieldBreakDurationTicks: 0,
     shockwaveRadius: 0.0,
-    shockwaveImpulse: 0.0,
-    description: 'Autonomous rapid cellular healing pulsing +5 to +28 HP every 6 ticks (3.3x/sec) based on adaptation stacks.',
-    counterplay: 'Burst down with continuous DPS before kinetic/swarm adaptation accumulates.'
+    shockwaveImpulse: 0.25,
+    description: 'Freezing cryogenic raycast slowing and freezing targets (8.0 base, 18.0 boosted); grants total immunity to Freeze damage.',
+    counterplay: 'Maintain cover and avoid linear corridors during cryo charge frames.'
   },
-  defensive_guard: {
-    id: 'defensive_guard',
-    name: 'Defensive Kinetic Guard',
+  wither_skulls: {
+    id: 'wither_skulls',
+    name: 'Homing Wither Skulls',
+    cooldownMaxTicks: 200,
+    cooldownCurrentTicks: 0,
+    windupTicks: 10,
+    activeTicks: 12,
+    recoveryTicks: 10,
+    effectiveRange: 32.0,
+    rawDamage: 12.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 2.0,
+    shockwaveImpulse: 0.35,
+    description: 'Fires homing Wither Skull projectiles inflicting wither decay and explosive harassment across 32 blocks.',
+    counterplay: 'Block with shield or shoot incoming skulls out of the air.'
+  },
+  armor_rip: {
+    id: 'armor_rip',
+    name: 'Armor Rip & Chokehold',
+    cooldownMaxTicks: 600,
+    cooldownCurrentTicks: 0,
+    windupTicks: 6,
+    activeTicks: 30,
+    recoveryTicks: 10,
+    effectiveRange: 3.5,
+    rawDamage: 2.0,
+    shieldBreak: true,
+    shieldBreakDurationTicks: 120,
+    shockwaveRadius: 0.0,
+    shockwaveImpulse: 0.0,
+    description: 'Latches onto close-range targets, dealing continuous choke damage (2.0 per 15 ticks) and stripping armor defense stacks.',
+    counterplay: 'Maintain space and do not allow the Rot within 3.5 blocks while armor rip is primed.'
+  },
+  block: {
+    id: 'block',
+    name: 'Defensive Parry & Kinetic Guard',
     cooldownMaxTicks: 90,
     cooldownCurrentTicks: 0,
     windupTicks: 2,
     activeTicks: 30,
     recoveryTicks: 6,
-    effectiveRange: 3.0,
+    effectiveRange: 5.5,
     rawDamage: 0.0,
     shieldBreak: false,
     shieldBreakDurationTicks: 0,
     shockwaveRadius: 0.0,
     shockwaveImpulse: 0.0,
-    description: 'Crosses forearms to absorb incoming physical and projectile damage, building internal kinetic energy before unleashing a counter-offensive.',
-    counterplay: 'Cease physical attacks during guard frames to prevent charging its counter-offensive.'
+    description: 'Raises defensive forearm guard to mitigate 99% of incoming damage (0.01x multiplier) during active parry frames.',
+    counterplay: 'Hold attacks during active guard frames or use unblockable heavy strikes.'
   },
-  launcher_uppercut: {
-    id: 'launcher_uppercut',
-    name: 'Airborne Launcher Uppercut',
-    cooldownMaxTicks: 70,
+  superheat_evaporation: {
+    id: 'superheat_evaporation',
+    name: 'Superheat Fluid Evaporation',
+    cooldownMaxTicks: 700,
     cooldownCurrentTicks: 0,
-    windupTicks: 6,
-    activeTicks: 6,
-    recoveryTicks: 8,
-    effectiveRange: 3.8,
-    rawDamage: 45.0,
-    shieldBreak: true,
-    shieldBreakDurationTicks: 80,
-    shockwaveRadius: 3.5,
-    shockwaveImpulse: 1.15,
-    description: 'A brutal rising vertical punch launching targets 12+ blocks high into the air, setting up guaranteed aerial or landing dive bomb punishments.',
-    counterplay: 'Air-strafe or use Water Bucket / Slow Falling before touching down.'
+    windupTicks: 10,
+    activeTicks: 15,
+    recoveryTicks: 15,
+    effectiveRange: 8.0,
+    rawDamage: 26.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 8.0,
+    shockwaveImpulse: 0.75,
+    description: 'Instantly flash-evaporates water, lava, and fluid obstacles in an 8-block radius, triggering a 26.0 damage thermal shockwave.',
+    counterplay: 'Do not rely on water buckets or lava moats for containment.'
   },
-  aerial_dive_bomb: {
-    id: 'aerial_dive_bomb',
-    name: 'Aerial Dive Bomb & Slam',
-    cooldownMaxTicks: 110,
+  dodge_and_flank: {
+    id: 'dodge_and_flank',
+    name: 'Predictive Dodge & Flank Teleportation',
+    cooldownMaxTicks: 30,
     cooldownCurrentTicks: 0,
-    windupTicks: 8,
-    activeTicks: 14,
-    recoveryTicks: 12,
+    windupTicks: 1,
+    activeTicks: 2,
+    recoveryTicks: 3,
     effectiveRange: 16.0,
-    rawDamage: 75.0,
-    shieldBreak: true,
-    shieldBreakDurationTicks: 100,
-    shockwaveRadius: 6.5,
-    shockwaveImpulse: 0.80,
-    description: 'Propels vertically upward and executes an angled downward plunge into elevated or airborne targets with catastrophic impact force.',
-    counterplay: 'Dash laterally perpendicular to the descent angle when the downward plunge begins.'
+    rawDamage: 0.0,
+    shieldBreak: false,
+    shieldBreakDurationTicks: 0,
+    shockwaveRadius: 0.0,
+    shockwaveImpulse: 0.0,
+    description: '85% dodge chance against player melee swings (18-tick dodge cooldown) and instantaneous flank teleportation to target blindspots (30-tick flank cooldown).',
+    counterplay: 'Bait teleport with a feint strike and immediately rotate 180 degrees.'
   },
   ender_pearl_intercept: {
     id: 'ender_pearl_intercept',
@@ -215,71 +300,20 @@ export const ROTS_ABILITY_REGISTRY: Record<string, AbilityInfo> = {
   },
   consumable_punish: {
     id: 'consumable_punish',
-    name: 'Consumable & Item Eat Punish',
+    name: 'Consumable & Item Eat Reflex',
     cooldownMaxTicks: 30,
     cooldownCurrentTicks: 0,
     windupTicks: 2,
     activeTicks: 6,
     recoveryTicks: 4,
     effectiveRange: 10.0,
-    rawDamage: 55.0,
+    rawDamage: 50.0,
     shieldBreak: true,
     shieldBreakDurationTicks: 100,
     shockwaveRadius: 4.0,
     shockwaveImpulse: 0.60,
     description: 'Sensory reflex that instantly dashes forward or dropkicks targets caught in item consumption animations (Golden Apples, Potions, Milk).',
     counterplay: 'Only consume healing items behind solid barricades or at extreme range.'
-  },
-  sonic_scream_directional: {
-    id: 'sonic_scream_directional',
-    name: 'Armor-Bypassing Sonic Scream',
-    cooldownMaxTicks: 180,
-    cooldownCurrentTicks: 0,
-    windupTicks: 16,
-    activeTicks: 10,
-    recoveryTicks: 18,
-    effectiveRange: 24.0,
-    rawDamage: 80.0,
-    shieldBreak: true,
-    shieldBreakDurationTicks: 120,
-    shockwaveRadius: 2.5,
-    shockwaveImpulse: 0.90,
-    description: 'Focused high-frequency acoustic beam learned from Warden encounters that completely ignores armor and shield mitigation across 24 blocks.',
-    counterplay: 'Break line of sight behind thick stone or obsidian walls.'
-  },
-  sonic_shockwave_radial: {
-    id: 'sonic_shockwave_radial',
-    name: 'Omnidirectional Sonic Shockwave',
-    cooldownMaxTicks: 240,
-    cooldownCurrentTicks: 0,
-    windupTicks: 20,
-    activeTicks: 16,
-    recoveryTicks: 24,
-    effectiveRange: 24.0,
-    rawDamage: 95.0,
-    shieldBreak: true,
-    shieldBreakDurationTicks: 140,
-    shockwaveRadius: 24.0,
-    shockwaveImpulse: 1.40,
-    description: 'Unleashes an apocalyptic 360-degree acoustic detonation fracturing terrain and knocking all surrounding entities back with extreme violence.',
-    counterplay: 'Sprint beyond the 24-block threshold the moment the sonic charging telegraph begins.'
-  },
-  tactical_stalk: {
-    id: 'tactical_stalk',
-    name: 'Tactical Stalk & Circle Strafe',
-    cooldownMaxTicks: 60,
-    cooldownCurrentTicks: 0,
-    windupTicks: 0,
-    activeTicks: 40,
-    recoveryTicks: 0,
-    effectiveRange: 14.0,
-    rawDamage: 0.0,
-    shieldBreak: false,
-    shieldBreakDurationTicks: 0,
-    shockwaveRadius: 0.0,
-    shockwaveImpulse: 0.0,
-    description: 'Calculates target blindspots and circle-strafes around shields and barricades, waiting for optimal combo openings.',
-    counterplay: 'Keep back to a wall and maintain rotational awareness.'
   }
 };
 
@@ -352,27 +386,27 @@ export interface PlayerBehaviorData {
   estimatedReactionMs: number;
 }
 
-// 7. Tactical Neural Network (18 Inputs -> 16 Hidden (ReLU) -> 15 Tactical Outputs)
+// 7. Tactical Neural Network (96 Inputs -> 48 Hidden (ReLU) -> 15 Tactical Outputs = 5,391 Weights)
 export interface TacticalNeuralData {
   inputs: number[];
   hidden: number[];
   weightsCount: number;
   outputs: {
-    thyEndIsNow: number;
-    judgment: number;
-    prepareThyself: number;
+    tripleThreatCombo: number;
+    dropkickCombo: number;
+    highSkySlam: number;
+    dieRiderKick: number;
     overheadSlam: number;
-    heavyStrike?: number;
+    minosSlam: number;
+    sonicBoom: number;
+    omniSonic: number;
     solarLaser: number;
-    tacticalStalk: number;
-    defensiveGuard?: number;
-    launcherUppercut?: number;
-    aerialDiveBomb?: number;
-    enderPearlIntercept?: number;
-    consumablePunish?: number;
-    sonicScream?: number;
-    sonicShockwave?: number;
-    surgeRegen?: number;
+    cryoBeam: number;
+    witherSkulls: number;
+    armorRip: number;
+    defensiveGuard: number;
+    enderPearlIntercept: number;
+    consumablePunish: number;
   };
 }
 
@@ -439,8 +473,16 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     modSource: 'Minecraft Java Vanilla',
     isActive: true,
     threatEvaluation: 0.65,
-    detectedThreat: 'Player Axe Crit / Shield Guard / Bow Draw',
-    counterStrategy: 'Heavy Strike guard break + supersonic dropkick kiting'
+    detectedThreat: 'Player Mace Dive / Axe Crit / Shield Guard / Bow Draw',
+    counterStrategy: 'Overhead Slam shield break + supersonic dropkick interception'
+  },
+  {
+    name: 'TACZPredictorAdapter',
+    modSource: 'Timeless and Classics Zero (TACZ)',
+    isActive: true,
+    threatEvaluation: 0.92,
+    detectedThreat: 'High-RPM Automatic Minigun / Kinetic Firearms Burst',
+    counterStrategy: 'Sustained bullet dampening (down to 12% dmg) + flank teleport'
   },
   {
     name: 'CataclysmPredictorAdapter',
@@ -448,7 +490,7 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     isActive: true,
     threatEvaluation: 0.88,
     detectedThreat: 'Netherite Monstrosity Slam / Ignis Fire Whirl',
-    counterStrategy: 'Blast adaptation dampening + aerial dropkick evasion'
+    counterStrategy: 'Explosion adaptation (+25%/hit to 95%) + aerial dropkick evasion'
   },
   {
     name: 'MowziesPredictorAdapter',
@@ -456,7 +498,7 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     isActive: true,
     threatEvaluation: 0.74,
     detectedThreat: 'Ferrous Wroughtnaut Overhead Helm Crusher',
-    counterStrategy: 'Prepare Thyself blindspot teleport to rear armor seam'
+    counterStrategy: 'Blindspot teleport to rear armor seam + high sky slam'
   },
   {
     name: 'AlexsCavesPredictorAdapter',
@@ -464,7 +506,7 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     isActive: true,
     threatEvaluation: 0.82,
     detectedThreat: 'Tremorzilla Atomic Breath / Luxtructosaurus Charge',
-    counterStrategy: 'Solar Laser suppression + flash phase evasion'
+    counterStrategy: 'Solar Laser suppression + biological resistance hardening'
   },
   {
     name: 'EpicFightPredictorAdapter',
@@ -472,7 +514,7 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     isActive: true,
     threatEvaluation: 0.79,
     detectedThreat: 'Posture Gauge Break / Roll I-Frame Execution',
-    counterStrategy: 'Thy End Is Now 4-hit chain to exhaust stamina roll pool'
+    counterStrategy: 'Triple Threat punch chain to exhaust stamina roll pool'
   },
   {
     name: 'IronSpellsPredictorAdapter',
@@ -480,7 +522,7 @@ export const INITIAL_PREDICTOR_ADAPTERS: AttackPredictorAdapter[] = [
     isActive: true,
     threatEvaluation: 0.85,
     detectedThreat: 'Eldritch / Lightning Chant Spell Telegraph',
-    counterStrategy: 'Flash warp interrupt during spell cast startup frames'
+    counterStrategy: 'Magic resistance scaling (+20%/hit to 90%) + warp interrupt'
   }
 ];
 

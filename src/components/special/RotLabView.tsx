@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import CustomSelect from '../CustomSelect';
 import {
   Brain, Crosshair, Cpu, Shield, ShieldOff, Zap, ShieldAlert,
   Flame, Snowflake, Target, Activity, Compass, Layers, Swords,
@@ -8,6 +9,7 @@ import {
   Sparkle, ShieldCheck, ArrowUpRight, ZapOff, Sliders, Info, UserX, UserCheck,
   Gauge, Move, HelpCircle, BookOpen, Clock, BarChart3, Database, Workflow, CheckCircle2
 } from 'lucide-react';
+import UpdatedFrame from '../UpdatedFrame';
 import {
   TargetIntent, FightStyle, ThreatLevel, RotCombatRole, AbilityInfo,
   ROTS_ABILITY_REGISTRY, CombatContext, InterceptionPrediction, PersonalityVector,
@@ -18,32 +20,172 @@ import {
 
 // Exact Rot Attributes from Minecraft Java Mod Source
 export const ROT_SOURCE_ATTRIBUTES = {
-  MOVEMENT_SPEED: 0.22,
+  MOVEMENT_SPEED: 0.3,
   MAX_HEALTH: 550.0,
   ARMOR: 15.0,
   ATTACK_DAMAGE: 18.0,
   FOLLOW_RANGE: 128.0,
   STEP_HEIGHT: 1.5,
-  KNOCKBACK_RESISTANCE: 0.5,
-  ATTACK_KNOCKBACK: 0.3,
+  KNOCKBACK_RESISTANCE: 0.8,
+  ATTACK_KNOCKBACK: 0.7,
+  SCALE: 1.25,
+  XP_REWARD: 7777,
   MASS: 1200 // kg
 };
 
-// Vanilla Minecraft Mob Stats & Mass Specifications for 2D Newtonian Physics
-export const VANILLA_MOB_STATS = {
-  zombie: { name: 'Zombie', maxHealth: 20.0, speed: 0.11, damage: 4.5, radius: 0.4, mass: 70 },
-  skeleton: { name: 'Skeleton', maxHealth: 20.0, speed: 0.12, damage: 4.0, radius: 0.4, mass: 70 },
-  creeper: { name: 'Creeper', maxHealth: 20.0, speed: 0.11, damage: 45.0, radius: 0.4, mass: 65 },
-  iron_golem: { name: 'Iron Golem', maxHealth: 100.0, speed: 0.12, damage: 17.5, radius: 0.7, mass: 800 },
-  warden: { name: 'Warden', maxHealth: 500.0, speed: 0.15, damage: 30.0, radius: 0.9, mass: 1000 },
-  wither_skeleton: { name: 'Wither Skeleton', maxHealth: 20.0, speed: 0.125, damage: 8.0, radius: 0.45, mass: 75 }
+// Vanilla Minecraft Java Edition 1.21.x Mob Specifications for 2D Physics Arena
+export type ArenaMobType =
+  | 'warden'
+  | 'iron_golem'
+  | 'vindicator'
+  | 'enderman'
+  | 'blaze'
+  | 'creeper'
+  | 'skeleton'
+  | 'wither_skeleton'
+  | 'zombie';
+
+export interface ArenaMobStatSpec {
+  name: string;
+  maxHealth: number;
+  armor: number;
+  speed: number;
+  damage: number;
+  radius: number;
+  mass: number;
+  knockbackResistance: number;
+  color: string;
+  stroke: string;
+  desc: string;
+}
+
+export const ARENA_MOB_STATS: Record<ArenaMobType, ArenaMobStatSpec> = {
+  warden: {
+    name: 'Warden',
+    maxHealth: 500.0,
+    armor: 0.0,
+    speed: 0.30,
+    damage: 30.0,
+    radius: 0.95,
+    mass: 1200,
+    knockbackResistance: 1.0,
+    color: '#022c22',
+    stroke: '#14b8a6',
+    desc: 'Deep Dark apex predator (500 HP). 30 Unblockable Sonic Boom and complete poise knockback immunity.'
+  },
+  iron_golem: {
+    name: 'Iron Golem',
+    maxHealth: 100.0,
+    armor: 0.0,
+    speed: 0.22,
+    damage: 18.0,
+    radius: 0.75,
+    mass: 900,
+    knockbackResistance: 1.0,
+    color: '#cbd5e1',
+    stroke: '#64748b',
+    desc: 'Iron construct (100 HP). Sweeping 18 DMG strikes with vertical upward launch velocity.'
+  },
+  vindicator: {
+    name: 'Vindicator',
+    maxHealth: 24.0,
+    armor: 0.0,
+    speed: 0.32,
+    damage: 13.0,
+    radius: 0.45,
+    mass: 75,
+    knockbackResistance: 0.0,
+    color: '#1e293b',
+    stroke: '#94a3b8',
+    desc: 'Illager berserker (24 HP). Fast Iron Axe sprint dealing 13 DMG and disabling shields.'
+  },
+  enderman: {
+    name: 'Enderman',
+    maxHealth: 40.0,
+    armor: 0.0,
+    speed: 0.30,
+    damage: 10.5,
+    radius: 0.5,
+    mass: 80,
+    knockbackResistance: 0.0,
+    color: '#030712',
+    stroke: '#a855f7',
+    desc: 'Void stalker (40 HP). Teleports instantly to evade incoming projectiles and ambush targets.'
+  },
+  blaze: {
+    name: 'Blaze',
+    maxHealth: 20.0,
+    armor: 0.0,
+    speed: 0.22,
+    damage: 6.0,
+    radius: 0.45,
+    mass: 50,
+    knockbackResistance: 0.0,
+    color: '#ea580c',
+    stroke: '#facc15',
+    desc: 'Nether elemental (20 HP). Ranged hover combat firing 3-fireball volleys.'
+  },
+  creeper: {
+    name: 'Creeper',
+    maxHealth: 20.0,
+    armor: 0.0,
+    speed: 0.22,
+    damage: 49.0,
+    radius: 0.45,
+    mass: 65,
+    knockbackResistance: 0.0,
+    color: '#22c55e',
+    stroke: '#15803d',
+    desc: 'Explosive stalker (20 HP). 30-tick fuse with 7m defusal range and 49 max TNT blast.'
+  },
+  skeleton: {
+    name: 'Skeleton',
+    maxHealth: 20.0,
+    armor: 0.0,
+    speed: 0.22,
+    damage: 4.5,
+    radius: 0.45,
+    mass: 70,
+    knockbackResistance: 0.0,
+    color: '#f1f5f9',
+    stroke: '#94a3b8',
+    desc: 'Undead archer (20 HP). Dynamic kiting between 5-15m with 20-tick bow charge.'
+  },
+  wither_skeleton: {
+    name: 'Wither Skeleton',
+    maxHealth: 20.0,
+    armor: 0.0,
+    speed: 0.24,
+    damage: 8.0,
+    radius: 0.5,
+    mass: 75,
+    knockbackResistance: 0.0,
+    color: '#09090b',
+    stroke: '#27272a',
+    desc: 'Nether fortress guard (20 HP, 2.4m height). Stone Sword melee inflicting Wither I.'
+  },
+  zombie: {
+    name: 'Zombie',
+    maxHealth: 20.0,
+    armor: 2.0,
+    speed: 0.20,
+    damage: 4.5,
+    radius: 0.45,
+    mass: 70,
+    knockbackResistance: 0.05,
+    color: '#15803d',
+    stroke: '#166534',
+    desc: 'Undead brawler (20 HP, 2 Armor). Relentless pursuit with reinforcement call alert.'
+  }
 };
+
+export const VANILLA_MOB_STATS = ARENA_MOB_STATS;
 
 export type PlayerCombatMode = 'smart_auto' | 'circle_strafe' | 'turtle_shield' | 'flee' | 'manual';
 
 export interface Projectile {
   id: string;
-  type: 'arrow' | 'sonic_boom' | 'solar_spark';
+  type: 'arrow' | 'sonic_boom' | 'solar_spark' | 'fireball';
   x: number;
   z: number;
   originX?: number;
@@ -69,7 +211,7 @@ export interface Shockwave {
 
 export interface ArenaMob {
   id: string;
-  type: 'zombie' | 'skeleton' | 'iron_golem' | 'creeper' | 'warden' | 'wither_skeleton';
+  type: ArenaMobType;
   name: string;
   x: number;
   z: number;
@@ -79,6 +221,7 @@ export interface ArenaMob {
   damage: number;
   radius: number;
   mass: number;
+  knockbackResistance?: number;
   deltaX: number;
   deltaZ: number;
   attackCooldown: number;
@@ -88,6 +231,10 @@ export interface ArenaMob {
   creeperIsIgnited?: boolean;
   skeletonBowCharge?: number;
   wardenSonicCharge?: number;
+  wardenAngerSprintTicks?: number;
+  blazeBurstCharge?: number;
+  endermanTeleportCooldown?: number;
+  reinforcementTicks?: number;
 }
 
 export interface RotSimState {
@@ -135,11 +282,19 @@ export interface RotSimState {
   playerShieldCooldown: number;
   playerGoldenApples: number;
   playerPotions: number;
-  playerWeapon: 'sword' | 'axe' | 'crossbow';
+  playerWeapon: 'sword' | 'axe' | 'mace' | 'crossbow';
   playerAttackCooldown: number;
   playerAbsorption: number;
   playerIsDead: boolean;
   lastPlayerAttackTick: number;
+  playerActionLabel?: string;
+  playerJumpPhase?: number;
+  playerStrafeDir?: number;
+  playerWTapTicks?: number;
+  playerShieldFlickTicks?: number;
+  playerEatingTicks?: number;
+  playerComboHits?: number;
+  cobwebs: { id: string; x: number; z: number; ticksRemaining: number }[];
 
   // Mobs, Projectiles, Shockwaves & Particles
   mobs: ArenaMob[];
@@ -215,9 +370,9 @@ export interface RotSimState {
 }
 
 const createInitialState = (): RotSimState => ({
-  rotX: 12.0,
+  rotX: 24.0,
   rotY: 64.0,
-  rotZ: 9.0,
+  rotZ: 24.0,
   rotRadius: 0.65,
   rotMass: ROT_SOURCE_ATTRIBUTES.MASS,
   rotYaw: 180.0,
@@ -240,9 +395,9 @@ const createInitialState = (): RotSimState => ({
   combatIntensity: 0.0,
 
   playerSpawned: true,
-  playerX: 12.0,
+  playerX: 24.0,
   playerY: 64.0,
-  playerZ: 17.0,
+  playerZ: 38.0,
   playerRadius: 0.4,
   playerMass: 80,
   playerDeltaX: 0.0,
@@ -260,6 +415,14 @@ const createInitialState = (): RotSimState => ({
   playerAbsorption: 0.0,
   playerIsDead: false,
   lastPlayerAttackTick: 0,
+  playerActionLabel: 'W-TAP SPACING',
+  playerJumpPhase: 0,
+  playerStrafeDir: 1,
+  playerWTapTicks: 0,
+  playerShieldFlickTicks: 0,
+  playerEatingTicks: 0,
+  playerComboHits: 0,
+  cobwebs: [],
 
   mobs: [],
   projectiles: [],
@@ -287,8 +450,8 @@ const createInitialState = (): RotSimState => ({
   },
   interception: {
     leadTicks: 4,
-    interceptX: 12.0,
-    interceptZ: 17.0,
+    interceptX: 24.0,
+    interceptZ: 34.0,
     targetVelocityX: 0.0,
     targetVelocityZ: 0.0,
     confidenceScore: 0.94,
@@ -312,16 +475,25 @@ const createInitialState = (): RotSimState => ({
     estimatedReactionMs: 210
   },
   tacticalNeural: {
-    inputs: [8.0, 0.2, 0, 1.0, 1, 0, 0, 0],
-    hidden: Array(16).fill(0).map(() => 0.5),
-    weightsCount: 224,
+    inputs: Array(96).fill(0).map((_, i) => (i < 8 ? [8.0, 0.3, 0, 1.0, 1, 0, 0, 0][i] : 0.05)),
+    hidden: Array(48).fill(0).map(() => 0.5),
+    weightsCount: 5391,
     outputs: {
-      thyEndIsNow: 0.28,
-      judgment: 0.24,
-      prepareThyself: 0.18,
-      overheadSlam: 0.15,
-      solarLaser: 0.10,
-      tacticalStalk: 0.05
+      tripleThreatCombo: 0.22,
+      dropkickCombo: 0.18,
+      highSkySlam: 0.15,
+      dieRiderKick: 0.12,
+      overheadSlam: 0.10,
+      minosSlam: 0.08,
+      sonicBoom: 0.05,
+      omniSonic: 0.03,
+      solarLaser: 0.02,
+      cryoBeam: 0.02,
+      witherSkulls: 0.01,
+      armorRip: 0.01,
+      defensiveGuard: 0.01,
+      enderPearlIntercept: 0.0,
+      consumablePunish: 0.0
     }
   },
   roleAuction: {
@@ -395,9 +567,9 @@ const createInitialState = (): RotSimState => ({
   laserAimZ: 1.0,
   laserHitPoint: null,
 
-  distanceToTarget: 8.0,
-  predictedTargetX: 12.0,
-  predictedTargetZ: 17.0,
+  distanceToTarget: 16.0,
+  predictedTargetX: 24.0,
+  predictedTargetZ: 34.0,
   activeDecisionNode: 'EVAL_COMBAT_PERCEPTION'
 });
 
@@ -407,7 +579,7 @@ export default function RotLabView() {
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
   const [simSpeed, setSimSpeed] = useState<number>(50); // 20 TPS
   const [playerMode, setPlayerMode] = useState<PlayerCombatMode>('smart_auto');
-  const [selectedSpawnMob, setSelectedSpawnMob] = useState<'zombie' | 'skeleton' | 'iron_golem' | 'creeper' | 'warden' | 'wither_skeleton'>('warden');
+  const [selectedSpawnMob, setSelectedSpawnMob] = useState<ArenaMobType>('warden');
   const [spawnCount, setSpawnCount] = useState<number>(2);
 
   const [neuralPulse, setNeuralPulse] = useState<number>(0);
@@ -474,9 +646,9 @@ export default function RotLabView() {
   const handleRespawnRot = () => {
     setState(prev => ({
       ...prev,
-      rotX: 12.0,
+      rotX: 24.0,
       rotY: 64.0,
-      rotZ: 9.0,
+      rotZ: 18.0,
       rotDeltaX: 0,
       rotDeltaY: 0,
       rotDeltaZ: 0,
@@ -670,19 +842,68 @@ export default function RotLabView() {
             const GROUND_FRICTION = 0.546;
 
             if (playerMode === 'smart_auto') {
-              // Sustenance logic
-              if (next.playerHealth <= 9.0 && next.playerGoldenApples > 0 && next.stateTicks % 40 === 0) {
+              // 0. Update Cobwebs & Trap Slow Mechanics
+              next.cobwebs = (next.cobwebs || []).map(w => ({ ...w, ticksRemaining: w.ticksRemaining - 1 })).filter(w => w.ticksRemaining > 0);
+              const insideWeb = next.cobwebs.some(w => Math.hypot(next.rotX - w.x, next.rotZ - w.z) < 1.3);
+              if (insideWeb) {
+                next.rotDeltaX *= 0.35; // Minecraft 65% cobweb slowdown
+                next.rotDeltaZ *= 0.35;
+              }
+
+              // 1. Sustenance & Clutch Healing Logic (Looking down, splashing / eating during retreat)
+              if (next.playerHealth <= 9.0 && next.playerGoldenApples > 0 && next.stateTicks % 35 === 0) {
                 next.playerGoldenApples -= 1;
                 next.playerAbsorption = 4.0;
                 next.playerHealth = Math.min(next.playerMaxHealth, next.playerHealth + 6.0);
-                addLog('[PLAYER] Consumed Enchanted Golden Apple (+Absorption & Regen).');
-              } else if (next.playerHealth <= 12.0 && next.playerPotions > 0 && next.stateTicks % 35 === 0) {
+                next.playerActionLabel = 'G-APPLE CLUTCH';
+                addLog('[PLAYER CLUTCH] Ate Enchanted Golden Apple (+Absorption Hearts & Regen).');
+              } else if (next.playerHealth <= 13.0 && next.playerPotions > 0 && next.stateTicks % 28 === 0) {
                 next.playerPotions -= 1;
                 next.playerHealth = Math.min(next.playerMaxHealth, next.playerHealth + 8.0);
-                addLog('[PLAYER] Splashed Potion of Healing II (+8.0 HP).');
+                next.playerActionLabel = 'SPLASH POTION';
+                for (let k = 0; k < 6; k++) {
+                  next.arenaParticles.push({
+                    id: `pot_${Date.now()}_${k}`,
+                    x: next.playerX,
+                    z: next.playerZ,
+                    vx: (Math.random() - 0.5) * 0.12,
+                    vz: (Math.random() - 0.5) * 0.12,
+                    life: 12,
+                    maxLife: 12,
+                    color: '#f43f5e',
+                    size: 3.0
+                  });
+                }
+                addLog('[PLAYER CLUTCH] Splashed Potion of Healing II at feet (+8.0 HP).');
               }
 
-              // Detect Rot unblockable charge/freeze states
+              // 2. Clutch Ender Pearl Repositioning (Throwing to open arena when cornered or low HP)
+              const nearWall = next.playerX <= 5.0 || next.playerX >= 43.0 || next.playerZ <= 5.0 || next.playerZ >= 43.0;
+              if ((nearWall && distToRot < 6.0 && next.stateTicks % 40 === 0) || (next.playerHealth <= 6.0 && distToRot < 8.0 && next.stateTicks % 30 === 0)) {
+                // Teleport to opposite quadrant behind Rot
+                const pearlAngle = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + Math.PI * 0.8;
+                const targetPearlX = Math.max(5.0, Math.min(43.0, next.rotX + Math.cos(pearlAngle) * 12.0));
+                const targetPearlZ = Math.max(5.0, Math.min(43.0, next.rotZ + Math.sin(pearlAngle) * 12.0));
+                next.playerX = targetPearlX;
+                next.playerZ = targetPearlZ;
+                next.playerDeltaX = 0;
+                next.playerDeltaZ = 0;
+                next.playerHealth = Math.max(1.0, next.playerHealth - 1.5); // Ender pearl fall damage
+                next.playerActionLabel = 'E-PEARL ESCAPE';
+                next.shockwaves.push({
+                  id: `pearl_${Date.now()}`,
+                  x: targetPearlX,
+                  z: targetPearlZ,
+                  radius: 0.3,
+                  maxRadius: 3.2,
+                  color: '#2dd4bf',
+                  alpha: 1.0,
+                  thickness: 3
+                });
+                addLog('[PLAYER CLUTCH] Threw Ender Pearl to escape corner trap!');
+              }
+
+              // 3. Threat Assessment & Unblockables Evasion (Never block axes / unblockable finishers)
               const isRotChargingUnblockable = (!next.rotIsDead) && (
                 next.dropkickPhase === 1 ||
                 next.overheadPhase === 1 ||
@@ -692,74 +913,170 @@ export default function RotLabView() {
               const isRotFiringLaser = next.laserFiringTicks > 0 || next.laserChargingTicks > 0;
 
               if (isRotChargingUnblockable) {
-                // NEVER block unblockable moves - immediately drop shield and execute fast evasive orbit sprint!
+                // Pro PvP rule: NEVER hold shield against unblockable strikes. Drop shield and lateral sprint-dodge!
                 next.playerIsBlocking = false;
+                next.playerActionLabel = 'LATERAL DODGE';
                 const perp = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + (Math.PI / 2);
-                const targetVx = Math.cos(perp) * 0.26;
-                const targetVz = Math.sin(perp) * 0.26;
-                next.playerDeltaX = next.playerDeltaX * 0.25 + targetVx * 0.75;
-                next.playerDeltaZ = next.playerDeltaZ * 0.25 + targetVz * 0.75;
+                const targetVx = Math.cos(perp) * 0.32;
+                const targetVz = Math.sin(perp) * 0.32;
+                next.playerDeltaX = next.playerDeltaX * 0.2 + targetVx * 0.8;
+                next.playerDeltaZ = next.playerDeltaZ * 0.2 + targetVz * 0.8;
               } else if (isRotFiringLaser) {
                 next.playerIsBlocking = false;
+                next.playerActionLabel = 'BEAM STRAFE';
                 const tangent = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + (Math.PI / 2);
-                const targetVx = Math.cos(tangent) * 0.24;
-                const targetVz = Math.sin(tangent) * 0.24;
-                next.playerDeltaX = next.playerDeltaX * 0.25 + targetVx * 0.75;
-                next.playerDeltaZ = next.playerDeltaZ * 0.25 + targetVz * 0.75;
-              } else if (distToRot < 3.2 && !next.rotIsDead) {
-                // Close range combat: hold shield against basic punches, strike with Netherite Axe
-                if (next.playerShieldCooldown <= 0 && next.rotHealth > 0) {
+                const targetVx = Math.cos(tangent) * 0.28;
+                const targetVz = Math.sin(tangent) * 0.28;
+                next.playerDeltaX = next.playerDeltaX * 0.2 + targetVx * 0.8;
+                next.playerDeltaZ = next.playerDeltaZ * 0.2 + targetVz * 0.8;
+              } else if (distToRot >= 3.6 && distToRot <= 6.0 && (next.laserChargingTicks > 0 || next.laserClosingTicks > 0 || next.minosComboStep === 0) && next.playerAttackCooldown <= 0 && next.stateTicks % 35 === 0) {
+                // 4. Pro Mace + Wind Charge Smash (Kinetic burst from air)
+                next.playerWeapon = 'mace';
+                next.playerAttackCooldown = 24;
+                next.playerIsBlocking = false;
+                next.playerActionLabel = 'WIND MACE SMASH';
+                
+                const toRotAngle = Math.atan2(next.rotZ - next.playerZ, next.rotX - next.playerX);
+                next.playerDeltaX = Math.cos(toRotAngle) * 0.40;
+                next.playerDeltaZ = Math.sin(toRotAngle) * 0.40;
+                
+                const rawMaceDmg = 30.0;
+                const armorMitigation = 0.55;
+                const finalDmg = rawMaceDmg * (1.0 - armorMitigation) * (1.0 - next.totalAdaptiveResistance);
+                
+                next.rotHealth = Math.max(0, next.rotHealth - finalDmg);
+                next.totalDamageTakenAccumulator += finalDmg;
+                next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.12);
+                
+                next.shockwaves.push({
+                  id: `mace_burst_${Date.now()}`,
+                  x: next.rotX,
+                  z: next.rotZ,
+                  radius: 0.5,
+                  maxRadius: 4.8,
+                  color: '#a855f7',
+                  alpha: 1.0,
+                  thickness: 3.5
+                });
+                addLog(`[MACE SMASH] Wind Burst Mace Smash dealt ${finalDmg.toFixed(1)} DMG to The Rot!`);
+              } else if (distToRot >= 4.0 && distToRot <= 7.0 && next.cobwebs.length < 2 && next.stateTicks % 85 === 0 && !insideWeb) {
+                // 5. Tactical Cobweb Trap Placement to break Rot's sprint
+                next.cobwebs.push({
+                  id: `web_${Date.now()}`,
+                  x: next.playerX,
+                  z: next.playerZ,
+                  ticksRemaining: 140
+                });
+                next.playerActionLabel = 'COBWEB TRAP';
+                addLog('[TACTICAL PVP] Placed Cobweb trap to snare Rot charge!');
+              } else if (distToRot < 3.4 && !next.rotIsDead) {
+                // 6. Close range Modern PvP: Dynamic 3.0-block Spacing, W-Tapping, and Shield Flicking
+                
+                // Shield discipline: Flick parry only when normal punch is active, drop immediately to retain sprint!
+                const isNormalPunchTelegraphed = (next.leftPunchTicks > 0 || next.rightPunchTicks > 0 || next.heavyPunchTicks > 0) && !isRotChargingUnblockable;
+                if (next.playerShieldCooldown <= 0 && isNormalPunchTelegraphed) {
                   next.playerIsBlocking = true;
+                  next.playerActionLabel = 'SHIELD FLICK PARRY';
+                } else {
+                  next.playerIsBlocking = false;
                 }
-                const backAngle = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX);
-                const targetVx = Math.cos(backAngle) * 0.16;
-                const targetVz = Math.sin(backAngle) * 0.16;
-                next.playerDeltaX = next.playerDeltaX * 0.3 + targetVx * 0.7;
-                next.playerDeltaZ = next.playerDeltaZ * 0.3 + targetVz * 0.7;
 
-                if (next.playerAttackCooldown <= 0) {
-                  next.playerAttackCooldown = 12;
-                  next.playerWeapon = 'axe';
-                  const rawCrit = 14.0;
+                // W-Tap / S-Tap Sprint Reset Spacing:
+                // When attack lands, player immediately steps back 0.4m (S-tap) to bait the enemy's whiff, then re-sprints in!
+                if ((next.playerWTapTicks || 0) > 0) {
+                  next.playerWTapTicks = (next.playerWTapTicks || 0) - 1;
+                  next.playerActionLabel = 'W-TAP SPRINT RESET';
+                  // S-Tap pullback vector away from Rot
+                  const awayAngle = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX);
+                  next.playerDeltaX = Math.cos(awayAngle) * 0.16;
+                  next.playerDeltaZ = Math.sin(awayAngle) * 0.16;
+                } else {
+                  // A/D Jitter strafing (zigzagging) into 2.8m strike range
+                  const strafeAngle = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + (next.stateTicks % 20 < 10 ? 0.28 : -0.28);
+                  const targetCloseX = next.rotX + Math.cos(strafeAngle) * 2.85;
+                  const targetCloseZ = next.rotZ + Math.sin(strafeAngle) * 2.85;
+                  const cdx = targetCloseX - next.playerX;
+                  const cdz = targetCloseZ - next.playerZ;
+                  const clen = Math.max(0.01, Math.hypot(cdx, cdz));
+                  next.playerDeltaX = next.playerDeltaX * 0.25 + (cdx / clen) * 0.22 * 0.75;
+                  next.playerDeltaZ = next.playerDeltaZ * 0.25 + (cdz / clen) * 0.22 * 0.75;
+                  next.playerActionLabel = 'EDGE SPACING';
+                }
+
+                // Attack registration when in 3.0m reach
+                if (next.playerAttackCooldown <= 0 && distToRot <= 3.1) {
+                  // Real PvP hit selection: Alternate Axe jump-crits and fast Sword combos
+                  const useAxe = (next.playerComboHits || 0) % 3 === 0;
+                  next.playerWeapon = useAxe ? 'axe' : 'sword';
+                  next.playerAttackCooldown = useAxe ? 13 : 8;
+                  next.playerComboHits = (next.playerComboHits || 0) + 1;
+                  next.playerWTapTicks = 4; // Initiate 4-tick W-tap / S-tap sprint reset
+
+                  const rawDmg = useAxe ? 18.5 : 12.0; // Axe heavy crit vs sword sweeping
                   const armorMitigation = 0.55;
-                  const adaptiveMitigation = next.totalAdaptiveResistance;
-                  const finalDmg = rawCrit * (1.0 - armorMitigation) * (1.0 - adaptiveMitigation);
+                  const finalDmg = rawDmg * (1.0 - armorMitigation) * (1.0 - next.totalAdaptiveResistance);
 
                   next.rotHealth = Math.max(0, next.rotHealth - finalDmg);
                   next.totalDamageTakenAccumulator += finalDmg;
-                  next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.08);
-                  addLog(`[PLAYER ATTACK] Jump Critical Axe hit Rot for ${finalDmg.toFixed(1)} DMG.`);
+                  next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + (useAxe ? 0.10 : 0.05));
+
+                  // Spawn critical hit star particles
+                  for (let k = 0; k < 4; k++) {
+                    next.arenaParticles.push({
+                      id: `crit_${Date.now()}_${k}`,
+                      x: next.rotX + (Math.random() - 0.5) * 0.6,
+                      z: next.rotZ + (Math.random() - 0.5) * 0.6,
+                      vx: (Math.random() - 0.5) * 0.16,
+                      vz: (Math.random() - 0.5) * 0.16,
+                      life: 10,
+                      maxLife: 10,
+                      color: '#facc15',
+                      size: 2.5
+                    });
+                  }
+
+                  if (useAxe) {
+                    next.playerActionLabel = 'JUMP CRIT (AXE)';
+                    addLog(`[PVP CRIT] Netherite Axe jump-crit struck Rot for ${finalDmg.toFixed(1)} DMG with sprint-reset.`);
+                  } else {
+                    next.playerActionLabel = 'SWORD COMBO';
+                    addLog(`[PVP COMBO] Netherite Sword hit ${next.playerComboHits} dealt ${finalDmg.toFixed(1)} DMG.`);
+                  }
                 }
-              } else if (distToRot > 7.0 && !next.rotIsDead) {
-                // Long range combat: Piercing Crossbow
+              } else if (distToRot > 6.5 && !next.rotIsDead) {
+                // 7. Long range combat: Piercing Crossbow Kiting
                 next.playerIsBlocking = false;
+                next.playerActionLabel = 'CROSSBOW KITE';
                 const towards = Math.atan2(next.rotZ - next.playerZ, next.rotX - next.playerX);
                 const targetVx = Math.cos(towards) * 0.18;
                 const targetVz = Math.sin(towards) * 0.18;
                 next.playerDeltaX = next.playerDeltaX * 0.3 + targetVx * 0.7;
                 next.playerDeltaZ = next.playerDeltaZ * 0.3 + targetVz * 0.7;
 
-                if (next.playerAttackCooldown <= 0 && next.stateTicks % 28 === 0) {
-                  next.playerAttackCooldown = 20;
+                if (next.playerAttackCooldown <= 0 && next.stateTicks % 25 === 0) {
+                  next.playerAttackCooldown = 18;
                   next.playerWeapon = 'crossbow';
-                  const arrowDmg = 8.5 * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
+                  next.playerActionLabel = 'CROSSBOW SNIPE';
+                  const arrowDmg = 10.0 * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
                   next.rotHealth = Math.max(0, next.rotHealth - arrowDmg);
                   next.projectileAdaptation = Math.min(1.0, next.projectileAdaptation + 0.08);
-                  addLog(`[PLAYER ATTACK] Piercing Crossbow bolt hit Rot for ${arrowDmg.toFixed(1)} DMG.`);
+                  addLog(`[PLAYER SNIPE] Piercing Crossbow bolt hit Rot for ${arrowDmg.toFixed(1)} DMG.`);
                 }
               } else {
-                // Mid range: Netherite Sword sweeping orbit
+                // 8. Mid range: Strategic A/D strafing and spacing adjustment
                 next.playerWeapon = 'sword';
-                const orbit = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + 0.06;
-                const targetOrbitX = next.rotX + Math.cos(orbit) * 4.6;
-                const targetOrbitZ = next.rotZ + Math.sin(orbit) * 4.6;
+                next.playerActionLabel = 'SPACING ADJUST';
+                const strafeDir = next.stateTicks % 30 < 15 ? 1 : -1;
+                const orbitAngle = Math.atan2(next.playerZ - next.rotZ, next.playerX - next.rotX) + (0.12 * strafeDir);
+                const targetOrbitX = next.rotX + Math.cos(orbitAngle) * 3.6;
+                const targetOrbitZ = next.rotZ + Math.sin(orbitAngle) * 3.6;
                 const odx = targetOrbitX - next.playerX;
                 const odz = targetOrbitZ - next.playerZ;
                 const olen = Math.max(0.01, Math.hypot(odx, odz));
-                const targetVx = (odx / olen) * 0.19;
-                const targetVz = (odz / olen) * 0.19;
-                next.playerDeltaX = next.playerDeltaX * 0.3 + targetVx * 0.7;
-                next.playerDeltaZ = next.playerDeltaZ * 0.3 + targetVz * 0.7;
+                const targetVx = (odx / olen) * 0.22;
+                const targetVz = (odz / olen) * 0.22;
+                next.playerDeltaX = next.playerDeltaX * 0.25 + targetVx * 0.75;
+                next.playerDeltaZ = next.playerDeltaZ * 0.25 + targetVz * 0.75;
                 next.playerIsBlocking = false;
               }
             } else if (playerMode === 'direct_engage' || playerMode === 'circle_strafe') {
@@ -806,42 +1123,55 @@ export default function RotLabView() {
           const toRotZ = next.rotZ - mob.z;
           const distToRot = Math.max(0.01, Math.hypot(toRotX, toRotZ));
 
-          // CREEPER (30-tick / 1.5s fuse)
+          // 1. CREEPER (Accurate 30-tick fuse with distance-based defusal abort)
           if (mob.type === 'creeper') {
-            if (distToRot < 2.8 || mob.creeperIsIgnited) {
-              mob.creeperIsIgnited = true;
-              mob.creeperFuse = (mob.creeperFuse || 0) + 1;
-              mob.deltaX *= GROUND_FRICTION;
-              mob.deltaZ *= GROUND_FRICTION;
+            if (distToRot < 3.2 || mob.creeperIsIgnited) {
+              if (distToRot > 7.0) {
+                // Java Edition Defusal: If target escapes > 7m, creeper unswells and defuses!
+                mob.creeperIsIgnited = false;
+                if ((mob.creeperFuse || 0) > 0) mob.creeperFuse = (mob.creeperFuse || 0) - 1;
+                const targetVx = (toRotX / distToRot) * mob.speed;
+                const targetVz = (toRotZ / distToRot) * mob.speed;
+                mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
+                mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
+              } else {
+                mob.creeperIsIgnited = true;
+                mob.creeperFuse = (mob.creeperFuse || 0) + 1;
+                mob.deltaX *= GROUND_FRICTION;
+                mob.deltaZ *= GROUND_FRICTION;
 
-              if (mob.creeperFuse >= 30) {
-                newShockwaves.push({
-                  id: `exp_${Date.now()}_${Math.random()}`,
-                  x: mob.x,
-                  z: mob.z,
-                  radius: 0.5,
-                  maxRadius: 5.0,
-                  color: '#eab308',
-                  alpha: 1.0,
-                  thickness: 4
-                });
+                if (mob.creeperFuse >= 30) {
+                  // Detonation (Power 3 TNT)
+                  newShockwaves.push({
+                    id: `exp_${Date.now()}_${Math.random()}`,
+                    x: mob.x,
+                    z: mob.z,
+                    radius: 0.5,
+                    maxRadius: 5.5,
+                    color: '#eab308',
+                    alpha: 1.0,
+                    thickness: 4
+                  });
 
-                if (distToRot < 5.0) {
-                  const rawDmg = 45.0;
-                  const dmg = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
-                  next.rotHealth = Math.max(0, next.rotHealth - dmg);
-                  next.blastAdaptation = Math.min(1.0, next.blastAdaptation + 0.25);
-                  addLog(`[CREEPER DETONATION] Creeper exploded for ${dmg.toFixed(1)} DMG to The Rot!`);
-                }
-                if (next.playerSpawned && !next.playerIsDead) {
-                  const distP = Math.hypot(mob.x - next.playerX, mob.z - next.playerZ);
-                  if (distP < 5.0) {
-                    const dmgP = next.playerIsBlocking ? 6.0 : 28.0;
-                    next.playerHealth = Math.max(0, next.playerHealth - dmgP);
-                    addLog(`[CREEPER DETONATION] Creeper explosion hit player for ${dmgP.toFixed(1)} DMG.`);
+                  if (distToRot < 6.0) {
+                    const falloff = Math.max(0.1, 1.0 - (distToRot / 6.0));
+                    const rawDmg = 49.0 * falloff;
+                    const dmg = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
+                    next.rotHealth = Math.max(0, next.rotHealth - dmg);
+                    next.blastAdaptation = Math.min(1.0, next.blastAdaptation + 0.25);
+                    addLog(`[CREEPER DETONATION] Creeper exploded for ${dmg.toFixed(1)} DMG to The Rot!`);
                   }
+                  if (next.playerSpawned && !next.playerIsDead) {
+                    const distP = Math.hypot(mob.x - next.playerX, mob.z - next.playerZ);
+                    if (distP < 6.0) {
+                      const falloffP = Math.max(0.1, 1.0 - (distP / 6.0));
+                      const dmgP = next.playerIsBlocking ? 8.0 : (32.0 * falloffP);
+                      next.playerHealth = Math.max(0, next.playerHealth - dmgP);
+                      addLog(`[CREEPER DETONATION] Creeper explosion dealt ${dmgP.toFixed(1)} DMG to player.`);
+                    }
+                  }
+                  continue; // Mob destroyed upon detonation
                 }
-                continue;
               }
             } else {
               const targetVx = (toRotX / distToRot) * mob.speed;
@@ -851,31 +1181,33 @@ export default function RotLabView() {
             }
           }
 
-          // SKELETON (Exact 60-tick / 3.0s bow charge)
+          // 2. SKELETON (Java Edition 25-tick bow draw with combat strafe & backpedal)
           else if (mob.type === 'skeleton') {
-            if (distToRot < 4.5) {
-              const targetVx = -(toRotX / distToRot) * mob.speed;
-              const targetVz = -(toRotZ / distToRot) * mob.speed;
+            if (distToRot < 5.0) {
+              // Backpedal to maintain bow distance
+              const targetVx = -(toRotX / distToRot) * (mob.speed * 0.9);
+              const targetVz = -(toRotZ / distToRot) * (mob.speed * 0.9);
               mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
               mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
-            } else if (distToRot > 10.0) {
+            } else if (distToRot > 15.0) {
+              // Approach into shooting range
               const targetVx = (toRotX / distToRot) * mob.speed;
               const targetVz = (toRotZ / distToRot) * mob.speed;
               mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
               mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
             } else {
+              // Clockwise/counter-clockwise bow strafing
               const strafeAngle = Math.atan2(toRotZ, toRotX) + Math.PI / 2;
-              const strafeSpeed = 0.08; // Strafing speed while aiming bow in Minecraft
-              const targetVx = Math.cos(strafeAngle) * strafeSpeed;
-              const targetVz = Math.sin(strafeAngle) * strafeSpeed;
+              const targetVx = Math.cos(strafeAngle) * (mob.speed * 0.65);
+              const targetVz = Math.sin(strafeAngle) * (mob.speed * 0.65);
               mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
               mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
             }
 
             mob.skeletonBowCharge = (mob.skeletonBowCharge || 0) + 1;
-            if (mob.skeletonBowCharge >= 60) {
+            if (mob.skeletonBowCharge >= 25) { // Authentic Java 25-tick draw
               mob.skeletonBowCharge = 0;
-              const arrowSpeed = 0.45;
+              const arrowSpeed = 0.65;
               newProjectiles.push({
                 id: `arrow_${Date.now()}_${Math.random()}`,
                 type: 'arrow',
@@ -885,40 +1217,44 @@ export default function RotLabView() {
                 deltaZ: (toRotZ / distToRot) * arrowSpeed,
                 damage: 4.5,
                 source: 'Skeleton Arrow',
-                lifeTicks: 45
+                lifeTicks: 55
               });
-              addLog('[SKELETON] Skeleton released a bow shot after 3.0s draw.');
+              addLog('[SKELETON] Skeleton released a bow shot after 1.25s draw.');
             }
           }
 
-          // IRON GOLEM (Exact 20-tick / 1.0s melee)
+          // 3. IRON GOLEM (100% Knockback Immune + Upward Uppercut Fling)
           else if (mob.type === 'iron_golem') {
             const targetVx = (toRotX / distToRot) * mob.speed;
             const targetVz = (toRotZ / distToRot) * mob.speed;
             mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
             mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
 
-            if (distToRot < 2.4 && mob.attackCooldown <= 0) {
+            if (distToRot < 2.6 && mob.attackCooldown <= 0) {
               mob.attackCooldown = 20;
-              const rawDmg = 17.5;
+              const rawDmg = 18.0;
               const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
               next.rotHealth = Math.max(0, next.rotHealth - dealt);
               next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.06);
-              next.rotDeltaY = 0.65;
-              addLog(`[IRON GOLEM] Iron Golem swung upwards, dealing ${dealt.toFixed(1)} DMG to The Rot.`);
+              next.rotDeltaY = 0.85; // Fling target airborne
+              addLog(`[IRON GOLEM] Iron Golem swung upwards, dealing ${dealt.toFixed(1)} DMG & flinging target!`);
             }
           }
 
-          // WARDEN (Exact 20-tick / 1.0s melee & 40-tick Sonic Boom)
+          // 4. WARDEN (Poise Immunity, Enraged Sprint, Crushing Melee & Piercing Sonic Boom)
           else if (mob.type === 'warden') {
-            if (distToRot > 5.0) {
+            const isEnraged = distToRot < 14.0;
+            const curSpeed = isEnraged ? 0.36 : mob.speed; // Enraged sprint
+
+            if (distToRot > 5.5) {
+              // Ranged sonic boom charge
               mob.wardenSonicCharge = (mob.wardenSonicCharge || 0) + 1;
-              const targetVx = (toRotX / distToRot) * (mob.speed * 0.6);
-              const targetVz = (toRotZ / distToRot) * (mob.speed * 0.6);
+              const targetVx = (toRotX / distToRot) * (curSpeed * 0.65);
+              const targetVz = (toRotZ / distToRot) * (curSpeed * 0.65);
               mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
               mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
 
-              if (mob.wardenSonicCharge >= 40) {
+              if (mob.wardenSonicCharge >= 34) { // Authentic 34-tick sonic charge
                 mob.wardenSonicCharge = 0;
                 newProjectiles.push({
                   id: `sonic_${Date.now()}_${Math.random()}`,
@@ -928,57 +1264,147 @@ export default function RotLabView() {
                   originX: mob.x,
                   originZ: mob.z,
                   phase: 0,
-                  deltaX: (toRotX / distToRot) * 0.75,
-                  deltaZ: (toRotZ / distToRot) * 0.75,
+                  deltaX: (toRotX / distToRot) * 0.85,
+                  deltaZ: (toRotZ / distToRot) * 0.85,
                   damage: 30.0,
                   source: 'Warden Sonic Boom',
-                  lifeTicks: 30
+                  lifeTicks: 35
                 });
-                addLog('[WARDEN] Warden charged and fired a Helix Sonic Boom!');
+                addLog('[WARDEN] Warden unleashed horizontal piercing Sonic Boom (30.0 Unblockable DMG)!');
               }
             } else {
               mob.wardenSonicCharge = 0;
-              const targetVx = (toRotX / distToRot) * mob.speed;
-              const targetVz = (toRotZ / distToRot) * mob.speed;
+              const targetVx = (toRotX / distToRot) * curSpeed;
+              const targetVz = (toRotZ / distToRot) * curSpeed;
               mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
               mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
 
-              if (distToRot < 2.5 && mob.attackCooldown <= 0) {
+              if (distToRot < 2.6 && mob.attackCooldown <= 0) {
                 mob.attackCooldown = 20;
                 const rawDmg = 30.0;
                 const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
                 next.rotHealth = Math.max(0, next.rotHealth - dealt);
                 next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.12);
-                addLog(`[WARDEN] Warden delivered heavy melee strike for ${dealt.toFixed(1)} DMG.`);
+                addLog(`[WARDEN] Warden delivered crushing melee blow for ${dealt.toFixed(1)} DMG.`);
               }
             }
           }
 
-          // WITHER SKELETON (Exact 20-tick / 1.0s melee)
+          // 5. WITHER SKELETON (Height 2.4m, Stone Sword Melee & Wither I Affliction)
           else if (mob.type === 'wither_skeleton') {
             const targetVx = (toRotX / distToRot) * mob.speed;
             const targetVz = (toRotZ / distToRot) * mob.speed;
             mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
             mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
 
-            if (distToRot < 2.2 && mob.attackCooldown <= 0) {
+            if (distToRot < 2.4 && mob.attackCooldown <= 0) {
               mob.attackCooldown = 20;
               const rawDmg = 8.0;
               const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
               next.rotHealth = Math.max(0, next.rotHealth - dealt);
               next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.04);
-              addLog(`[WITHER SKELETON] Struck Rot with Stone Sword for ${dealt.toFixed(1)} DMG.`);
+              addLog(`[WITHER SKELETON] Struck Rot with Stone Sword for ${dealt.toFixed(1)} DMG & applied Wither I.`);
             }
           }
 
-          // ZOMBIE (Exact 20-tick / 1.0s melee)
-          else {
+          // 6. ENDERMAN (Aggressive Sprint & Projectile Evasion Teleport)
+          else if (mob.type === 'enderman') {
+            mob.endermanTeleportCooldown = Math.max(0, (mob.endermanTeleportCooldown || 0) - 1);
+            
+            // Check if any projectile is incoming
+            const incomingProjectile = newProjectiles.some(p => Math.hypot(p.x - mob.x, p.z - mob.z) < 3.5);
+            if (incomingProjectile && mob.endermanTeleportCooldown === 0) {
+              mob.endermanTeleportCooldown = 25;
+              const tpAngle = Math.random() * Math.PI * 2;
+              mob.x = Math.max(5, Math.min(43, mob.x + Math.cos(tpAngle) * 10.0));
+              mob.z = Math.max(5, Math.min(43, mob.z + Math.sin(tpAngle) * 10.0));
+              mob.deltaX = 0;
+              mob.deltaZ = 0;
+              addLog('[ENDERMAN] Enderman teleported to evade projectile!');
+            } else {
+              const targetVx = (toRotX / distToRot) * mob.speed;
+              const targetVz = (toRotZ / distToRot) * mob.speed;
+              mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
+              mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
+
+              if (distToRot < 2.4 && mob.attackCooldown <= 0) {
+                mob.attackCooldown = 20;
+                const rawDmg = 10.5;
+                const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
+                next.rotHealth = Math.max(0, next.rotHealth - dealt);
+                next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.05);
+                addLog(`[ENDERMAN] Enderman struck Rot with claw for ${dealt.toFixed(1)} DMG.`);
+              }
+            }
+          }
+
+          // 7. BLAZE (Hovering & 3-Fireball Volley)
+          else if (mob.type === 'blaze') {
+            if (distToRot < 8.0) {
+              // Maintain standoff distance
+              const targetVx = -(toRotX / distToRot) * (mob.speed * 0.8);
+              const targetVz = -(toRotZ / distToRot) * (mob.speed * 0.8);
+              mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
+              mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
+            } else if (distToRot > 18.0) {
+              const targetVx = (toRotX / distToRot) * mob.speed;
+              const targetVz = (toRotZ / distToRot) * mob.speed;
+              mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
+              mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
+            } else {
+              mob.deltaX *= 0.85;
+              mob.deltaZ *= 0.85;
+            }
+
+            mob.blazeBurstCharge = (mob.blazeBurstCharge || 0) + 1;
+            if (mob.blazeBurstCharge >= 45) { // 3-fireball burst every 45 ticks
+              mob.blazeBurstCharge = 0;
+              for (let f = -1; f <= 1; f++) {
+                const spreadAngle = Math.atan2(toRotZ, toRotX) + (f * 0.12);
+                newProjectiles.push({
+                  id: `fireball_${Date.now()}_${f}`,
+                  type: 'fireball',
+                  x: mob.x,
+                  z: mob.z,
+                  deltaX: Math.cos(spreadAngle) * 0.45,
+                  deltaZ: Math.sin(spreadAngle) * 0.45,
+                  damage: 6.0,
+                  source: 'Blaze Fireball',
+                  lifeTicks: 45
+                });
+              }
+              addLog('[BLAZE] Blaze unleashed a 3-fireball burst!');
+            }
+          }
+
+          // 8. VINDICATOR (Fast Axe Charge & Shield Disable)
+          else if (mob.type === 'vindicator') {
             const targetVx = (toRotX / distToRot) * mob.speed;
             const targetVz = (toRotZ / distToRot) * mob.speed;
             mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
             mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
 
-            if (distToRot < 2.0 && mob.attackCooldown <= 0) {
+            if (distToRot < 2.3 && mob.attackCooldown <= 0) {
+              mob.attackCooldown = 20;
+              const rawDmg = 13.0;
+              const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
+              next.rotHealth = Math.max(0, next.rotHealth - dealt);
+              next.kineticAdaptation = Math.min(1.0, next.kineticAdaptation + 0.07);
+              addLog(`[VINDICATOR] Vindicator struck Rot with Iron Axe for ${dealt.toFixed(1)} DMG.`);
+            }
+          }
+
+          // 9. ZOMBIE (Swarm Pathing & Reinforcement Alert)
+          else {
+            const curSpeed = (mob.reinforcementTicks || 0) > 0 ? 0.22 : mob.speed;
+            if ((mob.reinforcementTicks || 0) > 0) mob.reinforcementTicks = (mob.reinforcementTicks || 0) - 1;
+
+            const targetVx = (toRotX / distToRot) * curSpeed;
+            const targetVz = (toRotZ / distToRot) * curSpeed;
+            mob.deltaX = mob.deltaX * 0.25 + targetVx * 0.75;
+            mob.deltaZ = mob.deltaZ * 0.25 + targetVz * 0.75;
+
+            if (distToRot < 2.1 && mob.attackCooldown <= 0) {
               mob.attackCooldown = 20;
               const rawDmg = 4.5;
               const dealt = rawDmg * (1.0 - 0.55) * (1.0 - next.totalAdaptiveResistance);
@@ -1062,8 +1488,7 @@ export default function RotLabView() {
           });
         });
 
-        // 2-Pass Elastic Collision & Momentum Resolution
-        const RESTITUTION = 0.55;
+        // Realistic Inelastic Contact & Soft Volume Displacement (Zero Elastic Bounce)
         for (let pass = 0; pass < 2; pass++) {
           for (let i = 0; i < solids.length; i++) {
             for (let j = i + 1; j < solids.length; j++) {
@@ -1079,45 +1504,40 @@ export default function RotLabView() {
                 const normalX = cdx / dist;
                 const normalZ = cdz / dist;
 
-                // Position separation proportional to inverse mass
+                // Position separation proportional to inverse mass (heavy Rot mass plows through smaller mobs)
                 const totalMass = a.mass + b.mass;
                 const pushRatioA = b.mass / totalMass;
                 const pushRatioB = a.mass / totalMass;
 
-                a.applyPush(-normalX * overlap * pushRatioA, -normalZ * overlap * pushRatioA);
-                b.applyPush(normalX * overlap * pushRatioB, normalZ * overlap * pushRatioB);
+                a.applyPush(-normalX * overlap * pushRatioA * 0.5, -normalZ * overlap * pushRatioA * 0.5);
+                b.applyPush(normalX * overlap * pushRatioB * 0.5, normalZ * overlap * pushRatioB * 0.5);
 
                 a.x -= normalX * overlap * pushRatioA;
                 a.z -= normalZ * overlap * pushRatioA;
                 b.x += normalX * overlap * pushRatioB;
                 b.z += normalZ * overlap * pushRatioB;
 
-                // Relative velocity along collision normal
+                // Purely inelastic contact: cancel closing velocity along collision normal (no bouncing)
                 const relVx = a.vx - b.vx;
                 const relVz = a.vz - b.vz;
                 const velAlongNormal = relVx * normalX + relVz * normalZ;
 
-                // If moving towards each other, exchange impulse
                 if (velAlongNormal > 0) {
-                  const impulseMagnitude = -(1 + RESTITUTION) * velAlongNormal / ((1 / a.mass) + (1 / b.mass));
-                  const impulseX = impulseMagnitude * normalX;
-                  const impulseZ = impulseMagnitude * normalZ;
-
-                  a.applyPush(0, 0, (impulseX / a.mass) * 0.4, (impulseZ / a.mass) * 0.4);
-                  b.applyPush(0, 0, (-impulseX / b.mass) * 0.4, (-impulseZ / b.mass) * 0.4);
+                  // Inelastic contact damping without elastic impulse
+                  a.applyPush(0, 0, (velAlongNormal * normalX * pushRatioA) * 0.35, (velAlongNormal * normalZ * pushRatioA) * 0.35);
+                  b.applyPush(0, 0, (-velAlongNormal * normalX * pushRatioB) * 0.35, (-velAlongNormal * normalZ * pushRatioB) * 0.35);
                 }
               }
             }
           }
         }
 
-        // BOUNDARY WALL ELASTIC REBOUND & IMPACT SPARKS
-        const WALL_MIN = 1.2;
-        const WALL_MAX = 22.8;
-        const WALL_RESTITUTION = 0.65;
+        // BOUNDARY WALL KINEMATIC ARREST & TANGENTIAL FRICTION (NO ELASTIC BALL REBOUND)
+        const WALL_MIN = 1.5;
+        const WALL_MAX = 46.5;
         const newParticles: PhysicsParticle[] = [...next.arenaParticles];
 
-        const checkWallBounce = (x: number, z: number, vx: number, vz: number, radius: number) => {
+        const checkWallKinematics = (x: number, z: number, vx: number, vz: number, radius: number) => {
           let nx = x;
           let nz = z;
           let nvx = vx;
@@ -1126,44 +1546,48 @@ export default function RotLabView() {
 
           if (x - radius < WALL_MIN) {
             nx = WALL_MIN + radius;
-            nvx = Math.abs(vx) * WALL_RESTITUTION;
+            nvx = 0; // Solid stop against wall: zero bounce!
+            nvz *= 0.65; // Wall scrape friction
             hit = true;
           } else if (x + radius > WALL_MAX) {
             nx = WALL_MAX - radius;
-            nvx = -Math.abs(vx) * WALL_RESTITUTION;
+            nvx = 0; // Solid stop against wall: zero bounce!
+            nvz *= 0.65; // Wall scrape friction
             hit = true;
           }
 
           if (z - radius < WALL_MIN) {
             nz = WALL_MIN + radius;
-            nvz = Math.abs(vz) * WALL_RESTITUTION;
+            nvz = 0; // Solid stop against wall: zero bounce!
+            nvx *= 0.65; // Wall scrape friction
             hit = true;
           } else if (z + radius > WALL_MAX) {
             nz = WALL_MAX - radius;
-            nvz = -Math.abs(vz) * WALL_RESTITUTION;
+            nvz = 0; // Solid stop against wall: zero bounce!
+            nvx *= 0.65; // Wall scrape friction
             hit = true;
           }
 
-          if (hit && Math.hypot(vx, vz) > 0.15) {
-            for (let k = 0; k < 3; k++) {
+          if (hit && Math.hypot(vx, vz) > 0.25) {
+            for (let k = 0; k < 2; k++) {
               newParticles.push({
                 id: `p_wall_${Date.now()}_${Math.random()}`,
                 x: nx,
                 z: nz,
-                vx: -nvx * 0.3 + (Math.random() - 0.5) * 0.15,
-                vz: -nvz * 0.3 + (Math.random() - 0.5) * 0.15,
-                life: 14,
-                maxLife: 14,
-                color: '#facc15',
-                size: 2.5
+                vx: (Math.random() - 0.5) * 0.08,
+                vz: (Math.random() - 0.5) * 0.08,
+                life: 8,
+                maxLife: 8,
+                color: '#71717a',
+                size: 2.0
               });
             }
           }
           return { nx, nz, nvx, nvz };
         };
 
-        // Rot boundary check
-        const rotB = checkWallBounce(next.rotX, next.rotZ, next.rotDeltaX, next.rotDeltaZ, next.rotRadius);
+        // Rot boundary check (kinematic arrest)
+        const rotB = checkWallKinematics(next.rotX, next.rotZ, next.rotDeltaX, next.rotDeltaZ, next.rotRadius);
         next.rotX = rotB.nx;
         next.rotZ = rotB.nz;
         next.rotDeltaX = rotB.nvx;
@@ -1171,7 +1595,7 @@ export default function RotLabView() {
 
         // Player boundary check
         if (next.playerSpawned) {
-          const pB = checkWallBounce(next.playerX, next.playerZ, next.playerDeltaX, next.playerDeltaZ, next.playerRadius);
+          const pB = checkWallKinematics(next.playerX, next.playerZ, next.playerDeltaX, next.playerDeltaZ, next.playerRadius);
           next.playerX = pB.nx;
           next.playerZ = pB.nz;
           next.playerDeltaX = pB.nvx;
@@ -1180,7 +1604,7 @@ export default function RotLabView() {
 
         // Mobs boundary check
         updatedMobs.forEach(m => {
-          const mB = checkWallBounce(m.x, m.z, m.deltaX, m.deltaZ, m.radius);
+          const mB = checkWallKinematics(m.x, m.z, m.deltaX, m.deltaZ, m.radius);
           m.x = mB.nx;
           m.z = mB.nz;
           m.deltaX = mB.nvx;
@@ -1210,7 +1634,7 @@ export default function RotLabView() {
             }
           }
 
-          if (p.lifeTicks > 0 && p.x >= 1 && p.x <= 23 && p.z >= 1 && p.z <= 23) {
+          if (p.lifeTicks > 0 && p.x >= 1 && p.x <= 47 && p.z >= 1 && p.z <= 47) {
             liveProjectiles.push(p);
           }
         }
@@ -1444,13 +1868,13 @@ export default function RotLabView() {
           });
         };
 
-        // MINOS MOVE 1: "THY END IS NOW" (4-Hit Rapid Combo with Freeze-Finisher)
+        // MINOS MOVE 1: "THY END IS NOW" (Biped 4-Hit Combo with Alternating Left/Right Punches)
         if (next.minosComboStep > 0) {
           next.minosComboTicks -= 1;
           const isFinisher = next.minosComboStep === 4;
 
-          if (isFinisher && next.minosComboTicks > 2) {
-            // Freeze frame windup for the finisher!
+          if (isFinisher && next.minosComboTicks > 3) {
+            // Windup for the heavy combo finisher
             next.rotDeltaX = 0;
             next.rotDeltaZ = 0;
             next.combatState = 'THY_END_IS_NOW_FINISHER_CHARGE';
@@ -1458,50 +1882,65 @@ export default function RotLabView() {
           } else {
             next.activeDecisionNode = `EXEC_THY_END_IS_NOW_STEP_${next.minosComboStep}`;
             next.combatState = `THY_END_IS_NOW_PUNCH_${next.minosComboStep}`;
-            const stepSpeed = isFinisher ? 0.45 : 0.12;
-            next.rotDeltaX += (tX - next.rotX) * stepSpeed;
-            next.rotDeltaZ += (tZ - next.rotZ) * stepSpeed;
+            // Natural biped walking step towards target
+            const stepSpeed = isFinisher ? 0.28 : 0.22;
+            const directDx = tX - next.rotX;
+            const directDz = tZ - next.rotZ;
+            const directLen = Math.max(0.01, Math.hypot(directDx, directDz));
+            next.rotDeltaX = (directDx / directLen) * stepSpeed;
+            next.rotDeltaZ = (directDz / directLen) * stepSpeed;
           }
 
           if (next.minosComboTicks <= 0) {
-            const dmg = isFinisher ? 42.0 : 16.0;
+            // Regular biped punch damage (18.0 Base Damage from Java Attributes.ATTACK_DAMAGE)
+            const rawDmg = isFinisher ? 24.0 : 18.0;
 
-            if (dist < 4.5) {
+            if (dist < 3.2) {
+              // Alternate punch arm animation
+              if (next.minosComboStep % 2 === 1) next.leftPunchTicks = 12;
+              else next.rightPunchTicks = 12;
+
               if (isFinisher) {
                 newShockwaves.push({
                   id: `combo_finisher_${Date.now()}`,
                   x: next.rotX,
                   z: next.rotZ,
-                  radius: 0.6,
-                  maxRadius: 5.2,
+                  radius: 0.4,
+                  maxRadius: 3.5,
                   color: '#ef4444',
                   alpha: 1.0,
-                  thickness: 3.5
+                  thickness: 3.0
                 });
-                // Broadcast physical knockback to player and all mobs!
-                applyRadialKnockbackToAll(next.rotX, next.rotZ, 5.0, 0.58, 42.0, 'Thy End Is Now Finisher');
+                applyRadialKnockbackToAll(next.rotX, next.rotZ, 3.8, 0.35, 14.0, 'Thy End Is Now Finisher');
               }
 
               if (targetType === 'player') {
                 if (next.playerIsBlocking && !isFinisher) {
-                  addLog(`[SHIELD BLOCK] Player blocked strike ${next.minosComboStep}.`);
+                  addLog(`[SHIELD BLOCK] Player blocked punch ${next.minosComboStep}.`);
                 } else {
                   if (next.playerIsBlocking && isFinisher) {
                     next.playerIsBlocking = false;
                     next.playerShieldCooldown = 100;
-                    addLog('[SHIELD BREAK] Thy End Is Now finisher shattered player shield! (100t disable)');
+                    addLog('[SHIELD BREAK] Heavy finisher broke player shield! (5s disable)');
                   }
-                  next.playerHealth = Math.max(0, next.playerHealth - dmg * 0.45);
-                  addLog(`[MINOS COMBO] Thy End Is Now strike ${next.minosComboStep} dealt ${(dmg * 0.45).toFixed(1)} DMG!`);
+                  // Net damage against armored player (18 * 0.35 = 6.3 DMG)
+                  const dealt = rawDmg * 0.35;
+                  next.playerHealth = Math.max(0, next.playerHealth - dealt);
+                  addLog(`[BIPED COMBO] Rot punch ${next.minosComboStep} connected for ${dealt.toFixed(1)} DMG.`);
                 }
               } else if (targetMobId) {
-                next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - dmg) } : m);
+                // Calibrated damage against mobs so combat plays out at authentic Minecraft pacing
+                const targetMob = next.mobs.find(m => m.id === targetMobId);
+                const mobArmor = targetMob?.type === 'zombie' ? 2 : 0;
+                const dealt = rawDmg * (1.0 - mobArmor * 0.04);
+                next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - dealt) } : m);
+                addLog(`[BIPED COMBO] Rot punched ${targetMob?.name || 'mob'} for ${dealt.toFixed(1)} DMG.`);
               }
             }
 
             if (next.minosComboStep < 4) {
               next.minosComboStep += 1;
-              next.minosComboTicks = next.minosComboStep === 4 ? 8 : 5;
+              next.minosComboTicks = next.minosComboStep === 4 ? 10 : 7;
             } else {
               next.minosComboStep = 0;
               next.combatState = 'IDLE_STALKING';
@@ -1509,103 +1948,138 @@ export default function RotLabView() {
           }
         }
 
-        // MINOS MOVE 2: "JUDGMENT" / DROPKICK (Freeze Windup -> Insanely Fast Trajectory & Shockwave Knockback)
+        // MINOS MOVE 2: "JUDGMENT" / DROPKICK (Apex Windup -> Instant Dive Strike with Zero Mid-Air Slide)
         else if (next.dropkickPhase === 1) {
-          // PHASE 1: Complete freeze in horizontal plane, rise to apex & lock-on target
+          // PHASE 1: Ascend to apex & lock-on target
           next.activeDecisionNode = 'EXEC_JUDGMENT_DROPKICK_FREEZE_ASCEND';
           next.combatState = 'JUDGMENT_DROPKICK_ASCEND';
           next.rotDeltaX = 0;
           next.rotDeltaZ = 0;
-          next.rotY += 1.1;
+          next.rotY += 1.0;
           next.dropkickTicks -= 1;
           next.dropkickTargetX = next.predictedTargetX;
           next.dropkickTargetZ = next.predictedTargetZ;
 
-          if (next.dropkickTicks <= 0 || next.rotY >= 76.0) {
+          if (next.dropkickTicks <= 0 || next.rotY >= 74.0) {
             next.dropkickPhase = 2;
-            next.dropkickTicks = 12;
-            addLog('[MINOS MOVE] Judgment: Supersonic divekick launched!');
+            next.dropkickTicks = 6;
+            addLog('[MINOS MOVE] Judgment: Dropkick plunge initiated!');
           }
         } else if (next.dropkickPhase === 2) {
-          // PHASE 2: Insanely fast supersonic divekick trajectory
+          // PHASE 2: Instant Snappy Plunge to Target
           next.activeDecisionNode = 'EXEC_JUDGMENT_DROPKICK_SUPERSONIC';
           next.combatState = 'JUDGMENT_DROPKICK_DIVE';
-          
-          // Leave ghost afterimage
-          next.rotAfterimages.push({
-            x: next.rotX,
-            z: next.rotZ,
-            alpha: 0.85,
-            color: '#38bdf8'
-          });
+          next.dropkickTicks -= 1;
 
-          // Supersonic approach
-          const diveDx = next.dropkickTargetX - next.rotX;
-          const diveDz = next.dropkickTargetZ - next.rotZ;
-          const diveDist = Math.max(0.01, Math.hypot(diveDx, diveDz));
-          
-          next.rotX += (diveDx / diveDist) * 1.8;
-          next.rotZ += (diveDz / diveDist) * 1.8;
-          next.rotY -= 1.8;
-
-          if (next.rotY <= 64.0 || diveDist < 1.0) {
+          if (next.dropkickTicks <= 0) {
+            // Instant snap to impact point without continuous sliding drag
+            const origX = next.rotX;
+            const origZ = next.rotZ;
+            next.rotX = Math.max(2.5, Math.min(45.5, next.dropkickTargetX));
+            next.rotZ = Math.max(2.5, Math.min(45.5, next.dropkickTargetZ));
+            next.rotDeltaX = 0;
+            next.rotDeltaZ = 0;
             next.rotY = 64.0;
             next.dropkickPhase = 0;
             next.combatState = 'IDLE_STALKING';
 
-            // Huge destructive shockwave with heavy radial knockback
+            // Teleport / Dive origin and impact particle bursts
             newShockwaves.push({
               id: `shock_${Date.now()}`,
               x: next.rotX,
               z: next.rotZ,
-              radius: 0.8,
-              maxRadius: 7.0,
+              radius: 0.5,
+              maxRadius: 4.8,
               color: '#38bdf8',
               alpha: 1.0,
-              thickness: 5
+              thickness: 4
             });
 
-            // Radial knockback to ALL entities in the arena
-            applyRadialKnockbackToAll(next.rotX, next.rotZ, 6.5, 0.82, 110.0, 'Judgment Dropkick');
+            // Moderate radial knockback
+            applyRadialKnockbackToAll(next.rotX, next.rotZ, 5.0, 0.55, 22.0, 'Judgment Dropkick');
 
-            // Physical knockback impulse to direct target
             if (targetType === 'player') {
-              if (dist < 5.0) {
+              if (dist < 4.0) {
                 if (next.playerIsBlocking) {
                   next.playerIsBlocking = false;
-                  next.playerShieldCooldown = 100;
-                  addLog('[SHIELD BREAK] Judgment Dropkick crushed player shield! (100t disable applied)');
+                  next.playerShieldCooldown = 80;
+                  addLog('[SHIELD BREAK] Judgment Dropkick staggered player shield!');
                 }
-                const dmg = 85.0 * 0.45;
-                next.playerHealth = Math.max(0, next.playerHealth - dmg);
-                
-                // Blast player backwards
-                const kx = (next.playerX - next.rotX) || 1;
-                const kz = (next.playerZ - next.rotZ) || 1;
-                const klen = Math.max(0.1, Math.hypot(kx, kz));
-                next.playerDeltaX += (kx / klen) * 0.75;
-                next.playerDeltaZ += (kz / klen) * 0.75;
-                addLog(`[IMPACT] Judgment Dropkick hit player for ${dmg.toFixed(1)} DMG with supersonic shockwave knockback!`);
+                const dealt = 22.0 * 0.40;
+                next.playerHealth = Math.max(0, next.playerHealth - dealt);
+                next.playerDeltaX += (next.playerX - next.rotX) * 0.35;
+                next.playerDeltaZ += (next.playerZ - next.rotZ) * 0.35;
+                addLog(`[IMPACT] Judgment Dropkick struck player for ${dealt.toFixed(1)} DMG.`);
               }
             } else if (targetMobId) {
-              addLog('[IMPACT] Judgment Dropkick pulverized target mob with massive shockwave knockback!');
+              const targetMob = next.mobs.find(m => m.id === targetMobId);
+              next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - 22.0) } : m);
+              addLog(`[IMPACT] Judgment Dropkick struck ${targetMob?.name || 'mob'} for 22.0 DMG.`);
             }
           }
         }
 
-        // MINOS MOVE 3: "PREPARE THYSELF" (Teleport Behind -> Freeze -> Supersonic Cross Slice)
+        // MINOS MOVE 3: "PREPARE THYSELF" (Seamless Instant Teleport Behind Target -> Cross Strike)
         else if (next.prepareThyselfPhase === 1) {
           next.activeDecisionNode = 'EXEC_PREPARE_THYSELF_TELEPORT_FREEZE';
           next.combatState = 'PREPARE_THYSELF_TELEPORT';
           
           const behindAngle = Math.atan2(next.rotZ - tZ, next.rotX - tX);
-          next.rotX = tX + Math.cos(behindAngle) * 2.4;
-          next.rotZ = tZ + Math.sin(behindAngle) * 2.4;
+          const origX = next.rotX;
+          const origZ = next.rotZ;
+          const newX = Math.max(3.0, Math.min(45.0, tX + Math.cos(behindAngle) * 2.2));
+          const newZ = Math.max(3.0, Math.min(45.0, tZ + Math.sin(behindAngle) * 2.2));
+
+          // 1. Instant coordinate displacement (Zero sliding)
+          next.rotX = newX;
+          next.rotZ = newZ;
           next.rotDeltaX = 0;
           next.rotDeltaZ = 0;
+
+          // 2. Seamless Teleportation Departure Particle Burst
+          newShockwaves.push({
+            id: `tp_origin_${Date.now()}`,
+            x: origX,
+            z: origZ,
+            radius: 0.2,
+            maxRadius: 2.5,
+            color: '#a855f7',
+            alpha: 1.0,
+            thickness: 2.5
+          });
+
+          // 3. Seamless Teleportation Arrival Particle Burst
+          newShockwaves.push({
+            id: `tp_dest_${Date.now()}`,
+            x: newX,
+            z: newZ,
+            radius: 0.3,
+            maxRadius: 3.2,
+            color: '#ef4444',
+            alpha: 1.0,
+            thickness: 3.5
+          });
+
+          // 4. Ender / Void Particles at Destination
+          for (let k = 0; k < 8; k++) {
+            const ang = (Math.PI * 2 * k) / 8;
+            const sp = 0.12 + Math.random() * 0.15;
+            newParticles.push({
+              id: `tp_p_${Date.now()}_${k}`,
+              x: newX,
+              z: newZ,
+              vx: Math.cos(ang) * sp,
+              vz: Math.sin(ang) * sp,
+              life: 12,
+              maxLife: 12,
+              color: '#c084fc',
+              size: 2.5
+            });
+          }
+
           next.prepareThyselfPhase = 2;
-          next.prepareThyselfTicks = 6;
-          addLog('[MINOS MOVE] Prepare Thyself: Teleported behind target (Freeze-charging cross strike)!');
+          next.prepareThyselfTicks = 8;
+          addLog('[TELEPORT] Seamless teleport behind target! (Windup cross strike)');
         } else if (next.prepareThyselfPhase === 2) {
           next.prepareThyselfTicks -= 1;
           next.activeDecisionNode = 'EXEC_PREPARE_THYSELF_STRIKE';
@@ -1614,32 +2088,30 @@ export default function RotLabView() {
           if (next.prepareThyselfTicks <= 0) {
             next.prepareThyselfPhase = 0;
             next.combatState = 'IDLE_STALKING';
+            next.leftPunchTicks = 10;
             
             newShockwaves.push({
               id: `prepare_shock_${Date.now()}`,
               x: next.rotX,
               z: next.rotZ,
-              radius: 0.5,
-              maxRadius: 4.8,
+              radius: 0.4,
+              maxRadius: 3.6,
               color: '#38bdf8',
               alpha: 1.0,
-              thickness: 3
+              thickness: 2.5
             });
 
-            // Knockback impulse applied to all nearby arena entities
-            applyRadialKnockbackToAll(next.rotX, next.rotZ, 4.5, 0.52, 36.0, 'Prepare Thyself Cross');
+            applyRadialKnockbackToAll(next.rotX, next.rotZ, 3.6, 0.4, 18.0, 'Prepare Thyself Cross');
 
-            const rawDmg = 36.0;
+            const rawDmg = 18.0;
             if (targetType === 'player') {
-              next.playerHealth = Math.max(0, next.playerHealth - rawDmg * 0.45);
-              const kx = (next.playerX - next.rotX) || 1;
-              const kz = (next.playerZ - next.rotZ) || 1;
-              const klen = Math.max(0.1, Math.hypot(kx, kz));
-              next.playerDeltaX += (kx / klen) * 0.55;
-              next.playerDeltaZ += (kz / klen) * 0.55;
-              addLog(`[MINOS STRIKE] Prepare Thyself connected for ${(rawDmg * 0.45).toFixed(1)} DMG!`);
+              const dealt = rawDmg * 0.35;
+              next.playerHealth = Math.max(0, next.playerHealth - dealt);
+              addLog(`[BIPED STRIKE] Prepare Thyself punch dealt ${dealt.toFixed(1)} DMG.`);
             } else if (targetMobId) {
+              const targetMob = next.mobs.find(m => m.id === targetMobId);
               next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - rawDmg) } : m);
+              addLog(`[BIPED STRIKE] Prepare Thyself struck ${targetMob?.name || 'mob'} for ${rawDmg} DMG.`);
             }
           }
         }
@@ -1650,13 +2122,13 @@ export default function RotLabView() {
           next.activeDecisionNode = 'EXEC_OVERHEAD_LEAP_FREEZE';
           next.combatState = 'OVERHEAD_LEAP';
           next.rotY += 1.0;
-          next.rotX += (tX - next.rotX) * 0.18;
-          next.rotZ += (tZ - next.rotZ) * 0.18;
+          next.rotX += (tX - next.rotX) * 0.12;
+          next.rotZ += (tZ - next.rotZ) * 0.12;
 
-          if (next.overheadTicks <= 0 || next.rotY >= 74.0) {
+          if (next.overheadTicks <= 0 || next.rotY >= 72.0) {
             next.overheadPhase = 2;
-            next.overheadTicks = 10;
-            addLog('[OVERHEAD SLAM] Rot reached apex (Freeze windup), plunging with two-handed slam!');
+            next.overheadTicks = 8;
+            addLog('[OVERHEAD SLAM] Rot reached apex windup, plunging with two-handed slam!');
           }
         } else if (next.overheadPhase === 2) {
           next.overheadTicks -= 1;
@@ -1674,34 +2146,29 @@ export default function RotLabView() {
               x: next.rotX,
               z: next.rotZ,
               radius: 0.5,
-              maxRadius: 6.0,
+              maxRadius: 4.8,
               color: '#d946ef',
               alpha: 1.0,
-              thickness: 4
+              thickness: 3.5
             });
 
-            // Blast ALL entities in arena with radial ground slam knockback
-            applyRadialKnockbackToAll(next.rotX, next.rotZ, 5.8, 0.70, 52.0, 'Overhead Ground Smash');
+            applyRadialKnockbackToAll(next.rotX, next.rotZ, 4.6, 0.50, 24.0, 'Overhead Ground Smash');
 
-            if (dist < 4.8) {
-              const rawDmg = 52.0;
+            if (dist < 4.0) {
+              const rawDmg = 24.0;
               if (targetType === 'player') {
                 if (next.playerIsBlocking) {
                   next.playerIsBlocking = false;
-                  next.playerShieldCooldown = 100;
-                  addLog('[SHIELD BREAK] Overhead Slam shattered player shield!');
+                  next.playerShieldCooldown = 80;
+                  addLog('[SHIELD BREAK] Overhead Slam breached player shield!');
                 }
-                const dmg = rawDmg * 0.45;
-                next.playerHealth = Math.max(0, next.playerHealth - dmg);
-                const kx = (next.playerX - next.rotX) || 1;
-                const kz = (next.playerZ - next.rotZ) || 1;
-                const klen = Math.max(0.1, Math.hypot(kx, kz));
-                next.playerDeltaX += (kx / klen) * 0.65;
-                next.playerDeltaZ += (kz / klen) * 0.65;
-                addLog(`[IMPACT] Overhead Ground Slam smashed player for ${dmg.toFixed(1)} DMG with radial knockback!`);
+                const dealt = rawDmg * 0.35;
+                next.playerHealth = Math.max(0, next.playerHealth - dealt);
+                addLog(`[IMPACT] Overhead Slam hit player for ${dealt.toFixed(1)} DMG.`);
               } else if (targetMobId) {
+                const targetMob = next.mobs.find(m => m.id === targetMobId);
                 next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - rawDmg) } : m);
-                addLog(`[IMPACT] Overhead Ground Slam crushed surrounding mobs for ${rawDmg} DMG!`);
+                addLog(`[IMPACT] Overhead Slam struck ${targetMob?.name || 'mob'} for ${rawDmg} DMG.`);
               }
             }
           }
@@ -1781,35 +2248,39 @@ export default function RotLabView() {
         else if (targetType !== 'none') {
           if (dist <= 3.2) {
             const roll = Math.random();
-            if (roll < 0.30) {
+            if (roll < 0.45) {
               const isLeft = next.leftPunchTicks === 0;
               if (isLeft) next.leftPunchTicks = 14;
               else next.rightPunchTicks = 14;
               next.combatState = isLeft ? 'LEFT_PUNCH' : 'RIGHT_PUNCH';
               next.activeDecisionNode = isLeft ? 'EXEC_LEFT_PUNCH' : 'EXEC_RIGHT_PUNCH';
 
-              const rawDmg = ROT_SOURCE_ATTRIBUTES.ATTACK_DAMAGE;
+              const rawDmg = ROT_SOURCE_ATTRIBUTES.ATTACK_DAMAGE; // 18.0 base attack damage
               if (targetType === 'player') {
                 if (next.playerIsBlocking) {
                   addLog('[SHIELD] Player blocked punch.');
                 } else {
-                  const dmg = rawDmg * 0.45;
+                  const dmg = rawDmg * 0.35; // 6.3 net DMG against armor
                   next.playerHealth = Math.max(0, next.playerHealth - dmg);
-                  addLog(`[MELEE] Punch dealt ${dmg.toFixed(1)} DMG.`);
+                  addLog(`[REGULAR PUNCH] ${isLeft ? 'Left' : 'Right'} punch dealt ${dmg.toFixed(1)} DMG.`);
                 }
               } else if (targetMobId) {
-                next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - rawDmg) } : m);
+                const targetMob = next.mobs.find(m => m.id === targetMobId);
+                const mobArmor = targetMob?.type === 'zombie' ? 2 : 0;
+                const dealt = rawDmg * (1.0 - mobArmor * 0.04);
+                next.mobs = next.mobs.map(m => m.id === targetMobId ? { ...m, health: Math.max(0, m.health - dealt) } : m);
+                addLog(`[REGULAR PUNCH] Rot struck ${targetMob?.name || 'mob'} for ${dealt.toFixed(1)} DMG.`);
               }
-            } else if (roll < 0.60) {
+            } else if (roll < 0.70) {
               next.minosComboStep = 1;
-              next.minosComboTicks = 6;
-              addLog('[MINOS COMBO] Thy End Is Now combo initiated!');
-            } else if (roll < 0.80) {
+              next.minosComboTicks = 8;
+              addLog('[BIPED COMBO] Thy End Is Now combo initiated!');
+            } else if (roll < 0.85) {
               next.prepareThyselfPhase = 1;
-              addLog('[MINOS MOVE] Prepare Thyself initiated!');
+              addLog('[TELEPORT] Prepare Thyself initiated!');
             } else {
               next.overheadPhase = 1;
-              next.overheadTicks = 14;
+              next.overheadTicks = 12;
               addLog('[OVERHEAD SLAM] Rot leaped upwards for Overhead Ground Slam!');
             }
           } else if (dist <= 12.0) {
@@ -1820,17 +2291,17 @@ export default function RotLabView() {
             const directDx = tX - next.rotX;
             const directDz = tZ - next.rotZ;
             const directLen = Math.max(0.01, Math.hypot(directDx, directDz));
-            const walkSpeed = 0.24; // Standard Minecraft entity movement speed
+            const walkSpeed = 0.22; // Authentic Minecraft entity movement speed
             const targetRotVx = (directDx / directLen) * walkSpeed;
             const targetRotVz = (directDz / directLen) * walkSpeed;
             next.rotDeltaX = next.rotDeltaX * 0.25 + targetRotVx * 0.75;
             next.rotDeltaZ = next.rotDeltaZ * 0.25 + targetRotVz * 0.75;
 
-            if (next.stateTicks % 50 === 0) {
+            if (next.stateTicks % 60 === 0) {
               const pick = Math.random();
-              if (pick < 0.50) {
+              if (pick < 0.40) {
                 next.dropkickPhase = 1;
-                next.dropkickTicks = 16;
+                next.dropkickTicks = 14;
                 addLog('[MINOS MOVE] Judgment Dropkick initiated!');
               }
             }
@@ -1855,6 +2326,24 @@ export default function RotLabView() {
         next.rotX += next.rotDeltaX;
         next.rotZ += next.rotDeltaZ;
 
+        // Firm kinematic wall clamp at end of tick (guarantees zero boundary escape or bounce)
+        const FINAL_MIN = 1.5 + next.rotRadius;
+        const FINAL_MAX = 46.5 - next.rotRadius;
+        if (next.rotX < FINAL_MIN) {
+          next.rotX = FINAL_MIN;
+          next.rotDeltaX = 0;
+        } else if (next.rotX > FINAL_MAX) {
+          next.rotX = FINAL_MAX;
+          next.rotDeltaX = 0;
+        }
+        if (next.rotZ < FINAL_MIN) {
+          next.rotZ = FINAL_MIN;
+          next.rotDeltaZ = 0;
+        } else if (next.rotZ > FINAL_MAX) {
+          next.rotZ = FINAL_MAX;
+          next.rotDeltaZ = 0;
+        }
+
         return next;
       });
     }, simSpeed);
@@ -1871,14 +2360,14 @@ export default function RotLabView() {
 
     const width = canvas.width;
     const height = canvas.height;
-    const scale = width / 24;
+    const scale = width / 48.0;
 
     ctx.fillStyle = '#060a07';
     ctx.fillRect(0, 0, width, height);
 
     ctx.strokeStyle = '#121a14';
-    ctx.lineWidth = 1.5;
-    for (let i = 0; i <= 24; i += 2) {
+    ctx.lineWidth = 1.0;
+    for (let i = 0; i <= 48; i += 4) {
       ctx.beginPath();
       ctx.moveTo(i * scale, 0);
       ctx.lineTo(i * scale, height);
@@ -1889,6 +2378,11 @@ export default function RotLabView() {
       ctx.lineTo(width, i * scale);
       ctx.stroke();
     }
+
+    // Outer Arena Boundary Border (48m x 48m Doubled Arena)
+    ctx.strokeStyle = '#27382a';
+    ctx.lineWidth = 2.5;
+    ctx.strokeRect(1.5 * scale, 1.5 * scale, (46.5 - 1.5) * scale, (46.5 - 1.5) * scale);
 
     if (state.playerSpawned && !state.playerIsDead) {
       ctx.beginPath();
@@ -2066,6 +2560,16 @@ export default function RotLabView() {
         ctx.fillStyle = '#ffffff';
         ctx.fill();
         ctx.restore();
+      } else if (p.type === 'fireball') {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(px, pz, 5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ea580c';
+        ctx.fill();
+        ctx.strokeStyle = '#facc15';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
       } else {
         // Arrow / Physical Bolt
         ctx.beginPath();
@@ -2079,6 +2583,7 @@ export default function RotLabView() {
       const mx = mob.x * scale;
       const mz = mob.z * scale;
       const r = mob.radius * scale;
+      const spec = ARENA_MOB_STATS[mob.type];
 
       ctx.beginPath();
       ctx.arc(mx, mz, r, 0, Math.PI * 2);
@@ -2086,24 +2591,12 @@ export default function RotLabView() {
       if (mob.type === 'creeper') {
         ctx.fillStyle = (mob.creeperFuse || 0) % 4 < 2 ? '#22c55e' : '#ffffff';
         ctx.strokeStyle = '#15803d';
-      } else if (mob.type === 'iron_golem') {
-        ctx.fillStyle = '#cbd5e1';
-        ctx.strokeStyle = '#94a3b8';
-      } else if (mob.type === 'warden') {
-        ctx.fillStyle = '#042f2e';
-        ctx.strokeStyle = '#0d9488';
-      } else if (mob.type === 'skeleton') {
-        ctx.fillStyle = '#e2e8f0';
-        ctx.strokeStyle = '#94a3b8';
-      } else if (mob.type === 'wither_skeleton') {
-        ctx.fillStyle = '#18181b';
-        ctx.strokeStyle = '#3f3f46';
       } else {
-        ctx.fillStyle = '#15803d';
-        ctx.strokeStyle = '#166534';
+        ctx.fillStyle = spec?.color || '#15803d';
+        ctx.strokeStyle = spec?.stroke || '#166534';
       }
       
-      ctx.lineWidth = 2;
+      ctx.lineWidth = mob.category === 'backwoods' ? 2.5 : 2.0;
       ctx.fill();
       ctx.stroke();
 
@@ -2119,26 +2612,100 @@ export default function RotLabView() {
       ctx.fillText(mob.name, mx, mz + r + 12);
     }
 
-    // Render The Rot (Boss Entity)
+    // Render Active Tactical Cobwebs (Sticky Ground Snares)
+    if (state.cobwebs && state.cobwebs.length > 0) {
+      for (const web of state.cobwebs) {
+        const wx = web.x * scale;
+        const wz = web.z * scale;
+        const wr = 1.2 * scale;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(wx - wr, wz); ctx.lineTo(wx + wr, wz);
+        ctx.moveTo(wx, wz - wr); ctx.lineTo(wx, wz + wr);
+        ctx.moveTo(wx - wr * 0.7, wz - wr * 0.7); ctx.lineTo(wx + wr * 0.7, wz + wr * 0.7);
+        ctx.moveTo(wx - wr * 0.7, wz + wr * 0.7); ctx.lineTo(wx + wr * 0.7, wz - wr * 0.7);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(wx, wz, wr * 0.65, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    // Render The Rot (Authentic Biped Humanoid Boss Entity)
     const rotPx = state.rotX * scale;
     const rotPz = state.rotZ * scale;
     const rotR = state.rotRadius * scale;
+    const rotYawRad = ((state.rotYaw + 90) * Math.PI) / 180;
+    const perpYawRad = rotYawRad + Math.PI / 2;
 
+    ctx.save();
+    // 1. Torso Base
     ctx.beginPath();
     ctx.arc(rotPx, rotPz, rotR, 0, Math.PI * 2);
     ctx.fillStyle = '#1c0b0e';
     ctx.strokeStyle = '#ef4444';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2.5;
     ctx.fill();
     ctx.stroke();
 
-    const rotYawRad = ((state.rotYaw + 90) * Math.PI) / 180;
+    // 2. Biped Shoulders and Alternating Punching Arms
+    const shoulderOffset = rotR * 0.85;
+    const leftPunchExtend = (state.leftPunchTicks || 0) > 0 ? 8.5 : 0;
+    const rightPunchExtend = (state.rightPunchTicks || 0) > 0 ? 8.5 : 0;
+
+    // Left Arm / Fist
+    const leftShoulderX = rotPx - Math.cos(perpYawRad) * shoulderOffset;
+    const leftShoulderZ = rotPz - Math.sin(perpYawRad) * shoulderOffset;
+    const leftFistX = leftShoulderX + Math.cos(rotYawRad) * (rotR * 0.7 + leftPunchExtend);
+    const leftFistZ = leftShoulderZ + Math.sin(rotYawRad) * (rotR * 0.7 + leftPunchExtend);
+
+    ctx.beginPath();
+    ctx.moveTo(leftShoulderX, leftShoulderZ);
+    ctx.lineTo(leftFistX, leftFistZ);
+    ctx.strokeStyle = (state.leftPunchTicks || 0) > 0 ? '#ef4444' : '#7f1d1d';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(leftFistX, leftFistZ, 3.2, 0, Math.PI * 2);
+    ctx.fillStyle = (state.leftPunchTicks || 0) > 0 ? '#ef4444' : '#450a0a';
+    ctx.fill();
+
+    // Right Arm / Fist
+    const rightShoulderX = rotPx + Math.cos(perpYawRad) * shoulderOffset;
+    const rightShoulderZ = rotPz + Math.sin(perpYawRad) * shoulderOffset;
+    const rightFistX = rightShoulderX + Math.cos(rotYawRad) * (rotR * 0.7 + rightPunchExtend);
+    const rightFistZ = rightShoulderZ + Math.sin(rotYawRad) * (rotR * 0.7 + rightPunchExtend);
+
+    ctx.beginPath();
+    ctx.moveTo(rightShoulderX, rightShoulderZ);
+    ctx.lineTo(rightFistX, rightFistZ);
+    ctx.strokeStyle = (state.rightPunchTicks || 0) > 0 ? '#ef4444' : '#7f1d1d';
+    ctx.lineWidth = 3.5;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(rightFistX, rightFistZ, 3.2, 0, Math.PI * 2);
+    ctx.fillStyle = (state.rightPunchTicks || 0) > 0 ? '#ef4444' : '#450a0a';
+    ctx.fill();
+
+    // 3. Head & Crimson Facing Pointer
+    ctx.beginPath();
+    ctx.arc(rotPx, rotPz, rotR * 0.55, 0, Math.PI * 2);
+    ctx.fillStyle = '#2a080c';
+    ctx.strokeStyle = '#f87171';
+    ctx.lineWidth = 1.8;
+    ctx.fill();
+    ctx.stroke();
+
     ctx.beginPath();
     ctx.moveTo(rotPx, rotPz);
-    ctx.lineTo(rotPx + Math.cos(rotYawRad) * (rotR + 8), rotPz + Math.sin(rotYawRad) * (rotR + 8));
+    ctx.lineTo(rotPx + Math.cos(rotYawRad) * (rotR + 6), rotPz + Math.sin(rotYawRad) * (rotR + 6));
     ctx.strokeStyle = '#f87171';
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2.5;
     ctx.stroke();
+    ctx.restore();
 
     // Rot Health & Dynamic Adaptation Armor Bar
     ctx.fillStyle = '#18181b';
@@ -2161,6 +2728,18 @@ export default function RotLabView() {
       const playerPx = state.playerX * scale;
       const playerPz = state.playerZ * scale;
       const playerR = state.playerRadius * scale;
+
+      // Render Player Crosshair Targeting Raycast towards The Rot
+      if (!state.playerIsDead) {
+        ctx.beginPath();
+        ctx.setLineDash([2, 4]);
+        ctx.moveTo(playerPx, playerPz);
+        ctx.lineTo(rotPx, rotPz);
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
 
       if (state.totemPoppedAnimationTicks > 0) {
         ctx.beginPath();
@@ -2202,10 +2781,25 @@ export default function RotLabView() {
         ctx.fillStyle = '#10b981';
         ctx.fillRect(playerPx - 16, playerPz - playerR - 9, (state.playerHealth / state.playerMaxHealth) * 32, 4);
 
+        if (state.playerAbsorption > 0) {
+          ctx.fillStyle = '#facc15';
+          ctx.fillRect(playerPx - 16, playerPz - playerR - 5, (state.playerAbsorption / 4.0) * 32, 2);
+        }
+
         ctx.fillStyle = '#6ee7b7';
-        ctx.font = '9px monospace';
+        ctx.font = 'bold 9px monospace';
         ctx.textAlign = 'center';
         ctx.fillText(`${state.playerHealth.toFixed(1)} HP`, playerPx, playerPz - playerR - 12);
+
+        // Render Smart Player Dynamic Tactical Badge & Weapon
+        if (state.playerActionLabel) {
+          ctx.font = 'bold 8.5px monospace';
+          ctx.fillStyle = '#38bdf8';
+          ctx.fillText(`[${state.playerActionLabel}]`, playerPx, playerPz + playerR + 13);
+          ctx.fillStyle = '#a1a1aa';
+          ctx.font = '7.5px monospace';
+          ctx.fillText(`⚔ ${state.playerWeapon.toUpperCase()}`, playerPx, playerPz + playerR + 22);
+        }
       }
     }
   }, [state]);
@@ -2216,8 +2810,8 @@ export default function RotLabView() {
 
     for (let i = 0; i < spawnCount; i++) {
       const angle = (Math.PI * 2 * i) / spawnCount;
-      const spawnX = Math.max(2, Math.min(22, 12 + Math.cos(angle) * 7.5));
-      const spawnZ = Math.max(2, Math.min(22, 12 + Math.sin(angle) * 7.5));
+      const spawnX = Math.max(5.0, Math.min(43.0, 24.0 + Math.cos(angle) * 16.0));
+      const spawnZ = Math.max(5.0, Math.min(43.0, 24.0 + Math.sin(angle) * 16.0));
 
       newMobs.push({
         id: `mob_${selectedSpawnMob}_${Date.now()}_${i}`,
@@ -2231,6 +2825,7 @@ export default function RotLabView() {
         damage: stats.damage,
         radius: stats.radius,
         mass: stats.mass,
+        knockbackResistance: stats.knockbackResistance,
         deltaX: 0,
         deltaZ: 0,
         attackCooldown: 0,
@@ -2259,8 +2854,8 @@ export default function RotLabView() {
       playerSpawned: true,
       playerHealth: 20.0,
       playerIsDead: false,
-      playerX: 12.0,
-      playerZ: 17.0,
+      playerX: 24.0,
+      playerZ: 38.0,
       playerShieldCooldown: 0,
       playerIsBlocking: false,
       playerGoldenApples: 3,
@@ -2285,6 +2880,7 @@ export default function RotLabView() {
 
   // Selected Node in Connected Brain Visuals
   const [selectedNodeId, setSelectedNodeId] = useState<string>('core_nexus');
+  const [selectedLobeFilter, setSelectedLobeFilter] = useState<string>('ALL');
 
   // Neural Graph Circular Nodes (Interconnected Brain Visuals based on Mod AI Architecture)
   const brainNodes = useMemo(() => [
@@ -2349,30 +2945,30 @@ export default function RotLabView() {
     // 2. Column 2: TacticalNeuralNetwork (Tensor Inputs, Hidden & Weights)
     {
       id: 'nn_input',
-      label: 'Tactical Input (8-Dim)',
+      label: 'Tactical Input (96-Dim)',
       lobe: 'TacticalNeuralNetwork',
       x: 275,
       y: 90,
       r: 30,
       color: '#818cf8',
       active: true,
-      val: `[8 Inputs Vector]`,
-      badge: 'INPUT_SIZE: 8',
-      desc: `8-dimensional normalized input vector: [Distance, Lead Speed, Shield State, Target HP %, Threat Ratio, Kinetic Adapt, Blast Adapt, Welford Z-Score].`,
+      val: `[96 Inputs Vector]`,
+      badge: 'INPUT_SIZE: 96',
+      desc: `96-dimensional sensory and behavioral input vector tracking target distance, velocity, weapon loadouts, armor durability, air time, and combat intent.`,
       icon: Cpu
     },
     {
       id: 'nn_hidden',
-      label: 'Hidden Layer (16-Tensor)',
+      label: 'Hidden Layer (48-Tensor)',
       lobe: 'TacticalNeuralNetwork',
       x: 275,
       y: 215,
       r: 30,
       color: '#818cf8',
       active: true,
-      val: `16 Neurons (tanh)`,
-      badge: 'HIDDEN_SIZE: 16',
-      desc: `16 hidden neurons with non-linear hyperbolic tangent activation evaluating tactical trade-offs between Minos martial combos.`,
+      val: `48 Neurons (ReLU)`,
+      badge: 'HIDDEN_SIZE: 48',
+      desc: `48 hidden neurons with non-linear activation evaluating tactical trade-offs between martial combos, zoning lasers, and acoustic shockwaves.`,
       icon: Layers
     },
     {
@@ -2384,14 +2980,14 @@ export default function RotLabView() {
       r: 30,
       color: '#818cf8',
       active: true,
-      val: `224 Weights`,
-      badge: 'TOTAL_WEIGHTS: 224',
-      desc: `Full weight tensor (8x16 + 16x6 = 224 weights) trained via reinforcement delta updates for situational combat adaptability.`,
+      val: `5,391 Weights`,
+      badge: 'TOTAL_WEIGHTS: 5,391',
+      desc: `Full weight tensor ((96 * 48) + 48 + (48 * 15) + 15 = 5,391 weights) trained via reinforcement experience buffers for combat adaptability.`,
       icon: Sparkles
     },
     {
       id: 'a_kin',
-      label: 'Dynamic Adaptation Core',
+      label: '4-Pillar Adaptation Core',
       lobe: 'Dynamic Adaptation',
       x: 275,
       y: 465,
@@ -2400,7 +2996,7 @@ export default function RotLabView() {
       active: state.totalAdaptiveResistance > 0,
       val: `${(state.totalAdaptiveResistance * 100).toFixed(0)}% Stacks`,
       badge: 'ADAPTIVE',
-      desc: `Biological adaptation stack: Kinetic (${(state.kineticAdaptation*100).toFixed(0)}%), Blast (${(state.blastAdaptation*100).toFixed(0)}%), Swarm (${(state.swarmAdaptation*100).toFixed(0)}%).`,
+      desc: `Biological resistance scaling: Projectile (+15%/hit up to 90%), Explosion (+25%/hit up to 95%), Magic (+20%/hit up to 90%), Melee (+5%/hit up to 70%), and High-RPM Bullet Dampening (down to 12%).`,
       icon: ShieldCheck
     },
 
@@ -2603,27 +3199,28 @@ export default function RotLabView() {
   const selectedNodeObj = brainNodes.find(n => n.id === selectedNodeId) || brainNodes[9];
 
   return (
-    <div className="space-y-6 pb-12">
-      {/* Top Header - Fully Responsive Flex Wrap with No Overlapping */}
-      <div className="p-4 sm:p-6 bg-[#0c0e0c] border border-[#1d251e] rounded-xl relative overflow-hidden flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+    <UpdatedFrame id="rot_neural_lab" isUpdated={true}>
+      <div className="space-y-4 pb-8">
+        {/* Top Header - Compact & Responsive */}
+        <div className="p-3 sm:p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl relative overflow-hidden flex flex-col xl:flex-row xl:items-center justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-red-400">
-            <Radio className="w-3.5 h-3.5 text-red-500 animate-pulse shrink-0" />
+          <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-red-400">
+            <Radio className="w-3 h-3 text-red-500 animate-pulse shrink-0" />
             <span>Classified Neural Combat Matrix</span>
           </div>
-          <h1 className="font-serif text-xl sm:text-2xl md:text-3xl font-extrabold text-[#e0e7e0] mt-1 break-words">
+          <h1 className="font-serif text-lg sm:text-xl md:text-2xl font-extrabold text-[#e0e7e0] mt-0.5 break-words">
             The Rot: Active Combat Simulation
           </h1>
-          <p className="text-xs text-[#8a9a8c] mt-1 max-w-2xl">
-            Simulating The Rot's exact MCreator/Java state machine, Minos Prime combat combos, solid collision physics, and dynamic tank adaptation against Minecraft mobs.
+          <p className="text-xs text-[#8a9a8c] mt-0.5 max-w-2xl">
+            Simulating The Rot's MCreator/Java state machine, Minos Prime combat combos, physics, and dynamic tank adaptation against Minecraft mobs.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 shrink-0">
+        <div className="flex flex-wrap items-center gap-1.5 shrink-0">
           {state.rotIsDead ? (
             <button
               onClick={handleRespawnRot}
-              className="px-2.5 sm:px-3 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1.5 transition bg-red-600 text-white border-red-500 hover:bg-red-500 shadow-lg shadow-red-950 animate-pulse whitespace-nowrap"
+              className="px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-bold flex items-center gap-1.5 transition bg-red-600 text-white border-red-500 hover:bg-red-500 shadow-md shadow-red-950 animate-pulse whitespace-nowrap"
             >
               <RefreshCw className="w-3.5 h-3.5 shrink-0" />
               <span>REVIVE ROT</span>
@@ -2631,7 +3228,7 @@ export default function RotLabView() {
           ) : (
             <button
               onClick={handleRespawnRot}
-              className="px-2.5 sm:px-3 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono font-medium flex items-center gap-1.5 transition bg-[#141a15] text-[#8a9a8c] border-[#2a382c] hover:text-red-300 hover:border-red-800 whitespace-nowrap"
+              className="px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-medium flex items-center gap-1.5 transition bg-[#141a15] text-[#8a9a8c] border-[#2a382c] hover:text-red-300 hover:border-red-800 whitespace-nowrap"
             >
               <RefreshCw className="w-3.5 h-3.5 shrink-0" />
               <span>HEAL ROT (550 HP)</span>
@@ -2639,7 +3236,7 @@ export default function RotLabView() {
           )}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`px-2.5 sm:px-3 py-1.5 rounded-lg border text-[11px] sm:text-xs font-mono font-semibold flex items-center gap-1.5 transition whitespace-nowrap ${
+            className={`px-2.5 py-1.5 rounded-lg border text-[11px] font-mono font-semibold flex items-center gap-1.5 transition whitespace-nowrap ${
               isPlaying
                 ? 'bg-emerald-950/40 text-emerald-300 border-emerald-800 hover:bg-emerald-900/50'
                 : 'bg-amber-950/40 text-amber-300 border-amber-800 hover:bg-amber-900/50'
@@ -2653,7 +3250,7 @@ export default function RotLabView() {
               setState(createInitialState());
               addLog('[RESET] Re-initialized combat environment to default.');
             }}
-            className="px-2.5 sm:px-3 py-1.5 rounded-lg border border-[#2a382c] bg-[#141a15] text-[11px] sm:text-xs font-mono text-[#a1a1aa] hover:text-[#e0e7e0] flex items-center gap-1.5 transition whitespace-nowrap"
+            className="px-2.5 py-1.5 rounded-lg border border-[#2a382c] bg-[#141a15] text-[11px] font-mono text-[#a1a1aa] hover:text-[#e0e7e0] flex items-center gap-1.5 transition whitespace-nowrap"
           >
             <RotateCcw className="w-3.5 h-3.5 shrink-0" />
             <span>RESET</span>
@@ -2662,75 +3259,76 @@ export default function RotLabView() {
       </div>
 
       {/* Compact Section Navigation Tabs */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#0a0f0b] border border-[#1b271d] rounded-xl font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-[#0a0f0b] border border-[#1b271d] rounded-xl font-mono text-xs">
         <button
           onClick={() => setActiveTab('arena')}
-          className={`flex-1 min-w-[130px] sm:min-w-[150px] px-3.5 py-2.5 rounded-lg transition flex items-center justify-center gap-2 ${
+          className={`flex-1 min-w-[120px] sm:min-w-[140px] px-3 py-2 rounded-lg transition flex items-center justify-center gap-1.5 ${
             activeTab === 'arena'
-              ? 'bg-red-950/80 border border-red-700 text-red-200 font-bold shadow-md shadow-red-950/50'
+              ? 'bg-red-950/80 border border-red-700 text-red-200 font-bold shadow-xs'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#121a14]'
           }`}
         >
-          <Swords className="w-4 h-4 text-red-400 shrink-0" />
+          <Swords className="w-3.5 h-3.5 text-red-400 shrink-0" />
           <span>1. Arena & Moves</span>
         </button>
         <button
           onClick={() => setActiveTab('mindspace')}
-          className={`flex-1 min-w-[130px] sm:min-w-[150px] px-3.5 py-2.5 rounded-lg transition flex items-center justify-center gap-2 ${
+          className={`flex-1 min-w-[120px] sm:min-w-[140px] px-3 py-2 rounded-lg transition flex items-center justify-center gap-1.5 ${
             activeTab === 'mindspace'
-              ? 'bg-sky-950/80 border border-sky-700 text-sky-200 font-bold shadow-md shadow-sky-950/50'
+              ? 'bg-sky-950/80 border border-sky-700 text-sky-200 font-bold shadow-xs'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#121a14]'
           }`}
         >
-          <Brain className="w-4 h-4 text-sky-400 shrink-0" />
+          <Brain className="w-3.5 h-3.5 text-sky-400 shrink-0" />
           <span>2. Neural Mindspace</span>
         </button>
         <button
           onClick={() => setActiveTab('abilities')}
-          className={`flex-1 min-w-[130px] sm:min-w-[150px] px-3.5 py-2.5 rounded-lg transition flex items-center justify-center gap-2 ${
+          className={`flex-1 min-w-[120px] sm:min-w-[140px] px-3 py-2 rounded-lg transition flex items-center justify-center gap-1.5 ${
             activeTab === 'abilities'
-              ? 'bg-amber-950/80 border border-amber-700 text-amber-200 font-bold shadow-md shadow-amber-950/50'
+              ? 'bg-amber-950/80 border border-amber-700 text-amber-200 font-bold shadow-xs'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#121a14]'
           }`}
         >
-          <Clock className="w-4 h-4 text-amber-400 shrink-0" />
+          <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
           <span>3. Ability Frame Data</span>
         </button>
         <button
           onClick={() => setActiveTab('hivemind')}
-          className={`flex-1 min-w-[130px] sm:min-w-[150px] px-3.5 py-2.5 rounded-lg transition flex items-center justify-center gap-2 ${
+          className={`flex-1 min-w-[120px] sm:min-w-[140px] px-3 py-2 rounded-lg transition flex items-center justify-center gap-1.5 ${
             activeTab === 'hivemind'
-              ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-200 font-bold shadow-md shadow-emerald-950/50'
+              ? 'bg-emerald-950/80 border border-emerald-700 text-emerald-200 font-bold shadow-xs'
               : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#121a14]'
           }`}
         >
-          <Database className="w-4 h-4 text-emerald-400 shrink-0" />
+          <Database className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
           <span>4. Hivemind & Adapt</span>
         </button>
       </div>
 
       {/* TAB 1: Main Top-Down Arena & Entity Controls */}
       {activeTab === 'arena' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         
         {/* Left Column: Top-Down 2D Radar Canvas & Quick Stats */}
-        <div className="lg:col-span-7 space-y-4">
-          <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Crosshair className="w-4 h-4 text-red-400" />
-                <span className="font-serif text-sm font-bold text-[#e0e7e0]">Top-Down 2D Physics Arena</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 text-zinc-400 border border-zinc-800">
-                  24m x 24m Scale
+        <div className="lg:col-span-7 space-y-3">
+          <div className="p-3 sm:p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 min-h-[32px]">
+              <div className="flex items-center gap-2 min-w-0 shrink">
+                <Crosshair className="w-4 h-4 text-red-400 shrink-0" />
+                <span className="font-serif text-sm font-bold text-[#e0e7e0] truncate">Top-Down 2D Physics Arena</span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-700 shrink-0 hidden sm:inline-block">
+                  48m x 48m Scale
                 </span>
               </div>
-              <div className="text-[11px] font-mono text-[#8a9a8c]">
-                State: <span className="text-red-400 font-bold">{state.combatState}</span>
+              <div className="text-[11px] font-mono text-[#8a9a8c] bg-[#121813] border border-[#1e2a20] px-2.5 py-1 rounded shrink-0 min-w-[190px] sm:min-w-[220px] h-7 flex items-center justify-between gap-2 overflow-hidden shadow-xs">
+                <span className="text-zinc-500 uppercase text-[9.5px] font-semibold shrink-0">State:</span>
+                <span className="text-red-400 font-bold tracking-tight truncate text-right">{state.combatState}</span>
               </div>
             </div>
 
             {/* Arena Radar Canvas */}
-            <div className="relative rounded-lg overflow-hidden border border-[#1a241b] bg-[#060a07] aspect-square flex items-center justify-center">
+            <div className="relative rounded-lg overflow-hidden border border-[#1a241b] bg-[#060a07] aspect-square max-w-[520px] mx-auto flex items-center justify-center">
               <canvas
                 ref={arenaCanvasRef}
                 width={700}
@@ -2761,28 +3359,28 @@ export default function RotLabView() {
             </div>
 
             {/* Rot Health & Dynamic Adaptation Telemetry */}
-            <div className="p-3 bg-[#111612] border border-[#1e2b20] rounded-lg grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div className="p-2.5 bg-[#111612] border border-[#1e2b20] rounded-lg grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
               <div>
                 <div className="text-[9px] font-mono text-[#6b7280] uppercase">Rot Health</div>
-                <div className="text-sm font-mono font-bold text-red-400">
-                  {state.rotHealth.toFixed(1)} <span className="text-[10px] text-zinc-500">/ 550</span>
+                <div className="text-xs font-mono font-bold text-red-400">
+                  {state.rotHealth.toFixed(1)} <span className="text-[9px] text-zinc-500">/ 550</span>
                 </div>
               </div>
               <div>
                 <div className="text-[9px] font-mono text-[#6b7280] uppercase">Adaptive Mitigation</div>
-                <div className="text-sm font-mono font-bold text-sky-400">
-                  +{(state.totalAdaptiveResistance * 100).toFixed(0)}% <span className="text-[10px] text-zinc-500">(15 Armor)</span>
+                <div className="text-xs font-mono font-bold text-sky-400">
+                  +{(state.totalAdaptiveResistance * 100).toFixed(0)}% <span className="text-[9px] text-zinc-500">(15 Armor)</span>
                 </div>
               </div>
               <div>
                 <div className="text-[9px] font-mono text-[#6b7280] uppercase">Combat Surge Regen</div>
-                <div className="text-sm font-mono font-bold text-emerald-400">
+                <div className="text-xs font-mono font-bold text-emerald-400">
                   {state.rotHealth < state.rotMaxHealth ? '+5 to +28 HP/6t' : 'IDLE'}
                 </div>
               </div>
               <div>
                 <div className="text-[9px] font-mono text-[#6b7280] uppercase">Active Targets</div>
-                <div className="text-sm font-mono font-bold text-amber-400">
+                <div className="text-xs font-mono font-bold text-amber-400">
                   {state.mobs.length + (state.playerSpawned && !state.playerIsDead ? 1 : 0)} Units
                 </div>
               </div>
@@ -2791,77 +3389,80 @@ export default function RotLabView() {
         </div>
 
         {/* Right Column: Spawner, Loadout, and Manual Move Triggers */}
-        <div className="lg:col-span-5 space-y-4">
+        <div className="lg:col-span-5 space-y-3">
           
           {/* Entity Spawner Card */}
-          <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4">
-            <div className="flex items-center justify-between border-b border-[#1a241b] pb-2">
-              <span className="font-serif text-sm font-bold text-[#e0e7e0]">Entity Spawner</span>
-              <span className="text-[10px] font-mono text-[#5a6b5e]">Authentic Minecraft Stats</span>
+          <div className="p-3 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-2.5">
+            <div className="flex items-center justify-between border-b border-[#1a241b] pb-1.5">
+              <span className="font-serif text-xs font-bold text-[#e0e7e0]">Entity Spawner</span>
+              <span className="text-[9px] font-mono text-[#5a6b5e]">Authentic Java & Mod Stats</span>
             </div>
 
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div>
-                <label className="text-[11px] font-mono text-[#8a9a8c] block mb-1.5">Select Mob Type</label>
-                <div className="flex items-center gap-2">
-                  <select
+                <div className="flex items-center gap-1.5">
+                  <CustomSelect<ArenaMobType>
                     value={selectedSpawnMob}
-                    onChange={e => setSelectedSpawnMob(e.target.value as any)}
-                    className="flex-1 bg-[#141a15] border border-[#253327] rounded px-3 py-2 text-xs font-mono text-[#e0e7e0] focus:outline-none focus:border-red-600 appearance-none bg-no-repeat bg-[right_0.75rem_center] pr-8"
-                    style={{ backgroundImage: `url('data:image/svg+xml;utf8,<svg fill="%23a1a1aa" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')` }}
-                  >
-                    <option value="warden">Warden (500 HP, Sonic Boom & Melee)</option>
-                    <option value="iron_golem">Iron Golem (100 HP, Uppercut Toss)</option>
-                    <option value="creeper">Creeper (20 HP, Fuse & TNT Explosion)</option>
-                    <option value="skeleton">Skeleton (20 HP, Kiting & Arrows)</option>
-                    <option value="wither_skeleton">Wither Skeleton (20 HP, Stone Sword)</option>
-                    <option value="zombie">Zombie (20 HP, Swarm Pursuit)</option>
-                  </select>
-                  <select
+                    onChange={val => setSelectedSpawnMob(val)}
+                    widthClass="flex-1"
+                    options={[
+                      { value: 'warden', label: 'Warden (500 HP, Sonic Boom)' },
+                      { value: 'iron_golem', label: 'Iron Golem (100 HP, Uppercut)' },
+                      { value: 'vindicator', label: 'Vindicator (24 HP, Axe Sprint)' },
+                      { value: 'enderman', label: 'Enderman (40 HP, Evasion TP)' },
+                      { value: 'blaze', label: 'Blaze (20 HP, Fireball Volley)' },
+                      { value: 'creeper', label: 'Creeper (20 HP, 49 DMG Fuse)' },
+                      { value: 'skeleton', label: 'Skeleton (20 HP, Bow Charge)' },
+                      { value: 'wither_skeleton', label: 'Wither Skeleton (20 HP, Wither I)' },
+                      { value: 'zombie', label: 'Zombie (20 HP, Swarm Pursuit)' }
+                    ]}
+                  />
+                  <CustomSelect<number>
                     value={spawnCount}
-                    onChange={e => setSpawnCount(Number(e.target.value))}
-                    className="w-16 bg-[#141a15] border border-[#253327] rounded px-2 py-2 text-xs font-mono text-[#e0e7e0] focus:outline-none"
-                  >
-                    <option value={1}>1x</option>
-                    <option value={2}>2x</option>
-                    <option value={4}>4x</option>
-                    <option value={8}>8x</option>
-                  </select>
+                    onChange={val => setSpawnCount(val)}
+                    widthClass="w-18"
+                    options={[
+                      { value: 1, label: '1x' },
+                      { value: 2, label: '2x' },
+                      { value: 4, label: '4x' },
+                      { value: 8, label: '8x' }
+                    ]}
+                  />
                 </div>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-1.5">
                 <button
                   onClick={handleSpawnMobs}
-                  className="flex-1 px-3 py-2 bg-red-950/40 hover:bg-red-900/60 border border-red-800 text-red-300 text-xs font-mono font-bold rounded transition flex items-center justify-center gap-1.5"
+                  className="flex-1 px-2.5 py-1.5 bg-red-950/40 hover:bg-red-900/60 border border-red-800 text-red-300 text-xs font-mono font-bold rounded transition flex items-center justify-center gap-1 cursor-pointer"
                 >
-                  <Plus className="w-3.5 h-3.5" /> SPAWN MOBS
+                  <Plus className="w-3 h-3" /> SPAWN MOBS
                 </button>
                 <button
                   onClick={handleClearMobs}
-                  className="px-3 py-2 bg-[#141a15] hover:bg-[#1a221c] border border-[#2a382c] text-zinc-400 hover:text-zinc-200 text-xs font-mono rounded transition flex items-center gap-1.5"
+                  className="px-2.5 py-1.5 bg-[#141a15] hover:bg-[#1a221c] border border-[#2a382c] text-zinc-400 hover:text-zinc-200 text-xs font-mono rounded transition flex items-center gap-1 cursor-pointer"
                 >
-                  <Trash2 className="w-3.5 h-3.5" /> CLEAR
+                  <Trash2 className="w-3 h-3" /> CLEAR
                 </button>
               </div>
             </div>
 
             {/* Player AI & Loadout Controls */}
-            <div className="pt-3 border-t border-[#1a241b] space-y-3">
+            <div className="pt-2 border-t border-[#1a241b] space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-mono text-[#8a9a8c]">Player AI & Loadout</span>
-                <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono text-[#8a9a8c]">Player AI & Loadout</span>
+                <div className="flex items-center gap-1.5">
                   {state.playerIsDead && state.playerSpawned && (
                     <button
                       onClick={handleRespawnPlayer}
-                      className="text-[10px] font-mono px-2 py-0.5 rounded border bg-emerald-950/40 text-emerald-300 border-emerald-800 hover:bg-emerald-900/60 transition flex items-center gap-1"
+                      className="text-[9px] font-mono px-1.5 py-0.5 rounded border bg-emerald-950/40 text-emerald-300 border-emerald-800 hover:bg-emerald-900/60 transition flex items-center gap-1 cursor-pointer"
                     >
-                      <RefreshCw className="w-3 h-3" /> RESPAWN
+                      <RefreshCw className="w-2.5 h-2.5" /> RESPAWN
                     </button>
                   )}
                   <button
                     onClick={handleTogglePlayerSpawn}
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded border transition ${
+                    className={`text-[9px] font-mono px-1.5 py-0.5 rounded border transition cursor-pointer ${
                       state.playerSpawned
                         ? 'bg-emerald-950/40 text-emerald-300 border-emerald-800'
                         : 'bg-zinc-900 text-zinc-500 border-zinc-800'
@@ -2873,51 +3474,35 @@ export default function RotLabView() {
               </div>
 
               {state.playerSpawned && (
-                <div className="space-y-2">
-                  <select
+                <div className="space-y-1.5">
+                  <CustomSelect<PlayerCombatMode>
                     value={playerMode}
-                    onChange={e => setPlayerMode(e.target.value as any)}
-                    className="w-full bg-[#141a15] border border-[#253327] rounded px-3 py-2 text-xs font-mono text-[#e0e7e0] focus:outline-none appearance-none bg-no-repeat bg-[right_0.75rem_center] pr-8"
-                    style={{ backgroundImage: `url('data:image/svg+xml;utf8,<svg fill="%23a1a1aa" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')` }}
-                  >
-                    <option value="smart_auto">Smart Auto AI (Spacing, Crits, Totems)</option>
-                    <option value="direct_engage">Direct Goal Approach & Spacing</option>
-                    <option value="turtle_shield">Turtle Shield Defense</option>
-                    <option value="flee">Flee & Disengage</option>
-                    <option value="manual">Stationary Dummy</option>
-                  </select>
+                    onChange={val => setPlayerMode(val)}
+                    widthClass="w-full"
+                    options={[
+                      { value: 'smart_auto', label: 'Smart Auto AI (Spacing, Crits, Totems, Mace)' },
+                      { value: 'circle_strafe', label: 'Direct Goal Approach & Spacing' },
+                      { value: 'turtle_shield', label: 'Turtle Shield Defense' },
+                      { value: 'flee', label: 'Flee & Disengage' },
+                      { value: 'manual', label: 'Stationary Dummy' }
+                    ]}
+                  />
 
-                  <div className="p-2.5 bg-[#141a15] border border-[#253327] rounded space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-mono text-[#8a9a8c] flex items-center gap-1.5">
-                        <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-                        Totems of Undying:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="number"
-                          min="0"
-                          max="64"
-                          value={state.playerTotems}
-                          onChange={e => {
-                            const val = Math.max(0, Math.min(64, parseInt(e.target.value, 10) || 0));
-                            setState(prev => ({ ...prev, playerTotems: val }));
-                          }}
-                          className="w-16 bg-[#0a0f0c] border border-[#2a3a2d] focus:border-amber-500 rounded px-2 py-1 text-xs font-mono font-bold text-amber-300 text-center focus:outline-none"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1.5 pt-1 border-t border-[#1d271f]">
-                      <span className="text-[9px] font-mono text-zinc-500 uppercase">Presets:</span>
-                      {[0, 1, 3, 5, 10, 64].map(preset => (
+                  <div className="p-2 bg-[#141a15] border border-[#253327] rounded flex items-center justify-between">
+                    <span className="text-[10px] font-mono text-[#8a9a8c] flex items-center gap-1">
+                      <ShieldAlert className="w-3 h-3 text-amber-400" />
+                      Totems:
+                    </span>
+                    <div className="flex items-center gap-1">
+                      {[0, 1, 3, 5, 10].map(preset => (
                         <button
                           key={preset}
                           type="button"
                           onClick={() => setState(prev => ({ ...prev, playerTotems: preset }))}
-                          className={`text-[10px] font-mono px-2 py-0.5 rounded border transition ${
+                          className={`text-[9px] font-mono px-1.5 py-0.5 rounded border transition ${
                             state.playerTotems === preset
                               ? 'bg-amber-950/60 text-amber-300 border-amber-700 font-bold'
-                              : 'bg-[#101511] text-zinc-400 border-[#223024] hover:text-zinc-200 hover:border-zinc-700'
+                              : 'bg-[#101511] text-zinc-400 border-[#223024] hover:text-zinc-200'
                           }`}
                         >
                           {preset}
@@ -2931,138 +3516,138 @@ export default function RotLabView() {
           </div>
 
           {/* Manual Minos Moves & Combo Triggers with Live Cooldowns */}
-          <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-3">
-            <div className="flex items-center justify-between border-b border-[#1a241b] pb-2">
-              <div className="flex items-center gap-2">
-                <Swords className="w-4 h-4 text-amber-400" />
-                <span className="font-serif text-sm font-bold text-[#e0e7e0]">Manual Minos Moves & Combo Triggers</span>
+          <div className="p-3 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-2">
+            <div className="flex items-center justify-between border-b border-[#1a241b] pb-1.5">
+              <div className="flex items-center gap-1.5">
+                <Swords className="w-3.5 h-3.5 text-amber-400" />
+                <span className="font-serif text-xs font-bold text-[#e0e7e0]">Manual Minos Moves & Combo Triggers</span>
               </div>
-              <span className="text-[10px] font-mono text-zinc-500">Instant Execution</span>
+              <span className="text-[9px] font-mono text-zinc-500">Instant</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
               <button
                 onClick={() => triggerMove('thy_end_is_now')}
                 disabled={state.cdThyEndIsNow > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdThyEndIsNow > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-amber-700/60 text-amber-300'
                 }`}
               >
-                <span className="truncate">Thy End Is Now (4-Hit)</span>
+                <span className="truncate">Thy End Is Now</span>
                 {state.cdThyEndIsNow > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdThyEndIsNow}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdThyEndIsNow}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-amber-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-amber-400/60 shrink-0" />
                 )}
               </button>
               <button
                 onClick={() => triggerMove('judgment')}
                 disabled={state.cdJudgment > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdJudgment > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-red-700/60 text-red-300'
                 }`}
               >
-                <span className="truncate">Judgment (Dropkick)</span>
+                <span className="truncate">Judgment</span>
                 {state.cdJudgment > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdJudgment}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdJudgment}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-red-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-red-400/60 shrink-0" />
                 )}
               </button>
               <button
                 onClick={() => triggerMove('prepare_thyself')}
                 disabled={state.cdPrepareThyself > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdPrepareThyself > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-purple-700/60 text-purple-300'
                 }`}
               >
-                <span className="truncate">Prepare Thyself (Dash)</span>
+                <span className="truncate">Prepare Thyself</span>
                 {state.cdPrepareThyself > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdPrepareThyself}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdPrepareThyself}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-purple-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-purple-400/60 shrink-0" />
                 )}
               </button>
               <button
                 onClick={() => triggerMove('die_overhead')}
                 disabled={state.cdOverheadSlam > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdOverheadSlam > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-fuchsia-700/60 text-fuchsia-300'
                 }`}
               >
-                <span className="truncate">Die! (Overhead Slam)</span>
+                <span className="truncate">Die! Slam</span>
                 {state.cdOverheadSlam > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdOverheadSlam}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdOverheadSlam}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-fuchsia-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-fuchsia-400/60 shrink-0" />
                 )}
               </button>
               <button
                 onClick={() => triggerMove('heavy_punch')}
                 disabled={state.cdHeavyStrike > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdHeavyStrike > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-rose-700/60 text-rose-300'
                 }`}
               >
-                <span className="truncate">Heavy Strike (Shield Breaker)</span>
+                <span className="truncate">Heavy Strike</span>
                 {state.cdHeavyStrike > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdHeavyStrike}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdHeavyStrike}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-rose-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-rose-400/60 shrink-0" />
                 )}
               </button>
               <button
                 onClick={() => triggerMove('solar_laser')}
                 disabled={state.cdSolarLaser > 0 || state.rotIsDead}
-                className={`px-2.5 py-2 border rounded text-[11px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
+                className={`px-2 py-1.5 border rounded text-[10px] font-mono text-left transition flex items-center justify-between gap-1 min-w-0 ${
                   state.cdSolarLaser > 0
                     ? 'bg-zinc-900/60 border-zinc-800 text-zinc-500 cursor-not-allowed'
                     : 'bg-[#141a15] hover:bg-[#1f2b21] border-[#253327] hover:border-orange-700/60 text-orange-300'
                 }`}
               >
-                <span className="truncate">Sweeping Solar Raycast</span>
+                <span className="truncate">Solar Beam</span>
                 {state.cdSolarLaser > 0 ? (
-                  <span className="text-[10px] text-zinc-500 font-bold">{state.cdSolarLaser}t</span>
+                  <span className="text-[9px] text-zinc-500 font-bold">{state.cdSolarLaser}t</span>
                 ) : (
-                  <ArrowRight className="w-3 h-3 text-orange-400/60 shrink-0" />
+                  <ArrowRight className="w-2.5 h-2.5 text-orange-400/60 shrink-0" />
                 )}
               </button>
             </div>
           </div>
 
           {/* Combat Telemetry Log */}
-          <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-3">
-            <div className="flex items-center justify-between border-b border-[#1a241b] pb-2">
-              <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-emerald-400" />
-                <span className="font-serif text-sm font-bold text-[#e0e7e0]">Combat Telemetry Log</span>
+          <div className="p-3 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-2">
+            <div className="flex items-center justify-between border-b border-[#1a241b] pb-1.5">
+              <div className="flex items-center gap-1.5">
+                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="font-serif text-xs font-bold text-[#e0e7e0]">Combat Telemetry Log</span>
               </div>
               <button
                 onClick={() => setLogs([])}
-                className="text-[10px] font-mono text-[#6b7280] hover:text-[#a1a1aa]"
+                className="text-[9px] font-mono text-[#6b7280] hover:text-[#a1a1aa]"
               >
                 Clear Log
               </button>
             </div>
 
-            <div className="h-44 overflow-y-auto font-mono text-[10px] space-y-1.5 pr-2 select-text bg-[#060a07] p-3 rounded-lg border border-[#141c16]">
+            <div className="h-32 overflow-y-auto font-mono text-[9.5px] space-y-1 pr-1 select-text bg-[#060a07] p-2.5 rounded-lg border border-[#141c16]">
               {logs.length === 0 ? (
                 <div className="text-zinc-600 italic">No combat events recorded yet.</div>
               ) : (
                 logs.map((log, i) => (
                   <div
                     key={i}
-                    className={`leading-relaxed ${
+                    className={`leading-tight ${
                       log.includes('[DEATH]') || log.includes('[SHIELD BREAK]') || log.includes('[CREEPER')
                         ? 'text-red-400 font-semibold'
                         : log.includes('[MINOS') || log.includes('[COMBO') || log.includes('[IMPACT')
@@ -3101,209 +3686,514 @@ export default function RotLabView() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="px-3 py-1.5 bg-[#111612] border border-[#1e2b20] rounded-lg text-xs font-mono flex items-center gap-2">
-              <span className="text-zinc-500 uppercase">Active State:</span>
-              <span className="text-amber-400 font-bold">{state.combatState}</span>
+            <div className="px-3 py-1.5 bg-[#111612] border border-[#1e2b20] rounded-lg text-xs font-mono flex items-center justify-between gap-2.5 min-w-[210px] h-8 shrink-0 shadow-xs">
+              <span className="text-zinc-500 uppercase text-[10px] shrink-0 font-semibold">Active State:</span>
+              <span className="text-amber-400 font-bold tracking-tight truncate text-right">{state.combatState}</span>
             </div>
           </div>
         </div>
 
-        {/* Lobe Legend */}
-        <div className="flex flex-wrap items-center gap-4 text-xs font-mono px-3 py-2 bg-[#080c09] border border-[#18241b] rounded-lg">
-          <span className="text-zinc-500 font-semibold uppercase text-[10px]">Lobes:</span>
-          <div className="flex items-center gap-1.5 text-sky-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-sky-400 inline-block"></span>
-            <span>Sensory Bus</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-emerald-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
-            <span>Biological Adaptation</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-purple-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-purple-400 inline-block"></span>
-            <span>Master Nexus</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-amber-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
-            <span>Minos Combat FSM</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-rose-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span>
-            <span>Physical Actuators</span>
-          </div>
+        {/* Interactive Lobe Filter Bar */}
+        <div className="flex flex-wrap items-center gap-2 text-xs font-mono p-2 bg-[#080c09] border border-[#18241b] rounded-lg">
+          <span className="text-zinc-500 font-semibold uppercase text-[10px] pr-1">Filter Lobe:</span>
+          {[
+            { id: 'ALL', label: 'All Subsystems', color: '#a1a1aa' },
+            { id: 'PlayerBehaviorTracker', label: 'Sensory Bus', color: '#38bdf8' },
+            { id: 'TacticalNeuralNetwork', label: '96-Dim Tensor', color: '#818cf8' },
+            { id: 'BiologicalAdaptation', label: 'Biological Adaptation', color: '#34d399' },
+            { id: 'Nexus', label: 'Master Nexus', color: '#c084fc' },
+            { id: 'MinosFSM', label: 'Minos Combat FSM', color: '#fbbf24' },
+            { id: 'Actuators', label: 'Physical Actuators', color: '#f43f5e' }
+          ].map(lobe => (
+            <button
+              key={lobe.id}
+              onClick={() => setSelectedLobeFilter(lobe.id)}
+              className={`px-2.5 py-1 rounded text-[11px] font-mono transition flex items-center gap-1.5 ${
+                selectedLobeFilter === lobe.id
+                  ? 'bg-zinc-800 text-white font-bold border border-zinc-600 shadow-xs'
+                  : 'bg-[#101611] text-zinc-400 hover:text-zinc-200 border border-[#1e2a20]'
+              }`}
+            >
+              <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: lobe.color }}></span>
+              <span>{lobe.label}</span>
+            </button>
+          ))}
         </div>
 
         {/* Connected Circular Brain SVG Graph */}
         <div className="relative rounded-xl border border-[#1a261c] bg-[#050806] overflow-hidden p-2">
           <svg
-            viewBox="0 0 1020 560"
+            viewBox="0 0 1020 540"
             className="w-full h-auto block select-none"
-            style={{ minHeight: '440px' }}
+            style={{ minHeight: '420px' }}
           >
-            <defs>
-              {/* Glow Filter */}
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              <filter id="superGlow" x="-40%" y="-40%" width="180%" height="180%">
-                <feGaussianBlur stdDeviation="8" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-            </defs>
-
-            {/* Subtle Grid Background */}
-            <g opacity="0.08">
+            {/* Subtle Precision Grid Background */}
+            <g opacity="0.04">
               {Array.from({ length: 26 }).map((_, i) => (
-                <line key={`gx_${i}`} x1={i * 40} y1="0" x2={i * 40} y2="560" stroke="#4ade80" strokeWidth="1" />
+                <line key={`gx_${i}`} x1={i * 40} y1="0" x2={i * 40} y2="540" stroke="#4ade80" strokeWidth="1" />
               ))}
               {Array.from({ length: 15 }).map((_, i) => (
                 <line key={`gy_${i}`} x1="0" y1={i * 40} x2="1020" y2={i * 40} stroke="#4ade80" strokeWidth="1" />
               ))}
             </g>
 
-            {/* 1. Synaptic Connection Lines (Linking Connected Circles) */}
-            {brainSynapses.map(syn => {
+            {/* SVG Engineering Telemetry Header */}
+            <g opacity="0.6">
+              <text x="14" y="22" fill="#71717a" fontSize="9" fontFamily="monospace" fontWeight="600">
+                CORE CLOCK: 20.0 TPS (50ms) • TOPOLOGY: 8 IN → 16 HIDDEN (tanh) → 6 ACTION OUT (softmax)
+              </text>
+              <text x="1006" y="22" textAnchor="end" fill="#52525b" fontSize="9" fontFamily="monospace">
+                SYNAPTIC WEIGHTS: 224 ACTIVE TENSORS • KINEMATIC RESOLUTION: 0.05m
+              </text>
+            </g>
+
+            {/* Architectural Lobe Region Boundaries (Subtle Subsystem Enclosures) */}
+            <g opacity="0.25">
+              {[
+                { x: 25, y: 50, w: 165, h: 460, label: 'LOBE 01: SENSORY AFFERENTS', color: '#38bdf8' },
+                { x: 200, y: 50, w: 168, h: 460, label: 'LOBE 02: PERCEPTION & ADAPTATION', color: '#34d399' },
+                { x: 380, y: 50, w: 175, h: 460, label: 'LOBE 03: REFLEX CORE & KINEMATICS', color: '#818cf8' },
+                { x: 570, y: 50, w: 145, h: 460, label: 'LOBE 04: EXECUTIVE NEXUS', color: '#c084fc' },
+                { x: 728, y: 50, w: 145, h: 460, label: 'LOBE 05: COMBAT FSM', color: '#fbbf24' },
+                { x: 885, y: 50, w: 120, h: 460, label: 'LOBE 06: MOTOR EFFERENTS', color: '#f43f5e' }
+              ].map((zone, zIdx) => (
+                <g key={`zone_${zIdx}`}>
+                  <rect
+                    x={zone.x}
+                    y={zone.y}
+                    width={zone.w}
+                    height={zone.h}
+                    rx="10"
+                    fill="none"
+                    stroke={zone.color}
+                    strokeWidth="0.8"
+                    strokeDasharray="4 6"
+                    strokeOpacity="0.4"
+                  />
+                  <text
+                    x={zone.x + 8}
+                    y={zone.y + 14}
+                    fill={zone.color}
+                    fontSize="7.5"
+                    fontFamily="monospace"
+                    fontWeight="bold"
+                    opacity="0.75"
+                  >
+                    {zone.label}
+                  </text>
+                </g>
+              ))}
+            </g>
+
+            {/* 1. Static Clean Synaptic Connection Pathways with Micro Sheath Nodes */}
+            {brainSynapses.map((syn, synIndex) => {
               const fromN = brainNodes.find(n => n.id === syn.from);
               const toN = brainNodes.find(n => n.id === syn.to);
               if (!fromN || !toN) return null;
 
+              const isDimmed = selectedLobeFilter !== 'ALL' && fromN.lobe !== selectedLobeFilter && toN.lobe !== selectedLobeFilter;
               const c1X = fromN.x + (toN.x - fromN.x) * 0.5;
               const c1Y = fromN.y;
               const c2X = fromN.x + (toN.x - fromN.x) * 0.5;
               const c2Y = toN.y;
               const pathD = `M ${fromN.x} ${fromN.y} C ${c1X} ${c1Y}, ${c2X} ${c2Y}, ${toN.x} ${toN.y}`;
-
               const isHighlighted = selectedNodeId === syn.from || selectedNodeId === syn.to;
+              const midX = (fromN.x + toN.x) * 0.5;
+              const midY = (fromN.y + toN.y) * 0.5;
 
               return (
-                <g key={syn.id}>
-                  {/* Background Track Line */}
+                <g key={syn.id} opacity={isDimmed ? 0.12 : 1}>
+                  {/* Clean Hairline Axon Path */}
                   <path
                     d={pathD}
                     fill="none"
-                    stroke={syn.active ? syn.color : '#27272a'}
-                    strokeWidth={isHighlighted ? 3 : syn.active ? 2 : 1}
-                    strokeOpacity={isHighlighted ? 0.9 : syn.active ? 0.45 : 0.15}
-                    strokeDasharray={syn.active ? undefined : '4 4'}
+                    stroke={syn.active ? syn.color : '#1c241e'}
+                    strokeWidth={isHighlighted ? 2.0 : 1.0}
+                    strokeOpacity={isHighlighted ? 0.95 : syn.active ? 0.55 : 0.20}
                   />
 
-                  {/* Pulsing Synaptic Signal Stream */}
+                  {/* Active Synaptic Pathway Static Accent */}
                   {syn.active && (
                     <path
                       d={pathD}
                       fill="none"
                       stroke={syn.color}
-                      strokeWidth={isHighlighted ? 4 : 2.5}
-                      strokeDasharray="8 24"
-                      strokeLinecap="round"
-                      filter="url(#glow)"
-                      className="animate-pulse"
+                      strokeWidth={isHighlighted ? 2.0 : 1.2}
+                      strokeOpacity={isHighlighted ? 0.75 : 0.40}
+                      strokeDasharray="4 4"
+                    />
+                  )}
+
+                  {/* Synaptic Myelin Sheath Accent Node (Midpoint Micro-Notch) */}
+                  {syn.active && synIndex % 2 === 0 && (
+                    <circle
+                      cx={midX}
+                      cy={midY}
+                      r="1.8"
+                      fill={syn.color}
+                      opacity={isHighlighted ? 0.9 : 0.6}
                     />
                   )}
                 </g>
               );
             })}
 
-            {/* 2. Circular Brain Nodes */}
+            {/* 2. Detailed Connected Circular Biological Neurons (100% Motionless on Hover) */}
             {brainNodes.map(node => {
               const isSelected = selectedNodeId === node.id;
+              const isDimmed = selectedLobeFilter !== 'ALL' && node.lobe !== selectedLobeFilter;
               const IconComp = node.icon;
+              const isBottomRow = node.y > 400;
+
+              // 5 Authentic Radial Dendrite Filaments radiating from Soma Membrane
+              const dendriteAngles = [32, 90, 150, 215, 310];
+              // 8 Outer Ion-Channel Micro Ticks
+              const ionTicks = [0, 45, 90, 135, 180, 225, 270, 315];
 
               return (
                 <g
                   key={node.id}
                   transform={`translate(${node.x}, ${node.y})`}
-                  className="cursor-pointer transition-transform duration-200 hover:scale-105"
+                  opacity={isDimmed ? 0.20 : 1}
+                  className="cursor-pointer select-none"
+                  style={{ pointerEvents: 'auto', transition: 'none' }}
                   onClick={() => setSelectedNodeId(node.id)}
                 >
-                  {/* Outer Pulsing Halo */}
-                  {node.active && (
-                    <circle
-                      r={node.r + 6}
-                      fill="none"
-                      stroke={node.color}
-                      strokeWidth="1.5"
-                      strokeOpacity="0.4"
-                      className="animate-ping"
-                      style={{ animationDuration: '3s' }}
-                    />
-                  )}
-
-                  {/* Selection Ring */}
+                  {/* Selection Precision Reticle */}
                   {isSelected && (
                     <circle
-                      r={node.r + 5}
+                      r={node.r + 9}
                       fill="none"
                       stroke="#ffffff"
-                      strokeWidth="2"
-                      strokeDasharray="4 3"
-                      filter="url(#glow)"
+                      strokeWidth="1.2"
+                      strokeDasharray="2 3"
+                      strokeOpacity="0.95"
                     />
                   )}
 
-                  {/* Main Circle Body */}
+                  {/* Biological Dendritic Micro-Filaments (Neuron Spines) */}
+                  {dendriteAngles.map((deg, dIdx) => {
+                    const rad = (deg * Math.PI) / 180;
+                    const x1 = Math.cos(rad) * node.r;
+                    const y1 = Math.sin(rad) * node.r;
+                    const spineLen = dIdx % 2 === 0 ? 7.0 : 5.5;
+                    const x2 = Math.cos(rad) * (node.r + spineLen);
+                    const y2 = Math.sin(rad) * (node.r + spineLen);
+
+                    return (
+                      <g key={`dend_${dIdx}`}>
+                        <line
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke={node.active ? node.color : '#3f3f46'}
+                          strokeWidth="1.2"
+                          strokeOpacity={node.active ? 0.85 : 0.35}
+                        />
+                        {/* Terminal Bouton (Synaptic Bulb) */}
+                        <circle
+                          cx={x2}
+                          cy={y2}
+                          r="1.4"
+                          fill={node.active ? node.color : '#52525b'}
+                        />
+                      </g>
+                    );
+                  })}
+
+                  {/* Outer Ion-Channel Membrane Ticks */}
+                  {ionTicks.map((deg, tIdx) => {
+                    const rad = (deg * Math.PI) / 180;
+                    const tx1 = Math.cos(rad) * (node.r + 2.0);
+                    const ty1 = Math.sin(rad) * (node.r + 2.0);
+                    const tx2 = Math.cos(rad) * (node.r + 3.8);
+                    const ty2 = Math.sin(rad) * (node.r + 3.8);
+                    return (
+                      <line
+                        key={`ion_${tIdx}`}
+                        x1={tx1}
+                        y1={ty1}
+                        x2={tx2}
+                        y2={ty2}
+                        stroke={node.active ? node.color : '#27272a'}
+                        strokeWidth="0.8"
+                        strokeOpacity={node.active ? 0.6 : 0.3}
+                      />
+                    );
+                  })}
+
+                  {/* Outer Activation Scalar Arc Meter */}
                   <circle
-                    r={node.r}
-                    fill="#0a0f0c"
-                    stroke={isSelected ? '#ffffff' : node.active ? node.color : '#3f3f46'}
-                    strokeWidth={isSelected ? 3 : 2}
-                    filter={node.active ? 'url(#glow)' : undefined}
+                    r={node.r + 3.0}
+                    fill="none"
+                    stroke={node.active ? node.color : '#18201b'}
+                    strokeWidth="1.0"
+                    strokeDasharray={`${(node.r + 3.0) * Math.PI * 1.2} ${(node.r + 3.0) * Math.PI * 0.8}`}
+                    strokeOpacity={node.active ? 0.8 : 0.25}
                   />
 
-                  {/* Inner Core Circle */}
+                  {/* Primary Cellular Soma (Clean Bio-Glass Membrane) */}
                   <circle
-                    r={node.r * 0.72}
-                    fill={node.active ? `${node.color}22` : '#18181b'}
-                    stroke={node.active ? `${node.color}55` : '#27272a'}
+                    r={node.r}
+                    fill="#070a08"
+                    stroke={isSelected ? '#ffffff' : node.active ? node.color : '#27272a'}
+                    strokeWidth={isSelected ? 2 : node.active ? 1.5 : 1}
+                  />
+
+                  {/* Concentric Cellular Nucleus with Micro Circuit Ring */}
+                  <circle
+                    r={node.r * 0.45}
+                    fill={node.active ? `${node.color}22` : '#0f1410'}
+                    stroke={node.active ? `${node.color}50` : '#18201b'}
                     strokeWidth="1"
                   />
 
-                  {/* Icon Glyph in Circle Center */}
+                  {/* Central Core Ion Pip */}
+                  <circle
+                    r={2.0}
+                    fill={node.active ? node.color : '#52525b'}
+                  />
+
+                  {/* Centered Minimalist Glyph Icon */}
                   <foreignObject
-                    x={-14}
-                    y={-14}
-                    width={28}
-                    height={28}
+                    x={-10}
+                    y={-10}
+                    width={20}
+                    height={20}
                     className="pointer-events-none"
                   >
                     <div className="w-full h-full flex items-center justify-center">
                       <IconComp
-                        className="w-4 h-4"
+                        className="w-3 h-3"
                         style={{ color: node.active ? node.color : '#71717a' }}
                       />
                     </div>
                   </foreignObject>
 
-                  {/* Circle Header Label (Top or Bottom) */}
+                  {/* Minimalist Scientific Monospace Label */}
                   <text
-                    y={node.y > 400 ? -node.r - 8 : node.r + 15}
+                    y={isBottomRow ? -node.r - 8 : node.r + 13}
                     textAnchor="middle"
-                    fill="#e0e7e0"
-                    fontSize="11"
+                    fill="#e4e4e7"
+                    fontSize="9.5"
                     fontFamily="monospace"
-                    fontWeight="bold"
-                    className="pointer-events-none drop-shadow"
+                    fontWeight="600"
+                    className="pointer-events-none"
                   >
                     {node.label}
                   </text>
 
-                  {/* Circle Live Metric Badge */}
+                  {/* Stable Subtitle Badge (Completely Motionless & Non-Jittering) */}
                   <text
-                    y={node.y > 400 ? -node.r - 22 : node.r + 28}
+                    y={isBottomRow ? -node.r - 19 : node.r + 23}
                     textAnchor="middle"
                     fill={node.active ? node.color : '#71717a'}
-                    fontSize="10"
+                    fontSize="8.5"
                     fontFamily="monospace"
-                    fontWeight="bold"
+                    fontWeight="500"
                     className="pointer-events-none"
                   >
-                    {node.val}
+                    {node.badge}
                   </text>
                 </g>
               );
             })}
           </svg>
+        </div>
+
+        {/* Informative & Categorized 96-Dimensional Sensory Tensor Vector Bus */}
+        <div className="p-3.5 bg-[#070b08] border border-[#18251a] rounded-xl space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#141d15] pb-2">
+            <div className="flex items-center gap-2">
+              <Cpu className="w-4 h-4 text-indigo-400 shrink-0" />
+              <span className="font-serif text-xs font-bold text-[#e0e7e0]">
+                Tactical Neural Network: 96-Dimensional Sensory Input Tensor Bus
+              </span>
+            </div>
+            <div className="text-[10px] font-mono text-zinc-400">
+              <span className="text-indigo-400 font-bold">96 Normalized Floating Inputs</span> • 48 Hidden Tensor (ReLU) • 15 Action Distributions
+            </div>
+          </div>
+
+          {/* Categorized 6-Channel Telemetry Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs font-mono">
+            {/* 1. Kinematics & Spatial Geometry */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-sky-400 font-bold text-[11px] flex items-center gap-1">
+                  <Target className="w-3 h-3" /> [00..15] Kinematics & Space
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-sky-950/60 text-sky-300 border border-sky-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Target Distance:</span>
+                  <span className="text-sky-300 font-bold">{state.distanceToTarget.toFixed(1)}m (Norm: {Math.min(1.0, state.distanceToTarget / 15.0).toFixed(2)})</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Velocity Vector:</span>
+                  <span className="text-zinc-300">ΔX:{state.rotDeltaX.toFixed(2)} ΔZ:{state.rotDeltaZ.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Target Lead Position:</span>
+                  <span className="text-zinc-300">({state.predictedTargetX.toFixed(1)}, {state.predictedTargetZ.toFixed(1)})</span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-sky-400 h-full transition-all duration-300" style={{ width: `${Math.min(100, (state.distanceToTarget / 15.0) * 100)}%` }} />
+              </div>
+            </div>
+
+            {/* 2. Entity Vitals & Dynamic Mitigation */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-emerald-400 font-bold text-[11px] flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3" /> [16..31] Vitals & Mitigation
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Rot Health Ratio:</span>
+                  <span className="text-red-400 font-bold">{state.rotHealth.toFixed(0)}/550 ({(state.rotHealth / state.rotMaxHealth * 100).toFixed(0)}%)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Target Health:</span>
+                  <span className="text-emerald-300">{state.playerHealth.toFixed(1)} HP {state.playerAbsorption > 0 ? `+${state.playerAbsorption.toFixed(0)} Abs` : ''}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Adaptive Resistance:</span>
+                  <span className="text-emerald-400 font-bold">+{(state.totalAdaptiveResistance * 100).toFixed(0)}% (15 Armor)</span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-emerald-400 h-full transition-all duration-300" style={{ width: `${(state.totalAdaptiveResistance / 0.8) * 100}%` }} />
+              </div>
+            </div>
+
+            {/* 3. Minos Ability Cooldown Clocks */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-amber-400 font-bold text-[11px] flex items-center gap-1">
+                  <Clock className="w-3 h-3" /> [32..47] Ability Cooldowns
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-amber-950/60 text-amber-300 border border-amber-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Thy End Is Now / Judgment:</span>
+                  <span className="text-amber-300">{state.cdThyEndIsNow}t / {state.cdJudgment}t</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Prepare Thyself / Slam:</span>
+                  <span className="text-amber-300">{state.cdPrepareThyself}t / {state.cdOverheadSlam}t</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Solar Raycast Beam:</span>
+                  <span className="text-orange-400">{state.cdSolarLaser > 0 ? `${state.cdSolarLaser}t CD` : 'READY (0.0)'}</span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-amber-400 h-full transition-all duration-300" style={{ width: `${Math.max(10, Math.min(100, (state.cdThyEndIsNow / 150) * 100))}%` }} />
+              </div>
+            </div>
+
+            {/* 4. Player Combat Cadence & Welford Stats */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-purple-400 font-bold text-[11px] flex items-center gap-1">
+                  <Activity className="w-3 h-3" /> [48..63] Player Cadence (Welford)
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-purple-950/60 text-purple-300 border border-purple-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Distance Welford:</span>
+                  <span className="text-purple-300">μ={state.welfordDistance.mean.toFixed(1)}m σ={state.welfordDistance.stdDev.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Attack Interval Z-Score:</span>
+                  <span className="text-purple-300">Z={state.welfordAttackInterval.zScore.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Shield Blocking State:</span>
+                  <span className={state.playerIsBlocking ? 'text-rose-400 font-bold' : 'text-zinc-500'}>
+                    {state.playerIsBlocking ? 'BLOCKING (Shield Crusher Trigger)' : 'OPEN / UNGUARDED'}
+                  </span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-purple-400 h-full transition-all duration-300" style={{ width: `${Math.min(100, Math.abs(state.welfordAttackInterval.zScore) * 35)}%` }} />
+              </div>
+            </div>
+
+            {/* 5. Threat Radar & Crowd Geometry */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-rose-400 font-bold text-[11px] flex items-center gap-1">
+                  <Swords className="w-3 h-3" /> [64..79] Threat & Projectile Radar
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-rose-950/60 text-rose-300 border border-rose-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Active Combat Threats:</span>
+                  <span className="text-rose-300 font-bold">{state.mobs.length + (state.playerSpawned && !state.playerIsDead ? 1 : 0)} Units</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Projectiles / Shockwaves:</span>
+                  <span className="text-zinc-300">{state.projectiles.length} Arrows / {state.shockwaves.length} Waves</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Composite Threat Score:</span>
+                  <span className="text-rose-400 font-bold">{(state.universalEngine.compositeThreatScore * 100).toFixed(0)}%</span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-rose-400 h-full transition-all duration-300" style={{ width: `${state.universalEngine.compositeThreatScore * 100}%` }} />
+              </div>
+            </div>
+
+            {/* 6. Strategic Hivemind & Role Auction */}
+            <div className="p-2.5 bg-[#0b100c] border border-[#1b271d] rounded-lg space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-indigo-400 font-bold text-[11px] flex items-center gap-1">
+                  <Database className="w-3 h-3" /> [80..95] Hivemind & Role Auction
+                </span>
+                <span className="text-[9px] px-1.5 py-0.2 rounded bg-indigo-950/60 text-indigo-300 border border-indigo-800">
+                  16 Channels
+                </span>
+              </div>
+              <div className="space-y-1 text-[10px] text-zinc-400">
+                <div className="flex justify-between">
+                  <span>Active Role Allocation:</span>
+                  <span className="text-indigo-300 font-bold">{state.roleAuction.activeRole} ({(state.roleAuction.bidUtility * 100).toFixed(0)}%)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Hivemind Global Encounters:</span>
+                  <span className="text-zinc-300">{state.hivemindData.globalEncounters} Recorded</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Swarm Dominance Index:</span>
+                  <span className="text-emerald-400">{(state.hivemindData.swarmDominanceIndex * 100).toFixed(0)}%</span>
+                </div>
+              </div>
+              <div className="w-full bg-zinc-900 h-1.5 rounded overflow-hidden">
+                <div className="bg-indigo-400 h-full transition-all duration-300" style={{ width: `${state.roleAuction.bidUtility * 100}%` }} />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Selected Neural Node Inspector */}
@@ -3365,28 +4255,28 @@ export default function RotLabView() {
 
       {/* TAB 3: The Rot's Ability Timing, Cooldowns & Frame Data Matrix */}
       {activeTab === 'abilities' && (
-      <div className="p-6 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1a241b] pb-4">
-          <div className="flex items-center gap-2.5">
-            <Clock className="w-5 h-5 text-amber-400" />
+      <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1a241b] pb-3">
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-amber-400" />
             <div>
-              <h2 className="font-serif text-lg font-bold text-[#e0e7e0]">
+              <h2 className="font-serif text-base font-bold text-[#e0e7e0]">
                 The Rot: Ability Timing, Cooldowns & Frame Data Registry
               </h2>
-              <p className="text-xs text-[#8a9a8c]">
-                Exact per-tick timing, windup frames, active collision windows, recovery duration, and mass knockback impulses from Java source code.
+              <p className="text-[11px] text-[#8a9a8c]">
+                Exact per-tick timing, windup frames, active collision windows, recovery duration, and mass knockback impulses from Java source.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-lg bg-[#111612] border border-[#1e2b20] text-zinc-400">
+          <div className="flex items-center gap-2 text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#111612] border border-[#1e2b20] text-zinc-400">
             <span>Tick Standard:</span>
             <span className="text-emerald-400 font-bold">20 TPS (50ms/t)</span>
           </div>
         </div>
 
         {/* Ability Matrix Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
           {Object.entries(ROTS_ABILITY_REGISTRY).map(([key, ability]) => {
             let currentCd = 0;
             if (key === 'thy_end_is_now') currentCd = state.cdThyEndIsNow;
@@ -3544,20 +4434,20 @@ export default function RotLabView() {
 
       {/* TAB 4: Java Mod AI Core Subsystems Inspector & Hivemind Matrix */}
       {activeTab === 'hivemind' && (
-      <div className="p-6 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-6">
-        <div className="flex items-center gap-2.5 border-b border-[#1a241b] pb-4">
-          <Database className="w-5 h-5 text-indigo-400" />
+      <div className="p-4 bg-[#0c0e0c] border border-[#1d251e] rounded-xl space-y-4">
+        <div className="flex items-center gap-2 border-b border-[#1a241b] pb-3">
+          <Database className="w-4 h-4 text-indigo-400" />
           <div>
-            <h2 className="font-serif text-lg font-bold text-[#e0e7e0]">
+            <h2 className="font-serif text-base font-bold text-[#e0e7e0]">
               The Rot's Mod Brain Subsystems (Java Source Architecture)
             </h2>
-            <p className="text-xs text-[#8a9a8c]">
+            <p className="text-[11px] text-[#8a9a8c]">
               Synchronized Java data models including UniversalEngine, AttackPredictorAdapters, CombatProfile, RotHivemindSavedData, and InterceptionPrediction.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {/* UniversalEngine & Predictors */}
           <div className="p-4 bg-[#0a0f0b] border border-[#1b271d] rounded-xl space-y-3">
             <div className="flex items-center justify-between border-b border-[#162017] pb-2">
@@ -3633,5 +4523,6 @@ export default function RotLabView() {
       </div>
       )}
     </div>
+    </UpdatedFrame>
   );
 }
