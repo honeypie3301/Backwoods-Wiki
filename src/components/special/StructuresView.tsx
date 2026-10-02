@@ -90,7 +90,7 @@ export default function StructuresView() {
       dimension: "The Backwoods",
       dimensionId: "backwoods",
       tag: "Boundary Glitch",
-      scale: "Monolithic Planks (6,275,412m+)",
+      scale: "Monolithic Planks (836,721m+)",
       materials: ["Solid Oak Planks", "Rotten Oak Logs"],
       desc: "Massive solid walls of Oak Planks and structural distortion extending infinitely towards world boundaries.",
       features: [
