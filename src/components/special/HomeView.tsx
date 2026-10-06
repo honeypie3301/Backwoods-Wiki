@@ -50,7 +50,7 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Extreme Threat Bestiary Redesigns:</strong> Overhauled Lignum Gigas and Verdant Engine entries with interactive multi-ability accordions, 3-phase behavioral state matrices, and tailored tactical survival directives.</li>
+              <li><strong className="text-amber-300">Oak Pyramid & Monolithic Buildings:</strong> Cataloged new monumental structures in The Backwoods, including the stepped Oak Pyramid in Wood Plains and the 250,000-block boundary Monolithic Oak Wall towers.</li>
               <li><strong className="text-amber-300">Woodweaver Boss Dossier Revamp:</strong> Reconstructed the Woodweaver profile into a comprehensive dossier matching the Rot's architecture, featuring a 10-ability behavioral accordion and an interactive 3-phase state matrix.</li>
             </ul>
           </div>

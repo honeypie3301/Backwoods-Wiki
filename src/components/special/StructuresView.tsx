@@ -68,6 +68,42 @@ export default function StructuresView() {
   const structures: StructureItem[] = [
     // THE BACKWOODS
     {
+      id: "oak_pyramid",
+      name: "Oak Pyramid",
+      dimension: "The Backwoods",
+      dimensionId: "backwoods",
+      tag: "Stepped Monument",
+      scale: "24x24 to 30x30m Base (12-15m Height)",
+      materials: ["Oak Stairs", "Oak Planks", "End Crystal"],
+      desc: "A massive stepped pyramid constructed from layered oak stairs and planks, housing a hollow inner sanctum with a floating End Crystal at its center.",
+      features: [
+        "Stepped Exterior: Built from ascending concentric tiers of outward-facing oak stairs with mitered corner steps and interior plank backing.",
+        "Central Sanctum: Features a hollow interior chamber with an unanchored End Crystal hovering two blocks above the central floor.",
+        "Anchored Foundation: Solid oak plank foundations extend downward into subterranean ground up to 32 blocks to prevent floating on hillsides."
+      ],
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/oak_pyramid.png",
+      isUpdated: true
+    },
+    {
+      id: "monolithic_oak_wall",
+      name: "Monolithic Oak Wall",
+      dimension: "The Backwoods",
+      dimensionId: "backwoods",
+      tag: "Perimeter Megastructure",
+      scale: "5-10m Footprint, 10-70m Towers (|X| or |Z| = 250,000m)",
+      materials: ["Oak Planks", "End Crystals"],
+      desc: "A colossal boundary formation of tall wooden monoliths and tower structures generating strictly along the 250,000-block perimeter boundary.",
+      features: [
+        "Boundary Exclusion Zone: Exclusively generates within a 70-block perimeter band along |X| or |Z| between 250,000 and 250,070 blocks across Wood Plains, Deep Backwoods, and The Thicket.",
+        "High-Density Clusters: Spawns dense clusters of 4 to 8 monolithic tower buildings per chunk, soaring to heights between 10 and 70 blocks.",
+        "Rooftop Beacons: Buildings generate as solid monoliths (70%) or hollow shells (30%), each crowned with a base-less End Crystal floating at its rooftop apex."
+      ],
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/monolithic_oak_wall.png",
+      isUpdated: true
+    },
+    {
       id: "a_staircase",
       name: "A Staircase",
       dimension: "The Backwoods",
