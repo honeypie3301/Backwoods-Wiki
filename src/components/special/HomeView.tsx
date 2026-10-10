@@ -51,7 +51,7 @@ export default function HomeView() {
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
               <li><strong className="text-amber-300">Oak Pyramid & Monolithic Buildings:</strong> Cataloged new monumental structures in The Backwoods, including the stepped Oak Pyramid in Wood Plains and the 250,000-block boundary Monolithic Oak Wall towers.</li>
-              <li><strong className="text-amber-300">Woodweaver Boss Dossier Revamp:</strong> Reconstructed the Woodweaver profile into a comprehensive dossier matching the Rot's architecture, featuring a 10-ability behavioral accordion and an interactive 3-phase state matrix.</li>
+              <li><strong className="text-amber-300">Mental Degradation — Stage 4 Prosopagnosia:</strong> Documented the Stage 4 neural breakdown mechanism where explorers suffer micro-bursts of Prosopagnosia, inducing face blindness, mannequin reskinning, total sky blackout, and mob panic.</li>
             </ul>
           </div>
         </div>

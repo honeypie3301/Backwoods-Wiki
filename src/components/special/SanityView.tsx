@@ -12,7 +12,9 @@ import {
   HeartCrack,
   ChevronRight,
   Flame,
-  Zap
+  Zap,
+  UserX,
+  Ghost
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
 
@@ -109,6 +111,18 @@ export default function SanityView() {
         {
           name: "Master Silence",
           detail: "All non-essential audio is silenced; ambient tracks, wind, and distant mob sounds cease entirely."
+        },
+        {
+          name: "Prosopagnosia Spasms",
+          detail: "Periodic micro-bursts of Prosopagnosia strike in rapid succession (3 to 6 micro-bursts lasting 1 to 5 ticks each), causing sudden disorienting detachment from reality."
+        },
+        {
+          name: "Face Blindness & Entity Mannequins",
+          detail: "All nametags vanish. Other players and humanoid entities render as faceless oak mannequins, while non-humanoid fauna appear wrapped in raw oak planks."
+        },
+        {
+          name: "Total Sky & Fog Blackout",
+          detail: "The celestial sphere turns pitch black, obliterating the sun, moon, and stars, while a dense spherical black fog wall constricts vision between 56 and 96 blocks."
         },
         {
           name: "Spontaneous Wood Decay",
@@ -343,6 +357,78 @@ export default function SanityView() {
               </div>
             </div>
           </UpdatedFrame>
+
+          {/* PROSOPAGNOSIA STATUS BREAKDOWN */}
+          <UpdatedFrame id="prosopagnosia_condition" isUpdated={true}>
+            <div className="p-5 sm:p-6 bg-[#0f1310] border border-red-500/30 rounded-xl space-y-5 shadow-lg">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#241a1a] pb-3">
+                <div className="flex items-center gap-2.5">
+                  <UserX className="w-5 h-5 text-red-400" />
+                  <div>
+                    <h3 className="font-serif text-lg font-bold text-[#e0e7e0]">
+                      Stage 4 Affliction: Prosopagnosia
+                    </h3>
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-red-400/80">
+                      Acute Neuro-Visual Agnosia & Perceptual Severance
+                    </span>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-red-950/40 border border-red-700/50 text-red-300 self-start sm:self-auto">
+                  HARMFUL STATUS EFFECT
+                </span>
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#c9d1c9] leading-relaxed">
+                During Stage 4 exposure, the mind suffers periodic bursts of <strong className="text-red-400">Prosopagnosia</strong>. In this state, neural recognition circuits fail completely, rendering the explorer unable to identify entities, individuals, or environmental markers.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Explorer Perspective */}
+                <div className="p-4 bg-[#131111] border border-red-950/60 rounded-lg space-y-2.5">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase font-bold text-red-300">
+                    <Eye className="w-4 h-4 text-red-400" />
+                    <span>Explorer Perceptual Impact</span>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#9ba89d] leading-relaxed list-disc list-inside">
+                    <li>
+                      <strong className="text-[#e0e7e0]">Face Blindness & Entity Mannequins:</strong> All other players render with featureless oak wooden skins. Non-Backwoods humanoid mobs take on oak biped appearances, while other fauna appear wrapped in raw oak planks.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Nametag Erasure:</strong> All nametags on players and entities are completely stripped from view.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Sky Obliteration & Spherical Fog:</strong> An unlit pitch-black cube envelops the sky dome, blotting out the sun, moon, and stars across all dimensions. A spherical black fog boundary traps visibility between 56 and 96 blocks.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Acoustic Cleansing:</strong> All background music, records, and ambient sound events are instantly stopped and suppressed, leaving only native Backwoods audio.
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Mob Behavioral Agnosia */}
+                <div className="p-4 bg-[#131111] border border-red-950/60 rounded-lg space-y-2.5">
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase font-bold text-red-300">
+                    <Ghost className="w-4 h-4 text-red-400" />
+                    <span>Mob Behavioral Agnosia</span>
+                  </div>
+                  <ul className="space-y-2 text-xs text-[#9ba89d] leading-relaxed list-disc list-inside">
+                    <li>
+                      <strong className="text-[#e0e7e0]">Breakdown of Pack & Loyalty:</strong> Afflicted mobs immediately drop combat targets, lose aggressive intent, cease neutral anger states, and break sitting stances. They can no longer distinguish masters or packmates from threats.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Indiscriminate Panic:</strong> Within a 16-block horizontal radius, afflicted mobs flee from any visible living entity at 1.45x normal movement speed, glancing back with a 30% chance per tick.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Phantom Hallucinations:</strong> When isolated from real entities, mobs have a 2% chance per tick to hallucinate imaginary threats for 30 to 70 ticks—triggering sudden startle jumps, fleeing from phantom vectors, and violent head jerks up to 180 degrees.
+                    </li>
+                    <li>
+                      <strong className="text-[#e0e7e0]">Backwoods Entity Immunity:</strong> All native Backwoods entities are fully immune and immediately purge the effect if applied.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </UpdatedFrame>
         </div>
 
         {/* SUMMARY REFERENCE MATRIX TABLE */}
@@ -392,8 +478,8 @@ export default function SanityView() {
                   <td className="p-3 font-bold text-red-400">Stage 4</td>
                   <td className="p-3 font-mono">26m 00s</td>
                   <td className="p-3 font-mono">31,200 ticks</td>
-                  <td className="p-3">Master silence blanket across all channels</td>
-                  <td className="p-3 text-red-300 font-semibold">Wood decay, forced phase displacements</td>
+                  <td className="p-3">Master silence blanket; ambient audio censored</td>
+                  <td className="p-3 text-red-300 font-semibold">Prosopagnosia (face blindness, nametag erasure, black sky/fog), wood decay, phase pulls</td>
                 </tr>
               </tbody>
             </table>
