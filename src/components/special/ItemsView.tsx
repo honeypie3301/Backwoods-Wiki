@@ -143,12 +143,13 @@ export default function ItemsView() {
         { label: "Acquisition Method", value: "Stonecutter (1 Sharpened Splinter Shard)" },
         { label: "The Grain Ignition Rate", value: "100% in Grain; 50% in Overworld; 30% in Backwoods; 20% in Loss" },
         { label: "Portal Frame Required", value: "Oak Planks / Splintered Oak Planks" },
-        { label: "Status Effect Inflicted", value: "Splintered Effect (0.1 thorns damage every 3s)" }
+        { label: "Status Effect Inflicted", value: "Splintered (30.0s unarmored / 3.0s armored)" }
       ],
       notes: [
         "When used on an Oak Planks frame, ignites the portal to The Grain dimension.",
-        "Pricks the holder for 0.095 damage every 160 ticks while held unless protected by Inoculation.",
-        "Deals minor damage on hit and inflicts the Splintered status effect on targets."
+        "Self-Pricking: Pricks the holder for 0.095 damage every 160 ticks while held unless protected by Inoculation.",
+        "Combat Splintering: Striking an unarmored target (0 armor value) inflicts the Splintered status effect for 30.0 seconds (600 ticks). If the target has any armor, duration drops to 3.0 seconds (60 ticks).",
+        "Splintered Mechanics: Deals 0.1 Thorns damage every 60 ticks (3.0 seconds) throughout duration. This damage is completely prevented if the target has the Inoculation status effect."
       ]
     },
     {
@@ -498,12 +499,18 @@ export default function ItemsView() {
       id: "recovered_faded_tools",
       name: "Recovered Faded Tools Set",
       category: "tools",
+      isUpdated: true,
       desc: "Stabilized, highly specialized versions of the Faded tools that offer passive repair mechanics and specific harvesting boosts.",
       subItems: [
         { name: "Recovered Faded Axe", damage: "9.0", speed: "1.0", durability: "60" },
-        { name: "Recovered Faded Pickaxe", damage: "3.0", speed: "1.2", durability: "50", notes: "Grants short Haste boost while mining Nullstone blocks" },
+        { name: "Recovered Faded Pickaxe", damage: "3.0", speed: "1.2", durability: "50", notes: "+2.5 Block Break Speed haste while mining Nullstone" },
         { name: "Recovered Faded Shovel", damage: "3.0", speed: "1.0", durability: "45" },
         { name: "Recovered Faded Hoe", damage: "1.0", speed: "4.0", durability: "50", notes: "Instantly shears Sedgebrush with a 6% chance to drop Petrified Resin" }
+      ],
+      notes: [
+        "Nullstone Extraction Haste: When beginning to mine Nullstone blocks with the Recovered Faded Pickaxe, grants a transient +2.5 Block Break Speed attribute modifier (the_backwoods:nullstonehaste), significantly accelerating mining throughput.",
+        "Sedgebrush Shearing: Using the Recovered Faded Hoe on Sedgebrush instantly breaks the plant with a 6% chance to drop Petrified Resin.",
+        "Passive Durability: Stabilized construction provides considerably higher durability thresholds than unrefined Faded tools."
       ]
     },
     {

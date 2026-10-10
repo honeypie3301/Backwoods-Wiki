@@ -122,6 +122,10 @@ export default function DimensionsView() {
         {
           title: "The Rot Deployment",
           desc: "Triggered at ≥40 threat with strong spores, or automatically if ≥25 small spores swarm. Summons crash down from the sky with a 10-minute cooldown."
+        },
+        {
+          title: "Realm Defense System",
+          desc: "Anti-cheese environmental defenses actively suppress large-scale sabotage: primed TNT entities are deleted while blinding the igniter with Blindness and Darkness; large lava deposits (10+ blocks) are instantly purged into air with campfire smoke; spreading fire (40+ blocks) triggers an automated domino extinguish purge across the sector."
         }
       ]
     },
@@ -275,6 +279,10 @@ export default function DimensionsView() {
         {
           title: "Arch Build Support",
           desc: "Advanced decorative features and procedurally aligned mazes are optimized for NeoForge 1.21.x builds."
+        },
+        {
+          title: "Realm Defense System",
+          desc: "Anti-cheese environmental defenses actively suppress griefing: primed TNT immediately inflicts Blindness and Darkness on the player and is discarded before detonating; placing 10 or more lava blocks purges the lava into air with campfire smoke; creating 40 or more fire blocks triggers an automated domino extinguish purge."
         }
       ]
     },
@@ -410,8 +418,8 @@ export default function DimensionsView() {
           desc: "Entering the Ashen Barrens biome inflicts 'Heavy Lungs', restricting mining speed, movement, attack rate, and oxygen levels."
         },
         {
-          title: "Unstable Fire",
-          desc: "Combustion is highly unstable. Fire flickers out instantly when left unattended inside this dimension."
+          title: "Realm Fire Defense",
+          desc: "Combustion is highly unstable. Igniting 40 or more fire blocks within the area triggers an automated domino extinguish purge across a 128-block radius, while smaller flames rapidly flicker out unattended."
         }
       ]
     },
@@ -444,6 +452,10 @@ export default function DimensionsView() {
         {
           title: "Shrinking Safe Zones",
           desc: "Tracks active Blindspot Splinters. Local exclusion safety zones decay from 120 blocks down to a suffocating 16 blocks the longer you survive."
+        },
+        {
+          title: "Realm Defense System",
+          desc: "Anti-cheese environmental defenses active: primed explosives trigger Blindness and Darkness on the player and are discarded before exploding; large-scale lava deposits (10+ blocks) are purged into air; widespread fire (40+ blocks) triggers an automatic domino purge."
         }
       ]
     }

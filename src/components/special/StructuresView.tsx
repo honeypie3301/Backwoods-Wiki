@@ -326,7 +326,8 @@ export default function StructuresView() {
       features: [
         "Bedrock Punchout: Replaces vanilla bedrock blocks at Y=-64 to Y=-59 with randomized 3 to 5.5 block radius blobs.",
         "Flattened Ellipsoid Clusters: Stamped across bedrock floor layers from Y=-64 to Y=-59 with a 3 to 5.5 block radius.",
-        "Void Apertures: Creates direct fall holes into the Void at the bottom of the world."
+        "Void Apertures: Creates direct fall holes into the Void at the bottom of the world.",
+        "Void Evacuation Protocol: Falling through these bedrock holes into the void below Y=-64 does not cause death. The underworld triggers an emergency evacuation, safely teleporting the player back to the Overworld on the highest surface ground."
       ],
       color: "border-stone-600 text-stone-300",
       image: "structures/void_planks.png",

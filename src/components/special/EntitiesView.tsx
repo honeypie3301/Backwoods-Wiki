@@ -857,6 +857,47 @@ export default function EntitiesView() {
         </p>
       </div>
 
+      {/* SENSOR INTERFERENCE & F3 COORDINATE OBFUSCATION */}
+      <UpdatedFrame id="entity_sensor_interference" isUpdated={true}>
+        <div className="p-5 bg-[#0e120f] border border-[#223326] rounded-xl space-y-3 shadow-md">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1c291f] pb-3">
+            <div className="flex items-center gap-2 text-[#709978] font-mono text-xs uppercase font-bold tracking-wider">
+              <Compass className="w-4 h-4 text-emerald-400" />
+              <span>Sensory Distortion: Proximity Interference & F3 Obfuscation</span>
+            </div>
+            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#142018] border border-[#284030] text-emerald-300 self-start sm:self-auto">
+              24-BLOCK PROXIMITY FIELD
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-[#c9d1c9] leading-relaxed">
+            Approaching within <strong className="text-white">24 blocks</strong> of anomalous Backwoods organisms actively jams navigational tools and telemetry overlays to prevent coordinate evading:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            <div className="p-3.5 bg-[#0a0d0b] border border-[#1a251c] rounded-lg space-y-1.5">
+              <div className="font-serif text-xs font-bold text-[#e0e7e0] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span>Compass Needle Instability</span>
+              </div>
+              <p className="text-xs text-[#829285] leading-relaxed pl-3.5">
+                The compass needle oscillates and twitches violently away from world spawn, spinning with velocity proportional to creature distance. Apex organisms (The Rot, Lignum Gigas, and Fractus Prime) amplify this distortion up to 1.8x.
+              </p>
+            </div>
+
+            <div className="p-3.5 bg-[#0a0d0b] border border-[#1a251c] rounded-lg space-y-1.5">
+              <div className="font-serif text-xs font-bold text-[#e0e7e0] flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <span>F3 Debug Screen Scrambling</span>
+              </div>
+              <p className="text-xs text-[#829285] leading-relaxed pl-3.5">
+                Coordinates and situational data in the F3 debug screen are dynamically scrambled into shifting gibberish. At moderate proximity, XYZ coordinates, Block, Chunk, Facing direction, Biome, and entity count are scrambled; at close contact, the entire overlay is obscured.
+              </p>
+            </div>
+          </div>
+        </div>
+      </UpdatedFrame>
+
       {/* Main Grid: Sidebar + Profile Details */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
