@@ -1411,12 +1411,13 @@ export default function EntitiesView() {
               <div className="p-4 bg-[#120e09] border border-[#3d2a0d]/20 rounded-lg space-y-1.5">
                 <h5 className="font-serif text-sm font-bold text-[#d1a851]">Kinship Alarm (On Death)</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  Upon death, a Splinter broadcasts a panic wave that forces all woodbound entities within range into an enraged hunt state for <strong className="text-[#e7c787] font-mono">600 ticks (30s)</strong>.
+                  Upon death, a Splinter broadcasts a panic wave that forces all woodbound entities within range into an enraged hunt state for <strong className="text-[#e7c787] font-mono">600 ticks (30s)</strong>. The alert radius dynamically scales with game difficulty:
                 </p>
-                <div className="grid grid-cols-3 gap-2 pt-2 font-mono text-[10px] text-center text-[#829285]">
-                  <div className="p-2 bg-[#090705] rounded">Easy: <strong className="text-[#5ea386]">24 blocks</strong></div>
-                  <div className="p-2 bg-[#090705] rounded">Normal: <strong className="text-[#d1a851]">40 blocks</strong></div>
-                  <div className="p-2 bg-[#090705] rounded">Hard: <strong className="text-red-400">64 blocks</strong></div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 font-mono text-[10px] text-center text-[#829285]">
+                  <div className="p-2 bg-[#090705] rounded border border-[#231a0e]/40">Easy: <strong className="text-[#5ea386]">28 blocks</strong></div>
+                  <div className="p-2 bg-[#090705] rounded border border-[#231a0e]/40">Normal: <strong className="text-[#d1a851]">40 blocks</strong></div>
+                  <div className="p-2 bg-[#090705] rounded border border-[#231a0e]/40">Hard: <strong className="text-amber-500">90 blocks</strong></div>
+                  <div className="p-2 bg-[#090705] rounded border border-[#231a0e]/40">Hardcore: <strong className="text-red-400">160 blocks</strong></div>
                 </div>
               </div>
 
@@ -1587,6 +1588,79 @@ export default function EntitiesView() {
                           })()}
                         </tbody>
                       </table>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* RANGED THREAT DISCRIMINATION (Shared across the four Splinter variants) */}
+          {['splinter', 'log_splinter', 'blindspot_splinter', 'petrified_splinter'].includes(currentEntity.id) && (
+            <div className="pt-4 border-t border-[#1a221c]">
+              <UpdatedFrame id={`ranged_threat_discrimination_${currentEntity.id}`} isUpdated={true}>
+                <div className="p-5 bg-[#0a0c0a] border border-[#232f25] rounded-xl space-y-4">
+                  <div className="flex items-center gap-2">
+                    <ShieldAlert className="w-4 h-4 text-[#709978]" />
+                    <h5 className="font-serif text-base font-bold text-[#e0e7e0]">
+                      Ranged Threat Discrimination (<code className="text-[#a9d1b0] text-xs font-mono">SplinterHivemind</code>)
+                    </h5>
+                  </div>
+
+                  <p className="text-xs text-[#8c8779] leading-relaxed">
+                    All four active Splinter sub-species (standard Splinter, Log Splinter, Blindspot Splinter, and Petrified Log Splinter) employ a tactical threat evaluation algorithm via the <code className="text-[#a9d1b0]">SplinterHivemind</code>. When confronted with ranged weaponry, the AI calculates whether an incoming projectile poses lethal danger before executing evasion, cover seeking, or flanking maneuvers.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div className="p-3 bg-[#110f0d] border border-[#3d2a0d]/30 rounded-lg space-y-2">
+                      <div className="text-[#d1a851] font-bold font-mono text-[11px] uppercase flex items-center gap-1.5">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>Active Lethal Threats Recognized</span>
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed font-sans">
+                        The entity actively monitors the player hand state and detects projectile threats:
+                      </p>
+                      <ul className="text-[11px] text-[#8c8779] list-disc pl-4 space-y-1 font-mono">
+                        <li><strong className="text-[#e7c787]">Bows:</strong> Actively drawn bows aimed at or near the entity.</li>
+                        <li><strong className="text-[#e7c787]">Crossbows:</strong> Charged and loaded crossbows aimed in range.</li>
+                        <li><strong className="text-[#e7c787]">Tridents:</strong> Aimed or readied throwing tridents.</li>
+                        <li><strong className="text-[#e7c787]">Wind Charges:</strong> Held and primed wind charge projectiles.</li>
+                        <li><strong className="text-[#e7c787]">Damaging Potions:</strong> Harmful splash or lingering potions (Harming, Poison, Slowness, Weakness).</li>
+                      </ul>
+                    </div>
+
+                    <div className="p-3 bg-[#0d120e] border border-[#1c271e] rounded-lg space-y-2">
+                      <div className="text-[#5ea386] font-bold font-mono text-[11px] uppercase flex items-center gap-1.5">
+                        <Shield className="w-3.5 h-3.5 shrink-0" />
+                        <span>Harmless Projectiles Ignored</span>
+                      </div>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed font-sans">
+                        The AI determines whether a projectile can deal real damage. Projectiles with zero base damage are completely filtered out:
+                      </p>
+                      <ul className="text-[11px] text-[#8c8779] list-disc pl-4 space-y-1 font-mono">
+                        <li><strong className="text-[#a9d1b0]">Snowballs &amp; Eggs:</strong> Completely ignored; splinters refuse to panic, break position, or waste stamina evading harmless items.</li>
+                        <li><strong className="text-[#a9d1b0]">Non-Lethal Throws:</strong> Does not trigger defensive retreat or cover seeking if the throwable cannot kill or wound the entity.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                    <div className="p-3 bg-[#0b0e0c] border border-[#1d2720] rounded-lg space-y-1.5">
+                      <h6 className="font-mono font-bold text-[11px] uppercase text-[#709978]">
+                        The Patience Trap Protocol
+                      </h6>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        When safely tucked behind solid cover (<code className="text-[#a9d1b0]">BOW_COVER</code>), if an archer keeps their bow drawn and aimed at the cover position, the Splinter patiently holds position. Rather than suicidally charging into a pre-aimed arrow after failed flank path checks, it remains sheltered until the player releases their shot, lowers their aim, or switches weapons.
+                      </p>
+                    </div>
+
+                    <div className="p-3 bg-[#0b0e0c] border border-[#1d2720] rounded-lg space-y-1.5">
+                      <h6 className="font-mono font-bold text-[11px] uppercase text-[#709978]">
+                        Wide Screened Flank Arcs
+                      </h6>
+                      <p className="text-[#8c8779] text-[11px] leading-relaxed">
+                        When navigating out of cover (<code className="text-[#a9d1b0]">BOW_FLANK</code>), the Splinter abandons linear direct charges and erratic jittering. Instead, it traces wide lateral arcs perpendicular to the attacker's line of fire, using environmental obstacles to remain occluded until closing to close-quarters striking distance.
+                      </p>
                     </div>
                   </div>
                 </div>
