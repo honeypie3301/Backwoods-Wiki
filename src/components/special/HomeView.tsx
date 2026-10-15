@@ -50,10 +50,10 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Oak Pyramid & Monolithic Buildings:</strong> Cataloged new monumental structures in The Backwoods, including the stepped Oak Pyramid in Wood Plains and the 250,000-block boundary Monolithic Oak Wall towers.</li>
-              <li><strong className="text-amber-300">Mental Degradation — Stage 4 Prosopagnosia:</strong> Documented the Stage 4 neural breakdown mechanism where explorers suffer micro-bursts of Prosopagnosia, inducing face blindness, mannequin reskinning, total sky blackout, and mob panic.</li>
-              <li><strong className="text-amber-300">Realm Defense & Sensor Obfuscation:</strong> Documented anti-cheese realm defenses (anti-TNT blinding/purge, anti-lava, and domino fire extinguishment) across dimensions, and cataloged 24-block entity proximity sensor interference (spinning compass needles and F3 coordinate obfuscation).</li>
-              <li><strong className="text-amber-300">Underworld Evacuation & Combat Scaling:</strong> Added the Sub-Strata void fall evacuation protocol to Void Bedrock Planks, documented Splinter Needle unarmored vs armored duration scaling, and detailed Recovered Faded Pickaxe Nullstone extraction haste.</li>
+              <li><strong className="text-amber-300">New Backwoods Architectural Features:</strong> Added technical dossiers and bio-structural lore for Prototaxites (7-8m pre-vascular fungal-lichen fossil monoliths in Wood Plains), Timber Beams (high-altitude petrified ligaments spanning 14-70m canyon chasms), and Flying Buttress Shoring (diagonal valley-to-mountain compressive tendon struts).</li>
+              <li><strong className="text-amber-300">Oak Pyramid & Menger Sponge Calibrations:</strong> Documented the Oak Pyramid 1 in 1,000 chunks (0.1% per chunk) rarity filter, and updated the Small Menger Sponge composition to 98% Petrified Oak Planks, 1% Splintered Oak, and 1% Lignum Caro with internal Furnace, Bed, and Chest loot chambers.</li>
+              <li><strong className="text-amber-300">Void Basement Categorization:</strong> Reclassified the Void Basement structure under The Grain dimension, detailing active generation across all 5 Grain biomes (Uniform Grain, Stillwood, Pillar Thicket, Fractured Barrens, and Labyrinthine Grids).</li>
+              <li><strong className="text-amber-300">Mental Degradation & Realm Defenses:</strong> Documented Stage 4 Prosopagnosia visual-neural breakdowns, anti-cheese realm defenses (anti-TNT, anti-lava, and domino fire extinguishment), and 24-block entity proximity sensor obfuscation.</li>
             </ul>
           </div>
         </div>

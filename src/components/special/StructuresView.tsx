@@ -72,17 +72,75 @@ export default function StructuresView() {
       name: "Oak Pyramid",
       dimension: "The Backwoods",
       dimensionId: "backwoods",
-      tag: "Stepped Monument",
-      scale: "24x24 to 30x30m Base (12-15m Height)",
+      tag: "Stepped Monument (Extreme Rarity)",
+      scale: "24x24 to 30x30m Base, 12-15m Height (Rarity: 1 in 1,000 Chunks / 0.1%)",
       materials: ["Oak Stairs", "Oak Planks", "End Crystal"],
-      desc: "A massive stepped pyramid constructed from layered oak stairs and planks, housing a hollow inner sanctum with a floating End Crystal at its center.",
+      desc: "An exceptionally rare stepped monument constructed from layered oak stairs and planks, housing a hollow inner sanctum with a floating End Crystal at its center.",
       features: [
+        "Extreme Rarity Filter: Configured with a minecraft:rarity_filter chance of 1 in 1000 chunks (0.1% chance per chunk) in Wood Plains during the surface structures phase.",
         "Stepped Exterior: Built from ascending concentric tiers of outward-facing oak stairs with mitered corner steps and interior plank backing.",
         "Central Sanctum: Features a hollow interior chamber with an unanchored End Crystal hovering two blocks above the central floor.",
         "Anchored Foundation: Solid oak plank foundations extend downward into subterranean ground up to 32 blocks to prevent floating on hillsides."
       ],
       color: "border-amber-700/40 text-amber-300",
       image: "structures/oak_pyramid.png",
+      isUpdated: true
+    },
+    {
+      id: "prototaxites",
+      name: "Prototaxites",
+      dimension: "The Backwoods",
+      dimensionId: "backwoods",
+      tag: "Pre-Vascular Bio-Fossil Spire",
+      scale: "7 to 8 Blocks Tall (3x3 Footing to 1-Block Summit)",
+      materials: ["Lignum Caro", "Oak Log (Fallback)"],
+      desc: "Fossilized macroscopic fungal-lichen monoliths composed of dense, uninfected Lignum Caro tissue. These columnar spires represent ancient pre-vascular biological structures that stabilized terrestrial soil horizons prior to the emergence of modern arboreal canopies.",
+      features: [
+        "Biome Distribution & Rarity: Spawns exclusively in Wood Plains with a minecraft:rarity_filter chance of 1 in 100 chunks (1.0%) during the surface structures generation phase.",
+        "Morphological Stratification: Generates in strict anatomical vertical stages: flared basal footing (Layer 0, 3x3 cross with 65% corner swell), transition collar (Layer 1), thickened annular trunk (Layers 2-3), tapering stem (Layers 4-5), and a blunt rounded dome summit (Layers 6-7).",
+        "Anti-Suspension Extrusion: Solid downward foundation seal extrudes 1 to 3 blocks into underlying terrain beneath the flared base to prevent hovering on uneven topography.",
+        "Organic Curvature: Features a 35% probability of a 1-block natural axial lean along X or Z over its full height."
+      ],
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/prototaxites.png",
+      isUpdated: true
+    },
+    {
+      id: "timber_beam",
+      name: "Timber Beam",
+      dimension: "The Backwoods",
+      dimensionId: "backwoods",
+      tag: "Petrified Canyon Ligament",
+      scale: "14 to 70m Canyon Span (Radius 2 to 4 Blocks, ~34m Elevation Above Gorge Floor)",
+      materials: ["Oak Wood (50%)", "Oak Planks (40%)", "Petrified Oak Planks (10%)"],
+      desc: "Colossal horizontal ligaments and petrified fibrous shunts suspended across canyon chasms. Rather than manufactured carpentry, these structures are organic connective tissues that fuse separated tectonic landmasses together across high-relief gorges.",
+      features: [
+        "Topographical Precondition: Only initiates across canyons possessing at least 22 blocks of vertical terrain relief between floor and opposing cliff summits.",
+        "Catenary Sag: Simulates natural gravitational deflection with a subtle downward droop of up to 0.8 blocks across span centers.",
+        "Deep Wall Anchoring: Both ends penetrate 7 or more blocks into opposing cliff faces to ensure continuous structural integration without floating edges.",
+        "Biome Distribution & Placement: Configured with 6 placement attempts per chunk across Wood Plains, Deep Backwoods, and The Thicket during the surface structures phase."
+      ],
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/timber_beams.png",
+      isUpdated: true
+    },
+    {
+      id: "flying_buttress_shoring",
+      name: "Flying Buttress Shoring",
+      dimension: "The Backwoods",
+      dimensionId: "backwoods",
+      tag: "Diagonal Valley Tendon Strut",
+      scale: "16 to 34m Span (Base Radius 2.0 Blocks / 4-5 Block Thickness, 18+ Blocks Elevation Rise)",
+      materials: ["Oak Wood (50%)", "Oak Planks (40%)", "Petrified Oak Planks (10%)"],
+      desc: "Massive diagonal woody tendons bridging low-lying valley floors directly into opposing mountain shoulders. These fibrous compression struts anchor steep cliff faces, spanning open triangular air voids to hold sloped topography in place.",
+      features: [
+        "Triangular Chasm Void: Requires guaranteed open air clearance between the low-lying valley footing and the elevated cliff connection point.",
+        "High-Slope Shoulder Connection: Raycasts across 12 cardinal and intercardinal bearings, embedding into the mountain wall at 75% to 85% of total cliff rise (minimum 18 blocks elevation gain).",
+        "Footing Anchor Seal: Valley footing features a flared radius base supported by a downward ground anchor extruding up to 6 blocks into the terrain.",
+        "Biome Distribution & Placement: Configured with 3 placement attempts per chunk across Wood Plains, Deep Backwoods, and The Thicket during the surface structures phase."
+      ],
+      color: "border-amber-700/40 text-amber-300",
+      image: "structures/flying_buttress_shoring.png",
       isUpdated: true
     },
     {
@@ -160,19 +218,39 @@ export default function StructuresView() {
       dimension: "The Backwoods",
       dimensionId: "backwoods",
       tag: "Fractal Formation",
-      scale: "Compact Recursive Cube (2% Spawn Rate / Chunk)",
-      materials: ["Lignum Caro (90%)", "Splintered Oak (9%)", "Oak Planks (1%)", "Chest", "Furnace", "Red Bed"],
-      desc: "A compact 3D recursive cubic sponge constructed from weighted organic Caro and oak materials.",
+      scale: "27x27x27m Recursive Cube (Y=-50 to Y=-24)",
+      materials: ["Petrified Oak Planks (98%)", "Splintered Oak Planks (1%)", "Lignum Caro (1%)", "Chest", "Furnace", "Red Bed"],
+      desc: "A compact 27-block recursive 3D fractal sponge generating in the subterranean depth of The Backwoods, composed predominantly of petrified oak with rare splintered and caro inclusions.",
       features: [
-        "Weighted Material Mix: Generated from 90% organic Lignum Caro, 9% Splintered Oak, and 1% Oak Planks.",
-        "Interior Loot Voids: Hollow internal fractal chambers contain Furnaces, Loot Chests, and Red Beds.",
-        "Compact Redoubt: Functions as a defensive shelter against hostile surface predators."
+        "Calibrated Composition: Generated from 98% Petrified Oak Planks, 1% Splintered Oak Planks, and 1% Lignum Caro via deterministic spatial coordinate hashing.",
+        "Subterranean Elevation: Generates within Y=-50 to Y=-24 across a 27x27x27 block cubic grid, safely stopping above bedrock at Y=-59.",
+        "Interior Void Shelters: Hollow fractal cavities have deterministic structure rolls for Furnaces (2% chance), Red Beds (8% chance), and Loot Chests (15% chance with small_menger_sponge_loot table)."
       ],
       color: "border-amber-700/40 text-amber-300",
-      image: "structures/small_menger_sponge.png"
+      image: "structures/small_menger_sponge.png",
+      isUpdated: true
     },
 
     // THE GRAIN
+    {
+      id: "void_basement",
+      name: "Void Basement",
+      dimension: "The Grain",
+      dimensionId: "grain",
+      tag: "Subterranean Sub-Grid Undercroft",
+      scale: "Y=-50 to Y=-13 (Catwalks at Y=-34)",
+      materials: ["Oak Planks (Catwalks & Plates)", "Oak Fences"],
+      desc: "A submerged undercroft generating across The Grain featuring sharp 90-degree walkway networks over deep cavern voids.",
+      features: [
+        "Biome Distribution: Generates in Uniform Grain, Stillwood, Pillar Thicket, Fractured Barrens, and Labyrinthine Grids during the top layer modification phase.",
+        "Catwalk Array: 2-block wide Oak Plank catwalks at Y=-34 following 'Square Snake' grid paths (24-block frequency).",
+        "Downward Support: Oak Fence columns extend downward every 5 blocks beneath catwalk intersections.",
+        "Enclosed Volume: Sealed above (Y=-13) and below (Y=-50) by solid Oak Plank floor/ceiling layers."
+      ],
+      color: "border-yellow-700/40 text-yellow-300",
+      image: "structures/void_basement.png",
+      isUpdated: true
+    },
     {
       id: "cavern_grid",
       name: "Cavern Grid",
@@ -294,24 +372,6 @@ export default function StructuresView() {
       ],
       color: "border-stone-600 text-stone-300",
       image: "structures/the_underside.png",
-      isUpdated: true
-    },
-    {
-      id: "void_basement",
-      name: "Void Basement",
-      dimension: "The Sub-Strata",
-      dimensionId: "substrata",
-      tag: "Subterranean Sub-Grid",
-      scale: "Y=-50 to Y=-13 (Catwalks at Y=-34)",
-      materials: ["Oak Planks (Catwalks & Plates)", "Oak Fences"],
-      desc: "A submerged undercroft beneath Sub-Strata floorboards featuring sharp 90-degree walkway networks over deep voids.",
-      features: [
-        "Catwalk Array: 2-block wide Oak Plank catwalks at Y=-34 following 'Square Snake' grid paths (24-block frequency).",
-        "Downward Support: Oak Fence columns extend downward every 5 blocks beneath catwalk intersections.",
-        "Enclosed Volume: Sealed above (Y=-13) and below (Y=-50) by solid Oak Plank floor/ceiling layers."
-      ],
-      color: "border-stone-600 text-stone-300",
-      image: "structures/void_basement.png",
       isUpdated: true
     },
     {
