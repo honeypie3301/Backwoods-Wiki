@@ -3,7 +3,7 @@ import {
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
   EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin, Layers,
-  MessageSquare, Copy, Check, Terminal
+  MessageSquare, Copy, Check, Terminal, Search, X
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
@@ -157,6 +157,7 @@ interface EntityProfile {
   desc: string;
   aka?: string;
   isUpdated?: boolean;
+  _matchReason?: string;
 }
 
 const getThreatBadgeStyle = (threatLevel: string) => {
@@ -179,6 +180,7 @@ const getThreatBadgeStyle = (threatLevel: string) => {
 
 export default function EntitiesView() {
   const [selectedEntity, setSelectedEntity] = useState<string>('hewn_splinter');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
   const [activeGigasState, setActiveGigasState] = useState<'dormant' | 'anchored' | 'growling'>('dormant');
@@ -891,11 +893,72 @@ export default function EntitiesView() {
 
       if (matched) {
         setSelectedEntity(matched.id);
+        setSearchQuery('');
       }
     };
     window.addEventListener('wiki-scroll-to-heading', handleHeadingClick);
     return () => window.removeEventListener('wiki-scroll-to-heading', handleHeadingClick);
   }, [entities]);
+
+  const getAbilitiesForEntity = (entityId: string): Ability[] => {
+    switch (entityId) {
+      case 'rot': return rotAbilities;
+      case 'woodweaver': return woodweaverAbilities;
+      case 'ash_weaver': return ashWeaverAbilities;
+      case 'lignum_gigas': return lignumGigasAbilities;
+      case 'verdant_engine': return verdantEngineAbilities;
+      default: return [];
+    }
+  };
+
+  const getEntityExtraKeywords = (entityId: string): string => {
+    switch (entityId) {
+      case 'stilt_walker':
+        return 'Spawn Grace Protection System 20 ticks 1s 60 ticks 3s stalk cycle predictive dodging immune damage';
+      case 'ash_weaver':
+        return 'Botanical Symbiote Sub-Realm Warden 87.5-block clearance The Thicket 11-state FSM companion follow teleport trauma memory flower barriers chat commands stay home rules natural spawning rules kinetic environmental profile';
+      case 'fractus':
+      case 'fractus_prime':
+        return 'Tractor beam grip escape energy sphere burst echolocation network sub-terranean fortification sonar acoustic radar concussive shockwave';
+      case 'splinter':
+        return 'SplinterAgeProcedure Angel Weeping Stalker profile 100 blocks evacuation instinct safe fall distance 7 blocks water movement';
+      case 'log_splinter':
+      case 'blindspot_splinter':
+      case 'petrified_splinter':
+        return 'Decay Stages Structural Limitations Rose Wilt Trigger Hardness Cap canOcclude';
+      case 'lignum_palus':
+        return 'Architectural mimicry gaze hypnosis flashing particle aura grid-aligned teleportation Y=20 Y=46 subterranean';
+      case 'lignum_vermis':
+        return 'Tunneling subterranean burrowing earth tremor ambush';
+      case 'hewn_splinter':
+        return 'Static wooden effigy projectile arrow immunity fluid pushes falling anvils invulnerability';
+      case 'woodweaver':
+        return 'The Grain dormant stalker emergency smoke screen gaze evasion dread accumulation cellular collapse vaporize beam core exhaustion ramming dash combustion wave';
+      case 'rot':
+        return 'Alpha Threat Sentinel 96-node synthetic neural array superheater armor choke sonic boom acoustic shockwave rider kick aerial martial strikes mace dive cellular surge multi-agent swarm boss immunity override';
+      case 'verdant_engine':
+        return 'Spacetime anomaly 2500 HP reality anchoring gravitational collapse singularity pulses';
+      case 'lignum_gigas':
+        return 'Colossal kinetic stomp ancient bark armor ground pound shockwave forest resonance anchored';
+      case 'kyne_splinter':
+        return 'Erratic movement high agility';
+      case 'dorceless_splinter':
+        return 'Heavy armored plating plodding gait';
+      case 'hollow':
+        return 'Phase-shifting spruce biped explosions drowning';
+      case 'lignum_spina':
+      case 'petrified_lignum_spina':
+        return 'Thorns reflection sweet berry thorns damage Y=50 upper forest';
+      case 'lignum_echinus':
+      case 'petrified_lignum_echinus':
+        return 'Spikes sweet berry thorns damage';
+      case 'lignum_trilobita':
+      case 'petrified_lignum_trilobita':
+        return 'Suffocation resistance falling anvils';
+      default:
+        return '';
+    }
+  };
 
   const sortedEntities = React.useMemo(() => {
     if (sortBy === 'default') return entities;
@@ -905,6 +968,134 @@ export default function EntitiesView() {
       return sortBy === 'threat-asc' ? valA - valB : valB - valA;
     });
   }, [sortBy, entities]);
+
+  const filteredEntities = React.useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return sortedEntities;
+
+    const queryWords = query.split(/\s+/).filter(Boolean);
+
+    const matches: { entity: EntityProfile; score: number; matchReason: string }[] = [];
+
+    for (const entity of sortedEntities) {
+      const abilities = getAbilitiesForEntity(entity.id);
+      const immunities = ENTITY_IMMUNITIES[entity.id] || [];
+      const extraKeywords = getEntityExtraKeywords(entity.id);
+      const abilityString = abilities.map(a => `${a.title} ${a.trigger} ${a.description} ${a.category}`).join(' ');
+      const immunityString = immunities.join(' ');
+
+      const combinedText = [
+        entity.id,
+        entity.name,
+        entity.title,
+        entity.aka || '',
+        entity.threatLevel,
+        entity.hp,
+        entity.damage,
+        entity.armor,
+        entity.speed,
+        entity.dim,
+        entity.desc,
+        immunityString,
+        abilityString,
+        extraKeywords
+      ].join(' ').toLowerCase();
+
+      const allWordsMatch = queryWords.every(w => combinedText.includes(w));
+      if (!allWordsMatch) continue;
+
+      let score = 0;
+      let matchReason = '';
+
+      const nameLower = entity.name.toLowerCase();
+      const idLower = entity.id.toLowerCase();
+      const titleLower = entity.title.toLowerCase();
+      const akaLower = (entity.aka || '').toLowerCase();
+
+      if (idLower === query) {
+        score += 1000;
+        matchReason = 'Exact ID';
+      } else if (nameLower === query) {
+        score += 800;
+        matchReason = 'Exact Name';
+      } else if (nameLower.startsWith(query)) {
+        score += 500;
+        matchReason = 'Name Match';
+      } else if (nameLower.includes(query)) {
+        score += 300;
+        matchReason = 'Name Match';
+      } else if (akaLower.includes(query)) {
+        score += 250;
+        matchReason = `AKA: ${entity.aka}`;
+      } else if (titleLower.includes(query)) {
+        score += 200;
+        matchReason = entity.title;
+      } else {
+        const foundAbility = abilities.find(a => 
+          a.title.toLowerCase().includes(query) || 
+          a.category.toLowerCase().includes(query) || 
+          a.description.toLowerCase().includes(query) ||
+          a.trigger.toLowerCase().includes(query)
+        );
+        if (foundAbility) {
+          score += 150;
+          matchReason = `Ability: ${foundAbility.title}`;
+        } else {
+          const foundImmunity = immunities.find(imm => imm.toLowerCase().includes(query));
+          if (foundImmunity) {
+            score += 130;
+            matchReason = `Immunity: ${foundImmunity}`;
+          } else if (entity.threatLevel.toLowerCase().includes(query)) {
+            score += 110;
+            matchReason = `Threat: ${entity.threatLevel}`;
+          } else if (entity.dim.toLowerCase().includes(query)) {
+            score += 90;
+            matchReason = `Habitat / Dim`;
+          } else if (entity.hp.toLowerCase().includes(query) || entity.damage.toLowerCase().includes(query)) {
+            score += 80;
+            matchReason = `Combat Stat`;
+          } else {
+            score += 40;
+            matchReason = `Dossier Content`;
+          }
+        }
+      }
+
+      matches.push({ entity, score, matchReason });
+    }
+
+    matches.sort((a, b) => b.score - a.score);
+    return matches.map(m => ({ ...m.entity, _matchReason: m.matchReason }));
+  }, [searchQuery, sortedEntities]);
+
+  // Auto-select the top matching entity when search query changes
+  useEffect(() => {
+    if (!searchQuery.trim()) return;
+    if (filteredEntities.length > 0) {
+      const topEntity = filteredEntities[0];
+      setSelectedEntity(topEntity.id);
+
+      const query = searchQuery.trim().toLowerCase();
+      const abilities = getAbilitiesForEntity(topEntity.id);
+      const matchedAbilityIdx = abilities.findIndex(a => 
+        a.title.toLowerCase().includes(query) || 
+        a.description.toLowerCase().includes(query) || 
+        a.category.toLowerCase().includes(query) ||
+        a.trigger.toLowerCase().includes(query)
+      );
+
+      if (matchedAbilityIdx !== -1) {
+        if (topEntity.id === 'ash_weaver') {
+          setOpenAshWeaverAbilityIndex(matchedAbilityIdx);
+        } else {
+          setOpenAbilityIndex(matchedAbilityIdx);
+        }
+      } else {
+        setOpenAbilityIndex(0);
+        setOpenAshWeaverAbilityIndex(0);
+      }
+    }
+  }, [searchQuery]);
 
   const currentEntity = entities.find(e => e.id === selectedEntity) || entities[0];
 
@@ -963,8 +1154,52 @@ export default function EntitiesView() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         {/* Sidebar Selector */}
-        <div className="lg:col-span-4 space-y-2">
-          <div className="flex items-center justify-between mb-3">
+        <div className="lg:col-span-4 space-y-3">
+          {/* Entity Search Bar */}
+          <UpdatedFrame id="entity_search_module" isUpdated={true}>
+            <div className="p-3 bg-[#0a0d0b] border border-[#1b251d] rounded-lg space-y-2 shadow-sm">
+              <div className="relative">
+                <Search className="absolute left-2.5 top-2.5 w-3.5 h-3.5 text-[#5a6b5e]" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search entities, abilities, stats..."
+                  className="w-full pl-8 pr-7 py-1.5 text-xs bg-[#050705] border border-[#172019] text-[#c9d1c9] rounded-md focus:outline-none focus:border-[#709978] placeholder-[#445247] transition-all font-mono"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-2 top-2 text-[#5a6b5e] hover:text-[#e0e7e0] p-0.5 rounded transition-colors cursor-pointer"
+                    title="Clear search"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
+              <div className="flex items-center justify-between text-[10px] font-mono text-[#5a6b5e]">
+                <span>
+                  {searchQuery.trim() ? (
+                    <span className="text-emerald-400 font-semibold">
+                      {filteredEntities.length} matching {filteredEntities.length === 1 ? 'entity' : 'entities'}
+                    </span>
+                  ) : (
+                    <span>{entities.length} documented organisms</span>
+                  )}
+                </span>
+                {searchQuery.trim() && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="text-[#709978] hover:text-[#a9d1b0] underline cursor-pointer text-[9px]"
+                  >
+                    Clear Filter
+                  </button>
+                )}
+              </div>
+            </div>
+          </UpdatedFrame>
+
+          <div className="flex items-center justify-between pt-1">
             <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e]">Threat Database Index</h4>
             <button 
               onClick={() => {
@@ -979,30 +1214,51 @@ export default function EntitiesView() {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-1.5 max-h-[420px] lg:max-h-none overflow-y-auto pr-1 scrollbar-thin">
-            {sortedEntities.map(e => (
-              <div key={e.id}>
-                <UpdatedFrame id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
-                  <button
-                    onClick={() => handleEntitySelect(e.id)}
-                    className={`w-full text-left px-2.5 py-1.5 rounded-md border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
-                      selectedEntity === e.id
-                        ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
-                        : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
-                    }`}
-                  >
-                    <div className="flex justify-between items-center w-full">
-                      <span className="font-serif text-xs text-[#e0e7e0] flex items-center gap-1">
-                        {e.name}
-                      </span>
-                      <span className={`text-[7px] font-mono uppercase px-1 py-0.5 rounded ${getThreatBadgeStyle(e.threatLevel)}`}>
-                        {e.threatLevel}
-                      </span>
-                    </div>
-                    <div className="text-[9px] text-[#5a6b5e] font-mono mt-0.5 italic leading-tight">{e.title}</div>
-                  </button>
-                </UpdatedFrame>
+            {filteredEntities.length === 0 ? (
+              <div className="p-4 bg-[#0a0c0a] border border-[#1a221c] rounded-lg text-center space-y-2">
+                <p className="text-xs text-[#829285] font-mono">
+                  No organisms found matching "<span className="text-white">{searchQuery}</span>"
+                </p>
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="px-2.5 py-1 text-[10px] font-mono bg-[#111712] hover:bg-[#18221a] text-[#709978] border border-[#213024] rounded cursor-pointer"
+                >
+                  Reset Search
+                </button>
               </div>
-            ))}
+            ) : (
+              filteredEntities.map(e => (
+                <div key={e.id}>
+                  <UpdatedFrame id={`entity_btn_${e.id}`} isUpdated={!!e.isUpdated}>
+                    <button
+                      onClick={() => handleEntitySelect(e.id)}
+                      className={`w-full text-left px-2.5 py-1.5 rounded-md border transition-all shrink-0 lg:shrink cursor-pointer flex flex-col justify-between ${
+                        selectedEntity === e.id
+                          ? 'bg-gradient-to-r from-red-950/30 to-zinc-900 text-[#e0e7e0] border-red-900/40 font-semibold shadow-md'
+                          : 'bg-[#0a0c0a] hover:bg-[#121612] text-[#829285] border-[#161c17]'
+                      }`}
+                    >
+                      <div className="flex justify-between items-center w-full">
+                        <span className="font-serif text-xs text-[#e0e7e0] flex items-center gap-1">
+                          {e.name}
+                        </span>
+                        <span className={`text-[7px] font-mono uppercase px-1 py-0.5 rounded ${getThreatBadgeStyle(e.threatLevel)}`}>
+                          {e.threatLevel}
+                        </span>
+                      </div>
+                      <div className="text-[9px] text-[#5a6b5e] font-mono mt-0.5 italic leading-tight flex items-center justify-between gap-1">
+                        <span className="truncate">{e.title}</span>
+                        {searchQuery.trim() && e._matchReason && (
+                          <span className="text-[8px] font-mono text-emerald-400 bg-emerald-950/50 border border-emerald-800/40 px-1 py-0.2 rounded shrink-0 not-italic">
+                            {e._matchReason}
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  </UpdatedFrame>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -2077,15 +2333,10 @@ export default function EntitiesView() {
               <div className="space-y-6 pt-2">
                 {/* Botanical Overview Banner */}
                 <div className="p-4 bg-[#0d1611]/60 border border-[#263e30]/30 rounded-xl space-y-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1b2b22] pb-2.5">
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="w-4 h-4 text-[#81caa9]" />
-                      <span className="font-serif text-sm font-bold text-[#e0e7e0]">
-                        Botanical Symbiote &amp; Sub-Realm Warden
-                      </span>
-                    </div>
-                    <span className="text-[10px] font-mono text-[#81caa9] bg-[#131d17]/60 border border-[#263e30]/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                      1.8 AI System
+                  <div className="flex items-center gap-2 border-b border-[#1b2b22] pb-2.5">
+                    <Sparkles className="w-4 h-4 text-[#81caa9]" />
+                    <span className="font-serif text-sm font-bold text-[#e0e7e0]">
+                      Botanical Symbiote &amp; Sub-Realm Warden
                     </span>
                   </div>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
