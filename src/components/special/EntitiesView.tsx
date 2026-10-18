@@ -262,7 +262,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Backwoods (Dense Oak/Spruce forests)",
       isUpdated: true,
-      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements."
+      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Possesses an elevated safe fall distance of 7 blocks and increased water movement efficiency (0.3). Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements."
     },
     {
       id: "lignum_spina",
@@ -422,7 +422,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Backwoods / Forestry Mimicry",
       isUpdated: true,
-      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. It excels at camouflaging against local trees, packing tightly together in mature world phases. Like all Splinter species, it actively flees from approaching Rot entities within a 100-block range."
+      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. Possesses an enhanced safe fall distance of 8 blocks and 0.4 water movement efficiency. It excels at camouflaging against local trees, packing tightly together in mature world phases. Like all Splinter species, it actively flees from approaching Rot entities within a 100-block range."
     },
     {
       id: "blindspot_splinter",
@@ -2884,6 +2884,86 @@ export default function EntitiesView() {
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Trilobita</td>
+                <td className="p-3 text-center font-mono">18</td>
+                <td className="p-3 text-center font-mono">3</td>
+                <td className="p-3 text-center font-mono">8</td>
+                <td className="p-3 text-center font-mono">0.220</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Spina</td>
+                <td className="p-3 text-center font-mono">12</td>
+                <td className="p-3 text-center font-mono">4 (+ Thorns)</td>
+                <td className="p-3 text-center font-mono">4</td>
+                <td className="p-3 text-center font-mono">0.320</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Petrified Lignum Spina</td>
+                <td className="p-3 text-center font-mono">28</td>
+                <td className="p-3 text-center font-mono">6 (+ Thorns)</td>
+                <td className="p-3 text-center font-mono">8</td>
+                <td className="p-3 text-center font-mono">0.260</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Echinus</td>
+                <td className="p-3 text-center font-mono">16</td>
+                <td className="p-3 text-center font-mono">4 (+ Spikes)</td>
+                <td className="p-3 text-center font-mono">4</td>
+                <td className="p-3 text-center font-mono">0.350</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Petrified Lignum Echinus</td>
+                <td className="p-3 text-center font-mono">32</td>
+                <td className="p-3 text-center font-mono">7 (+ Spikes)</td>
+                <td className="p-3 text-center font-mono">10</td>
+                <td className="p-3 text-center font-mono">0.380</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr>
+                <td className="p-3 font-semibold text-[#c9d1c9] text-left">Hewn Splinter</td>
+                <td className="p-3 text-center font-mono">6</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0</td>
+                <td className="p-3 text-center font-mono">0.0</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">50</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr className="bg-[#2c0f12]/20">
+                <td className="p-3 font-bold text-[#cc7e82] text-left">Woodweaver (Boss)</td>
+                <td className="p-3 text-center font-mono font-bold text-[#e0e7e0]">370</td>
+                <td className="p-3 text-center font-mono">16 (Beam/Melee)</td>
+                <td className="p-3 text-center font-mono">20</td>
+                <td className="p-3 text-center font-mono">0.280</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
+              </tr>
+              <tr className="bg-[#221315]/40">
+                <td className="p-3 font-bold text-[#cf8f92] text-left">Verdant Engine</td>
+                <td className="p-3 text-center font-mono font-bold text-[#e0e7e0]">2,500</td>
+                <td className="p-3 text-center font-mono text-gray-500">0 (Spacetime)</td>
+                <td className="p-3 text-center font-mono">150 (+40 Tough)</td>
+                <td className="p-3 text-center font-mono">0.300</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
+                <td className="p-3 text-center font-mono">No</td>
               </tr>
             </tbody>
           </table>
