@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, 
@@ -6,9 +6,14 @@ import {
   Activity, 
   Users, 
   Terminal, 
-  FileText, 
   Eye, 
-  Database 
+  Database,
+  BarChart3,
+  ShieldCheck,
+  Radio,
+  Layers,
+  Cpu,
+  Clock
 } from 'lucide-react';
 import { doc, collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
 import { db, hasConfig } from '../lib/firebase';
@@ -41,6 +46,19 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSandbox, setIsSandbox] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat'>('all');
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -65,7 +83,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       } else {
         // Initialize default mock local stats
         const localId = localStorage.getItem('wiki_visitor_id') || 'surv_local';
-        const defaultStats = {
+        const defaultStats: StatsData = {
           uniqueCount: 12,
           repeatCount: 18,
           totalCount: 30,
@@ -214,207 +232,444 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     return slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ');
   };
 
+  // Compute top visited pages breakdown
+  const topPages = useMemo(() => {
+    if (!stats) return [];
+    
+    // Check if stats.pageViews has keys
+    const viewsMap: Record<string, number> = { ...(stats.pageViews || {}) };
+
+    // If pageViews is empty but we have logs, calculate distribution from logs
+    if (Object.keys(viewsMap).length === 0 && stats.logs.length > 0) {
+      stats.logs.forEach(log => {
+        viewsMap[log.slug] = (viewsMap[log.slug] || 0) + 1;
+      });
+    }
+
+    const sorted = Object.entries(viewsMap)
+      .map(([slug, count]) => ({
+        slug,
+        title: getArticleTitle(slug),
+        count
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 6);
+
+    const maxCount = sorted.length > 0 ? Math.max(...sorted.map(p => p.count), 1) : 1;
+
+    return sorted.map((item, idx) => ({
+      ...item,
+      rank: idx + 1,
+      percentage: Math.round((item.count / maxCount) * 100)
+    }));
+  }, [stats, articles]);
+
+  // Filter logs
+  const filteredLogs = useMemo(() => {
+    if (!stats) return [];
+    if (logFilter === 'all') return stats.logs;
+    return stats.logs.filter(l => l.type === logFilter);
+  }, [stats, logFilter]);
+
+  const formatRelativeTime = (timestamp: string) => {
+    try {
+      const diffMs = Date.now() - new Date(timestamp).getTime();
+      const diffSec = Math.floor(diffMs / 1000);
+      if (diffSec < 60) return `${Math.max(1, diffSec)}s ago`;
+      const diffMin = Math.floor(diffSec / 60);
+      if (diffMin < 60) return `${diffMin}m ago`;
+      const diffHr = Math.floor(diffMin / 60);
+      if (diffHr < 24) return `${diffHr}h ago`;
+      return `${Math.floor(diffHr / 24)}d ago`;
+    } catch {
+      return 'recent';
+    }
+  };
+
   if (!isOpen) return null;
+
+  const retentionRate = stats && stats.totalCount > 0 
+    ? Math.round((stats.repeatCount / stats.totalCount) * 100) 
+    : 0;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
         {/* Backdrop overlay with blur */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer"
+          className="fixed inset-0 bg-black/90 backdrop-blur-md cursor-pointer"
           id="stats-modal-backdrop"
         />
 
-        {/* Modal Window */}
+        {/* Modal Window: Sleek Minimalist Dark HUD with Crisp Borders */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-          className="relative w-full max-w-4xl bg-[#0b0e0c] border border-[#232d25] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] font-mono z-50 text-[#c9d1c9]"
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.18, ease: 'easeOut' }}
+          className="relative w-full max-w-5xl bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh] font-mono z-50 text-[#c8d4ca]"
           id="stats-modal-container"
         >
-          {/* Header - Terminal Style */}
-          <div className="flex items-center justify-between px-5 py-4 bg-[#0e1310] border-b border-[#1e2720] select-none">
+          {/* Header - Minimalist Tactical HUD Bar */}
+          <div className="flex items-center justify-between px-5 py-3.5 bg-[#0b100d] border-b border-[#1b261e] select-none">
             <div className="flex items-center gap-3">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-500/85" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/85" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/85" />
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
               </div>
-              <div className="h-4 w-[1px] bg-[#232d25] mx-1" />
+              <div className="h-4 w-[1px] bg-[#1e2a22]" />
               <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-emerald-500 animate-pulse" />
-                <span className="text-xs font-bold tracking-widest text-[#a9d1b0] uppercase flex items-center gap-2">
-                  WIKI TELEMETRY TERMINAL v1.0.9
-                  {isSandbox && (
-                    <span className="text-amber-500 text-[9px] px-1.5 py-0.5 bg-amber-950/40 border border-amber-900/40 rounded font-normal uppercase tracking-normal animate-pulse">
-                      SANDBOX MODE
-                    </span>
-                  )}
+                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase flex items-center gap-2">
+                  BACKWOODS TELEMETRY TERMINAL
+                  <span className="text-[9px] px-1.5 py-0.2 text-[#4e6353] border border-[#1b261e] rounded bg-[#0e1410] font-mono">
+                    v1.1.0-HUD
+                  </span>
                 </span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={handleManualRefresh}
-                disabled={loading || isRefreshing}
-                className="p-1.5 text-[#5a6b5e] hover:text-[#a9d1b0] hover:bg-[#161d18] rounded transition-all cursor-pointer disabled:opacity-40"
-                title="Synchronize Database Logs"
-                id="stats-refresh-btn"
-              >
-                <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-              </button>
-              <button 
-                onClick={onClose}
-                className="p-1.5 text-[#5a6b5e] hover:text-red-400 hover:bg-red-950/20 rounded transition-all cursor-pointer"
-                id="stats-close-btn"
-              >
-                <X className="w-4 h-4" />
-              </button>
+            <div className="flex items-center gap-3">
+              {/* Mode indicator pill */}
+              {isSandbox ? (
+                <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded border border-amber-900/50 bg-amber-950/20 text-amber-400 text-[9px] tracking-wider uppercase font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  SANDBOX STORAGE
+                </div>
+              ) : (
+                <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-900/50 bg-emerald-950/20 text-emerald-400 text-[9px] tracking-wider uppercase font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  LIVE DATABASE LINK
+                </div>
+              )}
+
+              <div className="flex items-center gap-1.5 border-l border-[#1b261e] pl-3">
+                <button 
+                  onClick={handleManualRefresh}
+                  disabled={loading || isRefreshing}
+                  className="p-1.5 text-[#5e7564] hover:text-emerald-400 hover:bg-[#121914] rounded transition-colors cursor-pointer disabled:opacity-40"
+                  title="Synchronize telemetry logs"
+                  id="stats-refresh-btn"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+                </button>
+                <button 
+                  onClick={onClose}
+                  className="p-1.5 text-[#5e7564] hover:text-red-400 hover:bg-red-950/30 rounded transition-colors cursor-pointer"
+                  title="Close terminal (Esc)"
+                  id="stats-close-btn"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Body */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+          {/* Body Content */}
+          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
             {loading && !stats ? (
-              <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
-                <Activity className="w-8 h-8 text-emerald-500 animate-pulse" />
-                <div className="text-xs text-[#5a6b5e] uppercase tracking-[0.2em] animate-pulse">
-                  Querying server registry files...
+              <div className="flex flex-col items-center justify-center py-28 gap-3 text-center">
+                <Activity className="w-7 h-7 text-emerald-400 animate-pulse" />
+                <div className="text-[11px] text-[#5e7564] uppercase tracking-widest animate-pulse font-mono">
+                  INITIALIZING TELEMETRY UPLINK...
                 </div>
               </div>
             ) : error ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center text-red-500 border border-red-900/30 bg-red-950/10 rounded-lg p-6">
-                <Database className="w-8 h-8 mb-3 text-red-600 animate-bounce" />
-                <h4 className="text-sm font-bold uppercase mb-1">Access Protocol Failed</h4>
-                <p className="text-xs text-red-400 max-w-md leading-relaxed">{error}</p>
+              <div className="flex flex-col items-center justify-center py-16 text-center text-red-400 border border-red-900/40 bg-red-950/15 rounded p-6">
+                <Database className="w-7 h-7 mb-2 text-red-500 animate-pulse" />
+                <h4 className="text-xs font-bold uppercase tracking-wider mb-1 text-red-300">Access Protocol Fault</h4>
+                <p className="text-[11px] text-red-400/80 max-w-md leading-relaxed">{error}</p>
                 <button 
                   onClick={() => { setError(null); setRetryCount(prev => prev + 1); }}
-                  className="mt-4 px-3 py-1.5 bg-red-950/40 hover:bg-red-950/60 border border-red-800 text-xs rounded transition-all text-red-300"
+                  className="mt-3 px-3 py-1 bg-red-950/40 hover:bg-red-950/70 border border-red-800 text-[10px] uppercase tracking-wider rounded transition-colors text-red-300 font-semibold"
                 >
                   Retry Connection
                 </button>
               </div>
             ) : stats ? (
               <>
-                {/* 1. Dashboard Numbers (Bento Style Grid) */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* 1. HUD Metrics Ribbon (3 Crisp Modular Cards) */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {/* Total Hits */}
-                  <div className="p-4 bg-[#111712] border border-[#232d25] rounded-lg relative overflow-hidden group hover:border-[#304033] transition-colors">
-                    <div className="absolute top-3 right-3 text-[#1f2720] group-hover:text-emerald-950 transition-colors">
-                      <Eye className="w-10 h-10" />
+                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-semibold text-[#5e7564] uppercase tracking-wider flex items-center gap-1.5">
+                        <Eye className="w-3.5 h-3.5 text-emerald-500/70" />
+                        Total Hits
+                      </span>
+                      <span className="text-[9px] text-[#425246] px-1.5 py-0.2 rounded border border-[#1b261e] bg-[#090d0a]">
+                        IMPRESSIONS
+                      </span>
                     </div>
-                    <span className="text-[10px] font-bold text-[#5a6b5e] uppercase tracking-wider block mb-1">
-                      Total Hits (Impressions)
-                    </span>
-                    <span className="text-3xl font-extrabold text-[#e0e7e0] font-sans">
+                    <div className="text-2xl sm:text-3xl font-bold text-[#e1eae2] font-sans tracking-tight">
                       {stats.totalCount.toLocaleString()}
-                    </span>
-                    <span className="text-[9px] text-[#3d4b3f] block mt-1 uppercase">
-                      Global page impressions registered
-                    </span>
+                    </div>
+                    <div className="text-[9px] text-[#4a5f50] mt-1 uppercase flex items-center gap-1">
+                      <span>Global telemetry records</span>
+                    </div>
                   </div>
 
                   {/* Unique Survivors */}
-                  <div className="p-4 bg-[#111712] border border-[#232d25] rounded-lg relative overflow-hidden group hover:border-[#304033] transition-colors">
-                    <div className="absolute top-3 right-3 text-[#1f2720] group-hover:text-teal-950 transition-colors">
-                      <Users className="w-10 h-10" />
+                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-semibold text-emerald-400/90 uppercase tracking-wider flex items-center gap-1.5">
+                        <Users className="w-3.5 h-3.5 text-emerald-400" />
+                        Unique Survivors
+                      </span>
+                      <span className="text-[9px] text-emerald-400/80 px-1.5 py-0.2 rounded border border-emerald-900/40 bg-emerald-950/30">
+                        DISTINCT
+                      </span>
                     </div>
-                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">
-                      Unique Survivors
-                    </span>
-                    <span className="text-3xl font-extrabold text-emerald-300 font-sans">
+                    <div className="text-2xl sm:text-3xl font-bold text-emerald-400 font-sans tracking-tight">
                       {stats.uniqueCount.toLocaleString()}
-                    </span>
-                    <span className="text-[9px] text-[#4d5c4f] block mt-1 uppercase text-emerald-500/70">
-                      Distinct terminal nodes recorded
-                    </span>
+                    </div>
+                    <div className="text-[9px] text-emerald-500/60 mt-1 uppercase">
+                      Unique terminal hardware nodes
+                    </div>
                   </div>
 
                   {/* Returning Operatives */}
-                  <div className="p-4 bg-[#111712] border border-[#232d25] rounded-lg relative overflow-hidden group hover:border-[#304033] transition-colors">
-                    <div className="absolute top-3 right-3 text-[#1f2720] group-hover:text-amber-950 transition-colors">
-                      <Activity className="w-10 h-10" />
+                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-[10px] font-semibold text-amber-400/90 uppercase tracking-wider flex items-center gap-1.5">
+                        <Activity className="w-3.5 h-3.5 text-amber-400" />
+                        Returning Operatives
+                      </span>
+                      <span className="text-[9px] text-amber-400/80 px-1.5 py-0.2 rounded border border-amber-900/40 bg-amber-950/30 font-mono">
+                        {retentionRate}% RETENTION
+                      </span>
                     </div>
-                    <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider block mb-1">
-                      Returning Operatives
-                    </span>
-                    <span className="text-3xl font-extrabold text-amber-400 font-sans">
+                    <div className="text-2xl sm:text-3xl font-bold text-amber-400 font-sans tracking-tight">
                       {stats.repeatCount.toLocaleString()}
-                    </span>
-                    <span className="text-[9px] text-[#4d5c4f] block mt-1 uppercase text-amber-600/70">
-                      Re-entries from identified nodes
-                    </span>
-                  </div>
-                </div>
-
-                {/* 2. Live Logs layout (Full Width) */}
-                <div className="bg-[#0e120f] border border-[#1e2720] rounded-lg p-4 flex flex-col h-[320px] mt-6">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#1e2720] mb-3 select-none">
-                    <div className="flex items-center gap-2">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                      </span>
-                      <span className="text-xs font-bold text-[#a9d1b0] uppercase tracking-wider">
-                        Telemetry Log Trace
-                      </span>
                     </div>
-                    <span className="text-[9px] text-[#5a6b5e] uppercase">
-                      Real-time feed
-                    </span>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 text-[11px] font-mono scrollbar-thin">
-                    {stats.logs.length === 0 ? (
-                      <div className="text-center py-12 text-[#5a6b5e] italic">
-                        Telemetry logs are currently empty.
-                      </div>
-                    ) : (
-                      stats.logs.map((log, index) => {
-                        const date = new Date(log.timestamp);
-                        const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
-                        const isNew = log.type === 'unique';
-                        return (
-                          <div 
-                            key={index} 
-                            className="border-b border-[#1a221c]/40 pb-1.5 last:border-0 leading-normal"
-                          >
-                            <span className="text-[#5a6b5e] mr-1.5 font-semibold">[{timeStr}]</span>
-                            <span className="text-emerald-500/80 uppercase tracking-tight mr-1.5">CONN_IN</span>
-                            <span className="text-[#829285] mr-1.5 font-bold">{log.visitorId}</span>
-                            <span className="text-[#5a6b5e] mr-1.5">accessed</span>
-                            <span className="text-teal-400 hover:underline mr-2">{getArticleTitle(log.slug)}</span>
-                            <span className={`inline-block px-1 rounded text-[9px] uppercase font-bold leading-none py-0.5 ${
-                              isNew 
-                                ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-800' 
-                                : 'bg-[#151a16] text-amber-500 border border-amber-900/60'
-                            }`}>
-                              {isNew ? 'NEW' : 'RET'}
-                            </span>
-                          </div>
-                        );
-                      })
-                    )}
+                    <div className="text-[9px] text-amber-500/60 mt-1 uppercase">
+                      Re-entries from identified survivors
+                    </div>
                   </div>
                 </div>
 
-                {/* Footer Notes */}
-                <div className="p-3 bg-[#0d120e] border border-[#1e2720]/60 rounded text-[10px] text-[#5a6b5e] leading-relaxed select-none">
-                  <span className="text-emerald-500 font-bold mr-1">PROTOCOL SUMMARY:</span>{' '}
-                  {isSandbox 
-                    ? "Sandbox storage active. Since this is hosted as a static page (e.g. GitHub Pages) or the API server is unreachable, visit statistics are tracked and saved securely within your browser's local sandbox storage."
-                    : "This terminal presents actual, persistent server-side analytics from the Backwoods database. All visitor sessions are anonymized with generated local hardware keys to satisfy survival privacy parameters."}
+                {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                  {/* Left Column: Top Visited Pages & Terminal Diagnostics */}
+                  <div className="lg:col-span-5 flex flex-col gap-3">
+                    {/* Top Visited Pages Card */}
+                    <div className="bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col flex-1">
+                      <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-3 select-none">
+                        <div className="flex items-center gap-2">
+                          <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
+                            Top Telemetry Targets
+                          </span>
+                        </div>
+                        <span className="text-[9px] text-[#4f6454] uppercase tracking-wider">
+                          Ranked by views
+                        </span>
+                      </div>
+
+                      {topPages.length === 0 ? (
+                        <div className="text-center py-8 text-[11px] text-[#4f6454] italic">
+                          No page view distribution recorded.
+                        </div>
+                      ) : (
+                        <div className="space-y-2.5">
+                          {topPages.map((page) => (
+                            <div key={page.slug} className="group">
+                              <div className="flex items-center justify-between text-[11px] mb-1">
+                                <div className="flex items-center gap-2 min-w-0 pr-2">
+                                  <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded border ${
+                                    page.rank === 1 
+                                      ? 'bg-emerald-950/60 border-emerald-800 text-emerald-300' 
+                                      : 'bg-[#111713] border-[#1f2c22] text-[#5e7564]'
+                                  }`}>
+                                    #{String(page.rank).padStart(2, '0')}
+                                  </span>
+                                  <span className="truncate text-[#cad6cc] group-hover:text-emerald-300 transition-colors" title={page.title}>
+                                    {page.title}
+                                  </span>
+                                </div>
+                                <span className="text-[10px] text-emerald-400/90 font-mono font-bold shrink-0">
+                                  {page.count.toLocaleString()} <span className="text-[8px] font-normal text-[#4f6454]">HITS</span>
+                                </span>
+                              </div>
+                              {/* Sleek Minimalist Progress Bar */}
+                              <div className="w-full h-1 bg-[#121914] rounded-full overflow-hidden border border-[#1a251d]/40">
+                                <div 
+                                  className={`h-full rounded-full transition-all duration-500 ${
+                                    page.rank === 1 ? 'bg-emerald-400' : 'bg-emerald-600/70'
+                                  }`}
+                                  style={{ width: `${page.percentage}%` }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* HUD Node & Integrity Diagnostics */}
+                    <div className="bg-[#0b100d] border border-[#1b261e] rounded p-3 select-none text-[10px] space-y-2">
+                      <div className="flex items-center justify-between text-[#4f6454] uppercase tracking-wider pb-1.5 border-b border-[#18231a]">
+                        <span className="flex items-center gap-1.5">
+                          <Cpu className="w-3 h-3 text-[#5e7564]" />
+                          Node Integrity
+                        </span>
+                        <span className="text-emerald-400 font-bold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          OPERATIONAL
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 text-[10px] text-[#6f8574]">
+                        <div>
+                          <span className="text-[#435447] block text-[8px] uppercase">STORAGE ENGINE</span>
+                          <span className="text-[#a4b5a7] font-semibold">{isSandbox ? 'Local Sandbox' : 'Cloud Firestore'}</span>
+                        </div>
+                        <div>
+                          <span className="text-[#435447] block text-[8px] uppercase">RING BUFFER</span>
+                          <span className="text-[#a4b5a7] font-semibold">50 Event Max</span>
+                        </div>
+                        <div>
+                          <span className="text-[#435447] block text-[8px] uppercase">ANONYMIZATION</span>
+                          <span className="text-emerald-400/90 font-semibold flex items-center gap-1">
+                            <ShieldCheck className="w-3 h-3 text-emerald-400" /> SHA-256 Keyed
+                          </span>
+                        </div>
+                        <div>
+                          <span className="text-[#435447] block text-[8px] uppercase">STREAM PROTOCOL</span>
+                          <span className="text-[#a4b5a7] font-semibold">WebSocket / REST</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Realtime Telemetry Stream with Categorized Status Pills */}
+                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[380px]">
+                    {/* Stream Header & Filters */}
+                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-2.5 select-none">
+                      <div className="flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
+                          Telemetry Trace Stream
+                        </span>
+                      </div>
+
+                      {/* Filter Pills */}
+                      <div className="flex items-center gap-1 bg-[#090d0a] p-0.5 rounded border border-[#1b261e]">
+                        <button
+                          onClick={() => setLogFilter('all')}
+                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                            logFilter === 'all'
+                              ? 'bg-[#1b261e] text-[#d6ded7] border border-[#2b3c30]'
+                              : 'text-[#4f6454] hover:text-[#a4c9ad]'
+                          }`}
+                        >
+                          All ({stats.logs.length})
+                        </button>
+                        <button
+                          onClick={() => setLogFilter('unique')}
+                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                            logFilter === 'unique'
+                              ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-800'
+                              : 'text-[#4f6454] hover:text-emerald-400'
+                          }`}
+                        >
+                          Unique
+                        </button>
+                        <button
+                          onClick={() => setLogFilter('repeat')}
+                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                            logFilter === 'repeat'
+                              ? 'bg-amber-950/70 text-amber-300 border border-amber-800'
+                              : 'text-[#4f6454] hover:text-amber-400'
+                          }`}
+                        >
+                          Return
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Scrollable Log Stream */}
+                    <div className="flex-1 overflow-y-auto space-y-1.5 pr-1 text-[11px] font-mono scrollbar-thin">
+                      {filteredLogs.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center h-full text-center py-12 text-[#4f6454] italic">
+                          <Radio className="w-5 h-5 mb-1.5 text-[#303f34]" />
+                          <span>No telemetry trace events match the active filter.</span>
+                        </div>
+                      ) : (
+                        filteredLogs.map((log, index) => {
+                          const date = new Date(log.timestamp);
+                          const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+                          const isNew = log.type === 'unique';
+                          const relativeTime = formatRelativeTime(log.timestamp);
+
+                          return (
+                            <div 
+                              key={`${log.timestamp}-${index}`} 
+                              className="px-2.5 py-1.5 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex items-center justify-between gap-2"
+                            >
+                              <div className="flex items-center gap-2 min-w-0">
+                                {/* Timestamp */}
+                                <span className="text-[#4e6453] text-[10px] font-semibold shrink-0">
+                                  [{timeStr}]
+                                </span>
+
+                                {/* Categorized Status Pill */}
+                                {isNew ? (
+                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80 shadow-[0_0_6px_rgba(16,185,129,0.2)]">
+                                    NEW NODE
+                                  </span>
+                                ) : (
+                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
+                                    RETURN
+                                  </span>
+                                )}
+
+                                {/* Destination Title */}
+                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate">
+                                  {getArticleTitle(log.slug)}
+                                </span>
+                              </div>
+
+                              <div className="flex items-center gap-2 shrink-0">
+                                {/* Visitor ID Chip */}
+                                <span className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono">
+                                  {log.visitorId}
+                                </span>
+                                {/* Elapsed */}
+                                <span className="text-[9px] text-[#3d4f42] w-12 text-right hidden sm:inline">
+                                  {relativeTime}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3. Footer Protocol Banner */}
+                <div className="p-3 bg-[#0a0f0c] border border-[#18231a] rounded text-[10px] text-[#4f6454] leading-relaxed select-none flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <div>
+                    <span className="text-emerald-400 font-bold mr-1">PROTOCOL SUMMARY:</span>
+                    {isSandbox 
+                      ? "Sandbox mode engaged. Analytics persist safely in browser sandbox storage."
+                      : "Telemetry uplink synchronized with Backwoods central Firestore cluster. Visitor sessions strictly anonymized."}
+                  </div>
+                  <div className="text-[9px] text-[#3f5043] shrink-0 font-mono">
+                    PRESS <kbd className="px-1 py-0.2 bg-[#121914] border border-[#1e2a21] text-[#788e7d] rounded text-[8px]">ESC</kbd> TO EXIT TERMINAL
+                  </div>
                 </div>
               </>
             ) : (
-              <div className="text-center py-12 text-[#5a6b5e] italic">
+              <div className="text-center py-12 text-[#4f6454] italic">
                 System awaiting first scan.
               </div>
             )}
