@@ -546,7 +546,7 @@ export default function EntitiesView() {
       badgeBg: "bg-cyan-950/30 border-cyan-900/40 text-cyan-400",
       borderColor: "border-cyan-950/20",
       hp: "48 HP",
-      damage: "2.0 Base / 3.0 Angry (Constant Laser Tick)",
+      damage: "2.0 Base / 3.0 Phase 2 (Constant Laser Tick)",
       armor: "6 Points (Metallic Chassis)",
       speed: "0.200 (Ignoring Gravity)",
       dim: "The Sub-Strata (Menger Sponge structures)",
@@ -562,7 +562,7 @@ export default function EntitiesView() {
       badgeBg: "bg-cyan-950/40 border-cyan-800/40 text-cyan-300 font-bold",
       borderColor: "border-cyan-900/30",
       hp: "270 HP (Mini-Boss Class)",
-      damage: "21.3 Base / 55.0 Angry (Divided across multi-targets)",
+      damage: "21.3 Base / 55.0 Phase 2 (Divided across multi-targets)",
       armor: "20 Points (High Alloy Plating)",
       speed: "0.200 (High-velocity reverse thrust)",
       dim: "The Sub-Strata (Summoned via Drone Rituals)",
@@ -2838,7 +2838,7 @@ export default function EntitiesView() {
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Fractus</td>
                 <td className="p-3 text-center font-mono">48</td>
-                <td className="p-3 text-center font-mono">2 (3 angry)</td>
+                <td className="p-3 text-center font-mono">2 (3 Phase 2)</td>
                 <td className="p-3 text-center font-mono">6</td>
                 <td className="p-3 text-center font-mono">0.200</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
@@ -2848,7 +2848,7 @@ export default function EntitiesView() {
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Fractus Prime</td>
                 <td className="p-3 text-center font-mono">270</td>
-                <td className="p-3 text-center font-mono">21.3 (55.0 angry)</td>
+                <td className="p-3 text-center font-mono">21.3 (55.0 Phase 2)</td>
                 <td className="p-3 text-center font-mono">20</td>
                 <td className="p-3 text-center font-mono">0.200</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
