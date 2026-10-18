@@ -9,10 +9,8 @@ import {
   Eye, 
   Database,
   BarChart3,
-  ShieldCheck,
   Radio,
   Layers,
-  Cpu,
   Clock
 } from 'lucide-react';
 import { doc, collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
@@ -47,6 +45,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [isSandbox, setIsSandbox] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
   const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat'>('all');
+  const [showAllTargets, setShowAllTargets] = useState(false);
 
   // Close on Escape key
   useEffect(() => {
@@ -126,11 +125,24 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       statsUnsubscribe = onSnapshot(doc(db, 'stats', 'global'), (statsDoc) => {
         if (statsDoc.exists()) {
           const data = statsDoc.data();
+          const pageViews: Record<string, number> = {};
+          
+          if (data.pageViews && typeof data.pageViews === 'object') {
+            Object.assign(pageViews, data.pageViews);
+          }
+          
+          Object.keys(data).forEach(key => {
+            if (key.startsWith('pageViews.')) {
+              const slug = key.replace('pageViews.', '');
+              pageViews[slug] = (pageViews[slug] || 0) + Number(data[key] || 0);
+            }
+          });
+
           setStats(prev => ({
             uniqueCount: data.uniqueCount || 0,
             repeatCount: data.repeatCount || 0,
             totalCount: data.totalCount || 0,
-            pageViews: data.pageViews || {},
+            pageViews,
             logs: prev?.logs || []
           }));
           setIsSandbox(false);
@@ -233,8 +245,8 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   };
 
   // Compute top visited pages breakdown
-  const topPages = useMemo(() => {
-    if (!stats) return [];
+  const { topPages, totalTargetsCount } = useMemo(() => {
+    if (!stats) return { topPages: [], totalTargetsCount: 0 };
     
     // Check if stats.pageViews has keys
     const viewsMap: Record<string, number> = { ...(stats.pageViews || {}) };
@@ -252,17 +264,21 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
         title: getArticleTitle(slug),
         count
       }))
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 6);
+      .sort((a, b) => b.count - a.count);
 
     const maxCount = sorted.length > 0 ? Math.max(...sorted.map(p => p.count), 1) : 1;
 
-    return sorted.map((item, idx) => ({
+    const ranked = sorted.map((item, idx) => ({
       ...item,
       rank: idx + 1,
       percentage: Math.round((item.count / maxCount) * 100)
     }));
-  }, [stats, articles]);
+
+    return {
+      topPages: showAllTargets ? ranked : ranked.slice(0, 6),
+      totalTargetsCount: ranked.length
+    };
+  }, [stats, articles, showAllTargets]);
 
   // Filter logs
   const filteredLogs = useMemo(() => {
@@ -455,95 +471,73 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                 {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                  {/* Left Column: Top Visited Pages & Terminal Diagnostics */}
-                  <div className="lg:col-span-5 flex flex-col gap-3">
-                    {/* Top Visited Pages Card */}
-                    <div className="bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col flex-1">
-                      <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-3 select-none">
-                        <div className="flex items-center gap-2">
-                          <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-                          <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
-                            Top Telemetry Targets
+                  {/* Left Column: Top Visited Telemetry Targets */}
+                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[380px]">
+                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-3 select-none">
+                      <div className="flex items-center gap-2">
+                        <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
+                        <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
+                          Telemetry Targets
+                        </span>
+                        {totalTargetsCount > 0 && (
+                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#111713] border border-[#1e2a20] text-emerald-400/90 font-mono">
+                            {totalTargetsCount}
                           </span>
-                        </div>
+                        )}
+                      </div>
+                      {totalTargetsCount > 6 ? (
+                        <button
+                          type="button"
+                          onClick={() => setShowAllTargets(prev => !prev)}
+                          className="text-[9px] font-mono px-2 py-0.5 rounded border border-[#213025] hover:border-emerald-600/60 bg-[#101712] hover:bg-[#152018] text-[#86a58e] hover:text-emerald-300 transition-colors uppercase tracking-wider cursor-pointer"
+                        >
+                          {showAllTargets ? 'Show Top 6' : `View All (${totalTargetsCount})`}
+                        </button>
+                      ) : (
                         <span className="text-[9px] text-[#4f6454] uppercase tracking-wider">
                           Ranked by views
                         </span>
-                      </div>
-
-                      {topPages.length === 0 ? (
-                        <div className="text-center py-8 text-[11px] text-[#4f6454] italic">
-                          No page view distribution recorded.
-                        </div>
-                      ) : (
-                        <div className="space-y-2.5">
-                          {topPages.map((page) => (
-                            <div key={page.slug} className="group">
-                              <div className="flex items-center justify-between text-[11px] mb-1">
-                                <div className="flex items-center gap-2 min-w-0 pr-2">
-                                  <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded border ${
-                                    page.rank === 1 
-                                      ? 'bg-emerald-950/60 border-emerald-800 text-emerald-300' 
-                                      : 'bg-[#111713] border-[#1f2c22] text-[#5e7564]'
-                                  }`}>
-                                    #{String(page.rank).padStart(2, '0')}
-                                  </span>
-                                  <span className="truncate text-[#cad6cc] group-hover:text-emerald-300 transition-colors" title={page.title}>
-                                    {page.title}
-                                  </span>
-                                </div>
-                                <span className="text-[10px] text-emerald-400/90 font-mono font-bold shrink-0">
-                                  {page.count.toLocaleString()} <span className="text-[8px] font-normal text-[#4f6454]">HITS</span>
-                                </span>
-                              </div>
-                              {/* Sleek Minimalist Progress Bar */}
-                              <div className="w-full h-1 bg-[#121914] rounded-full overflow-hidden border border-[#1a251d]/40">
-                                <div 
-                                  className={`h-full rounded-full transition-all duration-500 ${
-                                    page.rank === 1 ? 'bg-emerald-400' : 'bg-emerald-600/70'
-                                  }`}
-                                  style={{ width: `${page.percentage}%` }}
-                                />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
                       )}
                     </div>
 
-                    {/* HUD Node & Integrity Diagnostics */}
-                    <div className="bg-[#0b100d] border border-[#1b261e] rounded p-3 select-none text-[10px] space-y-2">
-                      <div className="flex items-center justify-between text-[#4f6454] uppercase tracking-wider pb-1.5 border-b border-[#18231a]">
-                        <span className="flex items-center gap-1.5">
-                          <Cpu className="w-3 h-3 text-[#5e7564]" />
-                          Node Integrity
-                        </span>
-                        <span className="text-emerald-400 font-bold flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                          OPERATIONAL
-                        </span>
+                    {topPages.length === 0 ? (
+                      <div className="text-center py-8 text-[11px] text-[#4f6454] italic">
+                        No page view distribution recorded.
                       </div>
-                      <div className="grid grid-cols-2 gap-2 text-[10px] text-[#6f8574]">
-                        <div>
-                          <span className="text-[#435447] block text-[8px] uppercase">STORAGE ENGINE</span>
-                          <span className="text-[#a4b5a7] font-semibold">{isSandbox ? 'Local Sandbox' : 'Cloud Firestore'}</span>
-                        </div>
-                        <div>
-                          <span className="text-[#435447] block text-[8px] uppercase">RING BUFFER</span>
-                          <span className="text-[#a4b5a7] font-semibold">50 Event Max</span>
-                        </div>
-                        <div>
-                          <span className="text-[#435447] block text-[8px] uppercase">ANONYMIZATION</span>
-                          <span className="text-emerald-400/90 font-semibold flex items-center gap-1">
-                            <ShieldCheck className="w-3 h-3 text-emerald-400" /> SHA-256 Keyed
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-[#435447] block text-[8px] uppercase">STREAM PROTOCOL</span>
-                          <span className="text-[#a4b5a7] font-semibold">WebSocket / REST</span>
-                        </div>
+                    ) : (
+                      <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 scrollbar-thin">
+                        {topPages.map((page) => (
+                          <div key={page.slug} className="group">
+                            <div className="flex items-center justify-between text-[11px] mb-1">
+                              <div className="flex items-center gap-2 min-w-0 pr-2">
+                                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded border ${
+                                  page.rank === 1 
+                                    ? 'bg-emerald-950/60 border-emerald-800 text-emerald-300' 
+                                    : 'bg-[#111713] border-[#1f2c22] text-[#5e7564]'
+                                }`}>
+                                  #{String(page.rank).padStart(2, '0')}
+                                </span>
+                                <span className="truncate text-[#cad6cc] group-hover:text-emerald-300 transition-colors" title={page.title}>
+                                  {page.title}
+                                </span>
+                              </div>
+                              <span className="text-[10px] text-emerald-400/90 font-mono font-bold shrink-0">
+                                {page.count.toLocaleString()} <span className="text-[8px] font-normal text-[#4f6454]">HITS</span>
+                              </span>
+                            </div>
+                            {/* Sleek Minimalist Progress Bar */}
+                            <div className="w-full h-1 bg-[#121914] rounded-full overflow-hidden border border-[#1a251d]/40">
+                              <div 
+                                className={`h-full rounded-full transition-all duration-500 ${
+                                  page.rank === 1 ? 'bg-emerald-400' : 'bg-emerald-600/70'
+                                }`}
+                                style={{ width: `${page.percentage}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   {/* Right Column: Realtime Telemetry Stream with Categorized Status Pills */}
