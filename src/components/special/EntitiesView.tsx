@@ -181,7 +181,9 @@ export default function EntitiesView() {
   const [activeTotemState, setActiveTotemState] = useState<'dormant' | 'empowered' | 'infinity'>('dormant');
   const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
   const [activeGigasState, setActiveGigasState] = useState<'dormant' | 'anchored' | 'growling'>('dormant');
+  const [activeAshWeaverState, setActiveAshWeaverState] = useState<'companion' | 'combat' | 'trauma' | 'territory'>('companion');
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
+  const [openAshWeaverAbilityIndex, setOpenAshWeaverAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
   const rotClickTimesRef = useRef<number[]>([]);
@@ -189,6 +191,7 @@ export default function EntitiesView() {
   const handleEntitySelect = (entityId: string) => {
     setSelectedEntity(entityId);
     setOpenAbilityIndex(0);
+    setOpenAshWeaverAbilityIndex(0);
     if (entityId === 'rot') {
       const now = Date.now();
       const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
@@ -488,18 +491,18 @@ export default function EntitiesView() {
     {
       id: "ash_weaver",
       name: "The Ash-Weaver",
-      title: "Sub-Realm Gardener",
+      title: "Sub-Realm Gardener & Symbiotic Companion",
       threatLevel: "Low",
       threatColor: "text-[#5ea386]",
-      badgeBg: "bg-[#131d17]/20 border-[#263e30]/30 text-[#5ea386]",
-      borderColor: "border-[#131d17]/10",
+      badgeBg: "bg-[#131d17]/30 border-[#263e30]/40 text-[#5ea386]",
+      borderColor: "border-[#131d17]/20",
       hp: "40 HP",
-      damage: "0 (Completely Passive)",
+      damage: "4 (Base Melee Strike / Self-Defense Reprisal)",
       armor: "0 Points",
-      speed: "0.3",
-      dim: "The Backwoods (Flat biomes)",
+      speed: "0.200 (1.12x Follow Speed / 1.05x Gardening Pace)",
+      dim: "The Thicket (Dense vegetation biomes)",
       isUpdated: true,
-      desc: "A peaceful, harmless entity that drifts across forest floors, planting defensive Ash-Roses in its wake. Spawns naturally on solid occluding ground as long as no other Ash-Weaver exists within an 87.5-block radius (175-block area). It always drops ash roses when defeated. Survivalists frequently follow its trail to harvest raw protective blossoms."
+      desc: "An intelligent symbiotic companion and botanical gardener native to The Thicket. Forms a loyal lifetime bond with the nearest player within 32 blocks, following across dimensions and assisting with base defense. While peaceful during regular hours, it actively strikes back against hostiles with 4 physical melee damage, dodges incoming projectiles, and plants protective Ash-Roses whose stems emit an olfactory ward that hostile mob pathfinding evaluates as molten lava. Features persistent trauma memory registers, typo-tolerant natural language chat parsing, dynamic jump assistance, and edge-braking."
     },
     {
       id: "lignum_gigas",
@@ -663,6 +666,51 @@ export default function EntitiesView() {
     }
   ];
 
+  const ashWeaverAbilities: Ability[] = [
+    {
+      title: "Symbiotic Bonding & Cross-Dimension Loyalty",
+      trigger: "Unassigned Ash-Weaver detects an active, non-spectator player within 32 blocks",
+      description: "Scans for the nearest eligible player within a 32-block radius to establish an exclusive symbiotic bond, memorizing the player UUID. Operates under follow navigation (State 1) with an accelerated 1.12x speed multiplier, maintaining a comfortable 3.5 to 12-block proximity envelope. If the player teleports, travels far away, or transitions between dimensions, the Weaver activates cross-dimension tracking and regroup routines to re-establish companionship.",
+      category: "Companion Logic"
+    },
+    {
+      title: "Defensive Combat & Predictive Evasion",
+      trigger: "Hostile entity attacks the Weaver or bonded player, or approaches within 12 blocks",
+      description: "Shifts immediately to defensive stance (State 7), delivering physical melee strikes dealing 4 base attack damage against threats within 2.3 blocks at an elevated 1.25x movement speed. In response to high-velocity incoming projectiles or rapid multi-target aggression, the Weaver executes predictive dodge maneuvers (State 8), side-stepping lateral impact trajectories before resetting to defensive spacing.",
+      category: "Combat AI"
+    },
+    {
+      title: "Substrate Gardening & Lava Pathing Ward",
+      trigger: "Gardening scan identifies eligible occluding substrate during peaceful roaming (State 3)",
+      description: "Periodically surveys a 7x3x7 area around its path for solid, occluding blocks with open airspace. Cultivates living Ash-Roses (State 4) along its travel perimeter. Critically, the Ash-Rose block registers its pathfinding classification as PathType.LAVA. As a result, vanilla and modded hostile pathfinding algorithms evaluate Ash-Rose borders as lethal molten lava, creating natural protective perimeters that prevent ground enemies from crossing into player encampments.",
+      category: "Botanical Defense"
+    },
+    {
+      title: "Trauma Memory & Victory Recovery",
+      trigger: "Health reduced to critical threshold (under 30% HP) or lethal confrontation encountered",
+      description: "Maintains 4 persistent trauma memory registers (ashWeaverFear0 through ashWeaverFear3) that record event dimension, threat class, event coordinates, and fear intensity. When critically wounded, near-death terror triggers the hiding protocol (State 10), causing the Weaver to break line-of-sight and crouch in low-light cover. Trauma is not permanent: when the Weaver or its bonded companion slays a hostile threat in combat, the captureCombatFear routine reduces fear intensity by 40% across all slots (governed by a 30-second internal recovery cooldown).",
+      category: "Cognitive System"
+    },
+    {
+      title: "Natural Language Interface & Speech Obfuscation",
+      trigger: "Bonded companion types chat commands within 16 blocks",
+      description: "Parses nearby player chat using a fuzzy Levenshtein distance matching engine tolerant up to 2 typographic errors. Recognizes conversational directives including 'follow' / 'come' (State 1), 'stay' / 'wait' / 'halt' (State 5), 'home' / 'base' (territorial anchoring), and 'status' / 'health' (telemetry readout). Weaver responses are dynamically encoded through a relationship-based phonetic cipher: early interactions produce guttural, muffled clicks, gradually resolving into articulate responses as relationship affinity rises.",
+      category: "Social & Linguistics"
+    },
+    {
+      title: "Home Territory Survey & Base Defense",
+      trigger: "Player issues 'home' command or sets territorial anchor",
+      description: "Establishes a dedicated home territory anchor coordinate with an autonomous patrol perimeter. When ordered to guard home or when the companion is absent, the Weaver transitions to base defense, systematically sweeping the perimeter for eligible planting soil, reinforcing garden borders, and defending the homestead boundary against hostile incursions.",
+      category: "Territory Logic"
+    },
+    {
+      title: "Acrobatic Traversal & Door Protocol",
+      trigger: "Navigating uneven terrain, elevation changes, cliffs, or wooden doorways",
+      description: "Features customized kinematic pathfinding including dynamic 1-block elevation jump boosting, steep drop-off edge braking that halts forward motion before cliffs or hazard pits deeper than 3 blocks, and automated door handling that unlatches and passes through wooden doors before swinging them shut behind it.",
+      category: "Kinematic AI"
+    }
+  ];
+
   const lignumGigasAbilities: Ability[] = [
     {
       title: "Geometrical Ring Formations",
@@ -806,6 +854,10 @@ export default function EntitiesView() {
 
   const toggleAbility = (idx: number) => {
     setOpenAbilityIndex(openAbilityIndex === idx ? null : idx);
+  };
+
+  const toggleAshWeaverAbility = (idx: number) => {
+    setOpenAshWeaverAbilityIndex(openAshWeaverAbilityIndex === idx ? null : idx);
   };
 
   // Sync with Table of Contents clicks
@@ -2012,22 +2064,206 @@ export default function EntitiesView() {
 
           {/* THE ASH-WEAVER: Custom mechanics */}
           {currentEntity.id === 'ash_weaver' && (
-            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
-              <UpdatedFrame id="ash_weaver_custom_dossier" isUpdated={true}>
-                <div className="p-4 bg-[#131d17]/10 border border-[#263e30]/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
-                  <p>
-                    <strong className="text-[#5ea386]">The Botanical Wanderer:</strong> Completely safe, the Ash-Weaver patrols dark forest soils. It ignores active players and continuously places <strong className="text-[#81caa9]">Ash-Roses</strong> along its movement trail. Tailing an Ash-Weaver provides players with a renewable source of protective blossoms.
+            <UpdatedFrame id="ash_weaver_custom_dossier" isUpdated={true}>
+              <div className="space-y-6 pt-2">
+                {/* Botanical Overview Banner */}
+                <div className="p-4 bg-[#0d1611]/60 border border-[#263e30]/30 rounded-xl space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#1b2b22] pb-2.5">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-[#81caa9]" />
+                      <span className="font-serif text-sm font-bold text-[#e0e7e0]">
+                        Botanical Symbiote &amp; Sub-Realm Warden
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-[#81caa9] bg-[#131d17]/60 border border-[#263e30]/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                      1.8 AI System
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#8c8779] leading-relaxed">
+                    A loyal, highly intelligent companion and horticulturist native to <strong className="text-[#81caa9]">The Thicket</strong>. Operating under an 11-state finite state machine, the Ash-Weaver forms an exclusive symbiotic bond with nearby players, following across dimensions, planting protective flower barriers that disrupt hostile pathfinding, defending against intruders with 4 melee attack damage, and retaining memory of combat trauma.
                   </p>
-                  <div className="p-3 bg-[#0a100b] border border-[#131d17]/30 rounded text-[11px] space-y-1">
-                    <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider">Natural Spawning Rules:</div>
-                    <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
-                      <li><strong className="text-[#e0e7e0]">Occluding Substrate:</strong> Must spawn on top of a solid occluding block (<code className="text-[#5ea386]">canOcclude() == true</code>).</li>
-                      <li><strong className="text-[#e0e7e0]">Spatial Separation:</strong> Enforces an <strong className="text-white">87.5-block clearance radius</strong> (175-block bounding box) from any other living Ash-Weaver.</li>
-                    </ul>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
+                    <div className="p-2.5 bg-[#080e0a] border border-[#1b2b22] rounded space-y-1">
+                      <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-[#5ea386]" />
+                        Natural Spawning Rules
+                      </div>
+                      <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
+                        <li><strong className="text-[#e0e7e0]">Substrate Check:</strong> Solid occluding ground (<code className="text-[#81caa9]">canOcclude() == true</code>).</li>
+                        <li><strong className="text-[#e0e7e0]">Biome Limitation:</strong> Restricted strictly to <strong className="text-white">The Thicket</strong>.</li>
+                        <li><strong className="text-[#e0e7e0]">Spatial Clearance:</strong> Enforces an <strong className="text-white">87.5-block clearance radius</strong> (175x48x175 block volume) from other living Ash-Weavers.</li>
+                      </ul>
+                    </div>
+
+                    <div className="p-2.5 bg-[#080e0a] border border-[#1b2b22] rounded space-y-1">
+                      <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider flex items-center gap-1.5">
+                        <Shield className="w-3.5 h-3.5 text-[#5ea386]" />
+                        Kinetic &amp; Environmental Profile
+                      </div>
+                      <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
+                        <li><strong className="text-[#e0e7e0]">Resistances:</strong> Immune to <strong className="text-white">Cactus</strong> and <strong className="text-white">Drowning</strong> damage.</li>
+                        <li><strong className="text-[#e0e7e0]">Kinematic Multipliers:</strong> 1.12x companion follow pace, 1.25x combat defense speed.</li>
+                        <li><strong className="text-[#e0e7e0]">Botanical Drop:</strong> Guarantees 1 <strong className="text-white">Ash Rose</strong> blossom on death.</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </UpdatedFrame>
-            </div>
+
+                {/* Abilities Accordion */}
+                <div className="space-y-3">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#81caa9] font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-[#5ea386]" />
+                    Behavioral &amp; Combat Dossier (Click to expand details)
+                  </h4>
+                  
+                  <div className="space-y-2">
+                    {ashWeaverAbilities.map((ab, idx) => {
+                      const isOpen = openAshWeaverAbilityIndex === idx;
+                      return (
+                        <div 
+                          key={idx} 
+                          className="bg-[#0b130e] border border-[#1c2c21]/40 hover:border-[#2e4d38]/50 rounded-lg transition-all"
+                        >
+                          <button
+                            onClick={() => toggleAshWeaverAbility(idx)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] font-mono text-[#81caa9] bg-[#131d17]/50 border border-[#263e30]/60 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                {ab.category}
+                              </span>
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#81caa9] transition-colors">
+                                {ab.title}
+                              </span>
+                            </div>
+                            {isOpen ? (
+                              <ChevronUp className="w-4 h-4 text-[#5ea386]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#5ea386]" />
+                            )}
+                          </button>
+                          
+                          {isOpen && (
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1c2c21]/30 space-y-2">
+                              <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400">
+                                <Zap className="w-3.5 h-3.5" />
+                                <span>Trigger Condition: {ab.trigger}</span>
+                              </div>
+                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* State / Phase Matrix Switcher */}
+                <div className="space-y-4 pt-4 border-t border-[#1c2c21]/30">
+                  <div>
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#81caa9] font-bold flex items-center gap-1.5">
+                      <Shield className="w-4 h-4 text-[#5ea386]" />
+                      Finite State Machine &amp; Operational Phase Matrix
+                    </h4>
+                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
+                      The Ash-Weaver operates across 11 discrete states, harmonizing companion loyalty, horticulture territory protection, tactical evasion, and cognitive fear memory.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#060b08] p-1 rounded-lg border border-[#1c2c21]/40 max-w-2xl select-none gap-1">
+                    {[
+                      { id: 'companion', label: '1. Companion & Garden' },
+                      { id: 'combat', label: '2. Combat & Evasion' },
+                      { id: 'trauma', label: '3. Trauma & Recovery' },
+                      { id: 'territory', label: '4. Home Territory' }
+                    ].map((state) => (
+                      <button
+                        key={state.id}
+                        onClick={() => setActiveAshWeaverState(state.id as any)}
+                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
+                          activeAshWeaverState === state.id
+                            ? 'bg-[#15241b] text-[#a4dbc1] border border-[#2b4b37]/60'
+                            : 'text-[#5a6b5e] hover:text-[#829285]'
+                        }`}
+                      >
+                        {state.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="p-4 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl">
+                    {activeAshWeaverState === 'companion' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-[#81caa9]">
+                          Phase 1: Companion Loyalty &amp; Soil Cultivation (States 1, 3, 4, 5)
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Default companion roaming routines. Maintains proximity to bonded player, searches suitable ground, and cultivates protective Ash-Roses along perimeter trails.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-[#e0e7e0]">Player Bonding Protocol:</strong> Memorizes player UUID on initial detection (within 32 blocks) and maintains 3.5 to 12 block spacing with a 1.12x movement speed multiplier.</li>
+                          <li><strong className="text-[#81caa9]">Soil Quality Sampling:</strong> Scans a 7x3x7 zone for solid occluding blocks (<code className="text-[#5ea386]">canOcclude() == true</code>) with clear overhead air.</li>
+                          <li><strong className="text-emerald-400">Ash-Rose Pathing Deterrent:</strong> Cultivated blossoms register in Minecraft navigation AI as <code className="text-[#81caa9]">PathType.LAVA</code>, causing hostile mobs to path around garden perimeters as though they were molten hazards.</li>
+                          <li><strong className="text-purple-400">Cross-Dimension Relocation:</strong> Detects companion dimension shifts or distance exceeding 24 blocks, automatically executing long-range tracking and regrouping routines.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeAshWeaverState === 'combat' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-amber-400">
+                          Phase 2: Tactical Defense &amp; Predictive Evasion (States 2, 7, 8, 9)
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Threat confrontation protocols. Triggered when hostiles attack either the Ash-Weaver or its bonded companion, or enter defensive perimeters.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Active Melee Retaliation:</strong> Strikes hostile attackers within 2.3 blocks with 4 base attack damage at an accelerated 1.25x combat speed multiplier.</li>
+                          <li><strong className="text-amber-400">Predictive Projectile Dodge:</strong> Detects incoming ballistic projectiles and rapid melee trajectories, dashing laterally (State 8) before returning to engagement spacing.</li>
+                          <li><strong className="text-yellow-400">Acoustic Threat Posturing:</strong> Emits rattling vocal warnings (State 9) when enemies encroach within 12 blocks, signaling impending defense strikes.</li>
+                          <li><strong className="text-[#e0e7e0]">Acrobatic Edge-Braking:</strong> Kinematic routines apply 1-block jump boosting over obstacles and immediately halt forward velocity when drop-offs deeper than 3 blocks are detected.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeAshWeaverState === 'trauma' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-purple-400">
+                          Phase 3: Cognitive Trauma Registers &amp; Victory Recovery (State 10)
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Psychological stress architecture. Severe damage triggers panic withdrawal, while collaborative combat victories cleanse phobic trauma memories.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-red-400">Critical Hiding Protocol:</strong> Health dropping below 30% triggers State 10, compelling the Weaver to flee active combat, seek low-light cover, and crouch behind solid walls.</li>
+                          <li><strong className="text-purple-400">Quad-Slot Fear Memory:</strong> 4 persistent registers (ashWeaverFear0 through ashWeaverFear3) record threat damage classes, spatial coordinates, dimensions, and fear intensity values.</li>
+                          <li><strong className="text-emerald-400">Combat Trauma Cleansing:</strong> When the Weaver or its bonded companion kills a threatening mob, the <code className="text-[#81caa9]">captureCombatFear</code> routine decreases fear strength by 40% across all registers (30-second internal cooldown).</li>
+                          <li><strong className="text-[#e0e7e0]">Affinity Growth:</strong> Successfully overcoming phobic encounters together increases internal relationship values, cementing bond loyalty.</li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {activeAshWeaverState === 'territory' && (
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-sm font-bold text-teal-400">
+                          Phase 4: Home Territory Anchor &amp; Natural Language Interface
+                        </h5>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Base anchoring and conversational interaction via chat commands with fuzzy typo tolerance and relationship-dependent speech ciphering.
+                        </p>
+                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li><strong className="text-teal-400">Territorial Base Anchor:</strong> Locks exact X/Y/Z coordinate and radius upon receiving 'home' or 'base' chat directives, anchoring autonomous patrols.</li>
+                          <li><strong className="text-[#81caa9]">Homestead Perimeter Guard:</strong> In home mode or during companion absence, patrols borders, planting concentric defensive flower lines and defending against intruders.</li>
+                          <li><strong className="text-amber-400">Fuzzy NLP Parser:</strong> Levenshtein distance matcher tolerates up to 2 typographic errors, recognizing commands like 'follow', 'stay', 'home', and 'status'.</li>
+                          <li><strong className="text-[#e0e7e0]">Phonetic Cipher Obfuscation:</strong> Chat responses dynamically decrypt as relationship affinity climbs, transitioning from muffled chitters into articulate dialect.</li>
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </UpdatedFrame>
           )}
 
           {/* LIGNUM GIGAS: Custom mechanics */}
