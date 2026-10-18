@@ -2883,7 +2883,7 @@ export default function EntitiesView() {
                 <td className="p-3 text-center font-mono">0.140</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
-                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
+                <td className="p-3 text-center font-mono text-emerald-400">No</td>
               </tr>
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Trilobita</td>
@@ -2893,7 +2893,7 @@ export default function EntitiesView() {
                 <td className="p-3 text-center font-mono">0.220</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
-                <td className="p-3 text-center font-mono text-emerald-400">Yes</td>
+                <td className="p-3 text-center font-mono text-emerald-400">No</td>
               </tr>
               <tr>
                 <td className="p-3 font-semibold text-[#c9d1c9] text-left">Lignum Spina</td>
