@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
   Heart, Swords, Eye, Zap, BookOpen, Activity, Compass, 
-  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin, Layers
+  EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin, Layers,
+  MessageSquare, Copy, Check, Terminal
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
@@ -182,11 +183,19 @@ export default function EntitiesView() {
   const [activeWoodweaverState, setActiveWoodweaverState] = useState<'dormant' | 'combat' | 'beam'>('dormant');
   const [activeGigasState, setActiveGigasState] = useState<'dormant' | 'anchored' | 'growling'>('dormant');
   const [activeAshWeaverState, setActiveAshWeaverState] = useState<'companion' | 'combat' | 'trauma' | 'territory'>('companion');
+  const [activeChatTab, setActiveChatTab] = useState<'movement' | 'home' | 'rules'>('movement');
+  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
   const [openAshWeaverAbilityIndex, setOpenAshWeaverAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
   const rotClickTimesRef = useRef<number[]>([]);
+
+  const handleCopyCommand = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedCommand(text);
+    setTimeout(() => setCopiedCommand(null), 1500);
+  };
 
   const handleEntitySelect = (entityId: string) => {
     setSelectedEntity(entityId);
@@ -2261,6 +2270,279 @@ export default function EntitiesView() {
                       </div>
                     )}
                   </div>
+                </div>
+
+                {/* Ash Weaver Chat Command Cheat Sheet */}
+                <div className="space-y-4 pt-4 border-t border-[#1c2c21]/30">
+                  <div>
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#81caa9] font-bold flex items-center gap-1.5">
+                      <MessageSquare className="w-4 h-4 text-[#5ea386]" />
+                      Natural Language Chat Command Cheat Sheet
+                    </h4>
+                    <p className="text-xs text-[#829285] leading-relaxed mt-1">
+                      Direct chat directives recognized by the Ash-Weaver in multiplayer and singleplayer chat. Commands may be spoken unaddressed or addressed using <code className="text-[#81caa9]">weaver</code> or <code className="text-[#81caa9]">ash weaver</code>.
+                    </p>
+                  </div>
+
+                  {/* Segmented Command Tabs */}
+                  <div className="flex flex-wrap sm:flex-nowrap bg-[#060b08] p-1 rounded-lg border border-[#1c2c21]/40 max-w-xl select-none gap-1">
+                    {[
+                      { id: 'movement', label: '1. Movement & Guard' },
+                      { id: 'home', label: '2. Home Territory' },
+                      { id: 'rules', label: '3. Dialogue & Syntax Rules' }
+                    ].map(tab => (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setActiveChatTab(tab.id as any)}
+                        className={`flex-1 text-center py-1.5 px-2 text-[10px] font-mono font-bold rounded transition-all cursor-pointer uppercase whitespace-nowrap ${
+                          activeChatTab === tab.id
+                            ? 'bg-[#15241b] text-[#a4dbc1] border border-[#2b4b37]/60'
+                            : 'text-[#5a6b5e] hover:text-[#829285]'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Tab 1: Movement & Guard */}
+                  {activeChatTab === 'movement' && (
+                    <div className="space-y-3">
+                      {[
+                        {
+                          command: 'follow',
+                          variants: ['follow', 'follow me', 'come here'],
+                          addressed: 'weaver follow / ash weaver follow me',
+                          reply: 'Following.',
+                          action: 'Clears stay flags and resumes active companion following (State 1). Maintains 3.5 to 12 blocks distance with a 1.12x movement speed multiplier.'
+                        },
+                        {
+                          command: 'stay',
+                          variants: ['stay', 'stay here', 'wait here'],
+                          addressed: 'weaver stay / ash weaver wait here',
+                          reply: 'Waiting here.',
+                          action: 'Clears home territory anchoring and locks in-place standing position (ashWeaverChatStay = true). Remains stationary until commanded otherwise.'
+                        },
+                        {
+                          command: 'watch',
+                          variants: ['watch', 'watch my back'],
+                          addressed: 'weaver watch / ash weaver watch my back',
+                          reply: 'Watching for threats.',
+                          action: 'Clears stay flags, resets threat warning cooldown (ashWeaverNextWarning = 0), and enters State 1 with prioritized visual perimeter scanning for encroaching hostiles.'
+                        },
+                        {
+                          command: 'help me',
+                          variants: ['help me', 'protect me'],
+                          addressed: 'weaver help me / ash weaver protect me',
+                          reply: "I'll protect you.",
+                          action: 'Emergency protection priority (4 to 8 ticks reaction delay). Clears stay flags, resets warning timers, and targets attackers with 4 base melee attack damage.'
+                        }
+                      ].map((item, idx) => (
+                        <div key={idx} className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#16251b] pb-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-mono text-xs font-bold text-[#81caa9] bg-[#121f17] border border-[#243d2c]/60 px-2 py-0.5 rounded">
+                                {item.command}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleCopyCommand(item.command)}
+                                className="p-1 text-[#5a6b5e] hover:text-[#81caa9] transition-colors cursor-pointer"
+                                title="Copy command to clipboard"
+                              >
+                                {copiedCommand === item.command ? (
+                                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                ) : (
+                                  <Copy className="w-3.5 h-3.5" />
+                                )}
+                              </button>
+                            </div>
+                            <div className="text-[11px] font-mono text-[#8c8779]">
+                              <span className="text-[#5a6b5e]">Response:</span>{' '}
+                              <span className="text-emerald-400 font-semibold font-serif italic">"{item.reply}"</span>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+                            <div>
+                              <span className="text-[#5a6b5e] uppercase text-[9px] block">Recognized Variants:</span>
+                              <span className="text-[#a4dbc1]">{item.variants.join(' · ')}</span>
+                            </div>
+                            <div>
+                              <span className="text-[#5a6b5e] uppercase text-[9px] block">Addressed Syntax:</span>
+                              <span className="text-[#8c8779]">{item.addressed}</span>
+                            </div>
+                          </div>
+
+                          <p className="text-xs text-[#8c8779] leading-relaxed pt-1">
+                            {item.action}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Tab 2: Home Territory */}
+                  {activeChatTab === 'home' && (
+                    <div className="space-y-3">
+                      {[
+                        {
+                          command: 'this is home',
+                          variants: ['this is home', 'this is our home', 'remember this place'],
+                          addressed: 'weaver this is home / ash weaver remember this place',
+                          reply: 'Territorial Anchor Registered.',
+                          action: 'Sets the player current coordinate as the primary home base anchor. The Weaver enters territory patrol, sweeping the boundary and planting protective Ash-Roses.'
+                        },
+                        {
+                          command: 'this is also home',
+                          variants: ['this is also home', 'remember this area too'],
+                          addressed: 'weaver this is also home',
+                          reply: 'Territory Perimeter Extended.',
+                          action: 'Extends existing territory bounds to include the current coordinates, permitting multi-structure or extended garden perimeter coverage.'
+                        },
+                        {
+                          command: 'stay home',
+                          variants: ['stay home', 'stay at home'],
+                          addressed: 'weaver stay home / ash weaver stay at home',
+                          reply: 'Staying home.',
+                          action: 'Restricts Weaver navigation strictly within home territory bounds, actively guarding the base perimeter against hostile breaches.'
+                        },
+                        {
+                          command: 'forget home',
+                          variants: ['forget home', 'forget this home'],
+                          addressed: 'weaver forget home',
+                          reply: 'Home Anchor Cleared.',
+                          action: 'Wipes all recorded home anchor coordinates, removing territorial tethers and reverting to default follower behaviors.'
+                        },
+                        {
+                          command: 'home status',
+                          variants: ['home status'],
+                          addressed: 'weaver home status',
+                          reply: 'Home Status & Coordinates Readout.',
+                          action: 'Provides a status readout indicating active home coordinates and current distance from the registered territory center.'
+                        }
+                      ].map((item, idx) => (
+                        <div key={idx} className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#16251b] pb-2">
+                            <div className="flex items-center gap-2">
+                              <span className="font-mono text-xs font-bold text-teal-300 bg-[#0f1d16] border border-[#1f382b]/60 px-2 py-0.5 rounded">
+                                {item.command}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={() => handleCopyCommand(item.command)}
+                                className="p-1 text-[#5a6b5e] hover:text-teal-300 transition-colors cursor-pointer"
+                                title="Copy command to clipboard"
+                              >
+                                {copiedCommand === item.command ? (
+                                  <Check className="w-3.5 h-3.5 text-teal-300" />
+                                ) : (
+                                  <Copy className="w-3.5 h-3.5" />
+                                )}
+                              </button>
+                            </div>
+                            <div className="text-[11px] font-mono text-[#8c8779]">
+                              <span className="text-[#5a6b5e]">Response:</span>{' '}
+                              <span className="text-teal-300 font-semibold font-serif italic">"{item.reply}"</span>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-mono">
+                            <div>
+                              <span className="text-[#5a6b5e] uppercase text-[9px] block">Recognized Variants:</span>
+                              <span className="text-[#a4dbc1]">{item.variants.join(' · ')}</span>
+                            </div>
+                            <div>
+                              <span className="text-[#5a6b5e] uppercase text-[9px] block">Addressed Syntax:</span>
+                              <span className="text-[#8c8779]">{item.addressed}</span>
+                            </div>
+                          </div>
+
+                          <p className="text-xs text-[#8c8779] leading-relaxed pt-1">
+                            {item.action}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Tab 3: Dialogue & Syntax Rules */}
+                  {activeChatTab === 'rules' && (
+                    <div className="space-y-3">
+                      {/* Status Command Card */}
+                      <div className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
+                        <div className="flex items-center justify-between border-b border-[#16251b] pb-2">
+                          <span className="font-mono text-xs font-bold text-amber-300 bg-[#1e1a0f] border border-[#3a3219]/60 px-2 py-0.5 rounded">
+                            status
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleCopyCommand('status')}
+                            className="p-1 text-[#5a6b5e] hover:text-amber-300 transition-colors cursor-pointer"
+                            title="Copy command to clipboard"
+                          >
+                            {copiedCommand === 'status' ? (
+                              <Check className="w-3.5 h-3.5 text-amber-300" />
+                            ) : (
+                              <Copy className="w-3.5 h-3.5" />
+                            )}
+                          </button>
+                        </div>
+                        <p className="text-xs text-[#8c8779] leading-relaxed">
+                          Queries current stance. The Weaver dynamically replies with <strong className="text-white">"Staying home."</strong> if anchored to territory, <strong className="text-white">"Waiting here."</strong> if halted in place, or <strong className="text-white">"Following."</strong> if currently escorting the companion.
+                        </p>
+                      </div>
+
+                      {/* Syntax Rules & Obfuscation Deep-Dive */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div className="p-3 bg-[#080e0a] border border-[#1b2b22] rounded-lg space-y-1.5">
+                          <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider flex items-center gap-1.5 text-[11px]">
+                            <Terminal className="w-3.5 h-3.5 text-[#5ea386]" />
+                            Addressing &amp; Typo Tolerance
+                          </div>
+                          <ul className="list-disc pl-4 space-y-1 text-[#829285] leading-relaxed">
+                            <li><strong className="text-[#e0e7e0]">Unaddressed:</strong> Plain words like <code className="text-[#81caa9]">follow</code> or <code className="text-[#81caa9]">stay</code> require exact matches.</li>
+                            <li><strong className="text-[#e0e7e0]">Addressed:</strong> Prefixing with <code className="text-[#81caa9]">weaver</code> or <code className="text-[#81caa9]">ash weaver</code> activates fuzzy matching tolerant of 1 to 2 typos or transpositions.</li>
+                            <li><strong className="text-[#e0e7e0]">Safety Bounds:</strong> Typo matching strictly protects short keywords, preventing accidental misinterpretations such as "say" turning into "stay" or "some" into "home".</li>
+                          </ul>
+                        </div>
+
+                        <div className="p-3 bg-[#080e0a] border border-[#1b2b22] rounded-lg space-y-1.5">
+                          <div className="font-bold text-[#81caa9] uppercase font-mono tracking-wider flex items-center gap-1.5 text-[11px]">
+                            <Sparkles className="w-3.5 h-3.5 text-[#5ea386]" />
+                            Speech Obfuscation &amp; Bond Growth
+                          </div>
+                          <ul className="list-disc pl-4 space-y-1 text-[#829285] leading-relaxed">
+                            <li><strong className="text-[#e0e7e0]">Action Bar Feedback:</strong> Weaver responses appear directly above the player hotbar as action bar messages.</li>
+                            <li><strong className="text-[#e0e7e0]">Dynamic Decryption:</strong> Early dialogues appear heavily scrambled with random Minecraft obfuscation runes. As companion relationship values rise from shared travel and combat victories, the scrambled characters gradually decode into clear words.</li>
+                            <li><strong className="text-[#e0e7e0]">Hesitation Delays:</strong> Responses feature realistic pauses between 4 and 50 ticks (urgent replies take 4 to 8 ticks, while cautious, injured, or unfamiliar states take 18 to 50 ticks).</li>
+                          </ul>
+                        </div>
+
+                        <div className="p-3 bg-[#080e0a] border border-[#1b2b22] rounded-lg space-y-1.5 sm:col-span-2">
+                          <div className="font-bold text-amber-400 uppercase font-mono tracking-wider flex items-center gap-1.5 text-[11px]">
+                            <ShieldAlert className="w-3.5 h-3.5 text-amber-500" />
+                            Engagement Range &amp; Alienation Warnings
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-0.5 text-[#829285]">
+                            <div>
+                              <strong className="text-[#e0e7e0] block">32-Block Horizon:</strong>
+                              Commands are registered only if the companion and Weaver share the same dimension within a 32-block radius.
+                            </div>
+                            <div>
+                              <strong className="text-[#e0e7e0] block">Visual Attention:</strong>
+                              When spoken to within 8 blocks with line of sight, the Weaver pauses and turns its head to look directly at the player.
+                            </div>
+                            <div>
+                              <strong className="text-red-400 block">Alienation Threshold:</strong>
+                              If relationship drops to or below -25, the Weaver warns "Keep your distance." and has a 20% chance to ignore non-urgent commands with silence.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </UpdatedFrame>
