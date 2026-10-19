@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, 
@@ -11,9 +11,24 @@ import {
   BarChart3,
   Radio,
   Layers,
-  Clock
+  Clock,
+  Search
 } from 'lucide-react';
-import { doc, collection, query, orderBy, limit, onSnapshot } from 'firebase/firestore';
+import { 
+  doc, 
+  getDoc, 
+  setDoc, 
+  addDoc, 
+  getDocs,
+  where,
+  collection, 
+  increment, 
+  serverTimestamp, 
+  query, 
+  orderBy, 
+  limit, 
+  onSnapshot 
+} from 'firebase/firestore';
 import { db, hasConfig } from '../lib/firebase';
 
 interface TelemetryLog {
@@ -21,6 +36,16 @@ interface TelemetryLog {
   type: 'unique' | 'repeat';
   slug: string;
   visitorId: string;
+}
+
+interface SearchSummary {
+  totalLogs: number;
+  uniqueCount: number;
+  repeatCount: number;
+  matchedNodes: string[];
+  newestDate?: string;
+  oldestDate?: string;
+  topTarget?: { title: string; count: number };
 }
 
 interface StatsData {
@@ -51,6 +76,13 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   });
   const [statusNotice, setStatusNotice] = useState<string | null>(null);
 
+  // User ID database search engine state
+  const [searchUserId, setSearchUserId] = useState('');
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchResults, setSearchResults] = useState<TelemetryLog[] | null>(null);
+  const [searchSummary, setSearchSummary] = useState<SearchSummary | null>(null);
+  const searchCacheRef = useRef<Map<string, TelemetryLog[]>>(new Map());
+
   const currentVisitorId = useMemo(() => {
     return localStorage.getItem('wiki_visitor_id') || 'unassigned';
   }, [isOpen]);
@@ -70,6 +102,133 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     setStatusNotice('DEVICE TELEMETRY ACTIVE');
     setTimeout(() => setStatusNotice(null), 2800);
   };
+
+  // Log terminal open event to telemetry trace stream
+  const hasLoggedOpenRef = useRef(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      hasLoggedOpenRef.current = false;
+      return;
+    }
+
+    if (hasLoggedOpenRef.current) return;
+    hasLoggedOpenRef.current = true;
+
+    const recordTerminalAccess = async () => {
+      try {
+        // Abort if device tracking is disabled
+        if (localStorage.getItem('wiki_telemetry_ignore_device') === 'true') {
+          return;
+        }
+
+        let visitorId = localStorage.getItem('wiki_visitor_id');
+        if (!visitorId) {
+          visitorId = 'surv_' + Math.random().toString(36).substring(2, 11) + Math.random().toString(36).substring(2, 11);
+          localStorage.setItem('wiki_visitor_id', visitorId);
+        }
+
+        const shortVisitorId = visitorId.substring(0, 12);
+
+        const recordLocalTerminal = (isUnique: boolean) => {
+          try {
+            const raw = localStorage.getItem('local_wiki_stats');
+            let localData: StatsData | null = null;
+            if (raw) {
+              localData = JSON.parse(raw);
+            }
+            if (!localData) {
+              localData = {
+                uniqueCount: 1,
+                repeatCount: 0,
+                totalCount: 1,
+                pageViews: {},
+                logs: []
+              };
+            }
+
+            localData.totalCount = (localData.totalCount || 0) + 1;
+            if (isUnique) {
+              localData.uniqueCount = (localData.uniqueCount || 0) + 1;
+            } else {
+              localData.repeatCount = (localData.repeatCount || 0) + 1;
+            }
+
+            if (!localData.pageViews) localData.pageViews = {};
+            localData.pageViews['telemetry-terminal'] = (localData.pageViews['telemetry-terminal'] || 0) + 1;
+
+            if (!localData.logs) localData.logs = [];
+            localData.logs.unshift({
+              timestamp: new Date().toISOString(),
+              type: isUnique ? 'unique' : 'repeat',
+              slug: 'telemetry-terminal',
+              visitorId: shortVisitorId
+            });
+
+            if (localData.logs.length > 50) {
+              localData.logs = localData.logs.slice(0, 50);
+            }
+
+            localStorage.setItem('local_wiki_stats', JSON.stringify(localData));
+            setStats(localData);
+          } catch (e) {
+            console.error('Failed to log terminal open event to local sandbox', e);
+          }
+        };
+
+        if (hasConfig) {
+          try {
+            const visitorDocRef = doc(db, 'visitors', visitorId);
+            const visitorSnapshot = await getDoc(visitorDocRef);
+            const isUnique = !visitorSnapshot.exists();
+
+            if (isUnique) {
+              await setDoc(visitorDocRef, {
+                firstVisit: serverTimestamp(),
+                lastVisit: serverTimestamp()
+              });
+            } else {
+              await setDoc(visitorDocRef, {
+                lastVisit: serverTimestamp()
+              }, { merge: true });
+            }
+
+            const statsDocRef = doc(db, 'stats', 'global');
+            await setDoc(statsDocRef, {
+              totalCount: increment(1),
+              uniqueCount: isUnique ? increment(1) : increment(0),
+              repeatCount: !isUnique ? increment(1) : increment(0),
+              ['pageViews.telemetry-terminal']: increment(1)
+            }, { merge: true });
+
+            await addDoc(collection(db, 'telemetry_logs'), {
+              timestamp: serverTimestamp(),
+              type: isUnique ? 'unique' : 'repeat',
+              slug: 'telemetry-terminal',
+              visitorId: shortVisitorId
+            });
+          } catch (err) {
+            console.warn('Firebase terminal logging failed, using local sandbox fallback', err);
+            recordLocalTerminal(false);
+          }
+        } else {
+          const raw = localStorage.getItem('local_wiki_stats');
+          let hasVisited = false;
+          if (raw) {
+            try {
+              const parsed = JSON.parse(raw);
+              hasVisited = parsed.logs?.some((l: TelemetryLog) => l.visitorId === shortVisitorId);
+            } catch (e) {}
+          }
+          recordLocalTerminal(!hasVisited);
+        }
+      } catch (err) {
+        console.error('Error logging terminal telemetry event:', err);
+      }
+    };
+
+    recordTerminalAccess();
+  }, [isOpen]);
 
   // Close on Escape key
   useEffect(() => {
@@ -262,6 +421,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   };
 
   const getArticleTitle = (slug: string) => {
+    if (slug === 'telemetry-terminal' || slug === 'terminal') {
+      return 'Telemetry Terminal';
+    }
     const article = articles.find(a => a.slug === slug);
     if (article) return article.title;
     // Format fallback neatly
@@ -304,12 +466,141 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     };
   }, [stats, articles, showAllTargets]);
 
-  // Filter logs
+  const computeSearchSummary = (results: TelemetryLog[]) => {
+    if (results.length === 0) {
+      setSearchSummary({
+        totalLogs: 0,
+        uniqueCount: 0,
+        repeatCount: 0,
+        matchedNodes: []
+      });
+      return;
+    }
+    const nodes = Array.from(new Set(results.map(r => r.visitorId)));
+    const targetCounts: Record<string, number> = {};
+    let uniqueCount = 0;
+    let repeatCount = 0;
+
+    results.forEach(r => {
+      targetCounts[r.slug] = (targetCounts[r.slug] || 0) + 1;
+      if (r.type === 'unique') uniqueCount++;
+      else repeatCount++;
+    });
+
+    let topSlug = '';
+    let maxCount = 0;
+    Object.entries(targetCounts).forEach(([slug, count]) => {
+      if (count > maxCount) {
+        maxCount = count;
+        topSlug = slug;
+      }
+    });
+
+    setSearchSummary({
+      totalLogs: results.length,
+      uniqueCount,
+      repeatCount,
+      matchedNodes: nodes,
+      newestDate: results[0]?.timestamp,
+      oldestDate: results[results.length - 1]?.timestamp,
+      topTarget: topSlug ? { title: getArticleTitle(topSlug), count: maxCount } : undefined
+    });
+  };
+
+  // User ID database search engine effect with automatic debounce
+  useEffect(() => {
+    const trimmed = searchUserId.trim().toLowerCase();
+    if (!trimmed) {
+      setSearchResults(null);
+      setSearchSummary(null);
+      setIsSearching(false);
+      return;
+    }
+
+    // Check memory cache first for 0ms instant display
+    if (searchCacheRef.current.has(trimmed)) {
+      const cached = searchCacheRef.current.get(trimmed)!;
+      setSearchResults(cached);
+      computeSearchSummary(cached);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+    const debounceTimer = setTimeout(async () => {
+      try {
+        let results: TelemetryLog[] = [];
+
+        if (hasConfig) {
+          const prefixes = [trimmed];
+          if (!trimmed.startsWith('surv_') && !trimmed.includes('_')) {
+            prefixes.push('surv_' + trimmed);
+          }
+
+          const isGeneric = trimmed === 'surv' || trimmed === 'surv_';
+          const logsMap = new Map<string, TelemetryLog>();
+
+          for (const p of prefixes) {
+            let q = query(
+              collection(db, 'telemetry_logs'),
+              where('visitorId', '>=', p),
+              where('visitorId', '<=', p + '\uf8ff')
+            );
+            if (isGeneric) {
+              q = query(q, limit(250));
+            }
+            const snap = await getDocs(q);
+            snap.forEach(docSnap => {
+              const data = docSnap.data();
+              let tsStr = new Date().toISOString();
+              if (data.timestamp) {
+                if (typeof data.timestamp.toDate === 'function') {
+                  tsStr = data.timestamp.toDate().toISOString();
+                } else if (data.timestamp.seconds) {
+                  tsStr = new Date(data.timestamp.seconds * 1000).toISOString();
+                } else {
+                  tsStr = new Date(data.timestamp).toISOString();
+                }
+              }
+              logsMap.set(docSnap.id, {
+                timestamp: tsStr,
+                type: data.type || 'repeat',
+                slug: data.slug || 'home',
+                visitorId: data.visitorId || 'unknown'
+              });
+            });
+          }
+
+          results = Array.from(logsMap.values()).sort(
+            (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+          );
+        } else {
+          // Local sandbox fallback
+          const localLogs = stats?.logs || [];
+          results = localLogs.filter(l => l.visitorId.toLowerCase().includes(trimmed));
+        }
+
+        searchCacheRef.current.set(trimmed, results);
+        setSearchResults(results);
+        computeSearchSummary(results);
+      } catch (err) {
+        console.error('Error querying full Firestore history:', err);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 220);
+
+    return () => clearTimeout(debounceTimer);
+  }, [searchUserId, hasConfig, stats]);
+
+  // Active pool of logs: database search results or live stream
+  const activeLogsPool = searchResults !== null ? searchResults : (stats?.logs || []);
+
+  // Filter logs by type
   const filteredLogs = useMemo(() => {
-    if (!stats) return [];
-    if (logFilter === 'all') return stats.logs;
-    return stats.logs.filter(l => l.type === logFilter);
-  }, [stats, logFilter]);
+    if (logFilter === 'all') return activeLogsPool;
+    return activeLogsPool.filter(l => l.type === logFilter);
+  }, [activeLogsPool, logFilter]);
 
   const formatRelativeTime = (timestamp: string) => {
     try {
@@ -520,7 +811,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                   {/* Left Column: Top Visited Telemetry Targets */}
-                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[380px]">
+                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[460px]">
                     <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-3 select-none">
                       <div className="flex items-center gap-2">
                         <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
@@ -588,23 +879,29 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                     )}
                   </div>
 
-                  {/* Right Column: Realtime Telemetry Stream with Categorized Status Pills */}
-                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[380px]">
+                  {/* Right Column: Realtime Telemetry Stream with Integrated User ID Search Engine */}
+                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[460px]">
                     {/* Stream Header & Filters */}
-                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-2.5 select-none">
+                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-2 select-none">
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                          <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${searchResults !== null ? 'bg-cyan-400' : 'bg-emerald-400'} opacity-60`}></span>
+                          <span className={`relative inline-flex rounded-full h-2 w-2 ${searchResults !== null ? 'bg-cyan-500' : 'bg-emerald-500'}`}></span>
                         </span>
                         <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
-                          Telemetry Trace Stream
+                          {searchResults !== null ? 'Database History Audit' : 'Telemetry Trace Stream'}
                         </span>
+                        {searchResults !== null && (
+                          <span className="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/70 border border-cyan-800 text-cyan-300 font-mono uppercase font-bold">
+                            HISTORICAL
+                          </span>
+                        )}
                       </div>
 
                       {/* Filter Pills */}
                       <div className="flex items-center gap-1 bg-[#090d0a] p-0.5 rounded border border-[#1b261e]">
                         <button
+                          type="button"
                           onClick={() => setLogFilter('all')}
                           className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'all'
@@ -612,9 +909,10 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                               : 'text-[#4f6454] hover:text-[#a4c9ad]'
                           }`}
                         >
-                          All ({stats.logs.length})
+                          All ({activeLogsPool.length})
                         </button>
                         <button
+                          type="button"
                           onClick={() => setLogFilter('unique')}
                           className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'unique'
@@ -622,9 +920,10 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                               : 'text-[#4f6454] hover:text-emerald-400'
                           }`}
                         >
-                          Unique
+                          Unique ({activeLogsPool.filter(l => l.type === 'unique').length})
                         </button>
                         <button
+                          type="button"
                           onClick={() => setLogFilter('repeat')}
                           className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'repeat'
@@ -632,22 +931,110 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                               : 'text-[#4f6454] hover:text-amber-400'
                           }`}
                         >
-                          Return
+                          Return ({activeLogsPool.filter(l => l.type === 'repeat').length})
                         </button>
                       </div>
                     </div>
+
+                    {/* Optimized User ID Search Engine */}
+                    <div className="relative mb-2">
+                      <div className="relative flex items-center">
+                        <Search className="w-3.5 h-3.5 text-[#5e7564] absolute left-2.5 pointer-events-none" />
+                        <input
+                          type="text"
+                          value={searchUserId}
+                          onChange={(e) => setSearchUserId(e.target.value)}
+                          placeholder="Search User ID across database history (e.g. surv_q8c, alvt29s)..."
+                          className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[11px] font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8 pr-16 py-1.5 rounded transition-all"
+                        />
+                        {searchUserId ? (
+                          <div className="absolute right-2 flex items-center gap-1.5">
+                            {isSearching && (
+                              <span className="w-2.5 h-2.5 rounded-full border border-emerald-400 border-t-transparent animate-spin" />
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setSearchUserId('');
+                                setSearchResults(null);
+                                setSearchSummary(null);
+                              }}
+                              className="text-[#5e7564] hover:text-[#d6ded7] transition-colors p-0.5 cursor-pointer"
+                              title="Clear search"
+                            >
+                              <X className="w-3 h-3" />
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => setSearchUserId(currentVisitorIdShort)}
+                            className="absolute right-2 text-[9px] text-[#5e7564] hover:text-emerald-400 transition-colors uppercase font-mono px-1.5 py-0.5 bg-[#0e1611] rounded border border-[#1c271f] cursor-pointer"
+                            title="Audit history for your current browser node"
+                          >
+                            My Node
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Search Result Intelligence Card */}
+                    {searchUserId.trim() && (
+                      <div className="mb-2 bg-[#080d0a] border border-[#1b261e] rounded p-2 text-[10px] font-mono select-none">
+                        {isSearching ? (
+                          <div className="flex items-center gap-2 text-emerald-400 py-0.5">
+                            <span className="w-2.5 h-2.5 rounded-full border border-emerald-400 border-t-transparent animate-spin" />
+                            <span>Querying full Firestore database history for node "{searchUserId}"...</span>
+                          </div>
+                        ) : searchResults && searchResults.length > 0 ? (
+                          <div className="space-y-1">
+                            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#141d16] pb-1">
+                              <div className="flex items-center gap-1.5 text-emerald-300 font-semibold">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                <span>DATABASE AUDIT: {searchResults.length} RECORDS FOUND</span>
+                              </div>
+                              <div className="text-[9px] text-[#55695a]">
+                                {searchSummary?.matchedNodes.length} NODE(S) MATCHED
+                              </div>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-[#7a9480]">
+                              {searchSummary?.oldestDate && (
+                                <span>
+                                  FIRST RECORDED: <strong className="text-[#a4c9ad]">{new Date(searchSummary.oldestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
+                                </span>
+                              )}
+                              {searchSummary?.newestDate && (
+                                <span>
+                                  LATEST ACTIVITY: <strong className="text-[#a4c9ad]">{new Date(searchSummary.newestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
+                                </span>
+                              )}
+                              {searchSummary?.topTarget && (
+                                <span>
+                                  TOP TARGET: <strong className="text-emerald-400">{searchSummary.topTarget.title} ({searchSummary.topTarget.count}x)</strong>
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="text-[#687f6e] italic py-0.5">
+                            No records found in database history matching node ID "{searchUserId}".
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     {/* Scrollable Log Stream */}
                     <div className="flex-1 overflow-y-auto space-y-1.5 pr-1 text-[11px] font-mono scrollbar-thin">
                       {filteredLogs.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-12 text-[#4f6454] italic">
                           <Radio className="w-5 h-5 mb-1.5 text-[#303f34]" />
-                          <span>No telemetry trace events match the active filter.</span>
+                          <span>No telemetry trace events match the active criteria.</span>
                         </div>
                       ) : (
                         filteredLogs.map((log, index) => {
                           const date = new Date(log.timestamp);
-                          const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+                          const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+                          const timeStr = `${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })} · ${dateStr}`;
                           const isNew = log.type === 'unique';
                           const relativeTime = formatRelativeTime(log.timestamp);
 
@@ -658,12 +1045,16 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                             >
                               <div className="flex items-center gap-2 min-w-0">
                                 {/* Timestamp */}
-                                <span className="text-[#4e6453] text-[10px] font-semibold shrink-0">
+                                <span className="text-[#4e6453] text-[10px] font-semibold shrink-0" title={date.toLocaleString()}>
                                   [{timeStr}]
                                 </span>
 
                                 {/* Categorized Status Pill */}
-                                {isNew ? (
+                                {log.slug === 'telemetry-terminal' ? (
+                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
+                                    TERMINAL
+                                  </span>
+                                ) : isNew ? (
                                   <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
                                     NEW NODE
                                   </span>
@@ -674,21 +1065,34 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                                 )}
 
                                 {/* Destination Title */}
-                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate">
+                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate flex items-center gap-1.5">
+                                  {log.slug === 'telemetry-terminal' && (
+                                    <Terminal className="w-3 h-3 text-cyan-400 shrink-0 inline" />
+                                  )}
                                   {getArticleTitle(log.slug)}
                                 </span>
                               </div>
 
                               <div className="flex items-center gap-2 shrink-0">
-                                {/* Visitor ID Chip */}
+                                {/* Clickable Visitor ID Chip */}
                                 {log.visitorId === currentVisitorIdShort ? (
-                                  <span className="text-[9px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold" title="This event was emitted by your current browser node">
+                                  <button
+                                    type="button"
+                                    onClick={() => setSearchUserId(log.visitorId)}
+                                    title="Click to search full database history for your node"
+                                    className="text-[9px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
+                                  >
                                     {log.visitorId} (YOU)
-                                  </span>
+                                  </button>
                                 ) : (
-                                  <span className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono">
+                                  <button
+                                    type="button"
+                                    onClick={() => setSearchUserId(log.visitorId)}
+                                    title={`Click to search complete database history for node ${log.visitorId}`}
+                                    className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
+                                  >
                                     {log.visitorId}
-                                  </span>
+                                  </button>
                                 )}
                                 {/* Elapsed */}
                                 <span className="text-[9px] text-[#3d4f42] w-12 text-right hidden sm:inline">
