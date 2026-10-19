@@ -149,6 +149,11 @@ function WikiContainer() {
 
     const recordVisit = async () => {
       try {
+        // Check if current device is opted out / ignored from telemetry
+        if (localStorage.getItem('wiki_telemetry_ignore_device') === 'true') {
+          return;
+        }
+
         let visitorId = localStorage.getItem('wiki_visitor_id');
         if (!visitorId) {
           visitorId = 'surv_' + Math.random().toString(36).substring(2, 11) + Math.random().toString(36).substring(2, 11);

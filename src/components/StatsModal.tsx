@@ -46,6 +46,30 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [retryCount, setRetryCount] = useState(0);
   const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat'>('all');
   const [showAllTargets, setShowAllTargets] = useState(false);
+  const [isDeviceIgnored, setIsDeviceIgnored] = useState<boolean>(() => {
+    return localStorage.getItem('wiki_telemetry_ignore_device') === 'true';
+  });
+  const [statusNotice, setStatusNotice] = useState<string | null>(null);
+
+  const currentVisitorId = useMemo(() => {
+    return localStorage.getItem('wiki_visitor_id') || 'unassigned';
+  }, [isOpen]);
+
+  const currentVisitorIdShort = currentVisitorId.substring(0, 12);
+
+  const handleStopTracking = () => {
+    localStorage.setItem('wiki_telemetry_ignore_device', 'true');
+    setIsDeviceIgnored(true);
+    setStatusNotice('DEVICE TELEMETRY HALTED');
+    setTimeout(() => setStatusNotice(null), 2800);
+  };
+
+  const handleResumeTracking = () => {
+    localStorage.removeItem('wiki_telemetry_ignore_device');
+    setIsDeviceIgnored(false);
+    setStatusNotice('DEVICE TELEMETRY ACTIVE');
+    setTimeout(() => setStatusNotice(null), 2800);
+  };
 
   // Close on Escape key
   useEffect(() => {
@@ -334,19 +358,43 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           <div className="flex items-center justify-between px-5 py-3.5 bg-[#0b100d] border-b border-[#1b261e] select-none">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                <button
+                  type="button"
+                  onDoubleClick={handleStopTracking}
+                  title="Double-click: Stop tracking (ignore this device)"
+                  className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
+                    isDeviceIgnored 
+                      ? 'bg-red-500' 
+                      : 'bg-red-500/35 hover:bg-red-500/75'
+                  }`}
+                />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/40" title="Telemetry Terminal Node" />
+                <button
+                  type="button"
+                  onDoubleClick={handleResumeTracking}
+                  title="Double-click: Resume tracking"
+                  className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
+                    !isDeviceIgnored 
+                      ? 'bg-emerald-500' 
+                      : 'bg-emerald-500/35 hover:bg-emerald-500/75'
+                  }`}
+                />
               </div>
               <div className="h-4 w-[1px] bg-[#1e2a22]" />
               <div className="flex items-center gap-2">
                 <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase flex items-center gap-2">
+                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase">
                   BACKWOODS TELEMETRY TERMINAL
-                  <span className="text-[9px] px-1.5 py-0.2 text-[#4e6353] border border-[#1b261e] rounded bg-[#0e1410] font-mono">
-                    v1.1.0-HUD
-                  </span>
                 </span>
+                {statusNotice && (
+                  <span className={`text-[9px] px-2 py-0.5 rounded font-mono uppercase tracking-wider ${
+                    isDeviceIgnored
+                      ? 'text-red-300 bg-red-950/60 border border-red-800/60'
+                      : 'text-emerald-300 bg-emerald-950/60 border border-emerald-800/60'
+                  }`}>
+                    {statusNotice}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -616,7 +664,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                                 {/* Categorized Status Pill */}
                                 {isNew ? (
-                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80 shadow-[0_0_6px_rgba(16,185,129,0.2)]">
+                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
                                     NEW NODE
                                   </span>
                                 ) : (
@@ -633,9 +681,15 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                               <div className="flex items-center gap-2 shrink-0">
                                 {/* Visitor ID Chip */}
-                                <span className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono">
-                                  {log.visitorId}
-                                </span>
+                                {log.visitorId === currentVisitorIdShort ? (
+                                  <span className="text-[9px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold" title="This event was emitted by your current browser node">
+                                    {log.visitorId} (YOU)
+                                  </span>
+                                ) : (
+                                  <span className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono">
+                                    {log.visitorId}
+                                  </span>
+                                )}
                                 {/* Elapsed */}
                                 <span className="text-[9px] text-[#3d4f42] w-12 text-right hidden sm:inline">
                                   {relativeTime}
