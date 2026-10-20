@@ -635,14 +635,17 @@ export default function ItemsView() {
       name: "Tetherless Pearl",
       category: "utility",
       isUpdated: true,
-      desc: "A weightless dimensional pearl item dropped by the Dorceless Splinter. Thrown as a projectile, it shatters on impact and instantly swaps physical locations between the thrower and the target entity.",
+      desc: "A dimensional pearl item dropped by the Dorceless Splinter. Both this and the Resonant variant have no gravity, which means they never fall and will fly in a straight line. Thrown as a projectile, it travels up to 24 to 32 blocks and instantly swaps physical locations between the thrower and any target entity it strikes.",
       stats: [
         { label: "Acquisition Method", value: "Mob Drop from Dorceless Splinter" },
-        { label: "Item Classification", value: "Entity Position-Swapping Projectile" },
+        { label: "Gravitational Physics", value: "No Gravity (Never Falls, Straight Line Flight)" },
+        { label: "Travel Range", value: "24 – 32 Blocks (or entity impact)" },
         { label: "Throw Cooldown", value: "40 Ticks (2.0 Seconds)" },
         { label: "Impact Effect", value: "Target Location Swap on Impact" }
       ],
       notes: [
+        "Has no gravity: never falls and will fly in a straight line.",
+        "Travels forward in a straight line for a randomized distance between 24 and 32 blocks if it does not strike an entity.",
         "Features a global 40-tick (2.0-second) cooldown after each throw.",
         "Striking any living target (except The Rot) shatters the pearl with a glass crunch and immediately swaps your position with theirs.",
         "Plays distinct spatial teleport sound effects at both the thrower's and the target's locations upon swapping.",
@@ -655,17 +658,20 @@ export default function ItemsView() {
       name: "Resonant Tetherless Pearl",
       category: "utility",
       isUpdated: true,
-      desc: "An amplified, highly resonant spatial pearl projectile. When thrown, it propels a high-frequency warp wave that teleports the user forward over long distances across 64 to 96 blocks.",
+      desc: "An amplified spatial pearl projectile crafted from a Tetherless Pearl. Both pearls have no gravity, which means they never fall and will fly in a straight line. Travels forward for 64 to 96 blocks, teleporting the thrower directly to the projectile's position upon reaching its max distance or colliding with a block.",
       stats: [
         { label: "Teleportation Distance", value: "64 – 96 Blocks" },
+        { label: "Gravitational Physics", value: "No Gravity (Never Falls, Straight Line Flight)" },
         { label: "Throw Cooldown", value: "40 Ticks (2.0 Seconds)" },
         { label: "Item Classification", value: "Long-Range Spatial Evasion" },
         { label: "Crafting Method", value: "2 Shapeless Recipes (requires Tetherless Pearl)" }
       ],
       notes: [
+        "Has no gravity: never falls and will fly in a straight line.",
+        "Travels forward in a straight line for a randomized distance between 64 and 96 blocks before teleporting the thrower directly to the projectile's location.",
+        "Unlike the standard Tetherless Pearl, it displaces the thrower directly over vast distances without needing an entity target.",
         "Features a global 40-tick (2.0-second) cooldown after each throw.",
-        "Provides immediate long-distance spatial evasion to escape hostile swarms or cross hazardous gaps.",
-        "Unlike the standard Tetherless Pearl, it displaces the thrower directly over vast distances without needing an entity target."
+        "Provides immediate long-distance spatial evasion to escape hostile swarms or cross hazardous gaps."
       ]
     },
     {
@@ -926,7 +932,8 @@ export default function ItemsView() {
 
         {/* Right Side: Detailed Profiler */}
         {selectedItem && (
-          <div className="lg:col-span-7 p-6 bg-[#080a08] border border-[#182019] rounded-xl space-y-5 relative overflow-hidden">
+          <UpdatedFrame id={`item_profile_${selectedItem.id}`} isUpdated={!!selectedItem.isUpdated} className="lg:col-span-7">
+            <div className="p-6 bg-[#080a08] border border-[#182019] rounded-xl space-y-5 relative overflow-hidden">
             {/* Ambient Background Grid Glow */}
             <div className="absolute right-0 top-0 w-32 h-32 bg-emerald-950/5 blur-3xl rounded-full pointer-events-none" />
 
@@ -1030,7 +1037,8 @@ export default function ItemsView() {
               </div>
             )}
 
-          </div>
+            </div>
+          </UpdatedFrame>
         )}
 
       </div>
