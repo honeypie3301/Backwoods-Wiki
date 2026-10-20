@@ -130,8 +130,8 @@ export default function Sidebar({
 
         {/* Search Bar */}
         <div className="p-4 border-b border-[#1a221c]/50 bg-[#0c0f0d]">
-          <div className="relative">
-            <Search className="absolute left-3 top-2.5 w-4 h-4 text-[#5a6b5e]" />
+          <div className="relative flex items-center">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5a6b5e] pointer-events-none" />
             <input
               type="text"
               placeholder="Search guide..."
@@ -142,7 +142,7 @@ export default function Sidebar({
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-2.5 text-[#5a6b5e] hover:text-[#e0e7e0] transition-colors"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#5a6b5e] hover:text-[#e0e7e0] transition-colors p-0.5 rounded flex items-center justify-center"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
