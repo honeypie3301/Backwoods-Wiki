@@ -746,6 +746,12 @@ export default function EntitiesView() {
       category: "Territory Logic"
     },
     {
+      title: "Making Amends",
+      trigger: "Its companion apologizes after an isolated accidental hit",
+      description: "A sincere apology can soften a recent mistake, but it does not erase the injury or every frightening memory. Repeated harm carries more weight than repeated words. Spamming apologies earns no trust, and the Weaver may ask for time or wait for kinder behavior.",
+      category: "Companionship"
+    },
+    {
       title: "Small, Deliberate Movements",
       trigger: "Following through uneven ground, ledges, or doorways",
       description: "Walks, sprints, and uses cautious jumps when the route allows. It judges drops and landing space instead of jumping down every slope. At a door it pauses, looks toward the handle, and swings to open or close it, leaving the doorway clear for others.",
@@ -1963,6 +1969,15 @@ export default function EntitiesView() {
                     Standard, Log, Blindspot, and Petrified Splinters share a memory of each player's habits. Their experience follows that player across the Backwoods realms, and any of the four can teach the others. Vulnerable hunters learn to read incoming shots and build cover; Petrified Splinters rely on their projectile-resistant bodies instead.
                   </p>
 
+                  {currentEntity.id === 'petrified_splinter' ? (
+                    <div className="p-3 bg-[#0b0e0c] border border-[#1d2720] rounded-lg space-y-2">
+                      <h6 className="font-mono font-bold text-[11px] uppercase text-zinc-300">Hardened Pursuit</h6>
+                      <p className="text-xs text-[#8c8779] leading-relaxed">
+                        Petrified Splinters still observe their prey and teach the shared hivemind. They do not dodge arrows, weave away from an aimed bow, or build projectile shields. Once enraged, their response is to press into melee, using their hardened bodies to weather the fire. Their usual gaze and Ash-Rose restrictions still apply.
+                      </p>
+                    </div>
+                  ) : (
+                    <>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                     <div className="p-3 bg-[#110f0d] border border-[#3d2a0d]/30 rounded-lg space-y-2">
                       <div className="text-[#d1a851] font-bold font-mono text-[11px] uppercase flex items-center gap-1.5">
@@ -2015,6 +2030,8 @@ export default function EntitiesView() {
                       </p>
                     </div>
                   </div>
+                    </>
+                  )}
                 </div>
               </UpdatedFrame>
             </div>
@@ -2673,6 +2690,13 @@ export default function EntitiesView() {
                           addressed: 'weaver help me / ash weaver protect me',
                           reply: "I'll protect you.",
                           action: 'Asks for help against an attacker. The Weaver answers more quickly than usual, but still takes a brief moment to react.'
+                        },
+                        {
+                          command: 'weaver sorry',
+                          variants: ['sorry', "I'm sorry", 'my bad', 'forgive me', "I didn't mean to hit you"],
+                          addressed: 'weaver sorry / ash weaver please forgive me',
+                          reply: 'Be careful.',
+                          action: 'Apologizes for a recent accidental hit. Minor typos and common contractions are understood. Repeated apologies cannot restore the same injury twice, and repeated hits may earn a refusal instead.'
                         }
                       ].map((item, idx) => (
                         <div key={idx} className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
@@ -2845,7 +2869,7 @@ export default function EntitiesView() {
                             Addressing &amp; Typo Tolerance
                           </div>
                           <ul className="list-disc pl-4 space-y-1 text-[#829285] leading-relaxed">
-                            <li><strong className="text-[#e0e7e0]">Unaddressed:</strong> Plain words like <code className="text-[#81caa9]">follow</code> or <code className="text-[#81caa9]">stay</code> require exact matches.</li>
+                            <li><strong className="text-[#e0e7e0]">Unaddressed:</strong> Movement requests such as <code className="text-[#81caa9]">follow</code> or <code className="text-[#81caa9]">stay</code> need exact wording without a name. Familiar apologies also allow small, unmistakable typos.</li>
                             <li><strong className="text-[#e0e7e0]">Addressed:</strong> Prefixing with <code className="text-[#81caa9]">weaver</code> or <code className="text-[#81caa9]">ash weaver</code> activates fuzzy matching tolerant of 1 to 2 typos or transpositions.</li>
                             <li><strong className="text-[#e0e7e0]">Safety Bounds:</strong> Typo matching strictly protects short keywords, preventing accidental misinterpretations such as "say" turning into "stay" or "some" into "home".</li>
                           </ul>
@@ -2879,7 +2903,7 @@ export default function EntitiesView() {
                             </div>
                             <div>
                               <strong className="text-red-400 block">Alienation Threshold:</strong>
-                              Repeated harm can make the Weaver refuse requests, fall silent, or ask its companion to keep their distance.
+                              Repeated harm can make the Weaver refuse requests, fall silent, or ask its companion to keep their distance. Apologies can help with an isolated mistake, but cannot excuse a pattern of attacks.
                             </div>
                           </div>
                         </div>
