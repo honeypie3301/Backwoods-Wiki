@@ -273,7 +273,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Backwoods (Dense Oak/Spruce forests)",
       isUpdated: true,
-      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Possesses an elevated safe fall distance of 7 blocks and increased water movement efficiency (0.3). Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements."
+      desc: "The primary threat of the Backwoods. A gaunt, hollow wooden figure that hunts targets with infinite patience. Possesses an elevated safe fall distance of 7 blocks and increased water movement efficiency (0.3). Driven by the SplinterAgeProcedure, Splinters continuously accumulate age ticks over time in dark environments. As they mature, young Splinters age into Log Splinters, Blindspot Splinters, and eventually calcify into Petrified Splinters when exposed to extreme sub-dimensional pressures. Upon spawning, each unit is assigned a stealth Stalker profile or a weeping Angel profile that advances only when unwatched. When a Rot entity approaches within 100 blocks, Splinters possess an innate evacuation instinct, actively fleeing the area to avoid collateral destruction during sentinel combat engagements. Its encounters feed a shared memory of each player's fighting habits, carried by its kin across the Backwoods realms."
     },
     {
       id: "lignum_spina",
@@ -433,7 +433,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Backwoods / Forestry Mimicry",
       isUpdated: true,
-      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. Possesses an enhanced safe fall distance of 8 blocks and 0.4 water movement efficiency. It excels at camouflaging against local trees, packing tightly together in mature world phases. Like all Splinter species, it actively flees from approaching Rot entities within a 100-block range."
+      desc: "A heavier, bark-skinned variant of the standard Splinter possessing elevated health and a custom wood-rich dropset. Possesses an enhanced safe fall distance of 8 blocks and 0.4 water movement efficiency. It excels at camouflaging against local trees, packing tightly together in mature world phases. Like all Splinter species, it actively flees from approaching Rot entities within a 100-block range. Its encounters feed a shared memory of each player's fighting habits, carried by its kin across the Backwoods realms."
     },
     {
       id: "blindspot_splinter",
@@ -449,7 +449,7 @@ export default function EntitiesView() {
       speed: "0.335",
       dim: "The Grain (Labyrinths) / The Sub-Strata",
       isUpdated: true,
-      desc: "A terrifying sub-species that leverages advanced visual manipulation, turning completely invisible when viewed through the front third-person camera perspective. It wilts protective Ash-Roses at accelerated rates. Shares the Splinter evacuation instinct, fleeing from any Rot entity within 100 blocks."
+      desc: "A predator of The Grain that turns invisible in the third-person front view. As the shared hivemind learns, Blindspot Splinters can leave frozen afterimages where they stood, vanish, and silently move behind or around their target. Copies linger while their makers reposition, then fade before the real hunters attack. Ash-Roses can halt them, although these fragile wards wilt quickly in their presence."
     },
     {
       id: "petrified_splinter",
@@ -465,7 +465,7 @@ export default function EntitiesView() {
       speed: "0.300",
       dim: "The Petrified Weald",
       isUpdated: true,
-      desc: "A highly resilient, fossilized variant of the Splinter lineage generating in the Petrified Weald (requiring a 48-block clearance from other specimens on solid occluding ground). Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes. Like all Splinter sub-species, it evacuates the area whenever a Rot entity approaches within 100 blocks."
+      desc: "A highly resilient, fossilized variant of the Splinter lineage generating in the Petrified Weald (requiring a 48-block clearance from other specimens on solid occluding ground). Adapted to the extreme pressures of the Petrified Weald, it moves slower but acts as a dense physical shield, taking minimal damage from kinetic strikes. Like all Splinter sub-species, it evacuates the area whenever a Rot entity approaches within 100 blocks. Its encounters feed a shared memory of each player's fighting habits, carried by its kin across the Backwoods realms."
     },
     {
       id: "hollow",
@@ -510,10 +510,10 @@ export default function EntitiesView() {
       hp: "40 HP",
       damage: "4 (Base Melee Strike / Self-Defense Reprisal)",
       armor: "0 Points",
-      speed: "0.200 (1.12x Follow Speed / 1.05x Gardening Pace)",
+      speed: "Walks, sprints, and jumps to follow its companion",
       dim: "The Thicket (Dense vegetation biomes)",
       isUpdated: true,
-      desc: "An intelligent symbiotic companion and botanical gardener native to The Thicket. Forms a loyal lifetime bond with the nearest player within 32 blocks, following across dimensions and assisting with base defense. While peaceful during regular hours, it actively strikes back against hostiles with 4 physical melee damage, dodges incoming projectiles, and plants protective Ash-Roses whose stems emit an olfactory ward that hostile mob pathfinding evaluates as molten lava. Features persistent trauma memory registers, typo-tolerant natural language chat parsing, dynamic jump assistance, and edge-braking."
+      desc: "An intelligent, wary companion native to The Thicket. An Ash-Weaver chooses a player who has no Weaver of their own, then learns to recognize their habits, their shelter, and the dangers they face together. It plants Ash-Roses when hostile Splinters threaten its companion, warns of unseen pursuers, and may join a fight or seek cover when frightened. Familiarity makes its strange speech easier to understand, but repeated harm can turn companionship into distrust."
     },
     {
       id: "lignum_gigas",
@@ -677,47 +677,78 @@ export default function EntitiesView() {
     }
   ];
 
+  const splinterAbilities: Ability[] = [
+    {
+      title: "The Forest Remembers",
+      trigger: "Repeated encounters with the same player",
+      description: "Standard, Log, Blindspot, and Petrified Splinters share what they learn about their prey. Bow fire, close combat, and fallen kin shape their responses, even when no ordinary Splinter is nearby. Crossing into another Backwoods realm does not erase that memory.",
+      category: "Shared Instinct"
+    },
+    {
+      title: "Timber Shields & Hunting Lines",
+      trigger: "A vulnerable hunter is aimed at, or a dangerous shot approaches",
+      description: "Experienced hunters read incoming shots, seek cover, and weave sideways when directly threatened by a player's aim. Built cover rises from the ground upward. Petrified Splinters do not waste wood shielding themselves from projectiles that cannot hurt them.",
+      category: "Combat"
+    },
+    {
+      title: "Coalescence",
+      trigger: "Enough eligible remains lie near fallen Splinters",
+      description: "Marked wood and sticks draw together, rise into a rough figure, and hang briefly before another hunter stands in their place. Four sticks count as one plank. Player-thrown supplies cannot begin this revival, and chosen remains stay beyond reach until the gathering ends.",
+      category: "Reformation"
+    }
+  ];
+
+  const blindspotAbilities: Ability[] = [
+    ...splinterAbilities,
+    {
+      title: "Borrowed Shapes",
+      trigger: "An experienced Blindspot loses the player's attention",
+      description: "Frozen copies remain where the hunters stood as their real bodies vanish. Some follow behind the player; others silently take positions around them without circling. They back away if approached and cannot strike until the copies have faded.",
+      category: "Deception"
+    }
+  ];
+
   const ashWeaverAbilities: Ability[] = [
     {
-      title: "Symbiotic Bonding & Cross-Dimension Loyalty",
-      trigger: "Unassigned Ash-Weaver detects an active, non-spectator player within 32 blocks",
-      description: "Scans for the nearest eligible player within a 32-block radius to establish an exclusive symbiotic bond, memorizing the player UUID. Operates under follow navigation (State 1) with an accelerated 1.12x speed multiplier, maintaining a comfortable 3.5 to 12-block proximity envelope. If the player teleports, travels far away, or transitions between dimensions, the Weaver activates cross-dimension tracking and regroup routines to re-establish companionship.",
+      title: "A Chosen Companion",
+      trigger: "An unassigned Weaver meets an eligible player nearby",
+      description: "Chooses a player who has no Ash-Weaver assigned to them. It follows, catches up when needed, and sometimes lingers or glances at its surroundings before returning. A portal it sees its companion enter can become a route to follow; an unexplained disappearance is not permission to teleport.",
       category: "Companion Logic"
     },
     {
-      title: "Defensive Combat & Predictive Evasion",
-      trigger: "Hostile entity attacks the Weaver or bonded player, or approaches within 12 blocks",
-      description: "Shifts immediately to defensive stance (State 7), delivering physical melee strikes dealing 4 base attack damage against threats within 2.3 blocks at an elevated 1.25x movement speed. In response to high-velocity incoming projectiles or rapid multi-target aggression, the Weaver executes predictive dodge maneuvers (State 8), side-stepping lateral impact trajectories before resetting to defensive spacing.",
+      title: "An Uneasy Protector",
+      trigger: "Its companion is attacked or a nearby threat becomes dangerous",
+      description: "Can turn on an attacker, swing in close combat, or occasionally jump for a stronger strike. It may dodge danger, hesitate, or retreat instead of judging every fight perfectly. When a pursuing Splinter seems to have escaped the player's notice, the Weaver can gesture a warning.",
       category: "Combat AI"
     },
     {
-      title: "Substrate Gardening & Lava Pathing Ward",
-      trigger: "Gardening scan identifies eligible occluding substrate during peaceful roaming (State 3)",
-      description: "Periodically surveys a 7x3x7 area around its path for solid, occluding blocks with open airspace. Cultivates living Ash-Roses (State 4) along its travel perimeter. Critically, the Ash-Rose block registers its pathfinding classification as PathType.LAVA. As a result, vanilla and modded hostile pathfinding algorithms evaluate Ash-Rose borders as lethal molten lava, creating natural protective perimeters that prevent ground enemies from crossing into player encampments.",
+      title: "Ash-Rose Defense",
+      trigger: "A nearby hostile Splinter is targeting its companion",
+      description: "Looks for safe ground, turns toward the planting site, and swings before placing a rose. Planting is a response to danger, not endless peaceful gardening. Rose placement is limited, and it may drop a blossom for a companion in danger.",
       category: "Botanical Defense"
     },
     {
-      title: "Trauma Memory & Victory Recovery",
-      trigger: "Health reduced to critical threshold (under 30% HP) or lethal confrontation encountered",
-      description: "Maintains 4 persistent trauma memory registers (ashWeaverFear0 through ashWeaverFear3) that record event dimension, threat class, event coordinates, and fear intensity. When critically wounded, near-death terror triggers the hiding protocol (State 10), causing the Weaver to break line-of-sight and crouch in low-light cover. Trauma is not permanent: when the Weaver or its bonded companion slays a hostile threat in combat, the captureCombatFear routine reduces fear intensity by 40% across all slots (governed by a 30-second internal recovery cooldown).",
+      title: "Frightening Memories",
+      trigger: "A dangerous encounter or a near-death escape",
+      description: "Remembers frightening threats and the areas where they were encountered. A shaken Weaver may crouch behind cover, peek out, and wait for danger to pass. Overcoming threats together can ease its fear, but a victory does not erase every memory at once.",
       category: "Cognitive System"
     },
     {
-      title: "Natural Language Interface & Speech Obfuscation",
-      trigger: "Bonded companion types chat commands within 16 blocks",
-      description: "Parses nearby player chat using a fuzzy Levenshtein distance matching engine tolerant up to 2 typographic errors. Recognizes conversational directives including 'follow' / 'come' (State 1), 'stay' / 'wait' / 'halt' (State 5), 'home' / 'base' (territorial anchoring), and 'status' / 'health' (telemetry readout). Weaver responses are dynamically encoded through a relationship-based phonetic cipher: early interactions produce guttural, muffled clicks, gradually resolving into articulate responses as relationship affinity rises.",
+      title: "Learning to Understand",
+      trigger: "Its assigned player speaks nearby",
+      description: "Recognizes a small set of chat requests, including addressed phrases with minor misspellings. Early replies are mostly scrambled; growing familiarity makes them clearer. It pauses before answering, responds more quickly to urgent help, and speaks privately to its own companion.",
       category: "Social & Linguistics"
     },
     {
-      title: "Home Territory Survey & Base Defense",
-      trigger: "Player issues 'home' command or sets territorial anchor",
-      description: "Establishes a dedicated home territory anchor coordinate with an autonomous patrol perimeter. When ordered to guard home or when the companion is absent, the Weaver transitions to base defense, systematically sweeping the perimeter for eligible planting soil, reinforcing garden borders, and defending the homestead boundary against hostile incursions.",
+      title: "A Place Called Home",
+      trigger: "Its companion says 'this is home' from nearby safe ground",
+      description: "Accepts a usable shelter or cave, or an equipped campsite, lookout, or open base. It gradually learns nearby rooms and boundaries rather than claiming every visible patch of land. Open doors remain boundaries, and an unsafe or unreachable place can be refused.",
       category: "Territory Logic"
     },
     {
-      title: "Acrobatic Traversal & Door Protocol",
-      trigger: "Navigating uneven terrain, elevation changes, cliffs, or wooden doorways",
-      description: "Features customized kinematic pathfinding including dynamic 1-block elevation jump boosting, steep drop-off edge braking that halts forward motion before cliffs or hazard pits deeper than 3 blocks, and automated door handling that unlatches and passes through wooden doors before swinging them shut behind it.",
+      title: "Small, Deliberate Movements",
+      trigger: "Following through uneven ground, ledges, or doorways",
+      description: "Walks, sprints, and uses cautious jumps when the route allows. It judges drops and landing space instead of jumping down every slope. At a door it pauses, looks toward the handle, and swings to open or close it, leaving the doorway clear for others.",
       category: "Kinematic AI"
     }
   ];
@@ -904,6 +935,10 @@ export default function EntitiesView() {
     switch (entityId) {
       case 'rot': return rotAbilities;
       case 'woodweaver': return woodweaverAbilities;
+      case 'splinter':
+      case 'log_splinter':
+      case 'petrified_splinter': return splinterAbilities;
+      case 'blindspot_splinter': return blindspotAbilities;
       case 'ash_weaver': return ashWeaverAbilities;
       case 'lignum_gigas': return lignumGigasAbilities;
       case 'verdant_engine': return verdantEngineAbilities;
@@ -916,16 +951,16 @@ export default function EntitiesView() {
       case 'stilt_walker':
         return 'Spawn Grace Protection System 20 ticks 1s 60 ticks 3s stalk cycle predictive dodging immune damage';
       case 'ash_weaver':
-        return 'Botanical Symbiote Sub-Realm Warden 87.5-block clearance The Thicket 11-state FSM companion follow teleport trauma memory flower barriers chat commands stay home rules natural spawning rules kinetic environmental profile';
+        return 'Botanical Symbiote The Thicket companion trust familiarity fear hiding peeking roses warnings portal travel home cave campsite watchtower doors chat commands';
       case 'fractus':
       case 'fractus_prime':
         return 'Tractor beam grip escape energy sphere burst echolocation network sub-terranean fortification sonar acoustic radar concussive shockwave';
       case 'splinter':
-        return 'SplinterAgeProcedure Angel Weeping Stalker profile 100 blocks evacuation instinct safe fall distance 7 blocks water movement';
+        return 'Angel Stalker evacuation aging shared hivemind learning projectile cover aim weaving coalescence death loot sticks ash rose flower pot';
       case 'log_splinter':
       case 'blindspot_splinter':
       case 'petrified_splinter':
-        return 'Decay Stages Structural Limitations Rose Wilt Trigger Hardness Cap canOcclude';
+        return 'Decay shared hivemind learning cover projectile immunity afterimages invisible flank surround coalescence sticks planks logs flower pot';
       case 'lignum_palus':
         return 'Architectural mimicry gaze hypnosis flashing particle aura grid-aligned teleportation Y=20 Y=46 subterranean';
       case 'lignum_vermis':
@@ -1743,7 +1778,7 @@ export default function EntitiesView() {
                 <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
                   <li><strong className="text-[#c9d1c9]">Adaptive Navigation:</strong> If you build up, it builds blocks upward. If you cross a gorge, it bridges across. Mines dividing terrain blockades (slower for high hardness materials).</li>
                   <li><strong className="text-[#aa8bc9]">Dimensional Pull:</strong> A rare subset (10%) carry a 10% chance per hit to drag the victim directly into <strong className="text-[#c2afd6] font-bold">The Grain</strong>.</li>
-                  <li><strong className="text-[#5ea386]">Ash-Rose Vulnerability:</strong> Holding an Ash-Rose halts movement, and planting one freezes all Splinters within its aura.</li>
+                  <li><strong className="text-[#5ea386]">Ash-Rose Vulnerability:</strong> Holding an Ash-Rose can halt these hunters; a nearby planted or potted rose can also freeze them while its ward remains active.</li>
                 </ul>
               </div>
 
@@ -1920,12 +1955,12 @@ export default function EntitiesView() {
                   <div className="flex items-center gap-2">
                     <ShieldAlert className="w-4 h-4 text-[#709978]" />
                     <h5 className="font-serif text-base font-bold text-[#e0e7e0]">
-                      Ranged Threat Discrimination (<code className="text-[#a9d1b0] text-xs font-mono">SplinterHivemind</code>)
+                      A Hunter That Learns
                     </h5>
                   </div>
 
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    All four active Splinter sub-species (standard Splinter, Log Splinter, Blindspot Splinter, and Petrified Log Splinter) employ a tactical threat evaluation algorithm via the <code className="text-[#a9d1b0]">SplinterHivemind</code>. When confronted with ranged weaponry, the AI calculates whether an incoming projectile poses lethal danger before executing evasion, cover seeking, or flanking maneuvers.
+                    Standard, Log, Blindspot, and Petrified Splinters share a memory of each player's habits. Their experience follows that player across the Backwoods realms, and any of the four can teach the others. Vulnerable hunters learn to read incoming shots and build cover; Petrified Splinters rely on their projectile-resistant bodies instead.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
@@ -1938,7 +1973,7 @@ export default function EntitiesView() {
                         The entity actively monitors the player hand state and detects projectile threats:
                       </p>
                       <ul className="text-[11px] text-[#8c8779] list-disc pl-4 space-y-1 font-mono">
-                        <li><strong className="text-[#e7c787]">Bows:</strong> Actively drawn bows aimed at or near the entity.</li>
+                        <li><strong className="text-[#e7c787]">Bows:</strong> Drawn bows aimed directly through the hunter's position.</li>
                         <li><strong className="text-[#e7c787]">Crossbows:</strong> Charged and loaded crossbows aimed in range.</li>
                         <li><strong className="text-[#e7c787]">Tridents:</strong> Aimed or readied throwing tridents.</li>
                         <li><strong className="text-[#e7c787]">Wind Charges:</strong> Held and primed wind charge projectiles.</li>
@@ -1967,7 +2002,7 @@ export default function EntitiesView() {
                         The Patience Trap Protocol
                       </h6>
                       <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        When safely tucked behind solid cover (<code className="text-[#a9d1b0]">BOW_COVER</code>), if an archer keeps their bow drawn and aimed at the cover position, the Splinter patiently holds position. Rather than suicidally charging into a pre-aimed arrow after failed flank path checks, it remains sheltered until the player releases their shot, lowers their aim, or switches weapons.
+                        A sheltered Splinter may wait while an archer keeps a weapon trained on its hiding place. Lowering the weapon, releasing a shot, or changing position can give the hunter an opening to move.
                       </p>
                     </div>
 
@@ -1976,10 +2011,42 @@ export default function EntitiesView() {
                         Wide Screened Flank Arcs
                       </h6>
                       <p className="text-[#8c8779] text-[11px] leading-relaxed">
-                        When navigating out of cover (<code className="text-[#a9d1b0]">BOW_FLANK</code>), the Splinter abandons linear direct charges and erratic jittering. Instead, it traces wide lateral arcs perpendicular to the attacker's line of fire, using environmental obstacles to remain occluded until closing to close-quarters striking distance.
+                        Hunters may take a wider route around an aimed weapon, using the terrain to screen their approach. Sideways weaving responds to a weapon aimed at that hunter, not merely to a bow being held nearby.
                       </p>
                     </div>
                   </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {['splinter', 'log_splinter', 'blindspot_splinter', 'petrified_splinter'].includes(currentEntity.id) && (
+            <div className="space-y-4 pt-4 border-t border-[#1a221c]">
+              <UpdatedFrame id={`splinter_shared_instinct_${currentEntity.id}`} isUpdated={true}>
+                <div className="p-5 bg-[#0a0c0a] border border-[#232f25] rounded-xl space-y-4">
+                  <h5 className="font-serif text-base font-bold text-[#a9d1b0]">Timber Shields &amp; Coalescence</h5>
+                  <p className="text-xs text-[#8c8779] leading-relaxed">
+                    An experienced hunter may build its own shelter from an incoming shot, placing the lower block before raising the upper one. It carries the building material in its hand and usually seeks a route around familiar cover before breaking it. Petrified kin need no such shield against projectiles.
+                  </p>
+                  <h6 className="font-serif text-sm font-bold text-[#d1a851]">What the Fallen Leave Behind</h6>
+                  <p className="text-xs text-[#8c8779] leading-relaxed">
+                    Remains left by a dead Splinter can begin to stir. Nearby pieces slide toward one point, lift into a rough biped shape, and pause before a new hunter stands in their place. On Lignum Caro, a single eligible wooden drop can be enough; sparse formations suggest their missing limbs with faint smoke.
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+                    {[['Easy', '10'], ['Normal', '7'], ['Hard', '5'], ['Hardcore', '4']].map(([difficulty, amount]) => (
+                      <div key={difficulty} className="p-3 bg-[#090b09] border border-[#1b231c] rounded-lg">
+                        <div className="text-[#5a6b5e] text-[10px] uppercase">{difficulty}</div>
+                        <div className="text-[#d1a851] mt-1">{amount} planks</div>
+                      </div>
+                    ))}
+                  </div>
+                  <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-2 leading-relaxed">
+                    <li><strong className="text-[#c9d1c9]">Wood and Sticks:</strong> These are the default plank requirements. Four eligible sticks replace one plank; sixteen replace one log when a log-based form is gathering. Wood and sticks can contribute to the same pile; sticks alone form the realm's plank-type hunter.</li>
+                    <li><strong className="text-[#c9d1c9]">Only the Fallen:</strong> Only remains dropped by fallen Splinters can take part. Throwing your own building supplies or sticks on the ground will not summon a hunter.</li>
+                    <li><strong className="text-[#c9d1c9]">Beyond Reach:</strong> Selected remains cannot be picked up while the formation holds them. If it breaks apart, surviving drops become available again.</li>
+                    <li><strong className="text-[#c9d1c9]">A Place to Stand:</strong> Revival needs safe footing and room for the new body. Solid obstructions, nearby crowds, or an interrupted gathering can prevent it.</li>
+                    <li><strong className="text-[#c9d1c9]">Different Remains:</strong> Planks form ordinary Splinters, or Blindspots in The Grain. Logs form Log Splinters, petrified wood forms Petrified Splinters, and fallen Lignum Caro can produce any of the four.</li>
+                  </ul>
                 </div>
               </UpdatedFrame>
             </div>
@@ -2159,6 +2226,23 @@ export default function EntitiesView() {
             </div>
           )}
 
+          {currentEntity.id === 'blindspot_splinter' && (
+            <UpdatedFrame id="blindspot_borrowed_shapes" isUpdated={true}>
+              <div className="p-5 bg-[#110f0d] border border-[#3d2a0d]/30 rounded-xl space-y-3">
+                <h5 className="font-serif text-base font-bold text-orange-400">Borrowed Shapes</h5>
+                <p className="text-xs text-[#8c8779] leading-relaxed">
+                  An experienced Blindspot can leave a frozen likeness where it stood and vanish at the same moment. The shape keeps its departing pose; it does not turn its head to follow you. More experienced hunters leave denser, more convincing copies.
+                </p>
+                <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-2 leading-relaxed">
+                  <li><strong className="text-[#c9d1c9]">Behind the Distraction:</strong> Invisible hunters follow behind their target or silently take fixed positions around them. They do not endlessly circle the player.</li>
+                  <li><strong className="text-[#c9d1c9]">Keep Your Distance:</strong> The real bodies try to stay beyond melee reach and back away when approached, preserving the deception.</li>
+                  <li><strong className="text-[#c9d1c9]">The Reveal:</strong> Copies linger while the hunters reposition, then fade before attacks resume. Blocked routes cannot keep the illusion alive forever.</li>
+                  <li><strong className="text-[#c9d1c9]">Many Faces:</strong> Up to 200 nearby hunters can join a single deployment. These copies are distractions, not additional living Splinters.</li>
+                </ul>
+              </div>
+            </UpdatedFrame>
+          )}
+
           {/* PETRIFIED LOG SPLINTER: Custom mechanics */}
           {currentEntity.id === 'petrified_splinter' && (
             <div className="space-y-4 pt-2 border-t border-[#1a221c]">
@@ -2168,6 +2252,7 @@ export default function EntitiesView() {
                     <strong className="text-zinc-300">Hardened Physiology:</strong> Emerging solely from fossilized understories, the Petrified Log Splinter is incredibly robust. It possesses high natural armor ratings (4 points) and moves slower than its fleshier brothers (0.3 speed), acting as an unyielding physical gatekeeper in the high-density ash forests.
                   </div>
                   <ul className="space-y-2 text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
+                    <li><strong className="text-zinc-300">Relentless Under Fire:</strong> Its projectile immunity makes wooden shields unnecessary. When provoked, it closes on its attacker instead of sheltering from harmless arrows.</li>
                     <li><strong className="text-zinc-300">Gaze Locking:</strong> Freezes on direct sights and stalks once line of sight breaks.</li>
                     <li><strong className="text-zinc-300">Kinship Alarms:</strong> Integrates fully with the global difficulty death alert triggers, driving surrounding Petrified Log Splinters into instant 600-tick fury states.</li>
                   </ul>
@@ -2340,7 +2425,7 @@ export default function EntitiesView() {
                     </span>
                   </div>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    A loyal, highly intelligent companion and horticulturist native to <strong className="text-[#81caa9]">The Thicket</strong>. Operating under an 11-state finite state machine, the Ash-Weaver forms an exclusive symbiotic bond with nearby players, following across dimensions, planting protective flower barriers that disrupt hostile pathfinding, defending against intruders with 4 melee attack damage, and retaining memory of combat trauma.
+                    A wary, intelligent companion native to <strong className="text-[#81caa9]">The Thicket</strong>. The Ash-Weaver chooses one player, learns from shared experiences, and offers protection without being fearless or perfectly obedient. Trust grows slowly; cruelty can make it keep its distance.
                   </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
@@ -2363,7 +2448,7 @@ export default function EntitiesView() {
                       </div>
                       <ul className="list-disc pl-4 space-y-0.5 text-[#829285]">
                         <li><strong className="text-[#e0e7e0]">Resistances:</strong> Immune to <strong className="text-white">Cactus</strong> and <strong className="text-white">Drowning</strong> damage.</li>
-                        <li><strong className="text-[#e0e7e0]">Kinematic Multipliers:</strong> 1.12x companion follow pace, 1.25x combat defense speed.</li>
+                        <li><strong className="text-[#e0e7e0]">Following Pace:</strong> Walks, sprints, and uses cautious jumps to keep up, slowing when the route becomes unsafe.</li>
                         <li><strong className="text-[#e0e7e0]">Botanical Drop:</strong> Guarantees 1 <strong className="text-white">Ash Rose</strong> blossom on death.</li>
                       </ul>
                     </div>
@@ -2427,7 +2512,7 @@ export default function EntitiesView() {
                       Finite State Machine &amp; Operational Phase Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
-                      The Ash-Weaver operates across 11 discrete states, harmonizing companion loyalty, horticulture territory protection, tactical evasion, and cognitive fear memory.
+                      Companionship, danger, frightening memories, and familiar shelter shape how the Weaver behaves. Its attention shifts with the situation rather than following the same routine everywhere.
                     </p>
                   </div>
 
@@ -2456,16 +2541,16 @@ export default function EntitiesView() {
                     {activeAshWeaverState === 'companion' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-[#81caa9]">
-                          Phase 1: Companion Loyalty &amp; Soil Cultivation (States 1, 3, 4, 5)
+                          Companionship &amp; Protective Planting
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Default companion roaming routines. Maintains proximity to bonded player, searches suitable ground, and cultivates protective Ash-Roses along perimeter trails.
+                          Follows its chosen companion, pauses to notice its surroundings, and looks for safe planting ground when hostile Splinters give chase.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-[#e0e7e0]">Player Bonding Protocol:</strong> Memorizes player UUID on initial detection (within 32 blocks) and maintains 3.5 to 12 block spacing with a 1.12x movement speed multiplier.</li>
-                          <li><strong className="text-[#81caa9]">Soil Quality Sampling:</strong> Scans a 7x3x7 zone for solid occluding blocks (<code className="text-[#5ea386]">canOcclude() == true</code>) with clear overhead air.</li>
-                          <li><strong className="text-emerald-400">Ash-Rose Pathing Deterrent:</strong> Cultivated blossoms register in Minecraft navigation AI as <code className="text-[#81caa9]">PathType.LAVA</code>, causing hostile mobs to path around garden perimeters as though they were molten hazards.</li>
-                          <li><strong className="text-purple-400">Cross-Dimension Relocation:</strong> Detects companion dimension shifts or distance exceeding 24 blocks, automatically executing long-range tracking and regrouping routines.</li>
+                          <li><strong className="text-[#e0e7e0]">A Chosen Companion:</strong> Chooses an unaccompanied player nearby and keeps a changing, comfortable distance instead of always standing on the same spot.</li>
+                          <li><strong className="text-[#81caa9]">Careful Planting:</strong> Checks usable ground and space for the flower, looks toward the spot, then swings to place it.</li>
+                          <li><strong className="text-emerald-400">A Defensive Blossom:</strong> Plants when hostile Splinters are targeting its companion, rather than endlessly filling peaceful paths with roses.</li>
+                          <li><strong className="text-purple-400">Following Through Portals:</strong> Can follow a witnessed portal route, but does not blindly teleport after unexplained travel.</li>
                         </ul>
                       </div>
                     )}
@@ -2473,16 +2558,16 @@ export default function EntitiesView() {
                     {activeAshWeaverState === 'combat' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-amber-400">
-                          Phase 2: Tactical Defense &amp; Predictive Evasion (States 2, 7, 8, 9)
+                          Danger &amp; Defense
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Threat confrontation protocols. Triggered when hostiles attack either the Ash-Weaver or its bonded companion, or enter defensive perimeters.
+                          Can help when its companion is attacked, but danger may also make it hesitate, retreat, or reach for a protective blossom.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Active Melee Retaliation:</strong> Strikes hostile attackers within 2.3 blocks with 4 base attack damage at an accelerated 1.25x combat speed multiplier.</li>
-                          <li><strong className="text-amber-400">Predictive Projectile Dodge:</strong> Detects incoming ballistic projectiles and rapid melee trajectories, dashing laterally (State 8) before returning to engagement spacing.</li>
-                          <li><strong className="text-yellow-400">Acoustic Threat Posturing:</strong> Emits rattling vocal warnings (State 9) when enemies encroach within 12 blocks, signaling impending defense strikes.</li>
-                          <li><strong className="text-[#e0e7e0]">Acrobatic Edge-Braking:</strong> Kinematic routines apply 1-block jump boosting over obstacles and immediately halt forward velocity when drop-offs deeper than 3 blocks are detected.</li>
+                          <li><strong className="text-red-400">Close Defense:</strong> Swings against attackers in reach and sometimes jumps for a stronger falling strike. It runs when a chase calls for it.</li>
+                          <li><strong className="text-amber-400">Avoiding Danger:</strong> Tries to dodge incoming shots or move out of its companion's aim instead of standing in the line of fire.</li>
+                          <li><strong className="text-yellow-400">Watch Your Back:</strong> May gesture toward a pursuing Splinter when its companion seems unaware of the danger.</li>
+                          <li><strong className="text-[#e0e7e0]">Cautious Footing:</strong> Judges landing space and drop depth, slows at dangerous edges, and may wait rather than commit to a bad jump.</li>
                         </ul>
                       </div>
                     )}
@@ -2490,16 +2575,16 @@ export default function EntitiesView() {
                     {activeAshWeaverState === 'trauma' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-purple-400">
-                          Phase 3: Cognitive Trauma Registers &amp; Victory Recovery (State 10)
+                          Fear &amp; Recovery
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Psychological stress architecture. Severe damage triggers panic withdrawal, while collaborative combat victories cleanse phobic trauma memories.
+                          A frightening encounter can change how the Weaver approaches the same threat or place later. Shared victories can help it regain its nerve.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Critical Hiding Protocol:</strong> Health dropping below 30% triggers State 10, compelling the Weaver to flee active combat, seek low-light cover, and crouch behind solid walls.</li>
-                          <li><strong className="text-purple-400">Quad-Slot Fear Memory:</strong> 4 persistent registers (ashWeaverFear0 through ashWeaverFear3) record threat damage classes, spatial coordinates, dimensions, and fear intensity values.</li>
-                          <li><strong className="text-emerald-400">Combat Trauma Cleansing:</strong> When the Weaver or its bonded companion kills a threatening mob, the <code className="text-[#81caa9]">captureCombatFear</code> routine decreases fear strength by 40% across all registers (30-second internal cooldown).</li>
-                          <li><strong className="text-[#e0e7e0]">Affinity Growth:</strong> Successfully overcoming phobic encounters together increases internal relationship values, cementing bond loyalty.</li>
+                          <li><strong className="text-red-400">Seeking Cover:</strong> A badly hurt or frightened Weaver can break sight, crouch behind cover, and peek out before deciding to return.</li>
+                          <li><strong className="text-purple-400">Remembered Places:</strong> Fear is tied to a threat and the surrounding area, not a single unlucky block.</li>
+                          <li><strong className="text-emerald-400">Recovery:</strong> Overcoming nearby threats together can soften frightening memories over time.</li>
+                          <li><strong className="text-[#e0e7e0]">Trust and Familiarity:</strong> Shared time and help build a bond; repeated harm can make the Weaver wary or avoidant.</li>
                         </ul>
                       </div>
                     )}
@@ -2507,16 +2592,16 @@ export default function EntitiesView() {
                     {activeAshWeaverState === 'territory' && (
                       <div className="space-y-2">
                         <h5 className="font-serif text-sm font-bold text-teal-400">
-                          Phase 4: Home Territory Anchor &amp; Natural Language Interface
+                          Home &amp; Understanding
                         </h5>
                         <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Base anchoring and conversational interaction via chat commands with fuzzy typo tolerance and relationship-dependent speech ciphering.
+                          A home must be somewhere usable. The Weaver learns shelter and nearby boundaries gradually, and may refuse a place that is unsafe or beyond its reach.
                         </p>
                         <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-teal-400">Territorial Base Anchor:</strong> Locks exact X/Y/Z coordinate and radius upon receiving 'home' or 'base' chat directives, anchoring autonomous patrols.</li>
-                          <li><strong className="text-[#81caa9]">Homestead Perimeter Guard:</strong> In home mode or during companion absence, patrols borders, planting concentric defensive flower lines and defending against intruders.</li>
-                          <li><strong className="text-amber-400">Fuzzy NLP Parser:</strong> Levenshtein distance matcher tolerates up to 2 typographic errors, recognizing commands like 'follow', 'stay', 'home', and 'status'.</li>
-                          <li><strong className="text-[#e0e7e0]">Phonetic Cipher Obfuscation:</strong> Chat responses dynamically decrypt as relationship affinity climbs, transitioning from muffled chitters into articulate dialect.</li>
+                          <li><strong className="text-teal-400">A Usable Home:</strong> Recognizes sheltered rooms, caves, equipped campsites, watchtowers, and open bases, rather than accepting any empty field.</li>
+                          <li><strong className="text-[#81caa9]">Room Boundaries:</strong> Open doors do not turn the entire outdoors into another room. Extra areas must connect safely to a remembered home.</li>
+                          <li><strong className="text-amber-400">A Few Familiar Words:</strong> Addressed requests tolerate minor typos. Important changes, such as forgetting a home, require clear words and confirmation.</li>
+                          <li><strong className="text-[#e0e7e0]">Strange Speech:</strong> Replies begin heavily scrambled and become easier to read with familiarity. A damaged relationship can make communication difficult again.</li>
                         </ul>
                       </div>
                     )}
@@ -2566,28 +2651,28 @@ export default function EntitiesView() {
                           variants: ['follow', 'follow me', 'come here'],
                           addressed: 'weaver follow / ash weaver follow me',
                           reply: 'Following.',
-                          action: 'Clears stay flags and resumes active companion following (State 1). Maintains 3.5 to 12 blocks distance with a 1.12x movement speed multiplier.'
+                          action: 'Resumes following, adjusting its pace and position to its companion and the ground ahead.'
                         },
                         {
                           command: 'stay',
                           variants: ['stay', 'stay here', 'wait here'],
                           addressed: 'weaver stay / ash weaver wait here',
                           reply: 'Waiting here.',
-                          action: 'Clears home territory anchoring and locks in-place standing position (ashWeaverChatStay = true). Remains stationary until commanded otherwise.'
+                          action: 'Asks the Weaver to wait nearby instead of following. Immediate danger can interrupt its wait.'
                         },
                         {
                           command: 'watch',
                           variants: ['watch', 'watch my back'],
                           addressed: 'weaver watch / ash weaver watch my back',
                           reply: 'Watching for threats.',
-                          action: 'Clears stay flags, resets threat warning cooldown (ashWeaverNextWarning = 0), and enters State 1 with prioritized visual perimeter scanning for encroaching hostiles.'
+                          action: 'Resumes following and asks it to watch for threats, including pursuers its companion may not have noticed.'
                         },
                         {
                           command: 'help me',
                           variants: ['help me', 'protect me'],
                           addressed: 'weaver help me / ash weaver protect me',
                           reply: "I'll protect you.",
-                          action: 'Emergency protection priority (4 to 8 ticks reaction delay). Clears stay flags, resets warning timers, and targets attackers with 4 base melee attack damage.'
+                          action: 'Asks for help against an attacker. The Weaver answers more quickly than usual, but still takes a brief moment to react.'
                         }
                       ].map((item, idx) => (
                         <div key={idx} className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
@@ -2640,38 +2725,45 @@ export default function EntitiesView() {
                       {[
                         {
                           command: 'this is home',
-                          variants: ['this is home', 'this is our home', 'remember this place'],
+                          variants: ['this is home', 'this is our home', 'remember this place', 'this is our camp', 'this is our base', 'this is a watchtower'],
                           addressed: 'weaver this is home / ash weaver remember this place',
-                          reply: 'Territorial Anchor Registered.',
-                          action: 'Sets the player current coordinate as the primary home base anchor. The Weaver enters territory patrol, sweeping the boundary and planting protective Ash-Roses.'
+                          reply: "I'll remember this place.",
+                          action: 'Asks the Weaver to remember a safe, usable shelter or equipped base. Stand nearby on safe ground; an exposed empty field is not enough. Replacing a home requires confirmation.'
                         },
                         {
                           command: 'this is also home',
                           variants: ['this is also home', 'remember this area too'],
                           addressed: 'weaver this is also home',
-                          reply: 'Territory Perimeter Extended.',
-                          action: 'Extends existing territory bounds to include the current coordinates, permitting multi-structure or extended garden perimeter coverage.'
+                          reply: "I'll remember this area too.",
+                          action: 'Adds a nearby, safely connected area to the remembered home. It will not join distant buildings through an unsafe outdoor route.'
                         },
                         {
                           command: 'stay home',
                           variants: ['stay home', 'stay at home'],
                           addressed: 'weaver stay home / ash weaver stay at home',
                           reply: 'Staying home.',
-                          action: 'Restricts Weaver navigation strictly within home territory bounds, actively guarding the base perimeter against hostile breaches.'
+                          action: 'Asks the Weaver to remain around a remembered home it can safely reach. Threats and damaged shelter can interrupt its routine.'
                         },
                         {
                           command: 'forget home',
                           variants: ['forget home', 'forget this home'],
                           addressed: 'weaver forget home',
-                          reply: 'Home Anchor Cleared.',
-                          action: 'Wipes all recorded home anchor coordinates, removing territorial tethers and reverting to default follower behaviors.'
+                          reply: 'Home forgotten.',
+                          action: 'Forgets the remembered homes after the request is repeated to confirm. Use the exact phrase so an ordinary conversation cannot erase them.'
+                        },
+                        {
+                          command: 'restore home',
+                          variants: ['restore home'],
+                          addressed: 'weaver restore home',
+                          reply: 'I remember this home again.',
+                          action: 'Restores a remembered home nearby if it is still safe and reachable. Repeat the exact request to confirm.'
                         },
                         {
                           command: 'home status',
                           variants: ['home status'],
                           addressed: 'weaver home status',
-                          reply: 'Home Status & Coordinates Readout.',
-                          action: 'Provides a status readout indicating active home coordinates and current distance from the registered territory center.'
+                          reply: 'I remember home.',
+                          action: 'Asks whether it remembers home, whether home is elsewhere, or whether an exposed or damaged place is still usable.'
                         }
                       ].map((item, idx) => (
                         <div key={idx} className="p-3.5 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl space-y-2">
@@ -2765,8 +2857,8 @@ export default function EntitiesView() {
                             Speech Obfuscation &amp; Bond Growth
                           </div>
                           <ul className="list-disc pl-4 space-y-1 text-[#829285] leading-relaxed">
-                            <li><strong className="text-[#e0e7e0]">Action Bar Feedback:</strong> Weaver responses appear directly above the player hotbar as action bar messages.</li>
-                            <li><strong className="text-[#e0e7e0]">Dynamic Decryption:</strong> Early dialogues appear heavily scrambled with random Minecraft obfuscation runes. As companion relationship values rise from shared travel and combat victories, the scrambled characters gradually decode into clear words.</li>
+                            <li><strong className="text-[#e0e7e0]">Action Bar Feedback:</strong> Replies appear above the assigned companion's hotbar; nearby strangers do not receive them.</li>
+                            <li><strong className="text-[#e0e7e0]">Dynamic Decryption:</strong> Early dialogues appear heavily scrambled with random Minecraft obfuscation runes. As familiarity grows, the scrambled words become easier to read; distrust can make them harder to understand again.</li>
                             <li><strong className="text-[#e0e7e0]">Hesitation Delays:</strong> Responses feature realistic pauses between 4 and 50 ticks (urgent replies take 4 to 8 ticks, while cautious, injured, or unfamiliar states take 18 to 50 ticks).</li>
                           </ul>
                         </div>
@@ -2782,12 +2874,12 @@ export default function EntitiesView() {
                               Commands are registered only if the companion and Weaver share the same dimension within a 32-block radius.
                             </div>
                             <div>
-                              <strong className="text-[#e0e7e0] block">Visual Attention:</strong>
-                              When spoken to within 8 blocks with line of sight, the Weaver pauses and turns its head to look directly at the player.
+                              <strong className="text-[#e0e7e0] block">Home Requests:</strong>
+                              Home changes need the Weaver within 8 blocks, with safe ground and a clear view. Conversations do not interrupt an urgent action or danger.
                             </div>
                             <div>
                               <strong className="text-red-400 block">Alienation Threshold:</strong>
-                              If relationship drops to or below -25, the Weaver warns "Keep your distance." and has a 20% chance to ignore non-urgent commands with silence.
+                              Repeated harm can make the Weaver refuse requests, fall silent, or ask its companion to keep their distance.
                             </div>
                           </div>
                         </div>
@@ -3341,9 +3433,9 @@ export default function EntitiesView() {
               <tr className="bg-emerald-950/20">
                 <td className="p-3 font-bold text-emerald-400 text-left">The Ash-Weaver</td>
                 <td className="p-3 text-center font-mono">40</td>
+                <td className="p-3 text-center font-mono">4</td>
                 <td className="p-3 text-center font-mono">0</td>
-                <td className="p-3 text-center font-mono">0</td>
-                <td className="p-3 text-center font-mono">0.300</td>
+                <td className="p-3 text-center font-mono">Walk / Sprint</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center text-gray-500 font-mono">N/A</td>
                 <td className="p-3 text-center font-mono">No</td>
@@ -3505,3 +3597,4 @@ export default function EntitiesView() {
     </div>
   );
 }
+
