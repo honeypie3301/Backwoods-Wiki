@@ -562,7 +562,7 @@ export default function EntitiesView() {
       speed: "0.200 (Ignoring Gravity)",
       dim: "The Sub-Strata (Menger Sponge structures)",
       isUpdated: true,
-      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus sentinels do not possess biological panic routines and ignore the presence of the Rot. While formidable with thermal laser arrays, Fractus sentinels struggle to intercept high-speed incoming projectiles without the aid of the Verdant Engine's projectile dampening field—a primary reason they coordinate into disciplined orbital rings around the engine aside from direct perimeter defense."
+      desc: "A floating security drone guarding ancient geometries deep underground. Driven by autonomous mechanical protocols and anchored leash points, Fractus sentinels do not possess biological panic routines and ignore the presence of the Rot. They can evade some incoming projectiles, but use Verdant Engine orbital formations and its dampening field for stronger area defense."
     },
     {
       id: "fractus_prime",
@@ -3253,7 +3253,7 @@ export default function EntitiesView() {
           {currentEntity.id === 'fractus' && (
             <div className="space-y-5 pt-2 border-t border-[#1a221c]">
               <div className="p-4 bg-cyan-950/10 border border-cyan-900/20 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. Because Fractus sentinels struggle to intercept fast-moving projectiles on their own, they coordinate into disciplined 3-tier orbital rings (up to 39 drones) around active Verdant Engines to provide layered defense while utilizing the engine's projectile dampening field for shielding.
+                <strong className="text-cyan-400">Sub-Strata Sentry Drone:</strong> Stationed to guard ancient geometries and Menger Sponge structures, these airborne sentinels operate on autonomous security protocols. They can evade some incoming projectiles, and coordinate into disciplined 3-tier orbital rings (up to 39 drones) around active Verdant Engines for broader coverage and the engine's projectile dampening field.
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -3280,12 +3280,12 @@ export default function EntitiesView() {
               <div className="p-4 bg-[#0c120d] border border-emerald-900/30 rounded-lg space-y-2">
                 <h5 className="font-serif text-sm font-bold text-emerald-400">The Summoning Ritual</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  When multiple Fractus sentinels assemble in close proximity, they can halt all movement and converge their beams inward toward a single focal point, initiating a collaborative ritual to tear open a sub-dimensional gateway.
+                  When multiple Fractus sentinels assemble in close proximity, they circle a shared focal point and direct their beams inward as they prepare a coordinated summon.
                 </p>
                 <ul className="text-xs text-[#8c8779] list-disc pl-4 leading-relaxed">
-                  <li><strong className="text-white">Collaborative Acceleration:</strong> As more sentinels join the focal convergence, the gateway opens at a significantly faster rate.</li>
-                  <li><strong className="text-white">Ritual Disruption:</strong> Destroying participating drones forces remaining sentinels to channel additional energy to sustain the rift. If too few drones remain, the ritual collapses entirely.</li>
-                  <li><strong className="text-emerald-400">Gateway Yields:</strong> Successfully completing the focal convergence breaches containment to summon either an apex <strong className="text-cyan-400 font-bold">Fractus Prime</strong> or an apocalyptic <strong className="text-red-400 font-bold">Rot</strong> entity.</li>
+                  <li><strong className="text-white">Collaborative Acceleration:</strong> More participating sentinels shorten the preparation time.</li>
+                  <li><strong className="text-white">Ritual Disruption:</strong> Losing participants extends the remaining preparation time. The formation is cancelled if fewer than two sentinels remain.</li>
+                  <li><strong className="text-emerald-400">Summon Result:</strong> At completion, the formation creates either a <strong className="text-cyan-400 font-bold">Fractus Prime</strong> or a <strong className="text-red-400 font-bold">Rot</strong> at a safe point near its center.</li>
                 </ul>
               </div>
             </div>
@@ -3338,7 +3338,7 @@ export default function EntitiesView() {
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
                   <h5 className="font-serif text-sm font-bold text-cyan-400">Echolocation Network</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Bypasses standard visual cloaking. Emits acoustic sonar pulses that detect invisible or sneaking targets, highlighting their outlines for immediate laser targeting.
+                    Emits acoustic pulses to locate nearby entities with the Invisibility effect. A detected target is marked with particles and tracked briefly for combat targeting.
                   </p>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">

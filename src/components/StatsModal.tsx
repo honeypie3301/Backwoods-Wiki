@@ -176,41 +176,73 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           }
         };
 
+        // Optimistic UI emission: append event to local trace immediately so terminal shows 0ms latency
+        const optimisticType = localStorage.getItem('wiki_visitor_established') === 'true' ? 'repeat' : 'unique';
+        const optimisticEntry: TelemetryLog = {
+          timestamp: new Date().toISOString(),
+          type: optimisticType,
+          slug: 'telemetry-terminal',
+          visitorId: shortVisitorId
+        };
+        setStats(prev => {
+          if (!prev) return prev;
+          const currentLogs = prev.logs || [];
+          return {
+            ...prev,
+            totalCount: (prev.totalCount || 0) + 1,
+            pageViews: {
+              ...prev.pageViews,
+              'telemetry-terminal': (prev.pageViews?.['telemetry-terminal'] || 0) + 1
+            },
+            logs: [optimisticEntry, ...currentLogs].slice(0, 50)
+          };
+        });
+
         if (hasConfig) {
-          try {
-            const visitorDocRef = doc(db, 'visitors', visitorId);
-            const visitorSnapshot = await getDoc(visitorDocRef);
-            const isUnique = !visitorSnapshot.exists();
+          // Asynchronously dispatch writes in parallel without blocking the UI thread
+          (async () => {
+            try {
+              const visitorDocRef = doc(db, 'visitors', visitorId);
+              const isKnownLocally = localStorage.getItem('wiki_visitor_established') === 'true';
+              let isUnique = false;
 
-            if (isUnique) {
-              await setDoc(visitorDocRef, {
-                firstVisit: serverTimestamp(),
-                lastVisit: serverTimestamp()
-              });
-            } else {
-              await setDoc(visitorDocRef, {
-                lastVisit: serverTimestamp()
+              if (!isKnownLocally) {
+                const visitorSnapshot = await getDoc(visitorDocRef);
+                isUnique = !visitorSnapshot.exists();
+                localStorage.setItem('wiki_visitor_established', 'true');
+              }
+
+              const visitorWrite = isUnique
+                ? setDoc(visitorDocRef, {
+                    firstVisit: serverTimestamp(),
+                    lastVisit: serverTimestamp()
+                  })
+                : setDoc(visitorDocRef, {
+                    lastVisit: serverTimestamp()
+                  }, { merge: true });
+
+              const statsDocRef = doc(db, 'stats', 'global');
+              const statsWrite = setDoc(statsDocRef, {
+                totalCount: increment(1),
+                uniqueCount: isUnique ? increment(1) : increment(0),
+                repeatCount: !isUnique ? increment(1) : increment(0),
+                ['pageViews.telemetry-terminal']: increment(1)
               }, { merge: true });
+
+              const logWrite = addDoc(collection(db, 'telemetry_logs'), {
+                timestamp: serverTimestamp(),
+                type: isUnique ? 'unique' : 'repeat',
+                slug: 'telemetry-terminal',
+                visitorId: shortVisitorId
+              });
+
+              // Execute all three writes concurrently over a single batched window
+              await Promise.all([visitorWrite, statsWrite, logWrite]);
+            } catch (err) {
+              console.warn('Firebase terminal logging failed, using local sandbox fallback', err);
+              recordLocalTerminal(false);
             }
-
-            const statsDocRef = doc(db, 'stats', 'global');
-            await setDoc(statsDocRef, {
-              totalCount: increment(1),
-              uniqueCount: isUnique ? increment(1) : increment(0),
-              repeatCount: !isUnique ? increment(1) : increment(0),
-              ['pageViews.telemetry-terminal']: increment(1)
-            }, { merge: true });
-
-            await addDoc(collection(db, 'telemetry_logs'), {
-              timestamp: serverTimestamp(),
-              type: isUnique ? 'unique' : 'repeat',
-              slug: 'telemetry-terminal',
-              visitorId: shortVisitorId
-            });
-          } catch (err) {
-            console.warn('Firebase terminal logging failed, using local sandbox fallback', err);
-            recordLocalTerminal(false);
-          }
+          })();
         } else {
           const raw = localStorage.getItem('local_wiki_stats');
           let hasVisited = false;
@@ -245,7 +277,19 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   useEffect(() => {
     if (!isOpen) return;
 
-    setLoading(true);
+    // Zero-delay rehydration: instantly render from local cache if available
+    const cachedStats = localStorage.getItem('cached_telemetry_stats') || localStorage.getItem('local_wiki_stats');
+    if (cachedStats) {
+      try {
+        setStats(JSON.parse(cachedStats));
+        setLoading(false);
+      } catch {
+        setLoading(true);
+      }
+    } else {
+      setLoading(true);
+    }
+
     setError(null);
     setIsSandbox(false);
 
@@ -321,13 +365,19 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
             }
           });
 
-          setStats(prev => ({
-            uniqueCount: data.uniqueCount || 0,
-            repeatCount: data.repeatCount || 0,
-            totalCount: data.totalCount || 0,
-            pageViews,
-            logs: prev?.logs || []
-          }));
+          setStats(prev => {
+            const nextStats = {
+              uniqueCount: data.uniqueCount || 0,
+              repeatCount: data.repeatCount || 0,
+              totalCount: data.totalCount || 0,
+              pageViews,
+              logs: prev?.logs || []
+            };
+            try {
+              localStorage.setItem('cached_telemetry_stats', JSON.stringify(nextStats));
+            } catch {}
+            return nextStats;
+          });
           setIsSandbox(false);
         } else {
           // Document does not exist yet (first time initialization)
@@ -375,19 +425,20 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           });
         });
         setStats(prev => {
-          if (!prev) {
-            return {
-              uniqueCount: 0,
-              repeatCount: 0,
-              totalCount: 0,
-              pageViews: {},
-              logs
-            };
-          }
-          return {
+          const nextStats = !prev ? {
+            uniqueCount: 0,
+            repeatCount: 0,
+            totalCount: 0,
+            pageViews: {},
+            logs
+          } : {
             ...prev,
             logs
           };
+          try {
+            localStorage.setItem('cached_telemetry_stats', JSON.stringify(nextStats));
+          } catch {}
+          return nextStats;
         });
       }, (err) => {
         console.warn("Error listening to Firestore logs, enabling local sandbox fallback.", err);
