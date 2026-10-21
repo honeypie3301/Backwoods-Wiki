@@ -3342,9 +3342,9 @@ export default function EntitiesView() {
                   </p>
                 </div>
                 <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
-                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Sub-Terranean Fortification</h5>
+                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Sonic Absorption</h5>
                   <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Reinforced alloy plating and acoustic shielding heavily dampen incoming sonic attacks and physical kinetic impacts.
+                    Its stronger, thicker body and its denser core allows it be more resistant to the Warden's sonic boom, absorbing 55% of the damage.
                   </p>
                 </div>
               </div>
