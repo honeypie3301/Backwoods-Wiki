@@ -50,6 +50,7 @@ interface SearchSummary {
   newestDate?: string;
   oldestDate?: string;
   topTarget?: { title: string; count: number };
+  device?: string;
 }
 
 interface StatsData {
@@ -566,6 +567,11 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       }
     });
 
+    const latestWithDevice = results.find(r => r.browser || r.os);
+    const detectedDevice = latestWithDevice 
+      ? `${latestWithDevice.browser || 'Browser'}${latestWithDevice.os ? ` on ${latestWithDevice.os}` : ''}`
+      : (nodes.some(n => n.toLowerCase().includes(currentVisitorIdShort.toLowerCase())) ? `${clientEnv.browser} on ${clientEnv.os}` : undefined);
+
     setSearchSummary({
       totalLogs: results.length,
       uniqueCount,
@@ -573,7 +579,8 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       matchedNodes: nodes,
       newestDate: results[0]?.timestamp,
       oldestDate: results[results.length - 1]?.timestamp,
-      topTarget: topSlug ? { title: getArticleTitle(topSlug), count: maxCount } : undefined
+      topTarget: topSlug ? { title: getArticleTitle(topSlug), count: maxCount } : undefined,
+      device: detectedDevice
     });
   };
 
@@ -697,7 +704,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-5">
         {/* Backdrop overlay with blur */}
         <motion.div 
           initial={{ opacity: 0 }}
@@ -714,12 +721,12 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 12 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
-          className="relative w-full max-w-4xl bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[86vh] font-mono z-50 text-[#c8d4ca]"
+          className="relative w-full max-w-4xl bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[86vh] font-mono z-50 text-[#c8d4ca]"
           id="stats-modal-container"
         >
           {/* Header - Minimalist Tactical HUD Bar */}
-          <div className="flex items-center justify-between px-4 py-2.5 bg-[#0b100d] border-b border-[#1b261e] select-none">
-            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+          <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-[#0b100d] border-b border-[#1b261e] select-none gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
@@ -744,42 +751,44 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 />
               </div>
               <div className="h-4 w-[1px] bg-[#1e2a22] shrink-0" />
-              <div className="flex items-center gap-2 min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
                 <Terminal className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase whitespace-nowrap shrink-0">
-                  BACKWOODS TELEMETRY TERMINAL
+                <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase truncate">
+                  <span className="hidden sm:inline">BACKWOODS TELEMETRY TERMINAL</span>
+                  <span className="sm:hidden">TELEMETRY</span>
                 </span>
                 {statusNotice && (
-                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-mono uppercase tracking-wider whitespace-nowrap shrink-0 ${
+                  <span className={`text-[7px] sm:text-[8px] px-1.5 py-0.5 rounded font-mono uppercase tracking-wider shrink-0 font-bold ${
                     isDeviceIgnored
                       ? 'text-red-300 bg-red-950/80 border border-red-800'
                       : 'text-emerald-300 bg-emerald-950/80 border border-emerald-800'
                   }`}>
-                    {statusNotice}
+                    <span className="hidden sm:inline">{statusNotice}</span>
+                    <span className="sm:hidden">{isDeviceIgnored ? 'HALTED' : 'ACTIVE'}</span>
                   </span>
                 )}
               </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {/* Mode indicator pill */}
               {isSandbox ? (
-                <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded border border-amber-900/50 bg-amber-950/20 text-amber-400 text-[9px] tracking-wider uppercase font-semibold">
+                <div className="hidden md:flex items-center gap-1.5 px-2 py-0.5 rounded border border-amber-900/50 bg-amber-950/20 text-amber-400 text-[9px] tracking-wider uppercase font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                  SANDBOX STORAGE
+                  SANDBOX
                 </div>
               ) : (
-                <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-900/50 bg-emerald-950/20 text-emerald-400 text-[9px] tracking-wider uppercase font-semibold">
+                <div className="hidden md:flex items-center gap-1.5 px-2 py-0.5 rounded border border-emerald-900/50 bg-emerald-950/20 text-emerald-400 text-[9px] tracking-wider uppercase font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  LIVE DATABASE LINK
+                  LIVE DB
                 </div>
               )}
 
-              <div className="flex items-center gap-1.5 border-l border-[#1b261e] pl-3">
+              <div className="flex items-center gap-1 sm:gap-1.5 border-l border-[#1b261e] pl-2 sm:pl-3">
                 <button 
                   onClick={handleManualRefresh}
                   disabled={loading || isRefreshing}
-                  className="p-1.5 text-[#5e7564] hover:text-emerald-400 hover:bg-[#121914] rounded transition-colors cursor-pointer disabled:opacity-40"
+                  className="p-1 sm:p-1.5 text-[#5e7564] hover:text-emerald-400 hover:bg-[#121914] rounded transition-colors cursor-pointer disabled:opacity-40"
                   title="Synchronize telemetry logs"
                   id="stats-refresh-btn"
                 >
@@ -787,7 +796,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 </button>
                 <button 
                   onClick={onClose}
-                  className="p-1.5 text-[#5e7564] hover:text-red-400 hover:bg-red-950/30 rounded transition-colors cursor-pointer"
+                  className="p-1 sm:p-1.5 text-[#5e7564] hover:text-red-400 hover:bg-red-950/30 rounded transition-colors cursor-pointer"
                   title="Close terminal (Esc)"
                   id="stats-close-btn"
                 >
@@ -820,78 +829,84 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               </div>
             ) : stats ? (
               <>
-                {/* 1. HUD Metrics Ribbon (3 Crisp Modular Cards - Compact Height) */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                {/* 1. HUD Metrics Ribbon (3 Crisp Modular Cards - Compact Height on Mobile) */}
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-2.5">
                   {/* Total Hits */}
-                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-[#5e7564] uppercase tracking-wider flex items-center gap-1.5">
-                        <Eye className="w-3.5 h-3.5 text-emerald-500/70" />
-                        Total Hits
+                  <div className="p-2 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-[#5e7564] uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 truncate">
+                        <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-500/70 shrink-0" />
+                        <span className="hidden sm:inline">Total Hits</span>
+                        <span className="sm:hidden">Hits</span>
                       </span>
-                      <span className="text-[8px] text-[#425246] px-1.5 py-0.2 rounded border border-[#1b261e] bg-[#090d0a]">
-                        IMPRESSIONS
+                      <span className="hidden sm:inline text-[8px] text-[#425246] px-1.5 py-0.2 rounded border border-[#1b261e] bg-[#090d0a]">
+                        ALL
                       </span>
                     </div>
-                    <div className="text-xl sm:text-2xl font-bold text-[#e1eae2] font-sans tracking-tight">
+                    <div className="text-base sm:text-2xl font-bold text-[#e1eae2] font-sans tracking-tight">
                       {stats.totalCount.toLocaleString()}
                     </div>
-                    <div className="text-[8px] text-[#4a5f50] mt-0.5 uppercase flex items-center gap-1">
-                      <span>Global telemetry records</span>
+                    <div className="text-[7px] sm:text-[8px] text-[#4a5f50] mt-0.5 uppercase truncate">
+                      <span className="hidden sm:inline">Global telemetry records</span>
+                      <span className="sm:hidden">All records</span>
                     </div>
                   </div>
 
                   {/* Unique Survivors */}
-                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-emerald-400/90 uppercase tracking-wider flex items-center gap-1.5">
-                        <Users className="w-3.5 h-3.5 text-emerald-400" />
-                        Unique Survivors
+                  <div className="p-2 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-emerald-400/90 uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 truncate">
+                        <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400 shrink-0" />
+                        <span className="hidden sm:inline">Survivors</span>
+                        <span className="sm:hidden">Unique</span>
                       </span>
-                      <span className="text-[8px] text-emerald-400/80 px-1.5 py-0.2 rounded border border-emerald-900/40 bg-emerald-950/30">
+                      <span className="hidden sm:inline text-[8px] text-emerald-400/80 px-1.5 py-0.2 rounded border border-emerald-900/40 bg-emerald-950/30">
                         DISTINCT
                       </span>
                     </div>
-                    <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-sans tracking-tight">
+                    <div className="text-base sm:text-2xl font-bold text-emerald-400 font-sans tracking-tight">
                       {stats.uniqueCount.toLocaleString()}
                     </div>
-                    <div className="text-[8px] text-emerald-500/60 mt-0.5 uppercase">
-                      Unique terminal hardware nodes
+                    <div className="text-[7px] sm:text-[8px] text-emerald-500/60 mt-0.5 uppercase truncate">
+                      <span className="hidden sm:inline">Hardware nodes</span>
+                      <span className="sm:hidden">Nodes</span>
                     </div>
                   </div>
 
                   {/* Returning Operatives */}
-                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-semibold text-amber-400/90 uppercase tracking-wider flex items-center gap-1.5">
-                        <Activity className="w-3.5 h-3.5 text-amber-400" />
-                        Returning Operatives
+                  <div className="p-2 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-0.5 sm:mb-1">
+                      <span className="text-[9px] sm:text-[10px] font-semibold text-amber-400/90 uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 truncate">
+                        <Activity className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400 shrink-0" />
+                        <span className="hidden sm:inline">Returning</span>
+                        <span className="sm:hidden">Return</span>
                       </span>
-                      <span className="text-[8px] text-amber-400/80 px-1.5 py-0.2 rounded border border-amber-900/40 bg-amber-950/30 font-mono">
-                        {retentionRate}% RETENTION
+                      <span className="text-[7px] sm:text-[8px] text-amber-400/80 px-1 sm:px-1.5 py-0.2 rounded border border-amber-900/40 bg-amber-950/30 font-mono">
+                        {retentionRate}%
                       </span>
                     </div>
-                    <div className="text-xl sm:text-2xl font-bold text-amber-400 font-sans tracking-tight">
+                    <div className="text-base sm:text-2xl font-bold text-amber-400 font-sans tracking-tight">
                       {stats.repeatCount.toLocaleString()}
                     </div>
-                    <div className="text-[8px] text-amber-500/60 mt-0.5 uppercase">
-                      Re-entries from identified survivors
+                    <div className="text-[7px] sm:text-[8px] text-amber-500/60 mt-0.5 uppercase truncate">
+                      <span className="hidden sm:inline">Re-entry sessions</span>
+                      <span className="sm:hidden">Re-entries</span>
                     </div>
                   </div>
                 </div>
 
                 {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream (Compact HUD) */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-3">
                   {/* Left Column: Top Visited Telemetry Targets */}
-                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3 flex flex-col h-[380px]">
-                    <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2.5 select-none">
-                      <div className="flex items-center gap-2">
-                        <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
+                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex flex-col h-[240px] sm:h-[300px] lg:h-[380px]">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <BarChart3 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
                           Telemetry Targets
                         </span>
                         {totalTargetsCount > 0 && (
-                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#111713] border border-[#1e2a20] text-emerald-400/90 font-mono">
+                          <span className="text-[8px] sm:text-[9px] px-1.5 py-0.2 rounded bg-[#111713] border border-[#1e2a20] text-emerald-400/90 font-mono">
                             {totalTargetsCount}
                           </span>
                         )}
@@ -900,13 +915,13 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         <button
                           type="button"
                           onClick={() => setShowAllTargets(prev => !prev)}
-                          className="text-[9px] font-mono px-2 py-0.5 rounded border border-[#213025] hover:border-emerald-600/60 bg-[#101712] hover:bg-[#152018] text-[#86a58e] hover:text-emerald-300 transition-colors uppercase tracking-wider cursor-pointer"
+                          className="text-[8px] sm:text-[9px] font-mono px-2 py-0.5 rounded border border-[#213025] hover:border-emerald-600/60 bg-[#101712] hover:bg-[#152018] text-[#86a58e] hover:text-emerald-300 transition-colors uppercase tracking-wider cursor-pointer"
                         >
-                          {showAllTargets ? 'Show Top 6' : `View All (${totalTargetsCount})`}
+                          {showAllTargets ? 'Top 6' : `All (${totalTargetsCount})`}
                         </button>
                       ) : (
-                        <span className="text-[9px] text-[#4f6454] uppercase tracking-wider">
-                          Ranked by views
+                        <span className="text-[8px] sm:text-[9px] text-[#4f6454] uppercase tracking-wider">
+                          Ranked
                         </span>
                       )}
                     </div>
@@ -916,12 +931,12 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         No page view distribution recorded.
                       </div>
                     ) : (
-                      <div className="flex-1 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
+                      <div className="flex-1 overflow-y-auto space-y-1.5 sm:space-y-2 pr-1 scrollbar-thin">
                         {topPages.map((page) => (
                           <div key={page.slug} className="group">
-                            <div className="flex items-center justify-between text-[10px] mb-1">
+                            <div className="flex items-center justify-between text-[9px] sm:text-[10px] mb-1">
                               <div className="flex items-center gap-1.5 min-w-0 pr-2">
-                                <span className={`text-[8px] font-bold px-1.5 py-0.2 rounded border ${
+                                <span className={`text-[7.5px] sm:text-[8px] font-bold px-1 sm:px-1.5 py-0.2 rounded border ${
                                   page.rank === 1 
                                     ? 'bg-emerald-950/60 border-emerald-800 text-emerald-300' 
                                     : 'bg-[#111713] border-[#1f2c22] text-[#5e7564]'
@@ -932,7 +947,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                                   {page.title}
                                 </span>
                               </div>
-                              <span className="text-[9px] text-emerald-400/90 font-mono font-bold shrink-0">
+                              <span className="text-[8.5px] sm:text-[9px] text-emerald-400/90 font-mono font-bold shrink-0">
                                 {page.count.toLocaleString()} <span className="text-[7px] font-normal text-[#4f6454]">HITS</span>
                               </span>
                             </div>
@@ -952,26 +967,36 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   </div>
 
                   {/* Right Column: Realtime Telemetry Stream with Integrated User ID Search Engine */}
-                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3 flex flex-col h-[380px]">
+                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex flex-col h-[340px] sm:h-[380px] lg:h-[380px]">
                     {/* Stream Header & Filters */}
-                    <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none">
-                      <div className="flex items-center gap-2">
-                        <span className="relative flex h-2 w-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none gap-1.5">
+                      <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                        <span className="relative flex h-2 w-2 shrink-0">
                           <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${searchResults !== null ? 'bg-cyan-400' : 'bg-emerald-400'} opacity-60`}></span>
                           <span className={`relative inline-flex rounded-full h-2 w-2 ${searchResults !== null ? 'bg-cyan-500' : 'bg-emerald-500'}`}></span>
                         </span>
-                        <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
-                          {searchResults !== null ? 'Database History Audit' : 'Telemetry Trace Stream'}
+                        <span className="text-[10px] sm:text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider truncate">
+                          {searchResults !== null ? (
+                            <>
+                              <span className="hidden sm:inline">Database History Audit</span>
+                              <span className="sm:hidden">History Audit</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="hidden sm:inline">Telemetry Trace Stream</span>
+                              <span className="sm:hidden">Trace Stream</span>
+                            </>
+                          )}
                         </span>
                         {searchResults !== null && (
-                          <span className="text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/70 border border-cyan-800 text-cyan-300 font-mono uppercase font-bold">
+                          <span className="text-[7px] sm:text-[8px] px-1.5 py-0.2 rounded bg-cyan-950/70 border border-cyan-800 text-cyan-300 font-mono uppercase font-bold shrink-0">
                             HISTORICAL
                           </span>
                         )}
                       </div>
 
                       {/* Filter Pills */}
-                      <div className="flex items-center gap-1 bg-[#090d0a] p-0.5 rounded border border-[#1b261e]">
+                      <div className="flex items-center gap-1 bg-[#090d0a] p-0.5 rounded border border-[#1b261e] shrink-0 self-start sm:self-auto">
                         <button
                           type="button"
                           onClick={() => setLogFilter('all')}
@@ -1016,8 +1041,8 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           type="text"
                           value={searchUserId}
                           onChange={(e) => setSearchUserId(e.target.value)}
-                          placeholder="Search User ID across database history (e.g. surv_q8c, alvt29s)..."
-                          className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[10px] font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8 pr-16 py-1 rounded transition-all"
+                          placeholder="Search User ID or node (e.g. surv_q8c)..."
+                          className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[9.5px] sm:text-[10px] font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8 pr-16 py-1 rounded transition-all"
                         />
                         {searchUserId ? (
                           <div className="absolute right-2 flex items-center gap-1.5">
@@ -1052,27 +1077,27 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                     {/* Search Result Intelligence Card */}
                     {searchUserId.trim() && (
-                      <div className="mb-2 bg-[#080d0a] border border-[#1b261e] rounded p-1.5 text-[9px] font-mono select-none">
+                      <div className="mb-2 bg-[#080d0a] border border-[#1b261e] rounded p-1.5 text-[8.5px] sm:text-[9px] font-mono select-none">
                         {isSearching ? (
                           <div className="flex items-center gap-2 text-emerald-400 py-0.5">
                             <span className="w-2.5 h-2.5 rounded-full border border-emerald-400 border-t-transparent animate-spin" />
-                            <span>Querying full Firestore database history for node "{searchUserId}"...</span>
+                            <span>Querying Firestore history for node "{searchUserId}"...</span>
                           </div>
                         ) : searchResults && searchResults.length > 0 ? (
                           <div className="space-y-1">
                             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#141d16] pb-1">
                               <div className="flex items-center gap-1.5 text-emerald-300 font-semibold">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                                <span>DATABASE AUDIT: {searchResults.length} RECORDS FOUND</span>
+                                <span>AUDIT: {searchResults.length} RECORDS FOUND</span>
                               </div>
-                              <div className="text-[8px] text-[#55695a]">
+                              <div className="text-[7.5px] sm:text-[8px] text-[#55695a]">
                                 {searchSummary?.matchedNodes.length} NODE(S) MATCHED
                               </div>
                             </div>
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[8px] text-[#7a9480]">
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[7.5px] sm:text-[8px] text-[#7a9480]">
                               {searchSummary?.oldestDate && (
                                 <span>
-                                  FIRST RECORDED: <strong className="text-[#a4c9ad]">{new Date(searchSummary.oldestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
+                                  FIRST: <strong className="text-[#a4c9ad]">{new Date(searchSummary.oldestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
                                 </span>
                               )}
                               {searchSummary?.newestDate && (
@@ -1082,7 +1107,12 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                               )}
                               {searchSummary?.topTarget && (
                                 <span>
-                                  TOP TARGET: <strong className="text-emerald-400">{searchSummary.topTarget.title} ({searchSummary.topTarget.count}x)</strong>
+                                  TOP: <strong className="text-emerald-400">{searchSummary.topTarget.title} ({searchSummary.topTarget.count}x)</strong>
+                                </span>
+                              )}
+                              {searchSummary?.device && (
+                                <span>
+                                  PLATFORM: <strong className="text-emerald-300 font-semibold">{searchSummary.device}</strong>
                                 </span>
                               )}
                             </div>
@@ -1096,7 +1126,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                     )}
 
                     {/* Scrollable Log Stream */}
-                    <div className="flex-1 overflow-y-auto space-y-1 pr-1 text-[10px] font-mono scrollbar-thin">
+                    <div className="flex-1 overflow-y-auto space-y-1.5 pr-1 text-[10px] font-mono scrollbar-thin">
                       {filteredLogs.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-10 text-[#4f6454] italic">
                           <Radio className="w-4 h-4 mb-1 text-[#303f34]" />
@@ -1106,83 +1136,95 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         filteredLogs.map((log, index) => {
                           const date = new Date(log.timestamp);
                           const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
-                          const timeStr = `${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })} · ${dateStr}`;
+                          const timeOnly = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
                           const isNew = log.type === 'unique';
                           const relativeTime = formatRelativeTime(log.timestamp);
-                          const displayBrowser = log.browser || (log.visitorId === currentVisitorIdShort ? clientEnv.browser : null);
-                          const displayOs = log.os || (log.visitorId === currentVisitorIdShort ? clientEnv.os : null);
+                          const isCurrentVisitor = log.visitorId === currentVisitorIdShort;
+                          const displayBrowser = log.browser || (isCurrentVisitor ? clientEnv.browser : null);
+                          const displayOs = log.os || (isCurrentVisitor ? clientEnv.os : null);
 
                           return (
                             <div 
                               key={`${log.timestamp}-${index}`} 
-                              className="px-2 py-1 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex items-center justify-between gap-1.5"
+                              className="px-2 py-1.5 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex flex-col gap-1"
                             >
-                              <div className="flex items-center gap-1.5 min-w-0">
-                                {/* Timestamp */}
-                                <span className="text-[#4e6453] text-[9px] font-semibold shrink-0" title={date.toLocaleString()}>
-                                  [{timeStr}]
-                                </span>
+                              {/* Primary Row: Timestamp, Status Pill, Target Destination, Visitor Chip */}
+                              <div className="flex items-center justify-between gap-1.5 min-w-0">
+                                <div className="flex items-center gap-1.5 min-w-0 flex-1 truncate">
+                                  {/* Timestamp */}
+                                  <span className="text-[#4e6453] text-[8px] sm:text-[9px] font-semibold shrink-0" title={date.toLocaleString()}>
+                                    [{timeOnly}<span className="hidden sm:inline"> · {dateStr}</span>]
+                                  </span>
 
-                                {/* Categorized Status Pill */}
-                                {log.slug === 'telemetry-terminal' ? (
-                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
-                                    TERMINAL
-                                  </span>
-                                ) : isNew ? (
-                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
-                                    NEW NODE
-                                  </span>
-                                ) : (
-                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
-                                    RETURN
-                                  </span>
-                                )}
-
-                                {/* Destination Title */}
-                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate flex items-center gap-1 text-[10px]">
-                                  {log.slug === 'telemetry-terminal' && (
-                                    <Terminal className="w-3 h-3 text-cyan-400 shrink-0 inline" />
+                                  {/* Categorized Status Pill */}
+                                  {log.slug === 'telemetry-terminal' ? (
+                                    <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
+                                      <span className="hidden sm:inline">TERMINAL</span>
+                                      <span className="sm:hidden">TERM</span>
+                                    </span>
+                                  ) : isNew ? (
+                                    <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
+                                      <span className="hidden sm:inline">NEW NODE</span>
+                                      <span className="sm:hidden">NEW</span>
+                                    </span>
+                                  ) : (
+                                    <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
+                                      <span className="hidden sm:inline">RETURN</span>
+                                      <span className="sm:hidden">RET</span>
+                                    </span>
                                   )}
-                                  {getArticleTitle(log.slug)}
-                                </span>
 
-                                {/* Detected Platform tag */}
-                                {(displayBrowser || displayOs) && (
-                                  <span 
-                                    className="hidden sm:inline-flex items-center gap-1 text-[8px] font-mono px-1.5 py-0.2 rounded bg-[#0b100d] border border-[#17221a] text-[#698470] shrink-0" 
-                                    title={`Client Platform: ${displayBrowser || 'Unknown'} on ${displayOs || 'Unknown'}`}
-                                  >
-                                    <Monitor className="w-2.5 h-2.5 text-[#4f6454]" />
-                                    <span>{displayBrowser || ''}</span>
-                                    {displayBrowser && displayOs ? <span>·</span> : null}
-                                    <span>{displayOs || ''}</span>
+                                  {/* Destination Title */}
+                                  <span className="text-[#a4c9ad] hover:text-emerald-300 transition-colors truncate text-[9.5px] sm:text-[10px] font-medium flex items-center gap-1">
+                                    {log.slug === 'telemetry-terminal' && (
+                                      <Terminal className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400 shrink-0 inline" />
+                                    )}
+                                    <span className="truncate">{getArticleTitle(log.slug)}</span>
                                   </span>
-                                )}
+                                </div>
+
+                                {/* Clickable Visitor ID Chip */}
+                                <div className="shrink-0">
+                                  {isCurrentVisitor ? (
+                                    <button
+                                      type="button"
+                                      onClick={() => setSearchUserId(log.visitorId)}
+                                      title="Click to search full database history for your node"
+                                      className="text-[7.5px] sm:text-[8px] text-emerald-300 bg-emerald-950/60 px-1 sm:px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
+                                    >
+                                      {log.visitorId} <span className="hidden sm:inline">(YOU)</span>
+                                    </button>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      onClick={() => setSearchUserId(log.visitorId)}
+                                      title={`Click to search complete database history for node ${log.visitorId}`}
+                                      className="text-[7.5px] sm:text-[8px] text-[#55695a] bg-[#0d140f] px-1 sm:px-1.5 py-0.2 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
+                                    >
+                                      {log.visitorId}
+                                    </button>
+                                  )}
+                                </div>
                               </div>
 
-                              <div className="flex items-center gap-1.5 shrink-0">
-                                {/* Clickable Visitor ID Chip */}
-                                {log.visitorId === currentVisitorIdShort ? (
-                                  <button
-                                    type="button"
-                                    onClick={() => setSearchUserId(log.visitorId)}
-                                    title="Click to search full database history for your node"
-                                    className="text-[8px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
-                                  >
-                                    {log.visitorId} (YOU)
-                                  </button>
-                                ) : (
-                                  <button
-                                    type="button"
-                                    onClick={() => setSearchUserId(log.visitorId)}
-                                    title={`Click to search complete database history for node ${log.visitorId}`}
-                                    className="text-[8px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
-                                  >
-                                    {log.visitorId}
-                                  </button>
-                                )}
-                                {/* Elapsed */}
-                                <span className="text-[8px] text-[#3d4f42] w-10 text-right hidden sm:inline">
+                              {/* Secondary Row: Device Info (Browser + OS) and Elapsed Time */}
+                              <div className="flex items-center justify-between text-[8px] font-mono border-t border-[#121a14] pt-0.5 text-[#5e7765]">
+                                <div className="flex items-center gap-1.5 text-[#738e7a] min-w-0 truncate">
+                                  <Monitor className="w-2.5 h-2.5 text-emerald-500/70 shrink-0" />
+                                  <span className="text-[#96b49e] font-semibold">
+                                    {displayBrowser || (isCurrentVisitor ? clientEnv.browser : 'Client Browser')}
+                                  </span>
+                                  <span className="text-[#3c4f41]">·</span>
+                                  <span className="text-[#6d8874]">
+                                    {displayOs || (isCurrentVisitor ? clientEnv.os : 'Client OS')}
+                                  </span>
+                                  {isCurrentVisitor && (
+                                    <span className="text-[6.5px] sm:text-[7px] px-1 py-0.2 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-400 font-bold ml-1 uppercase">
+                                      Your Device
+                                    </span>
+                                  )}
+                                </div>
+                                <span className="text-[#415546] shrink-0 text-[7.5px] sm:text-[8px] ml-2 font-mono">
                                   {relativeTime}
                                 </span>
                               </div>
