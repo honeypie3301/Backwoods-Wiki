@@ -2,7 +2,7 @@
  * IMPORTANT FOR AI ASSISTANTS / DEVELOPERS:
  * When adding or editing wiki components, wrap new/changed elements in <UpdatedFrame id="unique_feature_id" isUpdated={true}>.
  * DON'T FORGET: Whenever you update wiki content, you MUST also update the "Wiki Maintenance & Version Update Note"
- * in both `HomeView.tsx` and `Home.txt` with the latest feature/commit highlights.
+ * in `HomeView.tsx` with the latest feature/commit highlights.
  * Rule: Only underline "The wiki is always updated before a new version releases."
  */
 import React, { useEffect, useRef, useState } from 'react';

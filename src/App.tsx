@@ -8,6 +8,7 @@ import { WIKI_ARTICLES, WIKI_SEARCH_DATABASE } from './data/wikiData';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
 import StatsModal from './components/StatsModal';
+import { detectClientEnvironment } from './utils/deviceInfo';
 
 function WikiContainer() {
   const { slug } = useParams<{ slug: string }>();
@@ -52,6 +53,8 @@ function WikiContainer() {
 
   // Track page visits
   useEffect(() => {
+    const clientEnv = detectClientEnvironment();
+
     const recordLocalVisit = (slug: string, visitorId: string) => {
       const localStatsStr = localStorage.getItem('local_wiki_stats');
       let stats = {
@@ -64,7 +67,9 @@ function WikiContainer() {
             timestamp: new Date().toISOString(),
             type: 'unique' as 'unique' | 'repeat',
             slug: slug,
-            visitorId: visitorId.substring(0, 12)
+            visitorId: visitorId.substring(0, 12),
+            os: clientEnv.os,
+            browser: clientEnv.browser
           }
         ]
       };
@@ -91,7 +96,9 @@ function WikiContainer() {
             timestamp: new Date().toISOString(),
             type: (isUnique ? 'unique' : 'repeat') as 'unique' | 'repeat',
             slug: slug,
-            visitorId: visitorId.substring(0, 12)
+            visitorId: visitorId.substring(0, 12),
+            os: clientEnv.os,
+            browser: clientEnv.browser
           });
 
           if (stats.logs.length > 50) {
@@ -123,10 +130,16 @@ function WikiContainer() {
         const visitorWrite = isUnique
           ? setDoc(visitorDocRef, {
               firstVisit: serverTimestamp(),
-              lastVisit: serverTimestamp()
+              lastVisit: serverTimestamp(),
+              os: clientEnv.os,
+              browser: clientEnv.browser,
+              deviceType: clientEnv.deviceType
             })
           : setDoc(visitorDocRef, {
-              lastVisit: serverTimestamp()
+              lastVisit: serverTimestamp(),
+              os: clientEnv.os,
+              browser: clientEnv.browser,
+              deviceType: clientEnv.deviceType
             }, { merge: true });
 
         const statsDocRef = doc(firestoreDb, 'stats', 'global');
@@ -141,7 +154,9 @@ function WikiContainer() {
           timestamp: serverTimestamp(),
           type: isUnique ? 'unique' : 'repeat',
           slug,
-          visitorId: visitorId.substring(0, 12)
+          visitorId: visitorId.substring(0, 12),
+          os: clientEnv.os,
+          browser: clientEnv.browser
         });
 
         await Promise.all([visitorWrite, statsWrite, logWrite]);

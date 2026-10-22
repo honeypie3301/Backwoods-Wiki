@@ -288,7 +288,7 @@ export default function TitleDialPicker() {
               }}
               className={`
                 absolute left-0 right-0 flex items-center justify-center px-1 text-center
-                font-serif text-[clamp(1.5rem,5.5vw,3rem)] font-extrabold tracking-wide sm:tracking-widest uppercase transition-all duration-75 whitespace-nowrap select-none
+                font-serif text-[clamp(1.5rem,5.5vw,3rem)] font-extrabold tracking-[clamp(0.04em,1vw,0.18em)] uppercase transition-all duration-75 whitespace-nowrap select-none
                 ${isCenter ? 'text-[#e0e7e0]' : 'text-[#709978]'}
               `}
             >

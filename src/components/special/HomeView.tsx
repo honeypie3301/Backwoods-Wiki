@@ -1,7 +1,7 @@
 /**
  * AI ASSISTANT MAINTENANCE NOTICE:
  * Whenever you update any wiki content or implement commit changes:
- * 1. Update the "Recent Highlights" list in the Wiki Maintenance Note below AND in `/wiki_assets/wiki/Home.txt`.
+ * 1. Update the "Recent Highlights" list in the Wiki Maintenance Note below.
  * 2. Keep the underline strictly on: "The wiki is always updated before a new version releases."
  * 3. Wrap newly added/changed components across the wiki in `<UpdatedFrame id="..." isUpdated={true}>`.
  */
@@ -35,6 +35,17 @@ export default function HomeView() {
         </div>
       </UpdatedFrame>
 
+      {/* 
+        ========================================================================================
+        CONSTANT REMINDER: MOD CONTENT UPDATES ONLY
+        ----------------------------------------------------------------------------------------
+        The Wiki Maintenance Note below is STRICTLY for in-game Backwoods mod content updates
+        (entities, structures, dimensions, mechanics, blocks, items, commands, balance tweaks).
+        NEVER include wiki web app features, UI changes, terminal tweaks, or website bug fixes.
+        ----------------------------------------------------------------------------------------
+        Mandatory Underline: <u>The wiki is always updated before a new version releases.</u>
+        ========================================================================================
+      */}
       {/* 2. WIKI MAINTENANCE NOTE (UPDATED FRAME) */}
       <UpdatedFrame id="home_maintenance_notice" isUpdated={true}>
         <div className="p-5 bg-gradient-to-r from-[#17140b] via-[#0f110d] to-[#0c0e0c] border border-amber-500/40 rounded-xl space-y-3 shadow-lg">

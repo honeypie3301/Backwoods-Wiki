@@ -12,7 +12,8 @@ import {
   Radio,
   Layers,
   Clock,
-  Search
+  Search,
+  Monitor
 } from 'lucide-react';
 import { 
   doc, 
@@ -30,12 +31,15 @@ import {
   onSnapshot 
 } from 'firebase/firestore';
 import { db, hasConfig } from '../lib/firebase';
+import { detectClientEnvironment } from '../utils/deviceInfo';
 
 interface TelemetryLog {
   timestamp: string;
   type: 'unique' | 'repeat';
   slug: string;
   visitorId: string;
+  os?: string;
+  browser?: string;
 }
 
 interface SearchSummary {
@@ -88,6 +92,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   }, [isOpen]);
 
   const currentVisitorIdShort = currentVisitorId.substring(0, 12);
+  const clientEnv = useMemo(() => detectClientEnvironment(), []);
 
   const handleStopTracking = () => {
     localStorage.setItem('wiki_telemetry_ignore_device', 'true');
@@ -162,7 +167,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               timestamp: new Date().toISOString(),
               type: isUnique ? 'unique' : 'repeat',
               slug: 'telemetry-terminal',
-              visitorId: shortVisitorId
+              visitorId: shortVisitorId,
+              os: clientEnv.os,
+              browser: clientEnv.browser
             });
 
             if (localData.logs.length > 50) {
@@ -182,7 +189,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           timestamp: new Date().toISOString(),
           type: optimisticType,
           slug: 'telemetry-terminal',
-          visitorId: shortVisitorId
+          visitorId: shortVisitorId,
+          os: clientEnv.os,
+          browser: clientEnv.browser
         };
         setStats(prev => {
           if (!prev) return prev;
@@ -215,10 +224,16 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               const visitorWrite = isUnique
                 ? setDoc(visitorDocRef, {
                     firstVisit: serverTimestamp(),
-                    lastVisit: serverTimestamp()
+                    lastVisit: serverTimestamp(),
+                    os: clientEnv.os,
+                    browser: clientEnv.browser,
+                    deviceType: clientEnv.deviceType
                   })
                 : setDoc(visitorDocRef, {
-                    lastVisit: serverTimestamp()
+                    lastVisit: serverTimestamp(),
+                    os: clientEnv.os,
+                    browser: clientEnv.browser,
+                    deviceType: clientEnv.deviceType
                   }, { merge: true });
 
               const statsDocRef = doc(db, 'stats', 'global');
@@ -233,7 +248,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 timestamp: serverTimestamp(),
                 type: isUnique ? 'unique' : 'repeat',
                 slug: 'telemetry-terminal',
-                visitorId: shortVisitorId
+                visitorId: shortVisitorId,
+                os: clientEnv.os,
+                browser: clientEnv.browser
               });
 
               // Execute all three writes concurrently over a single batched window
@@ -421,7 +438,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
             timestamp: tsStr,
             type: data.type || 'repeat',
             slug: data.slug || 'home',
-            visitorId: data.visitorId || 'unknown'
+            visitorId: data.visitorId || 'unknown',
+            os: data.os,
+            browser: data.browser
           });
         });
         setStats(prev => {
@@ -617,7 +636,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 timestamp: tsStr,
                 type: data.type || 'repeat',
                 slug: data.slug || 'home',
-                visitorId: data.visitorId || 'unknown'
+                visitorId: data.visitorId || 'unknown',
+                os: data.os,
+                browser: data.browser
               });
             });
           }
@@ -693,20 +714,20 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.96, y: 12 }}
           transition={{ duration: 0.18, ease: 'easeOut' }}
-          className="relative w-full max-w-5xl bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh] font-mono z-50 text-[#c8d4ca]"
+          className="relative w-full max-w-4xl bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[86vh] font-mono z-50 text-[#c8d4ca]"
           id="stats-modal-container"
         >
           {/* Header - Minimalist Tactical HUD Bar */}
-          <div className="flex items-center justify-between px-5 py-3.5 bg-[#0b100d] border-b border-[#1b261e] select-none">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
+          <div className="flex items-center justify-between px-4 py-2.5 bg-[#0b100d] border-b border-[#1b261e] select-none">
+            <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
                   onDoubleClick={handleStopTracking}
                   title="Double-click: Stop tracking (ignore this device)"
                   className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
                     isDeviceIgnored 
-                      ? 'bg-red-500' 
+                      ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.7)]' 
                       : 'bg-red-500/35 hover:bg-red-500/75'
                   }`}
                 />
@@ -717,22 +738,22 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   title="Double-click: Resume tracking"
                   className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
                     !isDeviceIgnored 
-                      ? 'bg-emerald-500' 
+                      ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]' 
                       : 'bg-emerald-500/35 hover:bg-emerald-500/75'
                   }`}
                 />
               </div>
-              <div className="h-4 w-[1px] bg-[#1e2a22]" />
-              <div className="flex items-center gap-2">
-                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase">
+              <div className="h-4 w-[1px] bg-[#1e2a22] shrink-0" />
+              <div className="flex items-center gap-2 min-w-0">
+                <Terminal className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span className="text-[11px] font-semibold tracking-wider text-[#a4c9ad] uppercase whitespace-nowrap shrink-0">
                   BACKWOODS TELEMETRY TERMINAL
                 </span>
                 {statusNotice && (
-                  <span className={`text-[9px] px-2 py-0.5 rounded font-mono uppercase tracking-wider ${
+                  <span className={`text-[8px] px-1.5 py-0.5 rounded font-mono uppercase tracking-wider whitespace-nowrap shrink-0 ${
                     isDeviceIgnored
-                      ? 'text-red-300 bg-red-950/60 border border-red-800/60'
-                      : 'text-emerald-300 bg-emerald-950/60 border border-emerald-800/60'
+                      ? 'text-red-300 bg-red-950/80 border border-red-800'
+                      : 'text-emerald-300 bg-emerald-950/80 border border-emerald-800'
                   }`}>
                     {statusNotice}
                   </span>
@@ -740,7 +761,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 shrink-0">
               {/* Mode indicator pill */}
               {isSandbox ? (
                 <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded border border-amber-900/50 bg-amber-950/20 text-amber-400 text-[9px] tracking-wider uppercase font-semibold">
@@ -777,17 +798,17 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           </div>
 
           {/* Body Content */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-3.5 space-y-2.5">
             {loading && !stats ? (
-              <div className="flex flex-col items-center justify-center py-28 gap-3 text-center">
-                <Activity className="w-7 h-7 text-emerald-400 animate-pulse" />
-                <div className="text-[11px] text-[#5e7564] uppercase tracking-widest animate-pulse font-mono">
+              <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
+                <Activity className="w-6 h-6 text-emerald-400 animate-pulse" />
+                <div className="text-[10px] text-[#5e7564] uppercase tracking-widest animate-pulse font-mono">
                   INITIALIZING TELEMETRY UPLINK...
                 </div>
               </div>
             ) : error ? (
-              <div className="flex flex-col items-center justify-center py-16 text-center text-red-400 border border-red-900/40 bg-red-950/15 rounded p-6">
-                <Database className="w-7 h-7 mb-2 text-red-500 animate-pulse" />
+              <div className="flex flex-col items-center justify-center py-12 text-center text-red-400 border border-red-900/40 bg-red-950/15 rounded p-5">
+                <Database className="w-6 h-6 mb-2 text-red-500 animate-pulse" />
                 <h4 className="text-xs font-bold uppercase tracking-wider mb-1 text-red-300">Access Protocol Fault</h4>
                 <p className="text-[11px] text-red-400/80 max-w-md leading-relaxed">{error}</p>
                 <button 
@@ -799,71 +820,71 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               </div>
             ) : stats ? (
               <>
-                {/* 1. HUD Metrics Ribbon (3 Crisp Modular Cards) */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {/* 1. HUD Metrics Ribbon (3 Crisp Modular Cards - Compact Height) */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   {/* Total Hits */}
-                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-1">
                       <span className="text-[10px] font-semibold text-[#5e7564] uppercase tracking-wider flex items-center gap-1.5">
                         <Eye className="w-3.5 h-3.5 text-emerald-500/70" />
                         Total Hits
                       </span>
-                      <span className="text-[9px] text-[#425246] px-1.5 py-0.2 rounded border border-[#1b261e] bg-[#090d0a]">
+                      <span className="text-[8px] text-[#425246] px-1.5 py-0.2 rounded border border-[#1b261e] bg-[#090d0a]">
                         IMPRESSIONS
                       </span>
                     </div>
-                    <div className="text-2xl sm:text-3xl font-bold text-[#e1eae2] font-sans tracking-tight">
+                    <div className="text-xl sm:text-2xl font-bold text-[#e1eae2] font-sans tracking-tight">
                       {stats.totalCount.toLocaleString()}
                     </div>
-                    <div className="text-[9px] text-[#4a5f50] mt-1 uppercase flex items-center gap-1">
+                    <div className="text-[8px] text-[#4a5f50] mt-0.5 uppercase flex items-center gap-1">
                       <span>Global telemetry records</span>
                     </div>
                   </div>
 
                   {/* Unique Survivors */}
-                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-1">
                       <span className="text-[10px] font-semibold text-emerald-400/90 uppercase tracking-wider flex items-center gap-1.5">
                         <Users className="w-3.5 h-3.5 text-emerald-400" />
                         Unique Survivors
                       </span>
-                      <span className="text-[9px] text-emerald-400/80 px-1.5 py-0.2 rounded border border-emerald-900/40 bg-emerald-950/30">
+                      <span className="text-[8px] text-emerald-400/80 px-1.5 py-0.2 rounded border border-emerald-900/40 bg-emerald-950/30">
                         DISTINCT
                       </span>
                     </div>
-                    <div className="text-2xl sm:text-3xl font-bold text-emerald-400 font-sans tracking-tight">
+                    <div className="text-xl sm:text-2xl font-bold text-emerald-400 font-sans tracking-tight">
                       {stats.uniqueCount.toLocaleString()}
                     </div>
-                    <div className="text-[9px] text-emerald-500/60 mt-1 uppercase">
+                    <div className="text-[8px] text-emerald-500/60 mt-0.5 uppercase">
                       Unique terminal hardware nodes
                     </div>
                   </div>
 
                   {/* Returning Operatives */}
-                  <div className="p-3.5 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
-                    <div className="flex items-center justify-between mb-2">
+                  <div className="p-2.5 sm:p-3 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative">
+                    <div className="flex items-center justify-between mb-1">
                       <span className="text-[10px] font-semibold text-amber-400/90 uppercase tracking-wider flex items-center gap-1.5">
                         <Activity className="w-3.5 h-3.5 text-amber-400" />
                         Returning Operatives
                       </span>
-                      <span className="text-[9px] text-amber-400/80 px-1.5 py-0.2 rounded border border-amber-900/40 bg-amber-950/30 font-mono">
+                      <span className="text-[8px] text-amber-400/80 px-1.5 py-0.2 rounded border border-amber-900/40 bg-amber-950/30 font-mono">
                         {retentionRate}% RETENTION
                       </span>
                     </div>
-                    <div className="text-2xl sm:text-3xl font-bold text-amber-400 font-sans tracking-tight">
+                    <div className="text-xl sm:text-2xl font-bold text-amber-400 font-sans tracking-tight">
                       {stats.repeatCount.toLocaleString()}
                     </div>
-                    <div className="text-[9px] text-amber-500/60 mt-1 uppercase">
+                    <div className="text-[8px] text-amber-500/60 mt-0.5 uppercase">
                       Re-entries from identified survivors
                     </div>
                   </div>
                 </div>
 
-                {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                {/* 2. Two-Column Split Layout: Top Visited Breakdown & Realtime Trace Stream (Compact HUD) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-3">
                   {/* Left Column: Top Visited Telemetry Targets */}
-                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[460px]">
-                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-3 select-none">
+                  <div className="lg:col-span-5 bg-[#0c110e] border border-[#1b261e] rounded p-3 flex flex-col h-[380px]">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2.5 select-none">
                       <div className="flex items-center gap-2">
                         <BarChart3 className="w-3.5 h-3.5 text-emerald-400" />
                         <span className="text-[11px] font-semibold text-[#a4c9ad] uppercase tracking-wider">
@@ -895,12 +916,12 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         No page view distribution recorded.
                       </div>
                     ) : (
-                      <div className="flex-1 overflow-y-auto space-y-2.5 pr-1 scrollbar-thin">
+                      <div className="flex-1 overflow-y-auto space-y-2 pr-1 scrollbar-thin">
                         {topPages.map((page) => (
                           <div key={page.slug} className="group">
-                            <div className="flex items-center justify-between text-[11px] mb-1">
-                              <div className="flex items-center gap-2 min-w-0 pr-2">
-                                <span className={`text-[9px] font-bold px-1.5 py-0.2 rounded border ${
+                            <div className="flex items-center justify-between text-[10px] mb-1">
+                              <div className="flex items-center gap-1.5 min-w-0 pr-2">
+                                <span className={`text-[8px] font-bold px-1.5 py-0.2 rounded border ${
                                   page.rank === 1 
                                     ? 'bg-emerald-950/60 border-emerald-800 text-emerald-300' 
                                     : 'bg-[#111713] border-[#1f2c22] text-[#5e7564]'
@@ -911,8 +932,8 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                                   {page.title}
                                 </span>
                               </div>
-                              <span className="text-[10px] text-emerald-400/90 font-mono font-bold shrink-0">
-                                {page.count.toLocaleString()} <span className="text-[8px] font-normal text-[#4f6454]">HITS</span>
+                              <span className="text-[9px] text-emerald-400/90 font-mono font-bold shrink-0">
+                                {page.count.toLocaleString()} <span className="text-[7px] font-normal text-[#4f6454]">HITS</span>
                               </span>
                             </div>
                             {/* Sleek Minimalist Progress Bar */}
@@ -931,9 +952,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   </div>
 
                   {/* Right Column: Realtime Telemetry Stream with Integrated User ID Search Engine */}
-                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3.5 flex flex-col h-[460px]">
+                  <div className="lg:col-span-7 bg-[#0c110e] border border-[#1b261e] rounded p-3 flex flex-col h-[380px]">
                     {/* Stream Header & Filters */}
-                    <div className="flex items-center justify-between pb-2.5 border-b border-[#1b261e] mb-2 select-none">
+                    <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none">
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                           <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${searchResults !== null ? 'bg-cyan-400' : 'bg-emerald-400'} opacity-60`}></span>
@@ -954,7 +975,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         <button
                           type="button"
                           onClick={() => setLogFilter('all')}
-                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                          className={`px-1.5 py-0.5 text-[8px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'all'
                               ? 'bg-[#1b261e] text-[#d6ded7] border border-[#2b3c30]'
                               : 'text-[#4f6454] hover:text-[#a4c9ad]'
@@ -965,7 +986,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         <button
                           type="button"
                           onClick={() => setLogFilter('unique')}
-                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                          className={`px-1.5 py-0.5 text-[8px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'unique'
                               ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-800'
                               : 'text-[#4f6454] hover:text-emerald-400'
@@ -976,7 +997,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         <button
                           type="button"
                           onClick={() => setLogFilter('repeat')}
-                          className={`px-2 py-0.5 text-[9px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                          className={`px-1.5 py-0.5 text-[8px] uppercase font-semibold rounded transition-colors cursor-pointer ${
                             logFilter === 'repeat'
                               ? 'bg-amber-950/70 text-amber-300 border border-amber-800'
                               : 'text-[#4f6454] hover:text-amber-400'
@@ -996,7 +1017,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           value={searchUserId}
                           onChange={(e) => setSearchUserId(e.target.value)}
                           placeholder="Search User ID across database history (e.g. surv_q8c, alvt29s)..."
-                          className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[11px] font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8 pr-16 py-1.5 rounded transition-all"
+                          className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[10px] font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8 pr-16 py-1 rounded transition-all"
                         />
                         {searchUserId ? (
                           <div className="absolute right-2 flex items-center gap-1.5">
@@ -1020,7 +1041,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           <button
                             type="button"
                             onClick={() => setSearchUserId(currentVisitorIdShort)}
-                            className="absolute right-2 text-[9px] text-[#5e7564] hover:text-emerald-400 transition-colors uppercase font-mono px-1.5 py-0.5 bg-[#0e1611] rounded border border-[#1c271f] cursor-pointer"
+                            className="absolute right-1.5 text-[8px] text-[#5e7564] hover:text-emerald-400 transition-colors uppercase font-mono px-1.5 py-0.5 bg-[#0e1611] rounded border border-[#1c271f] cursor-pointer"
                             title="Audit history for your current browser node"
                           >
                             My Node
@@ -1031,7 +1052,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                     {/* Search Result Intelligence Card */}
                     {searchUserId.trim() && (
-                      <div className="mb-2 bg-[#080d0a] border border-[#1b261e] rounded p-2 text-[10px] font-mono select-none">
+                      <div className="mb-2 bg-[#080d0a] border border-[#1b261e] rounded p-1.5 text-[9px] font-mono select-none">
                         {isSearching ? (
                           <div className="flex items-center gap-2 text-emerald-400 py-0.5">
                             <span className="w-2.5 h-2.5 rounded-full border border-emerald-400 border-t-transparent animate-spin" />
@@ -1044,11 +1065,11 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                                 <span>DATABASE AUDIT: {searchResults.length} RECORDS FOUND</span>
                               </div>
-                              <div className="text-[9px] text-[#55695a]">
+                              <div className="text-[8px] text-[#55695a]">
                                 {searchSummary?.matchedNodes.length} NODE(S) MATCHED
                               </div>
                             </div>
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-[#7a9480]">
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[8px] text-[#7a9480]">
                               {searchSummary?.oldestDate && (
                                 <span>
                                   FIRST RECORDED: <strong className="text-[#a4c9ad]">{new Date(searchSummary.oldestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
@@ -1056,7 +1077,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                               )}
                               {searchSummary?.newestDate && (
                                 <span>
-                                  LATEST ACTIVITY: <strong className="text-[#a4c9ad]">{new Date(searchSummary.newestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
+                                  LATEST: <strong className="text-[#a4c9ad]">{new Date(searchSummary.newestDate).toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })}</strong>
                                 </span>
                               )}
                               {searchSummary?.topTarget && (
@@ -1075,10 +1096,10 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                     )}
 
                     {/* Scrollable Log Stream */}
-                    <div className="flex-1 overflow-y-auto space-y-1.5 pr-1 text-[11px] font-mono scrollbar-thin">
+                    <div className="flex-1 overflow-y-auto space-y-1 pr-1 text-[10px] font-mono scrollbar-thin">
                       {filteredLogs.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center h-full text-center py-12 text-[#4f6454] italic">
-                          <Radio className="w-5 h-5 mb-1.5 text-[#303f34]" />
+                        <div className="flex flex-col items-center justify-center h-full text-center py-10 text-[#4f6454] italic">
+                          <Radio className="w-4 h-4 mb-1 text-[#303f34]" />
                           <span>No telemetry trace events match the active criteria.</span>
                         </div>
                       ) : (
@@ -1088,50 +1109,65 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           const timeStr = `${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })} · ${dateStr}`;
                           const isNew = log.type === 'unique';
                           const relativeTime = formatRelativeTime(log.timestamp);
+                          const displayBrowser = log.browser || (log.visitorId === currentVisitorIdShort ? clientEnv.browser : null);
+                          const displayOs = log.os || (log.visitorId === currentVisitorIdShort ? clientEnv.os : null);
 
                           return (
                             <div 
                               key={`${log.timestamp}-${index}`} 
-                              className="px-2.5 py-1.5 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex items-center justify-between gap-2"
+                              className="px-2 py-1 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex items-center justify-between gap-1.5"
                             >
-                              <div className="flex items-center gap-2 min-w-0">
+                              <div className="flex items-center gap-1.5 min-w-0">
                                 {/* Timestamp */}
-                                <span className="text-[#4e6453] text-[10px] font-semibold shrink-0" title={date.toLocaleString()}>
+                                <span className="text-[#4e6453] text-[9px] font-semibold shrink-0" title={date.toLocaleString()}>
                                   [{timeStr}]
                                 </span>
 
                                 {/* Categorized Status Pill */}
                                 {log.slug === 'telemetry-terminal' ? (
-                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
+                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
                                     TERMINAL
                                   </span>
                                 ) : isNew ? (
-                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
+                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
                                     NEW NODE
                                   </span>
                                 ) : (
-                                  <span className="shrink-0 px-1.5 py-0.5 rounded text-[8px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
+                                  <span className="shrink-0 px-1 py-0.2 rounded text-[7px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
                                     RETURN
                                   </span>
                                 )}
 
                                 {/* Destination Title */}
-                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate flex items-center gap-1.5">
+                                <span className="text-[#99b5a1] hover:text-emerald-300 transition-colors truncate flex items-center gap-1 text-[10px]">
                                   {log.slug === 'telemetry-terminal' && (
                                     <Terminal className="w-3 h-3 text-cyan-400 shrink-0 inline" />
                                   )}
                                   {getArticleTitle(log.slug)}
                                 </span>
+
+                                {/* Detected Platform tag */}
+                                {(displayBrowser || displayOs) && (
+                                  <span 
+                                    className="hidden sm:inline-flex items-center gap-1 text-[8px] font-mono px-1.5 py-0.2 rounded bg-[#0b100d] border border-[#17221a] text-[#698470] shrink-0" 
+                                    title={`Client Platform: ${displayBrowser || 'Unknown'} on ${displayOs || 'Unknown'}`}
+                                  >
+                                    <Monitor className="w-2.5 h-2.5 text-[#4f6454]" />
+                                    <span>{displayBrowser || ''}</span>
+                                    {displayBrowser && displayOs ? <span>·</span> : null}
+                                    <span>{displayOs || ''}</span>
+                                  </span>
+                                )}
                               </div>
 
-                              <div className="flex items-center gap-2 shrink-0">
+                              <div className="flex items-center gap-1.5 shrink-0">
                                 {/* Clickable Visitor ID Chip */}
                                 {log.visitorId === currentVisitorIdShort ? (
                                   <button
                                     type="button"
                                     onClick={() => setSearchUserId(log.visitorId)}
                                     title="Click to search full database history for your node"
-                                    className="text-[9px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
+                                    className="text-[8px] text-emerald-300 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
                                   >
                                     {log.visitorId} (YOU)
                                   </button>
@@ -1140,13 +1176,13 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                                     type="button"
                                     onClick={() => setSearchUserId(log.visitorId)}
                                     title={`Click to search complete database history for node ${log.visitorId}`}
-                                    className="text-[9px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
+                                    className="text-[8px] text-[#55695a] bg-[#0d140f] px-1.5 py-0.2 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
                                   >
                                     {log.visitorId}
                                   </button>
                                 )}
                                 {/* Elapsed */}
-                                <span className="text-[9px] text-[#3d4f42] w-12 text-right hidden sm:inline">
+                                <span className="text-[8px] text-[#3d4f42] w-10 text-right hidden sm:inline">
                                   {relativeTime}
                                 </span>
                               </div>
@@ -1158,16 +1194,16 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   </div>
                 </div>
 
-                {/* 3. Footer Protocol Banner */}
-                <div className="p-3 bg-[#0a0f0c] border border-[#18231a] rounded text-[10px] text-[#4f6454] leading-relaxed select-none flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                {/* 3. Footer Protocol Banner (Compact) */}
+                <div className="p-2 sm:p-2.5 bg-[#0a0f0c] border border-[#18231a] rounded text-[9px] text-[#4f6454] leading-relaxed select-none flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                   <div>
                     <span className="text-emerald-400 font-bold mr-1">PROTOCOL SUMMARY:</span>
                     {isSandbox 
                       ? "Sandbox mode engaged. Analytics persist safely in browser sandbox storage."
                       : "Telemetry uplink synchronized with Backwoods central Firestore cluster. Visitor sessions strictly anonymized."}
                   </div>
-                  <div className="text-[9px] text-[#3f5043] shrink-0 font-mono">
-                    PRESS <kbd className="px-1 py-0.2 bg-[#121914] border border-[#1e2a21] text-[#788e7d] rounded text-[8px]">ESC</kbd> TO EXIT TERMINAL
+                  <div className="text-[8px] text-[#3f5043] shrink-0 font-mono">
+                    PRESS <kbd className="px-1 py-0.2 bg-[#121914] border border-[#1e2a21] text-[#788e7d] rounded text-[7px]">ESC</kbd> TO EXIT TERMINAL
                   </div>
                 </div>
               </>
