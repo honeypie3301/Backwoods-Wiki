@@ -1,5 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Info, Shield, Flame, Hammer, Coins, AlertTriangle, ShieldAlert, Sparkles } from 'lucide-react';
+import { 
+  Search, Info, Shield, Flame, Hammer, Coins, AlertTriangle, 
+  ShieldAlert, Sparkles, ChevronDown, ChevronUp, LayoutGrid, Maximize2, Minimize2 
+} from 'lucide-react';
 import FancyRecipeView from './FancyRecipeView';
 import UpdatedFrame from '../UpdatedFrame';
 
@@ -30,7 +33,7 @@ function getBlockRecipeIds(name: string): string[] {
       'petrified_rotten_oak_fence', 'petrified_rotten_stick'
     ];
   }
-  if (name === "Petrified Planks & Slab & Stairs") {
+  if (name === "Petrified Planks & Slab & Stairs" || name === "Petrified Planks, Slab, Stairs & Fence Gate") {
     return [
       'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs'
     ];
@@ -47,6 +50,7 @@ interface BlockItem {
   hardness?: string;
   blastRes?: string;
   burnTime?: string;
+  tool?: string;
   description: string;
   latin?: { term: string; translation: string }[];
   mechanics?: string[];
@@ -61,13 +65,19 @@ interface BlockItem {
 export default function BlocksView() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDim, setSelectedDim] = useState<string>('all');
+  const [compactMode, setCompactMode] = useState<boolean>(true);
+  const [expandedMechanics, setExpandedMechanics] = useState<Record<string, boolean>>({});
+  const [expandedLoot, setExpandedLoot] = useState<Record<string, boolean>>({});
   const [expandedRecipes, setExpandedRecipes] = useState<Record<string, boolean>>({});
 
   const blocks: BlockItem[] = [
     {
       name: "Scandere Lignum Log",
       dimension: "overworld",
+      hardness: "2.7",
+      blastRes: "5.0",
       burnTime: "270 ticks",
+      tool: "Axe",
       description: "The trunk of the Scandere tree. It starts as a regular dark oak-shaped tree upon generation and grows naturally over time, climbing upwards and sprouting leaves.",
       latin: [
         { term: "Scandere", translation: "to climb" },
@@ -84,7 +94,10 @@ export default function BlocksView() {
     {
       name: "Scandere Lignum (Spreading Root-wood)",
       dimension: "overworld",
+      hardness: "2.0",
+      blastRes: "5.0",
       burnTime: "270 ticks",
+      tool: "Axe",
       description: "The spreading root-wood of the Scandere. This all-sided bark block acts as the roots of the tree, growing primarily underground to replace stone or dirt.",
       mechanics: [
         "Spreading: Spreads tick by tick, replacing solid blocks in its path. Under open sky, 80% horizontal spread is favored. Underground, 60% downwards spread is favored to dig deep roots.",
@@ -102,6 +115,10 @@ export default function BlocksView() {
     {
       name: "Ash-Rose",
       dimension: "backwoods_rotting",
+      hardness: "0.0",
+      blastRes: "0.0",
+      burnTime: "100 ticks (flammable)",
+      tool: "Shears / Hand",
       description: "A highly specialized eerie flower placed exclusively by the elusive Ash-Weaver. Serves as the ultimate defense against Splinters.",
       mechanics: [
         "Splinter Freeze: Holding one in either hand, or placing it on the ground, causes all nearby Splinters to freeze and stop moving entirely.",
@@ -109,10 +126,14 @@ export default function BlocksView() {
         "Placement: Can be safely replanted on grass, dirt, deepslate, and any type of log or planks, or placed inside a clay flower pot (retaining its protective freeze aura properties)."
       ]
     },
+
     {
       name: "Fractus Core",
       dimension: "backwoods_rotting",
+      hardness: "2.0",
+      blastRes: "10.0",
       burnTime: "13 hours (smelting)",
+      tool: "Pickaxe",
       description: "A stark block of pure, perfect white geometry that defies the natural visual and physical laws of the world. Obtained from the anomalous Fractus entity.",
       mechanics: [
         "Anomalous Weight: Keeping it in your inventory slows movement speed by 4% and increases falling gravity by +0.017 points per core.",
@@ -125,6 +146,9 @@ export default function BlocksView() {
     {
       name: "Faded Block",
       dimension: "loss",
+      hardness: "0.35",
+      blastRes: "0.8",
+      tool: "Shovel",
       description: "The primary surface block of the Loss dimension. A pale, completely drained version of dirt entirely leached of life.",
       mechanics: [
         "Absolute Silence: Produces absolutely no audio or sound footsteps when walked upon, broken, or placed."
@@ -133,6 +157,9 @@ export default function BlocksView() {
     {
       name: "Sinking Ash",
       dimension: "loss",
+      hardness: "0.5",
+      blastRes: "0.5",
+      tool: "Shovel",
       description: "A dangerous natural hazard generating in Loss. Acts as a mobility control hazard.",
       mechanics: [
         "Movement Restriction: Severely slows player movement when stepped inside.",
@@ -145,6 +172,7 @@ export default function BlocksView() {
       dimension: "loss",
       hardness: "2.2",
       blastRes: "7.5",
+      tool: "Pickaxe",
       description: "The primary stone of the Loss dimension, formed from degraded stone. Texture is washed-out and low-detail. Produces no sound upon interaction. Additionally, its void-like composition absorbs physical impact—any projectile (such as arrows or spectral arrows) that strikes a Nullstone block is instantly destroyed in a flash of particles.",
       mechanics: [
         "Nullstone Family: Can be crafted into slabs, stairs, and walls.",
@@ -154,6 +182,9 @@ export default function BlocksView() {
     {
       name: "Plaque Block & Plaque Heart",
       dimension: "loss",
+      hardness: "1.5 / 6.0",
+      blastRes: "2.0 / 18.0",
+      tool: "Shovel",
       description: "A highly aggressive, infectious corruption that slowly spreads to convert any adjacent solid blocks in all six directions.",
       mechanics: [
         "Plaque Spread: Spreads outwards. Generates throughout Loss similar to coal ore layers.",
@@ -165,6 +196,9 @@ export default function BlocksView() {
     {
       name: "Memory Quartz Ore",
       dimension: "loss",
+      hardness: "2.0",
+      blastRes: "7.0",
+      tool: "Pickaxe (Required)",
       description: "An ore block generating between Y -7 and Y 92 inside the Loss dimension.",
       mechanics: [
         "Yield: Yields 1 to 2 Memory Shards when mined."
@@ -173,7 +207,10 @@ export default function BlocksView() {
     {
       name: "Rotten Oak Wood Family",
       dimension: "backwoods_rotting",
+      hardness: "3.0",
+      blastRes: "15.0",
       burnTime: "200 - 240 ticks",
+      tool: "Axe",
       description: "Standard Oak Planks spontaneously decay into Rotten Oak blocks when a player's time in the Backwoods exceeds 24,000 ticks. The decay spreads to adjacent blocks.",
       mechanics: [
         "Log Shards: Rotten Oak Logs have a chance to drop a Heartwood Shard when chopped.",
@@ -188,6 +225,7 @@ export default function BlocksView() {
       dimension: "overworld",
       hardness: "2.2",
       blastRes: "3.5",
+      tool: "Axe",
       description: "A hazardous, defensive spiked building block covered in sharp splinters. Handled with caution to prevent injury.",
       mechanics: [
         "Crouch Placement Only: Non-sneak block placement on top is strictly locked and fails to prevent unwanted construction over active hazards. Players must sneak (crouch) to place any block on it.",
@@ -201,26 +239,41 @@ export default function BlocksView() {
     {
       name: "Petrified Rotten Oak Wood",
       dimension: "petrified_weald",
-      hardness: "21",
-      blastRes: "23.04",
+      hardness: "21.0",
+      blastRes: "23.0",
+      tool: "Axe",
+      isUpdated: true,
       description: "The calcified, exceptionally dense remains of ancient flora. Features four-sided bark textures. Sturdiest block in the petrified set.",
       isSpecial: true,
-      specialText: "Material Properties: Extremely dense, very high blast resistance, and 100% immune to fire or lava ignition."
+      specialText: "Material Properties: Extremely dense, very high blast resistance (23.0), and 100% immune to fire or lava ignition."
     },
     {
       name: "Petrified Rotten Oak Log",
       dimension: "petrified_weald",
-      hardness: "20",
+      hardness: "20.0",
       blastRes: "22.5",
+      tool: "Axe",
       description: "The primary structural pillar of the ancient calcified trees in the Petrified Weald.",
       isSpecial: true,
-      specialText: "Stripped Variant: Stripped Petrified Rotten Oak Log has hardness 17 and blast resistance 22.05."
+      specialText: "Stripped Variant: Stripped Petrified Rotten Oak Log has hardness 17.0 and blast resistance 22.0."
+    },
+    {
+      name: "Stripped Petrified Rotten Oak Log",
+      dimension: "petrified_weald",
+      hardness: "17.0",
+      blastRes: "22.0",
+      tool: "Axe",
+      isUpdated: true,
+      description: "Stripped variant of the Petrified Rotten Oak Log. Heavily mineralized heartwood exposed after outer bark removal.",
+      isSpecial: true,
+      specialText: "Completely immune to fire and lava ignition. Retains extreme structural integrity (hardness 17.0, blast resistance 22.0)."
     },
     {
       name: "Petrified Planks, Slab, Stairs & Fence Gate",
       dimension: "petrified_weald",
-      hardness: "10",
+      hardness: "10.0",
       blastRes: "9.0",
+      tool: "Axe",
       description: "Extremely heavy, calcified structural blocks including planks, slabs, stairs, and fence gates. They are entirely fireproof and offer immense blast resistance compared to normal wood.",
       mechanics: [
         "Sound Properties: Produces custom hollow rotting wood step and break sounds.",
@@ -230,19 +283,42 @@ export default function BlocksView() {
     {
       name: "Petrified Weald Leaves",
       dimension: "petrified_weald",
-      hardness: "6",
+      hardness: "6.0",
       blastRes: "1.3",
+      tool: "Shears / Hoe",
       description: "Brittle, calcified foliage. Structurally far tougher than vanilla leaves."
+    },
+    {
+      name: "Sedgebrush & Tall Sedgebrush",
+      dimension: "petrified_weald",
+      hardness: "0.3",
+      blastRes: "0.0",
+      burnTime: "100 ticks (flammable)",
+      tool: "Shears / Hand",
+      isUpdated: true,
+      description: "Arid, mineralized scrub brush growing across the Petrified Weald and dried Backwoods riverbeds. Brittle plant matter yielding resin.",
+      mechanics: [
+        "Harvest Drops: Breaking drops Petrified Resin (4-5% chance per break).",
+        "Shearing: Can be sheared with Shears to obtain the intact plant block for decoration.",
+        "Flammability: Highly flammable despite mineral dusting (flammability 100)."
+      ],
+      lootTable: [
+        { item: "Sedgebrush", weight: 100, condition: "Shears" },
+        { item: "Petrified Resin", weight: 5, condition: "Standard break (4-5% drop chance)" }
+      ]
     },
     {
       name: "Amber Grit & Cobbled Amber Grit",
       dimension: "petrified_weald",
-      hardness: "3",
+      hardness: "3.0",
       blastRes: "9.0",
-      description: "Dense deepslate-like ground block generating naturally in the Petrified Weald. Features a custom loot table dropping throwable Petrified Oak Galls when broken.",
+      tool: "Pickaxe",
+      description: "Dense deepslate-like ground block generating naturally in the Petrified Weald. Regular mining yields Cobbled Amber Grit and rare Petrified Oak Galls, while Silk Touch preserves the intact block.",
       isUpdated: true,
       lootTable: [
-        { item: "Petrified Oak Gall", weight: 100, condition: "Breaking Amber Grit block" }
+        { item: "Cobbled Amber Grit", weight: 100, condition: "Standard Break (without Silk Touch)" },
+        { item: "Petrified Oak Gall (1-3)", weight: 15, condition: "Standard Break (15% drop rate)" },
+        { item: "Amber Grit", weight: 100, condition: "Silk Touch" }
       ]
     },
     {
@@ -250,6 +326,7 @@ export default function BlocksView() {
       dimension: "backwoods_rotting",
       hardness: "0.0",
       blastRes: "0.0",
+      tool: "Hand / Shears",
       description: "A pale, aerated mushroom plant that generates naturally in damp forest biomes. Can be harvested for Windcap Mushrooms.",
       isUpdated: true,
       lootTable: [
@@ -259,8 +336,10 @@ export default function BlocksView() {
     {
       name: "Lignum Caro",
       dimension: "backwoods_rotting",
-      hardness: "1.5",
+      hardness: "2.5",
       blastRes: "1.5",
+      tool: "Axe",
+      isUpdated: true,
       latin: [
         { term: "Lignum", translation: "wood" },
         { term: "Caro", translation: "flesh" }
@@ -279,17 +358,21 @@ export default function BlocksView() {
       dimension: "backwoods_rotting",
       hardness: "2.5",
       blastRes: "1.5",
+      burnTime: "300 ticks",
+      tool: "Axe",
       description: "A fleshy trapdoor crafted from Lignum Caro. Can be opened by redstone or by hand.",
       mechanics: [
         "Reactive Organic Snapping: Due to its reactive organic nature, whenever an entity steps directly on a closed Lignum Caro Trapdoor, it will automatically snap open after a brief 4-tick delay, dropping the entity down.",
         "Furnace Fuel: It can be used as a furnace fuel (burns for 300 ticks)."
       ]
     },
+
     {
       name: "Fractus Prime Core",
       dimension: "backwoods_rotting",
       hardness: "5.0",
       blastRes: "12.0",
+      tool: "Pickaxe",
       description: "An advanced anomalies core containing the compressed, high-energy matrix of the elite Fractus Prime drone. Radiates pure cold luminance and powerful magnetic resonance.",
       mechanics: [
         "Luminance Level 13: Emits a steady light level of 13.0 with emissive, post-processed rendering.",
@@ -303,6 +386,7 @@ export default function BlocksView() {
       dimension: "backwoods_rotting",
       hardness: "0.2",
       blastRes: "0.2",
+      tool: "Shears / Axe",
       description: "A highly deceptive decoy block that looks visually indistinguishable from standard Oak Planks but physically behaves as a leaf block. It can only be found in the Backwoods dimension, acting as leaves for the trees in the Thicket biome. Designed for hidden traps and secret pathways.",
       mechanics: [
         "Flawless Mimicry: Uses the exact textures of vanilla Oak Planks on all sides, making them impossible to spot with the naked eye.",
@@ -321,6 +405,7 @@ export default function BlocksView() {
       dimension: "backwoods_rotting",
       hardness: "0.2",
       blastRes: "0.2",
+      tool: "Shears / Hoe",
       description: "Dead, crumbling oak leaves that are slowly decaying in the damp atmosphere of the Backwoods. Highly flammable.",
       mechanics: [
         "Light Blockage: Possesses a high light opacity of 14, creating dark under-canopy environments despite being translucent.",
@@ -332,6 +417,7 @@ export default function BlocksView() {
       dimension: "petrified_weald",
       hardness: "3.5",
       blastRes: "6.0",
+      tool: "Shovel",
       description: "A heavy, compacted silt deposit that has mineralized over ages in the Petrified Weald. Harder than regular soil, requiring a shovel to dig efficiently.",
       mechanics: [
         "Mineral Density: Steps produce a deep, solid stony tuff sound.",
@@ -341,8 +427,9 @@ export default function BlocksView() {
     {
       name: "Splintered Oak Wood",
       dimension: "backwoods_rotting",
-      hardness: "2.2",
+      hardness: "2.5",
       blastRes: "3.5",
+      tool: "Axe",
       isUpdated: true,
       description: "Hazardous spiked wood block used actively by Log Splinter entities. Slows movement speed and inflicts prick damage on creatures traversing over it.",
       mechanics: [
@@ -359,11 +446,12 @@ export default function BlocksView() {
       dimension: "petrified_weald",
       hardness: "22.0",
       blastRes: "25.0",
+      tool: "Axe",
       isUpdated: true,
       description: "Fossilized, calcified spiked wood variant with extreme structural density. Deployed in the Petrified Weald by Petrified Log Splinter entities.",
       mechanics: [
         "Subterranean Calcified Construction: Deployed by Petrified Log Splinter entities using fill and bridge procedures to traverse chasms.",
-        "Extreme Hardness: Hardness 22 and Blast Resistance 25 make it virtually impervious to standard explosions.",
+        "Extreme Hardness: Hardness 22.0 and Blast Resistance 25.0 make it virtually impervious to standard explosions.",
         "Spiked Slowdown & Impalement: Impairs movement velocity and inflicts prick damage to trespassers."
       ]
     },
@@ -372,6 +460,7 @@ export default function BlocksView() {
       dimension: "backwoods_rotting",
       hardness: "2.2",
       blastRes: "3.0",
+      tool: "Pickaxe",
       isUpdated: true,
       description: "Heavy, fossilized oak wood planks that serve as the main filler block of the Backwoods. Over eons, these planks have absorbed mineral compounds from the living environment, rendering them rock-hard and completely fireproof.",
       mechanics: [
@@ -393,70 +482,135 @@ export default function BlocksView() {
     });
   }, [searchQuery, selectedDim]);
 
+  const toggleMechanics = (name: string) => {
+    setExpandedMechanics(prev => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  const toggleLoot = (name: string) => {
+    setExpandedLoot(prev => ({ ...prev, [name]: !prev[name] }));
+  };
+
+  const areAllExpanded = useMemo(() => {
+    if (filteredBlocks.length === 0) return false;
+    return filteredBlocks.every(b => {
+      const mechOpen = !b.mechanics || b.mechanics.length === 0 || !!expandedMechanics[b.name];
+      const lootOpen = !b.lootTable || b.lootTable.length === 0 || !!expandedLoot[b.name];
+      return mechOpen && lootOpen;
+    });
+  }, [filteredBlocks, expandedMechanics, expandedLoot]);
+
+  const toggleExpandAll = () => {
+    const nextState = !areAllExpanded;
+    const nextMech: Record<string, boolean> = { ...expandedMechanics };
+    const nextLoot: Record<string, boolean> = { ...expandedLoot };
+    filteredBlocks.forEach(b => {
+      if (b.mechanics && b.mechanics.length > 0) nextMech[b.name] = nextState;
+      if (b.lootTable && b.lootTable.length > 0) nextLoot[b.name] = nextState;
+    });
+    setExpandedMechanics(nextMech);
+    setExpandedLoot(nextLoot);
+  };
+
   return (
-    <div className="space-y-6 select-text">
+    <div className="space-y-4 select-text">
       {/* Intro and Search bar */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
-        <p className="text-sm text-[#829285] max-w-xl">
-          Complete catalog of the custom blocks found across the Overworld, Backwoods, Loss, and Petrified Weald dimensions.
+      <div className="flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+        <p className="text-xs text-[#829285] max-w-xl leading-relaxed">
+          Catalog of custom geological, arboreal, and dimensional blocks across Backwoods realms.
         </p>
         
-        <div className="relative w-full md:w-72 shrink-0">
-          <Search className="absolute left-3 top-2.5 w-4 h-4 text-[#5a6b5e]" />
-          <input
-            type="text"
-            placeholder="Search blocks..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 bg-[#0a0c0a] border border-[#1c241e] rounded-md text-xs text-[#c9d1c9] focus:outline-none focus:border-[#709978] transition-colors placeholder-[#5a6b5e]"
-          />
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="relative flex-1 sm:w-60">
+            <Search className="absolute left-2.5 top-2 w-3.5 h-3.5 text-[#5a6b5e]" />
+            <input
+              type="text"
+              placeholder="Search blocks..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-8 pr-3 py-1.5 bg-[#0a0c0a] border border-[#1c241e] rounded-md text-xs text-[#c9d1c9] focus:outline-none focus:border-[#709978] transition-colors placeholder-[#5a6b5e]"
+            />
+          </div>
+
+          <button
+            onClick={() => setCompactMode(prev => !prev)}
+            className={`px-2.5 py-1.5 text-xs font-mono rounded border flex items-center gap-1.5 transition-colors cursor-pointer select-none shrink-0 ${
+              compactMode 
+                ? 'bg-[#121913] border-[#2c3d2f] text-[#a9d1b0]' 
+                : 'bg-[#0a0d0a] border-[#1a231b] text-[#829285] hover:text-[#c9d1c9]'
+            }`}
+            title={compactMode ? "Switch to Expanded View" : "Switch to Compact View"}
+          >
+            <LayoutGrid className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">{compactMode ? 'Compact' : 'Expanded'}</span>
+          </button>
+
+          <button
+            onClick={toggleExpandAll}
+            className="px-2.5 py-1.5 text-xs font-mono rounded border bg-[#0a0d0a] border-[#1a231b] text-[#829285] hover:text-[#c9d1c9] flex items-center gap-1.5 transition-colors cursor-pointer select-none shrink-0"
+            title={areAllExpanded ? "Collapse All Details" : "Expand All Details"}
+          >
+            {areAllExpanded ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+            <span className="hidden sm:inline">{areAllExpanded ? 'Collapse' : 'Expand'}</span>
+          </button>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap gap-2 border-b border-[#1a221c] pb-3">
+      <div className="flex flex-wrap gap-1.5 border-b border-[#1a221c] pb-2.5">
         {[
-          { id: 'all', label: 'All Blocks' },
-          { id: 'overworld', label: 'Overworld' },
-          { id: 'backwoods_rotting', label: 'Backwoods & Rotting' },
-          { id: 'loss', label: 'The Loss' },
-          { id: 'petrified_weald', label: 'Petrified Weald' }
+          { id: 'all', label: 'All', count: blocks.length },
+          { id: 'overworld', label: 'Overworld', count: blocks.filter(b => b.dimension === 'overworld').length },
+          { id: 'backwoods_rotting', label: 'Backwoods & Rotting', count: blocks.filter(b => b.dimension === 'backwoods_rotting').length },
+          { id: 'loss', label: 'The Loss', count: blocks.filter(b => b.dimension === 'loss').length },
+          { id: 'petrified_weald', label: 'Petrified Weald', count: blocks.filter(b => b.dimension === 'petrified_weald').length }
         ].map(tab => (
           <button
             key={tab.id}
             onClick={() => setSelectedDim(tab.id)}
-            className={`px-3 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+            className={`px-2.5 py-1 text-xs font-mono rounded transition-all cursor-pointer flex items-center gap-1.5 ${
               selectedDim === tab.id
                 ? 'bg-[#1a241d] text-[#a9d1b0] border border-[#2e3e31]'
-                : 'bg-transparent text-[#829285] hover:text-[#e0e7e0]'
+                : 'bg-transparent text-[#829285] hover:text-[#e0e7e0] border border-transparent'
             }`}
           >
-            {tab.label}
+            <span>{tab.label}</span>
+            <span className="text-[10px] opacity-60">({tab.count})</span>
           </button>
         ))}
       </div>
 
       {/* Grid List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className={`grid gap-3.5 ${
+        compactMode 
+          ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
+          : 'grid-cols-1 md:grid-cols-2'
+      }`}>
         {filteredBlocks.map((block) => {
+          const isMechOpen = !compactMode || !!expandedMechanics[block.name];
+          const isLootOpen = !compactMode || !!expandedLoot[block.name];
+          const recipeIds = getBlockRecipeIds(block.name);
+          const isRecipeOpen = !!expandedRecipes[block.name];
+
           const cardContent = (
             <div 
               key={block.name}
-              className="p-5 bg-[#0c0e0c] border border-[#1d251e] rounded-xl flex flex-col justify-between hover:border-[#2e3e31] transition-all duration-300 h-full"
+              className="p-3.5 sm:p-4 bg-[#0a0d0a] border border-[#172018] rounded-xl flex flex-col justify-between hover:border-[#2a382d] transition-all duration-200 h-full space-y-3"
             >
-              <div className="space-y-3.5">
+              <div className="space-y-2.5">
                 {/* Card Header */}
                 <div className="flex justify-between items-start gap-2">
-                  <div>
-                    <h3 className="font-serif text-lg font-bold text-[#e0e7e0]">{block.name}</h3>
-                    <span className="text-[9px] font-mono uppercase text-[#709978] bg-[#111612] px-1.5 py-0.5 rounded border border-[#1f2820] mt-1 inline-block">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-serif text-sm sm:text-base font-bold text-[#e0e7e0] leading-snug truncate" title={block.name}>
+                      {block.name}
+                    </h3>
+                    <span className="text-[9px] font-mono uppercase text-[#709978] bg-[#111712] px-1.5 py-0.5 rounded border border-[#1b251c] mt-1 inline-block">
                       {block.dimension.replace('_', ' & ')}
                     </span>
                   </div>
                   
                   {/* Latin title translation if exists */}
                   {block.latin && (
-                    <div className="text-[10px] font-mono text-right text-[#5a6b5e]">
+                    <div className="text-[10px] font-mono text-right text-[#5a6b5e] shrink-0">
                       {block.latin.map((l, idx) => (
                         <div key={idx}>
                           <span className="text-rose-400 font-semibold">"{l.term}"</span>: {l.translation}
@@ -467,123 +621,163 @@ export default function BlocksView() {
                 </div>
 
                 {/* Stats badges */}
-                {(block.hardness || block.blastRes || block.burnTime) && (
-                  <div className="flex flex-wrap gap-3 py-1.5 border-y border-[#1a221c]/50">
+                {(block.hardness || block.blastRes || block.burnTime || block.tool) && (
+                  <div className="flex flex-wrap gap-1.5 py-1 border-y border-[#161f18]/60 text-[10px] font-mono">
                     {block.hardness && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                        <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                        Hardness: <span className="text-[#a9d1b0] font-bold">{block.hardness}</span>
+                      <span className="inline-flex items-center gap-1 bg-[#101411] border border-[#18221a] px-1.5 py-0.5 rounded text-[#829285]">
+                        <Hammer className="w-3 h-3 text-[#5a6b5e]" />
+                        <span>Hardness:</span>
+                        <strong className="text-[#a9d1b0]">{block.hardness}</strong>
                       </span>
                     )}
                     {block.blastRes && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                        <Shield className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                        Blast Res: <span className="text-[#a9d1b0] font-bold">{block.blastRes}</span>
+                      <span className="inline-flex items-center gap-1 bg-[#101411] border border-[#18221a] px-1.5 py-0.5 rounded text-[#829285]">
+                        <Shield className="w-3 h-3 text-[#5a6b5e]" />
+                        <span>Blast:</span>
+                        <strong className="text-[#a9d1b0]">{block.blastRes}</strong>
                       </span>
                     )}
                     {block.burnTime && (
-                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#829285]">
-                        <Flame className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                        Burn Time: <span className="text-[#a9d1b0] font-bold">{block.burnTime}</span>
+                      <span className="inline-flex items-center gap-1 bg-[#101411] border border-[#18221a] px-1.5 py-0.5 rounded text-[#829285]">
+                        <Flame className="w-3 h-3 text-amber-500/80" />
+                        <span>Burn:</span>
+                        <strong className="text-amber-400">{block.burnTime}</strong>
+                      </span>
+                    )}
+                    {block.tool && (
+                      <span className="inline-flex items-center gap-1 bg-[#101411] border border-[#18221a] px-1.5 py-0.5 rounded text-[#829285]">
+                        <Hammer className="w-3 h-3 text-[#709978]" />
+                        <span>Tool:</span>
+                        <strong className="text-[#a9d1b0]">{block.tool}</strong>
                       </span>
                     )}
                   </div>
                 )}
 
                 {/* Description */}
-                <p className="text-xs text-[#829285] leading-relaxed">{block.description}</p>
+                <p className="text-xs text-[#829285] leading-relaxed">
+                  {block.description}
+                </p>
 
                 {/* Warnings and Hazards */}
                 {block.isWarning && (
-                  <div className="p-3 bg-[#1c1212] border-l-2 border-rose-500 rounded text-[11px] text-rose-300 leading-relaxed flex items-start gap-2 select-none">
-                    <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                  <div className="p-2 bg-[#191010] border-l-2 border-rose-500 rounded text-[10px] text-rose-300 leading-snug flex items-start gap-1.5 select-none">
+                    <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" />
                     <span>{block.warningText}</span>
                   </div>
                 )}
 
                 {/* Material safety */}
                 {block.isSpecial && (
-                  <div className="p-3 bg-[#111512] border-l-2 border-emerald-500 rounded text-[11px] text-emerald-300 leading-relaxed flex items-start gap-2 select-none">
-                    <Sparkles className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <div className="p-2 bg-[#101511] border-l-2 border-emerald-500 rounded text-[10px] text-emerald-300 leading-snug flex items-start gap-1.5 select-none">
+                    <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                     <span>{block.specialText}</span>
                   </div>
                 )}
 
-                {/* Behavioral Mechanics list */}
+                {/* Behavioral Mechanics collapsible */}
                 {block.mechanics && block.mechanics.length > 0 && (
-                  <div className="space-y-1 pt-1.5">
-                    <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e]">Behavioral Mechanics</h4>
-                    <ul className="space-y-1 pl-3.5 list-disc text-[11px] text-[#829285] leading-relaxed">
-                      {block.mechanics.map((mech, mIdx) => (
-                        <li key={mIdx}>
-                          {mech.includes(':') ? (
-                            <>
-                              <strong className="text-[#c9d1c9] font-semibold">{mech.split(':')[0]}:</strong>
-                              <span>{mech.split(':')[1]}</span>
-                            </>
-                          ) : (
-                            <span>{mech}</span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {/* Loot Table */}
-              {block.lootTable && (
-                <div className="mt-4 pt-3 border-t border-[#1a221c]/40">
-                  <h4 className="text-[10px] font-mono uppercase tracking-widest text-[#5a6b5e] mb-2">Loot Drops</h4>
-                  <div className="overflow-hidden rounded border border-[#1a221c] text-[10px]">
-                    <table className="w-full text-left border-collapse font-mono">
-                      <thead>
-                        <tr className="bg-[#101311] text-[#5a6b5e] border-b border-[#1a221c]">
-                          <th className="p-2">Drop Item</th>
-                          <th className="p-2 text-center">Weight</th>
-                          <th className="p-2 text-right">Condition</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-[#171e19]">
-                        {block.lootTable.map((loot, lIdx) => (
-                          <tr key={lIdx}>
-                            <td className="p-2 font-medium text-[#c9d1c9]">{loot.item}</td>
-                            <td className="p-2 text-center text-[#829285]">{loot.weight}</td>
-                            <td className="p-2 text-right text-[#5a6b5e] font-sans italic">{loot.condition}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {/* Collapsible Crafting Recipes */}
-              {(() => {
-                const recipeIds = getBlockRecipeIds(block.name);
-                if (recipeIds.length === 0) return null;
-                const isExpanded = !!expandedRecipes[block.name];
-                return (
-                  <div className="mt-4 pt-3 border-t border-[#1a221c]/40">
+                  <div className="space-y-1.5 pt-1">
                     <button
-                      onClick={() => setExpandedRecipes(prev => ({ ...prev, [block.name]: !isExpanded }))}
-                      className="w-full flex items-center justify-between px-3 py-1.5 bg-[#0a0d0a] hover:bg-[#111711] border border-[#1c261d]/80 hover:border-[#304433] rounded-lg text-[11px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-all cursor-pointer select-none"
+                      onClick={() => toggleMechanics(block.name)}
+                      className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#070907] hover:bg-[#0f140f] border border-[#162018] hover:border-[#243326] rounded text-[10px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-colors cursor-pointer select-none"
                     >
                       <span className="flex items-center gap-1.5">
-                        <Hammer className="w-3.5 h-3.5 text-[#5a6b5e]" />
-                        {isExpanded ? 'Hide Crafting Recipes' : `View Crafting Recipes (${recipeIds.length})`}
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#709978]/60" />
+                        <span>Behavioral Mechanics ({block.mechanics.length})</span>
                       </span>
-                      <span className="text-[9px]">{isExpanded ? '▲' : '▼'}</span>
+                      <span className="text-[9px] text-[#5a6b5e] flex items-center gap-0.5">
+                        {isMechOpen ? <><ChevronUp className="w-3 h-3" /> Hide</> : <><ChevronDown className="w-3 h-3" /> View</>}
+                      </span>
                     </button>
 
-                    {isExpanded && (
-                      <div className="mt-3">
+                    {isMechOpen && (
+                      <div className="space-y-1.5 text-[11px] text-[#829285] leading-relaxed bg-[#060806] p-2.5 rounded border border-[#141c15]">
+                        {block.mechanics.map((mech, mIdx) => (
+                          <div key={mIdx} className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#527058] shrink-0 mt-1.5" />
+                            <div className="flex-1">
+                              {mech.includes(':') ? (
+                                <>
+                                  <strong className="text-[#c9d1c9] font-semibold">{mech.split(':')[0]}:</strong>
+                                  <span>{mech.split(':')[1]}</span>
+                                </>
+                              ) : (
+                                <span>{mech}</span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Loot Table collapsible */}
+                {block.lootTable && (
+                  <div className="space-y-1.5 pt-0.5">
+                    <button
+                      onClick={() => toggleLoot(block.name)}
+                      className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#070907] hover:bg-[#0f140f] border border-[#162018] hover:border-[#243326] rounded text-[10px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-colors cursor-pointer select-none"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Coins className="w-3 h-3 text-[#5a6b5e]" />
+                        <span>Loot Drops ({block.lootTable.length})</span>
+                      </span>
+                      <span className="text-[9px] text-[#5a6b5e] flex items-center gap-0.5">
+                        {isLootOpen ? <><ChevronUp className="w-3 h-3" /> Hide</> : <><ChevronDown className="w-3 h-3" /> View</>}
+                      </span>
+                    </button>
+
+                    {isLootOpen && (
+                      <div className="overflow-hidden rounded border border-[#162018] text-[9px] font-mono">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-[#0e120f] text-[#5a6b5e] border-b border-[#162018]">
+                              <th className="p-1.5">Drop</th>
+                              <th className="p-1.5 text-center">Weight</th>
+                              <th className="p-1.5 text-right">Condition</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-[#141b15]">
+                            {block.lootTable.map((loot, lIdx) => (
+                              <tr key={lIdx}>
+                                <td className="p-1.5 font-medium text-[#c9d1c9]">{loot.item}</td>
+                                <td className="p-1.5 text-center text-[#829285]">{loot.weight}</td>
+                                <td className="p-1.5 text-right text-[#5a6b5e] font-sans italic">{loot.condition}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Collapsible Crafting Recipes */}
+                {recipeIds.length > 0 && (
+                  <div className="pt-0.5">
+                    <button
+                      onClick={() => setExpandedRecipes(prev => ({ ...prev, [block.name]: !isRecipeOpen }))}
+                      className="w-full flex items-center justify-between px-2.5 py-1.5 bg-[#070907] hover:bg-[#0f140f] border border-[#162018] hover:border-[#243326] rounded text-[10px] font-mono text-[#709978] hover:text-[#a9d1b0] transition-colors cursor-pointer select-none"
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Hammer className="w-3 h-3 text-[#5a6b5e]" />
+                        <span>Crafting Recipes ({recipeIds.length})</span>
+                      </span>
+                      <span className="text-[9px] text-[#5a6b5e] flex items-center gap-0.5">
+                        {isRecipeOpen ? <><ChevronUp className="w-3 h-3" /> Hide</> : <><ChevronDown className="w-3 h-3" /> View</>}
+                      </span>
+                    </button>
+
+                    {isRecipeOpen && (
+                      <div className="mt-2.5">
                         <FancyRecipeView itemIds={recipeIds} />
                       </div>
                     )}
                   </div>
-                );
-              })()}
+                )}
+              </div>
             </div>
           );
 
