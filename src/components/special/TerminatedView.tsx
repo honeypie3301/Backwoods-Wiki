@@ -60,8 +60,10 @@ export default function TerminatedView() {
   }, []);
 
   // Compute scale factor based on design reference width of 800px
-  const scale = containerWidth ? Math.max(0.4, Math.min(1.15, containerWidth / 800)) : 1;
-  const dynamicHeight = containerWidth ? Math.min(580, Math.max(260, containerWidth / 1.55)) : 480;
+  const scale = containerWidth ? Math.max(0.42, Math.min(1.15, containerWidth / 800)) : 1;
+  const dynamicHeight = containerWidth 
+    ? (containerWidth < 520 ? Math.max(340, Math.min(420, containerWidth * 0.95)) : Math.min(580, Math.max(300, containerWidth / 1.55))) 
+    : 480;
 
   // Base URL for robust asset mapping
   const base = import.meta.env.BASE_URL || '/';
@@ -1384,40 +1386,40 @@ export default function TerminatedView() {
 
               {/* 1. Header Row (OPPONENT & THREAT RATING | SENTINEL) */}
               <div 
-                className="relative grid grid-cols-2 bg-[#78b5a5] border-b-2 border-[#081b17]/25 items-center z-10"
+                className="relative grid grid-cols-2 bg-[#78b5a5] border-b-2 border-[#081b17]/25 items-center z-10 overflow-hidden"
                 style={{ height: `${Math.max(32, Math.min(64, 48 * scale))}px` }}
               >
                 {/* Left Half: OPPONENT + THREAT RATING */}
                 <div 
-                  className="flex items-center justify-between w-full"
+                  className="flex items-center justify-between w-full min-w-0 overflow-hidden gap-1.5"
                   style={{ 
-                    paddingLeft: `${Math.max(8, Math.min(24, 20 * scale))}px`,
-                    paddingRight: `${Math.max(8, Math.min(24, 20 * scale))}px`
+                    paddingLeft: `${Math.max(6, Math.min(24, 20 * scale))}px`,
+                    paddingRight: `${Math.max(6, Math.min(24, 20 * scale))}px`
                   }}
                 >
                   <span 
-                    className="font-semibold text-[#081b17] uppercase leading-none"
+                    className="font-semibold text-[#081b17] uppercase leading-none truncate shrink-0"
                     style={{ 
-                      fontSize: `${Math.max(12, Math.min(24, 19 * scale))}px`,
-                      letterSpacing: `${0.12 * scale}em`
+                      fontSize: `${Math.max(9.5, Math.min(24, 19 * scale))}px`,
+                      letterSpacing: `${Math.max(0.04, 0.12 * scale)}em`
                     }}
                   >
                     OPPONENT
                   </span>
-                  <div className="flex items-center gap-1.5 whitespace-nowrap leading-none">
+                  <div className="flex items-center gap-1 shrink-0 whitespace-nowrap leading-none pl-1">
                     <span 
                       className="font-medium text-white/95 uppercase"
                       style={{ 
-                        fontSize: `${Math.max(7.5, Math.min(11, 9 * scale))}px`,
-                        letterSpacing: `${0.1 * scale}em`
+                        fontSize: `${Math.max(6.5, Math.min(11, 9 * scale))}px`,
+                        letterSpacing: `${Math.max(0.02, 0.1 * scale)}em`
                       }}
                     >
-                      THREAT RATING:
+                      {scale < 0.65 ? 'THREAT:' : 'THREAT RATING:'}
                     </span>
                     <span 
                       className="font-bold text-white tracking-normal font-sans"
                       style={{ 
-                        fontSize: `${Math.max(12, Math.min(22, 18 * scale))}px`
+                        fontSize: `${Math.max(11, Math.min(22, 18 * scale))}px`
                       }}
                     >
                       {selectedOpponent.adjustedThreat.toFixed(1)}
@@ -1427,17 +1429,17 @@ export default function TerminatedView() {
 
                 {/* Right Half: THE ROT */}
                 <div 
-                  className="flex items-center w-full"
+                  className="flex items-center w-full min-w-0 overflow-hidden"
                   style={{ 
-                    paddingLeft: `${Math.max(8, Math.min(24, 20 * scale))}px`,
-                    paddingRight: `${Math.max(8, Math.min(24, 20 * scale))}px`
+                    paddingLeft: `${Math.max(6, Math.min(24, 20 * scale))}px`,
+                    paddingRight: `${Math.max(6, Math.min(24, 20 * scale))}px`
                   }}
                 >
                   <span 
-                    className="font-semibold text-[#081b17] uppercase leading-none"
+                    className="font-semibold text-[#081b17] uppercase leading-none truncate"
                     style={{ 
-                      fontSize: `${Math.max(12, Math.min(24, 19 * scale))}px`,
-                      letterSpacing: `${0.12 * scale}em`
+                      fontSize: `${Math.max(9.5, Math.min(24, 19 * scale))}px`,
+                      letterSpacing: `${Math.max(0.04, 0.12 * scale)}em`
                     }}
                   >
                     THE ROT
@@ -1477,17 +1479,17 @@ export default function TerminatedView() {
                       <div 
                         className="w-full bg-[#cf1124] flex items-center justify-center border-y border-white/10 shadow-[0_6px_20px_rgba(207,17,36,0.45)]"
                         style={{ 
-                          paddingTop: `${Math.max(4, Math.min(18, 14 * scale))}px`,
-                          paddingBottom: `${Math.max(4, Math.min(18, 14 * scale))}px`
+                          paddingTop: `${Math.max(3, Math.min(18, 14 * scale))}px`,
+                          paddingBottom: `${Math.max(3, Math.min(18, 14 * scale))}px`
                         }}
                       >
                         <span 
-                          className="text-white font-bold uppercase leading-none select-none"
+                          className="text-white font-bold uppercase leading-none select-none text-center"
                           style={{ 
                             fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
-                            fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
-                            letterSpacing: `${0.55 * scale}em`,
-                            marginRight: `-${0.55 * scale}em`
+                            fontSize: `${Math.max(10, Math.min(56, 36 * scale))}px`,
+                            letterSpacing: `${Math.max(0.12, 0.42 * scale)}em`,
+                            marginRight: `-${Math.max(0.12, 0.42 * scale)}em`
                           }}
                         >
                           TERMINATED
@@ -1523,17 +1525,17 @@ export default function TerminatedView() {
                       <div 
                         className="w-full bg-[#cf1124] flex items-center justify-center border-y border-white/10 shadow-[0_6px_20px_rgba(207,17,36,0.45)]"
                         style={{ 
-                          paddingTop: `${Math.max(4, Math.min(18, 14 * scale))}px`,
-                          paddingBottom: `${Math.max(4, Math.min(18, 14 * scale))}px`
+                          paddingTop: `${Math.max(3, Math.min(18, 14 * scale))}px`,
+                          paddingBottom: `${Math.max(3, Math.min(18, 14 * scale))}px`
                         }}
                       >
                         <span 
-                          className="text-white font-bold uppercase leading-none select-none"
+                          className="text-white font-bold uppercase leading-none select-none text-center"
                           style={{ 
                             fontFamily: '"Impact", "Arial Black", "Helvetica Neue", sans-serif',
-                            fontSize: `${Math.max(12, Math.min(56, 42 * scale))}px`,
-                            letterSpacing: `${0.55 * scale}em`,
-                            marginRight: `-${0.55 * scale}em`
+                            fontSize: `${Math.max(10, Math.min(56, 36 * scale))}px`,
+                            letterSpacing: `${Math.max(0.12, 0.42 * scale)}em`,
+                            marginRight: `-${Math.max(0.12, 0.42 * scale)}em`
                           }}
                         >
                           TERMINATED
@@ -1547,36 +1549,35 @@ export default function TerminatedView() {
 
               {/* 3. Bottom Labels Row (Opponent Name & Sentinel Features) */}
               <div 
-                className="relative grid grid-cols-2 bg-[#78b5a5] border-t-2 border-[#081b17]/25 items-stretch z-10"
+                className="relative grid grid-cols-2 bg-[#78b5a5] border-t-2 border-[#081b17]/25 items-stretch z-10 overflow-hidden"
                 style={{ 
-                  paddingTop: `${Math.max(6, Math.min(18, 14 * scale))}px`,
-                  paddingBottom: `${Math.max(6, Math.min(18, 14 * scale))}px`
+                  paddingTop: `${Math.max(4, Math.min(16, 12 * scale))}px`,
+                  paddingBottom: `${Math.max(4, Math.min(16, 12 * scale))}px`
                 }}
               >
                 
                 {/* OPPONENT NAME ONLY */}
                 <div 
-                  className="flex flex-col text-left justify-center pb-1"
+                  className="flex flex-col text-left justify-center pb-1 min-w-0 overflow-hidden"
                   style={{ 
-                    paddingLeft: `${Math.max(8, Math.min(24, 20 * scale))}px`,
-                    paddingRight: `${Math.max(8, Math.min(24, 20 * scale))}px`
+                    paddingLeft: `${Math.max(6, Math.min(24, 20 * scale))}px`,
+                    paddingRight: `${Math.max(6, Math.min(24, 20 * scale))}px`
                   }}
                 >
                   <div 
-                    className="font-bold text-white leading-none uppercase"
+                    className="font-bold text-white leading-tight uppercase truncate"
                     style={{ 
-                      fontSize: `${Math.max(12, Math.min(28, 22 * scale))}px`,
-                      letterSpacing: `${0.05 * scale}em`
+                      fontSize: `${Math.max(10.5, Math.min(28, 22 * scale))}px`,
+                      letterSpacing: `${Math.max(0.02, 0.05 * scale)}em`
                     }}
                   >
                     {selectedOpponent.name}
                   </div>
                   <div 
-                    className="font-medium text-white leading-tight uppercase overflow-hidden"
+                    className="font-medium text-white leading-tight uppercase line-clamp-2 overflow-hidden"
                     style={{ 
-                      fontSize: `${Math.max(7.5, Math.min(11, 9.5 * scale))}px`,
-                      marginTop: `${Math.max(3, Math.min(8, 6 * scale))}px`,
-                      maxHeight: `${Math.max(22, Math.min(36, 32 * scale))}px`
+                      fontSize: `${Math.max(6.5, Math.min(11, 9.5 * scale))}px`,
+                      marginTop: `${Math.max(2, Math.min(8, 6 * scale))}px`
                     }}
                   >
                     {selectedOpponent.notes}
@@ -1585,29 +1586,29 @@ export default function TerminatedView() {
 
                 {/* THE ROT NAME & ADAPTIVE FEATURES */}
                 <div 
-                  className="flex flex-col text-left justify-center pb-1 border-l border-[#081b17]/15"
+                  className="flex flex-col text-left justify-center pb-1 min-w-0 overflow-hidden border-l border-[#081b17]/15"
                   style={{ 
-                    paddingLeft: `${Math.max(8, Math.min(24, 20 * scale))}px`,
-                    paddingRight: `${Math.max(8, Math.min(24, 20 * scale))}px`
+                    paddingLeft: `${Math.max(6, Math.min(24, 20 * scale))}px`,
+                    paddingRight: `${Math.max(6, Math.min(24, 20 * scale))}px`
                   }}
                 >
                   <div 
-                    className="font-bold text-white leading-none uppercase"
+                    className="font-bold text-white leading-tight uppercase truncate"
                     style={{ 
-                      fontSize: `${Math.max(12, Math.min(28, 22 * scale))}px`,
-                      letterSpacing: `${0.05 * scale}em`
+                      fontSize: `${Math.max(10.5, Math.min(28, 22 * scale))}px`,
+                      letterSpacing: `${Math.max(0.02, 0.05 * scale)}em`
                     }}
                   >
                     THE ROT
                   </div>
                   <div 
-                    className="font-medium text-white leading-snug uppercase"
+                    className="font-medium text-white leading-tight uppercase line-clamp-2 overflow-hidden"
                     style={{ 
-                      fontSize: `${Math.max(7.5, Math.min(11, 9.5 * scale))}px`,
-                      marginTop: `${Math.max(3, Math.min(8, 6 * scale))}px`
+                      fontSize: `${Math.max(6.5, Math.min(11, 9.5 * scale))}px`,
+                      marginTop: `${Math.max(2, Math.min(8, 6 * scale))}px`
                     }}
                   >
-                    <span className="text-white font-bold">Features:</span> Adaptive Learning, Dimensional Blink, Thermal Beams, Minos Protocol, Sonic Boom
+                    <span className="text-white font-bold">Features:</span> Adaptive Learning, Blink, Thermal Beams, Minos Protocol, Sonic Boom
                   </div>
                 </div>
 
@@ -1728,7 +1729,10 @@ function getAbsoluteAssetUrl(url: string) {
     return url;
   }
   
-  const cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+  let cleanUrl = url.startsWith('/') ? url.slice(1) : url;
+  if (cleanUrl.startsWith('wiki_assets/')) {
+    cleanUrl = cleanUrl.replace('wiki_assets/', '');
+  }
   const pathname = window.location.pathname;
   const segments = pathname.split('/').filter(Boolean);
   const isGitHubPages = window.location.hostname.endsWith('github.io');
@@ -1745,5 +1749,5 @@ function getAbsoluteAssetUrl(url: string) {
     }
   }
   
-  return `${base}${cleanUrl}`;
+  return encodeURI(`${base}${cleanUrl}`);
 }

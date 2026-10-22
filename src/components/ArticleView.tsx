@@ -1,27 +1,28 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Suspense, lazy } from 'react';
 import { 
   ChevronLeft, 
   ChevronRight, 
   ArrowUp, 
   FileText, 
   ExternalLink,
-  MessageSquareWarning
+  MessageSquareWarning,
+  Loader2
 } from 'lucide-react';
 import { WikiArticle } from '../types';
 import { parseWikiSyntax, slugify } from '../utils/parser';
 
-import VersionsView from './special/VersionsView';
-import DimensionsView from './special/DimensionsView';
-import BlocksView from './special/BlocksView';
-import CommandsView from './special/CommandsView';
-import EntitiesView from './special/EntitiesView';
-import ItemsView from './special/ItemsView';
-import TerminatedView from './special/TerminatedView';
 import HomeView from './special/HomeView';
-import AchievementsView from './special/AchievementsView';
-import RotLabView from './special/RotLabView';
-import SanityView from './special/SanityView';
-import StructuresView from './special/StructuresView';
+const VersionsView = lazy(() => import('./special/VersionsView'));
+const DimensionsView = lazy(() => import('./special/DimensionsView'));
+const BlocksView = lazy(() => import('./special/BlocksView'));
+const CommandsView = lazy(() => import('./special/CommandsView'));
+const EntitiesView = lazy(() => import('./special/EntitiesView'));
+const ItemsView = lazy(() => import('./special/ItemsView'));
+const TerminatedView = lazy(() => import('./special/TerminatedView'));
+const AchievementsView = lazy(() => import('./special/AchievementsView'));
+const RotLabView = lazy(() => import('./special/RotLabView'));
+const SanityView = lazy(() => import('./special/SanityView'));
+const StructuresView = lazy(() => import('./special/StructuresView'));
 
 interface ArticleViewProps {
   article: WikiArticle;
@@ -244,31 +245,38 @@ export default function ArticleView({
         {/* Article Body */}
         <article className="min-h-[400px]">
           {isSpecialPage ? (
-            article.slug === 'home' ? (
-              <HomeView />
-            ) : article.slug === 'sanity' ? (
-              <SanityView />
-            ) : article.slug === 'structures' ? (
-              <StructuresView />
-            ) : article.slug === 'versions' ? (
-              <VersionsView />
-            ) : article.slug === 'dimensions' ? (
-              <DimensionsView />
-            ) : article.slug === 'blocks' ? (
-              <BlocksView />
-            ) : article.slug === 'commands' ? (
-              <CommandsView />
-            ) : article.slug === 'entities' ? (
-              <EntitiesView />
-            ) : article.slug === 'items' ? (
-              <ItemsView />
-            ) : article.slug === 'terminated' ? (
-              <TerminatedView />
-            ) : article.slug === 'achievements' ? (
-              <AchievementsView />
-            ) : article.slug === 'rot-lab' ? (
-              <RotLabView />
-            ) : null
+            <Suspense fallback={
+              <div className="flex flex-col items-center justify-center p-16 space-y-3 font-mono text-xs text-[#709978]">
+                <Loader2 className="w-6 h-6 animate-spin text-[#709978]" />
+                <span className="tracking-wider uppercase">Loading Archive Module...</span>
+              </div>
+            }>
+              {article.slug === 'home' ? (
+                <HomeView />
+              ) : article.slug === 'sanity' ? (
+                <SanityView />
+              ) : article.slug === 'structures' ? (
+                <StructuresView />
+              ) : article.slug === 'versions' ? (
+                <VersionsView />
+              ) : article.slug === 'dimensions' ? (
+                <DimensionsView />
+              ) : article.slug === 'blocks' ? (
+                <BlocksView />
+              ) : article.slug === 'commands' ? (
+                <CommandsView />
+              ) : article.slug === 'entities' ? (
+                <EntitiesView />
+              ) : article.slug === 'items' ? (
+                <ItemsView />
+              ) : article.slug === 'terminated' ? (
+                <TerminatedView />
+              ) : article.slug === 'achievements' ? (
+                <AchievementsView />
+              ) : article.slug === 'rot-lab' ? (
+                <RotLabView />
+              ) : null}
+            </Suspense>
           ) : (
             /* HTML Rendered view */
             <div 
