@@ -1,3 +1,11 @@
+/**
+ * ========================================================================================
+ * CONSTANT DATA INTEGRITY DIRECTIVE (CRITICAL ENGINE RULE):
+ * NEVER FABRICATE ANY ENTITY INFORMATION, STATS, BEHAVIORS, TRIGGERS, OR NUMBERS.
+ * All entity dossiers, abilities, triggers, spawn conditions, immunities, and loot tables
+ * must strictly derive from the empirical mod source files (honeypie3301-backwoods-test-8a5edab282632443.txt).
+ * ========================================================================================
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Sparkles, ChevronDown, ChevronUp, Skull, AlertCircle, 
@@ -966,6 +974,357 @@ export default function EntitiesView() {
     }
   ];
 
+  const fractusAbilities: Ability[] = [
+    {
+      title: "Drone Beam Array",
+      trigger: "Engaging standard intruders within subterranean line of sight",
+      description: "Channels continuous focused thermal beam pulses against target intruders. Dynamically lowers altitude in tight corridors to maintain unbroken line-of-sight locks.",
+      category: "Laser Weaponry"
+    },
+    {
+      title: "Aggressive Overdrive",
+      trigger: "Sustaining damage or entering alert status",
+      description: "Significantly accelerates laser tick frequency and damage output. Direct counter-damage during beam charging breaks the emitter cycle and forces recalibration.",
+      category: "Overdrive Mode"
+    },
+    {
+      title: "3-Tier Orbital Defense Screen",
+      trigger: "Operating within proximity of an active Verdant Engine",
+      description: "Coordinates with up to 38 other sentinels into disciplined Middle (0..12), Bottom (13..25), and Top (26..38) orbital rings around Verdant Engines, using the engine's distortion field for projectile dampening while providing multi-angle perimeter cover.",
+      category: "Orbital Swarm"
+    },
+    {
+      title: "Sub-Dimensional Focal Convergence",
+      trigger: "Multiple Fractus sentinels converging in close proximity",
+      description: "Sentinels halt movement and converge their optical emitters inward to a single focal point, channeling energy to tear open a sub-dimensional gateway that breaches containment to summon either Fractus Prime or The Rot.",
+      category: "Summoning Ritual"
+    }
+  ];
+
+  const stiltWalkerAbilities: Ability[] = [
+    {
+      title: "Distant Canopy Observation",
+      trigger: "Player presence within high canopy biomes at long range",
+      description: "Maintains high-altitude observation from extreme standoff distances without closing. Prolonged observation activates aggressive pursuit mode.",
+      category: "Stalking Sensor"
+    },
+    {
+      title: "Frame-One Predictive Dodge",
+      trigger: "Player swinging a melee weapon within 3.2 blocks",
+      description: "Immediately detects the initiation of a weapon swing, playing an alert chime, inflicts complete blindness (60 ticks), spawns Blindspot Splinters, and executes an evasive teleport on the exact same game tick.",
+      category: "Predictive Evasion"
+    },
+    {
+      title: "Circular Cage Enclosure",
+      trigger: "Triggering a predictive dodge or stalk escalation",
+      description: "Summons a ring of Blindspot Splinters arranged in a uniform 3.2-block radius centered around the attacker to trap them in a closed wooden barrier.",
+      category: "Swarm Containment"
+    },
+    {
+      title: "Rot Evacuation Warp",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Immediately abandons current targets, charges a 3 to 5 second flashing aura, and teleports 70 to 120 blocks directly away to avoid collateral destruction.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const lignumPalusAbilities: Ability[] = [
+    {
+      title: "Architectural Column Disguise",
+      trigger: "Reaching a grid intersection during cardinal patrol",
+      description: "Possesses a 50% chance at any intersection to lock body rotation and disguise itself as a structural pillar for 3 to 9 seconds, blending into surrounding architecture.",
+      category: "Camouflage Mimicry"
+    },
+    {
+      title: "Cardinal Manhattan Pursuit",
+      trigger: "Target remaining stationary for greater than 5 seconds",
+      description: "Accelerates from 0.05 patrol speed to 0.12 pursuit speed, tracking target coordinates strictly along cardinal grid axes via shortest Manhattan path calculations.",
+      category: "Grid Navigation"
+    },
+    {
+      title: "Ender-Style Projectile Dodge",
+      trigger: "Incoming ballistic projectile in flight",
+      description: "Attempts up to 64 candidate landing checks within a 16-block horizontal and 8-block vertical radius (requiring 6 blocks vertical clearance) to teleport away and fully cancel projectile damage.",
+      category: "Ballistic Evasion"
+    },
+    {
+      title: "Stare Hypnosis & Telekinetic Suspend",
+      trigger: "Maintaining direct line of sight within 20 blocks for 70 ticks (3.5s)",
+      description: "Locks the target in place, pulls them into suspension 2 blocks in front of its face, locks their camera direction, and inflicts Slowness III, Darkness, and Wither II. Breaking the trance enforces a 100-tick (5.0s) re-initiation cooldown.",
+      category: "Gaze Hypnosis"
+    },
+    {
+      title: "Rot Evacuation Protocol",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Immediately drops all active targets and hypnosis locks, charges a 3 to 5 second flashing particle aura, and teleports 70 to 120 blocks away to safety.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const dorcelessSplinterAbilities: Ability[] = [
+    {
+      title: "Enderman-Style Dodge Teleport",
+      trigger: "Taking incoming projectile or melee damage",
+      description: "Executes an instantaneous evasion teleport with an 85% chance against projectiles and 50% chance against melee strikes, relocating 6 to 11 blocks away with squid ink and smoke bursts while cancelling the attack.",
+      category: "Reactive Teleport"
+    },
+    {
+      title: "Counter-Facing Flank",
+      trigger: "Completing a dodge teleport maneuver",
+      description: "Immediately snaps body yaw and eye vector to face the attacker directly at the arrival coordinates, preparing for sudden counter-assaults.",
+      category: "Tactical Reposition"
+    },
+    {
+      title: "Eye Magnet Crosshair Drag",
+      trigger: "Direct player gaze within 20 blocks",
+      description: "Applies a subtle client-side crosshair pull toward the entity's hollow face when an observer maintains direct line of sight.",
+      category: "Gaze Distortion"
+    },
+    {
+      title: "Rot Evacuation Instinct",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Possesses an innate evacuation routine, fleeing immediately when a Rot entity approaches within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const kyneSplinterAbilities: Ability[] = [
+    {
+      title: "Woodbound Pack Avenge",
+      trigger: "Sustaining damage while living woodbound kin are nearby",
+      description: "Scans for surrounding woodbound entities across a difficulty-scaled radius (48 blocks on Easy, 80 blocks on Normal, view distance on Hard). If kin are detected, enters a 40-80 tick brief pause before triggering a pack-wide avenge protocol, rallying all nearby woodbound fauna to swarm the attacker.",
+      category: "Pack Swarm"
+    },
+    {
+      title: "Patient Stalker Halt",
+      trigger: "Survival player entering within 100 blocks",
+      description: "Halts random strolling routines and holds position when a player approaches within 100 blocks, observing the intruder before initiating kinetic engagement.",
+      category: "Ambient Stalking"
+    },
+    {
+      title: "Kinetic Melee Strike",
+      trigger: "Closing within 1.7 blocks (distance squared < 2.89) with line of sight",
+      description: "Executes swift melee punches dealing 5 damage with a 0.280 movement speed profile. Drops 7 XP upon termination.",
+      category: "Melee Combat"
+    },
+    {
+      title: "Rot Evacuation Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Breaks all attack and wander targets, retreating at 1.2x speed away from any Rot entity within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const petrifiedSplinterAbilities: Ability[] = [
+    {
+      title: "Calcified Kinetic Plating",
+      trigger: "Sustaining physical or environmental impacts",
+      description: "Heavily fossilized bark provides 4 natural armor points, dampening kinetic impacts. Generated exclusively in the Petrified Weald with a 48-block exclusion distance.",
+      category: "Kinetic Armor"
+    },
+    {
+      title: "Arrow & Ballistic Immunity",
+      trigger: "Targeted by projectile or arrow weaponry",
+      description: "Completely immune to bow shots, arrows, fire, poison, and drowning. Does not expend wood to erect temporary shields against projectiles that cannot inflict harm.",
+      category: "Ballistic Defense"
+    },
+    {
+      title: "Coalescence Reformation",
+      trigger: "Eligible wooden remains and sticks lie near fallen kin",
+      description: "Draws nearby eligible sticks and planks together, suspending them briefly in air before reconstructing a living splinter unit.",
+      category: "Reformation"
+    },
+    {
+      title: "Rot Evacuation Protocol",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Evacuates the immediate perimeter whenever an apex Rot entity enters within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const lignumSpinaAbilities: Ability[] = [
+    {
+      title: "Custom Thorns Reflection",
+      trigger: "Taking melee or physical strike damage",
+      description: "Inflicts 1 point of custom lignum spina thorns damage back to the attacker whenever hurt.",
+      category: "Thorns Reflection"
+    },
+    {
+      title: "Sweet Berry Collision Prick",
+      trigger: "Physical collision with living non-woodbound entities",
+      description: "Features a 2% chance per collision tick to inflict sweet berry thorns prick damage on touching organisms.",
+      category: "Contact Hazard"
+    },
+    {
+      title: "Low-Health Avoidance Reflex",
+      trigger: "Health dropping below 5 HP",
+      description: "Fights aggressively while health is at or above 5 HP; immediately shifts to avoidance mode and flees when health falls below 5 HP.",
+      category: "Combat Behavior"
+    },
+    {
+      title: "Rot Evacuation Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Breaks combat engagements and flees at 1.5x speed whenever a Rot entity approaches within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const petrifiedLignumSpinaAbilities: Ability[] = [
+    {
+      title: "Fossilized Thorns Reflection",
+      trigger: "Taking physical strike damage",
+      description: "Reflects 3 heavy thorns damage back to attackers whenever damaged, supported by 8 armor points of fossilized bark.",
+      category: "Thorns Reflection"
+    },
+    {
+      title: "Arrow & Projectile Deflection",
+      trigger: "Targeted by incoming arrows and projectile weapons",
+      description: "Calcified structure completely deflects arrows, projectiles, sweet berry thorns, and cactus damage without taking harm.",
+      category: "Defensive Carapace"
+    },
+    {
+      title: "Injured Withdrawal Routine",
+      trigger: "Health dropping below 5 HP",
+      description: "Maintains aggressive posture while HP >= 5, transitioning into evasive flight maneuvers when health falls below 5 HP.",
+      category: "Combat Behavior"
+    },
+    {
+      title: "Rot Evacuation Protocol",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Flee routine activates whenever a Rot entity approaches within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const lignumEchinusAbilities: Ability[] = [
+    {
+      title: "Urchin Spike Reflection",
+      trigger: "Sustaining direct strike damage",
+      description: "Reflects 3 points of thorns damage back to the attacker upon receiving damage.",
+      category: "Thorns Reflection"
+    },
+    {
+      title: "Rolling Trample Collision",
+      trigger: "Physical contact with non-woodbound living entities",
+      description: "Features a 2% chance on physical collision to inflict 0.25 thorns damage as it rolls across targets.",
+      category: "Contact Hazard"
+    },
+    {
+      title: "Low-Health Avoidance Reflex",
+      trigger: "Health dropping to or below 5 HP",
+      description: "Ceases aggressive attacks and shifts to avoidance mode when health falls to 5 HP or lower.",
+      category: "Combat Behavior"
+    },
+    {
+      title: "Rot Evacuation Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Evacuates the area when a Rot entity approaches within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const petrifiedLignumEchinusAbilities: Ability[] = [
+    {
+      title: "Heavy Shell Spike Reflection",
+      trigger: "Receiving strike damage",
+      description: "Reflects 4 points of thorns damage back to attackers, reinforced by 10 armor points of calcified shell.",
+      category: "Thorns Reflection"
+    },
+    {
+      title: "Fall Damage & Plant Immunity",
+      trigger: "High drops or dense thorny foliage",
+      description: "Completely immune to fall damage, cactus, and sweet berry thorns.",
+      category: "Environmental Immunity"
+    },
+    {
+      title: "High-Velocity Pursuit & Withdrawal",
+      trigger: "Target engagement / Health dropping to <= 5 HP",
+      description: "Pursues targets at rapid 0.380 speed during combat, transitioning into withdrawal when health drops to 5 HP or lower.",
+      category: "Kinetic Behavior"
+    },
+    {
+      title: "Rot Evacuation Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Actively retreats from Rot entities within 100 blocks.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const lignumTrilobitaAbilities: Ability[] = [
+    {
+      title: "Interlocking Scale Mitigation",
+      trigger: "Taking damage from any source other than an axe",
+      description: "Natural interlocking plank scales restore 50% of incoming damage immediately unless the attacker is wielding an Axe (minecraft:axes). Axes completely bypass this scale mitigation.",
+      category: "Scale Mitigation"
+    },
+    {
+      title: "Defensive Carapace Hiding",
+      trigger: "Health dropping to 4 HP or lower",
+      description: "Tucks into its shell, stopping movement to regenerate +1 HP every 10 ticks until reaching 10 HP, whereupon it resumes normal mobility.",
+      category: "Regeneration"
+    },
+    {
+      title: "Aquatic Movement Efficiency",
+      trigger: "Submerged in waterlogged veins or subterranean pools",
+      description: "Possesses a natural swim speed of 0.8 and water movement efficiency of 0.8 for traversing flooded sub-strata chambers.",
+      category: "Aquatic Mobility"
+    },
+    {
+      title: "Rot Alarm Unhide & Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Immediately breaks shell hiding and flees at 1.5x speed away from approaching Rot entities.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const petrifiedLignumTrilobitaAbilities: Ability[] = [
+    {
+      title: "Calcified Carapace Fortification",
+      trigger: "Continuous passive state",
+      description: "Heavy fossilized shell provides 14 armor points with complete immunity to suffocation, falling anvils, cactus, and drowning.",
+      category: "Defensive Carapace"
+    },
+    {
+      title: "Fossilized Carapace Hiding",
+      trigger: "Health dropping to 4 HP or lower",
+      description: "Tucks into its calcified shell to regenerate +1 HP every 10 ticks until reaching 10 HP.",
+      category: "Regeneration"
+    },
+    {
+      title: "Rot Alarm Flight",
+      trigger: "The Rot entering within 100 blocks",
+      description: "Breaks hiding immediately and flees at 1.7x speed to evade approaching Rot entities.",
+      category: "Survival Protocol"
+    }
+  ];
+
+  const hewnSplinterAbilities: Ability[] = [
+    {
+      title: "Utilitarian Paralysis State",
+      trigger: "Continuous lifecycle state",
+      description: "Trapped in an oak plank effigy cube. Immobile (0.0 speed) with 0 attack goals. Completely conscious but unable to move or retaliate.",
+      category: "Effigy State"
+    },
+    {
+      title: "Cardinal 90-Degree Snapping",
+      trigger: "Initial entity spawn",
+      description: "On initial spawn, automatically calculates and snaps its orientation to the nearest cardinal 90-degree angle (yaw / 90 * 90) with pitch set to 0, visually mimicking a placed Oak Planks block.",
+      category: "Block Mimicry"
+    },
+    {
+      title: "Complete Kinetic & Fluid Immunity",
+      trigger: "Incoming projectile, environmental, or fluid forces",
+      description: "Completely immune to arrows, fall damage, cactus, drowning, falling anvils, and fluid pushes. Plays cherry wood hit sounds when damaged.",
+      category: "Effigy Defense"
+    },
+    {
+      title: "Despawn Resistance & Drop Yield",
+      trigger: "Standard despawn checks / Termination",
+      description: "Persistence required (removeWhenFarAway = false); does not despawn when players leave the chunk. Drops 1 Oak Planks block upon destruction.",
+      category: "Yield & Persistence"
+    }
+  ];
+
   const toggleAbility = (idx: number) => {
     setOpenAbilityIndex(openAbilityIndex === idx ? null : idx);
   };
@@ -1007,15 +1366,27 @@ export default function EntitiesView() {
     switch (entityId) {
       case 'rot': return rotAbilities;
       case 'woodweaver': return woodweaverAbilities;
-      case 'splinter':
-      case 'log_splinter':
-      case 'petrified_splinter': return splinterAbilities;
+      case 'splinter': return splinterAbilities;
+      case 'log_splinter': return splinterAbilities;
+      case 'petrified_splinter': return petrifiedSplinterAbilities;
       case 'blindspot_splinter': return blindspotAbilities;
       case 'ash_weaver': return ashWeaverAbilities;
       case 'lignum_gigas': return lignumGigasAbilities;
       case 'verdant_engine': return verdantEngineAbilities;
       case 'hollow': return hollowAbilities;
       case 'fractus_prime': return fractusPrimeAbilities;
+      case 'fractus': return fractusAbilities;
+      case 'stilt_walker': return stiltWalkerAbilities;
+      case 'lignum_palus': return lignumPalusAbilities;
+      case 'dorceless_splinter': return dorcelessSplinterAbilities;
+      case 'kyne_splinter': return kyneSplinterAbilities;
+      case 'lignum_spina': return lignumSpinaAbilities;
+      case 'petrified_lignum_spina': return petrifiedLignumSpinaAbilities;
+      case 'lignum_echinus': return lignumEchinusAbilities;
+      case 'petrified_lignum_echinus': return petrifiedLignumEchinusAbilities;
+      case 'lignum_trilobita': return lignumTrilobitaAbilities;
+      case 'petrified_lignum_trilobita': return petrifiedLignumTrilobitaAbilities;
+      case 'hewn_splinter': return hewnSplinterAbilities;
       default: return [];
     }
   };
@@ -1467,55 +1838,65 @@ export default function EntitiesView() {
             </div>
           )}
 
+          {/* UNIVERSAL STANDARDIZED BEHAVIORAL & COMBAT ACCORDION */}
+          {(() => {
+            const currentAbilities = getAbilitiesForEntity(currentEntity.id);
+            if (currentAbilities.length === 0) return null;
+            return (
+              <UpdatedFrame id={`entity_abilities_${currentEntity.id}`} isUpdated={true}>
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#709978] font-bold flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-emerald-400" />
+                    Behavioral &amp; Combat Dossier (Click to expand details)
+                  </h4>
+                  
+                  <div className="space-y-2">
+                    {currentAbilities.map((ab, idx) => {
+                      const isOpen = openAbilityIndex === idx;
+                      return (
+                        <div 
+                          key={idx} 
+                          className="bg-[#0b0f0c] border border-[#1d2720] hover:border-[#2e4034] rounded-lg transition-all"
+                        >
+                          <button
+                            onClick={() => toggleAbility(idx)}
+                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                          >
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] font-mono text-emerald-400 bg-[#121c15] border border-[#233829] px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                {ab.category}
+                              </span>
+                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-emerald-300 transition-colors">
+                                {ab.title}
+                              </span>
+                            </div>
+                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                          </button>
+                          
+                          {isOpen && (
+                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1a251d] space-y-2">
+                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                <Zap className="w-3.5 h-3.5" />
+                                <span>Trigger Condition: {ab.trigger}</span>
+                              </div>
+                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </UpdatedFrame>
+            );
+          })()}
+
           {/* DYNAMIC SECTIONS BASED ON SELECTED ENTITY */}
           
           {/* THE ROT: Custom mechanics */}
           {currentEntity.id === 'rot' && (
             <UpdatedFrame id="rot_updated_1_21_1" isUpdated={true}>
               <div className="space-y-6 pt-2">
-                {/* Abilities Accordion */}
-              <div className="space-y-3">
-                <h4 className="text-[11px] font-mono uppercase tracking-widest text-red-500 font-bold">
-                  Abilities Dossier (Click to expand details)
-                </h4>
-                
-                <div className="space-y-2">
-                  {rotAbilities.map((ab, idx) => {
-                    const isOpen = openAbilityIndex === idx;
-                    return (
-                      <div 
-                        key={idx} 
-                        className="bg-[#120c0c] border border-red-950/20 hover:border-red-900/30 rounded-lg transition-all"
-                      >
-                        <button
-                          onClick={() => toggleAbility(idx)}
-                          className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                        >
-                          <div className="flex items-center gap-2">
-                            <span className="text-[9px] font-mono text-red-400 bg-red-950/30 border border-red-900/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                              {ab.category}
-                            </span>
-                            <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-red-400 transition-colors">
-                              {ab.title}
-                            </span>
-                          </div>
-                          {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                        </button>
-                        
-                        {isOpen && (
-                          <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-red-950/20 space-y-2">
-                            <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                              <Zap className="w-3.5 h-3.5" />
-                              <span>Trigger Rule: {ab.trigger}</span>
-                            </div>
-                            <p className="leading-relaxed pl-1">{ab.description}</p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
 
               {/* Totem switcher */}
               <div className="space-y-4 pt-4 border-t border-red-950/20">
@@ -1666,51 +2047,6 @@ export default function EntitiesView() {
           {currentEntity.id === 'woodweaver' && (
             <UpdatedFrame id="woodweaver_custom_dossier" isUpdated={true}>
               <div className="space-y-6 pt-2">
-                {/* Abilities Accordion */}
-                <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-[#c08e91]" />
-                    Behavioral &amp; Combat Dossier (Click to expand details)
-                  </h4>
-                  
-                  <div className="space-y-2">
-                    {woodweaverAbilities.map((ab, idx) => {
-                      const isOpen = openAbilityIndex === idx;
-                      return (
-                        <div 
-                          key={idx} 
-                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
-                        >
-                          <button
-                            onClick={() => toggleAbility(idx)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                {ab.category}
-                              </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
-                                {ab.title}
-                              </span>
-                            </div>
-                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                          </button>
-                          
-                          {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
-                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                <Zap className="w-3.5 h-3.5" />
-                                <span>Trigger Condition: {ab.trigger}</span>
-                              </div>
-                              <p className="leading-relaxed pl-1">{ab.description}</p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
                 {/* State / Phase Matrix Switcher */}
                 <div className="space-y-4 pt-4 border-t border-[#301618]/20">
                   <div>
@@ -2366,52 +2702,6 @@ export default function EntitiesView() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Abilities Accordion */}
-                  <div className="space-y-3">
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#4ca398] font-bold flex items-center gap-1.5">
-                      <Activity className="w-4 h-4 text-[#4ca398]" />
-                      Behavioral &amp; Combat Dossier (Click to expand details)
-                    </h4>
-                    
-                    <div className="space-y-2">
-                      {hollowAbilities.map((ab, idx) => {
-                        const isOpen = openAbilityIndex === idx;
-                        return (
-                          <div 
-                            key={idx} 
-                            className="bg-[#0b1210] border border-[#1f3632]/30 hover:border-[#2f524c]/40 rounded-lg transition-all"
-                          >
-                            <button
-                              onClick={() => toggleAbility(idx)}
-                              className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="text-[9px] font-mono text-[#4ca398] bg-[#101b19]/40 border border-[#1f3632]/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                  {ab.category}
-                                </span>
-                                <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#4ca398] transition-colors">
-                                  {ab.title}
-                                </span>
-                              </div>
-                              {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                            </button>
-                            
-                            {isOpen && (
-                              <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1f3632]/20 space-y-2">
-                                <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                  <Zap className="w-3.5 h-3.5" />
-                                  <span>Trigger Condition: {ab.trigger}</span>
-                                </div>
-                                <p className="leading-relaxed pl-1">{ab.description}</p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
                   {/* Technical State Machine Matrix */}
                   <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-3">
                     <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Pursuit Timing &amp; Difficulty Calibration</h5>
@@ -2628,55 +2918,6 @@ export default function EntitiesView() {
                         <li><strong className="text-[#e0e7e0]">Botanical Drop:</strong> Guarantees 1 <strong className="text-white">Ash Rose</strong> blossom on death.</li>
                       </ul>
                     </div>
-                  </div>
-                </div>
-
-                {/* Abilities Accordion */}
-                <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#81caa9] font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-[#5ea386]" />
-                    Behavioral &amp; Combat Dossier (Click to expand details)
-                  </h4>
-                  
-                  <div className="space-y-2">
-                    {ashWeaverAbilities.map((ab, idx) => {
-                      const isOpen = openAshWeaverAbilityIndex === idx;
-                      return (
-                        <div 
-                          key={idx} 
-                          className="bg-[#0b130e] border border-[#1c2c21]/40 hover:border-[#2e4d38]/50 rounded-lg transition-all"
-                        >
-                          <button
-                            onClick={() => toggleAshWeaverAbility(idx)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-[#81caa9] bg-[#131d17]/50 border border-[#263e30]/60 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                {ab.category}
-                              </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#81caa9] transition-colors">
-                                {ab.title}
-                              </span>
-                            </div>
-                            {isOpen ? (
-                              <ChevronUp className="w-4 h-4 text-[#5ea386]" />
-                            ) : (
-                              <ChevronDown className="w-4 h-4 text-[#5ea386]" />
-                            )}
-                          </button>
-                          
-                          {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1c2c21]/30 space-y-2">
-                              <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400">
-                                <Zap className="w-3.5 h-3.5" />
-                                <span>Trigger Condition: {ab.trigger}</span>
-                              </div>
-                              <p className="leading-relaxed pl-1">{ab.description}</p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
                   </div>
                 </div>
 
@@ -3078,51 +3319,6 @@ export default function EntitiesView() {
           {currentEntity.id === 'lignum_gigas' && (
             <UpdatedFrame id="lignum_gigas_custom_dossier" isUpdated={true}>
               <div className="space-y-6 pt-2">
-                {/* Abilities Accordion */}
-                <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-[#c08e91]" />
-                    Behavioral &amp; Combat Dossier (Click to expand details)
-                  </h4>
-                  
-                  <div className="space-y-2">
-                    {lignumGigasAbilities.map((ab, idx) => {
-                      const isOpen = openAbilityIndex === idx;
-                      return (
-                        <div 
-                          key={idx} 
-                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
-                        >
-                          <button
-                            onClick={() => toggleAbility(idx)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                {ab.category}
-                              </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
-                                {ab.title}
-                              </span>
-                            </div>
-                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                          </button>
-                          
-                          {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
-                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                <Zap className="w-3.5 h-3.5" />
-                                <span>Trigger Condition: {ab.trigger}</span>
-                              </div>
-                              <p className="leading-relaxed pl-1">{ab.description}</p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
                 {/* State / Phase Matrix Switcher */}
                 <div className="space-y-4 pt-4 border-t border-[#301618]/20">
                   <div>
@@ -3213,51 +3409,6 @@ export default function EntitiesView() {
           {currentEntity.id === 'verdant_engine' && (
             <UpdatedFrame id="verdant_engine_custom_dossier" isUpdated={true}>
               <div className="space-y-6 pt-2">
-                {/* Abilities Accordion */}
-                <div className="space-y-3">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-[#c08e91]" />
-                    Behavioral &amp; Combat Dossier (Click to expand details)
-                  </h4>
-                  
-                  <div className="space-y-2">
-                    {verdantEngineAbilities.map((ab, idx) => {
-                      const isOpen = openAbilityIndex === idx;
-                      return (
-                        <div 
-                          key={idx} 
-                          className="bg-[#120c0c] border border-[#301618]/20 hover:border-[#4d2427]/30 rounded-lg transition-all"
-                        >
-                          <button
-                            onClick={() => toggleAbility(idx)}
-                            className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                          >
-                            <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-[#c08e91] bg-[#241315]/30 border border-[#4d2427]/40 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                {ab.category}
-                              </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#c08e91] transition-colors">
-                                {ab.title}
-                              </span>
-                            </div>
-                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                          </button>
-                          
-                          {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#301618]/20 space-y-2">
-                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                <Zap className="w-3.5 h-3.5" />
-                                <span>Trigger Condition: {ab.trigger}</span>
-                              </div>
-                              <p className="leading-relaxed pl-1">{ab.description}</p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
                 {/* Subsystem 1: Global Hive Architecture & Spatial Telemetry */}
                 <div className="space-y-3 pt-4 border-t border-[#301618]/20">
                   <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#b2797c] font-bold flex items-center gap-1.5">
@@ -3459,51 +3610,6 @@ export default function EntitiesView() {
                     <strong className="text-cyan-400">Elite Planetary Laser Overseer:</strong> The colossal overseer drone commands a vast aerial perimeter. It bypasses camouflage, holds targets in telekinetic suspension, splits its laser array across multiple adversaries, and unleashes destructive energy detonations.
                   </div>
 
-                  {/* Abilities Accordion */}
-                  <div className="space-y-3">
-                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-bold flex items-center gap-1.5">
-                      <Activity className="w-4 h-4 text-cyan-400" />
-                      Behavioral &amp; Combat Dossier (Click to expand details)
-                    </h4>
-                    
-                    <div className="space-y-2">
-                      {fractusPrimeAbilities.map((ab, idx) => {
-                        const isOpen = openAbilityIndex === idx;
-                        return (
-                          <div 
-                            key={idx} 
-                            className="bg-[#081215] border border-cyan-900/30 hover:border-cyan-800/40 rounded-lg transition-all"
-                          >
-                            <button
-                              onClick={() => toggleAbility(idx)}
-                              className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="text-[9px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
-                                  {ab.category}
-                                </span>
-                                <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-cyan-300 transition-colors">
-                                  {ab.title}
-                                </span>
-                              </div>
-                              {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
-                            </button>
-                            
-                            {isOpen && (
-                              <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-cyan-950/40 space-y-2">
-                                <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                  <Zap className="w-3.5 h-3.5" />
-                                  <span>Trigger Condition: {ab.trigger}</span>
-                                </div>
-                                <p className="leading-relaxed pl-1">{ab.description}</p>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
                   {/* Operational Telemetry Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
@@ -3517,6 +3623,150 @@ export default function EntitiesView() {
                       <p className="text-xs text-[#8c8779] leading-relaxed">
                         After releasing the Energy Sphere Burst, internal capacitor exhaustion severely hampers thruster agility and beam targeting for 60 ticks, exposing its core to physical and ranged counter-assaults.
                       </p>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* DORCELESS SPLINTER: Custom mechanics */}
+          {currentEntity.id === 'dorceless_splinter' && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="dorceless_splinter_telemetry" isUpdated={true}>
+                <div className="space-y-4">
+                  <div className="p-4 bg-[#1b1424]/20 border border-[#312542]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                    <p>
+                      <strong className="text-[#aa8bc9]">Void Stalker &amp; Gaze Magnet:</strong> The Dorceless Splinter possesses an advanced Enderman-style Dodge Teleport mechanic when damaged: <strong className="text-white">85% chance</strong> to dodge incoming projectile attacks and <strong className="text-white">50% chance</strong> to dodge melee strikes. When dodging, it releases squid ink and smoke particles, playing a wood-break sound, and teleports <strong className="text-white">6 to 11 blocks</strong> away to flank the attacker while immediately facing them.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                      <div className="p-2 bg-[#120d18] border border-[#312542]/30 rounded">
+                        <strong className="text-[#aa8bc9] block mb-0.5">Spawning Genesis:</strong>
+                        25% chance roll requiring a 128-block clearance radius (256-block AABB box) on solid occluding ground.
+                      </div>
+                      <div className="p-2 bg-[#120d18] border border-[#312542]/30 rounded">
+                        <strong className="text-[#aa8bc9] block mb-0.5">Disassembly Yield:</strong>
+                        Guarantees 10 XP, Oak Planks, and a Tetherless Pearl upon termination.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* KYNE SPLINTER: Custom mechanics */}
+          {currentEntity.id === 'kyne_splinter' && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="kyne_splinter_telemetry" isUpdated={true}>
+                <div className="space-y-4">
+                  <div className="p-4 bg-[#221808]/20 border border-[#473413]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                    <p>
+                      <strong className="text-[#d1a851]">Woodbound Pack Rally &amp; Avenge Protocol:</strong> When struck by an attacker, if nearby living woodbound kin are present, it enters a 40-80 tick brief pause before applying an avenge rally. Nearby kin within a difficulty-scaled radius (<strong className="text-white">48 blocks on Easy</strong>, <strong className="text-white">80 blocks on Normal</strong>, <strong className="text-white">View Distance on Hard</strong>) are provoked into swarming the attacker. Enforces a 200-tick (10.0s) pack cooldown.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                      <div className="p-2 bg-[#160f05] border border-[#473413]/30 rounded">
+                        <strong className="text-[#d1a851] block mb-0.5">Solitary Genesis:</strong>
+                        Rare 15% spawn roll enforcing a strict 512-block clearance radius (1024-block AABB) from other Kyne Splinters.
+                      </div>
+                      <div className="p-2 bg-[#160f05] border border-[#473413]/30 rounded">
+                        <strong className="text-[#d1a851] block mb-0.5">Patient Stalker Halt:</strong>
+                        Automatically cancels random wandering routines whenever a survival player approaches within 100 blocks.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* HEWN SPLINTER: Custom mechanics */}
+          {currentEntity.id === 'hewn_splinter' && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="hewn_splinter_telemetry" isUpdated={true}>
+                <div className="space-y-4">
+                  <div className="p-4 bg-[#131d17]/20 border border-[#263e30]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                    <p>
+                      <strong className="text-[#5ea386]">Utilitarian Effigy Analysis:</strong> Visually indistinguishable from a standard Oak Planks block, Hewn Splinters are conscious but completely paralyzed organisms. On initial spawn, orientation is strictly snapped to cardinal 90-degree angles (yaw / 90 * 90) with pitch 0. Immobile (0.0 speed) with 0 attack goals.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                      <div className="p-2 bg-[#0c130f] border border-[#263e30]/30 rounded">
+                        <strong className="text-[#5ea386] block mb-0.5">Spawning Rule:</strong>
+                        5% chance on surface blocks in Wood Plains and Thicket biomes; enforces a 48-block exclusion radius (96-block AABB).
+                      </div>
+                      <div className="p-2 bg-[#0c130f] border border-[#263e30]/30 rounded">
+                        <strong className="text-[#5ea386] block mb-0.5">Persistence &amp; Drops:</strong>
+                        Persistence required (does not despawn); drops 1 Oak Planks block and 0 XP when destroyed. Plays cherry wood hit sounds.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* LIGNUM SPINA / PETRIFIED: Custom mechanics */}
+          {(currentEntity.id === 'lignum_spina' || currentEntity.id === 'petrified_lignum_spina') && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="lignum_spina_telemetry" isUpdated={true}>
+                <div className="p-4 bg-[#221808]/20 border border-[#473413]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                  <p>
+                    <strong className="text-[#d1a851]">Thorns Reflection &amp; Health Thresholds:</strong> Inflicts custom thorns damage back to any attacker who strikes it. Operates on a dynamic health state machine: fights aggressively while health is at or above <strong className="text-white">5 HP</strong>, but immediately breaks engagement and flees when health falls below <strong className="text-white">5 HP</strong>. Flees at 1.5x speed whenever a Rot entity enters within 100 blocks.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                    <div className="p-2 bg-[#160f05] border border-[#473413]/30 rounded">
+                      <strong className="text-[#d1a851] block mb-0.5">Lignum Spina (Standard):</strong>
+                      Generates naturally at or above <strong className="text-white">Y: 50</strong> with a 32-block separation. Deals 1 point of reflected thorns damage and 2% collision prick.
+                    </div>
+                    <div className="p-2 bg-[#160f05] border border-[#473413]/30 rounded">
+                      <strong className="text-[#d1a851] block mb-0.5">Petrified Lignum Spina:</strong>
+                      Generates in Petrified Weald between <strong className="text-white">Y: 60 and Y: 120</strong>. Features 8 armor points, arrow deflection, and deals 3 heavy reflected thorns damage.
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* LIGNUM ECHINUS / PETRIFIED: Custom mechanics */}
+          {(currentEntity.id === 'lignum_echinus' || currentEntity.id === 'petrified_lignum_echinus') && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="lignum_echinus_telemetry" isUpdated={true}>
+                <div className="p-4 bg-[#221808]/20 border border-[#3d2a0d]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                  <p>
+                    <strong className="text-[#c28b40]">Urchin Spike Carapace &amp; Rolling Trample:</strong> Deals heavy thorns reflection damage back to attackers whenever struck. Features a 2% chance on physical collision to inflict 0.25 thorns damage as it rolls across targets. Ceases aggressive combat and shifts to avoidance mode when health falls to 5 HP or lower. Flees from approaching Rot entities within 100 blocks.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                    <div className="p-2 bg-[#160f05] border border-[#3d2a0d]/30 rounded">
+                      <strong className="text-[#c28b40] block mb-0.5">Lignum Echinus (Standard):</strong>
+                      Generates at elevations at or above <strong className="text-white">Y: 58</strong> with a 36-block exclusion radius. Reflects 3 thorns damage.
+                    </div>
+                    <div className="p-2 bg-[#160f05] border border-[#3d2a0d]/30 rounded">
+                      <strong className="text-[#c28b40] block mb-0.5">Petrified Lignum Echinus:</strong>
+                      Generates in Petrified Weald deep stratum between <strong className="text-white">Y: -30 and Y: 50</strong> (32-block separation). Features 10 armor points, 0.380 speed, and reflects 4 thorns damage.
+                    </div>
+                  </div>
+                </div>
+              </UpdatedFrame>
+            </div>
+          )}
+
+          {/* LIGNUM TRILOBITA / PETRIFIED: Custom mechanics */}
+          {(currentEntity.id === 'lignum_trilobita' || currentEntity.id === 'petrified_lignum_trilobita') && (
+            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="lignum_trilobita_telemetry" isUpdated={true}>
+                <div className="p-4 bg-[#101b19]/20 border border-[#1f3632]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                  <p>
+                    <strong className="text-[#4ca398]">Interlocking Scale Mitigation &amp; Carapace Hiding:</strong> Natural interlocking plank scales instantly restore <strong className="text-white">50% of damage taken</strong> unless the attacker is wielding an Axe (<code className="text-[#4ca398]">minecraft:axes</code>), which bypasses this scale armor. When health falls to <strong className="text-white">4 HP or lower</strong>, it tucks into its shell to regenerate +1 HP every 10 ticks until reaching 10 HP. If a Rot entity approaches within 100 blocks, it breaks hiding immediately and flees at 1.5x-1.7x speed.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                    <div className="p-2 bg-[#0c1311] border border-[#1f3632]/30 rounded">
+                      <strong className="text-[#4ca398] block mb-0.5">Lignum Trilobita (Standard):</strong>
+                      Inhabits subterranean sub-strata floors between <strong className="text-white">Y: -20 and Y: 48</strong> (16-block clearance). Has 0.8 swim speed and water efficiency.
+                    </div>
+                    <div className="p-2 bg-[#0c1311] border border-[#1f3632]/30 rounded">
+                      <strong className="text-[#4ca398] block mb-0.5">Petrified Lignum Trilobita:</strong>
+                      Inhabits Petrified Weald between <strong className="text-white">Y: 0 and Y: 60</strong> (32-block clearance). Reinforced by 14 armor points with suffocation and falling anvil immunities.
                     </div>
                   </div>
                 </div>
