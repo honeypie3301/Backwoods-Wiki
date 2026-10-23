@@ -149,6 +149,199 @@ interface Ability {
   category: string;
 }
 
+interface LootDropEntry {
+  item: string;
+  chance: string;
+  count?: string;
+  isSpecial?: boolean;
+  isEmpty?: boolean;
+}
+
+interface EntityLootData {
+  xp: string;
+  drops: LootDropEntry[];
+}
+
+const ENTITY_LOOT_DROPS: Record<string, EntityLootData> = {
+  splinter: {
+    xp: "10 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1", isSpecial: true },
+      { item: "Stick", chance: "42.86%", count: "1" },
+      { item: "Seep", chance: "9.52%", count: "1" },
+      { item: "Splinter Shard", chance: "4.76%", count: "1", isSpecial: true },
+      { item: "No Drop", chance: "42.86%", isEmpty: true }
+    ]
+  },
+  log_splinter: {
+    xp: "10 XP",
+    drops: [
+      { item: "Oak Log", chance: "100%", count: "1", isSpecial: true },
+      { item: "Rotten Stick", chance: "30%", count: "1" },
+      { item: "Rotten Planks", chance: "15%", count: "1" },
+      { item: "Rotten Log", chance: "10%", count: "1" },
+      { item: "Splinter Shard", chance: "3%", count: "1", isSpecial: true },
+      { item: "No Drop", chance: "35%", isEmpty: true }
+    ]
+  },
+  blindspot_splinter: {
+    xp: "10 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1", isSpecial: true }
+    ]
+  },
+  petrified_splinter: {
+    xp: "14 XP",
+    drops: [
+      { item: "Petrified Rotten Oak Wood", chance: "100%", count: "1", isSpecial: true }
+    ]
+  },
+  hewn_splinter: {
+    xp: "0 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1" },
+      { item: "Lignum Caro", chance: "66.7%", count: "0-1", isSpecial: true },
+      { item: "False Oak Planks", chance: "33.3%", count: "0-1" }
+    ]
+  },
+  dorceless_splinter: {
+    xp: "10 XP",
+    drops: [
+      { item: "Oak Planks", chance: "57.1%", count: "1" },
+      { item: "Tetherless Pearl", chance: "42.9%", count: "1", isSpecial: true }
+    ]
+  },
+  kyne_splinter: {
+    xp: "7 XP",
+    drops: [
+      { item: "Oak Planks", chance: "58.8%", count: "1-3" },
+      { item: "Stick", chance: "29.4%", count: "0-1" },
+      { item: "Note Block", chance: "11.8%", count: "0-1", isSpecial: true }
+    ]
+  },
+  lignum_echinus: {
+    xp: "6 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1", isSpecial: true },
+      { item: "Oak Planks (Pool)", chance: "62.5%", count: "1-3" },
+      { item: "Stick", chance: "31.25%", count: "2-5" },
+      { item: "Splinter Shard", chance: "6.25%", count: "0-1", isSpecial: true }
+    ]
+  },
+  petrified_lignum_echinus: {
+    xp: "6 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1", isSpecial: true },
+      { item: "Oak Planks (Pool)", chance: "62.5%", count: "1-3" },
+      { item: "Stick", chance: "31.25%", count: "2-5" },
+      { item: "Splinter Shard", chance: "6.25%", count: "0-1", isSpecial: true }
+    ]
+  },
+  lignum_spina: {
+    xp: "5 XP",
+    drops: [
+      { item: "Splinter Shard", chance: "51.0%", count: "2-4", isSpecial: true },
+      { item: "Stick", chance: "38.3%", count: "1-2" },
+      { item: "Oak Planks", chance: "10.2%", count: "1" },
+      { item: "Petrified Resin", chance: "0.5%", count: "1", isSpecial: true }
+    ]
+  },
+  petrified_lignum_spina: {
+    xp: "5 XP",
+    drops: [
+      { item: "Splinter Shard", chance: "51.0%", count: "2-4", isSpecial: true },
+      { item: "Stick", chance: "38.3%", count: "1-2" },
+      { item: "Oak Planks", chance: "10.2%", count: "1" },
+      { item: "Petrified Resin", chance: "0.5%", count: "1", isSpecial: true }
+    ]
+  },
+  lignum_trilobita: {
+    xp: "4 XP",
+    drops: [
+      { item: "Petrified Bark", chance: "66.7%", count: "1-2", isSpecial: true },
+      { item: "Petrified Resin", chance: "23.3%", count: "0-1", isSpecial: true },
+      { item: "Splinter Shard", chance: "10.0%", count: "0-1", isSpecial: true }
+    ]
+  },
+  petrified_lignum_trilobita: {
+    xp: "4 XP",
+    drops: [
+      { item: "Petrified Bark", chance: "66.7%", count: "1-2", isSpecial: true },
+      { item: "Petrified Resin", chance: "23.3%", count: "0-1", isSpecial: true },
+      { item: "Splinter Shard", chance: "10.0%", count: "0-1", isSpecial: true }
+    ]
+  },
+  lignum_vermis: {
+    xp: "2 XP",
+    drops: [
+      { item: "Oak Planks", chance: "19.5%", count: "1" },
+      { item: "Seep", chance: "15.6%", count: "1", isSpecial: true },
+      { item: "No Drop", chance: "64.9%", isEmpty: true }
+    ]
+  },
+  fractus: {
+    xp: "0 XP",
+    drops: [
+      { item: "Fractus Core", chance: "50%", count: "1", isSpecial: true },
+      { item: "No Drop", chance: "50%", isEmpty: true }
+    ]
+  },
+  fractus_prime: {
+    xp: "50 XP",
+    drops: [
+      { item: "Fractus Prime Core", chance: "100% Roll", count: "0-1", isSpecial: true }
+    ]
+  },
+  ash_weaver: {
+    xp: "1 XP",
+    drops: [
+      { item: "Ash Rose", chance: "100%", count: "1", isSpecial: true }
+    ]
+  },
+  rot: {
+    xp: "7,777 XP",
+    drops: [
+      { item: "Resonant Rot Effigy", chance: "100%", count: "1", isSpecial: true }
+    ]
+  },
+  stilt_walker: {
+    xp: "0 XP",
+    drops: [
+      { item: "Oak Planks", chance: "100%", count: "1" }
+    ]
+  },
+  hollow: {
+    xp: "0 XP",
+    drops: [
+      { item: "Physical Remains", chance: "None (Smoke Discard)", isEmpty: true }
+    ]
+  },
+  verdant_engine: {
+    xp: "0 XP",
+    drops: [
+      { item: "Physical Remains", chance: "None (Detonation)", isEmpty: true }
+    ]
+  },
+  lignum_gigas: {
+    xp: "500 XP",
+    drops: [
+      { item: "Item Drops", chance: "None (Inventory Disarm)", isEmpty: true }
+    ]
+  },
+  woodweaver: {
+    xp: "700 XP",
+    drops: [
+      { item: "Item Drops", chance: "None (Dissolution)", isEmpty: true }
+    ]
+  },
+  lignum_palus: {
+    xp: "5 XP",
+    drops: [
+      { item: "Item Drops", chance: "None (Warp Escape)", isEmpty: true }
+    ]
+  }
+};
+
 interface EntityProfile {
   id: string;
   name: string;
@@ -186,6 +379,96 @@ const getThreatBadgeStyle = (threatLevel: string) => {
   }
 };
 
+interface ThreatAccordionStyles {
+  container: string;
+  header: string;
+  badge: string;
+  titleText: string;
+  chevron: string;
+  contentBorder: string;
+  triggerText: string;
+  triggerIcon: string;
+  icon: string;
+}
+
+const getThreatAccordionStyles = (threatLevel: string): ThreatAccordionStyles => {
+  switch (threatLevel) {
+    case 'Extermination Class':
+      return {
+        container: 'bg-[#180a0c] border-red-600/50 hover:border-red-500/80 shadow-[0_0_12px_rgba(239,68,68,0.25)]',
+        header: 'text-red-400',
+        badge: 'text-red-300 bg-[#251012] border-red-500/70 shadow-[0_0_8px_rgba(239,68,68,0.4)]',
+        titleText: 'text-[#f5d0d2] hover:text-red-300',
+        chevron: 'text-red-400',
+        contentBorder: 'border-red-950/60',
+        triggerText: 'text-red-400',
+        triggerIcon: 'text-red-500',
+        icon: 'text-red-400 animate-pulse'
+      };
+    case 'Extreme':
+      return {
+        container: 'bg-[#150c0e] border-red-900/50 hover:border-red-700/60 shadow-[0_0_8px_rgba(239,68,68,0.2)]',
+        header: 'text-[#cf8f92]',
+        badge: 'text-[#e8a2a5] bg-[#221315] border-red-900/50 shadow-[0_0_6px_rgba(239,68,68,0.25)]',
+        titleText: 'text-[#eed9db] hover:text-[#f8b2b5]',
+        chevron: 'text-[#cf8f92]',
+        contentBorder: 'border-red-950/40',
+        triggerText: 'text-[#cf8f92]',
+        triggerIcon: 'text-rose-400',
+        icon: 'text-rose-400'
+      };
+    case 'High':
+      return {
+        container: 'bg-[#130d17] border-[#3f2123]/50 hover:border-[#5c2b30]/70 shadow-[0_0_6px_rgba(239,68,68,0.15)]',
+        header: 'text-[#b5a3bd]',
+        badge: 'text-[#d8b0d0] bg-[#1a1318] border-[#3f2123]/50 shadow-[0_0_4px_rgba(239,68,68,0.2)]',
+        titleText: 'text-[#e7d5e4] hover:text-[#f3c8ed]',
+        chevron: 'text-[#b5a3bd]',
+        contentBorder: 'border-[#2d1722]/50',
+        triggerText: 'text-[#b5a3bd]',
+        triggerIcon: 'text-purple-400',
+        icon: 'text-purple-400'
+      };
+    case 'Medium':
+      return {
+        container: 'bg-[#13110e] border-[#2f2824]/50 hover:border-[#4d3f35]/70',
+        header: 'text-[#c2b09f]',
+        badge: 'text-[#d6b78d] bg-[#1a1715] border-[#2f2824]/50',
+        titleText: 'text-[#ded0be] hover:text-[#ebd5b7]',
+        chevron: 'text-[#c2b09f]',
+        contentBorder: 'border-[#241c14]/50',
+        triggerText: 'text-[#d1a851]',
+        triggerIcon: 'text-amber-400',
+        icon: 'text-amber-400'
+      };
+    case 'Low':
+      return {
+        container: 'bg-[#0d120f] border-[#222924]/50 hover:border-[#2f3d33]/70',
+        header: 'text-[#9bb0a0]',
+        badge: 'text-[#91c5a7] bg-[#141715] border-[#222924]/50',
+        titleText: 'text-[#d0e0d6] hover:text-[#aee0c3]',
+        chevron: 'text-[#9bb0a0]',
+        contentBorder: 'border-[#18261e]/50',
+        triggerText: 'text-[#4ca398]',
+        triggerIcon: 'text-teal-400',
+        icon: 'text-teal-400'
+      };
+    case 'Passive':
+    default:
+      return {
+        container: 'bg-[#0c0e0c] border-[#1b221d]/50 hover:border-[#28382c]/70',
+        header: 'text-[#829285]',
+        badge: 'text-[#829285] bg-[#111412] border-[#1b221d]/50',
+        titleText: 'text-[#c6d1c8] hover:text-[#a9d1b0]',
+        chevron: 'text-[#829285]',
+        contentBorder: 'border-[#172019]/50',
+        triggerText: 'text-[#5ea386]',
+        triggerIcon: 'text-emerald-400',
+        icon: 'text-[#5ea386]'
+      };
+  }
+};
+
 export default function EntitiesView() {
   const [selectedEntity, setSelectedEntity] = useState<string>('hewn_splinter');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -196,7 +479,6 @@ export default function EntitiesView() {
   const [activeChatTab, setActiveChatTab] = useState<'movement' | 'home' | 'rules'>('movement');
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
   const [openAbilityIndex, setOpenAbilityIndex] = useState<number | null>(0);
-  const [openAshWeaverAbilityIndex, setOpenAshWeaverAbilityIndex] = useState<number | null>(0);
   const [sortBy, setSortBy] = useState<'default' | 'threat-asc' | 'threat-desc'>('threat-asc');
   const [activeRotLog, setActiveRotLog] = useState<number>(0);
   const rotClickTimesRef = useRef<number[]>([]);
@@ -210,7 +492,6 @@ export default function EntitiesView() {
   const handleEntitySelect = (entityId: string) => {
     setSelectedEntity(entityId);
     setOpenAbilityIndex(0);
-    setOpenAshWeaverAbilityIndex(0);
     if (entityId === 'rot') {
       const now = Date.now();
       const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
@@ -1329,10 +1610,6 @@ export default function EntitiesView() {
     setOpenAbilityIndex(openAbilityIndex === idx ? null : idx);
   };
 
-  const toggleAshWeaverAbility = (idx: number) => {
-    setOpenAshWeaverAbilityIndex(openAshWeaverAbilityIndex === idx ? null : idx);
-  };
-
   // Sync with Table of Contents clicks
   useEffect(() => {
     const handleHeadingClick = (e: Event) => {
@@ -1565,14 +1842,9 @@ export default function EntitiesView() {
       );
 
       if (matchedAbilityIdx !== -1) {
-        if (topEntity.id === 'ash_weaver') {
-          setOpenAshWeaverAbilityIndex(matchedAbilityIdx);
-        } else {
-          setOpenAbilityIndex(matchedAbilityIdx);
-        }
+        setOpenAbilityIndex(matchedAbilityIdx);
       } else {
         setOpenAbilityIndex(0);
-        setOpenAshWeaverAbilityIndex(0);
       }
     }
   }, [searchQuery]);
@@ -1842,11 +2114,12 @@ export default function EntitiesView() {
           {(() => {
             const currentAbilities = getAbilitiesForEntity(currentEntity.id);
             if (currentAbilities.length === 0) return null;
+            const accordionStyles = getThreatAccordionStyles(currentEntity.threatLevel);
             return (
               <UpdatedFrame id={`entity_abilities_${currentEntity.id}`} isUpdated={true}>
                 <div className="space-y-3 pt-2">
-                  <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#709978] font-bold flex items-center gap-1.5">
-                    <Activity className="w-4 h-4 text-emerald-400" />
+                  <h4 className={`text-[11px] font-mono uppercase tracking-widest font-bold flex items-center gap-1.5 ${accordionStyles.header}`}>
+                    <Activity className={`w-4 h-4 ${accordionStyles.icon}`} />
                     Behavioral &amp; Combat Dossier (Click to expand details)
                   </h4>
                   
@@ -1856,35 +2129,89 @@ export default function EntitiesView() {
                       return (
                         <div 
                           key={idx} 
-                          className="bg-[#0b0f0c] border border-[#1d2720] hover:border-[#2e4034] rounded-lg transition-all"
+                          className={`rounded-lg transition-all border ${accordionStyles.container}`}
                         >
                           <button
                             onClick={() => toggleAbility(idx)}
                             className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
                           >
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] font-mono text-emerald-400 bg-[#121c15] border border-[#233829] px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                              <span className={`text-[9px] font-mono px-2 py-0.5 rounded font-bold uppercase shrink-0 border ${accordionStyles.badge}`}>
                                 {ab.category}
                               </span>
-                              <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-emerald-300 transition-colors">
+                              <span className={`font-serif text-xs sm:text-sm font-bold transition-colors ${accordionStyles.titleText}`}>
                                 {ab.title}
                               </span>
                             </div>
-                            {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                            {isOpen ? <ChevronUp className={`w-4 h-4 ${accordionStyles.chevron}`} /> : <ChevronDown className={`w-4 h-4 ${accordionStyles.chevron}`} />}
                           </button>
                           
                           {isOpen && (
-                            <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1a251d] space-y-2">
-                              <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
-                                <Zap className="w-3.5 h-3.5" />
+                            <div className={`px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t space-y-2 ${accordionStyles.contentBorder}`}>
+                              <div className={`flex items-center gap-1 text-[10px] font-mono ${accordionStyles.triggerText}`}>
+                                <Zap className={`w-3.5 h-3.5 ${accordionStyles.triggerIcon}`} />
                                 <span>Trigger Condition: {ab.trigger}</span>
                               </div>
-                              <p className="leading-relaxed pl-1">{ab.description}</p>
+                              <p className="leading-relaxed pl-1 text-[#c9d1c9]">{ab.description}</p>
                             </div>
                           )}
                         </div>
                       );
                     })}
+                  </div>
+                </div>
+              </UpdatedFrame>
+            );
+          })()}
+
+          {/* UNIVERSAL CONSISTENT LOOT DROPS & DISASSEMBLY YIELD */}
+          {(() => {
+            const dropData = ENTITY_LOOT_DROPS[currentEntity.id];
+            if (!dropData) return null;
+            return (
+              <UpdatedFrame id={`entity_loot_${currentEntity.id}`} isUpdated={true}>
+                <div className="space-y-3 pt-2">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#709978] font-bold flex items-center gap-1.5">
+                      <Package className="w-4 h-4 text-emerald-400" />
+                      Loot Drops &amp; Disassembly Yield
+                    </h4>
+                    <span className="text-[10px] font-mono text-amber-400 bg-[#1c160e] border border-[#3d2a0d]/40 px-2.5 py-0.5 rounded font-bold">
+                      XP: {dropData.xp}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 text-xs font-mono">
+                    {dropData.drops.map((drop, idx) => (
+                      <div 
+                        key={idx}
+                        className={`p-2.5 rounded text-center border transition-all ${
+                          drop.isEmpty
+                            ? 'bg-[#090b09] border-[#161d17]'
+                            : drop.isSpecial
+                              ? 'bg-[#0c120d] border-[#263e30]/40'
+                              : 'bg-[#090b09] border-[#161d17]'
+                        }`}
+                      >
+                        <div className={`text-[9px] truncate ${drop.isEmpty ? 'text-zinc-600' : drop.isSpecial ? 'text-[#5ea386]' : 'text-[#5a6b5e]'}`}>
+                          {drop.item}
+                        </div>
+                        <div className={`font-bold mt-1 text-xs ${
+                          drop.isEmpty
+                            ? 'text-zinc-500'
+                            : drop.isSpecial
+                              ? 'text-[#5ea386]'
+                              : 'text-[#c9d1c9]'
+                        }`}>
+                          {drop.chance}
+                        </div>
+                        {drop.count && (
+                          <div className="text-[9px] text-[#5a6b5e] font-mono mt-0.5">
+                            Qty: {drop.count}
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </UpdatedFrame>
@@ -2242,17 +2569,6 @@ export default function EntitiesView() {
                   </table>
                 </div>
               </div>
-
-              {/* Loot Drops */}
-              <div className="space-y-2 pt-2">
-                <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Loot Drops</h5>
-                <div className="flex flex-wrap gap-2 text-xs font-mono">
-                  <span className="px-2 py-1 bg-[#101311] border border-[#1a221c] rounded text-[#8c8779]">Stick: <strong>42.86%</strong></span>
-                  <span className="px-2 py-1 bg-[#101311] border border-[#1a221c] rounded text-[#8c8779]">Seep: <strong>9.52%</strong></span>
-                  <span className="px-2 py-1 bg-[#121613] border border-[#1f2820] rounded text-[#a9d1b0]">Splinter Shard: <strong>4.76%</strong></span>
-                  <span className="px-2 py-1 bg-[#101311] border border-[#1a221c] rounded text-zinc-500">Nothing: <strong>42.86%</strong></span>
-                </div>
-              </div>
             </div>
           )}
 
@@ -2527,36 +2843,6 @@ export default function EntitiesView() {
                   </table>
                 </div>
               </div>
-
-              {/* Loot Drops */}
-              <div className="space-y-2">
-                <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Extended Log Dropset</h5>
-                <p className="text-xs text-[#829285] leading-relaxed">
-                  Killing this heavier variant yields dense, highly valuable materials for crafting wooden protection tools:
-                </p>
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs font-mono">
-                  <div className="p-2 bg-[#090b09] border border-[#161d17] rounded text-center">
-                    <div className="text-[#5a6b5e] text-[9px]">Rotten Stick</div>
-                    <div className="text-[#c9d1c9] font-bold mt-1">30%</div>
-                  </div>
-                  <div className="p-2 bg-[#090b09] border border-[#161d17] rounded text-center">
-                    <div className="text-[#5a6b5e] text-[9px]">Rotten Planks</div>
-                    <div className="text-[#c9d1c9] font-bold mt-1">15%</div>
-                  </div>
-                  <div className="p-2 bg-[#090b09] border border-[#161d17] rounded text-center">
-                    <div className="text-[#5a6b5e] text-[9px]">Rotten Log</div>
-                    <div className="text-[#c9d1c9] font-bold mt-1">10%</div>
-                  </div>
-                  <div className="p-2 bg-[#0c120d] border border-[#263e30]/30 rounded text-center">
-                    <div className="text-[#5ea386] text-[9px]">Splinter Shard</div>
-                    <div className="text-[#5ea386] font-bold mt-1">3%</div>
-                  </div>
-                  <div className="p-2 bg-[#090b09] border border-[#161d17] rounded text-center">
-                    <div className="text-zinc-600 text-[9px]">No Drop</div>
-                    <div className="text-zinc-500 mt-1">35%</div>
-                  </div>
-                </div>
-              </div>
             </div>
           )}
 
@@ -2644,24 +2930,20 @@ export default function EntitiesView() {
                   </table>
                 </div>
               </div>
-            </div>
-          )}
 
-          {currentEntity.id === 'blindspot_splinter' && (
-            <UpdatedFrame id="blindspot_borrowed_shapes" isUpdated={true}>
-              <div className="p-5 bg-[#110f0d] border border-[#3d2a0d]/30 rounded-xl space-y-3">
-                <h5 className="font-serif text-base font-bold text-orange-400">Borrowed Shapes</h5>
+              {/* Decoy Deployment Parameters */}
+              <div className="p-4 bg-[#110f0d] border border-[#3d2a0d]/30 rounded-lg space-y-2.5">
+                <h5 className="font-serif text-sm font-bold text-orange-400">Borrowed Shapes Decoy Protocols</h5>
                 <p className="text-xs text-[#8c8779] leading-relaxed">
-                  An experienced Blindspot can leave a frozen likeness where it stood and vanish at the same moment. The shape keeps its departing pose; it does not turn its head to follow you. More experienced hunters leave denser, more convincing copies.
+                  When line of sight is broken, a Blindspot can leave a static facsimile at its prior coordinates while turning invisible:
                 </p>
-                <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-2 leading-relaxed">
-                  <li><strong className="text-[#c9d1c9]">Behind the Distraction:</strong> Invisible hunters follow behind their target or silently take fixed positions around them. They do not endlessly circle the player.</li>
-                  <li><strong className="text-[#c9d1c9]">Keep Your Distance:</strong> The real bodies try to stay beyond melee reach and back away when approached, preserving the deception.</li>
-                  <li><strong className="text-[#c9d1c9]">The Reveal:</strong> Copies linger while the hunters reposition, then fade before attacks resume. Blocked routes cannot keep the illusion alive forever.</li>
-                  <li><strong className="text-[#c9d1c9]">Many Faces:</strong> Up to 200 nearby hunters can join a single deployment. These copies are distractions, not additional living Splinters.</li>
+                <ul className="text-xs text-[#8c8779] list-disc pl-4 space-y-1.5 leading-relaxed font-mono text-[11px]">
+                  <li><strong className="text-[#c9d1c9]">Static Pose:</strong> The decoy retains its departure orientation and does not track the player's head movements.</li>
+                  <li><strong className="text-[#c9d1c9]">Standoff Distance:</strong> Active cloaked hunters retreat if approached to preserve the deception, striking only after decoys expire.</li>
+                  <li><strong className="text-[#c9d1c9]">Max Hunter Participation:</strong> Up to 200 nearby hunters can join a single decoy deployment.</li>
                 </ul>
               </div>
-            </UpdatedFrame>
+            </div>
           )}
 
           {/* PETRIFIED LOG SPLINTER: Custom mechanics */}
@@ -2756,33 +3038,6 @@ export default function EntitiesView() {
                   </p>
                 </div>
               </UpdatedFrame>
-              <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg">
-                <h5 className="font-serif text-sm font-bold text-[#e0e7e0] mb-2">Loot Drops & Probabilities</h5>
-                <div className="overflow-hidden rounded border border-[#1c241e] text-xs font-mono">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-[#121713] text-[#5a6b5e] border-b border-[#1c241e]">
-                        <th className="p-2">Item Drop</th>
-                        <th className="p-2 text-right">Chance</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-[#151c16] text-[#8c8779]">
-                      <tr>
-                        <td className="p-2">Seep</td>
-                        <td className="p-2 text-right text-[#5ea386]">19.5%</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">Splinter Shard</td>
-                        <td className="p-2 text-right text-[#5ea386]">15.6%</td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 italic">Nothing</td>
-                        <td className="p-2 text-right text-zinc-500">64.9%</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
             </div>
           )}
 
