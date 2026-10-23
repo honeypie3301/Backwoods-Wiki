@@ -197,7 +197,7 @@ const ENTITY_LOOT_DROPS: Record<string, EntityLootData> = {
     ]
   },
   hewn_splinter: {
-    xp: "0 XP",
+    xp: "3 XP",
     drops: [
       { item: "Oak Planks", chance: "100%", count: "1" },
       { item: "Lignum Caro", chance: "66.7%", count: "0-1", isSpecial: true },
@@ -280,7 +280,7 @@ const ENTITY_LOOT_DROPS: Record<string, EntityLootData> = {
     ]
   },
   fractus: {
-    xp: "0 XP",
+    xp: "25 XP",
     drops: [
       { item: "Fractus Core", chance: "50%", count: "1", isSpecial: true },
       { item: "No Drop", chance: "50%", isEmpty: true }
@@ -301,11 +301,11 @@ const ENTITY_LOOT_DROPS: Record<string, EntityLootData> = {
   rot: {
     xp: "7,777 XP",
     drops: [
-      { item: "Resonant Rot Effigy", chance: "100%", count: "1", isSpecial: true }
+      { item: "Physical Remains", chance: "None (Black Hole Detonation)", isEmpty: true }
     ]
   },
   stilt_walker: {
-    xp: "0 XP",
+    xp: "30 XP",
     drops: [
       { item: "Oak Planks", chance: "100%", count: "1" }
     ]
@@ -317,7 +317,7 @@ const ENTITY_LOOT_DROPS: Record<string, EntityLootData> = {
     ]
   },
   verdant_engine: {
-    xp: "0 XP",
+    xp: "70,000 XP",
     drops: [
       { item: "Physical Remains", chance: "None (Detonation)", isEmpty: true }
     ]
@@ -3951,7 +3951,7 @@ export default function EntitiesView() {
                       </div>
                       <div className="p-2 bg-[#0c130f] border border-[#263e30]/30 rounded">
                         <strong className="text-[#5ea386] block mb-0.5">Persistence &amp; Drops:</strong>
-                        Persistence required (does not despawn); drops 1 Oak Planks block and 0 XP when destroyed. Plays cherry wood hit sounds.
+                        Persistence required (does not despawn); drops 1 Oak Planks block and 3 XP when destroyed. Plays cherry wood hit sounds.
                       </div>
                     </div>
                   </div>
