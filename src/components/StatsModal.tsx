@@ -78,6 +78,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [retryCount, setRetryCount] = useState(0);
   const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat'>('all');
   const [showAllTargets, setShowAllTargets] = useState(false);
+  const [activeMobileTab, setActiveMobileTab] = useState<'overview' | 'stream'>('overview');
   const [isDeviceIgnored, setIsDeviceIgnored] = useState<boolean>(() => {
     return localStorage.getItem('wiki_telemetry_ignore_device') === 'true';
   });
@@ -740,7 +741,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           className={`relative w-full bg-[#080c09] border border-[#1b261e] rounded-lg shadow-2xl overflow-hidden flex flex-col font-mono z-50 text-[#c8d4ca] transition-all duration-200 ${
             isFullscreen 
               ? 'w-[98.5vw] h-[97vh] max-w-[98.5vw] max-h-[97vh]' 
-              : 'w-full max-w-6xl max-h-[92vh] sm:max-h-[88vh]'
+              : 'w-full max-w-6xl h-[92vh] sm:h-[88vh] max-h-[92vh] sm:max-h-[88vh]'
           }`}
           id="stats-modal-container"
         >
@@ -848,7 +849,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           </div>
 
           {/* Body Content */}
-          <div className="flex-1 overflow-y-auto p-2.5 sm:p-3.5 flex flex-col min-h-0 gap-2.5 sm:gap-3">
+          <div className="flex-1 p-2.5 sm:p-3.5 flex flex-col min-h-0 gap-2 sm:gap-2.5 overflow-hidden">
             {loading && !stats ? (
               <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
                 <Activity className="w-6 h-6 text-emerald-400 animate-pulse" />
@@ -870,16 +871,46 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               </div>
             ) : stats ? (
               <>
-                {/* Unified Master 2-Column Command Cockpit */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-3 flex-1 min-h-0">
+                {/* Mobile HUD Tab Selector (< lg) */}
+                <div className="flex lg:hidden items-center bg-[#0d130f] p-1 rounded border border-[#1b261e] shrink-0 gap-1 select-none">
+                  <button
+                    type="button"
+                    onClick={() => setActiveMobileTab('overview')}
+                    className={`flex-1 py-1.5 px-2 rounded text-[10.5px] sm:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      activeMobileTab === 'overview'
+                        ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/80'
+                        : 'text-[#647c6a] hover:text-[#a4c9ad] border border-transparent'
+                    }`}
+                  >
+                    <BarChart3 className="w-3.5 h-3.5 shrink-0" />
+                    <span className="truncate">Overview</span>
+                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#080d0a] text-emerald-400 font-mono">
+                      {stats.totalCount.toLocaleString()}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActiveMobileTab('stream')}
+                    className={`flex-1 py-1.5 px-2 rounded text-[10.5px] sm:text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                      activeMobileTab === 'stream'
+                        ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/80'
+                        : 'text-[#647c6a] hover:text-[#a4c9ad] border border-transparent'
+                    }`}
+                  >
+                    <Radio className="w-3.5 h-3.5 shrink-0" />
+                    <span className="truncate">Trace Stream</span>
+                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#080d0a] text-emerald-400 font-mono">
+                      {filteredLogs.length}
+                    </span>
+                  </button>
+                </div>
+
+                {/* Unified Master 2-Column Command Cockpit (Side-by-Side on Desktop, Tabbed on Mobile) */}
+                <div className="flex-1 min-h-0 flex flex-col lg:grid lg:grid-cols-12 gap-2.5 sm:gap-3 overflow-hidden">
                   {/* Left Analytical Sidebar: 3 Metric Cards + Telemetry Targets */}
-                  <div className={`lg:col-span-4 xl:col-span-4 flex flex-col gap-2 sm:gap-2.5 ${
-                    isFullscreen 
-                      ? 'lg:h-full min-h-0' 
-                      : 'lg:h-full lg:min-h-[500px]'
-                  }`}>
+                  <div className={`${activeMobileTab === 'overview' ? 'flex' : 'hidden'} lg:flex lg:col-span-4 flex-col gap-2 sm:gap-2.5 h-full min-h-0 overflow-hidden`}>
                     {/* 3 Compressed Metric Cards Stack */}
-                    <div className="grid grid-cols-3 lg:grid-cols-1 gap-1.5 sm:gap-2 shrink-0">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-1.5 sm:gap-2 shrink-0">
                       {/* Total Hits */}
                       <div className="px-2.5 py-1.5 sm:py-2 bg-[#0d120f] border border-[#1b261e] rounded hover:border-[#27382c] transition-colors relative overflow-hidden">
                         <div className="flex items-center justify-between mb-0.5">
@@ -947,8 +978,8 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                       </div>
                     </div>
 
-                    {/* Telemetry Targets: Expanded Upwards */}
-                    <div className="bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex flex-col flex-1 min-h-[220px] lg:min-h-0 overflow-hidden">
+                    {/* Telemetry Targets: Responsive Height */}
+                    <div className="bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex flex-col flex-1 min-h-0 overflow-hidden">
                       <div className="flex items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none shrink-0">
                         <div className="flex items-center gap-1.5 sm:gap-2">
                           <BarChart3 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -1018,13 +1049,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                   </div>
 
                   {/* Right Column: Realtime Telemetry Stream with Integrated User ID Search Engine */}
-                  <div className={`lg:col-span-8 xl:col-span-8 bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex flex-col min-h-[400px] lg:min-h-0 flex-1 overflow-hidden ${
-                    isFullscreen 
-                      ? 'lg:h-full' 
-                      : 'lg:h-full'
-                  }`}>
+                  <div className={`${activeMobileTab === 'stream' ? 'flex' : 'hidden'} lg:flex lg:col-span-8 bg-[#0c110e] border border-[#1b261e] rounded p-2.5 sm:p-3 flex-col h-full min-h-0 overflow-hidden`}>
                     {/* Stream Header & Filters */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none gap-1.5 shrink-0">
+                    <div className="flex flex-wrap sm:flex-row items-start sm:items-center justify-between pb-2 border-b border-[#1b261e] mb-2 select-none gap-2 shrink-0">
                       <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
                         <span className="relative flex h-2.5 w-2.5 shrink-0">
                           <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${searchResults !== null ? 'bg-cyan-400' : 'bg-emerald-400'} opacity-60`}></span>
@@ -1181,7 +1208,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                     )}
 
                     {/* Scrollable Log Stream */}
-                    <div className="flex-1 overflow-y-auto space-y-1.5 sm:space-y-2 pr-1 font-mono scrollbar-thin">
+                    <div className="flex-1 overflow-y-auto space-y-1.5 sm:space-y-2 pr-1 pb-2 font-mono scrollbar-thin">
                       {filteredLogs.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-10 text-[#4f6454] italic">
                           <Radio className="w-4 h-4 mb-1 text-[#303f34]" />
