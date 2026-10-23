@@ -105,8 +105,33 @@ export default function CommandsView() {
       usage: "/combatkit [backwoods | fractus | rot]",
       category: "kits",
       summary: "Equips unified developer combat loadouts.",
-      details: "Provides operator-level developer equipment arrays tailored for specific dimensional test trials or entity combat.",
+      details: "Provides operator-level developer equipment arrays tailored for specific dimensional test trials or entity combat. Requires permission level 4 (Server Operator / OP). Directly equips armor slots, offhand, and populates player inventory.",
+      isUpdated: true,
       kits: [
+        {
+          name: "backwoods",
+          description: "Maximized survival kit for enduring high-threat environments and base survival testing.",
+          items: [
+            "Equipped Armor: Full Netherite Armor (Protection IV, Unbreaking III, Mending, Thorns IV, Respiration IV, Aqua Affinity, Swift Sneak III, Feather Falling IV, Depth Strider III)",
+            "Equipped Off-Hand: 1x Shield (Unbreaking III, Mending I)",
+            "Weapons: 1x Netherite Axe (Sharpness V, Efficiency V, Unbreaking III, Mending I) & 1x Bow (Power V, Punch II, Unbreaking III)",
+            "Ammunition: 128x Tipped Arrows of Strong Harming (2 stacks of 64)",
+            "Consumables: 64x Enchanted Golden Apples & 48x Ender Pearls (3 stacks of 16)",
+            "Construction & Utilities: 128x Torches, 128x Oak Planks, and 2x The Backwoods Portal Catalysts",
+            "TACZ Integration: 1x Minigun (AUTO) + 1x Creative Ammo Box (AllTypeCreative) if Timeless and Classics Zero is loaded"
+          ]
+        },
+        {
+          name: "rot",
+          description: "Extreme combat suite specifically designed for engaging the Rot Sentinel.",
+          items: [
+            "Equipped Armor: Full Netherite Armor Set (same maxed enchantments) & Shield (off-hand)",
+            "Weapons: 1x Maxed Netherite Axe, 1x Maxed Bow, and 1x Mace (Unbreaking III, Wind Burst III)",
+            "Ammunition & Mobility: 128x Tipped Arrows of Strong Harming, 128x Wind Charges, 48x Ender Pearls, 1x Elytra & 196x Firework Rockets",
+            "Life Support: 64x Enchanted Golden Apples & 12x Totems of Undying",
+            "TACZ Integration: 1x Minigun (AUTO) + 1x Creative Ammo Box (AllTypeCreative) if Timeless and Classics Zero is loaded"
+          ]
+        },
         {
           name: "fractus",
           description: "Optimized stats and items for heavy combat against anomalous Fractus entities.",
@@ -118,29 +143,7 @@ export default function CommandsView() {
           effects: [
             "Max HP boosted directly to 200 (100 Hearts)",
             "Step Height amplified to 3 blocks",
-            "Infinite status effects: Regeneration X, Speed X, Resistance X, Saturation"
-          ]
-        },
-        {
-          name: "backwoods",
-          description: "Maximized survival kit for enduring high-threat environments and base survival testing.",
-          items: [
-            "Maxed Netherite Armor Set (Protection IV, Unbreaking III, Mending, Thorns IV, Respiration IV, Aqua Affinity, Swift Sneak III, Feather Falling IV, Depth Strider III)",
-            "1x Maxed Netherite Axe & 1x Maxed Bow & 1x Shield (off-hand)",
-            "128x Tipped Arrows of Strong Harming",
-            "128x Torches & 128x Oak Planks",
-            "64x Enchanted Golden Apples & 2x Portal Catalysts"
-          ]
-        },
-        {
-          name: "rot",
-          description: "Extreme combat suite specifically designed for engaging the Rot Sentinel.",
-          items: [
-            "Maxed Netherite Armor Set (same as Backwoods suite)",
-            "1x Maxed Netherite Axe, Maxed Bow, and Maxed Shield (off-hand)",
-            "128x Tipped Arrows of Strong Harming & 64x Enchanted Golden Apples",
-            "12x Totems of Undying",
-            "TACZ Integration: Grants Minigun (AUTO) + infinite Creative Ammo Box if Timeless and Classics Zero is loaded"
+            "Infinite status effects: Regeneration X, Speed X, Resistance VI, Saturation"
           ]
         }
       ]

@@ -28,15 +28,23 @@ function getBlockRecipeIds(name: string): string[] {
     ];
   }
   if (name === "Petrified Rotten Oak Wood") {
+    return ['petrified_rotten_oak_wood'];
+  }
+  if (name === "Petrified Rotten Oak Planks, Slab, Stairs & Fence" || name === "Petrified Rotten Oak Family") {
     return [
-      'petrified_rotten_oak_wood', 'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs',
-      'petrified_rotten_oak_fence', 'petrified_rotten_stick'
+      'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs', 'petrified_rotten_oak_fence', 'petrified_rotten_stick'
     ];
   }
-  if (name === "Petrified Planks & Slab & Stairs" || name === "Petrified Planks, Slab, Stairs & Fence Gate") {
+  if (name === "Petrified Oak Planks, Slab, Stairs & Fence Gate" || name === "Petrified Oak Family") {
     return [
-      'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs'
+      'petrified_oak_stairs', 'petrified_oak_slab', 'petrified_oak_fence', 'petrified_oak_fence_gate'
     ];
+  }
+  if (name === "Lignum Caro") {
+    return ['lignum_caro_trapdoor', 'lignum_caro_sword', 'lignum_caro_ash'];
+  }
+  if (name === "Lignum Caro Trapdoor") {
+    return ['lignum_caro_trapdoor'];
   }
   if (name === "Fractus Core" || name === "Fractus Prime Core") {
     return ['fractus_core_nugget'];
@@ -114,12 +122,13 @@ export default function BlocksView() {
     },
     {
       name: "Ash-Rose",
-      dimension: "backwoods_rotting",
+      dimension: "petrified_weald",
       hardness: "0.0",
       blastRes: "0.0",
       burnTime: "100 ticks (flammable)",
       tool: "Shears / Hand",
-      description: "A highly specialized eerie flower placed exclusively by the elusive Ash-Weaver. Serves as the ultimate defense against Splinters.",
+      isUpdated: true,
+      description: "A highly specialized eerie flower generating naturally in the Ashen Barrens biome of the Petrified Weald, as well as planted by the elusive Ash-Weaver. Serves as the ultimate defense against Splinters.",
       mechanics: [
         "Splinter Freeze: Holding one in either hand, or placing it on the ground, causes all nearby Splinters to freeze and stop moving entirely.",
         "Wilt Decay: Slowly wilts over time while held, eventually crumbling into nothingness.",
@@ -222,11 +231,12 @@ export default function BlocksView() {
     },
     {
       name: "Splintered Oak Planks",
-      dimension: "overworld",
+      dimension: "backwoods_rotting",
       hardness: "2.2",
       blastRes: "3.5",
       tool: "Axe",
-      description: "A hazardous, defensive spiked building block covered in sharp splinters. Handled with caution to prevent injury.",
+      isUpdated: true,
+      description: "A hazardous, defensive spiked building block covered in sharp splinters. Crafted from Oak Planks combined with splinter shards or needles dropped by Backwoods Splinters.",
       mechanics: [
         "Crouch Placement Only: Non-sneak block placement on top is strictly locked and fails to prevent unwanted construction over active hazards. Players must sneak (crouch) to place any block on it.",
         "Mob Caution: Smart monsters detect the hazardous spiked surface and actively avoid pathfinding over these planks.",
@@ -243,7 +253,7 @@ export default function BlocksView() {
       blastRes: "23.0",
       tool: "Axe",
       isUpdated: true,
-      description: "The calcified, exceptionally dense remains of ancient flora. Features four-sided bark textures. Sturdiest block in the petrified set.",
+      description: "The calcified, exceptionally dense wood remains of ancient flora. Features four-sided bark textures. Sturdiest block in the petrified set, crafted from 4 Petrified Rotten Oak Logs.",
       isSpecial: true,
       specialText: "Material Properties: Extremely dense, very high blast resistance (23.0), and 100% immune to fire or lava ignition."
     },
@@ -269,12 +279,13 @@ export default function BlocksView() {
       specialText: "Completely immune to fire and lava ignition. Retains extreme structural integrity (hardness 17.0, blast resistance 22.0)."
     },
     {
-      name: "Petrified Planks, Slab, Stairs & Fence Gate",
+      name: "Petrified Rotten Oak Planks, Slab, Stairs & Fence",
       dimension: "petrified_weald",
       hardness: "10.0",
       blastRes: "9.0",
       tool: "Axe",
-      description: "Extremely heavy, calcified structural blocks including planks, slabs, stairs, and fence gates. They are entirely fireproof and offer immense blast resistance compared to normal wood.",
+      isUpdated: true,
+      description: "Heavily calcified, mineralized structural blocks derived from Petrified Rotten Oak Logs and Wood in the Petrified Weald. Includes planks, slabs, stairs, and fences. Completely fireproof and offers immense blast resistance compared to normal wood.",
       mechanics: [
         "Sound Properties: Produces custom hollow rotting wood step and break sounds.",
         "Fire Immunity: Since they are fossilized, they cannot be set on fire or destroyed by lava."
@@ -360,7 +371,8 @@ export default function BlocksView() {
       blastRes: "1.5",
       burnTime: "300 ticks",
       tool: "Axe",
-      description: "A fleshy trapdoor crafted from Lignum Caro. Can be opened by redstone or by hand.",
+      isUpdated: true,
+      description: "A fleshy trapdoor crafted from 6 Lignum Caro blocks. Can be opened by redstone or by hand.",
       mechanics: [
         "Reactive Organic Snapping: Due to its reactive organic nature, whenever an entity steps directly on a closed Lignum Caro Trapdoor, it will automatically snap open after a brief 4-tick delay, dropping the entity down.",
         "Furnace Fuel: It can be used as a furnace fuel (burns for 300 ticks)."
@@ -456,13 +468,13 @@ export default function BlocksView() {
       ]
     },
     {
-      name: "Petrified Oak Planks",
+      name: "Petrified Oak Planks, Slab, Stairs & Fence Gate",
       dimension: "backwoods_rotting",
       hardness: "2.2",
       blastRes: "3.0",
       tool: "Pickaxe",
       isUpdated: true,
-      description: "Heavy, fossilized oak wood planks that serve as the main filler block of the Backwoods. Over eons, these planks have absorbed mineral compounds from the living environment, rendering them rock-hard and completely fireproof.",
+      description: "Dense, fossilized oak wood blocks that constitute the primary terrain bedrock and filler of the Backwoods dimension. Over eons, these planks have absorbed mineral compounds, rendering them rock-hard (requiring a pickaxe to mine) and completely fireproof. Can be crafted into stairs, slabs, fences, and fence gates.",
       mechanics: [
         "Pale Oak Aesthetics: Same texture as standard vanilla Oak Planks, but has been bleached into a very slightly pale, mineralized tone.",
         "Total Fire Immunity: Completely fireproof and impervious to fire spreads or lava ignition.",

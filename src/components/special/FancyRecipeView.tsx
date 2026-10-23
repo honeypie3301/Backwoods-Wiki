@@ -82,7 +82,16 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     'heartwood_shard': { short: 'Hw', bg: 'bg-[#0f201d]', text: 'text-[#14b8a6]', border: 'border-[#1b3d37]', glow: 'group-hover:shadow-[0_0_10px_rgba(20,184,166,0.15)]' },
 
     // Petrified variations (greenish/teal tones)
+    'petrified_oak_planks': { short: 'Pop', bg: 'bg-[#141a15]', text: 'text-[#94a3b8]', border: 'border-[#243328]', glow: 'group-hover:shadow-[0_0_10px_rgba(148,163,184,0.15)]' },
+    'petrified_oak_stairs': { short: 'Post', bg: 'bg-[#141a15]', text: 'text-[#94a3b8]', border: 'border-[#243328]', glow: '' },
+    'petrified_oak_slab': { short: 'Posl', bg: 'bg-[#141a15]', text: 'text-[#94a3b8]', border: 'border-[#243328]', glow: '' },
+    'petrified_oak_fence': { short: 'Pof', bg: 'bg-[#141a15]', text: 'text-[#94a3b8]', border: 'border-[#243328]', glow: '' },
+    'petrified_oak_fence_gate': { short: 'Pogt', bg: 'bg-[#141a15]', text: 'text-[#94a3b8]', border: 'border-[#243328]', glow: '' },
     'petrified_rotten_oak_planks': { short: 'Ppl', bg: 'bg-[#0f1d13]', text: 'text-[#10b981]', border: 'border-[#1b3f27]', glow: 'group-hover:shadow-[0_0_10px_rgba(16,185,129,0.15)]' },
+    'petrified_rotten_oak_stairs': { short: 'Prst', bg: 'bg-[#0f1d13]', text: 'text-[#10b981]', border: 'border-[#1b3f27]', glow: '' },
+    'petrified_rotten_oak_slab': { short: 'Prsl', bg: 'bg-[#0f1d13]', text: 'text-[#10b981]', border: 'border-[#1b3f27]', glow: '' },
+    'petrified_rotten_oak_fence': { short: 'Prf', bg: 'bg-[#0f1d13]', text: 'text-[#10b981]', border: 'border-[#1b3f27]', glow: '' },
+    'petrified_rotten_oak_fence_gate': { short: 'Prg', bg: 'bg-[#0f1d13]', text: 'text-[#10b981]', border: 'border-[#1b3f27]', glow: '' },
     'petrified_rotten_oak_log': { short: 'Plo', bg: 'bg-[#122318]', text: 'text-[#34d399]', border: 'border-[#224c32]', glow: 'group-hover:shadow-[0_0_10px_rgba(52,211,153,0.15)]' },
     'petrified_rotten_oak_wood': { short: 'Pwd', bg: 'bg-[#122318]', text: 'text-[#34d399]', border: 'border-[#224c32]', glow: '' },
     'petrified_rotten_stick': { short: 'Pst', bg: 'bg-[#0e1711]', text: 'text-[#059669]', border: 'border-[#153120]', glow: '' },
@@ -113,6 +122,7 @@ function getItemVisualSpec(rawId: string): VisualSpec {
     // Miscellaneous
     'lignum_caro': { short: 'Lc', bg: 'bg-[#102d18]', text: 'text-[#4ade80]', border: 'border-[#1b4c26]', glow: 'group-hover:shadow-[0_0_10px_rgba(74,222,128,0.15)]' },
     'lignum_caro_ash': { short: 'Lca', bg: 'bg-[#1a2e22]', text: 'text-[#86efac]', border: 'border-[#274c35]', glow: '' },
+    'lignum_caro_trapdoor': { short: 'Lct', bg: 'bg-[#102d18]', text: 'text-[#4ade80]', border: 'border-[#1b4c26]', glow: 'group-hover:shadow-[0_0_10px_rgba(74,222,128,0.15)]' },
     'potion_of_inoculation': { short: 'Poi', bg: 'bg-[#123126]', text: 'text-[#a7f3d0]', border: 'border-[#1f5a43]', glow: 'group-hover:shadow-[0_0_12px_rgba(167,243,208,0.2)]' },
     'atrophy_potion': { short: 'Apo', bg: 'bg-[#181216]', text: 'text-[#ec4899]', border: 'border-[#3f1627]', glow: 'group-hover:shadow-[0_0_10px_rgba(236,72,153,0.15)]' },
     'cellular_collapse_potion': { short: 'Cc1', bg: 'bg-[#210f13]', text: 'text-[#f43f5e]', border: 'border-[#5c1122]', glow: 'group-hover:shadow-[0_0_12px_rgba(244,63,94,0.2)]' },
