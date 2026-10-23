@@ -32,7 +32,7 @@ function getBlockRecipeIds(name: string): string[] {
   }
   if (name === "Petrified Rotten Oak Planks, Slab, Stairs & Fence" || name === "Petrified Rotten Oak Family") {
     return [
-      'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs', 'petrified_rotten_oak_fence', 'petrified_rotten_stick'
+      'petrified_rotten_oak_planks', 'petrified_rotten_oak_stairs', 'petrified_rotten_oak_slab', 'petrified_rotten_oak_fence', 'petrified_rotten_stick'
     ];
   }
   if (name === "Petrified Oak Planks, Slab, Stairs & Fence Gate" || name === "Petrified Oak Family") {
@@ -612,7 +612,7 @@ export default function BlocksView() {
                 {/* Card Header */}
                 <div className="flex justify-between items-start gap-2">
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-serif text-sm sm:text-base font-bold text-[#e0e7e0] leading-snug truncate" title={block.name}>
+                    <h3 className="font-serif text-sm sm:text-base font-bold text-[#e0e7e0] leading-snug break-words" title={block.name}>
                       {block.name}
                     </h3>
                     <span className="text-[9px] font-mono uppercase text-[#709978] bg-[#111712] px-1.5 py-0.5 rounded border border-[#1b251c] mt-1 inline-block">

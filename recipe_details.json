@@ -602,6 +602,108 @@
       ]
     }
   ],
+  "the_backwoods:petrified_oak_fence": [
+    {
+      "file": "petrified_oak_fence_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 3,
+      "pattern": [
+        "aba",
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:petrified_oak_planks"
+        },
+        "b": {
+          "item": "minecraft:stick"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:petrified_oak_planks",
+        "b = minecraft:stick"
+      ]
+    }
+  ],
+  "the_backwoods:petrified_oak_fence_gate": [
+    {
+      "file": "petrified_oak_fence_gate_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 1,
+      "pattern": [
+        "aba",
+        "aba"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "minecraft:stick"
+        },
+        "b": {
+          "item": "the_backwoods:petrified_oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = minecraft:stick",
+        "b = the_backwoods:petrified_oak_planks"
+      ]
+    }
+  ],
+  "the_backwoods:petrified_oak_slab": [
+    {
+      "file": "petrified_oak_slab_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 6,
+      "pattern": [
+        "aaa"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:petrified_oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:petrified_oak_planks"
+      ]
+    }
+  ],
+  "the_backwoods:petrified_oak_stairs": [
+    {
+      "file": "petrified_oak_stairs_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 4,
+      "pattern": [
+        "a  ",
+        "aa ",
+        "aaa"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:petrified_oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:petrified_oak_planks"
+      ]
+    }
+  ],
+  "the_backwoods:petrified_rotten_oak_slab": [
+    {
+      "file": "petrified_rotten_slab_recipe.json",
+      "type": "minecraft:crafting_shaped",
+      "outputCount": 6,
+      "pattern": [
+        "aaa"
+      ],
+      "keyMap": {
+        "a": {
+          "item": "the_backwoods:petrified_rotten_oak_planks"
+        }
+      },
+      "ingredients": [
+        "a = the_backwoods:petrified_rotten_oak_planks"
+      ]
+    }
+  ],
   "the_backwoods:petrified_rotten_oak_fence": [
     {
       "file": "petrified_rotten_oak_fence_recipe.json",
