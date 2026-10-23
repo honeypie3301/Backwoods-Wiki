@@ -362,10 +362,23 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
 
     // Animation variables
     let animationId: number;
+    let isIntersecting = true;
     const startTime = performance.now();
+
+    // IntersectionObserver to pause WebGL rendering when scrolled out of viewport
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isIntersecting = entry.isIntersecting;
+    }, { threshold: 0.05 });
+
+    if (containerRef.current) {
+      intersectionObserver.observe(containerRef.current);
+    }
 
     const animate = () => {
       animationId = requestAnimationFrame(animate);
+
+      // Viewport culling: skip rendering when element is off-screen
+      if (!isIntersecting) return;
 
       const elapsed = (performance.now() - startTime) * 0.001;
 
@@ -412,7 +425,40 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     return () => {
       cancelAnimationFrame(animationId);
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+
+      // Deep-dispose all geometries, materials, and maps in the scene
+      scene.traverse((child) => {
+        if (child instanceof THREE.Mesh || child instanceof THREE.Points) {
+          if (child.geometry) {
+            child.geometry.dispose();
+          }
+          if (child.material) {
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+            for (const mat of mats) {
+              if ((mat as any).map) (mat as any).map.dispose();
+              if ((mat as any).lightMap) (mat as any).lightMap.dispose();
+              if ((mat as any).bumpMap) (mat as any).bumpMap.dispose();
+              if ((mat as any).normalMap) (mat as any).normalMap.dispose();
+              if ((mat as any).specularMap) (mat as any).specularMap.dispose();
+              if ((mat as any).envMap) (mat as any).envMap.dispose();
+              mat.dispose();
+            }
+          }
+        }
+      });
+
+      if (loadedTextureRef.current) {
+        loadedTextureRef.current.dispose();
+        loadedTextureRef.current = null;
+      }
+
+      controls.dispose();
+      renderer.forceContextLoss();
       renderer.dispose();
+      if (renderer.domElement && renderer.domElement.parentNode) {
+        renderer.domElement.parentNode.removeChild(renderer.domElement);
+      }
     };
   }, [resolvedModelUrl, resolvedTextureUrl, entityId]);
 

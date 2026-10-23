@@ -582,7 +582,6 @@ export default function RotLabView() {
   const [selectedSpawnMob, setSelectedSpawnMob] = useState<ArenaMobType>('warden');
   const [spawnCount, setSpawnCount] = useState<number>(2);
 
-  const [neuralPulse, setNeuralPulse] = useState<number>(0);
   const [logs, setLogs] = useState<string[]>([
     '[SYSTEM] Rot Adaptive Neural Core Online (550 Max HP, 15 Armor, 18 Base DMG).',
     '[SYSTEM] Minecraft 2D Top-Down physics engine initialized. Drag friction: 0.91x.',
@@ -688,7 +687,6 @@ export default function RotLabView() {
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
-      setNeuralPulse(p => (p + 1) % 1000);
       setState(prev => {
         const next = { ...prev };
         next.stateTicks += 1;
