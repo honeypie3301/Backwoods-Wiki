@@ -470,18 +470,18 @@ export default function EntitiesView() {
     {
       id: "hollow",
       name: "The Hollow",
-      title: "Phantom Spectator",
+      title: "Phantom Stalker & Subterranean Spectator",
       threatLevel: "Low",
       threatColor: "text-[#4ca398]",
       badgeBg: "bg-[#101b19]/20 border-[#1f3632]/30 text-[#4ca398]",
       borderColor: "border-[#101b19]/10",
       hp: "10 HP",
-      damage: "0 (Passive Stalker)",
+      damage: "0 (Non-Damaging Stalker / Blindness Infliction)",
       armor: "0 Points",
-      speed: "0.300 (Teleporting)",
-      dim: "Deep Backwoods Canopy",
+      speed: "0.300 Base (0.42–0.60 Rush)",
+      dim: "Deep Backwoods (Subterranean / Covered Canopies)",
       isUpdated: true,
-      desc: "An eerie stalking entity that manifests in deep forest canopies and dark caverns (requiring a 48-block separation from other Hollows on solid occluding ground). It never engages in physical confrontation. Instead, it looms in the distant fog, teleporting closer when the player is distracted, and instantly vanishes into thin air if attacked."
+      desc: "A stealthy phantom entity generating exclusively in the Deep Backwoods on solid occluding surfaces with a 48-block exclusion distance. Completely immune to drowning and explosions. It remains dormant under solid cover until looked at directly, initiating a two-phase freeze-and-rush sequence that strobes forward across terrain before self-discarding with a blindness burst. Striking it triggers an immediate vanish reflex and a 3.3% chance of inflicting Blindness VII."
     },
     {
       id: "stilt_walker",
@@ -900,6 +900,72 @@ export default function EntitiesView() {
     }
   ];
 
+  const hollowAbilities: Ability[] = [
+    {
+      title: "Subterranean Stare Detection & Stalking Loop",
+      trigger: "Player within 32x16x32 area obstructed from sky (!canSeeSkyFromBelowWater) making direct line-of-sight gaze (dot product >= 0.75) within 0.5 to 32 blocks",
+      description: "Scans continuously for vulnerable players sheltered under solid ceilings. If an observer looks directly at the Hollow with an unobstructed line of sight, an activation check is rolled based on world difficulty: Easy (1/540 per tick), Normal (1/360 per tick), or Hard (1/180 per tick). Successfully triggering the check locks a 600-tick (30.0s) per-player cooldown and advances the Hollow into Phase 1.",
+      category: "Stalking Sensor"
+    },
+    {
+      title: "Phase 1: Gaze Lock & Auditory Hallucination",
+      trigger: "Successful activation roll from observer gaze",
+      description: "Snaps its yaw directly toward the observing player and freezes completely motionless for 20 ticks (1.0s). Plays a deep, distorted ambient cave echo (ambient.cave at pitch 0.5) to disorient the target before transitioning immediately into rapid kinetic pursuit.",
+      category: "Threat Staging"
+    },
+    {
+      title: "Phase 2: High-Speed Strobe Rush",
+      trigger: "Phase 1 freeze duration expires (tick 21+)",
+      description: "Unleashes a phantom swoop screech (pitch 0.6) and charges forward at 1.8x base navigation speed with difficulty-scaled bonus speed (0.42 Easy, 0.50 Normal, 0.60 Hard). Flapping sounds emit every 5 ticks. Every 8 ticks (or instantly when encountering drop-offs >= 2.5 blocks), warps 2.0 to 5.0 blocks forward (up to 8.0 blocks over cliffs) with ender particles and chorus warp audio, creating an erratic strobe-teleport pursuit vector.",
+      category: "Kinetic Pursuit"
+    },
+    {
+      title: "Proximity Detonation & Blindness Disengagement",
+      trigger: "Closing distance to <= 1.3 blocks of player, navigation stuck > 15 ticks, or phase duration > 50 ticks",
+      description: "Deals 0 direct kinetic attack damage. Upon closing within 1.3 blocks of the player (or upon timeout/obstruction), inflicts Blindness (20 ticks / 1.0s), emits a dual phantom swoop and enderman teleport screech, combusts into a cloud of 45 smoke particles, and self-discards, enforcing a 300-tick (15.0s) cooldown on the target.",
+      category: "Self-Discharge"
+    },
+    {
+      title: "Retaliation Curse & Vanish Reflex",
+      trigger: "Sustaining any direct damage from an external entity",
+      description: "Instantly discards its physical body in a burst of 25 campfire smoke particles upon taking damage. Has a 1-in-30 (3.33%) chance to inflict severe Blindness VII for 60 ticks (3.0s) and a deafening cave screech (volume 8.0, pitch 0.5) directly onto the attacker.",
+      category: "Evasive Defense"
+    }
+  ];
+
+  const fractusPrimeAbilities: Ability[] = [
+    {
+      title: "Multi-Target Split Arrays",
+      trigger: "Engaging multiple targets or high-threat adversaries within engagement radius",
+      description: "Splits its high-intensity optical emitter into multiple concurrent beams, independently tracking and incinerating separate targets simultaneously across a wide engagement perimeter.",
+      category: "Laser Weaponry"
+    },
+    {
+      title: "Helix Ray & Telekinetic Hold",
+      trigger: "Target detected within long-range line-of-sight",
+      description: "Sweeps a colossal dual-helix beam across extreme distances. Targets caught in its focal grip are suspended mid-air in a tractor beam lock. Sustained physical strikes against the Prime weaken its tractor hold and force it to release the trapped target.",
+      category: "Tractor Beam & Control"
+    },
+    {
+      title: "Energy Sphere Burst",
+      trigger: "Core charge cycle reaches threshold",
+      description: "Periodically charges an expanding core energy sphere before releasing a devastating shockwave that expands outward in a wide radius. Vaporizes surrounding brittle blocks and foliage, dealing massive concussive damage and radial knockback to all non-woodbound targets. Enters a brief fatigue cooldown with reduced mobility and exposed defenses after firing.",
+      category: "Radial Devastation"
+    },
+    {
+      title: "Echolocation Network",
+      trigger: "Invisible, cloaked, or sneaking entities in vicinity",
+      description: "Bypasses standard visual cloaking. Emits acoustic sonar pulses that detect invisible or sneaking targets, highlighting their outlines for immediate laser targeting.",
+      category: "Sensory & Tracking"
+    },
+    {
+      title: "Sub-Terranean Fortification",
+      trigger: "Continuous passive state",
+      description: "Reinforced alloy plating and acoustic shielding heavily dampen incoming sonic attacks and physical kinetic impacts.",
+      category: "Defensive Chassis"
+    }
+  ];
+
   const toggleAbility = (idx: number) => {
     setOpenAbilityIndex(openAbilityIndex === idx ? null : idx);
   };
@@ -948,6 +1014,8 @@ export default function EntitiesView() {
       case 'ash_weaver': return ashWeaverAbilities;
       case 'lignum_gigas': return lignumGigasAbilities;
       case 'verdant_engine': return verdantEngineAbilities;
+      case 'hollow': return hollowAbilities;
+      case 'fractus_prime': return fractusPrimeAbilities;
       default: return [];
     }
   };
@@ -2278,17 +2346,108 @@ export default function EntitiesView() {
             </div>
           )}
 
-          {/* THE HOLLOW: Custom mechanics */}
+          {/* THE HOLLOW: Custom mechanics & Accordion */}
           {currentEntity.id === 'hollow' && (
-            <div className="space-y-4 pt-2 border-t border-[#1a221c]">
+            <div className="space-y-6 pt-2 border-t border-[#1a221c]">
               <UpdatedFrame id="hollow_custom_dossier" isUpdated={true}>
-                <div className="p-4 bg-[#101b19]/10 border border-[#1f3632]/20 rounded-lg text-xs text-[#8c8779] space-y-2 leading-relaxed">
-                  <p>
-                    <strong className="text-[#4ca398]">The Silent Observer:</strong> The Hollow is a non-hostile phantom. It never pursues nor attacks. It maintains a safe, eerie presence in deep forests and underground caverns, creeping closer when your sight is turned, but vanishes instantly with a warp sound if struck.
-                  </p>
-                  <p className="text-[11px] text-[#5a6b5e]">
-                    <strong className="text-[#81caa9]">Spawning Requirement:</strong> Spawns naturally on solid occluding surfaces requiring a 48-block exclusion radius (96-block bounding box) from any other living Hollow.
-                  </p>
+                <div className="space-y-5">
+                  <div className="p-4 bg-[#101b19]/20 border border-[#1f3632]/40 rounded-lg text-xs text-[#8c8779] leading-relaxed space-y-2">
+                    <p>
+                      <strong className="text-[#4ca398]">Subterranean Phantom Stalker:</strong> The Hollow is an eerie entity that stalks players without dealing physical direct attack damage. It activates when an obstructed observer maintains direct eye contact, triggering a high-speed strobe pursuit designed to induce panic and disorient prey through sudden blindness detonations.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px] font-mono text-[#5a6b5e]">
+                      <div className="p-2 bg-[#0c1311] border border-[#1f3632]/30 rounded">
+                        <strong className="text-[#81caa9] block mb-0.5">Spawning Rule:</strong>
+                        Solid occluding block in <span className="text-[#c9d1c9]">CUSTOM:DeepBackwoods</span> with a 48-block exclusion radius (96-block AABB box) from other living Hollows.
+                      </div>
+                      <div className="p-2 bg-[#0c1311] border border-[#1f3632]/30 rounded">
+                        <strong className="text-[#81caa9] block mb-0.5">Atmospheric Requisite:</strong>
+                        Must be sheltered from direct sky exposure (<code className="text-[#c9d1c9]">!canSeeSkyFromBelowWater</code>) within a 32x16x32 player scan zone.
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Abilities Accordion */}
+                  <div className="space-y-3">
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-[#4ca398] font-bold flex items-center gap-1.5">
+                      <Activity className="w-4 h-4 text-[#4ca398]" />
+                      Behavioral &amp; Combat Dossier (Click to expand details)
+                    </h4>
+                    
+                    <div className="space-y-2">
+                      {hollowAbilities.map((ab, idx) => {
+                        const isOpen = openAbilityIndex === idx;
+                        return (
+                          <div 
+                            key={idx} 
+                            className="bg-[#0b1210] border border-[#1f3632]/30 hover:border-[#2f524c]/40 rounded-lg transition-all"
+                          >
+                            <button
+                              onClick={() => toggleAbility(idx)}
+                              className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                            >
+                              <div className="flex items-center gap-2">
+                                <span className="text-[9px] font-mono text-[#4ca398] bg-[#101b19]/40 border border-[#1f3632]/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                  {ab.category}
+                                </span>
+                                <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-[#4ca398] transition-colors">
+                                  {ab.title}
+                                </span>
+                              </div>
+                              {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                            </button>
+                            
+                            {isOpen && (
+                              <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-[#1f3632]/20 space-y-2">
+                                <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                  <Zap className="w-3.5 h-3.5" />
+                                  <span>Trigger Condition: {ab.trigger}</span>
+                                </div>
+                                <p className="leading-relaxed pl-1">{ab.description}</p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Technical State Machine Matrix */}
+                  <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-3">
+                    <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Pursuit Timing &amp; Difficulty Calibration</h5>
+                    <div className="overflow-hidden rounded border border-[#1c241e] text-xs font-mono">
+                      <table className="w-full text-left border-collapse">
+                        <thead>
+                          <tr className="bg-[#121713] text-[#5a6b5e] border-b border-[#1c241e]">
+                            <th className="p-2">Difficulty</th>
+                            <th className="p-2 text-center">Gaze Activation Chance</th>
+                            <th className="p-2 text-center">Rush Velocity Boost</th>
+                            <th className="p-2 text-right">Player Cooldown</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-[#151c16] text-[#8c8779]">
+                          <tr>
+                            <td className="p-2 text-emerald-400 font-semibold">Easy</td>
+                            <td className="p-2 text-center">1 / 540 per tick (~3.7% / s)</td>
+                            <td className="p-2 text-center text-[#c9d1c9]">0.42 (1.40x)</td>
+                            <td className="p-2 text-right text-amber-400">600 ticks (30.0s)</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 text-amber-400 font-semibold">Normal</td>
+                            <td className="p-2 text-center">1 / 360 per tick (~5.5% / s)</td>
+                            <td className="p-2 text-center text-[#c9d1c9]">0.50 (1.67x)</td>
+                            <td className="p-2 text-right text-amber-400">600 ticks (30.0s)</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2 text-red-400 font-semibold">Hard</td>
+                            <td className="p-2 text-center">1 / 180 per tick (~11.1% / s)</td>
+                            <td className="p-2 text-center text-[#c9d1c9]">0.60 (2.00x)</td>
+                            <td className="p-2 text-right text-amber-400">600 ticks (30.0s)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </UpdatedFrame>
             </div>
@@ -3291,63 +3450,77 @@ export default function EntitiesView() {
             </div>
           )}
 
-          {/* FRACTUS PRIME: Custom mechanics */}
+          {/* FRACTUS PRIME: Custom mechanics & Accordion */}
           {currentEntity.id === 'fractus_prime' && (
-            <div className="space-y-5 pt-2 border-t border-[#1a221c]">
-              <div className="p-4 bg-cyan-950/20 border border-cyan-900/40 rounded-lg text-xs text-[#8c8779] leading-relaxed">
-                <strong className="text-cyan-400">Elite Planetary Laser Overseer:</strong> The colossal overseer drone commands a vast aerial perimeter. It bypasses camouflage, holds targets in telekinetic suspension, splits its laser array across multiple adversaries, and unleashes destructive energy detonations.
-              </div>
+            <div className="space-y-6 pt-2 border-t border-[#1a221c]">
+              <UpdatedFrame id="fractus_prime_custom_dossier" isUpdated={true}>
+                <div className="space-y-5">
+                  <div className="p-4 bg-cyan-950/20 border border-cyan-900/40 rounded-lg text-xs text-[#8c8779] leading-relaxed">
+                    <strong className="text-cyan-400">Elite Planetary Laser Overseer:</strong> The colossal overseer drone commands a vast aerial perimeter. It bypasses camouflage, holds targets in telekinetic suspension, splits its laser array across multiple adversaries, and unleashes destructive energy detonations.
+                  </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
-                  <h5 className="font-serif text-sm font-bold text-cyan-400">Multi-Target Split Arrays</h5>
-                  <p className="text-xs text-[#8c8779] leading-relaxed font-sans">
-                    Commands a broad combat engagement radius with intensified laser output.
-                  </p>
-                  <p className="text-xs text-[#8c8779] leading-relaxed">
-                    When engaging multiple threats or powerful adversaries, it splits its optical emitter into multiple concurrent beams, independently tracking and incinerating separate targets simultaneously.
-                  </p>
-                </div>
-                <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
-                  <h5 className="font-serif text-sm font-bold text-cyan-400">Helix Ray &amp; Telekinetic Hold</h5>
-                  <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Sweeps a colossal dual-helix beam across extreme distances. Targets caught in its focal grip are suspended mid-air in a tractor beam lock.
-                  </p>
-                  <p className="text-xs text-[#8c8779] leading-relaxed">
-                    <strong>Grip Escape:</strong> Sustained physical strikes against the Prime weaken its tractor hold and force it to release the trapped target.
-                  </p>
-                </div>
-              </div>
+                  {/* Abilities Accordion */}
+                  <div className="space-y-3">
+                    <h4 className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-bold flex items-center gap-1.5">
+                      <Activity className="w-4 h-4 text-cyan-400" />
+                      Behavioral &amp; Combat Dossier (Click to expand details)
+                    </h4>
+                    
+                    <div className="space-y-2">
+                      {fractusPrimeAbilities.map((ab, idx) => {
+                        const isOpen = openAbilityIndex === idx;
+                        return (
+                          <div 
+                            key={idx} 
+                            className="bg-[#081215] border border-cyan-900/30 hover:border-cyan-800/40 rounded-lg transition-all"
+                          >
+                            <button
+                              onClick={() => toggleAbility(idx)}
+                              className="w-full text-left px-4 py-3 flex items-center justify-between gap-4 cursor-pointer select-none"
+                            >
+                              <div className="flex items-center gap-2">
+                                <span className="text-[9px] font-mono text-cyan-400 bg-cyan-950/40 border border-cyan-800/50 px-2 py-0.5 rounded font-bold uppercase shrink-0">
+                                  {ab.category}
+                                </span>
+                                <span className="font-serif text-xs sm:text-sm font-bold text-[#e0e7e0] hover:text-cyan-300 transition-colors">
+                                  {ab.title}
+                                </span>
+                              </div>
+                              {isOpen ? <ChevronUp className="w-4 h-4 text-[#5a6b5e]" /> : <ChevronDown className="w-4 h-4 text-[#5a6b5e]" />}
+                            </button>
+                            
+                            {isOpen && (
+                              <div className="px-4 pb-4 pt-1 text-xs text-[#8c8779] border-t border-cyan-950/40 space-y-2">
+                                <div className="flex items-center gap-1 text-[10px] font-mono text-amber-500">
+                                  <Zap className="w-3.5 h-3.5" />
+                                  <span>Trigger Condition: {ab.trigger}</span>
+                                </div>
+                                <p className="leading-relaxed pl-1">{ab.description}</p>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
 
-              <div className="p-4 bg-[#140d0d] border border-red-950/40 rounded-lg space-y-2">
-                <h5 className="font-serif text-sm font-bold text-red-400 flex items-center gap-1.5">
-                  <Zap className="w-4 h-4 text-red-500" />
-                  Energy Sphere Burst
-                </h5>
-                <p className="text-xs text-[#8c8779] leading-relaxed">
-                  Periodically charges an expanding core energy sphere before releasing a devastating shockwave that expands outward in a wide radius.
-                </p>
-                <ul className="text-xs text-red-300 pl-4 list-disc space-y-1 leading-relaxed">
-                  <li>Vaporizes surrounding brittle blocks and foliage caught in the blast envelope.</li>
-                  <li>Deals massive concussive damage and radial knockback to all non-woodbound targets caught in the detonation.</li>
-                  <li><strong className="text-emerald-400">Post-Burst Fatigue:</strong> Enters a brief cooldown phase following the blast with reduced mobility and exposed defenses, giving adversaries a vital counterattack opening.</li>
-                </ul>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
-                  <h5 className="font-serif text-sm font-bold text-cyan-400">Echolocation Network</h5>
-                  <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Bypasses standard visual cloaking. Emits acoustic sonar pulses that detect invisible or sneaking targets, highlighting their outlines for immediate laser targeting.
-                  </p>
+                  {/* Operational Telemetry Cards */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
+                      <h5 className="font-serif text-sm font-bold text-cyan-400">Summoning Genesis</h5>
+                      <p className="text-xs text-[#8c8779] leading-relaxed">
+                        Fractus Prime cannot spawn naturally in the wild. It manifests exclusively when standard Fractus sentinels assemble in the Sub-Strata, halt patrol vectors, and converge inward to complete a sub-dimensional focal gateway breach.
+                      </p>
+                    </div>
+                    <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1.5">
+                      <h5 className="font-serif text-sm font-bold text-cyan-400">Post-Detonation Vulnerability</h5>
+                      <p className="text-xs text-[#8c8779] leading-relaxed">
+                        After releasing the Energy Sphere Burst, internal capacitor exhaustion severely hampers thruster agility and beam targeting for 60 ticks, exposing its core to physical and ranged counter-assaults.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-4 bg-[#090b09] border border-[#1b231c] rounded-lg space-y-1">
-                  <h5 className="font-serif text-sm font-bold text-[#e0e7e0]">Sub-Terranean Fortification</h5>
-                  <p className="text-xs text-[#8c8779] leading-relaxed">
-                    Reinforced alloy plating and acoustic shielding heavily dampen incoming sonic attacks and physical kinetic impacts.
-                  </p>
-                </div>
-              </div>
+              </UpdatedFrame>
             </div>
           )}
 
