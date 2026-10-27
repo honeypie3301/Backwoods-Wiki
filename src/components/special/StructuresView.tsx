@@ -516,12 +516,36 @@ export default function StructuresView() {
       color: "border-emerald-600 text-emerald-300",
       image: "structures/familiar_farlands.png",
       isUpdated: true
+    },
+
+    // THE CROSSWORKS
+    {
+      id: "suspended_ward",
+      name: "Suspended Ward",
+      dimension: "The Crossworks",
+      dimensionId: "crossworks",
+      tag: "Void-Suspended Tower Lattice (WIP)",
+      scale: "48x48m Cell Grid Spacing, 832m Vertical Height Range",
+      materials: ["Oak Logs", "Oak Planks", "Glass", "Oak Fences", "Ladders", "False Oak Planks", "Blindspot Splinter Spawners"],
+      desc: "A colossal, infinite architectural lattice of multi-tiered towers and suspended catwalks hovering over the void. The structure serves as the sole physical construct within The Crossworks, bridging distant sectors across an 832-block vertical world column.",
+      features: [
+        "Deterministic Cell Grid: Generates across a strict 48x48 block cell grid with hash-based collision rejection ensuring at least 12 blocks of clear open void between adjacent tower footprints.",
+        "Tower Anatomy & Heights: Features variable square floorplans (7x7, 11x11, and 15x15 blocks) reinforced with oak log corner pillars, oak plank perimeter walls, alternating 2-block-tall glass observation slits, and continuous corner ladder shafts spanning all internal floors.",
+        "Vertical Tiers & Suspended Bridges: Tiers repeat every 18 vertical blocks with 6-block room floor heights, interlinked by horizontal oak plank bridges protected by oak fence perimeter railings and 3 blocks of open headroom clearance.",
+        "Blindspot Splinter Spawners: 40% of generated towers are eligible for monster spawners, with each eligible floor having a 20% chance to host a centered Blindspot Splinter Spawner.",
+        "Deceptive Trapdoors & Pitfalls: Upper room floors carry a 10% chance to be paved with False Oak Planks that drop unaware explorers into the void. Complete bridge crossings also hold a 1% chance to be composed entirely of False Oak Planks.",
+        "Dimensional Portal Anomaly: Rooms possess an extremely rare 0.001% (1 in 100,000) chance per room roll to generate an Oak Plank dimensional portal frame (50% linking to The Grain, 50% linking to The Backwoods)."
+      ],
+      color: "border-amber-700/50 text-amber-300",
+      image: "structures/suspended_ward.png",
+      isUpdated: true
     }
   ];
 
   const dimensionsList = [
     { id: 'all', name: 'All Realms' },
     { id: 'backwoods', name: 'The Backwoods' },
+    { id: 'crossworks', name: 'The Crossworks' },
     { id: 'grain', name: 'The Grain' },
     { id: 'substrata', name: 'The Sub-Strata' },
     { id: 'petrified', name: 'The Petrified Weald' },

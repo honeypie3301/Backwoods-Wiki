@@ -33,9 +33,9 @@ export const WIKI_SEARCH_DATABASE: Record<string, string> = {
     Getting Started Portal Oak Planks Steel and Charcoal
     Mental Degradation Survival System
     Hostile Entities Behavior Woodbound
-    Custom Blocks Items Gear Dimensions The Still The Backwoods The Grain The Loss The Rotting The Familiar The Petrified Weald The Sub-Strata
+    Custom Blocks Items Gear Dimensions The Still The Backwoods The Grain The Loss The Rotting The Familiar The Petrified Weald The Sub-Strata The Crossworks
     Title Dial Picker Super Bonemeal Darwinism
-    Recent Highlights Woodweaver Boss Tetherless Resonant Pearl Potion Brewing Atrophy Cellular Collapse
+    Recent Highlights Woodweaver Boss Tetherless Resonant Pearl Potion Brewing Atrophy Cellular Collapse Suspended Ward Dustbound Galleries
   `,
   sanity: `
     Mental Degradation Core Survival Mechanic Internal Timer Exposure
@@ -66,6 +66,7 @@ export const WIKI_SEARCH_DATABASE: Record<string, string> = {
     The Familiar The Simulated Overworld Mirrored Plains Uncanny mob staring transient entities
     The Petrified Weald The Fossilized Remains Calcified Plains Weald Outskirts Petrified Thickwoods Fossilized Core Ashen Barrens Heavy Lungs
     The Sub-Strata Terminal Underworld Dead Grain Scaffolding descent Blindspot Splinters
+    The Crossworks Suspended Mega-Ward Dustbound Galleries 832-block height fatal fall protection void fall recovery dynamic anchor checkpoint WIP Work In Progress
     Portal Catalysts Steel and Charcoal Dead Memory Shard Splinter Needle Steel and Shard success rates
   `,
   structures: `
@@ -73,6 +74,7 @@ export const WIKI_SEARCH_DATABASE: Record<string, string> = {
     Void Basement Cavern Grid Sky Grid The Nest Grids Wood Buildings Buried Rooms Sub-Grain Atria Labyrinthine Grids
     Right Side Up City Upside Down City The Underside Void Bedrock Planks Scaffolding Tower Menger Sponge Catwalk Sub-Cavern
     Calcified Spikes Large Calcified Spikes Familiar Farlands
+    Suspended Ward Crossworks 48x48 cell grid lattice oak log pillars plank bridges false oak planks blindspot splinter spawners portal anomaly
   `,
   blocks: `
     Oak Planks Splintered Oak Planks Rotten Oak Wood Rotten Oak Planks Lignum Caro

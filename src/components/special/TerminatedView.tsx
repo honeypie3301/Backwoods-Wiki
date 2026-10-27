@@ -1055,6 +1055,7 @@ export default function TerminatedView() {
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       if (filteredOpponents.length > 0) {
         const currentIndex = filteredOpponents.findIndex(op => op.id === selectedOpponentId);
         const nextIndex = (currentIndex + 1) % filteredOpponents.length;

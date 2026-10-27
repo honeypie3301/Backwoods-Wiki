@@ -61,10 +61,12 @@ export default function HomeView() {
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
             <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">Terminated Dossier Mobile Layout & Asset Fix:</strong> Overhauled CRT monitor typography, column boundaries, and dynamic viewport heights to prevent text/header overlapping on mobile devices. Encoded asset URI resolution for modded entity paths containing spaces.</li>
-              <li><strong className="text-amber-300">Wiki Loading Performance Optimization:</strong> Integrated dynamic code-splitting via React.lazy and Suspense for all archive views alongside Rollup manual vendor chunking, reducing initial bundle weight by over 70% for near-instant first paint.</li>
-              <li><strong className="text-amber-300">The Ash-Weaver Dossier & State Matrix:</strong> Documented complete biological, behavioral, and symbiotic mechanics for The Ash-Weaver with interactive 4-phase State Matrix and 7 behavioral logic modules.</li>
-              <li><strong className="text-amber-300">Oak Pyramid & Menger Sponge Calibrations:</strong> Documented the Oak Pyramid rarity filter and updated the Menger Sponge structural composition.</li>
+              <li><strong className="text-amber-300">The Crossworks Dimension & Dustbound Galleries:</strong> Added documentation for The Crossworks (Y=-64 to Y=767, 832m build height) and its solitary biome Dustbound Galleries with active WIP banner and void fall / lethal fall anchor loop protection.</li>
+              <li><strong className="text-amber-300">Suspended Ward Architectural Lattice:</strong> Documented 48×48 cell grid structure generation, including oak log corner pillars, suspended plank catwalks, 40% building / 20% floor Blindspot Splinter spawner rates, 10% false plank pitfall traps, and 0.001% portal generation anomalies.</li>
+              <li><strong className="text-amber-300">Hewn Splinter Effigy Mechanics & Deflection:</strong> Snapped cardinal rotation (90° yaw / 0° pitch) with zero mobility (0.0 movement speed); complete projectile deflection immunity, fluid push and falling anvil invulnerability, and guaranteed Oak Planks drop (100% chance, 1x).</li>
+              <li><strong className="text-amber-300">The Rot Black Hole Detonation & Loot Dissolution:</strong> Physical remains completely dissolve upon defeat via terminal black hole singularity detonation, yielding 7,777 XP with 0 physical item drops.</li>
+              <li><strong className="text-amber-300">Verdant Engine Defeat Yield:</strong> Calibrated Verdant Engine death experience yield to 70,000 XP following core fracture detonation.</li>
+              <li><strong className="text-amber-300">Entity Experience Rebalancing:</strong> Calibrated death experience values for Stilt Walker (30 XP), Fractus (25 XP), and Hewn Splinter (3 XP).</li>
             </ul>
           </div>
         </div>

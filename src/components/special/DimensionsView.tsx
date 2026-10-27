@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Compass, ShieldAlert, Flame, Eye, Image as ImageIcon, Search, X, Maximize2, ChevronDown, Check } from 'lucide-react';
+import { Compass, ShieldAlert, Flame, Eye, Image as ImageIcon, Search, X, Maximize2, ChevronDown, Check, AlertTriangle } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
 
 function getAbsoluteAssetUrl(url: string) {
@@ -40,6 +40,7 @@ export interface BiomeData {
 export interface DimensionData {
   id: string;
   isUpdated?: boolean;
+  isWip?: boolean;
   name: string;
   subtitle: string;
   color: string;
@@ -458,6 +459,56 @@ export default function DimensionsView() {
           desc: "Anti-cheese environmental defenses active: primed explosives trigger Blindness and Darkness on the player and are discarded before exploding; large-scale lava deposits (10+ blocks) are purged into air; widespread fire (40+ blocks) triggers an automatic domino purge."
         }
       ]
+    },
+    {
+      id: "crossworks",
+      isUpdated: true,
+      isWip: true,
+      name: "The Crossworks",
+      subtitle: "Suspended Mega-Ward / Dimensional Lattice",
+      color: "from-amber-700 to-amber-950",
+      borderColor: "border-amber-800/50",
+      bgGlow: "bg-amber-950/30",
+      textColor: "text-amber-200",
+      accentColor: "text-amber-400",
+      desc: "A colossal, void-suspended architectural superstructure spanning an 832-block vertical world column (Y = -64 to Y = 767). Constructed of interconnected oak log towers, elevated catwalks, and observation corridors hovering over the abyss. Natural caves, aquifers, and subterranean stone noise are entirely omitted in favor of continuous architectural lattice and void.",
+      access: "Work In Progress: No survival portal frame, catalyst item, or return egress route is currently registered in standard gameplay.",
+      biomes: [
+        {
+          id: "dustbound_galleries",
+          name: "Dustbound Galleries",
+          image: "structures/suspended_ward.png",
+          desc: "The solitary biome comprising the entirety of The Crossworks. Completely void of biological flora or mineral veins, existing strictly as the spatial container for the Suspended Ward superstructure.",
+          dimensionId: "crossworks",
+          dimensionName: "The Crossworks"
+        }
+      ],
+      rules: [
+        {
+          title: "832-Block World Volume",
+          desc: "World height spans 832 blocks from Y = -64 to Y = 767. A continuous Oak Plank safety floor rests at Y = -59 above the bedrock bottom (Y = -64 to -60), with open void surrounding all elevated structures."
+        },
+        {
+          title: "Fatal Fall Protection",
+          desc: "Lethal fall impacts are completely intercepted. If a fall would result in fatal damage, damage is completely negated, the player's health is restored to maximum, and they are rewound back to their last safe floor position."
+        },
+        {
+          title: "Void Fall Recovery",
+          desc: "Falling into the lower void below Y = -72 does not result in death. Out-of-world damage is canceled, health is restored to full, and the explorer is rewound back to their registered safety anchor."
+        },
+        {
+          title: "Dynamic Anchor Checkpoints",
+          desc: "Player coordinates and orientation are automatically registered every 4 ticks whenever standing on solid, supported ground with valid 2-block head clearance."
+        },
+        {
+          title: "Post-Rewind Invulnerability",
+          desc: "Upon rewinding to an anchor following a fall or void breach, all incoming damage is canceled for a 2-second grace period (40 ticks)."
+        },
+        {
+          title: "Arrival Logistics",
+          desc: "Upon dimensional entry, the player is automatically deposited inside the top room of the nearest Suspended Ward tower with safe floor placement and two blocks of vertical clearance."
+        }
+      ]
     }
   ];
 
@@ -581,15 +632,39 @@ export default function DimensionsView() {
           </div>
 
           {/* Details Panel */}
-          <div className="lg:col-span-8 p-6 bg-[#0c0e0c] border border-[#1d251e] rounded-xl relative overflow-hidden space-y-6">
-            <div className={`absolute right-0 top-0 w-32 h-32 blur-3xl opacity-25 rounded-full ${currentDim.bgGlow}`} />
+          <div className="lg:col-span-8">
+            <UpdatedFrame id={`dim_details_${currentDim.id}`} isUpdated={!!currentDim.isUpdated}>
+              <div className="p-6 bg-[#0c0e0c] border border-[#1d251e] rounded-xl relative overflow-hidden space-y-6">
+                <div className={`absolute right-0 top-0 w-32 h-32 blur-3xl opacity-25 rounded-full ${currentDim.bgGlow}`} />
 
-            {/* Title */}
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#5a6b5e]">Dimension Profile</span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e0e7e0] mt-1">{currentDim.name}</h3>
-              <p className="text-xs text-[#709978] font-mono mt-0.5">{currentDim.subtitle}</p>
-            </div>
+                {/* Title */}
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#5a6b5e]">Dimension Profile</span>
+                    {currentDim.isWip && (
+                      <span className="px-2 py-0.5 text-[9px] font-mono uppercase font-bold tracking-wider rounded bg-amber-950/80 text-amber-400 border border-amber-600/60">
+                        Work In Progress
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#e0e7e0] mt-1">{currentDim.name}</h3>
+                  <p className="text-xs text-[#709978] font-mono mt-0.5">{currentDim.subtitle}</p>
+                </div>
+
+                {/* WIP Alert Banner */}
+                {currentDim.isWip && (
+                  <div className="p-4 bg-amber-950/40 border border-amber-600/60 rounded-lg flex items-start gap-3 shadow-[0_0_15px_rgba(217,119,6,0.15)]">
+                    <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <div className="text-xs font-mono uppercase font-bold tracking-wider text-amber-300">
+                        Work In Progress — Development Realm
+                      </div>
+                      <p className="text-xs text-amber-200/90 leading-relaxed">
+                        This dimension is currently under active development. No standard survival portal frames, catalysts, or exit routes are implemented yet.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
             {/* Desc & Access */}
             <div className="space-y-4">
@@ -673,8 +748,10 @@ export default function DimensionsView() {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </UpdatedFrame>
+      </div>
+    </div>
+  )}
 
       {/* BIOMES DOSSIER TAB */}
       {activeTab === 'biomes' && (

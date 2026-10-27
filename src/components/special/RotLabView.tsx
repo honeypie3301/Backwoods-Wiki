@@ -687,6 +687,7 @@ export default function RotLabView() {
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
       setState(prev => {
         const next = { ...prev };
         next.stateTicks += 1;
