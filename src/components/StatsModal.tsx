@@ -15,7 +15,8 @@ import {
   Search,
   Monitor,
   Maximize2,
-  Minimize2
+  Minimize2,
+  MousePointerClick
 } from 'lucide-react';
 import { 
   doc, 
@@ -37,17 +38,21 @@ import { detectClientEnvironment } from '../utils/deviceInfo';
 
 interface TelemetryLog {
   timestamp: string;
-  type: 'unique' | 'repeat';
+  type: 'unique' | 'repeat' | 'click' | string;
   slug: string;
   visitorId: string;
   os?: string;
   browser?: string;
+  target?: string;
+  page?: string;
+  category?: string;
 }
 
 interface SearchSummary {
   totalLogs: number;
   uniqueCount: number;
   repeatCount: number;
+  clickCount: number;
   matchedNodes: string[];
   newestDate?: string;
   oldestDate?: string;
@@ -76,7 +81,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isSandbox, setIsSandbox] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat'>('all');
+  const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat' | 'click'>('all');
   const [showAllTargets, setShowAllTargets] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState<'overview' | 'stream'>('overview');
   const [isDeviceIgnored, setIsDeviceIgnored] = useState<boolean>(() => {
@@ -456,7 +461,10 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
             slug: data.slug || 'home',
             visitorId: data.visitorId || 'unknown',
             os: data.os,
-            browser: data.browser
+            browser: data.browser,
+            target: data.target,
+            page: data.page,
+            category: data.category
           });
         });
         setStats(prev => {
@@ -506,14 +514,40 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     setTimeout(() => setIsRefreshing(false), 600);
   };
 
-  const getArticleTitle = (slug: string) => {
+  const getArticleTitle = (slug: string, target?: string) => {
+    if (target) return target;
     if (slug === 'telemetry-terminal' || slug === 'terminal') {
       return 'Telemetry Terminal';
+    }
+    if (slug.includes(':')) {
+      const parts = slug.split(':');
+      const pageSlug = parts[0];
+      const itemKey = parts.slice(1).join(':');
+      const pageArticle = articles.find(a => a.slug === pageSlug);
+      const pageTitle = pageArticle ? pageArticle.title : (pageSlug.charAt(0).toUpperCase() + pageSlug.slice(1));
+      const formattedItem = itemKey.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      return `${formattedItem} (${pageTitle})`;
     }
     const article = articles.find(a => a.slug === slug);
     if (article) return article.title;
     // Format fallback neatly
     return slug.charAt(0).toUpperCase() + slug.slice(1).replace(/-/g, ' ');
+  };
+
+  const formatLogDisplay = (log: TelemetryLog) => {
+    if (log.slug === 'telemetry-terminal' || log.slug === 'terminal') {
+      return { main: 'Telemetry Terminal', sub: null };
+    }
+    if (log.type === 'click' && log.target) {
+      let main = log.target;
+      // Strip legacy redundant "(page: ...)"
+      main = main.replace(/\s*\(page:\s*[^)]+\)/gi, '').trim();
+      const pageTitle = log.page ? getArticleTitle(log.page) : null;
+      const sub = pageTitle && !main.toLowerCase().includes(pageTitle.toLowerCase()) ? pageTitle : null;
+      return { main, sub };
+    }
+    const title = getArticleTitle(log.slug);
+    return { main: title, sub: null };
   };
 
   // Compute top visited pages breakdown
@@ -558,6 +592,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
         totalLogs: 0,
         uniqueCount: 0,
         repeatCount: 0,
+        clickCount: 0,
         matchedNodes: []
       });
       return;
@@ -566,10 +601,12 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     const targetCounts: Record<string, number> = {};
     let uniqueCount = 0;
     let repeatCount = 0;
+    let clickCount = 0;
 
     results.forEach(r => {
       targetCounts[r.slug] = (targetCounts[r.slug] || 0) + 1;
-      if (r.type === 'unique') uniqueCount++;
+      if (r.type === 'click') clickCount++;
+      else if (r.type === 'unique') uniqueCount++;
       else repeatCount++;
     });
 
@@ -591,6 +628,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       totalLogs: results.length,
       uniqueCount,
       repeatCount,
+      clickCount,
       matchedNodes: nodes,
       newestDate: results[0]?.timestamp,
       oldestDate: results[results.length - 1]?.timestamp,
@@ -747,32 +785,28 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
         >
           {/* Header - Minimalist Tactical HUD Bar */}
           <div 
-            onDoubleClick={toggleFullscreen}
             className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5 bg-[#0b100d] border-b border-[#1b261e] select-none gap-2 cursor-default"
           >
             <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
-                  onDoubleClick={handleStopTracking}
-                  title="Double-click: Stop tracking (ignore this device)"
+                  onClick={handleStopTracking}
+                  title="Stop tracking (ignore this device)"
                   className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
                     isDeviceIgnored 
                       ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.7)]' 
                       : 'bg-red-500/35 hover:bg-red-500/75'
                   }`}
                 />
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  className="w-2.5 h-2.5 rounded-full bg-amber-500/40 hover:bg-amber-500/80 transition-colors cursor-pointer" 
-                  title="Click: Toggle Fullscreen / Maximize" 
+                <span
+                  className="w-2.5 h-2.5 rounded-full bg-amber-500/40" 
+                  title="Terminal indicator" 
                 />
                 <button
                   type="button"
-                  onClick={toggleFullscreen}
-                  onDoubleClick={handleResumeTracking}
-                  title="Click: Toggle Maximize | Double-click: Resume tracking"
+                  onClick={handleResumeTracking}
+                  title="Resume tracking"
                   className={`w-2.5 h-2.5 rounded-full transition-colors cursor-pointer ${
                     !isDeviceIgnored 
                       ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.7)]' 
@@ -1112,6 +1146,17 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         >
                           Return ({activeLogsPool.filter(l => l.type === 'repeat').length})
                         </button>
+                        <button
+                          type="button"
+                          onClick={() => setLogFilter('click')}
+                          className={`px-2 py-0.5 text-[9px] sm:text-[10px] uppercase font-semibold rounded transition-colors cursor-pointer ${
+                            logFilter === 'click'
+                              ? 'bg-purple-950/70 text-purple-300 border border-purple-800'
+                              : 'text-[#4f6454] hover:text-purple-400'
+                          }`}
+                        >
+                          Clicks ({activeLogsPool.filter(l => l.type === 'click').length})
+                        </button>
                       </div>
                     </div>
 
@@ -1217,96 +1262,96 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                       ) : (
                         filteredLogs.map((log, index) => {
                           const date = new Date(log.timestamp);
-                          const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
                           const timeOnly = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
                           const isNew = log.type === 'unique';
                           const relativeTime = formatRelativeTime(log.timestamp);
                           const isCurrentVisitor = log.visitorId === currentVisitorIdShort;
                           const displayBrowser = log.browser || (isCurrentVisitor ? clientEnv.browser : null);
                           const displayOs = log.os || (isCurrentVisitor ? clientEnv.os : null);
+                          const display = formatLogDisplay(log);
 
                           return (
                             <div 
                               key={`${log.timestamp}-${index}`} 
-                              className="px-2.5 py-1.5 sm:py-2 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex flex-col gap-1"
+                              className="px-2.5 py-1.5 bg-[#080c09] hover:bg-[#101712] border border-[#162018] rounded transition-colors flex items-center justify-between gap-2 min-h-[32px] text-[10px] sm:text-[11px]"
                             >
-                              {/* Primary Row: Timestamp, Status Pill, Target Destination, Visitor Chip */}
-                              <div className="flex items-center justify-between gap-1.5 min-w-0">
-                                <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 truncate">
-                                  {/* Timestamp */}
-                                  <span className="text-[#4e6453] text-[9px] sm:text-[10px] font-semibold shrink-0" title={date.toLocaleString()}>
-                                    [{timeOnly}<span className="hidden sm:inline"> · {dateStr}</span>]
-                                  </span>
+                              {/* Left: Timestamp, Type Badge, Target Action */}
+                              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 flex-1 truncate">
+                                {/* Monospace Timestamp */}
+                                <span className="text-[#4e6453] text-[9px] sm:text-[10px] font-semibold shrink-0" title={date.toLocaleString()}>
+                                  [{timeOnly}]
+                                </span>
 
-                                  {/* Categorized Status Pill */}
-                                  {log.slug === 'telemetry-terminal' ? (
-                                    <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
-                                      <span className="hidden sm:inline">TERMINAL</span>
-                                      <span className="sm:hidden">TERM</span>
-                                    </span>
-                                  ) : isNew ? (
-                                    <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
-                                      <span className="hidden sm:inline">NEW NODE</span>
-                                      <span className="sm:hidden">NEW</span>
-                                    </span>
-                                  ) : (
-                                    <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
-                                      <span className="hidden sm:inline">RETURN</span>
-                                      <span className="sm:hidden">RET</span>
+                                {/* Categorized Badge */}
+                                {log.type === 'click' ? (
+                                  <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-purple-950/80 text-purple-300 border border-purple-700/80">
+                                    CLK
+                                  </span>
+                                ) : log.slug === 'telemetry-terminal' ? (
+                                  <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-cyan-950/80 text-cyan-300 border border-cyan-800/80">
+                                    TERM
+                                  </span>
+                                ) : isNew ? (
+                                  <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-emerald-950/80 text-emerald-300 border border-emerald-700/80">
+                                    NEW
+                                  </span>
+                                ) : (
+                                  <span className="shrink-0 px-1.5 py-0.2 rounded text-[7.5px] sm:text-[8px] uppercase font-bold tracking-wider bg-[#1c180a] text-amber-300 border border-amber-800/80">
+                                    RET
+                                  </span>
+                                )}
+
+                                {/* Destination Title */}
+                                <span className="text-[#c8d8cb] hover:text-emerald-300 transition-colors truncate font-medium flex items-center gap-1">
+                                  {log.type === 'click' ? (
+                                    <MousePointerClick className="w-3 h-3 text-purple-400 shrink-0 inline" />
+                                  ) : log.slug === 'telemetry-terminal' ? (
+                                    <Terminal className="w-3 h-3 text-cyan-400 shrink-0 inline" />
+                                  ) : null}
+                                  <span className="truncate">{display.main}</span>
+                                  {display.sub && (
+                                    <span className="text-[#556e5d] text-[9px] shrink-0 font-normal">
+                                      · {display.sub}
                                     </span>
                                   )}
-
-                                  {/* Destination Title */}
-                                  <span className="text-[#a4c9ad] hover:text-emerald-300 transition-colors truncate text-[11px] sm:text-xs font-medium flex items-center gap-1">
-                                    {log.slug === 'telemetry-terminal' && (
-                                      <Terminal className="w-3 h-3 text-cyan-400 shrink-0 inline" />
-                                    )}
-                                    <span className="truncate">{getArticleTitle(log.slug)}</span>
-                                  </span>
-                                </div>
-
-                                {/* Clickable Visitor ID Chip */}
-                                <div className="shrink-0">
-                                  {isCurrentVisitor ? (
-                                    <button
-                                      type="button"
-                                      onClick={() => setSearchUserId(log.visitorId)}
-                                      title="Click to search full database history for your node"
-                                      className="text-[8.5px] sm:text-[9.5px] text-emerald-300 bg-emerald-950/60 px-1.5 sm:px-2 py-0.5 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
-                                    >
-                                      {log.visitorId} <span className="hidden sm:inline">(YOU)</span>
-                                    </button>
-                                  ) : (
-                                    <button
-                                      type="button"
-                                      onClick={() => setSearchUserId(log.visitorId)}
-                                      title={`Click to search complete database history for node ${log.visitorId}`}
-                                      className="text-[8.5px] sm:text-[9.5px] text-[#637d68] bg-[#0d140f] px-1.5 sm:px-2 py-0.5 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
-                                    >
-                                      {log.visitorId}
-                                    </button>
-                                  )}
-                                </div>
+                                </span>
                               </div>
 
-                              {/* Secondary Row: Device Info (Browser + OS) and Elapsed Time */}
-                              <div className="flex items-center justify-between text-[8.5px] sm:text-[9.5px] font-mono border-t border-[#121a14] pt-1 text-[#5e7765]">
-                                <div className="flex items-center gap-1.5 text-[#738e7a] min-w-0 truncate">
-                                  <Monitor className="w-3 h-3 text-emerald-500/70 shrink-0" />
-                                  <span className="text-[#96b49e] font-semibold">
-                                    {displayBrowser || (isCurrentVisitor ? clientEnv.browser : 'Client Browser')}
-                                  </span>
-                                  <span className="text-[#3c4f41]">·</span>
-                                  <span className="text-[#6d8874]">
-                                    {displayOs || (isCurrentVisitor ? clientEnv.os : 'Client OS')}
-                                  </span>
-                                  {isCurrentVisitor && (
-                                    <span className="text-[7px] sm:text-[7.5px] px-1.5 py-0.2 rounded bg-emerald-950/60 border border-emerald-800 text-emerald-400 font-bold ml-1 uppercase">
-                                      Your Device
+                              {/* Right: Device Pill, Visitor Node Chip, Relative Time */}
+                              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                                {/* Inline Device Pill */}
+                                {(displayBrowser || displayOs) && (
+                                  <div className="hidden md:flex items-center gap-1 text-[8px] sm:text-[8.5px] text-[#5e7765] bg-[#0c120e] px-1.5 py-0.5 rounded border border-[#162017]">
+                                    <Monitor className="w-2.5 h-2.5 text-emerald-500/70 shrink-0" />
+                                    <span className="truncate max-w-[130px]">
+                                      {displayBrowser} · {displayOs}
                                     </span>
-                                  )}
-                                </div>
-                                <span className="text-[#415546] shrink-0 text-[8px] sm:text-[9px] ml-2 font-mono">
+                                  </div>
+                                )}
+
+                                {/* Visitor Node Chip */}
+                                {isCurrentVisitor ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => setSearchUserId(log.visitorId)}
+                                    title="Click to search full database history for your node"
+                                    className="text-[8.5px] sm:text-[9px] text-emerald-300 bg-emerald-950/60 px-1.5 sm:px-2 py-0.5 rounded border border-emerald-700/60 font-mono font-semibold hover:bg-emerald-900/80 hover:border-emerald-500 transition-colors cursor-pointer"
+                                  >
+                                    {log.visitorId} <span className="hidden sm:inline">(YOU)</span>
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={() => setSearchUserId(log.visitorId)}
+                                    title={`Click to search complete database history for node ${log.visitorId}`}
+                                    className="text-[8.5px] sm:text-[9px] text-[#637d68] bg-[#0d140f] px-1.5 sm:px-2 py-0.5 rounded border border-[#1c271f] font-mono hover:text-emerald-400 hover:border-[#2f3f33] transition-colors cursor-pointer"
+                                  >
+                                    {log.visitorId}
+                                  </button>
+                                )}
+
+                                {/* Elapsed Time */}
+                                <span className="text-[#415546] shrink-0 text-[8px] sm:text-[8.5px] font-mono min-w-[34px] text-right">
                                   {relativeTime}
                                 </span>
                               </div>

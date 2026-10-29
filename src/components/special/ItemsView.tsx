@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
 import FancyRecipeView from './FancyRecipeView';
+import { trackTelemetryClick } from '../../utils/telemetry';
 
 interface ItemData {
   id: string;
@@ -902,9 +903,12 @@ export default function ItemsView() {
               return (
                 <UpdatedFrame key={item.id} id={`item_btn_${item.id}`} isUpdated={!!item.isUpdated}>
                   <button
-                  
-                  onClick={() => setSelectedItemId(item.id)}
-                  className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 cursor-pointer flex flex-col ${
+                    data-telemetry-item={item.name}
+                    onClick={() => {
+                      setSelectedItemId(item.id);
+                      trackTelemetryClick({ page: 'items', target: item.name, category: item.category });
+                    }}
+                    className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 cursor-pointer flex flex-col ${
                     isSelected
                       ? 'bg-gradient-to-r from-[#172219]/40 to-[#0e120f] border-[#445c47] text-[#e0e7e0] font-semibold'
                       : 'bg-[#060806] hover:bg-[#0c100c] text-[#829285] border-[#131a14]'

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
+import { trackTelemetryClick } from '../../utils/telemetry';
 
 const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = {
   rot: {
@@ -489,22 +490,6 @@ export default function EntitiesView() {
     setTimeout(() => setCopiedCommand(null), 1500);
   };
 
-  const handleEntitySelect = (entityId: string) => {
-    setSelectedEntity(entityId);
-    setOpenAbilityIndex(0);
-    if (entityId === 'rot') {
-      const now = Date.now();
-      const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
-      rotClickTimesRef.current = recent;
-      if (recent.length >= 5) {
-        rotClickTimesRef.current = [];
-        window.location.hash = '#/wiki/rot-lab';
-      }
-    } else {
-      rotClickTimesRef.current = [];
-    }
-  };
-
   const THREAT_VALUES: Record<string, number> = {
     "Passive": 0,
     "Low": 1,
@@ -902,6 +887,28 @@ export default function EntitiesView() {
       desc: "A towering grid-bound entity standing 5.8 blocks tall that patrols subterranean floors strictly between Y=20 and Y=46 (requiring a 10-block clearance from other Palus specimens on solid ground). Stalks prey through architectural mimicry and gaze hypnosis. When the Rot is detected within 100 blocks, it immediately drops all targets, charges a 3 to 5 second flashing particle aura, and teleports 70 to 120 blocks away to safety. It also uses grid-aligned teleportation to dodge incoming projectiles."
     }
   ];
+
+  const handleEntitySelect = (entityId: string) => {
+    setSelectedEntity(entityId);
+    setOpenAbilityIndex(0);
+    const matchedEntity = entities.find(e => e.id === entityId);
+    trackTelemetryClick({
+      page: 'entities',
+      target: matchedEntity ? matchedEntity.name : entityId,
+      category: matchedEntity ? matchedEntity.threatLevel : 'entity'
+    });
+    if (entityId === 'rot') {
+      const now = Date.now();
+      const recent = [...rotClickTimesRef.current, now].filter(t => now - t <= 2000);
+      rotClickTimesRef.current = recent;
+      if (recent.length >= 5) {
+        rotClickTimesRef.current = [];
+        window.location.hash = '#/wiki/rot-lab';
+      }
+    } else {
+      rotClickTimesRef.current = [];
+    }
+  };
 
   const rotAbilities: Ability[] = [
     {

@@ -606,6 +606,7 @@ export default function BlocksView() {
           const cardContent = (
             <div 
               key={block.name}
+              data-telemetry-item={block.name}
               className="p-3.5 sm:p-4 bg-[#0a0d0a] border border-[#172018] rounded-xl flex flex-col justify-between hover:border-[#2a382d] transition-all duration-200 h-full space-y-3"
             >
               <div className="space-y-2.5">

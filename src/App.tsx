@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
 import StatsModal from './components/StatsModal';
 import { detectClientEnvironment } from './utils/deviceInfo';
+import { trackTelemetryClick } from './utils/telemetry';
 
 function WikiContainer() {
   const { slug } = useParams<{ slug: string }>();
@@ -197,6 +198,95 @@ function WikiContainer() {
       recordVisit();
     }
   }, [activeSlug, loading, error]);
+
+  // Universal Global Click Interaction Telemetry Tracker (zero page hardcoding needed)
+  useEffect(() => {
+    const handleGlobalClick = (event: MouseEvent) => {
+      if (typeof window !== 'undefined' && localStorage.getItem('wiki_telemetry_ignore_device') === 'true') {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+
+      // Do not log clicks inside the telemetry terminal window or its launcher
+      if (
+        target.closest('#stats-modal-container') || 
+        target.closest('#stats-modal-backdrop') || 
+        target.closest('#stats-button')
+      ) {
+        return;
+      }
+
+      // 1. Explicit telemetry metadata on cards or custom elements if present
+      const explicitItem = target.closest<HTMLElement>('[data-telemetry-item], [data-telemetry-target], [data-telemetry]');
+      if (explicitItem) {
+        const itemVal = explicitItem.getAttribute('data-telemetry-item') || 
+                        explicitItem.getAttribute('data-telemetry-target') || 
+                        explicitItem.getAttribute('data-telemetry');
+        if (itemVal && itemVal.trim()) {
+          trackTelemetryClick({ page: activeSlug, target: itemVal.trim(), category: 'item' });
+          return;
+        }
+      }
+
+      // 2. Navigation links (anchor tags e.g. #/wiki/...)
+      const link = target.closest<HTMLAnchorElement>('a[href]');
+      if (link) {
+        const href = link.getAttribute('href') || '';
+        let targetName = link.innerText || link.getAttribute('aria-label') || link.getAttribute('title') || '';
+        targetName = targetName.split('\n')[0].replace(/\s+/g, ' ').trim();
+
+        if (href.startsWith('#/wiki/') || href.startsWith('/wiki/')) {
+          const targetSlug = href.replace(/^#?\/?wiki\//, '').split('/')[0].split('?')[0];
+          const matchedArticle = articles.find(a => a.slug === targetSlug);
+          const cleanLabel = targetName || (matchedArticle ? matchedArticle.title : targetSlug);
+          trackTelemetryClick({
+            page: activeSlug,
+            target: cleanLabel.slice(0, 40),
+            category: 'navigation'
+          });
+          return;
+        }
+
+        if (targetName && targetName.length >= 2) {
+          trackTelemetryClick({
+            page: activeSlug,
+            target: targetName.slice(0, 40),
+            category: 'link'
+          });
+          return;
+        }
+      }
+
+      // 3. Interactive buttons, tabs, accordions, details/summary, or elements with role="button"
+      const button = target.closest<HTMLElement>('button, [role="button"], summary, [role="tab"], .cursor-pointer');
+      if (button) {
+        // Find best title candidate: headings inside button, strong tags, or primary line of text
+        const headingEl = button.querySelector('h1, h2, h3, h4, h5, h6, strong, span.font-serif, span.font-semibold');
+        const rawText = headingEl 
+          ? (headingEl as HTMLElement).innerText 
+          : (button.getAttribute('aria-label') || button.getAttribute('title') || button.innerText || '');
+        
+        // Take the first non-empty meaningful line
+        const lines = rawText.split('\n').map(l => l.trim()).filter(l => l.length >= 2);
+        const cleanBtnText = lines[0] ? lines[0].replace(/\s+/g, ' ').trim() : '';
+
+        // Ignore generic utility icons or excessively long paragraphs
+        if (cleanBtnText.length >= 2 && cleanBtnText.length <= 48) {
+          trackTelemetryClick({
+            page: activeSlug,
+            target: cleanBtnText,
+            category: 'button'
+          });
+          return;
+        }
+      }
+    };
+
+    window.addEventListener('click', handleGlobalClick, { capture: true });
+    return () => window.removeEventListener('click', handleGlobalClick, { capture: true });
+  }, [activeSlug, articles]);
 
   // 2. Perform deep-content relevance search
   const searchResults = React.useMemo(() => {

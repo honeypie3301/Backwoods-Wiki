@@ -9,6 +9,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
+import { trackTelemetryClick } from '../../utils/telemetry';
 
 function getAbsoluteAssetUrl(url: string) {
   if (!url) return '';
@@ -618,6 +619,8 @@ export default function StructuresView() {
             const cardContent = (
               <div
                 key={struct.id}
+                data-telemetry-item={struct.name}
+                onClick={() => trackTelemetryClick({ page: 'structures', target: struct.name, category: struct.dimension })}
                 className={`p-5 bg-[#0a0d0b] border ${struct.color} rounded-xl space-y-4 shadow-md flex flex-col justify-between hover:scale-[1.01] transition-transform relative overflow-hidden`}
               >
                 <div className="space-y-3">

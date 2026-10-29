@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Compass, ShieldAlert, Flame, Eye, Image as ImageIcon, Search, X, Maximize2, ChevronDown, Check, AlertTriangle } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
+import { trackTelemetryClick } from '../../utils/telemetry';
 
 function getAbsoluteAssetUrl(url: string) {
   if (!url) return '';
@@ -616,7 +617,11 @@ export default function DimensionsView() {
               {dimensions.map(d => (
                 <UpdatedFrame key={d.id} id={`dim_btn_${d.id}`} isUpdated={!!d.isUpdated}>
                   <button
-                    onClick={() => setSelectedDimension(d.id)}
+                    onClick={() => {
+                      setSelectedDimension(d.id);
+                      trackTelemetryClick({ page: 'dimensions', target: d.name, category: 'realm' });
+                    }}
+                    data-telemetry-item={d.name}
                     className={`w-full text-left px-3.5 py-3 rounded-lg border transition-all shrink-0 lg:shrink cursor-pointer ${
                       selectedDimension === d.id
                         ? `bg-gradient-to-r ${d.color} text-white ${d.borderColor} font-semibold shadow-md`
