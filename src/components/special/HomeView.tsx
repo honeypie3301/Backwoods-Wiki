@@ -93,12 +93,6 @@ export default function HomeView() {
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
               <li>
                 <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
-                  Starlight Theme & Threat Visual Calibration:
-                </strong>{' '}
-                Neutralized search focus rings and selection tints to platinum silver, isolated Rule 6 Threat Badge visual protocols to prevent accidental title tinting, and modulated starfield and updated frame glows.
-              </li>
-              <li>
-                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
                   The Crossworks Dimension & Dustbound Galleries:
                 </strong>{' '}
                 Added documentation for The Crossworks (Y=-64 to Y=767, 832m build height) and its solitary biome Dustbound Galleries with active WIP banner and void fall / lethal fall anchor loop protection.
