@@ -662,14 +662,103 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
         let results: TelemetryLog[] = [];
 
         if (hasConfig) {
+          const logsMap = new Map<string, TelemetryLog>();
+
+          const addDocToMap = (id: string, data: any) => {
+            let tsStr = new Date().toISOString();
+            if (data.timestamp) {
+              if (typeof data.timestamp.toDate === 'function') {
+                tsStr = data.timestamp.toDate().toISOString();
+              } else if (data.timestamp.seconds) {
+                tsStr = new Date(data.timestamp.seconds * 1000).toISOString();
+              } else {
+                tsStr = new Date(data.timestamp).toISOString();
+              }
+            }
+            logsMap.set(id, {
+              timestamp: tsStr,
+              type: data.type || 'repeat',
+              slug: data.slug || 'home',
+              visitorId: data.visitorId || 'unknown',
+              os: data.os,
+              browser: data.browser,
+              target: data.target,
+              page: data.page,
+              category: data.category
+            });
+          };
+
+          // 1. Direct device/OS queries if search term targets operating systems
+          const isLinuxQuery = trimmed.includes('linux');
+          const isWindowsQuery = trimmed.includes('window');
+          const isMacQuery = trimmed.includes('mac') || trimmed.includes('apple') || trimmed.includes('darwin');
+          const isAndroidQuery = trimmed.includes('android');
+          const isIosQuery = trimmed.includes('ios') || trimmed.includes('iphone') || trimmed.includes('ipad');
+
+          if (isLinuxQuery) {
+            const osSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Linux'), limit(1000)));
+            osSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isWindowsQuery) {
+            const [w1Snap, w2Snap] = await Promise.all([
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Windows 10/11'), limit(500))),
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Windows'), limit(500)))
+            ]);
+            w1Snap.forEach(d => addDocToMap(d.id, d.data()));
+            w2Snap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isMacQuery) {
+            const macSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'macOS'), limit(500)));
+            macSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isAndroidQuery) {
+            const aSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Android'), limit(500)));
+            aSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isIosQuery) {
+            const iSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'iOS'), limit(500)));
+            iSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+
+          // 2. Direct browser queries if search term targets browsers
+          const isChromeQuery = trimmed.includes('chrome');
+          const isFirefoxQuery = trimmed.includes('firefox');
+          const isOperaQuery = trimmed.includes('opera');
+          const isSafariQuery = trimmed.includes('safari');
+          const isEdgeQuery = trimmed.includes('edge');
+
+          if (isChromeQuery) {
+            const cSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Chrome'), limit(1000)));
+            cSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isFirefoxQuery) {
+            const fSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Firefox'), limit(500)));
+            fSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isOperaQuery) {
+            const [op1, op2] = await Promise.all([
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Opera'), limit(500))),
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Opera GX'), limit(500)))
+            ]);
+            op1.forEach(d => addDocToMap(d.id, d.data()));
+            op2.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isSafariQuery) {
+            const sSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Safari'), limit(500)));
+            sSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+          if (isEdgeQuery) {
+            const eSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Edge'), limit(500)));
+            eSnap.forEach(d => addDocToMap(d.id, d.data()));
+          }
+
+          // 3. Prefix search on visitorId
           const prefixes = [trimmed];
           if (!trimmed.startsWith('surv_') && !trimmed.includes('_')) {
             prefixes.push('surv_' + trimmed);
           }
 
           const isGeneric = trimmed === 'surv' || trimmed === 'surv_';
-          const logsMap = new Map<string, TelemetryLog>();
-
           for (const p of prefixes) {
             let q = query(
               collection(db, 'telemetry_logs'),
@@ -677,39 +766,55 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
               where('visitorId', '<=', p + '\uf8ff')
             );
             if (isGeneric) {
-              q = query(q, limit(250));
+              q = query(q, limit(500));
             }
             const snap = await getDocs(q);
-            snap.forEach(docSnap => {
-              const data = docSnap.data();
-              let tsStr = new Date().toISOString();
-              if (data.timestamp) {
-                if (typeof data.timestamp.toDate === 'function') {
-                  tsStr = data.timestamp.toDate().toISOString();
-                } else if (data.timestamp.seconds) {
-                  tsStr = new Date(data.timestamp.seconds * 1000).toISOString();
-                } else {
-                  tsStr = new Date(data.timestamp).toISOString();
-                }
-              }
-              logsMap.set(docSnap.id, {
-                timestamp: tsStr,
-                type: data.type || 'repeat',
-                slug: data.slug || 'home',
-                visitorId: data.visitorId || 'unknown',
-                os: data.os,
-                browser: data.browser
-              });
+            snap.forEach(docSnap => addDocToMap(docSnap.id, docSnap.data()));
+          }
+
+          // 4. Broad scan across recent history (500 documents) to match composite device keywords, slug, or target
+          const recentSnap = await getDocs(query(collection(db, 'telemetry_logs'), orderBy('timestamp', 'desc'), limit(500)));
+          recentSnap.forEach(docSnap => {
+            const data = docSnap.data();
+            const visitorStr = (data.visitorId || '').toLowerCase();
+            const osStr = (data.os || '').toLowerCase();
+            const browserStr = (data.browser || '').toLowerCase();
+            const targetStr = (data.target || '').toLowerCase();
+            const slugStr = (data.slug || '').toLowerCase();
+            const fullDevice = `${browserStr} ${osStr}`;
+
+            if (
+              visitorStr.includes(trimmed) ||
+              osStr.includes(trimmed) ||
+              browserStr.includes(trimmed) ||
+              targetStr.includes(trimmed) ||
+              slugStr.includes(trimmed) ||
+              fullDevice.includes(trimmed)
+            ) {
+              addDocToMap(docSnap.id, data);
+            }
+          });
+
+          // Multi-token filter if query has combined words (e.g. "Chrome · Linux")
+          const tokens = trimmed.split(/[\s·on\-_/]+/).filter(t => t.length > 1);
+          let allLogs = Array.from(logsMap.values());
+          if (tokens.length > 1) {
+            allLogs = allLogs.filter(log => {
+              const combined = `${log.visitorId || ''} ${log.os || ''} ${log.browser || ''} ${log.slug || ''} ${log.target || ''}`.toLowerCase();
+              return tokens.every(token => combined.includes(token));
             });
           }
 
-          results = Array.from(logsMap.values()).sort(
+          results = allLogs.sort(
             (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
           );
         } else {
           // Local sandbox fallback
           const localLogs = stats?.logs || [];
-          results = localLogs.filter(l => l.visitorId.toLowerCase().includes(trimmed));
+          results = localLogs.filter(l => {
+            const combined = `${l.visitorId || ''} ${l.os || ''} ${l.browser || ''} ${l.slug || ''} ${l.target || ''}`.toLowerCase();
+            return combined.includes(trimmed);
+          });
         }
 
         searchCacheRef.current.set(trimmed, results);
@@ -1168,7 +1273,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           type="text"
                           value={searchUserId}
                           onChange={(e) => setSearchUserId(e.target.value)}
-                          placeholder="Search User ID or node (e.g. surv_q8c)..."
+                          placeholder="Search User ID, device/OS (e.g. Linux, Windows), or node..."
                           className="w-full bg-[#080d0a] border border-[#1b261e] focus:border-emerald-600/70 focus:outline-none text-[11px] sm:text-xs font-mono text-[#d6ded7] placeholder-[#4f6454] pl-8.5 pr-20 py-1.5 rounded transition-all"
                         />
                         {searchUserId ? (
@@ -1208,7 +1313,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         {isSearching ? (
                           <div className="flex items-center gap-2 text-emerald-400 py-0.5">
                             <span className="w-2.5 h-2.5 rounded-full border border-emerald-400 border-t-transparent animate-spin" />
-                            <span>Querying Firestore history for node "{searchUserId}"...</span>
+                            <span>Querying Firestore history for "{searchUserId}"...</span>
                           </div>
                         ) : searchResults && searchResults.length > 0 ? (
                           <div className="space-y-1">
@@ -1246,7 +1351,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                           </div>
                         ) : (
                           <div className="text-[#687f6e] italic py-0.5">
-                            No records found in database history matching node ID "{searchUserId}".
+                            No records found in database history matching "{searchUserId}".
                           </div>
                         )}
                       </div>
@@ -1319,13 +1424,45 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
                               {/* Right: Device Pill, Visitor Node Chip, Relative Time */}
                               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                                {/* Inline Device Pill */}
+                                {/* Inline Device Pill (Clickable Filter) */}
                                 {(displayBrowser || displayOs) && (
-                                  <div className="hidden md:flex items-center gap-1 text-[8px] sm:text-[8.5px] text-[#5e7765] bg-[#0c120e] px-1.5 py-0.5 rounded border border-[#162017]">
-                                    <Monitor className="w-2.5 h-2.5 text-emerald-500/70 shrink-0" />
-                                    <span className="truncate max-w-[130px]">
-                                      {displayBrowser} · {displayOs}
-                                    </span>
+                                  <div 
+                                    onClick={() => setSearchUserId(displayOs || displayBrowser || 'Linux')}
+                                    title={`Click to filter complete database history for ${displayOs || displayBrowser}`}
+                                    className="flex items-center gap-1 text-[8px] sm:text-[8.5px] text-[#5e7765] hover:text-emerald-300 bg-[#0c120e] hover:bg-[#121c15] px-1.5 py-0.5 rounded border border-[#162017] hover:border-emerald-700/60 transition-colors cursor-pointer select-none group"
+                                  >
+                                    <Monitor className="w-2.5 h-2.5 text-emerald-500/70 group-hover:text-emerald-400 shrink-0" />
+                                    <div className="flex items-center gap-1 truncate max-w-[130px]">
+                                      {displayBrowser && (
+                                        <button
+                                          type="button"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSearchUserId(displayBrowser);
+                                          }}
+                                          title={`Filter complete history for browser: ${displayBrowser}`}
+                                          className="hover:text-emerald-300 hover:underline cursor-pointer transition-colors"
+                                        >
+                                          {displayBrowser}
+                                        </button>
+                                      )}
+                                      {displayBrowser && displayOs && (
+                                        <span className="text-[#324536] text-[7.5px]">·</span>
+                                      )}
+                                      {displayOs && (
+                                        <button
+                                          type="button"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            setSearchUserId(displayOs);
+                                          }}
+                                          title={`Filter complete history for OS: ${displayOs}`}
+                                          className="font-medium text-[#7a9d82] hover:text-emerald-300 hover:underline cursor-pointer transition-colors"
+                                        >
+                                          {displayOs}
+                                        </button>
+                                      )}
+                                    </div>
                                   </div>
                                 )}
 
