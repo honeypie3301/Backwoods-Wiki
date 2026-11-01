@@ -20,8 +20,12 @@ import {
 } from 'lucide-react';
 import UpdatedFrame from '../UpdatedFrame';
 import TitleDialPicker from '../TitleDialPicker';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function HomeView() {
+  const { theme } = useTheme();
+  const isStarlight = theme === 'starlight';
+
   return (
     <div className="space-y-8 max-w-[1000px] mx-auto text-[#c9d1c9]">
       
@@ -48,25 +52,87 @@ export default function HomeView() {
       */}
       {/* 2. WIKI MAINTENANCE NOTE (UPDATED FRAME) */}
       <UpdatedFrame id="home_maintenance_notice" isUpdated={true}>
-        <div className="p-5 bg-gradient-to-r from-[#17140b] via-[#0f110d] to-[#0c0e0c] border border-amber-500/40 rounded-xl space-y-3 shadow-lg">
-          <div className="flex items-center gap-2 text-amber-400 font-mono text-xs uppercase font-bold tracking-wider">
-            <Info className="w-4 h-4 text-amber-400 animate-pulse" />
+        <div
+          className={`p-5 rounded-xl space-y-3 shadow-lg transition-all duration-300 ${
+            isStarlight
+              ? 'bg-gradient-to-r from-[#18181b]/95 via-[#111114]/95 to-[#09090b]/95 border-2 border-zinc-300 shadow-[0_0_24px_rgba(228,228,231,0.5),inset_0_0_12px_rgba(255,255,255,0.08)]'
+              : 'bg-gradient-to-r from-[#17140b] via-[#0f110d] to-[#0c0e0c] border border-amber-500/40'
+          }`}
+        >
+          <div
+            className={`flex items-center gap-2 font-mono text-xs uppercase font-bold tracking-wider ${
+              isStarlight ? 'text-zinc-200' : 'text-amber-400'
+            }`}
+          >
+            <Info
+              className={`w-4 h-4 animate-pulse ${
+                isStarlight ? 'text-zinc-100' : 'text-amber-400'
+              }`}
+            />
             <span>Wiki Maintenance Note</span>
           </div>
           
-          <div className="p-4 sm:p-5 bg-amber-950/30 border border-amber-500/30 rounded-lg text-amber-200 text-base sm:text-lg md:text-xl font-semibold leading-relaxed text-center flex items-center justify-center">
+          <div
+            className={`p-4 sm:p-5 rounded-lg text-base sm:text-lg md:text-xl font-semibold leading-relaxed text-center flex items-center justify-center transition-all ${
+              isStarlight
+                ? 'bg-zinc-900/90 border border-zinc-300/80 text-zinc-100 shadow-[0_0_18px_rgba(255,255,255,0.15)]'
+                : 'bg-amber-950/30 border border-amber-500/30 text-amber-200'
+            }`}
+          >
             <u>The wiki is always updated before a new version releases.</u>
           </div>
 
           <div className="text-xs text-[#9eb0a1] space-y-1.5 font-mono pt-1">
-            <div className="text-[#a9d1b0] font-semibold uppercase text-[11px] tracking-wider">Recent Version Highlights:</div>
+            <div
+              className={`font-semibold uppercase text-[11px] tracking-wider ${
+                isStarlight ? 'text-zinc-300' : 'text-[#a9d1b0]'
+              }`}
+            >
+              Recent Version Highlights:
+            </div>
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
-              <li><strong className="text-amber-300">The Crossworks Dimension & Dustbound Galleries:</strong> Added documentation for The Crossworks (Y=-64 to Y=767, 832m build height) and its solitary biome Dustbound Galleries with active WIP banner and void fall / lethal fall anchor loop protection.</li>
-              <li><strong className="text-amber-300">Suspended Ward Architectural Lattice:</strong> Documented 48×48 cell grid structure generation, including oak log corner pillars, suspended plank catwalks, 40% building / 20% floor Blindspot Splinter spawner rates, 10% false plank pitfall traps, and 0.001% portal generation anomalies.</li>
-              <li><strong className="text-amber-300">Hewn Splinter Effigy Mechanics & Deflection:</strong> Snapped cardinal rotation (90° yaw / 0° pitch) with zero mobility (0.0 movement speed); complete projectile deflection immunity, fluid push and falling anvil invulnerability, and guaranteed Oak Planks drop (100% chance, 1x).</li>
-              <li><strong className="text-amber-300">The Rot Black Hole Detonation & Loot Dissolution:</strong> Physical remains completely dissolve upon defeat via terminal black hole singularity detonation, yielding 7,777 XP with 0 physical item drops.</li>
-              <li><strong className="text-amber-300">Verdant Engine Defeat Yield:</strong> Calibrated Verdant Engine death experience yield to 70,000 XP following core fracture detonation.</li>
-              <li><strong className="text-amber-300">Entity Experience Rebalancing:</strong> Calibrated death experience values for Stilt Walker (30 XP), Fractus (25 XP), and Hewn Splinter (3 XP).</li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  Starlight Theme & Threat Visual Calibration:
+                </strong>{' '}
+                Neutralized search focus rings and selection tints to platinum silver, isolated Rule 6 Threat Badge visual protocols to prevent accidental title tinting, and modulated starfield and updated frame glows.
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  The Crossworks Dimension & Dustbound Galleries:
+                </strong>{' '}
+                Added documentation for The Crossworks (Y=-64 to Y=767, 832m build height) and its solitary biome Dustbound Galleries with active WIP banner and void fall / lethal fall anchor loop protection.
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  Suspended Ward Architectural Lattice:
+                </strong>{' '}
+                Documented 48×48 cell grid structure generation, including oak log corner pillars, suspended plank catwalks, 40% building / 20% floor Blindspot Splinter spawner rates, 10% false plank pitfall traps, and 0.001% portal generation anomalies.
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  Hewn Splinter Effigy Mechanics & Deflection:
+                </strong>{' '}
+                Snapped cardinal rotation (90° yaw / 0° pitch) with zero mobility (0.0 movement speed); complete projectile deflection immunity, fluid push and falling anvil invulnerability, and guaranteed Oak Planks drop (100% chance, 1x).
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  The Rot Black Hole Detonation & Loot Dissolution:
+                </strong>{' '}
+                Physical remains completely dissolve upon defeat via terminal black hole singularity detonation, yielding 7,777 XP with 0 physical item drops.
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  Verdant Engine Defeat Yield:
+                </strong>{' '}
+                Calibrated Verdant Engine death experience yield to 70,000 XP following core fracture detonation.
+              </li>
+              <li>
+                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
+                  Entity Experience Rebalancing:
+                </strong>{' '}
+                Calibrated death experience values for Stilt Walker (30 XP), Fractus (25 XP), and Hewn Splinter (3 XP).
+              </li>
             </ul>
           </div>
         </div>

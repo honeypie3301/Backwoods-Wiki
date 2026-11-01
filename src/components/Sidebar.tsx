@@ -14,6 +14,7 @@ import {
   FileText
 } from 'lucide-react';
 import { WikiArticle } from '../types';
+import ThemeToggle from './ThemeToggle';
 
 interface SidebarProps {
   articles: WikiArticle[];
@@ -120,12 +121,15 @@ export default function Sidebar({
               </p>
             </a>
           </div>
-          <button 
-            onClick={onClose}
-            className="md:hidden p-1.5 rounded text-[#5a6b5e] hover:text-[#e0e7e0] hover:bg-[#151d17] transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <button 
+              onClick={onClose}
+              className="md:hidden p-1.5 rounded text-[#5a6b5e] hover:text-[#e0e7e0] hover:bg-[#151d17] transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         {/* Search Bar */}

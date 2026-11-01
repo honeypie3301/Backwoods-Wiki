@@ -10,8 +10,12 @@ import ArticleView from './components/ArticleView';
 import StatsModal from './components/StatsModal';
 import { detectClientEnvironment } from './utils/deviceInfo';
 import { trackTelemetryClick } from './utils/telemetry';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import ThemeToggle from './components/ThemeToggle';
+import StarlightBackground from './components/special/StarlightBackground';
 
 function WikiContainer() {
+  const { theme } = useTheme();
   const { slug } = useParams<{ slug: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -395,8 +399,7 @@ function WikiContainer() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080a08] text-[#c9d1c9] font-sans flex">
-      
+    <div className={`min-h-screen ${theme === 'starlight' ? 'bg-transparent' : 'bg-[#080a08]'} text-[#c9d1c9] font-sans flex relative`}>
       {/* Sidebar - fully dynamic and searchable */}
       <Sidebar
         articles={filteredArticles}
@@ -409,7 +412,7 @@ function WikiContainer() {
       />
 
       {/* Main Container */}
-      <div className="flex-1 min-w-0 flex flex-col">
+      <div className="flex-1 min-w-0 flex flex-col relative z-10">
         
         {/* Mobile Header Navbar */}
         <header className="md:hidden sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-[#0c0f0d]/90 backdrop-blur border-b border-[#1a221c]">
@@ -419,17 +422,20 @@ function WikiContainer() {
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-serif font-bold text-sm text-[#e0e7e0] tracking-wide uppercase">
+          <span className="font-serif font-bold text-sm text-[#e0e7e0] tracking-wide uppercase truncate mx-2">
             {activeArticle ? activeArticle.title : 'Survival Index'}
           </span>
-          <button 
-            onClick={() => setStatsOpen(true)}
-            className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-sm hover:bg-[#253228] transition-colors cursor-pointer"
-            title="View Terminal Stats"
-            id="header-b-icon"
-          >
-            B
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <ThemeToggle size="sm" />
+            <button 
+              onClick={() => setStatsOpen(true)}
+              className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-sm hover:bg-[#253228] transition-colors cursor-pointer"
+              title="View Terminal Stats"
+              id="header-b-icon"
+            >
+              B
+            </button>
+          </div>
         </header>
 
         {/* Dynamic Article Page or Global Deep-Search Results View */}
@@ -514,11 +520,14 @@ function WikiContainer() {
 
 export default function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/wiki/:slug" element={<WikiContainer />} />
-        <Route path="*" element={<Navigate to="/wiki/home" replace />} />
-      </Routes>
-    </HashRouter>
+    <ThemeProvider>
+      <StarlightBackground />
+      <HashRouter>
+        <Routes>
+          <Route path="/wiki/:slug" element={<WikiContainer />} />
+          <Route path="*" element={<Navigate to="/wiki/home" replace />} />
+        </Routes>
+      </HashRouter>
+    </ThemeProvider>
   );
 }

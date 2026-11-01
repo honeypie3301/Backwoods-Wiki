@@ -365,18 +365,18 @@ interface EntityProfile {
 const getThreatBadgeStyle = (threatLevel: string) => {
   switch (threatLevel) {
     case 'Extermination Class':
-      return 'bg-[#251012] border border-red-500/70 text-red-400 font-bold animate-pulse shadow-[0_0_12px_rgba(239,68,68,0.75)]';
+      return 'threat-badge threat-badge-extermination bg-[#251012] border border-red-500/70 text-red-400 font-bold animate-pulse shadow-[0_0_12px_rgba(239,68,68,0.75)]';
     case 'Extreme':
-      return 'bg-[#221315] border border-red-900/50 text-[#cf8f92] font-semibold shadow-[0_0_8px_rgba(239,68,68,0.45)]';
+      return 'threat-badge threat-badge-extreme bg-[#221315] border border-red-900/50 text-[#cf8f92] font-semibold shadow-[0_0_8px_rgba(239,68,68,0.45)]';
     case 'High':
-      return 'bg-[#1a1318] border border-[#3f2123]/40 text-[#b5a3bd] shadow-[0_0_4px_rgba(239,68,68,0.25)]';
+      return 'threat-badge threat-badge-high bg-[#1a1318] border border-[#3f2123]/40 text-[#b5a3bd] shadow-[0_0_4px_rgba(239,68,68,0.25)]';
     case 'Medium':
-      return 'bg-[#1a1715] border border-[#2f2824]/40 text-[#c2b09f]';
+      return 'threat-badge threat-badge-medium bg-[#1a1715] border border-[#2f2824]/40 text-[#c2b09f]';
     case 'Low':
-      return 'bg-[#141715] border border-[#222924]/40 text-[#9bb0a0]';
+      return 'threat-badge threat-badge-low bg-[#141715] border border-[#222924]/40 text-[#9bb0a0]';
     case 'Passive':
     default:
-      return 'bg-[#111412] border border-[#1b221d]/40 text-[#829285]';
+      return 'threat-badge threat-badge-passive bg-[#111412] border border-[#1b221d]/40 text-[#829285]';
   }
 };
 

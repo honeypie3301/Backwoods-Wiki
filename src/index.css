@@ -44,3 +44,532 @@
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #36453b;
 }
+
+/* ==========================================================================
+   STARLIGHT OBSIDIAN THEME (PITCH BLACK & MONOCHROME COUNTERPARTS)
+   ========================================================================== */
+[data-theme="starlight"] {
+  color-scheme: dark;
+}
+
+/* Scrollbar in Starlight mode */
+[data-theme="starlight"] * {
+  scrollbar-color: #3f3f46 #000000;
+}
+
+[data-theme="starlight"] *::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+[data-theme="starlight"] *::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border: 2px solid #000000;
+}
+
+[data-theme="starlight"] *::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Base and page background conversion */
+[data-theme="starlight"],
+[data-theme="starlight"] html,
+[data-theme="starlight"] body {
+  background-color: #000000 !important;
+  background: #000000 !important;
+}
+
+[data-theme="starlight"] #root,
+[data-theme="starlight"] .min-h-screen,
+[data-theme="starlight"] [class*="min-h-screen"],
+[data-theme="starlight"] main,
+[data-theme="starlight"] .flex-1.min-w-0 {
+  background-color: transparent !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+[data-theme="starlight"] .bg-\[\#080a08\],
+[data-theme="starlight"] [class*="bg-[#080a08]"] {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Sidebar & Header: Frosted translucent pitch black obsidian */
+[data-theme="starlight"] aside {
+  background-color: rgba(6, 6, 9, 0.82) !important;
+  border-color: #27272a !important;
+  backdrop-filter: blur(14px);
+}
+
+[data-theme="starlight"] header {
+  background-color: rgba(6, 6, 9, 0.85) !important;
+  border-color: #27272a !important;
+  backdrop-filter: blur(14px);
+}
+
+/* Neutralize green card surfaces & green box containers to pitch black / translucent charcoal */
+[data-theme="starlight"] [class*="bg-[#040504]"],
+[data-theme="starlight"] [class*="bg-[#050605]"],
+[data-theme="starlight"] [class*="bg-[#050705]"],
+[data-theme="starlight"] [class*="bg-[#050806]"],
+[data-theme="starlight"] [class*="bg-[#060806]"],
+[data-theme="starlight"] [class*="bg-[#060a07]"],
+[data-theme="starlight"] [class*="bg-[#060b08]"],
+[data-theme="starlight"] [class*="bg-[#070907]"],
+[data-theme="starlight"] [class*="bg-[#070b08]"],
+[data-theme="starlight"] [class*="bg-[#080908]"],
+[data-theme="starlight"] [class*="bg-[#080b09]"],
+[data-theme="starlight"] [class*="bg-[#080c09]"],
+[data-theme="starlight"] [class*="bg-[#080d0a]"],
+[data-theme="starlight"] [class*="bg-[#080e0a]"],
+[data-theme="starlight"] [class*="bg-[#090b09]"],
+[data-theme="starlight"] [class*="bg-[#090b0a]"],
+[data-theme="starlight"] [class*="bg-[#090c0a]"],
+[data-theme="starlight"] [class*="bg-[#090d0a]"],
+[data-theme="starlight"] [class*="bg-[#0a0c0a]"],
+[data-theme="starlight"] [class*="bg-[#0a0d0a]"],
+[data-theme="starlight"] [class*="bg-[#0a0d0b]"],
+[data-theme="starlight"] [class*="bg-[#0a0f0b]"],
+[data-theme="starlight"] [class*="bg-[#0a0f0c]"],
+[data-theme="starlight"] [class*="bg-[#0a110d]"],
+[data-theme="starlight"] [class*="bg-[#0b0e0c]"],
+[data-theme="starlight"] [class*="bg-[#0b0f0c]"],
+[data-theme="starlight"] [class*="bg-[#0b100c]"],
+[data-theme="starlight"] [class*="bg-[#0b100d]"],
+[data-theme="starlight"] [class*="bg-[#0c0e0c]"],
+[data-theme="starlight"] [class*="bg-[#0c0f0d]"],
+[data-theme="starlight"] [class*="bg-[#0c100d]"],
+[data-theme="starlight"] [class*="bg-[#0c110e]"],
+[data-theme="starlight"] [class*="bg-[#0c120d]"],
+[data-theme="starlight"] [class*="bg-[#0c120e]"],
+[data-theme="starlight"] [class*="bg-[#0c130f]"],
+[data-theme="starlight"] [class*="bg-[#0c1311]"],
+[data-theme="starlight"] [class*="bg-[#0d100e]"],
+[data-theme="starlight"] [class*="bg-[#0d110e]"],
+[data-theme="starlight"] [class*="bg-[#0d120e]"],
+[data-theme="starlight"] [class*="bg-[#0d120f]"],
+[data-theme="starlight"] [class*="bg-[#0d130f]"],
+[data-theme="starlight"] [class*="bg-[#0d140f]"],
+[data-theme="starlight"] [class*="bg-[#0d1611]"],
+[data-theme="starlight"] [class*="bg-[#0e110f]"],
+[data-theme="starlight"] [class*="bg-[#0e120f]"],
+[data-theme="starlight"] [class*="bg-[#0e1410]"],
+[data-theme="starlight"] [class*="bg-[#0e1611]"],
+[data-theme="starlight"] [class*="bg-[#0f1210]"],
+[data-theme="starlight"] [class*="bg-[#0f1310]"],
+[data-theme="starlight"] [class*="bg-[#0f1d16]"],
+[data-theme="starlight"] [class*="bg-[#101411]"],
+[data-theme="starlight"] [class*="bg-[#101511]"],
+[data-theme="starlight"] [class*="bg-[#101612]"],
+[data-theme="starlight"] [class*="bg-[#101712]"],
+[data-theme="starlight"] [class*="bg-[#101b19]"],
+[data-theme="starlight"] [class*="bg-[#10201d]"],
+[data-theme="starlight"] [class*="bg-[#111412]"],
+[data-theme="starlight"] [class*="bg-[#111512]"],
+[data-theme="starlight"] [class*="bg-[#111612]"],
+[data-theme="starlight"] [class*="bg-[#111613]"],
+[data-theme="starlight"] [class*="bg-[#111712]"],
+[data-theme="starlight"] [class*="bg-[#111713]"],
+[data-theme="starlight"] [class*="bg-[#121612]"],
+[data-theme="starlight"] [class*="bg-[#121613]"],
+[data-theme="starlight"] [class*="bg-[#121713]"],
+[data-theme="starlight"] [class*="bg-[#121813]"],
+[data-theme="starlight"] [class*="bg-[#121914]"],
+[data-theme="starlight"] [class*="bg-[#121e15]"],
+[data-theme="starlight"] [class*="bg-[#121f17]"],
+[data-theme="starlight"] [class*="bg-[#122416]"],
+[data-theme="starlight"] [class*="bg-[#131914]"],
+[data-theme="starlight"] [class*="bg-[#131a14]"],
+[data-theme="starlight"] [class*="bg-[#131d17]"],
+[data-theme="starlight"] [class*="bg-[#141a15]"],
+[data-theme="starlight"] [class*="bg-[#141b15]"],
+[data-theme="starlight"] [class*="bg-[#141b16]"],
+[data-theme="starlight"] [class*="bg-[#141d16]"],
+[data-theme="starlight"] [class*="bg-[#142018]"],
+[data-theme="starlight"] [class*="bg-[#142318]"],
+[data-theme="starlight"] [class*="bg-[#161d17]"],
+[data-theme="starlight"] [class*="bg-[#161d18]"],
+[data-theme="starlight"] [class*="bg-[#171e19]"],
+[data-theme="starlight"] [class*="bg-[#172419]"],
+[data-theme="starlight"] [class*="bg-[#182119]"],
+[data-theme="starlight"] [class*="bg-[#1a221d]"],
+[data-theme="starlight"] [class*="bg-[#1b221c]"],
+[data-theme="starlight"] [class*="bg-[#151a16]"],
+[data-theme="starlight"] [class*="bg-[#131d15]"],
+[data-theme="starlight"] [class*="bg-[#162218]"],
+[data-theme="starlight"] [class*="bg-[#172219]"],
+[data-theme="starlight"] [class*="bg-[#1f2820]"],
+[data-theme="starlight"] [class*="bg-[#1e2720]"],
+[data-theme="starlight"] [class*="bg-[#1e2a20]"],
+[data-theme="starlight"] [class*="bg-[#1e2a22]"],
+[data-theme="starlight"] [class*="bg-emerald-950"],
+[data-theme="starlight"] [class*="bg-emerald-900"],
+[data-theme="starlight"] [class*="bg-emerald-800"],
+[data-theme="starlight"] [class*="bg-green-950"],
+[data-theme="starlight"] [class*="bg-green-900"] {
+  background-color: rgba(14, 14, 18, 0.78) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Green Bullet Dots & Status Nodes -> Starlight Silver */
+[data-theme="starlight"] [class*="bg-[#709978]"],
+[data-theme="starlight"] [class*="bg-[#527058]"],
+[data-theme="starlight"] [class*="bg-[#78b5a5]"],
+[data-theme="starlight"] [class*="bg-[#8fa5a0]"],
+[data-theme="starlight"] .bg-emerald-400,
+[data-theme="starlight"] .bg-emerald-500,
+[data-theme="starlight"] .bg-green-400 {
+  background-color: #d4d4d8 !important;
+  box-shadow: 0 0 2px rgba(228, 228, 231, 0.2);
+}
+
+/* Sidebar active navigation item & selected buttons: replace green box with charcoal-silver highlight */
+[data-theme="starlight"] [class*="bg-[#18201a]"] {
+  background-color: rgba(39, 39, 44, 0.85) !important;
+  color: #fafafa !important;
+  border-left-color: #e4e4e7 !important;
+}
+
+/* Hover surfaces */
+[data-theme="starlight"] [class*="hover:bg-[#131914]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#151916]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#212f23]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#253228]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#111712]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#121612]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#121714]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-[#151d17]"]:hover,
+[data-theme="starlight"] [class*="hover:bg-emerald"]:hover {
+  background-color: rgba(28, 28, 34, 0.90) !important;
+}
+
+/* Neutralize all green borders to refined metallic zinc / graphite */
+[data-theme="starlight"] [class*="border-[#111712]"],
+[data-theme="starlight"] [class*="border-[#121612]"],
+[data-theme="starlight"] [class*="border-[#121813]"],
+[data-theme="starlight"] [class*="border-[#131a14]"],
+[data-theme="starlight"] [class*="border-[#141b15]"],
+[data-theme="starlight"] [class*="border-[#141b16]"],
+[data-theme="starlight"] [class*="border-[#141c15]"],
+[data-theme="starlight"] [class*="border-[#141c16]"],
+[data-theme="starlight"] [class*="border-[#141d15]"],
+[data-theme="starlight"] [class*="border-[#141d16]"],
+[data-theme="starlight"] [class*="border-[#151b17]"],
+[data-theme="starlight"] [class*="border-[#151c16]"],
+[data-theme="starlight"] [class*="border-[#161c17]"],
+[data-theme="starlight"] [class*="border-[#161d17]"],
+[data-theme="starlight"] [class*="border-[#161d18]"],
+[data-theme="starlight"] [class*="border-[#161f17]"],
+[data-theme="starlight"] [class*="border-[#161f18]"],
+[data-theme="starlight"] [class*="border-[#162017]"],
+[data-theme="starlight"] [class*="border-[#162018]"],
+[data-theme="starlight"] [class*="border-[#16251b]"],
+[data-theme="starlight"] [class*="border-[#171e18]"],
+[data-theme="starlight"] [class*="border-[#172018]"],
+[data-theme="starlight"] [class*="border-[#172019]"],
+[data-theme="starlight"] [class*="border-[#182019]"],
+[data-theme="starlight"] [class*="border-[#18201a]"],
+[data-theme="starlight"] [class*="border-[#18221a]"],
+[data-theme="starlight"] [class*="border-[#18221b]"],
+[data-theme="starlight"] [class*="border-[#18231a]"],
+[data-theme="starlight"] [class*="border-[#18241b]"],
+[data-theme="starlight"] [class*="border-[#18251a]"],
+[data-theme="starlight"] [class*="border-[#19221b]"],
+[data-theme="starlight"] [class*="border-[#19231b]"],
+[data-theme="starlight"] [class*="border-[#1a221c]"],
+[data-theme="starlight"] [class*="border-[#1a231b]"],
+[data-theme="starlight"] [class*="border-[#1a231c]"],
+[data-theme="starlight"] [class*="border-[#1a241b]"],
+[data-theme="starlight"] [class*="border-[#1a241c]"],
+[data-theme="starlight"] [class*="border-[#1a241d]"],
+[data-theme="starlight"] [class*="border-[#1a251b]"],
+[data-theme="starlight"] [class*="border-[#1a251c]"],
+[data-theme="starlight"] [class*="border-[#1a251d]"],
+[data-theme="starlight"] [class*="border-[#1a261c]"],
+[data-theme="starlight"] [class*="border-[#1b221c]"],
+[data-theme="starlight"] [class*="border-[#1b231c]"],
+[data-theme="starlight"] [class*="border-[#1b231d]"],
+[data-theme="starlight"] [class*="border-[#1b251c]"],
+[data-theme="starlight"] [class*="border-[#1b251d]"],
+[data-theme="starlight"] [class*="border-[#1b251f]"],
+[data-theme="starlight"] [class*="border-[#1b261e]"],
+[data-theme="starlight"] [class*="border-[#1b271d]"],
+[data-theme="starlight"] [class*="border-[#1b2b22]"],
+[data-theme="starlight"] [class*="border-[#1b3d36]"],
+[data-theme="starlight"] [class*="border-[#1c241e]"],
+[data-theme="starlight"] [class*="border-[#1c261e]"],
+[data-theme="starlight"] [class*="border-[#1c271e]"],
+[data-theme="starlight"] [class*="border-[#1c271f]"],
+[data-theme="starlight"] [class*="border-[#1c291f]"],
+[data-theme="starlight"] [class*="border-[#1c2c21]"],
+[data-theme="starlight"] [class*="border-[#1d251e]"],
+[data-theme="starlight"] [class*="border-[#1d261e]"],
+[data-theme="starlight"] [class*="border-[#1d261f]"],
+[data-theme="starlight"] [class*="border-[#1d2720]"],
+[data-theme="starlight"] [class*="border-[#1e241f]"],
+[data-theme="starlight"] [class*="border-[#1e251f]"],
+[data-theme="starlight"] [class*="border-[#1e2520]"],
+[data-theme="starlight"] [class*="border-[#1e2720]"],
+[data-theme="starlight"] [class*="border-[#1e2820]"],
+[data-theme="starlight"] [class*="border-[#1e2a20]"],
+[data-theme="starlight"] [class*="border-[#1e2a21]"],
+[data-theme="starlight"] [class*="border-[#1e2b20]"],
+[data-theme="starlight"] [class*="border-[#1e2c20]"],
+[data-theme="starlight"] [class*="border-[#1f2820]"],
+[data-theme="starlight"] [class*="border-[#1f2821]"],
+[data-theme="starlight"] [class*="border-[#1f2a21]"],
+[data-theme="starlight"] [class*="border-[#1f2c21]"],
+[data-theme="starlight"] [class*="border-[#1f2d22]"],
+[data-theme="starlight"] [class*="border-[#1f3632]"],
+[data-theme="starlight"] [class*="border-[#1f382b]"],
+[data-theme="starlight"] [class*="border-[#202b22]"],
+[data-theme="starlight"] [class*="border-[#202c22]"],
+[data-theme="starlight"] [class*="border-[#203f27]"],
+[data-theme="starlight"] [class*="border-[#213024]"],
+[data-theme="starlight"] [class*="border-[#213025]"],
+[data-theme="starlight"] [class*="border-[#223024]"],
+[data-theme="starlight"] [class*="border-[#223326]"],
+[data-theme="starlight"] [class*="border-[#232c25]"],
+[data-theme="starlight"] [class*="border-[#232d25]"],
+[data-theme="starlight"] [class*="border-[#232f25]"],
+[data-theme="starlight"] [class*="border-[#232f26]"],
+[data-theme="starlight"] [class*="border-[#233126]"],
+[data-theme="starlight"] [class*="border-[#233226]"],
+[data-theme="starlight"] [class*="border-[#233827]"],
+[data-theme="starlight"] [class*="border-[#243327]"],
+[data-theme="starlight"] [class*="border-[#243d2c]"],
+[data-theme="starlight"] [class*="border-[#253327]"],
+[data-theme="starlight"] [class*="border-[#262c26]"],
+[data-theme="starlight"] [class*="border-[#263e30]"],
+[data-theme="starlight"] [class*="border-[#27332a]"],
+[data-theme="starlight"] [class*="border-[#284030]"],
+[data-theme="starlight"] [class*="border-[#2a362d]"],
+[data-theme="starlight"] [class*="border-[#2a382c]"],
+[data-theme="starlight"] [class*="border-[#2b372d]"],
+[data-theme="starlight"] [class*="border-[#2d3a2f]"],
+[data-theme="starlight"] [class*="border-[#2e3e31]"],
+[data-theme="starlight"] [class*="border-[#303d33]"],
+[data-theme="starlight"] [class*="border-[#3d543e]"],
+[data-theme="starlight"] [class*="border-[#709978]"],
+[data-theme="starlight"] [class*="border-emerald"],
+[data-theme="starlight"] [class*="border-green"] {
+  border-color: #27272a !important;
+}
+
+[data-theme="starlight"] [class*="hover:border-[#"]:hover,
+[data-theme="starlight"] [class*="hover:border-emerald"]:hover {
+  border-color: #52525b !important;
+}
+
+/* Border directionals */
+[data-theme="starlight"] [class*="border-t-[#"] {
+  border-top-color: #e4e4e7 !important;
+}
+
+[data-theme="starlight"] [class*="border-l-[#"] {
+  border-left-color: #e4e4e7 !important;
+}
+
+/* Divides */
+[data-theme="starlight"] [class*="divide-[#"] {
+  border-color: #27272a !important;
+}
+
+/* Accent text: Green -> Silver, Platinum, Ice White */
+[data-theme="starlight"] [class*="text-[#709978]"],
+[data-theme="starlight"] [class*="text-[#a9d1b0]"],
+[data-theme="starlight"] [class*="text-[#c5e6cc]"],
+[data-theme="starlight"] [class*="text-[#81caa9]"],
+[data-theme="starlight"] [class*="text-[#8cd99d]"],
+[data-theme="starlight"] [class*="text-[#7cd5c4]"],
+[data-theme="starlight"] [class*="text-[#a4dbc1]"],
+[data-theme="starlight"] [class*="text-[#a4c9ad]"],
+[data-theme="starlight"] [class*="text-[#a9bcae]"],
+[data-theme="starlight"] [class*="text-[#4ca398]"],
+[data-theme="starlight"] [class*="text-emerald"],
+[data-theme="starlight"] [class*="text-green"] {
+  color: #e4e4e7 !important;
+}
+
+[data-theme="starlight"] [class*="text-[#5a6b5e]"],
+[data-theme="starlight"] [class*="text-[#829285]"],
+[data-theme="starlight"] [class*="text-[#303f34]"],
+[data-theme="starlight"] [class*="text-[#334237]"],
+[data-theme="starlight"] [class*="text-[#353d36]"],
+[data-theme="starlight"] [class*="text-[#3a4a3e]"],
+[data-theme="starlight"] [class*="text-[#3a4f3e]"],
+[data-theme="starlight"] [class*="text-[#3f5043]"],
+[data-theme="starlight"] [class*="text-[#405244]"],
+[data-theme="starlight"] [class*="text-[#415546]"],
+[data-theme="starlight"] [class*="text-[#435246]"],
+[data-theme="starlight"] [class*="text-[#4a594c]"],
+[data-theme="starlight"] [class*="text-[#4e6453]"],
+[data-theme="starlight"] [class*="text-[#4f6454]"],
+[data-theme="starlight"] [class*="text-[#507d72]"],
+[data-theme="starlight"] [class*="text-[#526355]"],
+[data-theme="starlight"] [class*="text-[#55695a]"],
+[data-theme="starlight"] [class*="text-[#556e5d]"],
+[data-theme="starlight"] [class*="text-[#5e7564]"],
+[data-theme="starlight"] [class*="text-[#5e7765]"],
+[data-theme="starlight"] [class*="text-[#617364]"],
+[data-theme="starlight"] [class*="text-[#637d68]"],
+[data-theme="starlight"] [class*="text-[#687f6e]"],
+[data-theme="starlight"] [class*="text-[#708573]"],
+[data-theme="starlight"] [class*="text-[#718274]"],
+[data-theme="starlight"] [class*="text-[#719277]"],
+[data-theme="starlight"] [class*="text-[#728574]"],
+[data-theme="starlight"] [class*="text-[#738f7a]"],
+[data-theme="starlight"] [class*="text-[#788e7d]"],
+[data-theme="starlight"] [class*="text-[#7a9480]"],
+[data-theme="starlight"] [class*="text-[#86a58e]"],
+[data-theme="starlight"] [class*="text-[#8a9a8c]"],
+[data-theme="starlight"] [class*="text-[#9ba89d]"],
+[data-theme="starlight"] [class*="text-[#9eb0a1]"],
+[data-theme="starlight"] [class*="text-[#a3ada3]"] {
+  color: #a1a1aa !important;
+}
+
+[data-theme="starlight"] [class*="text-[#c9d1c9]"],
+[data-theme="starlight"] [class*="text-[#e0e7e0]"],
+[data-theme="starlight"] [class*="text-[#d1dad1]"] {
+  color: #fafafa !important;
+}
+
+[data-theme="starlight"] [class*="hover:text-[#a9d1b0]"]:hover,
+[data-theme="starlight"] [class*="hover:text-[#709978]"]:hover,
+[data-theme="starlight"] [class*="hover:text-emerald"]:hover,
+[data-theme="starlight"] [class*="group-hover:text-[#a9d1b0]"],
+[data-theme="starlight"] [class*="group-hover:text-emerald"] {
+  color: #ffffff !important;
+}
+
+/* SVG icons inheriting green classes */
+[data-theme="starlight"] svg[class*="text-[#a9d1b0]"],
+[data-theme="starlight"] svg[class*="text-[#709978]"],
+[data-theme="starlight"] svg[class*="text-emerald"] {
+  color: #e4e4e7 !important;
+}
+
+[data-theme="starlight"] svg[class*="text-[#5a6b5e]"] {
+  color: #71717a !important;
+}
+
+/* Reading Progress Bar in Starlight mode */
+[data-theme="starlight"] [class*="from-emerald-600"] {
+  --tw-gradient-from: #71717a var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(113 113 122 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #e4e4e7, var(--tw-gradient-to) !important;
+}
+
+[data-theme="starlight"] [class*="to-[#709978]"] {
+  --tw-gradient-to: #ffffff var(--tw-gradient-to-position) !important;
+}
+
+/* UpdatedFrame glowing gray / silver in Starlight mode */
+[data-theme="starlight"] [class*="border-amber-500"] {
+  border-color: rgba(228, 228, 231, 0.75) !important;
+}
+
+[data-theme="starlight"] [class*="bg-amber-950"] {
+  background-color: rgba(24, 24, 27, 0.8) !important;
+}
+
+[data-theme="starlight"] [class*="text-amber-400"],
+[data-theme="starlight"] [class*="text-amber-300"],
+[data-theme="starlight"] [class*="text-amber-200"] {
+  color: #f4f4f5 !important;
+}
+
+/* Universal selection tint */
+::selection {
+  background-color: rgba(66, 89, 70, 0.55);
+  color: #ffffff;
+}
+
+*::selection {
+  background-color: rgba(66, 89, 70, 0.55);
+  color: #ffffff;
+}
+
+/* Starlight mode selection tint: refined silver / platinum with ZERO green */
+[data-theme="starlight"] ::selection,
+[data-theme="starlight"] *::selection {
+  background-color: rgba(161, 161, 170, 0.35) !important;
+  color: #ffffff !important;
+}
+
+/* Input elements and Search bars in Starlight mode - completely clear green focus rings & borders */
+[data-theme="starlight"] input,
+[data-theme="starlight"] textarea,
+[data-theme="starlight"] select {
+  background-color: rgba(14, 14, 18, 0.85) !important;
+  border-color: #27272a !important;
+  color: #fafafa !important;
+}
+
+[data-theme="starlight"] input::placeholder,
+[data-theme="starlight"] textarea::placeholder {
+  color: #71717a !important;
+}
+
+[data-theme="starlight"] input:focus,
+[data-theme="starlight"] textarea:focus,
+[data-theme="starlight"] select:focus,
+[data-theme="starlight"] [class*="focus:border-"]:focus,
+[data-theme="starlight"] [class*="focus:ring-"]:focus {
+  border-color: #71717a !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px rgba(161, 161, 170, 0.4) !important;
+  --tw-ring-color: #71717a !important;
+  --tw-ring-shadow: 0 0 0 1px rgba(161, 161, 170, 0.4) !important;
+}
+
+/* Selected entity card in sidebar under Starlight mode */
+[data-theme="starlight"] [class*="from-red-950"] {
+  background: rgba(30, 30, 36, 0.85) !important;
+  border-color: #52525b !important;
+  box-shadow: 0 0 6px rgba(161, 161, 170, 0.15) !important;
+}
+
+/* STRICT PRESERVATION: Threat Badge Visual Protocols under Starlight mode (Rule 6) */
+[data-theme="starlight"] .threat-badge-extermination {
+  background-color: #251012 !important;
+  border-color: rgba(239, 68, 68, 0.75) !important;
+  color: #f87171 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.75) !important;
+}
+
+[data-theme="starlight"] .threat-badge-extreme {
+  background-color: #221315 !important;
+  border-color: rgba(127, 29, 29, 0.5) !important;
+  color: #cf8f92 !important;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.45) !important;
+}
+
+[data-theme="starlight"] .threat-badge-high {
+  background-color: #1a1318 !important;
+  border-color: rgba(63, 33, 35, 0.4) !important;
+  color: #b5a3bd !important;
+  box-shadow: 0 0 4px rgba(239, 68, 68, 0.25) !important;
+}
+
+[data-theme="starlight"] .threat-badge-medium {
+  background-color: #1a1715 !important;
+  border-color: rgba(47, 40, 36, 0.4) !important;
+  color: #c2b09f !important;
+  box-shadow: none !important;
+}
+
+[data-theme="starlight"] .threat-badge-low {
+  background-color: #141715 !important;
+  border-color: rgba(34, 41, 36, 0.4) !important;
+  color: #9bb0a0 !important;
+  box-shadow: none !important;
+}
+
+[data-theme="starlight"] .threat-badge-passive {
+  background-color: #111412 !important;
+  border-color: rgba(27, 34, 29, 0.4) !important;
+  color: #829285 !important;
+  box-shadow: none !important;
+}
