@@ -7,7 +7,7 @@ interface ThemeToggleProps {
   size?: 'sm' | 'md';
 }
 
-export default function ThemeToggle({ className = '', size = 'md' }: ThemeToggleProps) {
+function ThemeToggle({ className = '', size = 'md' }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
   const isStarlight = theme === 'starlight';
 
@@ -15,6 +15,7 @@ export default function ThemeToggle({ className = '', size = 'md' }: ThemeToggle
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       id="theme-toggle-button"
       className={`relative ${sizeClasses} rounded-lg border transition-all duration-300 flex items-center justify-center cursor-pointer group shrink-0 ${
@@ -38,3 +39,6 @@ export default function ThemeToggle({ className = '', size = 'md' }: ThemeToggle
     </button>
   );
 }
+
+export default React.memo(ThemeToggle);
+
