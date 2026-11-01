@@ -1006,52 +1006,40 @@ export default function EntitiesView() {
 
   const ashWeaverAbilities: Ability[] = [
     {
-      title: "A Chosen Companion",
-      trigger: "An unassigned Weaver meets an eligible player nearby",
-      description: "Chooses a player who has no Ash-Weaver assigned to them. It follows, catches up when needed, and sometimes lingers or glances at its surroundings before returning. A portal it sees its companion enter can become a route to follow; an unexplained disappearance is not permission to teleport.",
-      category: "Companion Logic"
+      title: "13-State Autonomic Finite State Machine (FSM)",
+      trigger: "Continuous Post-Tick Execution (EntityTickEvent.Post)",
+      description: "Operates an authoritative 13-state deterministic AI state machine (STATE_IDLE through STATE_TRAVEL) evaluated on post-tick authority to bypass vanilla AI goal overriding. Transitions are dynamically dictated by immediate danger distance (<= 8.0 blocks / 64m²), assigned companion proximity, threat classification, and persistent NBT timers.",
+      category: "Autonomous FSM"
     },
     {
-      title: "An Uneasy Protector",
-      trigger: "Its companion is attacked or a nearby threat becomes dangerous",
-      description: "Can turn on an attacker, swing in close combat, or occasionally jump for a stronger strike. It may dodge danger, hesitate, or retreat instead of judging every fight perfectly. When a pursuing Splinter seems to have escaped the player's notice, the Weaver can gesture a warning.",
-      category: "Combat AI"
-    },
-    {
-      title: "Ash-Rose Defense",
-      trigger: "A nearby hostile Splinter is targeting its companion",
-      description: "Looks for safe ground, turns toward the planting site, and swings before placing a rose. Planting is a response to danger, not endless peaceful gardening. Rose placement is limited, and it may drop a blossom for a companion in danger.",
+      title: "Botanical Placement Vectoring & Daily Quota Governor",
+      trigger: "Hostile Splinter entity targeting companion within 16-block radius",
+      description: "Executes a 28-ray conical angular sweep centered on threat direction (±1.15 rad for primary 9 attempts, full 2π radial for remaining 19) at radii 2.25m to 6.0m. Enforces an 8x3x8 local density check (< 3 roses), 2-block spacing, and strict server-wide NBT quota budgeting: max 8 roses per 24,000-tick day with 1,200-tick internal gating and emergency toss physics (0.19 horizontal / 0.18 vertical velocity).",
       category: "Botanical Defense"
     },
     {
-      title: "Frightening Memories",
-      trigger: "A dangerous encounter or a near-death escape",
-      description: "Remembers frightening threats and the areas where they were encountered. A shaken Weaver may crouch behind cover, peek out, and wait for danger to pass. Overcoming threats together can ease its fear, but a victory does not erase every memory at once.",
-      category: "Cognitive System"
+      title: "4-Slot Spatial Trauma Buffer & Multi-Phase Stealth Cover",
+      trigger: "Health dropping below 40% (16 HP) during combat encounters",
+      description: "Registers traumatic encounters into a 4-slot persistent spatial memory buffer (ashWeaverFear0..3) with distance-decayed severity ((32 - dist) / 20). When panicked, evaluates a 144-ray radial matrix across 12 directions and 3 elevations to identify safe line-of-sight occlusion. Executes a 4-phase stealth cycle: Scan -> Cover Retreat -> Occluded Hold -> Lateral Peeking (±1.0m orthogonal offset for 28 ticks) -> Fallback.",
+      category: "Cognitive Trauma"
     },
     {
-      title: "Learning to Understand",
-      trigger: "Its assigned player speaks nearby",
-      description: "Recognizes a small set of chat requests, including addressed phrases with minor misspellings. Early replies are mostly scrambled; growing familiarity makes them clearer. It pauses before answering, responds more quickly to urgent help, and speaks privately to its own companion.",
-      category: "Social & Linguistics"
+      title: "Topological BFS Home Survey & Room Centroid Anchoring",
+      trigger: "Registered companion shelter or home boundary update",
+      description: "Runs an asynchronous Breadth-First Search (BFS) flood fill surveying up to 1,024 cells, 8 discrete rooms, and 16 inter-room portals. Employs a 24-ray spherical occlusion pulse to verify ceiling and wall encasement. Dynamically calculates topological room centroids to anchor interior wandering and ensures doors act as strict acoustic and structural boundaries.",
+      category: "Spatial Architecture"
     },
     {
-      title: "A Place Called Home",
-      trigger: "Its companion says 'this is home' from nearby safe ground",
-      description: "Accepts a usable shelter or cave, or an equipped campsite, lookout, or open base. It gradually learns nearby rooms and boundaries rather than claiming every visible patch of land. Open doors remain boundaries, and an unsafe or unreachable place can be refused.",
-      category: "Territory Logic"
-    },
-    {
-      title: "Making Amends",
-      trigger: "Its companion apologizes after an isolated accidental hit",
-      description: "A sincere apology can soften a recent mistake, but it does not erase the injury or every frightening memory. Repeated harm carries more weight than repeated words. Spamming apologies earns no trust, and the Weaver may ask for time or wait for kinder behavior.",
-      category: "Companionship"
-    },
-    {
-      title: "Small, Deliberate Movements",
-      trigger: "Following through uneven ground, ledges, or doorways",
-      description: "Walks, sprints, and uses cautious jumps when the route allows. It judges drops and landing space instead of jumping down every slope. At a door it pauses, looks toward the handle, and swings to open or close it, leaving the doorway clear for others.",
+      title: "Ballistic Evasion, Ledge Braking & Kinematic Mirroring",
+      trigger: "Companion ranged weapon draw, hazardous drop, or stance change",
+      description: "Continuously tracks companion crosshairs; aiming within 14 blocks triggers reflexive lateral evasion maneuvers. Enforces edge brakes on dangerous drop boundaries (> 3.05m drop) during sneaking. Mimics companion crouching after 12-24 ticks (35% probability), executes jump-attack crits (1.15x vertical leap), and traverses witnessed dimensional portals using temporary 2-chunk ticket leases.",
       category: "Kinematic AI"
+    },
+    {
+      title: "Autonomous Relationship Dynamics & Dynamic Dialect",
+      trigger: "Companion combat assistance, proximity calm, or accidental friendly fire",
+      description: "Tracks an internal bond matrix (-100.0 to +100.0). Sustained companionship and assisting the Weaver in combat (+3.0 bond, 600-tick cooldown) builds trust, whereas friendly fire incurs harsh avoidance penalties (<= -25.0 triggers 6m+ retreat protocol). Speech generation processes familiarity scores to procedurally descramble cryptic Thicket dialect into coherent English.",
+      category: "Social Matrix"
     }
   ];
 
@@ -1680,7 +1668,7 @@ export default function EntitiesView() {
       case 'stilt_walker':
         return 'Spawn Grace Protection System 20 ticks 1s 60 ticks 3s stalk cycle predictive dodging immune damage';
       case 'ash_weaver':
-        return 'Botanical Symbiote The Thicket companion trust familiarity fear hiding peeking roses warnings portal travel home cave campsite watchtower doors chat commands';
+        return 'Botanical Symbiote The Thicket companion trust familiarity fear hiding peeking roses warnings portal travel home cave campsite watchtower doors chat commands FSM finite state machine BFS topological survey centroid trauma buffer quota budget conical sweep edge brake lateral dodge kinematics';
       case 'fractus':
       case 'fractus_prime':
         return 'Tractor beam grip escape energy sphere burst echolocation network sub-terranean fortification sonar acoustic radar concussive shockwave';
@@ -3191,7 +3179,7 @@ export default function EntitiesView() {
                       Finite State Machine &amp; Operational Phase Matrix
                     </h4>
                     <p className="text-xs text-[#829285] leading-relaxed mt-1">
-                      Companionship, danger, frightening memories, and familiar shelter shape how the Weaver behaves. Its attention shifts with the situation rather than following the same routine everywhere.
+                      Powered by an authoritative post-tick 13-state deterministic FSM (<code className="text-[#81caa9]">STATE_IDLE</code> through <code className="text-[#81caa9]">STATE_TRAVEL</code>). Internal state routing transitions dynamically based on spatial geometry, threat vectors, persistent NBT budgets, and topological surveys.
                     </p>
                   </div>
 
@@ -3218,69 +3206,115 @@ export default function EntitiesView() {
 
                   <div className="p-4 bg-[#0a110d] border border-[#1c2c21]/40 rounded-xl">
                     {activeAshWeaverState === 'companion' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-[#81caa9]">
-                          Companionship &amp; Protective Planting
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Follows its chosen companion, pauses to notice its surroundings, and looks for safe planting ground when hostile Splinters give chase.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-[#e0e7e0]">A Chosen Companion:</strong> Chooses an unaccompanied player nearby and keeps a changing, comfortable distance instead of always standing on the same spot.</li>
-                          <li><strong className="text-[#81caa9]">Careful Planting:</strong> Checks usable ground and space for the flower, looks toward the spot, then swings to place it.</li>
-                          <li><strong className="text-emerald-400">A Defensive Blossom:</strong> Plants when hostile Splinters are targeting its companion, rather than endlessly filling peaceful paths with roses.</li>
-                          <li><strong className="text-purple-400">Following Through Portals:</strong> Can follow a witnessed portal route, but does not blindly teleport after unexplained travel.</li>
+                      <div className="space-y-3">
+                        <div className="border-b border-[#1c2c21]/40 pb-2">
+                          <h5 className="font-serif text-sm font-bold text-[#81caa9]">
+                            Companionship Formation &amp; Botanical Quota Engine
+                          </h5>
+                          <p className="text-xs text-[#8c8779] leading-relaxed mt-0.5">
+                            Sub-system states: <code className="text-[#81caa9]">STATE_IDLE (0)</code>, <code className="text-[#81caa9]">STATE_FOLLOW (1)</code>, <code className="text-[#81caa9]">STATE_SEEK_PLANT_SITE (3)</code>, <code className="text-[#81caa9]">STATE_PLANT (4)</code>, and <code className="text-[#81caa9]">STATE_TRAVEL (12)</code>.
+                          </p>
+                        </div>
+                        <ul className="text-xs text-[#8c8779] space-y-2 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li>
+                            <strong className="text-[#e0e7e0]">Dynamic Formation Offset Vector:</strong> Companion tracking calculates a lateral flanking position offset by <code className="text-[#81caa9]">2.75m + (-bond * 0.06m) + 0.8 * sin(tickCount * 0.012)</code> with a sign flip derived from the entity's UUID hash. Follow navigation engages when separation exceeds <strong className="text-white">3.5 blocks</strong> (12.25m²).
+                          </li>
+                          <li>
+                            <strong className="text-[#81caa9]">28-Ray Conical Plant Site Search:</strong> When a hostile Splinter targets its companion within 16 blocks, the Weaver sweeps candidate landing coordinates: 9 primary attempts focused along the threat vector (±1.15 rad) and 19 ambient radial attempts between 2.25m and 6.0m radii, auditing substrate validity across a vertical span of +3 to -4 blocks.
+                          </li>
+                          <li>
+                            <strong className="text-emerald-400">Strict Daily Rose Quota &amp; Density Capping:</strong> Plant placement requires <code className="text-[#81caa9]">roseBudgetAvailable()</code>. The system enforces a strict maximum of <strong className="text-white">8 roses per 24,000-tick day</strong>, an internal pacing cooldown of <strong className="text-white">1,200 ticks (60s)</strong> between placements, a local saturation limit of <strong className="text-white">&lt; 3 roses</strong> within an 8x3x8 volume, and minimum 2-block spacing.
+                          </li>
+                          <li>
+                            <strong className="text-purple-400">Witnessed Dimensional Portal Leasing:</strong> If the companion traverses a portal within 16 blocks and line-of-sight, the Weaver registers the gate coordinate, requests a transient 2-chunk portal ticket lease (<code className="text-[#81caa9]">TicketType.PORTAL</code>), navigates toward the portal aperture at 1.12x speed, and allows the native game portal mechanics to handle dimension transition without artificial teleports.
+                          </li>
                         </ul>
                       </div>
                     )}
 
                     {activeAshWeaverState === 'combat' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-amber-400">
-                          Danger &amp; Defense
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          Can help when its companion is attacked, but danger may also make it hesitate, retreat, or reach for a protective blossom.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Close Defense:</strong> Swings against attackers in reach and sometimes jumps for a stronger falling strike. It runs when a chase calls for it.</li>
-                          <li><strong className="text-amber-400">Avoiding Danger:</strong> Tries to dodge incoming shots or move out of its companion's aim instead of standing in the line of fire.</li>
-                          <li><strong className="text-yellow-400">Watch Your Back:</strong> May gesture toward a pursuing Splinter when its companion seems unaware of the danger.</li>
-                          <li><strong className="text-[#e0e7e0]">Cautious Footing:</strong> Judges landing space and drop depth, slows at dangerous edges, and may wait rather than commit to a bad jump.</li>
+                      <div className="space-y-3">
+                        <div className="border-b border-[#1c2c21]/40 pb-2">
+                          <h5 className="font-serif text-sm font-bold text-amber-400">
+                            Combat AI, Ballistic Evasion &amp; Kinematics
+                          </h5>
+                          <p className="text-xs text-[#8c8779] leading-relaxed mt-0.5">
+                            Sub-system states: <code className="text-amber-400">STATE_ALERT (2)</code>, <code className="text-amber-400">STATE_DEFEND (7)</code>, <code className="text-amber-400">STATE_DODGE (8)</code>, and <code className="text-amber-400">STATE_WARN (9)</code>.
+                          </p>
+                        </div>
+                        <ul className="text-xs text-[#8c8779] space-y-2 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li>
+                            <strong className="text-red-400">Reprisal Melee &amp; Critical Jumps:</strong> Retaliates against entities damaging its companion within 16 blocks (<code className="text-[#81caa9]">STATE_DEFEND</code>, 120-tick lock). Attacks deal 4.0 base melee damage and roll for jumping critical strikes when aligned on target, boosting vertical jump velocity by 1.15x for falling damage multipliers.
+                          </li>
+                          <li>
+                            <strong className="text-amber-400">Crosshair Aim Evasion (Dodging):</strong> When a companion draws or charges a ranged weapon (bow, crossbow, trident) aimed at the Weaver within 14 blocks, <code className="text-[#81caa9]">isOwnerAimingAtWeaver()</code> triggers <code className="text-[#81caa9]">STATE_DODGE</code>. The Weaver calculates a 3.5-block orthogonal vector perpendicular to the aim ray and sprints out of the firing line.
+                          </li>
+                          <li>
+                            <strong className="text-yellow-400">Unseen Pursuer Warning Protocol:</strong> If an active Splinter threat approaches within 32 blocks while outside the companion's field of view, the Weaver enters <code className="text-[#81caa9]">STATE_WARN</code> (25 ticks, 180-tick cooldown), turns to face the threat, and executes alert body gestures to signal incoming danger.
+                          </li>
+                          <li>
+                            <strong className="text-[#e0e7e0]">Edge Braking &amp; Obstacle Detouring:</strong> During movement near hazardous drops (&gt; 3.05m sheer descent), <code className="text-[#81caa9]">applySneakEdgeBrake()</code> forcibly dampens horizontal velocity by 0.35x. If a forward drop is impassable, <code className="text-[#81caa9]">findBoundaryDetour()</code> samples lateral vectors (2-4 blocks) to locate a safe bypass.
+                          </li>
                         </ul>
                       </div>
                     )}
 
                     {activeAshWeaverState === 'trauma' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-purple-400">
-                          Fear &amp; Recovery
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          A frightening encounter can change how the Weaver approaches the same threat or place later. Shared victories can help it regain its nerve.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-red-400">Seeking Cover:</strong> A badly hurt or frightened Weaver can break sight, crouch behind cover, and peek out before deciding to return.</li>
-                          <li><strong className="text-purple-400">Remembered Places:</strong> Fear is tied to a threat and the surrounding area, not a single unlucky block.</li>
-                          <li><strong className="text-emerald-400">Recovery:</strong> Overcoming nearby threats together can soften frightening memories over time.</li>
-                          <li><strong className="text-[#e0e7e0]">Trust and Familiarity:</strong> Shared time and help build a bond; repeated harm can make the Weaver wary or avoidant.</li>
+                      <div className="space-y-3">
+                        <div className="border-b border-[#1c2c21]/40 pb-2">
+                          <h5 className="font-serif text-sm font-bold text-purple-400">
+                            Spatial Trauma Memory &amp; Tactical Cover Engine
+                          </h5>
+                          <p className="text-xs text-[#8c8779] leading-relaxed mt-0.5">
+                            Sub-system states: <code className="text-purple-400">STATE_HIDE (10)</code> and <code className="text-purple-400">STATE_REGROUP (6)</code>.
+                          </p>
+                        </div>
+                        <ul className="text-xs text-[#8c8779] space-y-2 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li>
+                            <strong className="text-red-400">4-Slot Persistent Trauma Ring Buffer:</strong> When health falls below 35% (14 HP) while taking damage, incident coordinates and threat types are committed to persistent memory slots (<code className="text-[#81caa9]">ashWeaverFear0..3</code>). Fear intensity decays from 1.0 down to 0.0 across a 32-block radius using formula <code className="text-[#81caa9]">(32.0 - distance) / 20.0</code>.
+                          </li>
+                          <li>
+                            <strong className="text-purple-400">144-Ray Radial Cover Matrix:</strong> Panicked hiding audits 8 candidate directions across 3 elevation levels (-1, 0, +1) over an expanding radius of 3.0m to 9.0m (144 total iterations). Valid cover positions must break direct raycast line-of-sight from the threat while preserving a safe secondary exit path.
+                          </li>
+                          <li>
+                            <strong className="text-emerald-400">Multi-Phase Stealth &amp; Peeking Cycle:</strong>
+                            <div className="pl-3 mt-1 space-y-1 text-[#829285]">
+                              <div>• <strong>Phase 0 (Search &amp; Approach):</strong> Sprints or sneaks toward designated occluding cover.</div>
+                              <div>• <strong>Phase 1 (Occluded Hold):</strong> Crouches behind solid blocks with edge braking active for 40-80 ticks.</div>
+                              <div>• <strong>Phase 2 (Lateral Peek):</strong> Steps 1.0m orthogonally outward from cover for 28 ticks to assess threat position.</div>
+                              <div>• <strong>Phase 3 (Emergency Retreat):</strong> If the threat faces or closes distance, cancels peeking and snaps back into full cover.</div>
+                            </div>
+                          </li>
+                          <li>
+                            <strong className="text-[#e0e7e0]">Combat Victory Trauma Erasure:</strong> Defeating or surviving near remembered trauma zones gradually reduces slot fear strength by -0.08 per 1,200-tick visit once the Weaver's health restores above 50%.
+                          </li>
                         </ul>
                       </div>
                     )}
 
                     {activeAshWeaverState === 'territory' && (
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-sm font-bold text-teal-400">
-                          Home &amp; Understanding
-                        </h5>
-                        <p className="text-xs text-[#8c8779] leading-relaxed">
-                          A home must be somewhere usable. The Weaver learns shelter and nearby boundaries gradually, and may refuse a place that is unsafe or beyond its reach.
-                        </p>
-                        <ul className="text-xs text-[#8c8779] space-y-1.5 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
-                          <li><strong className="text-teal-400">A Usable Home:</strong> Recognizes sheltered rooms, caves, equipped campsites, watchtowers, and open bases, rather than accepting any empty field.</li>
-                          <li><strong className="text-[#81caa9]">Room Boundaries:</strong> Open doors do not turn the entire outdoors into another room. Extra areas must connect safely to a remembered home.</li>
-                          <li><strong className="text-amber-400">A Few Familiar Words:</strong> Addressed requests tolerate minor typos. Important changes, such as forgetting a home, require clear words and confirmation.</li>
-                          <li><strong className="text-[#e0e7e0]">Strange Speech:</strong> Replies begin heavily scrambled and become easier to read with familiarity. A damaged relationship can make communication difficult again.</li>
+                      <div className="space-y-3">
+                        <div className="border-b border-[#1c2c21]/40 pb-2">
+                          <h5 className="font-serif text-sm font-bold text-teal-400">
+                            Topological Home Survey &amp; Room Centroid Engine
+                          </h5>
+                          <p className="text-xs text-[#8c8779] leading-relaxed mt-0.5">
+                            Sub-system states: <code className="text-teal-400">STATE_HOME (11)</code> and <code className="text-teal-400">STATE_WAIT (5)</code>.
+                          </p>
+                        </div>
+                        <ul className="text-xs text-[#8c8779] space-y-2 pl-3.5 list-disc leading-relaxed font-mono text-[11px]">
+                          <li>
+                            <strong className="text-teal-400">1,024-Cell Asynchronous BFS Survey:</strong> When home territory is declared, the Weaver launches a Breadth-First Search flood fill exploring accessible walkable floor cells up to a maximum budget of 1,024 nodes, partitioning architecture into up to 8 rooms.
+                          </li>
+                          <li>
+                            <strong className="text-[#81caa9]">24-Ray Spherical Enclosure Pulse:</strong> Before certifying shelter, projects 24 raycasts in 8 radial directions across 3 elevation slopes (-1, 0, +1) to verify solid ceiling and wall containment. Uncovered outdoor fields are systematically rejected.
+                          </li>
+                          <li>
+                            <strong className="text-amber-400">Dynamic Room Centroid Calculation:</strong> Accumulates vector coordinates of all validated floor cells per room and computes the geometrical centroid. Interior idle wandering anchors strictly around this centroid, preventing crowding against doorway thresholds.
+                          </li>
+                          <li>
+                            <strong className="text-[#e0e7e0]">Portal Boundaries &amp; Doorway Kinematics:</strong> Doors are treated as formal topological portals (up to 16 mapped). When transitioning, the Weaver stops 1.2m away, rotates yaw toward the door handle, triggers main-hand swing animations, toggles block state, steps through, and closes the door behind it.
+                          </li>
                         </ul>
                       </div>
                     )}
