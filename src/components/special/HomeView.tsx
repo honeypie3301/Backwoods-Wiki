@@ -1,9 +1,19 @@
 /**
- * AI ASSISTANT MAINTENANCE NOTICE:
- * Whenever you update any wiki content or implement commit changes:
- * 1. Update the "Recent Highlights" list in the Wiki Maintenance Note below.
- * 2. Keep the underline strictly on: "The wiki is always updated before a new version releases."
- * 3. Wrap newly added/changed components across the wiki in `<UpdatedFrame id="..." isUpdated={true}>`.
+ * ========================================================================================
+ * AI ASSISTANT MAINTENANCE NOTICE & PROTOCOL RULES:
+ * ========================================================================================
+ * 1. MANDATORY REMINDER - MOD CONTENT UPDATES ONLY:
+ *    The "Recent Version Highlights" list in the Wiki Maintenance Note below is STRICTLY
+ *    and EXCLUSIVELY for in-game Backwoods mod content updates (e.g., entities, biomes,
+ *    dimensions, structures, mechanics, blocks, items, commands, balance calibrations).
+ *    DO NOT EVER include wiki web app features, UI/styling changes, theme calibrations,
+ *    terminal tweaks, or website bug fixes in the highlights list.
+ *
+ * 2. Whenever you update any wiki content or implement commit changes:
+ *    - Update the "Recent Highlights" list in the Wiki Maintenance Note below with in-game mod updates.
+ *    - Keep the underline strictly on: "The wiki is always updated before a new version releases."
+ *    - Wrap newly added/changed components across the wiki in `<UpdatedFrame id="..." isUpdated={true}>`.
+ * ========================================================================================
  */
 import React from 'react';
 import { 
