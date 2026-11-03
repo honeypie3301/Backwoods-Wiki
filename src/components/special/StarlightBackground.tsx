@@ -240,7 +240,21 @@ export default function StarlightBackground() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
+    // Frame throttle: Cap canvas background rendering at ~30 FPS (every 33ms)
+    // The celestial rotation (0.000075 rad/s) and slow twinkle are extremely calm,
+    // so 30 FPS is visually identical while cutting 2D context draws & GPU compositing by 50-70%.
+    const FRAME_INTERVAL = 1000 / 30;
+    let lastDrawTime = 0;
+
     const render = (currentTime: number) => {
+      animationFrameId = requestAnimationFrame(render);
+
+      const elapsedSinceLastDraw = currentTime - lastDrawTime;
+      if (elapsedSinceLastDraw < FRAME_INTERVAL) {
+        return;
+      }
+      lastDrawTime = currentTime - (elapsedSinceLastDraw % FRAME_INTERVAL);
+
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -432,8 +446,6 @@ export default function StarlightBackground() {
           shootingStar = null;
         }
       }
-
-      animationFrameId = requestAnimationFrame(render);
     };
 
     // Tab visibility throttling: pause canvas when tab is hidden, resume when active
