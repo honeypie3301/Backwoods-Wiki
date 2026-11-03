@@ -105,6 +105,25 @@ const CONSTELLATIONS: { name: string; stars: [number, number][] }[] = [
 
 const TWO_PI = Math.PI * 2;
 
+// ==========================================
+// CELESTIAL CONFIGURATION
+// ==========================================
+export const CELESTIAL_CONFIG = {
+  // Angular orbital velocity in radians per second
+  // Default authentic slow celestial drift: 0.000075 rad/s
+  // Try higher values for faster rotation (e.g. 0.005, 0.02, 0.08)
+  angularSpeed: 0.000075,
+
+  // Subtle radial drift speed (px/sec)
+  radialSpeed: 0.012,
+
+  // Motion blur threshold: angular speed above this triggers directional streak rendering
+  motionBlurMinSpeed: 0.002,
+
+  // Multiplier for motion blur streak length
+  motionBlurLengthFactor: 1.0,
+};
+
 export default function StarlightBackground() {
   const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -240,10 +259,11 @@ export default function StarlightBackground() {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Frame throttle: Cap canvas background rendering at ~30 FPS (every 33ms)
-    // The celestial rotation (0.000075 rad/s) and slow twinkle are extremely calm,
-    // so 30 FPS is visually identical while cutting 2D context draws & GPU compositing by 50-70%.
-    const FRAME_INTERVAL = 1000 / 30;
+    // Dynamic frame throttle: when speed is low (default calm drift), throttle to ~30 FPS
+    // When speed is high with active motion blur streaks, smoothly unlock up to 60 FPS for fluid trails
+    const isHighSpeed = CELESTIAL_CONFIG.angularSpeed >= CELESTIAL_CONFIG.motionBlurMinSpeed;
+    const targetFps = isHighSpeed ? 60 : 30;
+    const FRAME_INTERVAL = 1000 / targetFps;
     let lastDrawTime = 0;
 
     const render = (currentTime: number) => {
@@ -267,9 +287,8 @@ export default function StarlightBackground() {
       // Distant celestial pole located high above screen:
       const poleX = width * 0.5;
       const poleY = -height * 0.9;
-      // Very slow angular orbital velocity (~0.000075 rad/s) + subtle radial drift (0.012 px/s)
-      const angularSpeed = 0.000075;
-      const radialSpeed = 0.012;
+      const angularSpeed = CELESTIAL_CONFIG.angularSpeed;
+      const radialSpeed = CELESTIAL_CONFIG.radialSpeed;
 
       // Solid pitch-black canvas background
       ctx.fillStyle = '#000000';
@@ -278,6 +297,10 @@ export default function StarlightBackground() {
       const margin = 35;
       const wrapWidth = width + margin * 2;
       const wrapHeight = height + margin * 2;
+
+      // Motion blur pre-check: only calculate & draw velocity streaks if moving fast enough
+      const enableMotionBlur = angularSpeed >= CELESTIAL_CONFIG.motionBlurMinSpeed;
+      const blurFactor = CELESTIAL_CONFIG.motionBlurLengthFactor;
 
       // 1. Draw and update field stars
       for (let i = 0; i < stars.length; i++) {
@@ -308,6 +331,22 @@ export default function StarlightBackground() {
         const sinVal = Math.sin(star.phase);
         const dynamicAlpha = Math.max(0.18, Math.min(0.95, star.baseAlpha + sinVal * star.twinkleDepth));
 
+        // High-speed motion blur tangential streak
+        if (enableMotionBlur) {
+          const streakVx = vx * dt * 1.5 * blurFactor;
+          const streakVy = vy * dt * 1.5 * blurFactor;
+          const streakLen = Math.hypot(streakVx, streakVy);
+
+          if (streakLen > 0.5) {
+            ctx.beginPath();
+            ctx.moveTo(star.x - streakVx, star.y - streakVy);
+            ctx.lineTo(star.x, star.y);
+            ctx.strokeStyle = `${star.color}${(dynamicAlpha * 0.7).toFixed(3)})`;
+            ctx.lineWidth = Math.max(0.75, star.radius * 1.4);
+            ctx.stroke();
+          }
+        }
+
         // Core pinpoint star
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, TWO_PI);
@@ -322,8 +361,8 @@ export default function StarlightBackground() {
           ctx.fill();
         }
 
-        // Diamond 4-point micro-diffraction spike for prominent stars
-        if (star.isSpecialFlare && dynamicAlpha > 0.6) {
+        // Diamond 4-point micro-diffraction spike for prominent stars (skip in motion blur to save draw calls)
+        if (!enableMotionBlur && star.isSpecialFlare && dynamicAlpha > 0.6) {
           const spikeAlpha = (dynamicAlpha * 0.20).toFixed(3);
           ctx.strokeStyle = `${star.color}${spikeAlpha})`;
           ctx.lineWidth = 0.5;
@@ -370,6 +409,21 @@ export default function StarlightBackground() {
           const sinVal = Math.sin(cStar.phase);
           const dynamicAlpha = Math.max(0.18, Math.min(0.95, cStar.baseAlpha + sinVal * cStar.twinkleDepth));
 
+          if (enableMotionBlur) {
+            const streakVx = cvx * dt * 1.5 * blurFactor;
+            const streakVy = cvy * dt * 1.5 * blurFactor;
+            const streakLen = Math.hypot(streakVx, streakVy);
+
+            if (streakLen > 0.5) {
+              ctx.beginPath();
+              ctx.moveTo(starX - streakVx, starY - streakVy);
+              ctx.lineTo(starX, starY);
+              ctx.strokeStyle = `${cStar.color}${(dynamicAlpha * 0.7).toFixed(3)})`;
+              ctx.lineWidth = Math.max(0.75, cStar.radius * 1.4);
+              ctx.stroke();
+            }
+          }
+
           ctx.beginPath();
           ctx.arc(starX, starY, cStar.radius, 0, TWO_PI);
           ctx.fillStyle = `${cStar.color}${dynamicAlpha.toFixed(3)})`;
@@ -382,7 +436,7 @@ export default function StarlightBackground() {
             ctx.fill();
           }
 
-          if (cStar.isSpecialFlare && dynamicAlpha > 0.6) {
+          if (!enableMotionBlur && cStar.isSpecialFlare && dynamicAlpha > 0.6) {
             const spikeAlpha = (dynamicAlpha * 0.20).toFixed(3);
             ctx.strokeStyle = `${cStar.color}${spikeAlpha})`;
             ctx.lineWidth = 0.5;
