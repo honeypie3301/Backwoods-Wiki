@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { initRadiansSync } from '../../utils/radiansSync';
 
 interface Star {
   x: number;
@@ -127,6 +128,10 @@ export const CELESTIAL_CONFIG = {
 export default function StarlightBackground() {
   const { theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    return initRadiansSync();
+  }, []);
 
   useEffect(() => {
     if (theme !== 'starlight') return;

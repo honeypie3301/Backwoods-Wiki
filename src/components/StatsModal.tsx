@@ -16,8 +16,11 @@ import {
   Monitor,
   Maximize2,
   Minimize2,
-  MousePointerClick
+  MousePointerClick,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
+import LiveRadiansTab from './special/LiveRadiansTab';
 import { 
   doc, 
   getDoc, 
@@ -84,6 +87,15 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
   const [logFilter, setLogFilter] = useState<'all' | 'unique' | 'repeat' | 'click'>('all');
   const [showAllTargets, setShowAllTargets] = useState(false);
   const [activeMobileTab, setActiveMobileTab] = useState<'overview' | 'stream'>('overview');
+  const [activeMainTab, setActiveMainTab] = useState<'telemetry' | 'radians'>('telemetry');
+
+  const handlePrevMainTab = () => {
+    setActiveMainTab(prev => prev === 'telemetry' ? 'radians' : 'telemetry');
+  };
+
+  const handleNextMainTab = () => {
+    setActiveMainTab(prev => prev === 'telemetry' ? 'radians' : 'telemetry');
+  };
   const [isDeviceIgnored, setIsDeviceIgnored] = useState<boolean>(() => {
     return localStorage.getItem('wiki_telemetry_ignore_device') === 'true';
   });
@@ -920,12 +932,36 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                 />
               </div>
               <div className="h-4 w-[1px] bg-[#1e2a22] shrink-0" />
-              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 truncate">
+              <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
                 <Terminal className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#a4c9ad] uppercase truncate">
                   <span className="hidden sm:inline">BACKWOODS TELEMETRY TERMINAL</span>
                   <span className="sm:hidden">TELEMETRY</span>
                 </span>
+
+                {/* Tab switch arrows: < > */}
+                <div className="inline-flex items-center gap-0.5 bg-[#090f0c] border border-[#1b261e] rounded px-1 py-0.5 text-xs font-mono shrink-0 select-none ml-1">
+                  <button
+                    type="button"
+                    onClick={handlePrevMainTab}
+                    className="p-0.5 text-[#5e7564] hover:text-emerald-300 hover:bg-[#141f17] rounded transition-colors cursor-pointer"
+                    title="Previous Tab (<)"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <span className="text-[9px] sm:text-[10px] tracking-wider uppercase font-semibold text-emerald-400 px-1 border-x border-[#1a251d]">
+                    {activeMainTab === 'telemetry' ? '01: TELEMETRY' : '02: LIVE RADIANS'}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleNextMainTab}
+                    className="p-0.5 text-[#5e7564] hover:text-emerald-300 hover:bg-[#141f17] rounded transition-colors cursor-pointer"
+                    title="Next Tab (>)"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+
                 {statusNotice && (
                   <span className={`text-[8px] sm:text-[9px] px-1.5 py-0.5 rounded font-mono uppercase tracking-wider shrink-0 font-bold ${
                     isDeviceIgnored
@@ -989,7 +1025,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
 
           {/* Body Content */}
           <div className="flex-1 p-2.5 sm:p-3.5 flex flex-col min-h-0 gap-2 sm:gap-2.5 overflow-hidden">
-            {loading && !stats ? (
+            {activeMainTab === 'radians' ? (
+              <LiveRadiansTab visitorId={currentVisitorIdShort} />
+            ) : loading && !stats ? (
               <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
                 <Activity className="w-6 h-6 text-emerald-400 animate-pulse" />
                 <div className="text-[10px] text-[#5e7564] uppercase tracking-widest animate-pulse font-mono">
@@ -1497,19 +1535,6 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
                         })
                       )}
                     </div>
-                  </div>
-                </div>
-
-                {/* 3. Footer Protocol Banner (Compact) */}
-                <div className="shrink-0 p-2 sm:p-2.5 bg-[#0a0f0c] border border-[#18231a] rounded text-[10px] sm:text-[11px] text-[#4f6454] leading-relaxed select-none flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                  <div>
-                    <span className="text-emerald-400 font-bold mr-1">PROTOCOL SUMMARY:</span>
-                    {isSandbox 
-                      ? "Sandbox mode engaged. Analytics persist safely in browser sandbox storage."
-                      : "Telemetry uplink synchronized with Backwoods central Firestore cluster. Visitor sessions strictly anonymized."}
-                  </div>
-                  <div className="text-[8.5px] sm:text-[9.5px] text-[#3f5043] shrink-0 font-mono">
-                    PRESS <kbd className="px-1.5 py-0.2 bg-[#121914] border border-[#1e2a21] text-[#788e7d] rounded text-[7.5px] sm:text-[8px]">ESC</kbd> TO EXIT TERMINAL
                   </div>
                 </div>
               </>
