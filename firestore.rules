@@ -7,6 +7,9 @@ service cloud.firestore {
     match /stats/{docId} {
       allow read, write: if true;
     }
+    match /telemetry/{docId} {
+      allow read, write: if true;
+    }
     match /telemetry_logs/{logId} {
       allow read, create: if true;
       allow update, delete: if false;

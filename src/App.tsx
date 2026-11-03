@@ -13,6 +13,7 @@ import { trackTelemetryClick } from './utils/telemetry';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import StarlightBackground from './components/special/StarlightBackground';
+import { initRadiansSync } from './utils/radiansSync';
 
 function WikiContainer() {
   const { theme } = useTheme();
@@ -399,7 +400,7 @@ function WikiContainer() {
   }
 
   return (
-    <div className={`min-h-screen ${theme === 'starlight' ? 'bg-transparent' : 'bg-[#080a08]'} text-[#c9d1c9] font-sans flex relative`}>
+    <div className={`min-h-screen ${theme === 'starlight' ? 'bg-transparent' : 'bg-[#080a08]/85'} text-[#c9d1c9] font-sans flex relative`}>
       {/* Sidebar - fully dynamic and searchable */}
       <Sidebar
         articles={filteredArticles}
@@ -415,14 +416,14 @@ function WikiContainer() {
       <div className="flex-1 min-w-0 flex flex-col relative z-10">
         
         {/* Mobile Header Navbar */}
-        <header className="md:hidden sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-[#0c0f0d]/90 backdrop-blur border-b border-[#1a221c]">
+        <header className="md:hidden sticky top-0 z-30 flex items-center justify-between px-3.5 py-2.5 bg-[#0c0f0d]/90 backdrop-blur border-b border-[#1a221c]">
           <button
             onClick={() => setMobileSidebarOpen(true)}
             className="p-1.5 rounded text-[#829285] hover:text-[#e0e7e0] hover:bg-[#111712] transition-colors"
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-serif font-bold text-sm text-[#e0e7e0] tracking-wide uppercase truncate mx-2">
+          <span className="font-serif font-bold text-xs sm:text-sm text-[#e0e7e0] tracking-wide uppercase truncate mx-1.5">
             {activeArticle ? activeArticle.title : 'Survival Index'}
           </span>
           <div className="flex items-center gap-2 shrink-0">
@@ -519,6 +520,10 @@ function WikiContainer() {
 }
 
 export default function App() {
+  useEffect(() => {
+    return initRadiansSync();
+  }, []);
+
   return (
     <ThemeProvider>
       <StarlightBackground />

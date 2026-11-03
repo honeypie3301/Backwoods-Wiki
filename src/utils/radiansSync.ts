@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db, hasConfig } from '../lib/firebase';
 import { CELESTIAL_CONFIG } from '../components/special/StarlightBackground';
@@ -11,6 +12,7 @@ export interface CelestialRadiansState {
   updatedBy: string; // Node identifier (visitorId)
   updatedAt: number; // Unix timestamp in ms
   isPaused: boolean;
+  syncSkyGlobally?: boolean; // When true, enables starlight sky on all client viewports
 }
 
 export const DEFAULT_RADIANS_STATE: CelestialRadiansState = {
@@ -22,6 +24,7 @@ export const DEFAULT_RADIANS_STATE: CelestialRadiansState = {
   updatedBy: 'SYSTEM',
   updatedAt: Date.now(),
   isPaused: false,
+  syncSkyGlobally: false,
 };
 
 // In-memory active state singleton for zero-latency 60/120fps read access by animation loops
@@ -86,6 +89,8 @@ function applyStateLocally(newState: Partial<CelestialRadiansState>, notifyBroad
 
 /**
  * Initializes Firestore real-time snapshot subscription
+ * Connects directly to the 'stats/radians_control' document which is permitted
+ * under deployed production Firestore security rules.
  */
 export function initRadiansSync(): () => void {
   if (isInitialized) {
@@ -104,10 +109,10 @@ export function initRadiansSync(): () => void {
     // Ignore cache parse errors
   }
 
-  // Subscribe to central Firestore cluster
+  // Subscribe to central Firestore cluster under 'stats/radians_control'
   if (hasConfig && db) {
     try {
-      const radiansDocRef = doc(db, 'telemetry', 'radians_control');
+      const radiansDocRef = doc(db, 'stats', 'radians_control');
       unsubscribeFirestore = onSnapshot(
         radiansDocRef,
         (snap) => {
@@ -122,8 +127,10 @@ export function initRadiansSync(): () => void {
               }
             }
           } else {
-            // Document does not exist yet; bootstrap it
-            setDoc(radiansDocRef, DEFAULT_RADIANS_STATE, { merge: true }).catch(() => {});
+            // Document does not exist yet; bootstrap it into the permitted stats collection
+            setDoc(radiansDocRef, DEFAULT_RADIANS_STATE, { merge: true }).catch((err) => {
+              console.warn('[RadiansSync] Bootstrap write error:', err.message);
+            });
           }
         },
         (err) => {
@@ -149,6 +156,17 @@ export function initRadiansSync(): () => void {
  */
 export function getLiveRadiansState(): CelestialRadiansState {
   return currentRadiansState;
+}
+
+/**
+ * React hook to subscribe to live radians state
+ */
+export function useLiveRadians(): CelestialRadiansState {
+  const [state, setState] = useState<CelestialRadiansState>(getLiveRadiansState);
+  useEffect(() => {
+    return subscribeRadiansState(setState);
+  }, []);
+  return state;
 }
 
 /**
@@ -193,7 +211,7 @@ export function broadcastRadiansUpdate(partial: Partial<CelestialRadiansState>, 
   writeDebounceTimer = setTimeout(async () => {
     if (!hasConfig || !db) return;
     try {
-      const radiansDocRef = doc(db, 'telemetry', 'radians_control');
+      const radiansDocRef = doc(db, 'stats', 'radians_control');
       await setDoc(radiansDocRef, updated, { merge: true });
     } catch (err) {
       console.warn('[RadiansSync] Failed to persist radians update to Firestore:', err);
