@@ -153,50 +153,66 @@ export default function ArticleView({
     };
   }, [article, articles]);
 
-  // Track scroll for active heading, reading progress, and scroll-to-top button
+  // Track scroll for reading progress and scroll-to-top button, with throttled check
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      // 1. Scroll-to-top button visibility
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // 1. Scroll-to-top button visibility
+          setShowScrollTop(window.scrollY > 400);
+
+          // 2. Reading progress calculation
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0) {
+            const progress = (window.scrollY / totalHeight) * 100;
+            setReadingProgress(Math.min(100, Math.max(0, progress)));
+          }
+
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      // 2. Reading progress calculation
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        const progress = (window.scrollY / totalHeight) * 100;
-        setReadingProgress(Math.min(100, Math.max(0, progress)));
-      }
-
-      // 3. Highlight current heading in TOC
-      if (headings.length === 0) return;
-
-      const headingElements = headings.map(h => document.getElementById(h.id)).filter(Boolean) as HTMLElement[];
-      
-      let currentActiveId = '';
-      const scrollPosition = window.scrollY + 120; // offset
-
-      for (let i = headingElements.length - 1; i >= 0; i--) {
-        if (headingElements[i].offsetTop <= scrollPosition) {
-          currentActiveId = headingElements[i].id;
-          break;
-        }
-      }
-
-      if (!currentActiveId && headingElements.length > 0) {
-        currentActiveId = headingElements[0].id;
-      }
-      
-      setActiveHeadingId(currentActiveId);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    // Trigger once on mount/load
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // IntersectionObserver for Table of Contents heading tracking (avoids getBoundingClientRect layout thrashing)
+  useEffect(() => {
+    if (headings.length === 0) return;
+
+    const headingElements = headings
+      .map(h => document.getElementById(h.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (headingElements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find visible headings
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+        if (visibleEntries.length > 0) {
+          // Sort by their vertical position in document
+          const topEntry = visibleEntries.reduce((prev, curr) => 
+            curr.boundingClientRect.top < prev.boundingClientRect.top ? curr : prev
+          );
+          setActiveHeadingId(topEntry.target.id);
+        }
+      },
+      {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: [0, 1.0]
+      }
+    );
+
+    headingElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
   }, [headings]);
 
   const handleScrollToHeading = (id: string) => {

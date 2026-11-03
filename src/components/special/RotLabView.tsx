@@ -593,6 +593,7 @@ export default function RotLabView() {
   };
 
   const arenaCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const staticGridCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Manual Move Forcing (For instant testing of every move)
   const triggerMove = (moveName: string) => {
@@ -2361,27 +2362,40 @@ export default function RotLabView() {
     const height = canvas.height;
     const scale = width / 48.0;
 
-    ctx.fillStyle = '#060a07';
-    ctx.fillRect(0, 0, width, height);
+    // Cache static background grid on an off-screen canvas to avoid redraw overhead each tick
+    if (!staticGridCanvasRef.current || staticGridCanvasRef.current.width !== width || staticGridCanvasRef.current.height !== height) {
+      const offscreen = document.createElement('canvas');
+      offscreen.width = width;
+      offscreen.height = height;
+      const offCtx = offscreen.getContext('2d');
+      if (offCtx) {
+        offCtx.fillStyle = '#060a07';
+        offCtx.fillRect(0, 0, width, height);
 
-    ctx.strokeStyle = '#121a14';
-    ctx.lineWidth = 1.0;
-    for (let i = 0; i <= 48; i += 4) {
-      ctx.beginPath();
-      ctx.moveTo(i * scale, 0);
-      ctx.lineTo(i * scale, height);
-      ctx.stroke();
+        offCtx.strokeStyle = '#121a14';
+        offCtx.lineWidth = 1.0;
+        for (let i = 0; i <= 48; i += 4) {
+          offCtx.beginPath();
+          offCtx.moveTo(i * scale, 0);
+          offCtx.lineTo(i * scale, height);
+          offCtx.stroke();
 
-      ctx.beginPath();
-      ctx.moveTo(0, i * scale);
-      ctx.lineTo(width, i * scale);
-      ctx.stroke();
+          offCtx.beginPath();
+          offCtx.moveTo(0, i * scale);
+          offCtx.lineTo(width, i * scale);
+          offCtx.stroke();
+        }
+
+        // Outer Arena Boundary Border (48m x 48m Doubled Arena)
+        offCtx.strokeStyle = '#27382a';
+        offCtx.lineWidth = 2.5;
+        offCtx.strokeRect(1.5 * scale, 1.5 * scale, (46.5 - 1.5) * scale, (46.5 - 1.5) * scale);
+      }
+      staticGridCanvasRef.current = offscreen;
     }
 
-    // Outer Arena Boundary Border (48m x 48m Doubled Arena)
-    ctx.strokeStyle = '#27382a';
-    ctx.lineWidth = 2.5;
-    ctx.strokeRect(1.5 * scale, 1.5 * scale, (46.5 - 1.5) * scale, (46.5 - 1.5) * scale);
+    // Blit cached static background
+    ctx.drawImage(staticGridCanvasRef.current, 0, 0);
 
     if (state.playerSpawned && !state.playerIsDead) {
       ctx.beginPath();

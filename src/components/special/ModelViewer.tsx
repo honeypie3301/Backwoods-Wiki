@@ -363,6 +363,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
     // Animation variables
     let animationId: number;
     let isIntersecting = true;
+    let isTabVisible = !document.hidden;
     const startTime = performance.now();
 
     // IntersectionObserver to pause WebGL rendering when scrolled out of viewport
@@ -374,11 +375,16 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
       intersectionObserver.observe(containerRef.current);
     }
 
+    const handleVisibilityChange = () => {
+      isTabVisible = !document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
 
-      // Viewport culling: skip rendering when element is off-screen
-      if (!isIntersecting) return;
+      // Viewport & tab visibility culling: skip rendering when element is off-screen or tab is hidden
+      if (!isIntersecting || !isTabVisible) return;
 
       const elapsed = (performance.now() - startTime) * 0.001;
 
@@ -424,6 +430,7 @@ export default function ModelViewer({ modelUrl, textureUrl, entityId, entityName
 
     return () => {
       cancelAnimationFrame(animationId);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
 
