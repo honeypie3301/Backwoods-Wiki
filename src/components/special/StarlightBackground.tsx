@@ -134,6 +134,8 @@ export default function StarlightBackground() {
   }, []);
 
   useEffect(() => {
+    if (theme !== 'starlight') return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -149,23 +151,14 @@ export default function StarlightBackground() {
     // Rare shooting stars: first spawn at 35s - 80s, subsequent every 50s - 115s
     let nextShootingStarTime = Date.now() + 35000 + Math.random() * 45000;
 
-    const isEmerald = theme === 'emerald';
-    // Rolls-Royce fiber-optic palette for Starlight; Atmospheric ethereal canopy for Emerald
-    const colors = isEmerald
-      ? [
-          'rgba(167, 243, 208, ',
-          'rgba(110, 231, 183, ',
-          'rgba(209, 250, 229, ',
-          'rgba(240, 253, 244, ',
-          'rgba(180, 235, 205, ',
-        ]
-      : [
-          'rgba(255, 255, 255, ',
-          'rgba(235, 245, 255, ',
-          'rgba(215, 235, 255, ',
-          'rgba(225, 230, 245, ',
-          'rgba(245, 248, 255, ',
-        ];
+    // Rolls-Royce fiber-optic palette: brilliant white, diamond ice blue, and platinum silver
+    const colors = [
+      'rgba(255, 255, 255, ',
+      'rgba(235, 245, 255, ',
+      'rgba(215, 235, 255, ',
+      'rgba(225, 230, 245, ',
+      'rgba(245, 248, 255, ',
+    ];
 
     const initStars = (width: number, height: number) => {
       // Balanced star density for authentic Rolls-Royce Starlight Headliner experience
@@ -302,8 +295,8 @@ export default function StarlightBackground() {
       const angularSpeed = CELESTIAL_CONFIG.angularSpeed;
       const radialSpeed = CELESTIAL_CONFIG.radialSpeed;
 
-      // Atmospheric canvas background
-      ctx.fillStyle = isEmerald ? '#040705' : '#000000';
+      // Solid pitch-black canvas background
+      ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, width, height);
 
       const margin = 35;

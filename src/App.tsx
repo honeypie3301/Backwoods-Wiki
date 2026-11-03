@@ -400,7 +400,7 @@ function WikiContainer() {
   }
 
   return (
-    <div className={`min-h-screen ${theme === 'starlight' ? 'bg-transparent' : 'bg-[#080a08]/85'} text-[#c9d1c9] font-sans flex relative`}>
+    <div className={`min-h-screen ${theme === 'starlight' ? 'bg-transparent' : 'bg-[#080a08]'} text-[#c9d1c9] font-sans flex relative`}>
       {/* Sidebar - fully dynamic and searchable */}
       <Sidebar
         articles={filteredArticles}
