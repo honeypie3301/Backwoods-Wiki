@@ -764,7 +764,7 @@ export default function DimensionsView() {
           <div className="space-y-6">
             
             {/* Header Controls */}
-            <div className="p-5 bg-[#0c0f0d] border border-[#1d251e] rounded-xl space-y-4">
+            <div className="p-5 bg-[#0c0f0d] border border-[#1d251e] rounded-xl space-y-4 relative z-40">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <h3 className="font-serif text-xl font-bold text-[#e0e7e0] flex items-center gap-2">
@@ -790,7 +790,7 @@ export default function DimensionsView() {
                   </div>
 
                   {/* Custom Styled Realm Filter Dropdown */}
-                  <div className="relative" ref={dropdownRef}>
+                  <div className="relative z-50" ref={dropdownRef}>
                     <button
                       type="button"
                       onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -805,7 +805,7 @@ export default function DimensionsView() {
                     </button>
 
                     {dropdownOpen && (
-                      <div className="absolute right-0 mt-1.5 w-56 bg-[#0d120e] border border-[#233226] rounded-xl shadow-2xl py-1.5 z-50 text-xs text-[#c9d1c9] divide-y divide-[#172219]">
+                      <div className="absolute right-0 mt-1.5 w-56 bg-[#0d120e] border border-[#233226] rounded-xl shadow-2xl py-1.5 z-[100] text-xs text-[#c9d1c9] divide-y divide-[#172219]">
                         <button
                           type="button"
                           onClick={() => { setBiomeFilter('all'); setDropdownOpen(false); }}

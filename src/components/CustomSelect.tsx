@@ -40,7 +40,7 @@ export default function CustomSelect<T extends string | number>({
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative inline-block text-left ${widthClass}`}>
+    <div ref={containerRef} className={`relative inline-block text-left ${widthClass} z-40`}>
       {/* Trigger Button */}
       <button
         type="button"
@@ -55,7 +55,7 @@ export default function CustomSelect<T extends string | number>({
 
       {/* Popover Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 left-0 mt-1 z-50 bg-[#0c120e] border border-[#253327] rounded-lg shadow-2xl overflow-hidden animate-in fade-in duration-100">
+        <div className="absolute right-0 left-0 mt-1 z-[100] bg-[#0c120e] border border-[#253327] rounded-lg shadow-2xl overflow-hidden animate-in fade-in duration-100">
           <div className="max-h-60 overflow-y-auto py-1 scrollbar-thin">
             {options.map((option) => {
               const isSelected = option.value === value;
