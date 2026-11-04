@@ -10,9 +10,8 @@ interface Star {
   twinkleSpeed: number;
   twinkleDepth: number;
   phase: number;
-  color: string;
   isSpecialFlare: boolean;
-  spikeLength: number;
+  spriteIndex: number;
 }
 
 interface ConstellationStar {
@@ -23,9 +22,8 @@ interface ConstellationStar {
   twinkleSpeed: number;
   twinkleDepth: number;
   phase: number;
-  color: string;
   isSpecialFlare: boolean;
-  spikeLength: number;
+  spriteIndex: number;
 }
 
 interface ConstellationCluster {
@@ -45,85 +43,132 @@ interface ShootingStar {
   active: boolean;
 }
 
-// Normalized authentic constellation coordinate star maps (nx, ny in 0..1)
-// Strictly star positions only; NO connecting lines are drawn per specification
 const CONSTELLATIONS: { name: string; stars: [number, number][] }[] = [
   {
     name: 'Ursa Major (Big Dipper)',
     stars: [
-      [0.06, 0.42], // Alkaid
-      [0.20, 0.36], // Mizar
-      [0.34, 0.38], // Alioth
-      [0.50, 0.40], // Megrez
-      [0.53, 0.74], // Phecda
-      [0.82, 0.70], // Merak
-      [0.79, 0.36], // Dubhe
+      [0.06, 0.42],
+      [0.20, 0.36],
+      [0.34, 0.38],
+      [0.50, 0.40],
+      [0.53, 0.74],
+      [0.82, 0.70],
+      [0.79, 0.36],
     ],
   },
   {
     name: 'Orion',
     stars: [
-      [0.22, 0.18], // Betelgeuse
-      [0.78, 0.16], // Bellatrix
-      [0.38, 0.50], // Alnitak
-      [0.50, 0.51], // Alnilam
-      [0.62, 0.52], // Mintaka
-      [0.28, 0.84], // Saiph
-      [0.82, 0.82], // Rigel
+      [0.22, 0.18],
+      [0.78, 0.16],
+      [0.38, 0.50],
+      [0.50, 0.51],
+      [0.62, 0.52],
+      [0.28, 0.84],
+      [0.82, 0.82],
     ],
   },
   {
     name: 'Cassiopeia',
     stars: [
-      [0.10, 0.58], // Caph
-      [0.30, 0.34], // Schedar
-      [0.52, 0.50], // Gamma Cas
-      [0.72, 0.24], // Ruchbah
-      [0.90, 0.38], // Segin
+      [0.10, 0.58],
+      [0.30, 0.34],
+      [0.52, 0.50],
+      [0.72, 0.24],
+      [0.90, 0.38],
     ],
   },
   {
     name: 'Cygnus (Northern Cross)',
     stars: [
-      [0.50, 0.12], // Deneb
-      [0.50, 0.50], // Sadr
-      [0.50, 0.94], // Albireo
-      [0.16, 0.48], // Gienah
-      [0.84, 0.48], // Fawaris
+      [0.50, 0.12],
+      [0.50, 0.50],
+      [0.50, 0.94],
+      [0.16, 0.48],
+      [0.84, 0.48],
     ],
   },
   {
     name: 'Crux (Southern Cross)',
     stars: [
-      [0.50, 0.88], // Acrux
-      [0.50, 0.14], // Gacrux
-      [0.18, 0.46], // Mimosa
-      [0.82, 0.48], // Imai
-      [0.66, 0.64], // Ginan
+      [0.50, 0.88],
+      [0.50, 0.14],
+      [0.18, 0.46],
+      [0.82, 0.48],
+      [0.66, 0.64],
     ],
   },
 ];
 
 const TWO_PI = Math.PI * 2;
 
-// ==========================================
-// CELESTIAL CONFIGURATION
-// ==========================================
 export const CELESTIAL_CONFIG = {
-  // Angular orbital velocity in radians per second
-  // Default authentic slow celestial drift: 0.000075 rad/s
-  // Try higher values for faster rotation (e.g. 0.005, 0.02, 0.08)
   angularSpeed: 0.000075,
-
-  // Subtle radial drift speed (px/sec)
   radialSpeed: 0.012,
-
-  // Motion blur threshold: angular speed above this triggers directional streak rendering
   motionBlurMinSpeed: 0.002,
-
-  // Multiplier for motion blur streak length
   motionBlurLengthFactor: 1.0,
 };
+
+/**
+ * Pre-render offscreen canvas star sprites for hardware-accelerated drawImage blitting
+ */
+function createStarSprites() {
+  const createCanvas = (size: number) => {
+    const c = document.createElement('canvas');
+    c.width = size;
+    c.height = size;
+    return c;
+  };
+
+  // 1. Small pinpoint star (4x4)
+  const small = createCanvas(4);
+  const ctxS = small.getContext('2d')!;
+  ctxS.fillStyle = 'rgba(235, 245, 255, 1)';
+  ctxS.beginPath();
+  ctxS.arc(2, 2, 0.85, 0, TWO_PI);
+  ctxS.fill();
+
+  // 2. Medium star with subtle halo (8x8)
+  const medium = createCanvas(8);
+  const ctxM = medium.getContext('2d')!;
+  ctxM.fillStyle = 'rgba(255, 255, 255, 0.15)';
+  ctxM.beginPath();
+  ctxM.arc(4, 4, 3.2, 0, TWO_PI);
+  ctxM.fill();
+  ctxM.fillStyle = 'rgba(255, 255, 255, 1)';
+  ctxM.beginPath();
+  ctxM.arc(4, 4, 1.25, 0, TWO_PI);
+  ctxM.fill();
+
+  // 3. Prominent flare star with optical diffraction spikes (24x24)
+  const flare = createCanvas(24);
+  const ctxF = flare.getContext('2d')!;
+  // Soft outer glow
+  ctxF.fillStyle = 'rgba(235, 245, 255, 0.18)';
+  ctxF.beginPath();
+  ctxF.arc(12, 12, 6.0, 0, TWO_PI);
+  ctxF.fill();
+  // Core star
+  ctxF.fillStyle = 'rgba(255, 255, 255, 1)';
+  ctxF.beginPath();
+  ctxF.arc(12, 12, 1.6, 0, TWO_PI);
+  ctxF.fill();
+  // Diffraction spikes
+  ctxF.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+  ctxF.lineWidth = 0.75;
+  ctxF.beginPath();
+  ctxF.moveTo(3, 12);
+  ctxF.lineTo(21, 12);
+  ctxF.moveTo(12, 3);
+  ctxF.lineTo(12, 21);
+  ctxF.stroke();
+
+  return [
+    { canvas: small, offset: 2 },
+    { canvas: medium, offset: 4 },
+    { canvas: flare, offset: 12 },
+  ];
+}
 
 export default function StarlightBackground() {
   const { theme } = useTheme();
@@ -147,43 +192,36 @@ export default function StarlightBackground() {
     let constellation: ConstellationCluster | null = null;
     let shootingStar: ShootingStar | null = null;
     let lastTime = performance.now();
+    let sprites: ReturnType<typeof createStarSprites> | null = null;
 
-    // Rare shooting stars: first spawn at 35s - 80s, subsequent every 50s - 115s
     let nextShootingStarTime = Date.now() + 35000 + Math.random() * 45000;
 
-    // Rolls-Royce fiber-optic palette: brilliant white, diamond ice blue, and platinum silver
-    const colors = [
-      'rgba(255, 255, 255, ',
-      'rgba(235, 245, 255, ',
-      'rgba(215, 235, 255, ',
-      'rgba(225, 230, 245, ',
-      'rgba(245, 248, 255, ',
-    ];
-
     const initStars = (width: number, height: number) => {
-      // Balanced star density for authentic Rolls-Royce Starlight Headliner experience
-      const count = Math.max(300, Math.floor((width * height) / 2400));
+      if (!sprites) {
+        sprites = createStarSprites();
+      }
+
+      const count = Math.max(250, Math.floor((width * height) / 2800));
       stars = [];
       constellation = null;
 
-      // 1. Generate randomly positioned stars with every load
       for (let i = 0; i < count; i++) {
         const sizeSeed = Math.random();
-        // Crisp fiber-optic pinpoints: 78% delicate pinpoints (0.65-0.95px), 16% medium (1.0-1.35px), 6% prominent stars (1.4-1.8px)
         let radius = 0.65 + Math.random() * 0.30;
         let isSpecialFlare = false;
-        let spikeLength = 0;
+        let spriteIndex = 0;
 
         if (sizeSeed > 0.94) {
           radius = 1.40 + Math.random() * 0.40;
           isSpecialFlare = true;
-          spikeLength = 2.2 + Math.random() * 1.8;
+          spriteIndex = 2; // Flare sprite
         } else if (sizeSeed > 0.78) {
           radius = 1.00 + Math.random() * 0.35;
+          spriteIndex = 1; // Medium sprite
+        } else {
+          spriteIndex = 0; // Small sprite
         }
 
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        // Visible base alpha range: 0.45 - 0.90
         const baseAlpha = 0.45 + Math.random() * 0.45;
 
         stars.push({
@@ -191,26 +229,21 @@ export default function StarlightBackground() {
           y: Math.random() * height,
           radius,
           baseAlpha,
-          // Gentle, calm twinkle: slower speed and subtle depth
           twinkleSpeed: 0.003 + Math.random() * 0.005,
           twinkleDepth: 0.08 + Math.random() * 0.12,
           phase: Math.random() * TWO_PI,
-          color,
           isSpecialFlare,
-          spikeLength,
+          spriteIndex,
         });
       }
 
-      // 2. Rare real constellation feature (~40% chance on app load)
-      // Plots authentic star positions; NO connecting lines are drawn
       if (Math.random() < 0.40) {
         const chosenConstellation = CONSTELLATIONS[Math.floor(Math.random() * CONSTELLATIONS.length)];
-        const scale = 150 + Math.random() * 130; // 150px to 280px bounding box
-        const angle = (Math.random() - 0.5) * 0.5; // slight natural celestial slant (-14° to +14°)
+        const scale = 150 + Math.random() * 130;
+        const angle = (Math.random() - 0.5) * 0.5;
         const cosA = Math.cos(angle);
         const sinA = Math.sin(angle);
 
-        // Place safely away from viewport edges
         const marginX = Math.min(width * 0.15, 140);
         const marginY = Math.min(height * 0.15, 110);
         const anchorX = marginX + Math.random() * Math.max(10, width - marginX * 2 - scale);
@@ -225,14 +258,13 @@ export default function StarlightBackground() {
           return {
             relX: scale * 0.5 + rotX,
             relY: scale * 0.5 + rotY,
-            radius: 1.15 + Math.random() * 0.35,
+            radius: 1.25,
             baseAlpha: 0.75 + Math.random() * 0.20,
             twinkleSpeed: 0.002 + Math.random() * 0.004,
             twinkleDepth: 0.06 + Math.random() * 0.08,
             phase: Math.random() * TWO_PI,
-            color: 'rgba(255, 255, 255, ',
             isSpecialFlare: true,
-            spikeLength: 2.0 + Math.random() * 1.5,
+            spriteIndex: 2,
           };
         });
 
@@ -249,7 +281,7 @@ export default function StarlightBackground() {
       if (!canvas) return;
       const width = window.innerWidth;
       const height = window.innerHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5); // Cap DPR to 1.5x for performance
 
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -260,42 +292,24 @@ export default function StarlightBackground() {
       initStars(width, height);
     };
 
-    // Instant setup & synchronous initial frame render
     handleResize();
     window.addEventListener('resize', handleResize);
-
-    // Dynamic frame throttle: when speed is low (default calm drift), throttle to ~30 FPS
-    // When speed is high with active motion blur streaks, smoothly unlock up to 60 FPS for fluid trails
-    const isHighSpeed = CELESTIAL_CONFIG.angularSpeed >= CELESTIAL_CONFIG.motionBlurMinSpeed;
-    const targetFps = isHighSpeed ? 60 : 30;
-    const FRAME_INTERVAL = 1000 / targetFps;
-    let lastDrawTime = 0;
 
     const render = (currentTime: number) => {
       animationFrameId = requestAnimationFrame(render);
 
-      const elapsedSinceLastDraw = currentTime - lastDrawTime;
-      if (elapsedSinceLastDraw < FRAME_INTERVAL) {
-        return;
-      }
-      lastDrawTime = currentTime - (elapsedSinceLastDraw % FRAME_INTERVAL);
-
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      // Delta time in seconds (capped at 0.1s to prevent jumps after tab throttling)
       const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
       lastTime = currentTime;
 
-      // Celestial planetary rotation physics:
-      // Observer stands on a rotating celestial body.
-      // Distant celestial pole located high above screen:
       const poleX = width * 0.5;
       const poleY = -height * 0.9;
       const angularSpeed = CELESTIAL_CONFIG.angularSpeed;
       const radialSpeed = CELESTIAL_CONFIG.radialSpeed;
 
-      // Solid pitch-black canvas background
+      // Pitch black canvas clear
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, width, height);
 
@@ -303,27 +317,27 @@ export default function StarlightBackground() {
       const wrapWidth = width + margin * 2;
       const wrapHeight = height + margin * 2;
 
-      // Motion blur pre-check: only calculate & draw velocity streaks if moving fast enough
       const enableMotionBlur = angularSpeed >= CELESTIAL_CONFIG.motionBlurMinSpeed;
       const blurFactor = CELESTIAL_CONFIG.motionBlurLengthFactor;
 
-      // 1. Draw and update field stars
+      if (!sprites) {
+        sprites = createStarSprites();
+      }
+
+      // 1. Hardware-accelerated drawImage render loop for field stars
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
 
-        // Celestial orbital pan & subtle radial drift calculation
         const dx = star.x - poleX;
         const dy = star.y - poleY;
         const dist = Math.hypot(dx, dy) || 1;
 
-        // Tangential velocity vector (-dy/dist, dx/dist) * (angularSpeed * dist) = (-dy * angularSpeed, dx * angularSpeed)
         const vx = -dy * angularSpeed + (dx / dist) * radialSpeed;
         const vy = dx * angularSpeed + (dy / dist) * radialSpeed;
 
         star.x += vx * dt;
         star.y += vy * dt;
 
-        // Toroidal screen boundary wrapping
         if (star.x > width + margin) star.x -= wrapWidth;
         else if (star.x < -margin) star.x += wrapWidth;
 
@@ -331,12 +345,9 @@ export default function StarlightBackground() {
         else if (star.y < -margin) star.y += wrapHeight;
 
         star.phase += star.twinkleSpeed;
-
-        // Gentle, subtle sinusoidal twinkle pulse
         const sinVal = Math.sin(star.phase);
         const dynamicAlpha = Math.max(0.18, Math.min(0.95, star.baseAlpha + sinVal * star.twinkleDepth));
 
-        // High-speed motion blur tangential streak
         if (enableMotionBlur) {
           const streakVx = vx * dt * 1.5 * blurFactor;
           const streakVy = vy * dt * 1.5 * blurFactor;
@@ -346,47 +357,18 @@ export default function StarlightBackground() {
             ctx.beginPath();
             ctx.moveTo(star.x - streakVx, star.y - streakVy);
             ctx.lineTo(star.x, star.y);
-            ctx.strokeStyle = `${star.color}${(dynamicAlpha * 0.7).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(235,245,255,${(dynamicAlpha * 0.7).toFixed(2)})`;
             ctx.lineWidth = Math.max(0.75, star.radius * 1.4);
             ctx.stroke();
           }
         }
 
-        // Core pinpoint star
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, TWO_PI);
-        ctx.fillStyle = `${star.color}${dynamicAlpha.toFixed(3)})`;
-        ctx.fill();
-
-        // Subtle subdued optical bloom only around larger stars
-        if (star.radius > 1.15) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.radius * 1.5, 0, TWO_PI);
-          ctx.fillStyle = `${star.color}${(dynamicAlpha * 0.08).toFixed(3)})`;
-          ctx.fill();
-        }
-
-        // Diamond 4-point micro-diffraction spike for prominent stars (skip in motion blur to save draw calls)
-        if (!enableMotionBlur && star.isSpecialFlare && dynamicAlpha > 0.6) {
-          const spikeAlpha = (dynamicAlpha * 0.20).toFixed(3);
-          ctx.strokeStyle = `${star.color}${spikeAlpha})`;
-          ctx.lineWidth = 0.5;
-
-          // Horizontal spike
-          ctx.beginPath();
-          ctx.moveTo(star.x - star.spikeLength * 0.75, star.y);
-          ctx.lineTo(star.x + star.spikeLength * 0.75, star.y);
-          ctx.stroke();
-
-          // Vertical spike
-          ctx.beginPath();
-          ctx.moveTo(star.x, star.y - star.spikeLength * 0.75);
-          ctx.lineTo(star.x, star.y + star.spikeLength * 0.75);
-          ctx.stroke();
-        }
+        const sprite = sprites[star.spriteIndex];
+        ctx.globalAlpha = dynamicAlpha;
+        ctx.drawImage(sprite.canvas, star.x - sprite.offset, star.y - sprite.offset);
       }
 
-      // 2. Draw and update intact constellation cluster (preserves exact stellar geometry)
+      // 2. Constellation cluster stars
       if (constellation) {
         const dx = constellation.x - poleX;
         const dy = constellation.y - poleY;
@@ -414,52 +396,15 @@ export default function StarlightBackground() {
           const sinVal = Math.sin(cStar.phase);
           const dynamicAlpha = Math.max(0.18, Math.min(0.95, cStar.baseAlpha + sinVal * cStar.twinkleDepth));
 
-          if (enableMotionBlur) {
-            const streakVx = cvx * dt * 1.5 * blurFactor;
-            const streakVy = cvy * dt * 1.5 * blurFactor;
-            const streakLen = Math.hypot(streakVx, streakVy);
-
-            if (streakLen > 0.5) {
-              ctx.beginPath();
-              ctx.moveTo(starX - streakVx, starY - streakVy);
-              ctx.lineTo(starX, starY);
-              ctx.strokeStyle = `${cStar.color}${(dynamicAlpha * 0.7).toFixed(3)})`;
-              ctx.lineWidth = Math.max(0.75, cStar.radius * 1.4);
-              ctx.stroke();
-            }
-          }
-
-          ctx.beginPath();
-          ctx.arc(starX, starY, cStar.radius, 0, TWO_PI);
-          ctx.fillStyle = `${cStar.color}${dynamicAlpha.toFixed(3)})`;
-          ctx.fill();
-
-          if (cStar.radius > 1.15) {
-            ctx.beginPath();
-            ctx.arc(starX, starY, cStar.radius * 1.5, 0, TWO_PI);
-            ctx.fillStyle = `${cStar.color}${(dynamicAlpha * 0.08).toFixed(3)})`;
-            ctx.fill();
-          }
-
-          if (!enableMotionBlur && cStar.isSpecialFlare && dynamicAlpha > 0.6) {
-            const spikeAlpha = (dynamicAlpha * 0.20).toFixed(3);
-            ctx.strokeStyle = `${cStar.color}${spikeAlpha})`;
-            ctx.lineWidth = 0.5;
-
-            ctx.beginPath();
-            ctx.moveTo(starX - cStar.spikeLength * 0.75, starY);
-            ctx.lineTo(starX + cStar.spikeLength * 0.75, starY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(starX, starY - cStar.spikeLength * 0.75);
-            ctx.lineTo(starX, starY + cStar.spikeLength * 0.75);
-            ctx.stroke();
-          }
+          const sprite = sprites[cStar.spriteIndex];
+          ctx.globalAlpha = dynamicAlpha;
+          ctx.drawImage(sprite.canvas, starX - sprite.offset, starY - sprite.offset);
         }
       }
 
-      // 3. Rare Rolls-Royce Signature Shooting Star
+      ctx.globalAlpha = 1.0;
+
+      // 3. Rare Shooting Star
       const now = Date.now();
       if (!shootingStar && now > nextShootingStarTime) {
         shootingStar = {
@@ -471,7 +416,6 @@ export default function StarlightBackground() {
           alpha: 0.80,
           active: true,
         };
-        // Rare interval: next in 50s to 115s
         nextShootingStarTime = now + 50000 + Math.random() * 65000;
       }
 
@@ -491,7 +435,6 @@ export default function StarlightBackground() {
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
-        // Small pinpoint head
         ctx.beginPath();
         ctx.arc(shootingStar.x, shootingStar.y, 1.0, 0, TWO_PI);
         ctx.fillStyle = `rgba(255, 255, 255, ${shootingStar.alpha})`;
@@ -507,7 +450,6 @@ export default function StarlightBackground() {
       }
     };
 
-    // Tab visibility throttling: pause canvas when tab is hidden, resume when active
     const handleVisibilityChange = () => {
       if (document.hidden) {
         cancelAnimationFrame(animationFrameId);
@@ -519,7 +461,6 @@ export default function StarlightBackground() {
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Initial frame render
     lastTime = performance.now();
     animationFrameId = requestAnimationFrame(render);
 
@@ -534,7 +475,6 @@ export default function StarlightBackground() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
-      {/* Canvas rendering instantly initialized pitch-black starlight backdrop */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 block w-full h-full pointer-events-none"
@@ -542,3 +482,4 @@ export default function StarlightBackground() {
     </div>
   );
 }
+

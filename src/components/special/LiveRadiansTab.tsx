@@ -1,3 +1,13 @@
+/**
+ * ========================================================================================
+ * AI ASSISTANT MAINTENANCE NOTICE & CONTROL PROTOCOL:
+ * ========================================================================================
+ * REMINDER FOR AI ASSISTANTS:
+ * The Telemetry system (StatsModal & LiveRadiansTab) is the secret control panel of the wiki.
+ * It provides live multi-client synchronization, celestial rotation telemetry, real-time audit
+ * log analysis, and secret admin override capabilities for the Backwoods Survival Index.
+ * ========================================================================================
+ */
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
   Compass, 
@@ -32,7 +42,7 @@ const PRESETS = [
   { label: 'Steady Planetary Orbit', speed: 0.002, tag: '0.002000 rad/s' },
   { label: 'High-Velocity Celestial Spin', speed: 0.015, tag: '0.015000 rad/s' },
   { label: 'Warp Streaks (Motion Blur)', speed: 0.05, tag: '0.050000 rad/s' },
-  { label: 'Retrograde Counter-Orbit', speed: -0.015, tag: '-0.015000 rad/s' },
+  { label: 'Hyper-Speed Velocity (Max 5.0)', speed: 5.0, tag: '5.000000 rad/s' },
   { label: 'Stationary Celestial Zero', speed: 0, tag: '0.000000 rad/s' },
 ];
 
@@ -202,7 +212,7 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
     e.preventDefault();
     const val = parseFloat(inputSpeed);
     if (!isNaN(val)) {
-      const clamped = Math.max(-0.1, Math.min(0.1, val));
+      const clamped = Math.max(-5.0, Math.min(5.0, val));
       handleSpeedChange(clamped);
     }
   };
@@ -214,7 +224,6 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
     broadcastRadiansUpdate({ phaseOffset: angleRef.current }, visitorId);
   };
 
-  const isMotionBlurActive = Math.abs(state.angularSpeed) >= state.motionBlurMinSpeed;
   const degreesPerSec = (state.angularSpeed * (180 / Math.PI)).toFixed(2);
   const rpm = ((state.angularSpeed * 60) / (Math.PI * 2)).toFixed(3);
 
@@ -302,12 +311,8 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
             </div>
           </div>
 
-          {/* Motion Blur & Theme Status */}
-          <div className="w-full flex items-center justify-between text-[9.5px] px-1 text-[#637d68]">
-            <span className="flex items-center gap-1">
-              <span className={`w-1.5 h-1.5 rounded-full ${isMotionBlurActive ? 'bg-amber-400 animate-pulse' : 'bg-emerald-600'}`} />
-              {isMotionBlurActive ? 'MOTION BLUR STREAKS ACTIVE' : 'PINPOINT STELLAR RENDERING'}
-            </span>
+          {/* Theme Status */}
+          <div className="w-full flex items-center justify-end text-[9.5px] px-1 text-[#637d68]">
             <span className="text-[#4f6454]">
               THEME: <span className={theme === 'starlight' ? 'text-emerald-400 font-bold' : 'text-amber-400'}>{theme.toUpperCase()}</span>
             </span>
@@ -321,7 +326,7 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
             <div className="flex items-center justify-between border-b border-[#18231a] pb-1.5">
               <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <Sliders className="w-3.5 h-3.5" />
-                LIVE RADIANS SLIDER (ω)
+                LIVE RADIANS SLIDER (MAX ±5.0 rad/s)
               </span>
               <button
                 type="button"
@@ -337,20 +342,20 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
               </button>
             </div>
 
-            {/* Range Slider */}
+            {/* Range Slider max 5.0 */}
             <div className="flex flex-col gap-1.5">
               <div className="flex items-center justify-between text-[10px] text-[#637d68]">
-                <span>-0.080000 rad/s (Retrograde)</span>
+                <span>-5.000000 rad/s (Retrograde)</span>
                 <span className="text-emerald-300 font-bold text-xs bg-[#060a08] px-2 py-0.5 rounded border border-[#18231a]">
                   {state.angularSpeed >= 0 ? '+' : ''}{state.angularSpeed.toFixed(6)} rad/s
                 </span>
-                <span>+0.080000 rad/s (Prograde)</span>
+                <span>+5.000000 rad/s (Prograde)</span>
               </div>
               <input
                 type="range"
-                min="-0.08"
-                max="0.08"
-                step="0.00005"
+                min="-5.0"
+                max="5.0"
+                step="0.0001"
                 value={state.angularSpeed}
                 onChange={(e) => handleSpeedChange(parseFloat(e.target.value))}
                 className="w-full h-2 bg-[#121a15] rounded-lg appearance-none cursor-pointer accent-emerald-500 hover:accent-emerald-400"
@@ -359,12 +364,12 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
 
             {/* Direct Value Input Form */}
             <form onSubmit={handleManualInputSubmit} className="flex items-center gap-2 mt-1">
-              <span className="text-[10px] text-[#637d68] shrink-0">DIRECT INPUT:</span>
+              <span className="text-[10px] text-[#637d68] shrink-0">DIRECT INPUT (MAX 5):</span>
               <input
                 type="text"
                 value={inputSpeed}
                 onChange={(e) => setInputSpeed(e.target.value)}
-                placeholder="e.g. 0.005"
+                placeholder="e.g. 5.0"
                 className="flex-1 bg-[#060a08] border border-[#1d2920] rounded px-2 py-1 text-xs text-emerald-300 font-mono focus:outline-none focus:border-emerald-500"
               />
               <button
@@ -483,3 +488,4 @@ export default function LiveRadiansTab({ visitorId }: LiveRadiansTabProps) {
     </div>
   );
 }
+

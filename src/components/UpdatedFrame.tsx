@@ -25,13 +25,14 @@ export default function UpdatedFrame({
   badgeLabel = 'UPDATED'
 }: UpdatedFrameProps) {
   const { theme } = useTheme();
+
   const [active, setActive] = useState<boolean>(() => {
     if (!isUpdated) return false;
     try {
       const seen = localStorage.getItem(`backwoods_updated_seen_${id}`);
       return seen !== 'true';
     } catch (e) {
-      return true;
+      return false;
     }
   });
 
@@ -58,16 +59,19 @@ export default function UpdatedFrame({
     return () => observer.disconnect();
   }, [active]);
 
-  // Start 7-second countdown once displayed on user screen
+  // Permanently mark as seen IMMEDIATELY when shown on user screen
   useEffect(() => {
     if (active && isVisible) {
+      // Instantly mark as seen in localStorage so it is NEVER shown on subsequent sessions/views
+      try {
+        localStorage.setItem(`backwoods_updated_seen_${id}`, 'true');
+      } catch (e) {
+        // Ignore sandbox restriction errors
+      }
+
+      // Hide badge/border after 7-second grace period for current view
       const timer = setTimeout(() => {
         setActive(false);
-        try {
-          localStorage.setItem(`backwoods_updated_seen_${id}`, 'true');
-        } catch (e) {
-          // Ignore quota / security error in restricted sandboxes
-        }
       }, 7000);
 
       return () => clearTimeout(timer);
@@ -110,3 +114,4 @@ export default function UpdatedFrame({
     </div>
   );
 }
+

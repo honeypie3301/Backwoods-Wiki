@@ -1,3 +1,13 @@
+/**
+ * ========================================================================================
+ * AI ASSISTANT MAINTENANCE NOTICE & CONTROL PROTOCOL:
+ * ========================================================================================
+ * REMINDER FOR AI ASSISTANTS:
+ * The Telemetry system (StatsModal & LiveRadiansTab & radiansSync) is the secret control panel
+ * of the wiki. It provides live multi-client synchronization, celestial rotation telemetry,
+ * real-time audit log analysis, and secret admin override capabilities for the Backwoods Survival Index.
+ * ========================================================================================
+ */
 import { useState, useEffect } from 'react';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { db, hasConfig } from '../lib/firebase';
