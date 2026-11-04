@@ -649,7 +649,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
     });
   };
 
-  // User ID database search engine effect with automatic debounce
+  // User ID database search engine effect with instant 0ms local filtering + parallelized Firestore queries
   useEffect(() => {
     const trimmed = searchUserId.trim().toLowerCase();
     if (!trimmed) {
@@ -659,13 +659,27 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       return;
     }
 
-    // Check memory cache first for 0ms instant display
+    // 1. Instant 0ms memory lookup against already-loaded active logs stream
+    const localMemoryLogs = stats?.logs || [];
+    const tokens = trimmed.split(/[\s·on\-_/]+/).filter(t => t.length > 0);
+    const instantLocalMatches = localMemoryLogs.filter(l => {
+      const combined = `${l.visitorId || ''} ${l.os || ''} ${l.browser || ''} ${l.slug || ''} ${l.target || ''}`.toLowerCase();
+      return tokens.every(token => combined.includes(token));
+    });
+
+    // Check memory cache first for 0ms instant display of full query results
     if (searchCacheRef.current.has(trimmed)) {
       const cached = searchCacheRef.current.get(trimmed)!;
       setSearchResults(cached);
       computeSearchSummary(cached);
       setIsSearching(false);
       return;
+    }
+
+    // Optimistically present instant local results immediately without waiting for network
+    if (instantLocalMatches.length > 0) {
+      setSearchResults(instantLocalMatches);
+      computeSearchSummary(instantLocalMatches);
     }
 
     setIsSearching(true);
@@ -700,7 +714,9 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
             });
           };
 
-          // 1. Direct device/OS queries if search term targets operating systems
+          const queryPromises: Promise<any>[] = [];
+
+          // 1. Direct device/OS queries
           const isLinuxQuery = trimmed.includes('linux');
           const isWindowsQuery = trimmed.includes('window');
           const isMacQuery = trimmed.includes('mac') || trimmed.includes('apple') || trimmed.includes('darwin');
@@ -708,31 +724,41 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           const isIosQuery = trimmed.includes('ios') || trimmed.includes('iphone') || trimmed.includes('ipad');
 
           if (isLinuxQuery) {
-            const osSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Linux'), limit(1000)));
-            osSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Linux'), limit(1000)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isWindowsQuery) {
-            const [w1Snap, w2Snap] = await Promise.all([
-              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Windows 10/11'), limit(500))),
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Windows 10/11'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
+            queryPromises.push(
               getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Windows'), limit(500)))
-            ]);
-            w1Snap.forEach(d => addDocToMap(d.id, d.data()));
-            w2Snap.forEach(d => addDocToMap(d.id, d.data()));
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isMacQuery) {
-            const macSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'macOS'), limit(500)));
-            macSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'macOS'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isAndroidQuery) {
-            const aSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Android'), limit(500)));
-            aSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'Android'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isIosQuery) {
-            const iSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'iOS'), limit(500)));
-            iSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('os', '==', 'iOS'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
 
-          // 2. Direct browser queries if search term targets browsers
+          // 2. Direct browser queries
           const isChromeQuery = trimmed.includes('chrome');
           const isFirefoxQuery = trimmed.includes('firefox');
           const isOperaQuery = trimmed.includes('opera');
@@ -740,28 +766,38 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           const isEdgeQuery = trimmed.includes('edge');
 
           if (isChromeQuery) {
-            const cSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Chrome'), limit(1000)));
-            cSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Chrome'), limit(1000)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isFirefoxQuery) {
-            const fSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Firefox'), limit(500)));
-            fSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Firefox'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isOperaQuery) {
-            const [op1, op2] = await Promise.all([
-              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Opera'), limit(500))),
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Opera'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
+            queryPromises.push(
               getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Opera GX'), limit(500)))
-            ]);
-            op1.forEach(d => addDocToMap(d.id, d.data()));
-            op2.forEach(d => addDocToMap(d.id, d.data()));
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isSafariQuery) {
-            const sSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Safari'), limit(500)));
-            sSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Safari'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
           if (isEdgeQuery) {
-            const eSnap = await getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Edge'), limit(500)));
-            eSnap.forEach(d => addDocToMap(d.id, d.data()));
+            queryPromises.push(
+              getDocs(query(collection(db, 'telemetry_logs'), where('browser', '==', 'Edge'), limit(500)))
+                .then(snap => snap.forEach(d => addDocToMap(d.id, d.data())))
+            );
           }
 
           // 3. Prefix search on visitorId
@@ -780,35 +816,42 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
             if (isGeneric) {
               q = query(q, limit(500));
             }
-            const snap = await getDocs(q);
-            snap.forEach(docSnap => addDocToMap(docSnap.id, docSnap.data()));
+            queryPromises.push(
+              getDocs(q).then(snap => snap.forEach(docSnap => addDocToMap(docSnap.id, docSnap.data())))
+            );
           }
 
-          // 4. Broad scan across recent history (500 documents) to match composite device keywords, slug, or target
-          const recentSnap = await getDocs(query(collection(db, 'telemetry_logs'), orderBy('timestamp', 'desc'), limit(500)));
-          recentSnap.forEach(docSnap => {
-            const data = docSnap.data();
-            const visitorStr = (data.visitorId || '').toLowerCase();
-            const osStr = (data.os || '').toLowerCase();
-            const browserStr = (data.browser || '').toLowerCase();
-            const targetStr = (data.target || '').toLowerCase();
-            const slugStr = (data.slug || '').toLowerCase();
-            const fullDevice = `${browserStr} ${osStr}`;
+          // 4. Broad scan across recent history (500 documents) in parallel
+          queryPromises.push(
+            getDocs(query(collection(db, 'telemetry_logs'), orderBy('timestamp', 'desc'), limit(500)))
+              .then(recentSnap => {
+                recentSnap.forEach(docSnap => {
+                  const data = docSnap.data();
+                  const visitorStr = (data.visitorId || '').toLowerCase();
+                  const osStr = (data.os || '').toLowerCase();
+                  const browserStr = (data.browser || '').toLowerCase();
+                  const targetStr = (data.target || '').toLowerCase();
+                  const slugStr = (data.slug || '').toLowerCase();
+                  const fullDevice = `${browserStr} ${osStr}`;
 
-            if (
-              visitorStr.includes(trimmed) ||
-              osStr.includes(trimmed) ||
-              browserStr.includes(trimmed) ||
-              targetStr.includes(trimmed) ||
-              slugStr.includes(trimmed) ||
-              fullDevice.includes(trimmed)
-            ) {
-              addDocToMap(docSnap.id, data);
-            }
-          });
+                  if (
+                    visitorStr.includes(trimmed) ||
+                    osStr.includes(trimmed) ||
+                    browserStr.includes(trimmed) ||
+                    targetStr.includes(trimmed) ||
+                    slugStr.includes(trimmed) ||
+                    fullDevice.includes(trimmed)
+                  ) {
+                    addDocToMap(docSnap.id, data);
+                  }
+                });
+              })
+          );
+
+          // Execute all queries in parallel for maximum search speed
+          await Promise.all(queryPromises);
 
           // Multi-token filter if query has combined words (e.g. "Chrome · Linux")
-          const tokens = trimmed.split(/[\s·on\-_/]+/).filter(t => t.length > 1);
           let allLogs = Array.from(logsMap.values());
           if (tokens.length > 1) {
             allLogs = allLogs.filter(log => {
@@ -822,11 +865,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
           );
         } else {
           // Local sandbox fallback
-          const localLogs = stats?.logs || [];
-          results = localLogs.filter(l => {
-            const combined = `${l.visitorId || ''} ${l.os || ''} ${l.browser || ''} ${l.slug || ''} ${l.target || ''}`.toLowerCase();
-            return combined.includes(trimmed);
-          });
+          results = instantLocalMatches;
         }
 
         searchCacheRef.current.set(trimmed, results);
@@ -837,7 +876,7 @@ export default function StatsModal({ isOpen, onClose, articles }: StatsModalProp
       } finally {
         setIsSearching(false);
       }
-    }, 220);
+    }, 60);
 
     return () => clearTimeout(debounceTimer);
   }, [searchUserId, hasConfig, stats]);

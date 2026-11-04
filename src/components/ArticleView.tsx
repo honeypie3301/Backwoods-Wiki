@@ -37,6 +37,21 @@ interface HeadingItem {
   level: number;
 }
 
+// Idle chunk preloader to ensure instant zero-lag tab transitions across the entire wiki
+const preloadAllViews = () => {
+  import('./special/SanityView');
+  import('./special/DimensionsView');
+  import('./special/BlocksView');
+  import('./special/EntitiesView');
+  import('./special/ItemsView');
+  import('./special/StructuresView');
+  import('./special/VersionsView');
+  import('./special/CommandsView');
+  import('./special/TerminatedView');
+  import('./special/AchievementsView');
+  import('./special/RotLabView');
+};
+
 export default function ArticleView({
   article,
   rawContent = '',
@@ -52,6 +67,17 @@ export default function ArticleView({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const isSpecialPage = ['home', 'sanity', 'structures', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements', 'rot-lab'].includes(article.slug);
+
+  // Preload all view chunks on mount during browser idle time
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(preloadAllViews);
+      } else {
+        setTimeout(preloadAllViews, 100);
+      }
+    }
+  }, []);
 
   // Parse headers and content
   useEffect(() => {

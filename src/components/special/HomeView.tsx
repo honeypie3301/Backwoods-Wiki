@@ -103,12 +103,6 @@ export default function HomeView() {
             <ul className="list-disc list-inside space-y-1.5 text-[#829285] pl-1">
               <li>
                 <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
-                  Live Radians Telemetry Controller:
-                </strong>{' '}
-                Synchronized real-time celestial orbital radians controller tab into telemetry terminal with multi-client Firestore broadcast bus, interactive radar sweep, and responsive angle controls.
-              </li>
-              <li>
-                <strong className={isStarlight ? 'text-zinc-100 font-bold' : 'text-amber-300'}>
                   The Crossworks Dimension & Dustbound Galleries:
                 </strong>{' '}
                 Added documentation for The Crossworks (Y=-64 to Y=767, 832m build height) and its solitary biome Dustbound Galleries with active WIP banner and void fall / lethal fall anchor loop protection.

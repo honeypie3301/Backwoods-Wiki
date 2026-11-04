@@ -18,7 +18,7 @@ function ThemeToggle({ className = '', size = 'md' }: ThemeToggleProps) {
       type="button"
       onClick={toggleTheme}
       id="theme-toggle-button"
-      className={`relative ${sizeClasses} rounded-lg border transition-all duration-300 flex items-center justify-center cursor-pointer group shrink-0 ${
+      className={`relative ${sizeClasses} rounded border transition-all duration-300 flex items-center justify-center cursor-pointer group shrink-0 ${
         isStarlight
           ? 'bg-neutral-900 border-zinc-700 text-zinc-100 hover:bg-neutral-800 hover:border-zinc-500 shadow-[0_0_10px_rgba(255,255,255,0.12)]'
           : 'bg-[#182119] border-[#2d3a2f] text-[#a9d1b0] hover:bg-[#212f23] hover:border-[#425545]'
