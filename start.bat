@@ -1,35 +1,36 @@
 @echo off
 cd /d "%~dp0"
-title Backwoods Wiki - Starting
 
-echo ========================================================
-echo  Checking and stopping any running instance on port 3000...
-echo ========================================================
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :3000 ^| findstr LISTENING') do (
-    echo Stopping process PID: %%a listening on port 3000...
-    taskkill /F /PID %%a >nul 2>&1
+REM 1. Auto-install dependencies if node_modules or vite is missing
+if not exist "node_modules\" (
+    echo [Backwoods Wiki] Installing missing dependencies...
+    call npm install
 )
 
-echo.
-echo ========================================================
-echo  Building project (npm run build)...
-echo ========================================================
+REM 2. Build production bundle (keeps wiki updated every start)
 call npm run build
-if %errorlevel% neq 0 (
-    echo [ERROR] npm run build failed! Please check errors above.
-    pause
-    exit /b %errorlevel%
+if errorlevel 1 (
+    echo [Backwoods Wiki] Build failed. Checking dependencies...
+    call npm install
+    call npm run build
 )
 
-echo.
-echo ========================================================
-echo  Starting Backwoods Wiki server...
-echo  Localhost URL: http://localhost:3000
-echo ========================================================
+REM 3. Launch server with PM2 or Node fallback
+if exist "dist\server.cjs" (
+    set PORT=6000
+    call pm2 restart backwoods-wiki >nul 2>&1 || call pm2 start dist/server.cjs --name backwoods-wiki --env PORT=6000 >nul 2>&1 || goto fallback
+    echo Backwoods Wiki server started in the background at http://localhost:6000
+    for /f "tokens=*" %%a in ('git log -1 --oneline') do echo Latest Commit: %%a
+    goto end
+)
 
-set NODE_ENV=production
-start "Backwoods Wiki Server" cmd /k "title Backwoods Wiki Server && npm run start"
+:fallback
+echo Starting Backwoods Wiki server at http://localhost:6000...
+set PORT=6000
+if exist "dist\server.cjs" (
+    node dist/server.cjs
+) else (
+    call npx tsx server.ts
+)
 
-echo.
-echo Server started in a new background window!
-timeout /t 2 >nul
+:end
