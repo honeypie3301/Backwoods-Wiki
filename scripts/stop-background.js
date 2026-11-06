@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 4000;
 console.log(`Stopping any background Backwoods Wiki server on port ${PORT}...`);
 
 if (process.platform === 'win32') {

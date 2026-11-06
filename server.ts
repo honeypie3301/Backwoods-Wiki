@@ -57,7 +57,7 @@ function saveStats(stats: WikiStats) {
 
 async function startServer() {
   const app = express();
-  const PORT = process.env.PORT || 6000;
+  const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 
   app.use(express.json());
 
