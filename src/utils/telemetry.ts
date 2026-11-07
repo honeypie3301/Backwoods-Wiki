@@ -1,5 +1,3 @@
-import { doc, setDoc, addDoc, collection, increment, serverTimestamp } from 'firebase/firestore';
-import { db, hasConfig } from '../lib/firebase';
 import { detectClientEnvironment } from './deviceInfo';
 
 // 600ms in-memory cache to prevent duplicate click tracking from rapid double clicks or bubbling
@@ -82,29 +80,39 @@ export async function trackTelemetryClick(options: ClickTrackingOptions | string
       }
     } catch {}
 
-    // Live Firebase Firestore logging
-    if (hasConfig) {
-      const statsDocRef = doc(db, 'stats', 'global');
-      const statsWrite = setDoc(statsDocRef, {
-        totalCount: increment(1),
-        [`pageViews.${slug}`]: increment(1)
-      }, { merge: true });
+    // Live Firebase Firestore logging with dynamic imports
+    try {
+      const { hasConfig, db } = await import('../lib/firebase');
+      if (hasConfig && db) {
+        const { doc, setDoc, addDoc, collection, increment, serverTimestamp } = await import('firebase/firestore');
+        const statsDocRef = doc(db, 'stats', 'global');
+        const statsWrite = setDoc(statsDocRef, {
+          totalCount: increment(1),
+          [`pageViews.${slug}`]: increment(1)
+        }, { merge: true });
 
-      const logWrite = addDoc(collection(db, 'telemetry_logs'), {
-        timestamp: serverTimestamp(),
-        type: 'click',
-        slug,
-        target: cleanTarget,
-        page,
-        category: category || null,
-        visitorId: shortVisitorId,
-        os: clientEnv.os,
-        browser: clientEnv.browser
-      });
+        const logWrite = addDoc(collection(db, 'telemetry_logs'), {
+          timestamp: serverTimestamp(),
+          type: 'click',
+          slug,
+          target: cleanTarget,
+          page,
+          category: category || null,
+          visitorId: shortVisitorId,
+          os: clientEnv.os,
+          browser: clientEnv.browser
+        });
 
-      await Promise.all([statsWrite, logWrite]);
+        const timeoutPromise = new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('Telemetry write timeout')), 3000)
+        );
+
+        await Promise.race([Promise.all([statsWrite, logWrite]), timeoutPromise]);
+      }
+    } catch {
+      // Gracefully fall back to local telemetry storage without throwing console errors
     }
   } catch (err) {
-    console.warn('Telemetry click registration error:', err);
+    // Fail silently
   }
 }

@@ -108,6 +108,7 @@ export default function Sidebar({
               }}
               className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-lg hover:bg-[#253228] hover:border-[#425545] cursor-pointer transition-colors shrink-0"
               title="View Terminal Stats"
+              aria-label="View Terminal Stats"
               id="sidebar-b-icon"
             >
               B
@@ -116,7 +117,7 @@ export default function Sidebar({
               <h1 className="font-serif font-bold text-[#e0e7e0] tracking-wide text-sm hover:text-[#a9d1b0] transition-colors">
                 BACKWOODS WIKI
               </h1>
-              <p className="text-[10px] font-mono text-[#5a6b5e] uppercase tracking-wider">
+              <p className="text-[10px] font-mono text-[#829688] uppercase tracking-wider">
                 Survival Index
               </p>
             </a>
@@ -125,7 +126,8 @@ export default function Sidebar({
             <ThemeToggle />
             <button 
               onClick={onClose}
-              className="md:hidden p-1.5 rounded text-[#5a6b5e] hover:text-[#e0e7e0] hover:bg-[#151d17] transition-colors"
+              className="md:hidden p-1.5 rounded text-[#829688] hover:text-[#e0e7e0] hover:bg-[#151d17] transition-colors"
+              aria-label="Close navigation sidebar"
             >
               <X className="w-5 h-5" />
             </button>
@@ -135,18 +137,19 @@ export default function Sidebar({
         {/* Search Bar */}
         <div className="p-4 border-b border-[#1a221c]/50 bg-[#0c0f0d]">
           <div className="relative flex items-center">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#5a6b5e] pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#829688] pointer-events-none" />
             <input
               type="text"
               placeholder="Search guide..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#121713] border border-[#1e2520] rounded-md py-1.5 pl-9 pr-8 text-xs text-[#c9d1c9] placeholder-[#5a6b5e] focus:outline-none focus:border-[#709978] focus:ring-1 focus:ring-[#709978] transition-all"
+              className="w-full bg-[#121713] border border-[#1e2520] rounded-md py-1.5 pl-9 pr-8 text-xs text-[#c9d1c9] placeholder-[#829688] focus:outline-none focus:border-[#709978] focus:ring-1 focus:ring-[#709978] transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#5a6b5e] hover:text-[#e0e7e0] transition-colors p-0.5 rounded flex items-center justify-center"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#829688] hover:text-[#e0e7e0] transition-colors p-0.5 rounded flex items-center justify-center"
+                aria-label="Clear search query"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -163,7 +166,9 @@ export default function Sidebar({
                 {/* Category Header */}
                 <button
                   onClick={() => toggleCategory(categoryName)}
-                  className="w-full flex items-center justify-between text-left py-1 text-[11px] font-mono font-semibold tracking-wider text-[#5a6b5e] hover:text-[#a9d1b0] uppercase transition-colors"
+                  className="w-full flex items-center justify-between text-left py-1 text-[11px] font-mono font-semibold tracking-wider text-[#829688] hover:text-[#a9d1b0] uppercase transition-colors"
+                  aria-expanded={!isCollapsed}
+                  aria-label={`Toggle ${categoryName} category`}
                 >
                   <span className="flex items-center gap-1.5">
                     <Folder className="w-3 h-3 text-[#334237]" />

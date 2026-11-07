@@ -165,7 +165,7 @@ export default function HomeView() {
             <p className="text-xs text-[#829285] leading-relaxed">
               Build a portal frame out of <strong className="text-[#c9d1c9]">Oak Planks</strong> and ignite it using <strong className="text-[#c9d1c9]">Steel and Charcoal</strong>.
             </p>
-            <p className="text-xs text-[#5a6b5e] italic">
+            <p className="text-xs text-[#829688] italic">
               Step into a vast, yellow-fogged dimension constructed of decaying planks and logs.
             </p>
           </div>
@@ -213,7 +213,7 @@ export default function HomeView() {
 
       {/* 5. QUICK DIRECTORY LINKS */}
       <div className="p-6 bg-[#090b09] border border-[#161d17] rounded-xl space-y-4">
-        <div className="text-xs font-mono text-[#5a6b5e] uppercase tracking-widest font-semibold">
+        <div className="text-xs font-mono text-[#829688] uppercase tracking-widest font-semibold">
           Wiki Quick Reference
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
@@ -238,7 +238,7 @@ export default function HomeView() {
       </div>
 
       {/* FOOTER */}
-      <div className="text-center pt-6 border-t border-[#1a221c] text-[11px] font-mono text-[#5a6b5e] uppercase tracking-widest">
+      <div className="text-center pt-6 border-t border-[#1a221c] text-[11px] font-mono text-[#829688] uppercase tracking-widest">
         Created by honeypie_3301 using MCreator
       </div>
 

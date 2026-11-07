@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { HashRouter, Routes, Route, Navigate, useParams, useSearchParams, useNavigate } from 'react-router-dom';
 import { Menu, Search, X, BookOpen, AlertCircle, HelpCircle, FileText, FileSearch } from 'lucide-react';
-import { doc, getDoc, setDoc, addDoc, collection, increment, serverTimestamp } from 'firebase/firestore';
-import { db as firestoreDb, hasConfig } from './lib/firebase';
 import { WikiArticle } from './types';
 import { WIKI_ARTICLES, WIKI_SEARCH_DATABASE } from './data/wikiData';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
-import StatsModal from './components/StatsModal';
 import { detectClientEnvironment } from './utils/deviceInfo';
 import { trackTelemetryClick } from './utils/telemetry';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import StarlightBackground from './components/special/StarlightBackground';
-import { initRadiansSync } from './utils/radiansSync';
+
+const StatsModal = React.lazy(() => import('./components/StatsModal'));
 
 function WikiContainer() {
   const { theme } = useTheme();
@@ -119,10 +117,13 @@ function WikiContainer() {
     };
 
     const recordVisitFirebase = async (slug: string, visitorId: string): Promise<boolean> => {
-      if (!hasConfig) {
-        return false;
-      }
       try {
+        const { hasConfig, db: firestoreDb } = await import('./lib/firebase');
+        if (!hasConfig || !firestoreDb) {
+          return false;
+        }
+        const { doc, getDoc, setDoc, addDoc, collection, increment, serverTimestamp } = await import('firebase/firestore');
+
         const visitorDocRef = doc(firestoreDb, 'visitors', visitorId);
         const isKnownLocally = localStorage.getItem('wiki_visitor_established') === 'true';
         let isUnique = false;
@@ -165,10 +166,16 @@ function WikiContainer() {
           browser: clientEnv.browser
         });
 
-        await Promise.all([visitorWrite, statsWrite, logWrite]);
+        const timeoutPromise = new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('Firebase network timeout')), 3500)
+        );
+
+        await Promise.race([
+          Promise.all([visitorWrite, statsWrite, logWrite]),
+          timeoutPromise
+        ]);
         return true;
       } catch (err) {
-        console.warn('Firebase registration failed, falling back to local simulation.', err);
         return false;
       }
     };
@@ -420,6 +427,7 @@ function WikiContainer() {
           <button
             onClick={() => setMobileSidebarOpen(true)}
             className="p-1.5 rounded text-[#829285] hover:text-[#e0e7e0] hover:bg-[#111712] transition-colors"
+            aria-label="Open navigation menu"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -432,6 +440,7 @@ function WikiContainer() {
               onClick={() => setStatsOpen(true)}
               className="w-8 h-8 rounded bg-[#1e2720] border border-[#2d3a2f] flex items-center justify-center text-[#a9d1b0] font-serif font-bold text-sm hover:bg-[#253228] transition-colors cursor-pointer"
               title="View Terminal Stats"
+              aria-label="View Terminal Stats"
               id="header-b-icon"
             >
               B
@@ -452,7 +461,7 @@ function WikiContainer() {
                 <h1 className="font-serif text-3xl font-bold text-[#e0e7e0]">
                   Search results for "{searchQuery}"
                 </h1>
-                <p className="text-xs text-[#5a6b5e] mt-1">
+                <p className="text-xs text-[#829688] mt-1">
                   Found {searchResults.length} relevant entries in deep page contents.
                 </p>
               </div>
@@ -501,7 +510,7 @@ function WikiContainer() {
           ) : (
             /* Fallback to index redirects */
             <div className="flex flex-col items-center justify-center h-[60vh] select-none">
-              <AlertCircle className="w-8 h-8 text-[#5a6b5e] mb-3" />
+              <AlertCircle className="w-8 h-8 text-[#829688] mb-3" />
               <p className="text-sm font-serif italic text-[#829285]">Article not found.</p>
               <a href="#/wiki/home" className="text-xs text-[#709978] hover:underline mt-2 font-mono">Return Home</a>
             </div>
@@ -510,18 +519,35 @@ function WikiContainer() {
       </div>
 
       {/* Stats overlay terminal */}
-      <StatsModal 
-        isOpen={statsOpen} 
-        onClose={() => setStatsOpen(false)} 
-        articles={articles}
-      />
+      {statsOpen && (
+        <React.Suspense fallback={null}>
+          <StatsModal 
+            isOpen={statsOpen} 
+            onClose={() => setStatsOpen(false)} 
+            articles={articles}
+          />
+        </React.Suspense>
+      )}
     </div>
   );
 }
 
 export default function App() {
   useEffect(() => {
-    return initRadiansSync();
+    let cleanup: (() => void) | undefined;
+    const init = () => {
+      import('./utils/radiansSync').then(({ initRadiansSync }) => {
+        cleanup = initRadiansSync();
+      });
+    };
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(init);
+    } else {
+      setTimeout(init, 1500);
+    }
+    return () => {
+      cleanup?.();
+    };
   }, []);
 
   return (

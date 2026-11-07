@@ -37,21 +37,6 @@ interface HeadingItem {
   level: number;
 }
 
-// Idle chunk preloader to ensure instant zero-lag tab transitions across the entire wiki
-const preloadAllViews = () => {
-  import('./special/SanityView');
-  import('./special/DimensionsView');
-  import('./special/BlocksView');
-  import('./special/EntitiesView');
-  import('./special/ItemsView');
-  import('./special/StructuresView');
-  import('./special/VersionsView');
-  import('./special/CommandsView');
-  import('./special/TerminatedView');
-  import('./special/AchievementsView');
-  import('./special/RotLabView');
-};
-
 export default function ArticleView({
   article,
   rawContent = '',
@@ -67,17 +52,6 @@ export default function ArticleView({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const isSpecialPage = ['home', 'sanity', 'structures', 'dimensions', 'blocks', 'entities', 'items', 'commands', 'versions', 'terminated', 'achievements', 'rot-lab'].includes(article.slug);
-
-  // Preload all view chunks on mount during browser idle time
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(preloadAllViews);
-      } else {
-        setTimeout(preloadAllViews, 100);
-      }
-    }
-  }, []);
 
   // Parse headers and content
   useEffect(() => {
@@ -338,9 +312,9 @@ export default function ArticleView({
               href={`#/wiki/${prevArticle.slug}`}
               className="flex-1 flex items-center gap-3 p-4 bg-[#0f1210] hover:bg-[#151916] border border-[#1e251f] hover:border-[#2a342b] rounded-lg group transition-all"
             >
-              <ChevronLeft className="w-5 h-5 text-[#5a6b5e] group-hover:text-[#a9d1b0] transition-colors" />
+              <ChevronLeft className="w-5 h-5 text-[#829688] group-hover:text-[#a9d1b0] transition-colors" />
               <div className="text-left">
-                <div className="text-[10px] font-mono text-[#5a6b5e] uppercase tracking-wider">Previous Page</div>
+                <div className="text-[10px] font-mono text-[#829688] uppercase tracking-wider">Previous Page</div>
                 <div className="text-xs font-serif text-[#e0e7e0] font-semibold group-hover:text-[#a9d1b0] transition-colors mt-0.5">{prevArticle.title}</div>
               </div>
             </a>
@@ -354,10 +328,10 @@ export default function ArticleView({
               className="flex-1 flex items-center justify-between p-4 bg-[#0f1210] hover:bg-[#151916] border border-[#1e251f] hover:border-[#2a342b] rounded-lg group transition-all"
             >
               <div className="text-left">
-                <div className="text-[10px] font-mono text-[#5a6b5e] uppercase tracking-wider text-right sm:text-left">Next Page</div>
+                <div className="text-[10px] font-mono text-[#829688] uppercase tracking-wider text-right sm:text-left">Next Page</div>
                 <div className="text-xs font-serif text-[#e0e7e0] font-semibold group-hover:text-[#a9d1b0] transition-colors mt-0.5">{nextArticle.title}</div>
               </div>
-              <ChevronRight className="w-5 h-5 text-[#5a6b5e] group-hover:text-[#a9d1b0] transition-colors" />
+              <ChevronRight className="w-5 h-5 text-[#829688] group-hover:text-[#a9d1b0] transition-colors" />
             </a>
           ) : (
             <div className="flex-1 opacity-0 pointer-events-none hidden sm:block" />
@@ -369,7 +343,7 @@ export default function ArticleView({
       {headings.length > 0 && (
         <aside className="hidden lg:block w-[240px] shrink-0 select-none">
           <div className="sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto pl-4 border-l border-[#1a221c]/50 space-y-4">
-            <h3 className="font-mono text-[10px] font-bold text-[#5a6b5e] uppercase tracking-widest flex items-center gap-1.5">
+            <h3 className="font-mono text-[10px] font-bold text-[#829688] uppercase tracking-widest flex items-center gap-1.5">
               <FileText className="w-3.5 h-3.5 text-[#334237]" />
               On This Page
             </h3>
@@ -411,6 +385,7 @@ export default function ArticleView({
           onClick={handleScrollTop}
           className="fixed bottom-6 right-6 p-2.5 bg-[#1a221d] hover:bg-[#253229] border border-[#2a362d] hover:border-[#3a4c3f] text-[#a9d1b0] rounded-full shadow-lg z-50 cursor-pointer transition-all hover:scale-105 duration-200"
           title="Scroll to Top"
+          aria-label="Scroll to top of document"
         >
           <ArrowUp className="w-4 h-4" />
         </button>

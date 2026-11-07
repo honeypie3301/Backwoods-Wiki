@@ -122,10 +122,21 @@ export function initRadiansSync(): () => void {
   // Subscribe to central Firestore cluster under 'stats/radians_control'
   if (hasConfig && db) {
     try {
+      let hasReceivedInitialSnap = false;
       const radiansDocRef = doc(db, 'stats', 'radians_control');
+
+      const channelTimeout = setTimeout(() => {
+        if (!hasReceivedInitialSnap && unsubscribeFirestore) {
+          unsubscribeFirestore();
+          unsubscribeFirestore = null;
+        }
+      }, 4000);
+
       unsubscribeFirestore = onSnapshot(
         radiansDocRef,
         (snap) => {
+          hasReceivedInitialSnap = true;
+          clearTimeout(channelTimeout);
           if (snap.exists()) {
             const data = snap.data() as Partial<CelestialRadiansState>;
             if (typeof data.angularSpeed === 'number') {
@@ -138,17 +149,22 @@ export function initRadiansSync(): () => void {
             }
           } else {
             // Document does not exist yet; bootstrap it into the permitted stats collection
-            setDoc(radiansDocRef, DEFAULT_RADIANS_STATE, { merge: true }).catch((err) => {
-              console.warn('[RadiansSync] Bootstrap write error:', err.message);
+            setDoc(radiansDocRef, DEFAULT_RADIANS_STATE, { merge: true }).catch(() => {
+              // Ignore bootstrap errors
             });
           }
         },
-        (err) => {
-          console.warn('[RadiansSync] Firestore listener fallback to local mode:', err.message);
+        () => {
+          clearTimeout(channelTimeout);
+          // Gracefully terminate hanging channel to prevent ERR_TIMED_OUT console errors
+          if (unsubscribeFirestore) {
+            unsubscribeFirestore();
+            unsubscribeFirestore = null;
+          }
         }
       );
-    } catch (err) {
-      console.warn('[RadiansSync] Subscription initialization failed, operating offline:', err);
+    } catch {
+      // Operating offline
     }
   }
 

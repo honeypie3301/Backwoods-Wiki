@@ -13,9 +13,10 @@ import {
   EyeOff, ShieldAlert, Award, Package, RefreshCw, ArrowUpDown, Droplets, Flame, MapPin, Layers,
   MessageSquare, Copy, Check, Terminal, Search, X
 } from 'lucide-react';
-import ModelViewer from './ModelViewer';
 import UpdatedFrame from '../UpdatedFrame';
 import { trackTelemetryClick } from '../../utils/telemetry';
+
+const ModelViewer = React.lazy(() => import('./ModelViewer'));
 
 const ENTITY_MODELS: Record<string, { modelUrl: string; textureUrl: string }> = {
   rot: {
@@ -2045,12 +2046,18 @@ export default function EntitiesView() {
           {(() => {
             const modelConfig = ENTITY_MODELS[currentEntity.id] || { modelUrl: '', textureUrl: '' };
             return (
-              <ModelViewer
-                modelUrl={modelConfig.modelUrl}
-                textureUrl={modelConfig.textureUrl}
-                entityId={currentEntity.id}
-                entityName={currentEntity.name}
-              />
+              <React.Suspense fallback={
+                <div className="w-full h-[320px] bg-[#0c0f0d] rounded-xl border border-[#1a221c] flex items-center justify-center font-mono text-xs text-[#829688]">
+                  Loading 3D Viewport...
+                </div>
+              }>
+                <ModelViewer
+                  modelUrl={modelConfig.modelUrl}
+                  textureUrl={modelConfig.textureUrl}
+                  entityId={currentEntity.id}
+                  entityName={currentEntity.name}
+                />
+              </React.Suspense>
             );
           })()}
 
